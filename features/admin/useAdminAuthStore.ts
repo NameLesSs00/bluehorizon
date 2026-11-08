@@ -2,13 +2,14 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { AuthTokenData, CurrentAdminSession } from "@/models/admin";
+import { AdminRole, AuthTokenData, CurrentAdminSession } from "@/models/admin";
 
 interface JwtPayload {
   nameid?: string;
   email?: string;
   unique_name?: string;
-  role?: string;
+  role?: string | string[];
+  "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"?: string | string[];
   exp?: number;
 }
 
@@ -27,6 +28,30 @@ function parseJwtPayload(token: string): JwtPayload | null {
   } catch {
     return null;
   }
+}
+
+export function isSuperAdminSession(
+  user: CurrentAdminSession | null,
+  accessToken?: string | null
+): boolean {
+  if (user?.role === "SuperAdmin" || user?.roles?.includes("SuperAdmin")) {
+    return true;
+  }
+
+  if (accessToken) {
+    const claims = parseJwtPayload(accessToken);
+    const jwtRole =
+      claims?.role ||
+      claims?.["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+    if (Array.isArray(jwtRole) && jwtRole.includes("SuperAdmin")) {
+      return true;
+    }
+    if (typeof jwtRole === "string" && jwtRole === "SuperAdmin") {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 interface AdminAuthState {
@@ -52,12 +77,31 @@ export const useAdminAuthStore = create<AdminAuthState>()(
 
       setAuth: (data) => {
         const claims = parseJwtPayload(data.accessToken);
+        const jwtRole =
+          claims?.role ||
+          claims?.["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+        const resolvedRole: AdminRole =
+          data.role ||
+          (data.roles && data.roles[0]) ||
+          (typeof jwtRole === "string" ? (jwtRole as AdminRole) : undefined) ||
+          (Array.isArray(jwtRole) ? (jwtRole[0] as AdminRole) : undefined) ||
+          "Admin";
+
+        const resolvedRoles: AdminRole[] =
+          data.roles && data.roles.length > 0
+            ? data.roles
+            : Array.isArray(jwtRole)
+              ? (jwtRole as AdminRole[])
+              : [resolvedRole];
+
         const sessionUser: CurrentAdminSession = {
           id: claims?.nameid || "",
           email: data.email || claims?.email || "",
           fullName: data.fullName || claims?.unique_name || "Admin",
-          role: claims?.role || "Admin",
+          role: resolvedRole,
+          roles: resolvedRoles,
         };
+
         set({
           accessToken: data.accessToken,
           refreshToken: data.refreshToken,

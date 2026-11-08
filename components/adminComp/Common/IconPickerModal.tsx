@@ -54,7 +54,10 @@ export default function IconPickerModal({
     const q = searchTerm.trim().toLowerCase();
     return ICON_REGISTRY.filter((item: RegisteredIcon) => {
       const matchesCategory =
-        activeCategory === "all" || item.category === activeCategory;
+        activeCategory === "all" ||
+        (item.categories
+          ? item.categories.includes(activeCategory)
+          : item.category === activeCategory);
       if (!matchesCategory) return false;
       if (!q) return true;
       return (
@@ -141,18 +144,29 @@ export default function IconPickerModal({
               <button
                 type="button"
                 onClick={() => setActiveCategory("facility")}
-                className={`rounded-lg px-3.5 py-1.5 text-[12px] font-semibold transition-all ${
+                className={`rounded-lg px-3 py-1.5 text-[12px] font-semibold transition-all ${
                   activeCategory === "facility"
                     ? "bg-[#145C4B] text-white shadow-xs"
                     : "text-[#65706B] hover:text-[#202326]"
                 }`}
               >
-                Facilities
+                Project Facilities
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveCategory("service")}
+                className={`rounded-lg px-3 py-1.5 text-[12px] font-semibold transition-all ${
+                  activeCategory === "service"
+                    ? "bg-[#145C4B] text-white shadow-xs"
+                    : "text-[#65706B] hover:text-[#202326]"
+                }`}
+              >
+                Property Services
               </button>
               <button
                 type="button"
                 onClick={() => setActiveCategory("rentalAmenity")}
-                className={`rounded-lg px-3.5 py-1.5 text-[12px] font-semibold transition-all ${
+                className={`rounded-lg px-3 py-1.5 text-[12px] font-semibold transition-all ${
                   activeCategory === "rentalAmenity"
                     ? "bg-[#145C4B] text-white shadow-xs"
                     : "text-[#65706B] hover:text-[#202326]"

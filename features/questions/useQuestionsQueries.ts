@@ -18,6 +18,14 @@ import { useAdminAuthStore } from "@/features/admin/useAdminAuthStore";
 
 export const QUESTIONS_QUERY_KEY = ["questions"] as const;
 
+export function usePublicQuestionsQuery(language: QuestionLanguage = "en") {
+  return useQuery({
+    queryKey: [...QUESTIONS_QUERY_KEY, "public", language],
+    queryFn: () => getQuestions(language),
+    staleTime: 1000 * 60 * 5,
+  });
+}
+
 export function useQuestionsQuery(language: QuestionLanguage = "en") {
   const accessToken = useAdminAuthStore((state) => state.accessToken);
 

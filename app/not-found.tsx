@@ -1,6 +1,6 @@
-import AdminNotFoundView from "@/components/adminComp/Common/AdminNotFoundView";
+import NotFoundPage from "@/components/UserComp/Common/NotFoundPage";
 
 export default function NotFound() {
-  return <AdminNotFoundView />;
+  return <NotFoundPage />;
 }
 

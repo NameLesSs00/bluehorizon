@@ -3,13 +3,16 @@
 import { useState } from "react";
 import { FiPlus, FiShield, FiUsers } from "react-icons/fi";
 import AdminShell from "@/components/adminComp/Common/AdminShell";
-import { useAdminAuthStore } from "@/features/admin/useAdminAuthStore";
+import { isSuperAdminSession, useAdminAuthStore } from "@/features/admin/useAdminAuthStore";
 import { useAdminsQuery } from "@/features/admin/useAdminQueries";
 import AdminsTable from "./AdminsTable";
 import AddAdminModal from "./AddAdminModal";
 
 export default function AdminDashboardPage() {
   const currentUser = useAdminAuthStore((state) => state.user);
+  const accessToken = useAdminAuthStore((state) => state.accessToken);
+  const isSuperAdmin = isSuperAdminSession(currentUser, accessToken);
+
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 10;
 
@@ -30,7 +33,7 @@ export default function AdminDashboardPage() {
   const hasNextPage = adminsData?.hasNextPage ?? pageNumber < totalPages;
 
   return (
-    <AdminShell>
+    <AdminShell requireSuperAdmin={true}>
       <div className="w-full space-y-8">
         {/* Page Title & Metrics */}
         <div>
@@ -58,12 +61,24 @@ export default function AdminDashboardPage() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="flex items-center justify-between rounded-2xl border border-[#E6EAE7] bg-white p-6 shadow-sm">
             <div>
-              <p
-                className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#145C4B]"
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
-                CURRENT SESSION
-              </p>
+              <div className="flex items-center gap-2">
+                <p
+                  className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#145C4B]"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  CURRENT SESSION
+                </p>
+                <span
+                  className={`rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide uppercase ${
+                    isSuperAdmin
+                      ? "bg-[#145C4B]/10 text-[#145C4B]"
+                      : "bg-[#E6EAE7] text-[#65706B]"
+                  }`}
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  {isSuperAdmin ? "Super Admin" : "Admin"}
+                </span>
+              </div>
               <h2
                 className="mt-1 text-[20px] font-semibold text-[#202326]"
                 style={{ fontFamily: "var(--font-manrope)" }}

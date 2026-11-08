@@ -205,6 +205,7 @@ export default function ProjectTypeFormDrawer({
                 onChange={setIcon}
                 defaultCategory="projectType"
                 label="Project Type Icon"
+                modalTitle="Choose Project Type Icon"
                 required
               />
             </div>

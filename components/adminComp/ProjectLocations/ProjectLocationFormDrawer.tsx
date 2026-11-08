@@ -1,0 +1,354 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import { FlagEgypt, FlagGermany, FlagUK } from "@/components/adminComp/Common/LanguageFlags";
+import AdminSlideDrawer from "@/components/adminComp/Common/AdminSlideDrawer";
+import {
+  LocalizedProjectLocationDetails,
+  ProjectLocationFormPayload,
+  ProjectLocationItem,
+} from "@/models/projectLocation";
+import {
+  useCreateProjectLocationMutation,
+  useLocalizedProjectLocationQuery,
+  useUpdateProjectLocationMutation,
+} from "@/features/projectLocations/useProjectLocationsQueries";
+
+interface ProjectLocationFormDrawerProps {
+  isOpen: boolean;
+  onClose: () => void;
+  locationToEdit: ProjectLocationItem | null;
+}
+
+const emptyForm: ProjectLocationFormPayload = {
+  name: { en: "", ar: "", de: "" },
+  description: { en: "", ar: "", de: "" },
+};
+
+export default function ProjectLocationFormDrawer({
+  isOpen,
+  onClose,
+  locationToEdit,
+}: ProjectLocationFormDrawerProps) {
+  const isEditMode = Boolean(locationToEdit);
+  const editId = locationToEdit?.id ?? null;
+
+  const { data: detailsData, isLoading: isLoadingDetails } =
+    useLocalizedProjectLocationQuery(editId, isOpen);
+
+  const [formData, setFormData] = useState<ProjectLocationFormPayload>(emptyForm);
+  const [initialImages, setInitialImages] = useState<File[]>([]);
+  const [initialVideo, setInitialVideo] = useState<File | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setFormData(emptyForm);
+      setInitialImages([]);
+      setInitialVideo(null);
+      return;
+    }
+
+    if (locationToEdit) {
+      if (detailsData) {
+        setFormData({
+          name: {
+            en: detailsData.name.en || "",
+            ar: detailsData.name.ar || "",
+            de: detailsData.name.de || "",
+          },
+          description: {
+            en: detailsData.description.en || "",
+            ar: detailsData.description.ar || "",
+            de: detailsData.description.de || "",
+          },
+        });
+      } else {
+        setFormData({
+          name: { en: locationToEdit.name, ar: "", de: "" },
+          description: { en: locationToEdit.description, ar: "", de: "" },
+        });
+      }
+    } else {
+      setFormData(emptyForm);
+    }
+  }, [isOpen, locationToEdit, detailsData]);
+
+  const createMutation = useCreateProjectLocationMutation(onClose);
+  const updateMutation = useUpdateProjectLocationMutation(onClose);
+
+  const isSaving = createMutation.isPending || updateMutation.isPending;
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    if (!formData.name.en.trim()) {
+      toast.error("English name is required.");
+      return;
+    }
+
+    if (isEditMode && editId) {
+      updateMutation.mutate({
+        id: editId,
+        payload: {
+          name: {
+            en: formData.name.en.trim(),
+            ar: formData.name.ar.trim() || formData.name.en.trim(),
+            de: formData.name.de.trim() || formData.name.en.trim(),
+          },
+          description: {
+            en: formData.description.en.trim(),
+            ar: formData.description.ar.trim() || formData.description.en.trim(),
+            de: formData.description.de.trim() || formData.description.en.trim(),
+          },
+        },
+      });
+    } else {
+      createMutation.mutate({
+        payload: {
+          name: {
+            en: formData.name.en.trim(),
+            ar: formData.name.ar.trim() || formData.name.en.trim(),
+            de: formData.name.de.trim() || formData.name.en.trim(),
+          },
+          description: {
+            en: formData.description.en.trim(),
+            ar: formData.description.ar.trim() || formData.description.en.trim(),
+            de: formData.description.de.trim() || formData.description.en.trim(),
+          },
+        },
+        initialImages: initialImages.length > 0 ? initialImages : undefined,
+        initialVideo: initialVideo || undefined,
+      });
+    }
+  }
+
+  return (
+    <AdminSlideDrawer
+      isOpen={isOpen}
+      onClose={onClose}
+      title={isEditMode ? "Edit Project Location" : "Add Project Location"}
+      subtitle={
+        isEditMode
+          ? "Update localized details for this project location"
+          : "Add a new destination for projects, primary units, and resales"
+      }
+      maxWidthClass="max-w-2xl"
+    >
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {isLoadingDetails && isEditMode && (
+          <div className="rounded-xl border border-[#CBDFD5] bg-[#FAF8F5] p-3 text-[12px] text-[#145C4B]">
+            Loading localized translations for EN, DE, and AR...
+          </div>
+        )}
+
+        {/* Location Names */}
+        <div className="space-y-3">
+          <label className="block text-[13px] font-bold text-[#202326]">
+            Location Name (Multilingual)
+          </label>
+
+          <div className="grid grid-cols-1 gap-3">
+            <div>
+              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+                <FlagUK />
+                <span>English Name *</span>
+              </div>
+              <input
+                type="text"
+                required
+                value={formData.name.en}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    name: { ...prev.name, en: e.target.value },
+                  }))
+                }
+                placeholder="e.g. Hurghada, El Gouna, Sahl Hasheesh"
+                className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+                <FlagGermany />
+                <span>German Name (Deutsch)</span>
+              </div>
+              <input
+                type="text"
+                value={formData.name.de}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    name: { ...prev.name, de: e.target.value },
+                  }))
+                }
+                placeholder="e.g. Hurghada, El Gouna"
+                className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+                <FlagEgypt />
+                <span>Arabic Name (العربية)</span>
+              </div>
+              <input
+                type="text"
+                dir="rtl"
+                value={formData.name.ar}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    name: { ...prev.name, ar: e.target.value },
+                  }))
+                }
+                placeholder="مثال: الغردقة، الجونة، سهل حشيش"
+                className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Location Descriptions */}
+        <div className="space-y-3">
+          <label className="block text-[13px] font-bold text-[#202326]">
+            Description (Multilingual)
+          </label>
+
+          <div className="space-y-3">
+            <div>
+              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+                <FlagUK />
+                <span>English Description</span>
+              </div>
+              <textarea
+                rows={3}
+                value={formData.description.en}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    description: { ...prev.description, en: e.target.value },
+                  }))
+                }
+                placeholder="Describe the area, coastal access, lifestyle and investment appeal..."
+                className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+                <FlagGermany />
+                <span>German Description</span>
+              </div>
+              <textarea
+                rows={3}
+                value={formData.description.de}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    description: { ...prev.description, de: e.target.value },
+                  }))
+                }
+                placeholder="Deutsche Beschreibung..."
+                className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+                <FlagEgypt />
+                <span>Arabic Description</span>
+              </div>
+              <textarea
+                rows={3}
+                dir="rtl"
+                value={formData.description.ar}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    description: { ...prev.description, ar: e.target.value },
+                  }))
+                }
+                placeholder="وصف الوجهة الساحلية وأهم مميزاتها الاستثمارية..."
+                className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Media Attachments during Creation */}
+        {!isEditMode && (
+          <div className="rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-4 space-y-4">
+            <h4 className="text-[12px] font-bold uppercase tracking-wider text-[#145C4B]">
+              Optional Initial Media
+            </h4>
+
+            <div>
+              <label className="block text-[12px] font-medium text-[#202326]">
+                Upload Gallery Photos (Multiple)
+              </label>
+              <input
+                type="file"
+                multiple
+                accept="image/*"
+                onChange={(e) => {
+                  const files = e.target.files ? Array.from(e.target.files) : [];
+                  setInitialImages(files);
+                }}
+                className="mt-1.5 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-lg file:border-0 file:bg-[#0F473A] file:px-3 file:py-1.5 file:text-[12px] file:font-semibold file:text-white hover:file:bg-[#145C4B]"
+              />
+              {initialImages.length > 0 && (
+                <p className="mt-1 text-[11px] text-[#145C4B]">
+                  {initialImages.length} photo(s) selected
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-[12px] font-medium text-[#202326]">
+                Upload Promotional Video (MP4)
+              </label>
+              <input
+                type="file"
+                accept="video/*"
+                onChange={(e) => {
+                  const file = e.target.files?.[0] || null;
+                  setInitialVideo(file);
+                }}
+                className="mt-1.5 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-lg file:border-0 file:bg-[#0F473A] file:px-3 file:py-1.5 file:text-[12px] file:font-semibold file:text-white hover:file:bg-[#145C4B]"
+              />
+              {initialVideo && (
+                <p className="mt-1 text-[11px] text-[#145C4B]">
+                  Video selected: {initialVideo.name}
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+
+        <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#E6EAE7]">
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-xl border border-[#DCE2DE] bg-white px-5 py-2.5 text-[13px] font-medium text-[#65706B] hover:bg-[#F3F5F3]"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            disabled={isSaving}
+            className="rounded-xl bg-[#0F473A] px-6 py-2.5 text-[13px] font-semibold text-white hover:bg-[#145C4B] disabled:opacity-50"
+          >
+            {isSaving
+              ? "Saving..."
+              : isEditMode
+              ? "Update Location"
+              : "Create Location"}
+          </button>
+        </div>
+      </form>
+    </AdminSlideDrawer>
+  );
+}
+

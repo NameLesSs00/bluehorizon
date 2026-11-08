@@ -86,6 +86,12 @@ export default function AdminsTable({
                 className="px-6 py-4 text-[12px] font-bold uppercase tracking-[0.08em] text-[#65706B]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
+                Role
+              </th>
+              <th
+                className="px-6 py-4 text-[12px] font-bold uppercase tracking-[0.08em] text-[#65706B]"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
                 Email
               </th>
               <th
@@ -106,7 +112,7 @@ export default function AdminsTable({
             {admins.length === 0 ? (
               <tr>
                 <td
-                  colSpan={4}
+                  colSpan={5}
                   className="px-6 py-16 text-center text-[14px] text-[#65706B]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
@@ -120,6 +126,10 @@ export default function AdminsTable({
                   (currentUser?.email &&
                     admin.email.toLowerCase() ===
                       currentUser.email.toLowerCase());
+
+                const isAdminSuperAdmin =
+                  admin.role === "SuperAdmin" ||
+                  admin.roles?.includes("SuperAdmin");
 
                 return (
                   <tr
@@ -150,6 +160,19 @@ export default function AdminsTable({
                           </div>
                         </div>
                       </div>
+                    </td>
+
+                    <td className="px-6 py-5">
+                      <span
+                        className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${
+                          isAdminSuperAdmin
+                            ? "bg-[#145C4B]/10 text-[#145C4B]"
+                            : "bg-[#E6EAE7] text-[#4F5955]"
+                        }`}
+                        style={{ fontFamily: "var(--font-inter)" }}
+                      >
+                        {isAdminSuperAdmin ? "Super Admin" : "Admin"}
+                      </span>
                     </td>
 
                     <td

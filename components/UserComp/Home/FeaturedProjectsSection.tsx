@@ -1,59 +1,95 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import FeaturedProjectCard, {
-  ProjectCardData,
-} from "./FeaturedProjectCard";
+import { usePublicProjectsQuery } from "@/features/projects/useProjectsQueries";
+import { getFullProjectImageUrl } from "@/clientApi/projectsApi";
+import { ProjectItem } from "@/models/project";
+import FeaturedProjectCard, { ProjectCardData } from "./FeaturedProjectCard";
 
-// Temporary dummy data for initial UI presentation.
-// This will be replaced once backend endpoints and hooks are connected.
-const DUMMY_FEATURED_PROJECTS: ProjectCardData[] = [
-  {
-    id: "1",
-    badge: "NEW LAUNCH",
-    title: "Sodic East",
-    location: "New Heliopolis",
-    price: "From EGP 8,500,000",
-    propertyTypes: "Apartments & villas",
-    areaRange: "120–320 m²",
-    developer: "SODIC",
-    imageSrc: "/HomePage/FeaturedProjects/defalutProjectImage.jpg",
-  },
-  {
-    id: "2",
-    badge: "FEATURED PROJECT",
-    title: "Palm Hills New Cairo",
-    location: "New Cairo",
-    price: "From EGP 12,000,000",
-    propertyTypes: "Villas & townhouses",
-    areaRange: "180–450 m²",
-    developer: "Palm Hills",
-    imageSrc: "/HomePage/FeaturedProjects/defalutProjectImage.jpg",
-  },
-  {
-    id: "3",
-    badge: "COASTAL LIVING",
-    title: "Marassi",
-    location: "North Coast",
-    price: "From EGP 9,200,000",
-    propertyTypes: "Chalets & apartments",
-    areaRange: "90–250 m²",
-    developer: "Emaar Misr",
-    imageSrc: "/HomePage/FeaturedProjects/defalutProjectImage.jpg",
-  },
-  {
-    id: "4",
-    badge: "FLEXIBLE PAYMENTS",
-    title: "Mountain View iCity",
-    location: "6th of October",
-    price: "From EGP 7,800,000",
-    propertyTypes: "Apartments & iVillas",
-    areaRange: "115–280 m²",
-    developer: "Mountain View",
-    imageSrc: "/HomePage/FeaturedProjects/defalutProjectImage.jpg",
-  },
-];
+function formatProjectCard(item: ProjectItem): ProjectCardData {
+  const hasImage = Boolean(item.imageUrls && item.imageUrls.length > 0);
+  const coverImage = hasImage
+    ? getFullProjectImageUrl(item.imageUrls[0])
+    : "/default-fallback.png";
+
+  // Only show the badge ribbon if the project is actually a featured project
+  const badge = item.isFeature ? "FEATURED PROJECT" : null;
+
+  const usdPrice = item.prices?.find((p) => p.currency.toUpperCase() === "USD");
+  const fallbackPrice = item.prices?.[0];
+  const activePrice = usdPrice || fallbackPrice;
+
+  let priceText = "Price on request";
+  if (activePrice && (activePrice.minimumPrice || activePrice.maximumPrice)) {
+    const symbol =
+      activePrice.currency === "USD"
+        ? "$"
+        : activePrice.currency === "EUR"
+        ? "€"
+        : activePrice.currency === "GBP"
+        ? "£"
+        : `${activePrice.currency} `;
+
+    if (activePrice.minimumPrice) {
+      priceText = `Starting from ${symbol}${Number(activePrice.minimumPrice).toLocaleString()}`;
+    } else if (activePrice.maximumPrice) {
+      priceText = `Up to ${symbol}${Number(activePrice.maximumPrice).toLocaleString()}`;
+    }
+  }
+
+  const propertyTypes =
+    item.projectTypes && item.projectTypes.length > 0
+      ? item.projectTypes.map((t) => t.name).join(" & ")
+      : "Luxury Residences";
+
+  const specsSummary =
+    item.furnitureType === "Fully" || item.furnitureType === 2
+      ? "Fully Furnished"
+      : item.furnitureType === "Semi" || item.furnitureType === 1
+      ? "Semi-Furnished"
+      : item.facilities && item.facilities.length > 0
+      ? `${item.facilities.length} Facilities`
+      : "";
+
+  let footerLabel = "Explore Project";
+  if (item.deliveryDate) {
+    const year = new Date(item.deliveryDate).getFullYear();
+    if (!isNaN(year)) {
+      footerLabel = `Delivery ${year}`;
+    }
+  }
+
+  return {
+    id: String(item.id),
+    badge,
+    title: item.name,
+    location: item.locationName || "Hurghada, Red Sea",
+    price: priceText,
+    propertyTypes,
+    specsSummary,
+    footerLabel,
+    imageSrc: coverImage,
+    isFallback: !hasImage,
+  };
+}
 
 export default function FeaturedProjectsSection() {
+  const { data: projectsData, isLoading } = usePublicProjectsQuery({
+    Language: "en",
+    Currency: "USD",
+    PageNumber: 1,
+    PageSize: 8,
+  });
+
+  const rawItems = projectsData?.items || [];
+
+  // Sort featured projects first, taking up to 4
+  const displayProjects: ProjectCardData[] = [...rawItems]
+    .sort((a, b) => (b.isFeature ? 1 : 0) - (a.isFeature ? 1 : 0))
+    .slice(0, 4)
+    .map(formatProjectCard);
+
   return (
     <section className="bg-[#F3F5F3] py-16 sm:py-20">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
@@ -96,13 +132,28 @@ export default function FeaturedProjectsSection() {
           </Link>
         </header>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {DUMMY_FEATURED_PROJECTS.map((project) => (
-            <FeaturedProjectCard key={project.id} project={project} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="flex h-64 w-full flex-col items-center justify-center rounded-2xl border border-[#E6EAE7] bg-white">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#145C4B] border-t-transparent" />
+            <p
+              className="mt-3 text-[13px] text-[#65706B]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              Loading featured projects...
+            </p>
+          </div>
+        ) : displayProjects.length === 0 ? (
+          <div className="flex h-48 w-full items-center justify-center rounded-2xl border border-[#E6EAE7] bg-white text-[14px] text-[#65706B]">
+            No projects available at the moment.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {displayProjects.map((project) => (
+              <FeaturedProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
 }
-

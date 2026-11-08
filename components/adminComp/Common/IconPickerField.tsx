@@ -16,6 +16,7 @@ interface IconPickerFieldProps {
   defaultCategory?: IconCategory;
   label?: string;
   required?: boolean;
+  modalTitle?: string;
 }
 
 export default function IconPickerField({
@@ -24,11 +25,24 @@ export default function IconPickerField({
   defaultCategory,
   label = "Select Icon",
   required = false,
+  modalTitle,
 }: IconPickerFieldProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const selectedMeta = getIconMetadata(value);
   const SelectedIcon = resolveIcon(value);
+
+  const computedModalTitle =
+    modalTitle ||
+    (defaultCategory === "projectType"
+      ? "Choose Project Type Icon"
+      : defaultCategory === "facility"
+      ? "Choose Project Facility Icon"
+      : defaultCategory === "service"
+      ? "Choose Property Service Icon"
+      : defaultCategory === "rentalAmenity"
+      ? "Choose Rental Amenity Icon"
+      : "Choose Icon");
 
   return (
     <div className="space-y-3">
@@ -94,13 +108,7 @@ export default function IconPickerField({
         selectedIcon={value}
         onSelect={onChange}
         defaultCategory={defaultCategory}
-        title={
-          defaultCategory === "projectType"
-            ? "Choose Project Type Icon"
-            : defaultCategory === "facility"
-            ? "Choose Project Facility Icon"
-            : "Choose Icon"
-        }
+        title={computedModalTitle}
       />
     </div>
   );

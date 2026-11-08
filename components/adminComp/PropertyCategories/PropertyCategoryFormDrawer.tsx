@@ -222,7 +222,8 @@ export default function PropertyCategoryFormDrawer({
                 value={icon}
                 onChange={setIcon}
                 defaultCategory="rentalAmenity"
-                label="Category Icon"
+                label="Rental Category Icon"
+                modalTitle="Choose Rental Category Icon"
               />
             </div>
           </div>

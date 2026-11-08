@@ -3,9 +3,17 @@
 import AdminAuthGuard from "./AdminAuthGuard";
 import AdminSidebar from "./AdminSidebar";
 
-export default function AdminShell({ children }: { children: React.ReactNode }) {
+interface AdminShellProps {
+  children: React.ReactNode;
+  requireSuperAdmin?: boolean;
+}
+
+export default function AdminShell({
+  children,
+  requireSuperAdmin = false,
+}: AdminShellProps) {
   return (
-    <AdminAuthGuard mode="protected">
+    <AdminAuthGuard mode="protected" requireSuperAdmin={requireSuperAdmin}>
       <div className="flex min-h-screen flex-col bg-[#F3F5F3] lg:flex-row">
         {/* Persistent Left Sidebar - No Top Header */}
         <AdminSidebar />

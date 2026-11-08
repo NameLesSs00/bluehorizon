@@ -2,29 +2,43 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAdminAuthStore } from "@/features/admin/useAdminAuthStore";
+import { isSuperAdminSession, useAdminAuthStore } from "@/features/admin/useAdminAuthStore";
 import AdminNotFoundView from "./AdminNotFoundView";
 
 interface AdminAuthGuardProps {
   children: React.ReactNode;
   mode: "protected" | "guest-only";
+  requireSuperAdmin?: boolean;
 }
 
 export default function AdminAuthGuard({
   children,
   mode,
+  requireSuperAdmin = false,
 }: AdminAuthGuardProps) {
   const router = useRouter();
   const accessToken = useAdminAuthStore((state) => state.accessToken);
+  const currentUser = useAdminAuthStore((state) => state.user);
   const hasHydrated = useAdminAuthStore((state) => state.hasHydrated);
+
+  const isSuperAdmin = isSuperAdminSession(currentUser, accessToken);
 
   useEffect(() => {
     if (!hasHydrated) return;
 
     if (mode === "guest-only" && accessToken) {
-      router.replace("/admin/dashboard");
+      if (isSuperAdmin) {
+        router.replace("/admin/dashboard");
+      } else {
+        router.replace("/admin/contacts");
+      }
+      return;
     }
-  }, [hasHydrated, mode, accessToken, router]);
+
+    if (mode === "protected" && accessToken && requireSuperAdmin && !isSuperAdmin) {
+      router.replace("/admin/contacts");
+    }
+  }, [hasHydrated, mode, accessToken, requireSuperAdmin, isSuperAdmin, router]);
 
   if (!hasHydrated) {
     return (
@@ -34,7 +48,7 @@ export default function AdminAuthGuard({
     );
   }
 
-  // On /admin/login: if user already has a token, redirect to /admin/dashboard
+  // On /admin/login: if user already has a token, redirect out
   if (mode === "guest-only" && accessToken) {
     return null;
   }
@@ -42,6 +56,11 @@ export default function AdminAuthGuard({
   // On protected admin routes: if no token, render 404 Not Found
   if (mode === "protected" && !accessToken) {
     return <AdminNotFoundView />;
+  }
+
+  // If a SuperAdmin-only page is visited by a non-SuperAdmin, block rendering
+  if (mode === "protected" && requireSuperAdmin && !isSuperAdmin) {
+    return null;
   }
 
   return <>{children}</>;

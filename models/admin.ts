@@ -1,3 +1,5 @@
+export type AdminRole = "SuperAdmin" | "Admin" | (string & {});
+
 export interface ApiResponse<T> {
   success: boolean;
   message: string;
@@ -15,6 +17,8 @@ export interface AuthTokenData {
   refreshToken: string;
   email: string;
   fullName: string;
+  role?: AdminRole;
+  roles?: AdminRole[];
 }
 
 export interface RefreshTokenRequestDto {
@@ -26,6 +30,8 @@ export interface AdminUserItem {
   username: string;
   email: string;
   createdAt: string;
+  role?: AdminRole;
+  roles?: AdminRole[];
 }
 
 export interface PaginatedAdminsData {
@@ -70,5 +76,6 @@ export interface CurrentAdminSession {
   id: string;
   email: string;
   fullName: string;
-  role: string;
+  role: AdminRole;
+  roles?: AdminRole[];
 }

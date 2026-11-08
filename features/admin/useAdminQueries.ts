@@ -20,7 +20,7 @@ import {
   UpdatePasswordRequestDto,
 } from "@/models/admin";
 import { showApiErrorToast } from "@/shared/utils/errorHandler";
-import { useAdminAuthStore } from "./useAdminAuthStore";
+import { isSuperAdminSession, useAdminAuthStore } from "./useAdminAuthStore";
 
 export const ADMINS_QUERY_KEY = ["admins"] as const;
 
@@ -43,7 +43,16 @@ export function useLoginMutation() {
     onSuccess: (res) => {
       setAuth(res.data);
       toast.success(res.message || "Signed in successfully");
-      router.replace("/admin/dashboard");
+      const isSuperAdmin =
+        res.data.role === "SuperAdmin" ||
+        res.data.roles?.includes("SuperAdmin") ||
+        isSuperAdminSession(null, res.data.accessToken);
+
+      if (isSuperAdmin) {
+        router.replace("/admin/dashboard");
+      } else {
+        router.replace("/admin/contacts");
+      }
     },
     onError: (error) => {
       showApiErrorToast(error);
@@ -74,11 +83,13 @@ export function useLogoutMutation() {
 
 export function useAdminsQuery(params?: AdminsQueryParams) {
   const accessToken = useAdminAuthStore((state) => state.accessToken);
+  const currentUser = useAdminAuthStore((state) => state.user);
+  const isSuperAdmin = isSuperAdminSession(currentUser, accessToken);
 
   return useQuery({
     queryKey: [...ADMINS_QUERY_KEY, params?.PageNumber ?? 1, params?.PageSize ?? 10],
     queryFn: () => getAdmins(params),
-    enabled: Boolean(accessToken),
+    enabled: Boolean(accessToken) && isSuperAdmin,
   });
 }
 

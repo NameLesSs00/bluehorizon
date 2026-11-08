@@ -1,15 +1,17 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export interface ProjectCardData {
   id: string;
-  badge: string;
+  badge?: string | null;
   title: string;
   location: string;
   price: string;
   propertyTypes: string;
-  areaRange: string;
-  developer: string;
+  specsSummary: string;
+  footerLabel: string;
   imageSrc: string;
+  isFallback?: boolean;
 }
 
 interface FeaturedProjectCardProps {
@@ -20,24 +22,42 @@ export default function FeaturedProjectCard({
   project,
 }: FeaturedProjectCardProps) {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-[16px] border border-[#E6EAE7] bg-white transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
-      <div className="relative aspect-[16/11] w-full overflow-hidden bg-neutral-100">
-        <Image
-          src={project.imageSrc}
-          alt={project.title}
-          fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-        />
+    <Link
+      href={`/projects/${project.id}`}
+      className="group flex flex-col overflow-hidden rounded-[16px] border border-[#E6EAE7] bg-white transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+    >
+      <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#FAF8F5]">
+        {project.isFallback ? (
+          <div className="absolute inset-0 flex items-center justify-center p-6">
+            <div className="relative h-20 w-36 transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/default-fallback.png"
+                alt={project.title}
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+        ) : (
+          <Image
+            src={project.imageSrc}
+            alt={project.title}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        )}
 
-        <div className="absolute top-[14px] left-[14px] rounded-full bg-white px-3 py-1.5 shadow-sm">
-          <span
-            className="block text-[10px] font-medium uppercase leading-none tracking-normal text-[#145C4B]"
-            style={{ fontFamily: "var(--font-inter)" }}
-          >
-            {project.badge}
-          </span>
-        </div>
+        {project.badge && (
+          <div className="absolute top-[14px] left-[14px] rounded-full bg-white px-3 py-1.5 shadow-sm">
+            <span
+              className="block text-[10px] font-medium uppercase leading-none tracking-normal text-[#145C4B]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              {project.badge}
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="flex flex-1 flex-col p-5">
@@ -77,7 +97,8 @@ export default function FeaturedProjectCard({
             className="text-[11px] font-normal leading-none tracking-normal text-[#65706B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            {project.propertyTypes} &middot; {project.areaRange}
+            {project.propertyTypes}
+            {project.specsSummary ? ` · ${project.specsSummary}` : ""}
           </p>
         </div>
 
@@ -87,7 +108,7 @@ export default function FeaturedProjectCard({
               className="text-[12px] font-semibold leading-none tracking-normal text-[#202326]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              By {project.developer}
+              {project.footerLabel}
             </span>
             <Image
               src="/HomePage/FeaturedProjects/link.svg"
@@ -99,7 +120,7 @@ export default function FeaturedProjectCard({
           </div>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }
 

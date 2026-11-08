@@ -14,11 +14,13 @@ import {
   FiKey,
   FiLink2,
   FiLogOut,
+  FiMapPin,
   FiShield,
+  FiSliders,
   FiUsers,
 } from "react-icons/fi";
 import { LuBuilding, LuSparkles } from "react-icons/lu";
-import { useAdminAuthStore } from "@/features/admin/useAdminAuthStore";
+import { isSuperAdminSession, useAdminAuthStore } from "@/features/admin/useAdminAuthStore";
 import { useLogoutMutation } from "@/features/admin/useAdminQueries";
 import EditProfileModal from "@/components/adminComp/Dashboard/EditProfileModal";
 import ChangePasswordModal from "@/components/adminComp/Dashboard/ChangePasswordModal";
@@ -30,41 +32,72 @@ interface AdminSidebarProps {
 export default function AdminSidebar({}: AdminSidebarProps) {
   const pathname = usePathname();
   const currentUser = useAdminAuthStore((state) => state.user);
+  const accessToken = useAdminAuthStore((state) => state.accessToken);
   const logoutMutation = useLogoutMutation();
+
+  const isSuperAdmin = isSuperAdminSession(currentUser, accessToken);
 
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
 
-  const navLinks = [
+  const allNavLinks = [
     {
       label: "Administrators",
       href: "/admin/dashboard",
       icon: FiUsers,
       active: pathname === "/admin/dashboard",
+      superAdminOnly: true,
     },
     {
       label: "Contact Inquiries",
       href: "/admin/contacts",
       icon: FiInbox,
       active: pathname.startsWith("/admin/contacts"),
+      superAdminOnly: false,
     },
     {
       label: "Articles & Blogs",
       href: "/admin/blogs",
       icon: FiBookOpen,
       active: pathname.startsWith("/admin/blogs"),
+      superAdminOnly: false,
+    },
+    {
+      label: "Projects",
+      href: "/admin/projects",
+      icon: LuBuilding,
+      active: pathname.startsWith("/admin/projects"),
+      superAdminOnly: false,
+    },
+    {
+      label: "Project Locations",
+      href: "/admin/project-locations",
+      icon: FiMapPin,
+      active:
+        pathname.startsWith("/admin/project-locations") ||
+        pathname.startsWith("/admin/categories"),
+      superAdminOnly: false,
     },
     {
       label: "Project Types",
       href: "/admin/project-types",
       icon: LuBuilding,
       active: pathname.startsWith("/admin/project-types"),
+      superAdminOnly: false,
     },
     {
       label: "Project Facilities",
       href: "/admin/project-facilities",
       icon: LuSparkles,
       active: pathname.startsWith("/admin/project-facilities"),
+      superAdminOnly: false,
+    },
+    {
+      label: "Property Services",
+      href: "/admin/property-services",
+      icon: FiSliders,
+      active: pathname.startsWith("/admin/property-services"),
+      superAdminOnly: false,
     },
     {
       label: "Rental Categories",
@@ -73,6 +106,7 @@ export default function AdminSidebar({}: AdminSidebarProps) {
       active:
         pathname.startsWith("/admin/rental-categories") ||
         pathname.startsWith("/admin/property-categories"),
+      superAdminOnly: false,
     },
     {
       label: "Rental Items",
@@ -81,20 +115,34 @@ export default function AdminSidebar({}: AdminSidebarProps) {
       active:
         pathname.startsWith("/admin/rental-items") ||
         pathname.startsWith("/admin/property-category-items"),
+      superAdminOnly: false,
+    },
+    {
+      label: "Rental Area Places",
+      href: "/admin/rental-area-places",
+      icon: FiMapPin,
+      active: pathname.startsWith("/admin/rental-area-places"),
+      superAdminOnly: false,
     },
     {
       label: "FAQ / Questions",
       href: "/admin/questions",
       icon: FiHelpCircle,
       active: pathname.startsWith("/admin/questions"),
+      superAdminOnly: false,
     },
     {
       label: "Site Links / Keys",
       href: "/admin/site-links",
       icon: FiLink2,
       active: pathname.startsWith("/admin/site-links"),
+      superAdminOnly: false,
     },
   ];
+
+  const visibleNavLinks = allNavLinks.filter(
+    (item) => !item.superAdminOnly || isSuperAdmin
+  );
 
   return (
     <>
@@ -130,7 +178,7 @@ export default function AdminSidebar({}: AdminSidebarProps) {
 
           {/* Navigation Links */}
           <nav className="mt-8 space-y-2">
-            {navLinks.map((item) => {
+            {visibleNavLinks.map((item) => {
               const Icon = item.icon;
               return (
                 <Link
@@ -158,12 +206,24 @@ export default function AdminSidebar({}: AdminSidebarProps) {
               <FiShield className="h-5 w-5" />
             </div>
             <div className="overflow-hidden">
-              <p
-                className="truncate text-[13px] font-semibold text-white"
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
-                {currentUser?.fullName || "Administrator"}
-              </p>
+              <div className="flex items-center gap-2">
+                <p
+                  className="truncate text-[13px] font-semibold text-white"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  {currentUser?.fullName || "Administrator"}
+                </p>
+                <span
+                  className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide uppercase ${
+                    isSuperAdmin
+                      ? "bg-[#25D366]/20 text-[#6EE7B7]"
+                      : "bg-white/15 text-white/90"
+                  }`}
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  {isSuperAdmin ? "Super Admin" : "Admin"}
+                </span>
+              </div>
               <p
                 className="truncate text-[11px] text-[#CBDFD5]"
                 style={{ fontFamily: "var(--font-inter)" }}
