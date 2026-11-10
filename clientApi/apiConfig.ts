@@ -5,7 +5,7 @@ import { ApiResponse, AuthTokenData } from "@/models/admin";
 export type { ApiResponse };
 
 export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "https://realestate22.runasp.net";
+  process.env.NEXT_PUBLIC_API_BASE_URL || "https://realestate44.runasp.net";
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,

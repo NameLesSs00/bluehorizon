@@ -1,5 +1,6 @@
 import FeaturedProjectsSection from "./FeaturedProjectsSection";
 import PopularAreasSection from "./PopularAreasSection";
+import WhyBlueHorizonSection from "./WhyBlueHorizonSection";
 import FaqsSection from "./FaqsSection";
 import DreamHomeSection from "./DreamHomeSection";
 import Footer from "@/components/UserComp/Common/Footer";
@@ -11,6 +12,7 @@ export default function HomePage() {
       <main className="flex-1">
         <FeaturedProjectsSection />
         <PopularAreasSection />
+        <WhyBlueHorizonSection />
         <FaqsSection />
         <DreamHomeSection />
       </main>
