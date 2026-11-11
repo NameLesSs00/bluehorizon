@@ -3,7 +3,7 @@ here is a plan to create the login page for the admin it will be an image on the
 note that after we login we should view the admin/dashboard and if we got a token and we try to view the login page we will be redircted to the dashboard
 also if we don't have token we can't view any of the pages that is related to the admin expect the login and we should find a 404 not found page
 here are how the backend works 
-first the url is https://realestate22.runasp.net/
+first the url is https://realestate44.runasp.net/
 
 
 extra notes about the admin endpoints the edit you will find a phone but we can't show it so we will send it to be empty 11 zeros number as it will not be usefull and also we should have some great error handling showing the errors we got by the bakend and show it as a sonner component on the top center of hte page 
@@ -34,11 +34,11 @@ Responses
 Curl
 
 curl -X 'GET' \
-  'https://realestate22.runasp.net/api/Admins' \
+  'https://realestate44.runasp.net/api/Admins' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0M2QwYmFjMS1mY2MyLTRmMDMtYmE4ZS0zYTBhYTFlNzgzNjQiLCJlbWFpbCI6Ik1vQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiTW9oYW1lZCBIYWtlbSIsInJvbGUiOiJTdXBlckFkbWluIiwibmJmIjoxNzk0MDQzNDIzLCJleHAiOjE3OTQwNDcwMjMsImlhdCI6MTc5NDA0MzQyMywiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.IN32xfm4FjFH8fHbOYUSF__QqY-hMr6f2w_kcGm2M4Q'
 Request URL
-https://realestate22.runasp.net/api/Admins
+https://realestate44.runasp.net/api/Admins
 Server response
 Code	Details
 200	
@@ -125,7 +125,7 @@ Responses
 Curl
 
 curl -X 'PUT' \
-  'https://realestate22.runasp.net/api/Admins/update' \
+  'https://realestate44.runasp.net/api/Admins/update' \
   -H 'accept: */*' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTVAZ21haWwuY29tIiwidW5pcXVlX25hbWUiOiJwb2xhIHNhbXkiLCJyb2xlIjoiQWRtaW4iLCJuYmYiOjE3OTQwNDM1MjUsImV4cCI6MTc5NDA0NzEyNSwiaWF0IjoxNzk0MDQzNTI1LCJpc3MiOiJSZWFsRXN0YXRlQVBJIiwiYXVkIjoiUmVhbEVzdGF0ZUNsaWVudCJ9.ok3P1bvihx23ThQoUT1MHgLgzWHJvllGxr3e-xV9Fyw' \
   -H 'Content-Type: application/json' \
@@ -135,7 +135,7 @@ curl -X 'PUT' \
   "phoneNumber": "123456789"
 }'
 Request URL
-https://realestate22.runasp.net/api/Admins/update
+https://realestate44.runasp.net/api/Admins/update
 Server response
 Code	Details
 200	
@@ -188,7 +188,7 @@ Responses
 Curl
 
 curl -X 'POST' \
-  'https://realestate22.runasp.net/api/Auth/login' \
+  'https://realestate44.runasp.net/api/Auth/login' \
   -H 'accept: */*' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0M2QwYmFjMS1mY2MyLTRmMDMtYmE4ZS0zYTBhYTFlNzgzNjQiLCJlbWFpbCI6Ik1vQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiTW9oYW1lZCBIYWtlbSIsInJvbGUiOiJTdXBlckFkbWluIiwibmJmIjoxNzk0MDQzNDIzLCJleHAiOjE3OTQwNDcwMjMsImlhdCI6MTc5NDA0MzQyMywiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.IN32xfm4FjFH8fHbOYUSF__QqY-hMr6f2w_kcGm2M4Q' \
   -H 'Content-Type: application/json' \
@@ -197,7 +197,7 @@ curl -X 'POST' \
   "password": "Pola123!"
 }'
 Request URL
-https://realestate22.runasp.net/api/Auth/login
+https://realestate44.runasp.net/api/Auth/login
 Server response
 Code	Details
 200	
@@ -246,13 +246,13 @@ Responses
 Curl
 
 curl -X 'POST' \
-  'https://realestate22.runasp.net/api/Auth/logout' \
+  'https://realestate44.runasp.net/api/Auth/logout' \
   -H 'accept: */*' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0M2QwYmFjMS1mY2MyLTRmMDMtYmE4ZS0zYTBhYTFlNzgzNjQiLCJlbWFpbCI6Ik1vQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiTW9oYW1lZCBIYWtlbSIsInJvbGUiOiJTdXBlckFkbWluIiwibmJmIjoxNzk0MDQzMTQ0LCJleHAiOjE3OTQwNDY3NDQsImlhdCI6MTc5NDA0MzE0NCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.LR9jpxOuACc3I-miZ1rjq5Fx5Gf5M7gxTM_uqcX00yU' \
   -H 'Content-Type: application/json' \
   -d '"9vjHNJOhGvFF+35Zany+09XzZPmqz3zzw4JZk/zkEus="'
 Request URL
-https://realestate22.runasp.net/api/Auth/logout
+https://realestate44.runasp.net/api/Auth/logout
 Server response
 Code	Details
 200	
@@ -301,7 +301,7 @@ Responses
 Curl
 
 curl -X 'POST' \
-  'https://realestate22.runasp.net/api/Auth/add-admin' \
+  'https://realestate44.runasp.net/api/Auth/add-admin' \
   -H 'accept: */*' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0M2QwYmFjMS1mY2MyLTRmMDMtYmE4ZS0zYTBhYTFlNzgzNjQiLCJlbWFpbCI6Ik1vQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiTW9oYW1lZCBIYWtlbSIsInJvbGUiOiJTdXBlckFkbWluIiwibmJmIjoxNzk0MDQzNDIzLCJleHAiOjE3OTQwNDcwMjMsImlhdCI6MTc5NDA0MzQyMywiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.IN32xfm4FjFH8fHbOYUSF__QqY-hMr6f2w_kcGm2M4Q' \
   -H 'Content-Type: application/json' \
@@ -312,7 +312,7 @@ curl -X 'POST' \
   "password": "Pola123!"
 }'
 Request URL
-https://realestate22.runasp.net/api/Auth/add-admin
+https://realestate44.runasp.net/api/Auth/add-admin
 Server response
 Code	Details
 200	
@@ -360,7 +360,7 @@ Responses
 Curl
 
 curl -X 'PUT' \
-  'https://realestate22.runasp.net/api/Auth/update-password' \
+  'https://realestate44.runasp.net/api/Auth/update-password' \
   -H 'accept: */*' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJkMjE2NGViNy0wZDA1LTQwN2MtOTAzNS0wMTI4YmE4NjUxZjciLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDQzMzMzLCJleHAiOjE3OTQwNDY5MzMsImlhdCI6MTc5NDA0MzMzMywiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.DMa4b-Y5lF7wt-OtDN9BpmVdB6O_rm2DvYHG-qVxHPw' \
   -H 'Content-Type: application/json' \
@@ -370,7 +370,7 @@ curl -X 'PUT' \
   "confirmPassword": "Pola123!!"
 }'
 Request URL
-https://realestate22.runasp.net/api/Auth/update-password
+https://realestate44.runasp.net/api/Auth/update-password
 Server response
 Code	Details
 200	
@@ -412,11 +412,11 @@ Responses
 Curl
 
 curl -X 'DELETE' \
-  'https://realestate22.runasp.net/api/Auth/delete-admin/d2164eb7-0d05-407c-9035-0128ba8651f7' \
+  'https://realestate44.runasp.net/api/Auth/delete-admin/d2164eb7-0d05-407c-9035-0128ba8651f7' \
   -H 'accept: */*' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0M2QwYmFjMS1mY2MyLTRmMDMtYmE4ZS0zYTBhYTFlNzgzNjQiLCJlbWFpbCI6Ik1vQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiTW9oYW1lZCBIYWtlbSIsInJvbGUiOiJTdXBlckFkbWluIiwibmJmIjoxNzk0MDQzNDIzLCJleHAiOjE3OTQwNDcwMjMsImlhdCI6MTc5NDA0MzQyMywiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.IN32xfm4FjFH8fHbOYUSF__QqY-hMr6f2w_kcGm2M4Q'
 Request URL
-https://realestate22.runasp.net/api/Auth/delete-admin/d2164eb7-0d05-407c-9035-0128ba8651f7
+https://realestate44.runasp.net/api/Auth/delete-admin/d2164eb7-0d05-407c-9035-0128ba8651f7
 Server response
 Code	Details
 200	
@@ -462,7 +462,7 @@ Responses
 Curl
 
 curl -X 'POST' \
-  'https://realestate22.runasp.net/api/Auth/refresh-token' \
+  'https://realestate44.runasp.net/api/Auth/refresh-token' \
   -H 'accept: */*' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0M2QwYmFjMS1mY2MyLTRmMDMtYmE4ZS0zYTBhYTFlNzgzNjQiLCJlbWFpbCI6Ik1vQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiTW9oYW1lZCBIYWtlbSIsInJvbGUiOiJTdXBlckFkbWluIiwibmJmIjoxNzk0MDQzMTgwLCJleHAiOjE3OTQwNDY3ODAsImlhdCI6MTc5NDA0MzE4MCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.6iRGUBqay5Nie41HTJUVVLX2sI6B1RxRUvi5ltWPobU' \
   -H 'Content-Type: application/json' \
@@ -470,7 +470,7 @@ curl -X 'POST' \
   "refreshToken": "FpKNhXi+tDk9Kka4aIITyB644VLo9d8otIpn3ptUHM0="
 }'
 Request URL
-https://realestate22.runasp.net/api/Auth/refresh-token
+https://realestate44.runasp.net/api/Auth/refresh-token
 Server response
 Code	Details
 200	

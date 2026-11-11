@@ -101,11 +101,11 @@ Responses
 Curl
 
 curl -X 'GET' \
-  'https://realestate22.runasp.net/api/Projects' \
+  'https://realestate44.runasp.net/api/Projects' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0M2QwYmFjMS1mY2MyLTRmMDMtYmE4ZS0zYTBhYTFlNzgzNjQiLCJlbWFpbCI6Ik1vQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiTW9oYW1lZCBIYWtlbSIsInJvbGUiOiJTdXBlckFkbWluIiwibmJmIjoxNzk0MTQwNTMwLCJleHAiOjE3OTQxNDQxMzAsImlhdCI6MTc5NDE0MDUzMCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ._i35sQb6VAid6OwT_RxRHOiBp50wIj2PE12JzUIavZQ'
 Request URL
-https://realestate22.runasp.net/api/Projects
+https://realestate44.runasp.net/api/Projects
 Server response
 Code	Details
 200	
@@ -378,7 +378,7 @@ Responses
 Curl
 
 curl -X 'POST' \
-  'https://realestate22.runasp.net/api/Projects' \
+  'https://realestate44.runasp.net/api/Projects' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0M2QwYmFjMS1mY2MyLTRmMDMtYmE4ZS0zYTBhYTFlNzgzNjQiLCJlbWFpbCI6Ik1vQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiTW9oYW1lZCBIYWtlbSIsInJvbGUiOiJTdXBlckFkbWluIiwibmJmIjoxNzk0MTQwNTMwLCJleHAiOjE3OTQxNDQxMzAsImlhdCI6MTc5NDE0MDUzMCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ._i35sQb6VAid6OwT_RxRHOiBp50wIj2PE12JzUIavZQ' \
   -H 'Content-Type: application/json' \
@@ -425,7 +425,7 @@ curl -X 'POST' \
  
 }'
 Request URL
-https://realestate22.runasp.net/api/Projects
+https://realestate44.runasp.net/api/Projects
 Server response
 Code	Details
 200	
@@ -547,11 +547,11 @@ Responses
 Curl
 
 curl -X 'GET' \
-  'https://realestate22.runasp.net/api/Projects/4' \
+  'https://realestate44.runasp.net/api/Projects/4' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0M2QwYmFjMS1mY2MyLTRmMDMtYmE4ZS0zYTBhYTFlNzgzNjQiLCJlbWFpbCI6Ik1vQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiTW9oYW1lZCBIYWtlbSIsInJvbGUiOiJTdXBlckFkbWluIiwibmJmIjoxNzk0MTQwNTMwLCJleHAiOjE3OTQxNDQxMzAsImlhdCI6MTc5NDE0MDUzMCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ._i35sQb6VAid6OwT_RxRHOiBp50wIj2PE12JzUIavZQ'
 Request URL
-https://realestate22.runasp.net/api/Projects/4
+https://realestate44.runasp.net/api/Projects/4
 Server response
 Code	Details
 200	

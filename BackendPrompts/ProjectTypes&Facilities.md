@@ -41,11 +41,11 @@ Responses
 Curl
 
 curl -X 'GET' \
-  'https://realestate22.runasp.net/api/project-types' \
+  'https://realestate44.runasp.net/api/project-types' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDQ2OTg0LCJleHAiOjE3OTQwNTA1ODQsImlhdCI6MTc5NDA0Njk4NCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.8B30KLGQM57fA60wJBdb0U8lhq9cGM4pf2EKyCi1I5g'
 Request URL
-https://realestate22.runasp.net/api/project-types
+https://realestate44.runasp.net/api/project-types
 Server response
 Code	Details
 200	
@@ -128,7 +128,7 @@ Responses
 Curl
 
 curl -X 'POST' \
-  'https://realestate22.runasp.net/api/project-types' \
+  'https://realestate44.runasp.net/api/project-types' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDQ2OTg0LCJleHAiOjE3OTQwNTA1ODQsImlhdCI6MTc5NDA0Njk4NCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.8B30KLGQM57fA60wJBdb0U8lhq9cGM4pf2EKyCi1I5g' \
   -H 'Content-Type: application/json' \
@@ -141,7 +141,7 @@ curl -X 'POST' \
   "icon": "ReactIconsWillBeUsed"
 }'
 Request URL
-https://realestate22.runasp.net/api/project-types
+https://realestate44.runasp.net/api/project-types
 Server response
 Code	Details
 200	
@@ -190,11 +190,11 @@ Responses
 Curl
 
 curl -X 'GET' \
-  'https://realestate22.runasp.net/api/project-types/1' \
+  'https://realestate44.runasp.net/api/project-types/1' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDQ2OTg0LCJleHAiOjE3OTQwNTA1ODQsImlhdCI6MTc5NDA0Njk4NCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.8B30KLGQM57fA60wJBdb0U8lhq9cGM4pf2EKyCi1I5g'
 Request URL
-https://realestate22.runasp.net/api/project-types/1
+https://realestate44.runasp.net/api/project-types/1
 Server response
 Code	Details
 200	
@@ -263,7 +263,7 @@ Responses
 Curl
 
 curl -X 'PUT' \
-  'https://realestate22.runasp.net/api/project-types/1' \
+  'https://realestate44.runasp.net/api/project-types/1' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDQ2OTg0LCJleHAiOjE3OTQwNTA1ODQsImlhdCI6MTc5NDA0Njk4NCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.8B30KLGQM57fA60wJBdb0U8lhq9cGM4pf2EKyCi1I5g' \
   -H 'Content-Type: application/json' \
@@ -277,7 +277,7 @@ curl -X 'PUT' \
   "icon": "ReactIconsWillBeUsed"
 }'
 Request URL
-https://realestate22.runasp.net/api/project-types/1
+https://realestate44.runasp.net/api/project-types/1
 Server response
 Code	Details
 200	
@@ -326,11 +326,11 @@ Responses
 Curl
 
 curl -X 'DELETE' \
-  'https://realestate22.runasp.net/api/project-types/1' \
+  'https://realestate44.runasp.net/api/project-types/1' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDQ2OTg0LCJleHAiOjE3OTQwNTA1ODQsImlhdCI6MTc5NDA0Njk4NCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.8B30KLGQM57fA60wJBdb0U8lhq9cGM4pf2EKyCi1I5g'
 Request URL
-https://realestate22.runasp.net/api/project-types/1
+https://realestate44.runasp.net/api/project-types/1
 Server response
 Code	Details
 200	
@@ -382,11 +382,11 @@ Responses
 Curl
 
 curl -X 'GET' \
-  'https://realestate22.runasp.net/api/Facilities' \
+  'https://realestate44.runasp.net/api/Facilities' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDQ2OTg0LCJleHAiOjE3OTQwNTA1ODQsImlhdCI6MTc5NDA0Njk4NCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.8B30KLGQM57fA60wJBdb0U8lhq9cGM4pf2EKyCi1I5g'
 Request URL
-https://realestate22.runasp.net/api/Facilities
+https://realestate44.runasp.net/api/Facilities
 Server response
 Code	Details
 200	
@@ -480,7 +480,7 @@ Responses
 Curl
 
 curl -X 'POST' \
-  'https://realestate22.runasp.net/api/Facilities' \
+  'https://realestate44.runasp.net/api/Facilities' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDQ2OTg0LCJleHAiOjE3OTQwNTA1ODQsImlhdCI6MTc5NDA0Njk4NCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.8B30KLGQM57fA60wJBdb0U8lhq9cGM4pf2EKyCi1I5g' \
   -H 'Content-Type: application/json' \
@@ -493,7 +493,7 @@ curl -X 'POST' \
   "icon": "Test"
 }'
 Request URL
-https://realestate22.runasp.net/api/Facilities
+https://realestate44.runasp.net/api/Facilities
 Server response
 Code	Details
 200	
@@ -552,7 +552,7 @@ Responses
 Curl
 
 curl -X 'PUT' \
-  'https://realestate22.runasp.net/api/Facilities' \
+  'https://realestate44.runasp.net/api/Facilities' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDQ2OTg0LCJleHAiOjE3OTQwNTA1ODQsImlhdCI6MTc5NDA0Njk4NCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.8B30KLGQM57fA60wJBdb0U8lhq9cGM4pf2EKyCi1I5g' \
   -H 'Content-Type: application/json' \
@@ -566,7 +566,7 @@ curl -X 'PUT' \
   "icon": "Test"
 }'
 Request URL
-https://realestate22.runasp.net/api/Facilities
+https://realestate44.runasp.net/api/Facilities
 Server response
 Code	Details
 200	
@@ -615,11 +615,11 @@ Responses
 Curl
 
 curl -X 'GET' \
-  'https://realestate22.runasp.net/api/Facilities/7' \
+  'https://realestate44.runasp.net/api/Facilities/7' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDQ2OTg0LCJleHAiOjE3OTQwNTA1ODQsImlhdCI6MTc5NDA0Njk4NCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.8B30KLGQM57fA60wJBdb0U8lhq9cGM4pf2EKyCi1I5g'
 Request URL
-https://realestate22.runasp.net/api/Facilities/7
+https://realestate44.runasp.net/api/Facilities/7
 Server response
 Code	Details
 200	
@@ -675,11 +675,11 @@ Responses
 Curl
 
 curl -X 'DELETE' \
-  'https://realestate22.runasp.net/api/Facilities/7' \
+  'https://realestate44.runasp.net/api/Facilities/7' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDQ2OTg0LCJleHAiOjE3OTQwNTA1ODQsImlhdCI6MTc5NDA0Njk4NCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.8B30KLGQM57fA60wJBdb0U8lhq9cGM4pf2EKyCi1I5g'
 Request URL
-https://realestate22.runasp.net/api/Facilities/7
+https://realestate44.runasp.net/api/Facilities/7
 Server response
 Code	Details
 200	

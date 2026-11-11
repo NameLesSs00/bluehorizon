@@ -152,7 +152,7 @@ export default function AdminSidebar({}: AdminSidebarProps) {
           <Link href="/" className="inline-block">
             <div className="relative h-14 w-44">
               <Image
-                src="/logo.svg"
+                src="/logo-white.png"
                 alt="Blue Horizon"
                 fill
                 priority

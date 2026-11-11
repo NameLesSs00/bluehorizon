@@ -19,11 +19,11 @@ Responses
 Curl
 
 curl -X 'GET' \
-  'https://realestate22.runasp.net/api/Services' \
+  'https://realestate44.runasp.net/api/Services' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDUxNjM0LCJleHAiOjE3OTQwNTUyMzQsImlhdCI6MTc5NDA1MTYzNCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.4s2zEdRxTl3Q1_fR9lLUmK-ptCp7AJmXjkQJrU-wmic'
 Request URL
-https://realestate22.runasp.net/api/Services
+https://realestate44.runasp.net/api/Services
 Server response
 Code	Details
 200	
@@ -231,11 +231,11 @@ Responses
 Curl
 
 curl -X 'GET' \
-  'https://realestate22.runasp.net/api/info-area-places' \
+  'https://realestate44.runasp.net/api/info-area-places' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDUxNjM0LCJleHAiOjE3OTQwNTUyMzQsImlhdCI6MTc5NDA1MTYzNCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.4s2zEdRxTl3Q1_fR9lLUmK-ptCp7AJmXjkQJrU-wmic'
 Request URL
-https://realestate22.runasp.net/api/info-area-places
+https://realestate44.runasp.net/api/info-area-places
 Server response
 Code	Details
 200	
@@ -323,7 +323,7 @@ Responses
 Curl
 
 curl -X 'POST' \
-  'https://realestate22.runasp.net/api/info-area-places' \
+  'https://realestate44.runasp.net/api/info-area-places' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDUxNjM0LCJleHAiOjE3OTQwNTUyMzQsImlhdCI6MTc5NDA1MTYzNCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.4s2zEdRxTl3Q1_fR9lLUmK-ptCp7AJmXjkQJrU-wmic' \
   -H 'Content-Type: application/json' \
@@ -335,7 +335,7 @@ curl -X 'POST' \
   }
 }'
 Request URL
-https://realestate22.runasp.net/api/info-area-places
+https://realestate44.runasp.net/api/info-area-places
 Server response
 Code	Details
 200	
@@ -405,11 +405,11 @@ Responses
 Curl
 
 curl -X 'GET' \
-  'https://realestate22.runasp.net/api/info-area-places/4' \
+  'https://realestate44.runasp.net/api/info-area-places/4' \
   -H 'accept: text/plain' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MjQxNmM1My1kMThlLTRmYzQtYWI4Yi02NjFkYzgxMTQzNWUiLCJlbWFpbCI6InBvbGE1c2FteTU1QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoicG9sYSBzYW15Iiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzk0MDUxNjM0LCJleHAiOjE3OTQwNTUyMzQsImlhdCI6MTc5NDA1MTYzNCwiaXNzIjoiUmVhbEVzdGF0ZUFQSSIsImF1ZCI6IlJlYWxFc3RhdGVDbGllbnQifQ.4s2zEdRxTl3Q1_fR9lLUmK-ptCp7AJmXjkQJrU-wmic'
 Request URL
-https://realestate22.runasp.net/api/info-area-places/4
+https://realestate44.runasp.net/api/info-area-places/4
 Server response
 Code	Details
 200	
