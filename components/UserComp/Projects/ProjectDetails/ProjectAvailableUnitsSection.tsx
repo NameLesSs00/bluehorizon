@@ -5,8 +5,11 @@ import ProjectUnitsFilterSidebar, {
   UnitsFilterState,
 } from "./ProjectUnitsFilterSidebar";
 import ProjectUnitCard, { UnitItem } from "./ProjectUnitCard";
+import { usePublicPrimaryUnitsQuery } from "@/features/primaryUnits/usePrimaryUnitsQueries";
+import { getFullPrimaryUnitMediaUrl } from "@/clientApi/primaryUnitsApi";
 
 interface ProjectAvailableUnitsSectionProps {
+  projectId?: number;
   locationOrProjectName?: string;
   units?: UnitItem[];
 }
@@ -21,83 +24,58 @@ const INITIAL_FILTERS: UnitsFilterState = {
   maxPrice: "",
 };
 
-const UI_REFERENCE_UNITS: UnitItem[] = [
-  {
-    id: "unit-1",
-    title: "Luxury Sea-View Apartment",
-    description: "Panoramic sea view with spacious balcony",
-    badge: "Primary",
-    area: "125 m²",
-    rooms: "2 Rooms",
-    baths: "2 Baths",
-    price: "EGP 4,500,000",
-    imageSrc: "/default-fallback.png",
-  },
-  {
-    id: "unit-2",
-    title: "Luxury Sea-View Apartment",
-    description: "Panoramic sea view with spacious balcony",
-    badge: "Resale",
-    area: "125 m²",
-    rooms: "2 Rooms",
-    baths: "2 Baths",
-    price: "EGP 4,500,000",
-    imageSrc: "/default-fallback.png",
-    location: "Maadi · Degla",
-  },
-  {
-    id: "unit-3",
-    title: "Luxury Sea-View Apartment",
-    description: "Panoramic sea view with spacious balcony",
-    badge: "Resale",
-    area: "125 m²",
-    rooms: "2 Rooms",
-    baths: "2 Baths",
-    price: "EGP 4,500,000",
-    imageSrc: "/default-fallback.png",
-  },
-  {
-    id: "unit-4",
-    title: "Luxury Sea-View Apartment",
-    description: "Panoramic sea view with spacious balcony",
-    badge: "Primary",
-    area: "125 m²",
-    rooms: "2 Rooms",
-    baths: "2 Baths",
-    price: "EGP 4,500,000",
-    imageSrc: "/default-fallback.png",
-  },
-  {
-    id: "unit-5",
-    title: "Luxury Sea-View Apartment",
-    description: "Panoramic sea view with spacious balcony",
-    badge: "Resale",
-    area: "125 m²",
-    rooms: "2 Rooms",
-    baths: "2 Baths",
-    price: "EGP 4,500,000",
-    imageSrc: "/default-fallback.png",
-  },
-  {
-    id: "unit-6",
-    title: "Luxury Sea-View Apartment",
-    description: "Panoramic sea view with spacious balcony",
-    badge: "Resale",
-    area: "125 m²",
-    rooms: "2 Rooms",
-    baths: "2 Baths",
-    price: "EGP 4,500,000",
-    imageSrc: "/default-fallback.png",
-  },
-];
-
 export default function ProjectAvailableUnitsSection({
+  projectId,
   locationOrProjectName,
-  units = UI_REFERENCE_UNITS,
+  units: propUnits,
 }: ProjectAvailableUnitsSectionProps) {
   const [filterState, setFilterState] =
     useState<UnitsFilterState>(INITIAL_FILTERS);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  // Fetch real units from primary units API if projectId is provided
+  const { data: primaryData, isLoading } = usePublicPrimaryUnitsQuery(
+    projectId && projectId > 0
+      ? {
+          ProjectId: projectId,
+          PageNumber: 1,
+          PageSize: 50,
+        }
+      : undefined
+  );
+
+  // Map real API units if available
+  const apiUnits: UnitItem[] = (primaryData?.items || []).map((u) => {
+    const primaryImg = u.images?.find((img) => img.isPrimary) || u.images?.[0];
+    const imageSrc = primaryImg?.imageUrl
+      ? getFullPrimaryUnitMediaUrl(primaryImg.imageUrl)
+      : "/default-fallback.png";
+
+    const priceUsd = u.prices?.find((p) => p.currency === "USD")?.price || u.prices?.[0]?.price;
+    const priceFormatted =
+      typeof priceUsd === "number" && priceUsd > 0
+        ? `$ ${priceUsd.toLocaleString()}`
+        : "Price on request";
+
+    return {
+      id: u.id,
+      title: u.name,
+      description: u.description || "",
+      badge: "Primary",
+      area: u.area ? `${u.area} m²` : "",
+      rooms: u.noBedRoom ? `${u.noBedRoom} Rooms` : "",
+      baths: u.noBathRoom ? `${u.noBathRoom} Baths` : "",
+      price: priceFormatted,
+      imageSrc,
+      location: locationOrProjectName,
+    };
+  });
+
+  const availableUnits = propUnits || apiUnits;
+
+  // If no units exist after loading, hide the section entirely
+  if (!isLoading && availableUnits.length === 0) {
+    return null;
+  }
 
   const headingText = locationOrProjectName
     ? `Available Units in ${locationOrProjectName}`
@@ -110,17 +88,12 @@ export default function ProjectAvailableUnitsSection({
     setFilterState((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleApplyFilters = () => {
-    setCurrentPage(1);
-  };
-
   const handleResetFilters = () => {
     setFilterState(INITIAL_FILTERS);
-    setCurrentPage(1);
   };
 
-  // Filter UI items based on user selection
-  const filteredUnits = units.filter((unit) => {
+  // Filter units based on user selection
+  const filteredUnits = availableUnits.filter((unit) => {
     if (
       filterState.unitType !== "All" &&
       unit.badge !== filterState.unitType
@@ -160,11 +133,11 @@ export default function ProjectAvailableUnitsSection({
         <ProjectUnitsFilterSidebar
           filterState={filterState}
           onFilterChange={handleFilterChange}
-          onApplyFilters={handleApplyFilters}
+          onApplyFilters={() => {}}
           onResetFilters={handleResetFilters}
         />
 
-        {/* Right: Units Grid + Pagination */}
+        {/* Right: Units Grid */}
         <div className="w-full flex-1">
           {filteredUnits.length === 0 ? (
             <div className="flex flex-col items-center justify-center rounded-[20px] border border-dashed border-[#DCE2DE] bg-white p-12 text-center">
@@ -195,48 +168,6 @@ export default function ProjectAvailableUnitsSection({
               ))}
             </div>
           )}
-
-          {/* Pagination UI */}
-          <div className="mt-10 flex items-center justify-center gap-2">
-            <button
-              type="button"
-              disabled={currentPage <= 1}
-              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-              aria-label="Previous Page"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E1E7E3] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F3F5F3] disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              &lt;
-            </button>
-
-            {[1, 2, 3].map((pageNum) => {
-              const isActive = pageNum === currentPage;
-              return (
-                <button
-                  key={pageNum}
-                  type="button"
-                  onClick={() => setCurrentPage(pageNum)}
-                  className={`flex h-9 w-9 items-center justify-center rounded-lg text-xs font-semibold transition-colors ${
-                    isActive
-                      ? "bg-[#145C4B] text-white"
-                      : "border border-[#E1E7E3] bg-white text-[#202326] hover:bg-[#F3F5F3]"
-                  }`}
-                  style={{ fontFamily: "var(--font-inter)" }}
-                >
-                  {pageNum}
-                </button>
-              );
-            })}
-
-            <button
-              type="button"
-              disabled={currentPage >= 3}
-              onClick={() => setCurrentPage((p) => Math.min(3, p + 1))}
-              aria-label="Next Page"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E1E7E3] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F3F5F3] disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              &gt;
-            </button>
-          </div>
         </div>
       </div>
     </section>

@@ -5,7 +5,7 @@ interface AreaBreadcrumbProps {
 }
 
 export default function AreaBreadcrumb({ areaName }: AreaBreadcrumbProps) {
-  const displayName = areaName || "Sahl Hasheesh";
+  const displayName = areaName || "Area Details";
 
   return (
     <nav

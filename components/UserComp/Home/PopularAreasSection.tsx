@@ -14,6 +14,11 @@ export default function PopularAreasSection() {
 
   const areas = locationsData?.items?.slice(0, 4) || [];
 
+  // If no real areas are available from the backend, hide the section entirely
+  if (!isLoading && areas.length === 0) {
+    return null;
+  }
+
   return (
     <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">

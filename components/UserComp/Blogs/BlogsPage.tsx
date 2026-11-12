@@ -40,18 +40,18 @@ export default function BlogsPage() {
   const allBlogs: BlogCardData[] = useMemo(() => {
     const items = blogsData?.items || [];
     return items.map((item) => {
-      const assignedCategory = item.blogType?.trim() || "Buying Guide";
+      const assignedCategory = item.blogType?.trim() || "";
       const formattedDate = item.publishDate
         ? new Date(item.publishDate).toLocaleDateString("en-US", {
             year: "numeric",
             month: "short",
             day: "numeric",
           })
-        : "Recent";
+        : "";
       const sectionSnippet =
         item.sections?.[0]?.content ||
         item.sections?.[0]?.tittle ||
-        "Discover essential tips to find a home that fits your lifestyle and future needs.";
+        "";
 
       return {
         id: item.id,

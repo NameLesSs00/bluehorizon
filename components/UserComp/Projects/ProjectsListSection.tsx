@@ -54,7 +54,7 @@ function formatApiProject(item: ProjectItem): ProjectDisplayItem {
   return {
     id: item.id,
     title: item.name,
-    description: item.description || "A serene community designed for modern living.",
+    description: item.description || "",
     priceFormatted,
     imageSrc: coverImage,
     isFallback: !hasImage,

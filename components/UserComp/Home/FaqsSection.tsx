@@ -26,6 +26,11 @@ export default function FaqsSection() {
     setOpenId((prev) => (prev === id ? null : id));
   }
 
+  // If no real FAQ items are available from the backend, hide the section entirely
+  if (!isLoading && faqs.length === 0) {
+    return null;
+  }
+
   return (
     <section className="bg-[#E8F1EC] py-16 sm:py-24">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">

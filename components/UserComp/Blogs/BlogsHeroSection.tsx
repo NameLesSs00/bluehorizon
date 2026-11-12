@@ -16,10 +16,11 @@ export default function BlogsHeroSection({
   onSearchSubmit,
   totalArticles,
 }: BlogsHeroSectionProps) {
-  const articlesCountLabel =
-    typeof totalArticles === "number" && totalArticles > 0
-      ? `${totalArticles}+ Articles`
-      : "50+ Articles";
+  const hasArticlesCount =
+    typeof totalArticles === "number" && totalArticles > 0;
+  const articlesCountLabel = hasArticlesCount
+    ? `${totalArticles} Articles`
+    : null;
 
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8">
@@ -141,19 +142,21 @@ export default function BlogsHeroSection({
               </p>
 
               {/* Bottom Card Divider & Stats */}
-              <div className="mt-6 pt-5 border-t border-[#E1E7E3] w-full flex items-center justify-center text-xs font-medium text-[#202326]">
-                <div className="flex items-center gap-1.5">
-                  <Image
-                    src="/Blogs/svg (1).svg"
-                    alt=""
-                    width={14}
-                    height={14}
-                  />
-                  <span style={{ fontFamily: "var(--font-inter)" }}>
-                    {articlesCountLabel}
-                  </span>
+              {articlesCountLabel && (
+                <div className="mt-6 pt-5 border-t border-[#E1E7E3] w-full flex items-center justify-center text-xs font-medium text-[#202326]">
+                  <div className="flex items-center gap-1.5">
+                    <Image
+                      src="/Blogs/svg (1).svg"
+                      alt=""
+                      width={14}
+                      height={14}
+                    />
+                    <span style={{ fontFamily: "var(--font-inter)" }}>
+                      {articlesCountLabel}
+                    </span>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

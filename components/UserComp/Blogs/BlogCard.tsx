@@ -41,27 +41,31 @@ export default function BlogCard({ blog }: BlogCardProps) {
         />
 
         {/* Date Badge Overlay */}
-        <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 rounded-[20px] bg-[#E8F1EC] px-3.5 py-1.5 text-xs font-semibold text-[#145C4B]">
-          <Image
-            src="/Blogs/svg (3).svg"
-            alt="Calendar"
-            width={14}
-            height={14}
-            className="shrink-0"
-          />
-          <span style={{ fontFamily: "var(--font-inter)" }}>{blog.date}</span>
-        </div>
+        {blog.date && (
+          <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 rounded-[20px] bg-[#E8F1EC] px-3.5 py-1.5 text-xs font-semibold text-[#145C4B]">
+            <Image
+              src="/Blogs/svg (3).svg"
+              alt="Calendar"
+              width={14}
+              height={14}
+              className="shrink-0"
+            />
+            <span style={{ fontFamily: "var(--font-inter)" }}>{blog.date}</span>
+          </div>
+        )}
       </div>
 
       {/* Card Content Body */}
       <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
         <div>
           {/* Category Pill */}
-          <div className="mb-3.5 w-fit rounded-[16px] bg-[#E8F1EC] px-3.5 py-1 text-xs font-semibold text-[#145C4B]">
-            <span style={{ fontFamily: "var(--font-inter)" }}>
-              {blog.category}
-            </span>
-          </div>
+          {blog.category && (
+            <div className="mb-3.5 w-fit rounded-[16px] bg-[#E8F1EC] px-3.5 py-1 text-xs font-semibold text-[#145C4B]">
+              <span style={{ fontFamily: "var(--font-inter)" }}>
+                {blog.category}
+              </span>
+            </div>
+          )}
 
           {/* Title */}
           <h2
@@ -72,12 +76,14 @@ export default function BlogCard({ blog }: BlogCardProps) {
           </h2>
 
           {/* Excerpt */}
-          <p
-            className="mt-2.5 line-clamp-2 text-sm leading-relaxed text-[#6B7570]"
-            style={{ fontFamily: "var(--font-inter)" }}
-          >
-            {blog.description}
-          </p>
+          {blog.description && (
+            <p
+              className="mt-2.5 line-clamp-2 text-sm leading-relaxed text-[#6B7570]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              {blog.description}
+            </p>
+          )}
         </div>
 
         {/* Read More Action */}
