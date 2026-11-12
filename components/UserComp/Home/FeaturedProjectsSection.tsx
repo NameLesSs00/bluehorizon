@@ -91,7 +91,7 @@ export default function FeaturedProjectsSection() {
     .map(formatProjectCard);
 
   return (
-    <section className="bg-[#F3F5F3] py-16 sm:py-20">
+    <section className="bg-white pt-24 pb-16 sm:pt-28 sm:pb-20">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         <header className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>

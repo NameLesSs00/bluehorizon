@@ -5,6 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import CurrencyDropdown from "./CurrencyDropdown";
+import LanguageDropdown from "./LanguageDropdown";
+
 interface NavItem {
   label: string;
   href: string;
@@ -31,9 +34,9 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#E1E7E3]/70 bg-white/95 backdrop-blur-md">
-      <div className="mx-auto flex h-20 w-full max-w-[1360px] items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-20 sm:h-24 w-full max-w-[1360px] items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="relative block h-10 w-36 sm:h-12 sm:w-44 shrink-0">
+        <Link href="/" className="relative block h-14 w-44 sm:h-16 sm:w-56 md:h-16 md:w-60 shrink-0">
           <Image
             src="/logo.svg"
             alt="Blue Horizon"
@@ -72,72 +75,16 @@ export default function Navbar() {
 
         {/* Right Actions */}
         <div className="hidden sm:flex items-center gap-3">
-          {/* Language Selector Pill */}
-          <div className="flex h-9 items-center gap-1.5 rounded-full border border-[#E1E7E3] bg-[#FCFCFC] px-3.5 text-xs font-semibold text-[#202326]">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#6B7570"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <line x1="2" y1="12" x2="22" y2="12" />
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-            </svg>
-            <span>EN</span>
-            <svg
-              width="10"
-              height="10"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#6B7570"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </div>
+          {/* Language Selector Pill with Flags */}
+          <LanguageDropdown />
 
           {/* Currency Selector Pill */}
-          <div className="flex h-9 items-center gap-1.5 rounded-full border border-[#E1E7E3] bg-[#FCFCFC] px-3.5 text-xs font-semibold text-[#202326]">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#6B7570"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect x="2" y="6" width="20" height="12" rx="2" />
-              <circle cx="12" cy="12" r="2" />
-              <path d="M6 12h.01M18 12h.01" />
-            </svg>
-            <span>EGP</span>
-            <svg
-              width="10"
-              height="10"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#6B7570"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </div>
+          <CurrencyDropdown />
 
           {/* Contact Us Button */}
           <Link
             href="/contact"
-            className="flex h-10 items-center justify-center rounded-full bg-[#145C4B] px-5 text-xs sm:text-sm font-semibold text-white transition-colors hover:bg-[#0F473A]"
+            className="flex h-10 items-center justify-center rounded-full bg-[#0F473A] px-5 text-xs sm:text-sm font-semibold text-white transition-colors hover:bg-[#145C4B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             Contact Us
