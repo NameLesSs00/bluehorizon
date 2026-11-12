@@ -13,7 +13,7 @@ This is a new UI implementation project. Your task is to build the website UI ba
 **Global Design System:**
 - Headings: `Manrope`
 - Body: `Inter`
-- Colors: #FFFFFF, #202326 , #E8F1EC , #145C4B ,, #F3F5F3, #6B7570 , #E1E7E3 , #0F473A , #FCFCFC , 
+- Colors: #FFFFFF, #202326 , #E8F1EC , #145C4B ,, #F3F5F3, #6B7570 , #E1E7E3 , #0F473A , #FCFCFC 
 - linear-gradient(90deg, #145C4B 31.77%, rgba(20, 92, 75, 0.8) 46.15%, rgba(20, 92, 75, 0) 80.77%);
 - linear-gradient(180deg, rgba(15, 71, 58, 0) 11.06%, rgba(15, 71, 58, 0.9) 89.42%); 
 - card radius : 12px, 20px , 24px , 28px do not invent. Ask me first and wait for approval

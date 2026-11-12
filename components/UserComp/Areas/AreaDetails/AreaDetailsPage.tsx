@@ -34,7 +34,7 @@ export default function AreaDetailsPage({ id }: AreaDetailsPageProps) {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
+      <div className="flex min-h-screen flex-col bg-[#F3F5F3]">
         <main className="flex-1 pb-16">
           <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 pt-8">
             <div className="h-4 w-48 animate-pulse rounded bg-[#E1E7E3] mb-6" />
@@ -55,7 +55,7 @@ export default function AreaDetailsPage({ id }: AreaDetailsPageProps) {
     : null;
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
+    <div className="flex min-h-screen flex-col bg-[#F3F5F3]">
       <main className="flex-1 pb-16">
         <AreaBreadcrumb areaName={area?.name} />
         <AreaDetailsHeroBanner

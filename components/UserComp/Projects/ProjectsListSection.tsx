@@ -38,16 +38,16 @@ function formatApiProject(item: ProjectItem): ProjectDisplayItem {
       activePrice.currency.toUpperCase() === "EGP"
         ? "EGP "
         : activePrice.currency.toUpperCase() === "USD"
-        ? "$ "
-        : `${activePrice.currency} `;
+          ? "$ "
+          : `${activePrice.currency} `;
     priceFormatted = `${symbol}${Number(activePrice.minimumPrice).toLocaleString()}`;
   } else if (activePrice?.maximumPrice) {
     const symbol =
       activePrice.currency.toUpperCase() === "EGP"
         ? "EGP "
         : activePrice.currency.toUpperCase() === "USD"
-        ? "$ "
-        : `${activePrice.currency} `;
+          ? "$ "
+          : `${activePrice.currency} `;
     priceFormatted = `${symbol}${Number(activePrice.maximumPrice).toLocaleString()}`;
   }
 
@@ -109,7 +109,7 @@ export default function ProjectsListSection() {
   }
 
   return (
-    <section className="bg-[#FCFCFC] py-10 sm:py-14">
+    <section className="bg-[#F3F5F3] py-10 sm:py-14">
       <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8 items-start">
           {/* Left Column: Filter Sidebar */}
@@ -184,11 +184,10 @@ export default function ProjectsListSection() {
                       key={pageNum}
                       type="button"
                       onClick={() => setPage(pageNum)}
-                      className={`flex h-9 w-9 items-center justify-center rounded-[10px] text-[13px] font-semibold transition-all ${
-                        page === pageNum
+                      className={`flex h-9 w-9 items-center justify-center rounded-[10px] text-[13px] font-semibold transition-all ${page === pageNum
                           ? "bg-[#145C4B] text-white shadow-xs"
                           : "border border-transparent bg-white text-[#6B7570] hover:border-[#E1E7E3] hover:text-[#202326]"
-                      }`}
+                        }`}
                       style={{ fontFamily: "var(--font-inter)" }}
                     >
                       {pageNum}
