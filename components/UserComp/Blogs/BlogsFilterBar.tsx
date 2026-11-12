@@ -51,10 +51,10 @@ export default function BlogsFilterBar({
                 key={category}
                 type="button"
                 onClick={() => onSelectCategory(category)}
-                className={`rounded-full px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold transition-all ${
+                className={`rounded-[18px] px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold transition-all ${
                   isActive
                     ? "bg-[#145C4B] text-white shadow-sm"
-                    : "border border-[#E1E7E3] bg-[#FCFCFC] text-[#202326] hover:bg-[#E8F1EC] hover:text-[#145C4B]"
+                    : "border border-[#E1E7E3] bg-[#F3F5F3] text-[#202326] hover:bg-[#E8F1EC] hover:text-[#145C4B]"
                 }`}
                 style={{ fontFamily: "var(--font-inter)" }}
               >

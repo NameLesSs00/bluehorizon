@@ -25,8 +25,10 @@ export default function BlogCard({ blog }: BlogCardProps) {
       ? blog.imageUrl
       : "/default-fallback.png";
 
+  const blogHref = `/blogs/${encodeURIComponent(blog.title || String(blog.id))}`;
+
   return (
-    <article className="group flex flex-col overflow-hidden rounded-[24px] border border-[#E1E7E3] bg-white transition-all duration-300 hover:shadow-xl hover:border-[#145C4B]/40">
+    <Link className="group flex flex-col overflow-hidden rounded-[24px] border border-[#E1E7E3] bg-white transition-all duration-300 hover:shadow-xl hover:border-[#145C4B]/40" href={blogHref}>
       {/* Top Image Container */}
       <div className="relative h-[220px] sm:h-[240px] w-full overflow-hidden bg-[#F3F5F3]">
         <Image
@@ -39,7 +41,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
         />
 
         {/* Date Badge Overlay */}
-        <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 rounded-full border border-white/60 bg-white/95 px-3.5 py-1.5 text-xs font-semibold text-[#145C4B] shadow-sm backdrop-blur-sm">
+        <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 rounded-[20px] bg-[#E8F1EC] px-3.5 py-1.5 text-xs font-semibold text-[#145C4B]">
           <Image
             src="/Blogs/svg (3).svg"
             alt="Calendar"
@@ -55,7 +57,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
       <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
         <div>
           {/* Category Pill */}
-          <div className="mb-3.5 w-fit rounded-full bg-[#E8F1EC] px-3.5 py-1 text-xs font-semibold text-[#145C4B]">
+          <div className="mb-3.5 w-fit rounded-[16px] bg-[#E8F1EC] px-3.5 py-1 text-xs font-semibold text-[#145C4B]">
             <span style={{ fontFamily: "var(--font-inter)" }}>
               {blog.category}
             </span>
@@ -66,7 +68,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
             className="line-clamp-2 text-lg sm:text-[19px] font-bold text-[#202326] leading-snug group-hover:text-[#145C4B] transition-colors"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            <Link href={`/blogs/${blog.id}`}>{blog.title}</Link>
+            <Link href={blogHref}>{blog.title}</Link>
           </h2>
 
           {/* Excerpt */}
@@ -81,7 +83,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
         {/* Read More Action */}
         <div className="mt-6 pt-2">
           <Link
-            href={`/blogs/${blog.id}`}
+            href={blogHref}
             className="inline-flex items-center gap-2 text-sm font-semibold text-[#145C4B] transition-colors hover:text-[#0F473A]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
@@ -96,7 +98,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
           </Link>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }
 

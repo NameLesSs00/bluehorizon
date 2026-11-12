@@ -24,10 +24,10 @@ export default function BlogsHeroSection({
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8">
       <div className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] bg-[#0F473A] shadow-xl">
-        {/* Subtle Background Image Overlay */}
-        <div className="absolute inset-0 z-0 opacity-20">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
           <Image
-            src="/aboutus/hero.png"
+            src="/Blogs/hero.png"
             alt="Hero background"
             fill
             priority
@@ -36,14 +36,14 @@ export default function BlogsHeroSection({
           />
         </div>
 
-        {/* Specified Linear Gradient Overlay */}
+        {/* Linear Gradient Overlay */}
         <div
           className="absolute inset-0 z-10"
           style={{
-            background:
-              "linear-gradient(90deg, #0F473A 0%, rgba(20, 92, 75, 0.95) 45%, rgba(20, 92, 75, 0.85) 100%)",
+            background: "linear-gradient(90deg, #145C4B 44.23%, rgba(20, 92, 75, 0.85) 67.31%)"
           }}
         />
+
 
         {/* Hero Content Grid */}
         <div className="relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center p-6 sm:p-10 lg:p-14">
@@ -141,7 +141,7 @@ export default function BlogsHeroSection({
               </p>
 
               {/* Bottom Card Divider & Stats */}
-              <div className="mt-6 pt-5 border-t border-[#E1E7E3] w-full flex items-center justify-between text-xs font-medium text-[#202326]">
+              <div className="mt-6 pt-5 border-t border-[#E1E7E3] w-full flex items-center justify-center text-xs font-medium text-[#202326]">
                 <div className="flex items-center gap-1.5">
                   <Image
                     src="/Blogs/svg (1).svg"
@@ -151,18 +151,6 @@ export default function BlogsHeroSection({
                   />
                   <span style={{ fontFamily: "var(--font-inter)" }}>
                     {articlesCountLabel}
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-1.5 text-[#145C4B] font-semibold">
-                  <Image
-                    src="/Blogs/svg (2).svg"
-                    alt=""
-                    width={14}
-                    height={14}
-                  />
-                  <span style={{ fontFamily: "var(--font-inter)" }}>
-                    Verified
                   </span>
                 </div>
               </div>

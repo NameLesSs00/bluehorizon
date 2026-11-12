@@ -103,9 +103,8 @@ export default function BlogsPage() {
   const totalCount = blogsData?.totalCount || 0;
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
+    <div className="flex min-h-screen flex-col bg-[#F3F5F3]">
       <Navbar />
-
       <main className="flex-1 pb-8">
         <BlogsHeroSection
           searchQuery={searchQuery}

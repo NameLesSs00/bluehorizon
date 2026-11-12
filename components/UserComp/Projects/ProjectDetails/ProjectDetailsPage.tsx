@@ -8,6 +8,7 @@ import ProjectGallerySection from "./ProjectGallerySection";
 import ProjectFacilitiesSection from "./ProjectFacilitiesSection";
 import ProjectPaymentPlansSection from "./ProjectPaymentPlansSection";
 import ProjectAvailableUnitsSection from "./ProjectAvailableUnitsSection";
+import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
 import { getProjectById } from "@/clientApi/projectsApi";
 
@@ -31,7 +32,8 @@ export default function ProjectDetailsPage({ id }: ProjectDetailsPageProps) {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
+      <div className="flex min-h-screen flex-col bg-[#F3F5F3]">
+        <Navbar />
         <main className="flex-1 pb-16">
           <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 pt-8">
             <div className="h-4 w-48 animate-pulse rounded bg-[#E1E7E3] mb-6" />
@@ -46,7 +48,8 @@ export default function ProjectDetailsPage({ id }: ProjectDetailsPageProps) {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
+    <div className="flex min-h-screen flex-col bg-[#F3F5F3]">
+      <Navbar />
       <main className="flex-1 pb-16">
         <ProjectBreadcrumb projectName={project?.name} />
         <ProjectDetailsHeroBanner
