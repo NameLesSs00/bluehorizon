@@ -34,6 +34,12 @@ export interface ProjectFacilityRef {
   icon: string;
 }
 
+export interface ProjectImageItem {
+  id?: number;
+  imageUrl: string;
+  isPrimary?: boolean;
+}
+
 export interface ProjectItem {
   id: number;
   name: string;
@@ -48,6 +54,7 @@ export interface ProjectItem {
   projectTypes: ProjectTypeRef[];
   projectTypeIds: number[];
   imageUrls: string[];
+  images?: ProjectImageItem[];
   facilities: ProjectFacilityRef[];
   createdBy: string | null;
   createdAt: string;
@@ -116,5 +123,6 @@ export interface LocalizedProjectDetails {
   facilityIds: number[];
   prices: ProjectPriceDto[];
   imageUrls: string[];
+  images?: ProjectImageItem[];
 }
 

@@ -4,26 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  FiBookOpen,
-  FiCheckSquare,
-  FiEdit2,
-  FiGrid,
-  FiHelpCircle,
-  FiInbox,
-  FiKey,
-  FiLink2,
-  FiLogOut,
-  FiMapPin,
-  FiShield,
-  FiSliders,
-  FiUsers,
-} from "react-icons/fi";
-import { LuBuilding, LuSparkles } from "react-icons/lu";
+import { FiEdit2, FiKey, FiLogOut, FiShield } from "react-icons/fi";
 import { isSuperAdminSession, useAdminAuthStore } from "@/features/admin/useAdminAuthStore";
 import { useLogoutMutation } from "@/features/admin/useAdminQueries";
 import EditProfileModal from "@/components/adminComp/Dashboard/EditProfileModal";
 import ChangePasswordModal from "@/components/adminComp/Dashboard/ChangePasswordModal";
+import { getAdminNavLinks } from "./adminNavLinks";
 
 interface AdminSidebarProps {
   onProfileModalStateChange?: (isOpen: boolean) => void;
@@ -40,106 +26,7 @@ export default function AdminSidebar({}: AdminSidebarProps) {
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
 
-  const allNavLinks = [
-    {
-      label: "Administrators",
-      href: "/admin/dashboard",
-      icon: FiUsers,
-      active: pathname === "/admin/dashboard",
-      superAdminOnly: true,
-    },
-    {
-      label: "Contact Inquiries",
-      href: "/admin/contacts",
-      icon: FiInbox,
-      active: pathname.startsWith("/admin/contacts"),
-      superAdminOnly: false,
-    },
-    {
-      label: "Articles & Blogs",
-      href: "/admin/blogs",
-      icon: FiBookOpen,
-      active: pathname.startsWith("/admin/blogs"),
-      superAdminOnly: false,
-    },
-    {
-      label: "Projects",
-      href: "/admin/projects",
-      icon: LuBuilding,
-      active: pathname.startsWith("/admin/projects"),
-      superAdminOnly: false,
-    },
-    {
-      label: "Project Locations",
-      href: "/admin/project-locations",
-      icon: FiMapPin,
-      active:
-        pathname.startsWith("/admin/project-locations") ||
-        pathname.startsWith("/admin/categories"),
-      superAdminOnly: false,
-    },
-    {
-      label: "Project Types",
-      href: "/admin/project-types",
-      icon: LuBuilding,
-      active: pathname.startsWith("/admin/project-types"),
-      superAdminOnly: false,
-    },
-    {
-      label: "Project Facilities",
-      href: "/admin/project-facilities",
-      icon: LuSparkles,
-      active: pathname.startsWith("/admin/project-facilities"),
-      superAdminOnly: false,
-    },
-    {
-      label: "Property Services",
-      href: "/admin/property-services",
-      icon: FiSliders,
-      active: pathname.startsWith("/admin/property-services"),
-      superAdminOnly: false,
-    },
-    {
-      label: "Rental Categories",
-      href: "/admin/rental-categories",
-      icon: FiGrid,
-      active:
-        pathname.startsWith("/admin/rental-categories") ||
-        pathname.startsWith("/admin/property-categories"),
-      superAdminOnly: false,
-    },
-    {
-      label: "Rental Items",
-      href: "/admin/rental-items",
-      icon: FiCheckSquare,
-      active:
-        pathname.startsWith("/admin/rental-items") ||
-        pathname.startsWith("/admin/property-category-items"),
-      superAdminOnly: false,
-    },
-    {
-      label: "Rental Area Places",
-      href: "/admin/rental-area-places",
-      icon: FiMapPin,
-      active: pathname.startsWith("/admin/rental-area-places"),
-      superAdminOnly: false,
-    },
-    {
-      label: "FAQ / Questions",
-      href: "/admin/questions",
-      icon: FiHelpCircle,
-      active: pathname.startsWith("/admin/questions"),
-      superAdminOnly: false,
-    },
-    {
-      label: "Site Links / Keys",
-      href: "/admin/site-links",
-      icon: FiLink2,
-      active: pathname.startsWith("/admin/site-links"),
-      superAdminOnly: false,
-    },
-  ];
-
+  const allNavLinks = getAdminNavLinks(pathname);
   const visibleNavLinks = allNavLinks.filter(
     (item) => !item.superAdminOnly || isSuperAdmin
   );
@@ -186,7 +73,7 @@ export default function AdminSidebar({}: AdminSidebarProps) {
                   href={item.href}
                   className={`flex items-center gap-3 rounded-xl px-4 py-3 text-[13px] font-medium transition-all ${
                     item.active
-                      ? "bg-[#145C4B] font-semibold text-white shadow-sm"
+                      ? "bg-[#145C4B] font-semibold text-white shadow-xs"
                       : "text-white/80 hover:bg-white/10 hover:text-white"
                   }`}
                   style={{ fontFamily: "var(--font-inter)" }}

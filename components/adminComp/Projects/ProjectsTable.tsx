@@ -23,29 +23,12 @@ interface ProjectsTableProps {
 }
 
 function formatPriceRange(project: ProjectItem, currencyCode: string): string {
-  const price = project.prices?.find(
-    (p) => p.currency.toUpperCase() === currencyCode.toUpperCase()
-  );
-
-  if (!price || (!price.minimumPrice && !price.maximumPrice)) {
-    return "Price on request";
-  }
-
-  const symbol =
-    currencyCode === "USD"
-      ? "$"
-      : currencyCode === "EUR"
-      ? "€"
-      : currencyCode === "GBP"
-      ? "£"
-      : "EGP ";
-
+  const price = project.prices?.find((p) => p.currency.toUpperCase() === currencyCode.toUpperCase());
+  if (!price || (!price.minimumPrice && !price.maximumPrice)) return "Price on request";
+  const symbol = currencyCode === "USD" ? "$" : currencyCode === "EUR" ? "€" : currencyCode === "GBP" ? "£" : "EGP ";
   const minFormatted = price.minimumPrice ? Number(price.minimumPrice).toLocaleString() : "0";
   const maxFormatted = price.maximumPrice ? Number(price.maximumPrice).toLocaleString() : "";
-
-  return maxFormatted
-    ? `${symbol}${minFormatted} - ${symbol}${maxFormatted}`
-    : `From ${symbol}${minFormatted}`;
+  return maxFormatted ? `${symbol}${minFormatted} - ${symbol}${maxFormatted}` : `From ${symbol}${minFormatted}`;
 }
 
 export default function ProjectsTable({
@@ -112,8 +95,12 @@ export default function ProjectsTable({
               </tr>
             ) : (
               projects.map((proj) => {
-                const coverImage = proj.imageUrls?.[0];
-                const imageCount = proj.imageUrls?.length || 0;
+                const coverImage =
+                  proj.images?.find((img) => img.isPrimary)?.imageUrl ||
+                  proj.images?.[0]?.imageUrl ||
+                  proj.imageUrls?.[0];
+                const imageCount =
+                  proj.images?.length || proj.imageUrls?.length || 0;
                 const priceText = formatPriceRange(proj, selectedCurrency);
 
                 const deliveryFormatted = proj.deliveryDate
@@ -231,11 +218,11 @@ export default function ProjectsTable({
                           </button>
                         </div>
                       ) : (
-                        <div className="inline-flex items-center gap-2">
+                        <div className="inline-flex items-center gap-1.5">
                           <button
                             type="button"
                             onClick={() => onManageImages(proj)}
-                            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#145C4B] transition-colors hover:bg-[#FAF8F5]"
+                            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#145C4B] hover:bg-[#FAF8F5]"
                           >
                             <FiImage className="h-3.5 w-3.5" />
                             <span>Images ({imageCount})</span>
@@ -243,7 +230,7 @@ export default function ProjectsTable({
                           <button
                             type="button"
                             onClick={() => onEdit(proj)}
-                            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#202326] transition-colors hover:bg-[#F3F5F3]"
+                            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#F3F5F3]"
                           >
                             <FiEdit2 className="h-3.5 w-3.5" />
                             <span>Edit</span>
@@ -251,7 +238,7 @@ export default function ProjectsTable({
                           <button
                             type="button"
                             onClick={() => setConfirmDeleteId(proj.id)}
-                            className="inline-flex items-center gap-1 rounded-lg border border-red-200 px-2.5 py-1.5 text-[12px] font-medium text-red-600 transition-colors hover:bg-red-50"
+                            className="inline-flex items-center gap-1 rounded-lg border border-red-200 px-2.5 py-1.5 text-[12px] font-medium text-red-600 hover:bg-red-50"
                           >
                             <FiTrash2 className="h-3.5 w-3.5" />
                             <span>Delete</span>

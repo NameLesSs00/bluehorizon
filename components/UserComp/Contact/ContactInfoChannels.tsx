@@ -1,0 +1,161 @@
+import Image from "next/image";
+
+interface ContactChannel {
+  icon: string;
+  label: string;
+  value: string;
+  href?: string;
+}
+
+const CONTACT_CHANNELS: ContactChannel[] = [
+  {
+    icon: "/ContactUs/icon-box.svg",
+    label: "PHONE NUMBERS",
+    value: "+20 123 456 7890",
+    href: "tel:+201234567890",
+  },
+  {
+    icon: "/ContactUs/icon-box (1).svg",
+    label: "EMAIL ADDRESSES",
+    value: "info@bluehorizon.com",
+    href: "mailto:info@bluehorizon.com",
+  },
+  {
+    icon: "/ContactUs/icon-box (2).svg",
+    label: "OUR OFFICES",
+    value: "Red Sea Coast: Hurghada Promenade, Egypt",
+  },
+  {
+    icon: "/ContactUs/icon-box (3).svg",
+    label: "WORKING HOURS",
+    value: "Monday - Saturday: 9:00 AM - 9:00 PM",
+  },
+];
+
+export default function ContactInfoChannels() {
+  return (
+    <div className="lg:col-span-5">
+      <p
+        className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#145C4B]"
+        style={{ fontFamily: "var(--font-inter)" }}
+      >
+        DIRECT REACH
+      </p>
+
+      <h2
+        className="mt-2 text-[26px] sm:text-[30px] font-bold leading-tight tracking-tight text-[#202326]"
+        style={{ fontFamily: "var(--font-manrope)" }}
+      >
+        Our Contact Information
+      </h2>
+
+      <p
+        className="mt-3 text-[13.5px] font-normal leading-[1.65] text-[#6B7570]"
+        style={{ fontFamily: "var(--font-inter)" }}
+      >
+        Have a question about a compound, resale unit, or rental
+        investment? Connect with our dedicated property advisors through
+        any of the channels below.
+      </p>
+
+      {/* 4 Contact Cards */}
+      <div className="mt-8 space-y-3.5">
+        {CONTACT_CHANNELS.map((item) => {
+          const content = (
+            <div className="flex items-center gap-4 rounded-[18px] border border-[#E1E7E3] bg-white p-4 sm:p-5 transition-all duration-200 hover:border-[#145C4B]/40 hover:shadow-xs">
+              <div className="relative h-12 w-12 shrink-0">
+                <Image
+                  src={item.icon}
+                  alt={item.label}
+                  width={48}
+                  height={48}
+                  className="h-12 w-12 object-contain"
+                />
+              </div>
+
+              <div>
+                <span
+                  className="block text-[10.5px] font-semibold uppercase tracking-[0.08em] text-[#6B7570]"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  {item.label}
+                </span>
+                <span
+                  className="mt-0.5 block text-[14px] sm:text-[15px] font-bold text-[#202326]"
+                  style={{ fontFamily: "var(--font-manrope)" }}
+                >
+                  {item.value}
+                </span>
+              </div>
+            </div>
+          );
+
+          return item.href ? (
+            <a key={item.label} href={item.href} className="block">
+              {content}
+            </a>
+          ) : (
+            <div key={item.label}>{content}</div>
+          );
+        })}
+      </div>
+
+      {/* Social Channels Bar */}
+      <div className="mt-4 flex items-center justify-between rounded-[16px] border border-[#E1E7E3]/70 bg-[#F3F5F3] px-5 py-3.5">
+        <span
+          className="text-[13px] font-semibold text-[#202326]"
+          style={{ fontFamily: "var(--font-inter)" }}
+        >
+          Follow Our Channels:
+        </span>
+
+        <div className="flex items-center gap-2">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E1E7E3] bg-white text-[11px] font-bold text-[#145C4B] transition-colors hover:bg-[#145C4B] hover:text-white"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            IG
+          </a>
+
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E1E7E3] bg-white text-[11px] font-bold text-[#145C4B] transition-colors hover:bg-[#145C4B] hover:text-white"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            in
+          </a>
+
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Facebook"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E1E7E3] bg-white text-[12px] font-bold text-[#145C4B] transition-colors hover:bg-[#145C4B] hover:text-white"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            f
+          </a>
+
+          <a
+            href="https://x.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Twitter / X"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E1E7E3] bg-white text-[11px] font-bold text-[#145C4B] transition-colors hover:bg-[#145C4B] hover:text-white"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            X
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+

@@ -42,6 +42,28 @@ export function parseFurnitureTypeToEnum(
   return FurnitureTypeEnum.None;
 }
 
+export function normalizeProjectItem(item: ProjectItem): ProjectItem {
+  const images =
+    item.images && item.images.length > 0
+      ? item.images
+      : (item.imageUrls || []).map((url, i) => ({
+          id: i,
+          imageUrl: url,
+          isPrimary: i === 0,
+        }));
+
+  const imageUrls =
+    item.imageUrls && item.imageUrls.length > 0
+      ? item.imageUrls
+      : images.map((img) => img.imageUrl);
+
+  return {
+    ...item,
+    images,
+    imageUrls,
+  };
+}
+
 export async function getProjects(
   params?: ProjectsQueryParams
 ): Promise<PaginatedProjectsData> {
@@ -74,7 +96,11 @@ export async function getProjects(
   );
 
   if (response.data && response.data.data) {
-    return response.data.data;
+    const data = response.data.data;
+    return {
+      ...data,
+      items: (data.items || []).map(normalizeProjectItem),
+    };
   }
 
   return {
@@ -99,6 +125,9 @@ export async function getProjectById(
       headers: { "Accept-Language": language },
     }
   );
+  if (response.data && response.data.data) {
+    response.data.data = normalizeProjectItem(response.data.data);
+  }
   return response.data;
 }
 
@@ -174,6 +203,7 @@ export async function getFullLocalizedProject(
     facilityIds,
     prices: finalPrices,
     imageUrls: baseItem?.imageUrls || [],
+    images: baseItem?.images || [],
   };
 }
 
