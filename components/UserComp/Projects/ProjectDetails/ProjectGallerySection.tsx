@@ -11,6 +11,12 @@ export default function ProjectGallerySection({
   title,
 }: ProjectGallerySectionProps) {
   const images = (imageUrls || []).map((url) => getFullProjectImageUrl(url));
+
+  // If no real images exist, hide the gallery entirely
+  if (images.length === 0) {
+    return null;
+  }
+
   const fallbackImg = "/default-fallback.png";
 
   const img1 = images[0] || fallbackImg;
@@ -89,4 +95,3 @@ export default function ProjectGallerySection({
     </section>
   );
 }
-
