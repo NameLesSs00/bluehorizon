@@ -1,0 +1,102 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+
+export interface BlogCardData {
+  id: number;
+  title: string;
+  category: string;
+  date: string;
+  description: string;
+  imageUrl?: string | null;
+}
+
+interface BlogCardProps {
+  blog: BlogCardData;
+}
+
+export default function BlogCard({ blog }: BlogCardProps) {
+  const [imageError, setImageError] = useState(false);
+
+  const displayImage =
+    !imageError && blog.imageUrl && blog.imageUrl.trim().length > 0
+      ? blog.imageUrl
+      : "/default-fallback.png";
+
+  return (
+    <article className="group flex flex-col overflow-hidden rounded-[24px] border border-[#E1E7E3] bg-white transition-all duration-300 hover:shadow-xl hover:border-[#145C4B]/40">
+      {/* Top Image Container */}
+      <div className="relative h-[220px] sm:h-[240px] w-full overflow-hidden bg-[#F3F5F3]">
+        <Image
+          src={displayImage}
+          alt={blog.title}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          onError={() => setImageError(true)}
+          className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+        />
+
+        {/* Date Badge Overlay */}
+        <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 rounded-full border border-white/60 bg-white/95 px-3.5 py-1.5 text-xs font-semibold text-[#145C4B] shadow-sm backdrop-blur-sm">
+          <Image
+            src="/Blogs/svg (3).svg"
+            alt="Calendar"
+            width={14}
+            height={14}
+            className="shrink-0"
+          />
+          <span style={{ fontFamily: "var(--font-inter)" }}>{blog.date}</span>
+        </div>
+      </div>
+
+      {/* Card Content Body */}
+      <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
+        <div>
+          {/* Category Pill */}
+          <div className="mb-3.5 w-fit rounded-full bg-[#E8F1EC] px-3.5 py-1 text-xs font-semibold text-[#145C4B]">
+            <span style={{ fontFamily: "var(--font-inter)" }}>
+              {blog.category}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h2
+            className="line-clamp-2 text-lg sm:text-[19px] font-bold text-[#202326] leading-snug group-hover:text-[#145C4B] transition-colors"
+            style={{ fontFamily: "var(--font-manrope)" }}
+          >
+            <Link href={`/blogs/${blog.id}`}>{blog.title}</Link>
+          </h2>
+
+          {/* Excerpt */}
+          <p
+            className="mt-2.5 line-clamp-2 text-sm leading-relaxed text-[#6B7570]"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            {blog.description}
+          </p>
+        </div>
+
+        {/* Read More Action */}
+        <div className="mt-6 pt-2">
+          <Link
+            href={`/blogs/${blog.id}`}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#145C4B] transition-colors hover:text-[#0F473A]"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            <Image
+              src="/Blogs/svg (6).svg"
+              alt=""
+              width={18}
+              height={18}
+              className="shrink-0 transition-transform duration-200 group-hover:translate-x-1"
+            />
+            <span>Read More</span>
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+

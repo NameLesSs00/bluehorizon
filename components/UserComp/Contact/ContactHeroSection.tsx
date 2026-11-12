@@ -25,12 +25,11 @@ export default function ContactHeroSection() {
         {/* Background Miniature House Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/ContactUs/7ae1c4e2-f846-4858-b78b-3a0eac2738ed 1.png"
+            src="/ContactUs/hero.png"
             alt="Contact Blue Horizon Real Estate"
             fill
             priority
             sizes="(max-width: 1360px) 100vw, 1360px"
-            className="object-cover object-right sm:object-center"
           />
         </div>
 

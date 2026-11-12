@@ -34,7 +34,7 @@ export default function ContactCtaSection() {
               href="https://wa.me/201234567890"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-[14px] font-semibold text-[#145C4B] transition-all hover:bg-[#F3F5F3] text-center"
+              className="inline-flex items-center justify-center rounded-[12px] bg-white px-8 py-3.5 text-[14px] font-semibold text-[#145C4B] transition-all hover:bg-[#F3F5F3] text-center"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               WhatsApp Chat
@@ -42,7 +42,7 @@ export default function ContactCtaSection() {
 
             <a
               href="tel:+201234567890"
-              className="inline-flex items-center justify-center rounded-full bg-[#145C4B] border border-white/25 px-8 py-3.5 text-[14px] font-medium text-white transition-all hover:bg-[#0B3B30] text-center"
+              className="inline-flex items-center justify-center rounded-[12px]  bg-[#145C4B] border border-white/25 px-8 py-3.5 text-[14px] font-medium text-white transition-all hover:bg-[#0B3B30] text-center"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               Call +20 123 456 7890
