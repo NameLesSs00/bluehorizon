@@ -102,9 +102,16 @@ export function useCreateRentalMutation(onSuccessCallback?: () => void) {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Rental property created successfully");
-      queryClient.invalidateQueries({ queryKey: RENTALS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: RENTALS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: RENTALS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -130,9 +137,16 @@ export function useUpdateRentalMutation(onSuccessCallback?: () => void) {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Rental property updated successfully");
-      queryClient.invalidateQueries({ queryKey: RENTALS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: RENTALS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: RENTALS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -152,9 +166,16 @@ export function useDeleteRentalMutation() {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Rental property deleted successfully");
-      queryClient.invalidateQueries({ queryKey: RENTALS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: RENTALS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: RENTALS_QUERY_KEY,
+        type: "active",
+      });
     },
     onError: (error) => {
       showApiErrorToast(error);

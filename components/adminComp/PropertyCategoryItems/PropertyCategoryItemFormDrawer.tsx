@@ -12,11 +12,7 @@ import {
 import { PropertyCategoryDetailItem } from "@/models/propertyCategoryItem";
 import AdminSlideDrawer from "@/components/adminComp/Common/AdminSlideDrawer";
 import IconPickerField from "@/components/adminComp/Common/IconPickerField";
-import {
-  EgyptFlag,
-  GermanyFlag,
-  UkFlag,
-} from "@/components/adminComp/Common/LanguageFlags";
+import PropertyCategoryItemLanguageFields from "./PropertyCategoryItemLanguageFields";
 
 interface PropertyCategoryItemFormDrawerProps {
   isOpen: boolean;
@@ -189,60 +185,14 @@ export default function PropertyCategoryItemFormDrawer({
             </div>
 
             {/* Multilingual Name Fields */}
-            <div className="rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-5 space-y-4">
-              <h4 className="text-[13px] font-bold uppercase tracking-wider text-[#145C4B]">
-                Item Name (Multilingual)
-              </h4>
-
-              {/* English */}
-              <div>
-                <label className="flex items-center gap-2 text-[12px] font-semibold text-[#202326]">
-                  <UkFlag className="h-3.5 w-5 rounded-xs shadow-xs" />
-                  <span>English Name (UK)</span>
-                  <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={nameEn}
-                  onChange={(e) => setNameEn(e.target.value)}
-                  placeholder="e.g. Espresso Coffee Maker, Bathtub, Safe"
-                  className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[14px] text-[#202326] outline-none transition-all placeholder:text-[#65706B] focus:border-[#145C4B] focus:ring-2 focus:ring-[#145C4B]/15"
-                />
-              </div>
-
-              {/* German */}
-              <div>
-                <label className="flex items-center gap-2 text-[12px] font-semibold text-[#202326]">
-                  <GermanyFlag className="h-3.5 w-5 rounded-xs shadow-xs" />
-                  <span>German Name (DE)</span>
-                  <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={nameDe}
-                  onChange={(e) => setNameDe(e.target.value)}
-                  placeholder="e.g. Kaffeemaschine, Badewanne, Safe"
-                  className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[14px] text-[#202326] outline-none transition-all placeholder:text-[#65706B] focus:border-[#145C4B] focus:ring-2 focus:ring-[#145C4B]/15"
-                />
-              </div>
-
-              {/* Arabic */}
-              <div>
-                <label className="flex items-center gap-2 text-[12px] font-semibold text-[#202326]">
-                  <EgyptFlag className="h-3.5 w-5 rounded-xs shadow-xs" />
-                  <span>Arabic Name (EG)</span>
-                  <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={nameAr}
-                  dir="rtl"
-                  onChange={(e) => setNameAr(e.target.value)}
-                  placeholder="مثال: آلة تحضير القهوة، حوض استحمام، خزنة"
-                  className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[14px] text-[#202326] outline-none transition-all placeholder:text-[#65706B] focus:border-[#145C4B] focus:ring-2 focus:ring-[#145C4B]/15 text-right"
-                />
-              </div>
-            </div>
+            <PropertyCategoryItemLanguageFields
+              nameEn={nameEn}
+              setNameEn={setNameEn}
+              nameDe={nameDe}
+              setNameDe={setNameDe}
+              nameAr={nameAr}
+              setNameAr={setNameAr}
+            />
 
             {/* Display Order & Icon Picker */}
             <div className="rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-5 space-y-4">

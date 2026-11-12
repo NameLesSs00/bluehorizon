@@ -25,6 +25,7 @@ export function useContactsQuery() {
     queryKey: CONTACTS_QUERY_KEY,
     queryFn: () => getContacts(),
     enabled: Boolean(accessToken),
+    staleTime: 0,
   });
 }
 
@@ -82,9 +83,16 @@ export function useUpdateContactStatusMutation(onSuccessCallback?: () => void) {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Status updated successfully");
-      queryClient.invalidateQueries({ queryKey: CONTACTS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: CONTACTS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: CONTACTS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -108,13 +116,19 @@ export function useDeleteContactMutation() {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Contact deleted successfully");
-      queryClient.invalidateQueries({ queryKey: CONTACTS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: CONTACTS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: CONTACTS_QUERY_KEY,
+        type: "active",
+      });
     },
     onError: (error) => {
       showApiErrorToast(error);
     },
   });
 }
-

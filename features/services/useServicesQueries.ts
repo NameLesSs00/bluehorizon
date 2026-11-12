@@ -19,7 +19,7 @@ export function useServicesQuery(language?: string) {
   return useQuery({
     queryKey: [...SERVICES_QUERY_KEY, language],
     queryFn: () => getServices(language),
-    staleTime: 1000 * 60 * 2,
+    staleTime: 0,
   });
 }
 
@@ -36,8 +36,15 @@ export function useCreateServiceMutation(onSuccessCallback?: () => void) {
 
   return useMutation({
     mutationFn: (payload: CreateServiceRequestDto) => createService(payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: SERVICES_QUERY_KEY });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: SERVICES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: SERVICES_QUERY_KEY,
+        type: "active",
+      });
       toast.success("Property service created successfully.");
       onSuccessCallback?.();
     },
@@ -54,8 +61,15 @@ export function useUpdateServiceMutation(onSuccessCallback?: () => void) {
 
   return useMutation({
     mutationFn: (payload: UpdateServiceRequestDto) => updateService(payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: SERVICES_QUERY_KEY });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: SERVICES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: SERVICES_QUERY_KEY,
+        type: "active",
+      });
       toast.success("Property service updated successfully.");
       onSuccessCallback?.();
     },
@@ -72,8 +86,15 @@ export function useDeleteServiceMutation() {
 
   return useMutation({
     mutationFn: (id: number) => deleteService(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: SERVICES_QUERY_KEY });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: SERVICES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: SERVICES_QUERY_KEY,
+        type: "active",
+      });
       toast.success("Property service deleted successfully.");
     },
     onError: (error) => {
@@ -83,4 +104,3 @@ export function useDeleteServiceMutation() {
     },
   });
 }
-

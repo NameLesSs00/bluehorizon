@@ -31,16 +31,27 @@ export function useCreatePrimaryUnitMutation(onSuccessCallback?: () => void) {
       if (!res.success || !res.data) {
         throw new Error(res.message || "Failed to create primary unit");
       }
-      const newId = res.data.id;
+      const rawData = res.data as unknown;
+      const newId =
+        typeof rawData === "number"
+          ? rawData
+          : (rawData as { id?: number })?.id;
 
-      if (initialImages && initialImages.length > 0) {
+      if (initialImages && initialImages.length > 0 && newId) {
         await uploadPrimaryUnitImages(newId, initialImages);
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Primary unit created successfully");
-      queryClient.invalidateQueries({ queryKey: PRIMARY_UNITS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: PRIMARY_UNITS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PRIMARY_UNITS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -66,9 +77,16 @@ export function useUpdatePrimaryUnitMutation(onSuccessCallback?: () => void) {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Primary unit updated successfully");
-      queryClient.invalidateQueries({ queryKey: PRIMARY_UNITS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: PRIMARY_UNITS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PRIMARY_UNITS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -88,9 +106,16 @@ export function useDeletePrimaryUnitMutation() {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Primary unit deleted successfully");
-      queryClient.invalidateQueries({ queryKey: PRIMARY_UNITS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: PRIMARY_UNITS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PRIMARY_UNITS_QUERY_KEY,
+        type: "active",
+      });
     },
     onError: (error) => {
       showApiErrorToast(error);

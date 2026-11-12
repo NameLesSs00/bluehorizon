@@ -22,7 +22,7 @@ export function usePropertyCategoriesQuery(
   return useQuery({
     queryKey: [...PROPERTY_CATEGORIES_QUERY_KEY, params],
     queryFn: () => getPropertyCategories(params),
-    staleTime: 1000 * 60 * 2,
+    staleTime: 0,
   });
 }
 
@@ -42,9 +42,14 @@ export function useCreatePropertyCategoryMutation(
   return useMutation({
     mutationFn: (payload: CreatePropertyCategoryRequestDto) =>
       createPropertyCategory(payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: PROPERTY_CATEGORIES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROPERTY_CATEGORIES_QUERY_KEY,
+        type: "active",
       });
       toast.success("Property category created successfully.");
       onSuccessCallback?.();
@@ -70,9 +75,14 @@ export function useUpdatePropertyCategoryMutation(
       id: number;
       payload: UpdatePropertyCategoryRequestDto;
     }) => updatePropertyCategory(id, payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: PROPERTY_CATEGORIES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROPERTY_CATEGORIES_QUERY_KEY,
+        type: "active",
       });
       toast.success("Property category updated successfully.");
       onSuccessCallback?.();
@@ -90,9 +100,14 @@ export function useDeletePropertyCategoryMutation() {
 
   return useMutation({
     mutationFn: (id: number) => deletePropertyCategory(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: PROPERTY_CATEGORIES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROPERTY_CATEGORIES_QUERY_KEY,
+        type: "active",
       });
       toast.success("Property category deleted successfully.");
     },
@@ -103,4 +118,3 @@ export function useDeletePropertyCategoryMutation() {
     },
   });
 }
-

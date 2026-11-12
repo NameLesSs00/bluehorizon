@@ -24,6 +24,7 @@ export function useKeyValuesQuery() {
     queryKey: KEY_VALUES_QUERY_KEY,
     queryFn: () => getKeyValues(),
     enabled: Boolean(accessToken),
+    staleTime: 0,
   });
 }
 
@@ -42,9 +43,16 @@ export function useCreateKeyValueMutation(onSuccessCallback?: () => void) {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Site link created successfully");
-      queryClient.invalidateQueries({ queryKey: KEY_VALUES_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: KEY_VALUES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: KEY_VALUES_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -68,9 +76,16 @@ export function useUpdateKeyValueMutation(onSuccessCallback?: () => void) {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Site link updated successfully");
-      queryClient.invalidateQueries({ queryKey: KEY_VALUES_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: KEY_VALUES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: KEY_VALUES_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -94,13 +109,19 @@ export function useDeleteKeyValueMutation() {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Site link deleted successfully");
-      queryClient.invalidateQueries({ queryKey: KEY_VALUES_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: KEY_VALUES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: KEY_VALUES_QUERY_KEY,
+        type: "active",
+      });
     },
     onError: (error) => {
       showApiErrorToast(error);
     },
   });
 }
-

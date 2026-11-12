@@ -22,7 +22,7 @@ export function usePublicQuestionsQuery(language: QuestionLanguage = "en") {
   return useQuery({
     queryKey: [...QUESTIONS_QUERY_KEY, "public", language],
     queryFn: () => getQuestions(language),
-    staleTime: 1000 * 60 * 5,
+    staleTime: 0,
   });
 }
 
@@ -33,6 +33,7 @@ export function useQuestionsQuery(language: QuestionLanguage = "en") {
     queryKey: [...QUESTIONS_QUERY_KEY, language],
     queryFn: () => getQuestions(language),
     enabled: Boolean(accessToken),
+    staleTime: 0,
   });
 }
 
@@ -51,9 +52,16 @@ export function useCreateQuestionMutation(onSuccessCallback?: () => void) {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "FAQ created successfully");
-      queryClient.invalidateQueries({ queryKey: QUESTIONS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: QUESTIONS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: QUESTIONS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -77,9 +85,16 @@ export function useUpdateQuestionMutation(onSuccessCallback?: () => void) {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "FAQ updated successfully");
-      queryClient.invalidateQueries({ queryKey: QUESTIONS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: QUESTIONS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: QUESTIONS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -103,13 +118,19 @@ export function useDeleteQuestionMutation() {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "FAQ deleted successfully");
-      queryClient.invalidateQueries({ queryKey: QUESTIONS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: QUESTIONS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: QUESTIONS_QUERY_KEY,
+        type: "active",
+      });
     },
     onError: (error) => {
       showApiErrorToast(error);
     },
   });
 }
-

@@ -24,7 +24,7 @@ export function usePropertyCategoryItemsQuery(
   return useQuery({
     queryKey: [...PROPERTY_CATEGORY_ITEMS_QUERY_KEY, params],
     queryFn: () => getPropertyCategoryItems(params),
-    staleTime: 1000 * 60 * 2,
+    staleTime: 0,
   });
 }
 
@@ -47,9 +47,14 @@ export function useCreatePropertyCategoryItemMutation(
   return useMutation({
     mutationFn: (payload: CreatePropertyCategoryItemRequestDto) =>
       createPropertyCategoryItem(payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: PROPERTY_CATEGORY_ITEMS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROPERTY_CATEGORY_ITEMS_QUERY_KEY,
+        type: "active",
       });
       toast.success("Category item created successfully.");
       onSuccessCallback?.();
@@ -75,9 +80,14 @@ export function useUpdatePropertyCategoryItemMutation(
       id: number;
       payload: UpdatePropertyCategoryItemRequestDto;
     }) => updatePropertyCategoryItem(id, payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: PROPERTY_CATEGORY_ITEMS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROPERTY_CATEGORY_ITEMS_QUERY_KEY,
+        type: "active",
       });
       toast.success("Category item updated successfully.");
       onSuccessCallback?.();
@@ -95,9 +105,14 @@ export function useDeletePropertyCategoryItemMutation() {
 
   return useMutation({
     mutationFn: (id: number) => deletePropertyCategoryItem(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: PROPERTY_CATEGORY_ITEMS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROPERTY_CATEGORY_ITEMS_QUERY_KEY,
+        type: "active",
       });
       toast.success("Category item deleted successfully.");
     },
@@ -108,4 +123,3 @@ export function useDeletePropertyCategoryItemMutation() {
     },
   });
 }
-

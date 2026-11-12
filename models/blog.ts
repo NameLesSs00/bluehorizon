@@ -12,6 +12,8 @@ export interface BlogItem {
   id: number;
   title: string;
   imageUrl: string;
+  publishDate?: string;
+  blogType?: string;
   sections: BlogSectionItem[];
 }
 
@@ -38,12 +40,15 @@ export interface LocalizedBlogSectionInput {
 
 export interface CreateBlogRequestDto {
   title: LocalizedText;
+  publishDate: string;
+  blogType: LocalizedText;
   sections: LocalizedBlogSectionInput[];
 }
 
 export interface UpdateBlogRequestDto {
   id: number;
   title: LocalizedText;
+  publishDate: string;
+  blogType: LocalizedText;
   sections: LocalizedBlogSectionInput[];
 }
-

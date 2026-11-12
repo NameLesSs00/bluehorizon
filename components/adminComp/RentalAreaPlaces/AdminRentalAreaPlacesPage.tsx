@@ -71,7 +71,7 @@ export default function AdminRentalAreaPlacesPage() {
           <button
             type="button"
             onClick={handleOpenCreate}
-            className="inline-flex items-center gap-2 self-start rounded-xl bg-[#145C4B] px-4 py-2.5 text-[13px] font-semibold text-white shadow-xs transition-colors hover:bg-[#0F473A] sm:self-auto"
+            className="inline-flex items-center gap-2 rounded-xl bg-[#0F473A] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#145C4B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <FiPlus className="h-4 w-4" />

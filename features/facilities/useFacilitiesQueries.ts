@@ -19,7 +19,7 @@ export function useFacilitiesQuery(language?: string) {
   return useQuery({
     queryKey: [...FACILITIES_QUERY_KEY, language],
     queryFn: () => getFacilities(language),
-    staleTime: 1000 * 60 * 2,
+    staleTime: 0,
   });
 }
 
@@ -36,8 +36,15 @@ export function useCreateFacilityMutation(onSuccessCallback?: () => void) {
 
   return useMutation({
     mutationFn: (payload: CreateFacilityRequestDto) => createFacility(payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: FACILITIES_QUERY_KEY });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: FACILITIES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: FACILITIES_QUERY_KEY,
+        type: "active",
+      });
       toast.success("Project facility created successfully.");
       onSuccessCallback?.();
     },
@@ -54,8 +61,15 @@ export function useUpdateFacilityMutation(onSuccessCallback?: () => void) {
 
   return useMutation({
     mutationFn: (payload: UpdateFacilityRequestDto) => updateFacility(payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: FACILITIES_QUERY_KEY });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: FACILITIES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: FACILITIES_QUERY_KEY,
+        type: "active",
+      });
       toast.success("Project facility updated successfully.");
       onSuccessCallback?.();
     },
@@ -72,8 +86,15 @@ export function useDeleteFacilityMutation() {
 
   return useMutation({
     mutationFn: (id: number) => deleteFacility(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: FACILITIES_QUERY_KEY });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: FACILITIES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: FACILITIES_QUERY_KEY,
+        type: "active",
+      });
       toast.success("Project facility deleted successfully.");
     },
     onError: (error) => {
@@ -83,4 +104,3 @@ export function useDeleteFacilityMutation() {
     },
   });
 }
-

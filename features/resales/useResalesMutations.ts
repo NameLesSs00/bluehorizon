@@ -31,16 +31,27 @@ export function useCreateResaleMutation(onSuccessCallback?: () => void) {
       if (!res.success || !res.data) {
         throw new Error(res.message || "Failed to create resale property");
       }
-      const newId = res.data.id;
+      const rawData = res.data as unknown;
+      const newId =
+        typeof rawData === "number"
+          ? rawData
+          : (rawData as { id?: number })?.id;
 
-      if (initialImages && initialImages.length > 0) {
+      if (initialImages && initialImages.length > 0 && newId) {
         await uploadResaleImages(newId, initialImages);
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Resale property created successfully");
-      queryClient.invalidateQueries({ queryKey: RESALES_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: RESALES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: RESALES_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -66,9 +77,16 @@ export function useUpdateResaleMutation(onSuccessCallback?: () => void) {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Resale property updated successfully");
-      queryClient.invalidateQueries({ queryKey: RESALES_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: RESALES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: RESALES_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -88,9 +106,16 @@ export function useDeleteResaleMutation() {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Resale property deleted successfully");
-      queryClient.invalidateQueries({ queryKey: RESALES_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: RESALES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: RESALES_QUERY_KEY,
+        type: "active",
+      });
     },
     onError: (error) => {
       showApiErrorToast(error);

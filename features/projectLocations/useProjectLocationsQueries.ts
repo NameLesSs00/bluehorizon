@@ -119,9 +119,16 @@ export function useCreateProjectLocationMutation(onSuccessCallback?: () => void)
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Location created successfully");
-      queryClient.invalidateQueries({ queryKey: PROJECT_LOCATIONS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: PROJECT_LOCATIONS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROJECT_LOCATIONS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -147,9 +154,16 @@ export function useUpdateProjectLocationMutation(onSuccessCallback?: () => void)
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Location updated successfully");
-      queryClient.invalidateQueries({ queryKey: PROJECT_LOCATIONS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: PROJECT_LOCATIONS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROJECT_LOCATIONS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -169,9 +183,16 @@ export function useDeleteProjectLocationMutation() {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Location deleted successfully");
-      queryClient.invalidateQueries({ queryKey: PROJECT_LOCATIONS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: PROJECT_LOCATIONS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROJECT_LOCATIONS_QUERY_KEY,
+        type: "active",
+      });
     },
     onError: (error) => {
       showApiErrorToast(error);

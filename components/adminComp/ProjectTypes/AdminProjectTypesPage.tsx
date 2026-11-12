@@ -73,7 +73,7 @@ export default function AdminProjectTypesPage() {
           <button
             type="button"
             onClick={handleOpenCreate}
-            className="inline-flex items-center gap-2 self-start rounded-xl bg-[#145C4B] px-4 py-2.5 text-[13px] font-semibold text-white shadow-xs transition-colors hover:bg-[#0F473A] sm:self-auto"
+            className="inline-flex items-center gap-2 rounded-xl bg-[#0F473A] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#145C4B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <FiPlus className="h-4 w-4" />
@@ -82,18 +82,20 @@ export default function AdminProjectTypesPage() {
         </div>
 
         {/* Search Bar */}
-        <div className="relative max-w-md">
-          <FiSearch className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[15px] text-[#65706B]" />
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-              setPageNumber(1);
-            }}
-            placeholder="Search project types by name..."
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white py-2.5 pl-10 pr-4 text-[13px] text-[#202326] outline-none transition-all placeholder:text-[#65706B] focus:border-[#145C4B] focus:ring-2 focus:ring-[#145C4B]/15"
-          />
+        <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-[#E6EAE7] bg-white p-4 shadow-xs">
+          <div className="relative w-full max-w-md">
+            <FiSearch className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[15px] text-[#65706B]" />
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setPageNumber(1);
+              }}
+              placeholder="Search project types by name..."
+              className="w-full rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] py-2 pl-10 pr-4 text-[13px] text-[#202326] placeholder-[#65706B] transition focus:border-[#0F473A] focus:bg-white focus:outline-hidden"
+            />
+          </div>
         </div>
 
         {/* Full-width Table */}

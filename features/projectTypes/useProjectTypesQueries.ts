@@ -20,7 +20,7 @@ export function useProjectTypesQuery(params?: ProjectTypesQueryParams) {
   return useQuery({
     queryKey: [...PROJECT_TYPES_QUERY_KEY, params],
     queryFn: () => getProjectTypes(params),
-    staleTime: 1000 * 60 * 2,
+    staleTime: 0,
   });
 }
 
@@ -38,8 +38,15 @@ export function useCreateProjectTypeMutation(onSuccessCallback?: () => void) {
   return useMutation({
     mutationFn: (payload: CreateProjectTypeRequestDto) =>
       createProjectType(payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: PROJECT_TYPES_QUERY_KEY });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: PROJECT_TYPES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROJECT_TYPES_QUERY_KEY,
+        type: "active",
+      });
       toast.success("Project type created successfully.");
       onSuccessCallback?.();
     },
@@ -60,8 +67,15 @@ export function useUpdateProjectTypeMutation(onSuccessCallback?: () => void) {
       id: number;
       payload: UpdateProjectTypeRequestDto;
     }) => updateProjectType(id, payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: PROJECT_TYPES_QUERY_KEY });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: PROJECT_TYPES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROJECT_TYPES_QUERY_KEY,
+        type: "active",
+      });
       toast.success("Project type updated successfully.");
       onSuccessCallback?.();
     },
@@ -76,8 +90,15 @@ export function useDeleteProjectTypeMutation() {
 
   return useMutation({
     mutationFn: (id: number) => deleteProjectType(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: PROJECT_TYPES_QUERY_KEY });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: PROJECT_TYPES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROJECT_TYPES_QUERY_KEY,
+        type: "active",
+      });
       toast.success("Project type deleted successfully.");
     },
     onError: (error) => {
@@ -85,4 +106,3 @@ export function useDeleteProjectTypeMutation() {
     },
   });
 }
-

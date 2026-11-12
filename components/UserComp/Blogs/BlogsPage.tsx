@@ -40,8 +40,15 @@ export default function BlogsPage() {
   // Map API items to display cards
   const allBlogs: BlogCardData[] = useMemo(() => {
     const items = blogsData?.items || [];
-    return items.map((item, idx) => {
-      const assignedCategory = CATEGORY_LIST[idx % CATEGORY_LIST.length];
+    return items.map((item) => {
+      const assignedCategory = item.blogType?.trim() || "Buying Guide";
+      const formattedDate = item.publishDate
+        ? new Date(item.publishDate).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })
+        : "Recent";
       const sectionSnippet =
         item.sections?.[0]?.content ||
         item.sections?.[0]?.tittle ||
@@ -51,7 +58,7 @@ export default function BlogsPage() {
         id: item.id,
         title: item.title,
         category: assignedCategory,
-        date: "Nov 6, 2026",
+        date: formattedDate,
         description: sectionSnippet,
         imageUrl: getFullImageUrl(item.imageUrl),
       };

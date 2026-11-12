@@ -62,6 +62,8 @@ export async function getBlogById(id: number): Promise<ApiResponse<BlogItem>> {
 export async function getFullLocalizedBlog(id: number): Promise<{
   id: number;
   title: LocalizedText;
+  publishDate: string;
+  blogType: LocalizedText;
   sections: LocalizedBlogSectionInput[];
 }> {
   const [enRes, arRes, deRes] = await Promise.allSettled([
@@ -112,12 +114,24 @@ export async function getFullLocalizedBlog(id: number): Promise<{
     });
   }
 
+  const publishDate =
+    enBlog?.publishDate ||
+    arBlog?.publishDate ||
+    deBlog?.publishDate ||
+    new Date().toISOString();
+
   return {
     id,
     title: {
       en: enBlog?.title || "",
       ar: arBlog?.title || "",
       de: deBlog?.title || "",
+    },
+    publishDate,
+    blogType: {
+      en: enBlog?.blogType || "",
+      ar: arBlog?.blogType || "",
+      de: deBlog?.blogType || "",
     },
     sections,
   };

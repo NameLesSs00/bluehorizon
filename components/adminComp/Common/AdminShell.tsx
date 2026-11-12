@@ -19,7 +19,7 @@ export default function AdminShell({
         <AdminSidebar />
 
         {/* Dynamic Page Content */}
-        <div className="flex flex-1 flex-col overflow-y-auto">
+        <div className="flex min-w-0 flex-1 flex-col overflow-y-auto">
           <main className="flex-1 p-6 sm:p-8 lg:p-10">{children}</main>
         </div>
       </div>

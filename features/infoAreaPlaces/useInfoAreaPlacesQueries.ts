@@ -20,7 +20,7 @@ export function useInfoAreaPlacesQuery(params?: InfoAreaPlacesQueryParams) {
   return useQuery({
     queryKey: [...INFO_AREA_PLACES_QUERY_KEY, params],
     queryFn: () => getInfoAreaPlaces(params),
-    staleTime: 1000 * 60 * 2,
+    staleTime: 0,
   });
 }
 
@@ -40,9 +40,14 @@ export function useCreateInfoAreaPlaceMutation(
   return useMutation({
     mutationFn: (payload: CreateInfoAreaPlaceRequestDto) =>
       createInfoAreaPlace(payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: INFO_AREA_PLACES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: INFO_AREA_PLACES_QUERY_KEY,
+        type: "active",
       });
       toast.success("Area landmark created successfully.");
       onSuccessCallback?.();
@@ -68,9 +73,14 @@ export function useUpdateInfoAreaPlaceMutation(
       id: number;
       payload: UpdateInfoAreaPlaceRequestDto;
     }) => updateInfoAreaPlace(id, payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: INFO_AREA_PLACES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: INFO_AREA_PLACES_QUERY_KEY,
+        type: "active",
       });
       toast.success("Area landmark updated successfully.");
       onSuccessCallback?.();
@@ -88,9 +98,14 @@ export function useDeleteInfoAreaPlaceMutation() {
 
   return useMutation({
     mutationFn: (id: number) => deleteInfoAreaPlace(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: INFO_AREA_PLACES_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: INFO_AREA_PLACES_QUERY_KEY,
+        type: "active",
       });
       toast.success("Area landmark deleted successfully.");
     },
@@ -101,4 +116,3 @@ export function useDeleteInfoAreaPlaceMutation() {
     },
   });
 }
-

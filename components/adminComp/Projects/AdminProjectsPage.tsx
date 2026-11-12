@@ -9,6 +9,7 @@ import { ProjectItem } from "@/models/project";
 import ProjectsTable from "./ProjectsTable";
 import ProjectFormDrawer from "./ProjectFormDrawer";
 import ProjectImagesDrawer from "./ProjectImagesDrawer";
+import ProjectPaymentPlansDrawer from "./ProjectPaymentPlansDrawer";
 
 export default function AdminProjectsPage() {
   const [pageNumber, setPageNumber] = useState(1);
@@ -39,6 +40,9 @@ export default function AdminProjectsPage() {
   const [isImagesOpen, setIsImagesOpen] = useState(false);
   const [projectForImages, setProjectForImages] = useState<ProjectItem | null>(null);
 
+  const [isPaymentPlansOpen, setIsPaymentPlansOpen] = useState(false);
+  const [projectForPaymentPlans, setProjectForPaymentPlans] = useState<ProjectItem | null>(null);
+
   const projects = projectsData?.items ?? [];
   const totalPages = projectsData?.totalPages ?? 1;
   const hasPreviousPage = projectsData?.hasPreviousPage ?? pageNumber > 1;
@@ -57,6 +61,11 @@ export default function AdminProjectsPage() {
   function handleOpenImages(proj: ProjectItem) {
     setProjectForImages(proj);
     setIsImagesOpen(true);
+  }
+
+  function handleOpenPaymentPlans(proj: ProjectItem) {
+    setProjectForPaymentPlans(proj);
+    setIsPaymentPlansOpen(true);
   }
 
   return (
@@ -150,6 +159,7 @@ export default function AdminProjectsPage() {
           onPageChange={(p) => setPageNumber(p)}
           onEdit={handleOpenEdit}
           onManageImages={handleOpenImages}
+          onManagePaymentPlans={handleOpenPaymentPlans}
         />
 
         {/* Drawers */}
@@ -163,6 +173,12 @@ export default function AdminProjectsPage() {
           isOpen={isImagesOpen}
           onClose={() => setIsImagesOpen(false)}
           project={projectForImages}
+        />
+
+        <ProjectPaymentPlansDrawer
+          isOpen={isPaymentPlansOpen}
+          onClose={() => setIsPaymentPlansOpen(false)}
+          project={projectForPaymentPlans}
         />
       </div>
     </AdminShell>

@@ -69,6 +69,9 @@ export default function BlogsTable({
                 Article Title (English)
               </th>
               <th className="px-6 py-4 text-[12px] font-bold uppercase tracking-[0.08em] text-[#65706B]">
+                Category &amp; Date
+              </th>
+              <th className="px-6 py-4 text-[12px] font-bold uppercase tracking-[0.08em] text-[#65706B]">
                 Sections
               </th>
               <th className="w-56 px-6 py-4 text-right text-[12px] font-bold uppercase tracking-[0.08em] text-[#65706B]">
@@ -80,51 +83,69 @@ export default function BlogsTable({
             {blogs.length === 0 ? (
               <tr>
                 <td
-                  colSpan={4}
+                  colSpan={5}
                   className="px-6 py-16 text-center text-[14px] text-[#65706B]"
                 >
                   No blog articles found. Click "Add New Article" to write one.
                 </td>
               </tr>
             ) : (
-              blogs.map((blog) => (
-                <tr
-                  key={blog.id}
-                  className="transition-colors hover:bg-[#F3F5F3]/50"
-                >
-                  <td className="px-6 py-4">
-                    <div className="relative h-12 w-16 overflow-hidden rounded-lg border border-[#DCE2DE] bg-neutral-100">
-                      {blog.imageUrl ? (
-                        <Image
-                          src={getFullImageUrl(blog.imageUrl)}
-                          alt={blog.title}
-                          fill
-                          className="object-cover"
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center text-[10px] text-[#65706B]">
-                          No image
-                        </div>
-                      )}
-                    </div>
-                  </td>
+              blogs.map((blog) => {
+                const formattedDate = blog.publishDate
+                  ? new Date(blog.publishDate).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })
+                  : "Date TBD";
 
-                  <td className="px-6 py-4">
-                    <p
-                      className="max-w-xl text-[14px] font-semibold text-[#202326]"
-                      style={{ fontFamily: "var(--font-manrope)" }}
-                    >
-                      {blog.title}
-                    </p>
-                  </td>
+                return (
+                  <tr
+                    key={blog.id}
+                    className="transition-colors hover:bg-[#F3F5F3]/50"
+                  >
+                    <td className="px-6 py-4">
+                      <div className="relative h-12 w-16 overflow-hidden rounded-lg border border-[#DCE2DE] bg-neutral-100">
+                        {blog.imageUrl ? (
+                          <Image
+                            src={getFullImageUrl(blog.imageUrl)}
+                            alt={blog.title}
+                            fill
+                            className="object-cover"
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center text-[10px] text-[#65706B]">
+                            No image
+                          </div>
+                        )}
+                      </div>
+                    </td>
 
-                  <td className="px-6 py-4">
-                    <span className="rounded-md bg-[#FAF8F5] border border-[#E6EAE7] px-2.5 py-1 text-[12px] font-medium text-[#202326]">
-                      {blog.sections.length} Section{blog.sections.length !== 1 ? "s" : ""}
-                    </span>
-                  </td>
+                    <td className="px-6 py-4">
+                      <p
+                        className="max-w-xl text-[14px] font-semibold text-[#202326]"
+                        style={{ fontFamily: "var(--font-manrope)" }}
+                      >
+                        {blog.title}
+                      </p>
+                    </td>
 
-                  <td className="px-6 py-4 text-right">
+                    <td className="px-6 py-4">
+                      <div className="space-y-1">
+                        <span className="inline-block rounded-md border border-[#E1E7E3] bg-[#FAF8F5] px-2 py-0.5 text-[11px] font-semibold text-[#145C4B]">
+                          {blog.blogType || "General"}
+                        </span>
+                        <p className="text-[11px] text-[#65706B]">{formattedDate}</p>
+                      </div>
+                    </td>
+
+                    <td className="px-6 py-4">
+                      <span className="rounded-md bg-[#FAF8F5] border border-[#E6EAE7] px-2.5 py-1 text-[12px] font-medium text-[#202326]">
+                        {blog.sections.length} Section{blog.sections.length !== 1 ? "s" : ""}
+                      </span>
+                    </td>
+
+                    <td className="px-6 py-4 text-right">
                     {confirmDeleteId === blog.id ? (
                       <div className="inline-flex items-center gap-2">
                         <button
@@ -173,7 +194,8 @@ export default function BlogsTable({
                     )}
                   </td>
                 </tr>
-              ))
+              );
+            })
             )}
           </tbody>
         </table>

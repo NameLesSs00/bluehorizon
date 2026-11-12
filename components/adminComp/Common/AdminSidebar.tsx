@@ -33,9 +33,9 @@ export default function AdminSidebar({}: AdminSidebarProps) {
 
   return (
     <>
-      <aside className="flex w-full flex-col justify-between border-r border-[#E6EAE7] bg-[#0F473A] text-white lg:min-h-screen lg:w-72 shrink-0">
-        <div className="flex flex-col p-6">
-          {/* Logo & Portal Identity */}
+      <aside className="flex w-full flex-col justify-between border-r border-[#E6EAE7] bg-[#0F473A] text-white lg:sticky lg:top-0 lg:h-screen lg:w-72 shrink-0 overflow-hidden">
+        {/* Top Header: Logo & Portal Identity */}
+        <div className="shrink-0 p-6 pb-2">
           <Link href="/" className="inline-block">
             <div className="relative h-14 w-44">
               <Image
@@ -62,32 +62,32 @@ export default function AdminSidebar({}: AdminSidebarProps) {
               Control Panel
             </p>
           </div>
-
-          {/* Navigation Links */}
-          <nav className="mt-8 space-y-2">
-            {visibleNavLinks.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`flex items-center gap-3 rounded-xl px-4 py-3 text-[13px] font-medium transition-all ${
-                    item.active
-                      ? "bg-[#145C4B] font-semibold text-white shadow-xs"
-                      : "text-white/80 hover:bg-white/10 hover:text-white"
-                  }`}
-                  style={{ fontFamily: "var(--font-inter)" }}
-                >
-                  <Icon className="h-4 w-4 shrink-0" />
-                  <span>{item.label}</span>
-                </Link>
-              );
-            })}
-          </nav>
         </div>
 
+        {/* Scrollable Navigation Links */}
+        <nav className="custom-admin-scrollbar flex-1 overflow-y-auto px-6 py-3 space-y-1.5">
+          {visibleNavLinks.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-[13px] font-medium transition-all ${
+                  item.active
+                    ? "bg-[#145C4B] font-semibold text-white shadow-xs"
+                    : "text-white/80 hover:bg-white/10 hover:text-white"
+                }`}
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                <Icon className="h-4 w-4 shrink-0" />
+                <span className="truncate">{item.label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+
         {/* Sidebar Footer: Current User & Quick Actions */}
-        <div className="border-t border-white/15 p-6">
+        <div className="shrink-0 border-t border-white/15 bg-[#0F473A] p-6">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white">
               <FiShield className="h-5 w-5" />

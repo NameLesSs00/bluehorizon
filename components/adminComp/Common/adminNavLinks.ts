@@ -91,6 +91,13 @@ export function getAdminNavLinks(pathname: string): AdminNavItem[] {
       superAdminOnly: false,
     },
     {
+      label: "StandAlone Props",
+      href: "/admin/standalone-units",
+      icon: FiHome,
+      active: pathname.startsWith("/admin/standalone-units"),
+      superAdminOnly: false,
+    },
+    {
       label: "Property Services",
       href: "/admin/property-services",
       icon: FiSliders,

@@ -107,9 +107,16 @@ export function useCreateProjectMutation(onSuccessCallback?: () => void) {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Project created successfully");
-      queryClient.invalidateQueries({ queryKey: PROJECTS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: PROJECTS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROJECTS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -143,9 +150,16 @@ export function useUpdateProjectMutation(onSuccessCallback?: () => void) {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Project updated successfully");
-      queryClient.invalidateQueries({ queryKey: PROJECTS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: PROJECTS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROJECTS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -165,9 +179,16 @@ export function useDeleteProjectMutation() {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Project deleted successfully");
-      queryClient.invalidateQueries({ queryKey: PROJECTS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: PROJECTS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: PROJECTS_QUERY_KEY,
+        type: "active",
+      });
     },
     onError: (error) => {
       showApiErrorToast(error);

@@ -54,9 +54,16 @@ export function useCreateBlogMutation(
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Blog created successfully");
-      queryClient.invalidateQueries({ queryKey: BLOGS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: BLOGS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: BLOGS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.(Number(res.data));
     },
     onError: (error) => {
@@ -80,9 +87,16 @@ export function useUpdateBlogMutation(onSuccessCallback?: () => void) {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Blog updated successfully");
-      queryClient.invalidateQueries({ queryKey: BLOGS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: BLOGS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: BLOGS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -106,9 +120,16 @@ export function useDeleteBlogMutation() {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Blog deleted successfully");
-      queryClient.invalidateQueries({ queryKey: BLOGS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: BLOGS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: BLOGS_QUERY_KEY,
+        type: "active",
+      });
     },
     onError: (error) => {
       showApiErrorToast(error);

@@ -90,6 +90,7 @@ export function useAdminsQuery(params?: AdminsQueryParams) {
     queryKey: [...ADMINS_QUERY_KEY, params?.PageNumber ?? 1, params?.PageSize ?? 10],
     queryFn: () => getAdmins(params),
     enabled: Boolean(accessToken) && isSuperAdmin,
+    staleTime: 0,
   });
 }
 
@@ -108,9 +109,16 @@ export function useAddAdminMutation(onSuccessCallback?: () => void) {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Admin created successfully");
-      queryClient.invalidateQueries({ queryKey: ADMINS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: ADMINS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: ADMINS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -137,13 +145,20 @@ export function useUpdateAdminProfileMutation(onSuccessCallback?: () => void) {
       }
       return { res, input };
     },
-    onSuccess: ({ res, input }) => {
+    onSuccess: async ({ res, input }) => {
       updateCurrentUser({
         userName: res.data?.userName || input.userName,
         email: res.data?.email || input.email,
       });
       toast.success(res.message || "Profile updated successfully");
-      queryClient.invalidateQueries({ queryKey: ADMINS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: ADMINS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: ADMINS_QUERY_KEY,
+        type: "active",
+      });
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -190,13 +205,19 @@ export function useDeleteAdminMutation() {
       }
       return res;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       toast.success(res.message || "Admin deleted successfully");
-      queryClient.invalidateQueries({ queryKey: ADMINS_QUERY_KEY });
+      await queryClient.invalidateQueries({
+        queryKey: ADMINS_QUERY_KEY,
+        refetchType: "all",
+      });
+      queryClient.refetchQueries({
+        queryKey: ADMINS_QUERY_KEY,
+        type: "active",
+      });
     },
     onError: (error) => {
       showApiErrorToast(error);
     },
   });
 }
-

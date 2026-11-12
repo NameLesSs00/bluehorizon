@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { FlagEgypt, FlagGermany, FlagUK } from "@/components/adminComp/Common/LanguageFlags";
 import AdminSlideDrawer from "@/components/adminComp/Common/AdminSlideDrawer";
+import ProjectLocationLanguageFields from "./ProjectLocationLanguageFields";
 import {
   LocalizedProjectLocationDetails,
   ProjectLocationFormPayload,
@@ -142,140 +142,11 @@ export default function ProjectLocationFormDrawer({
           </div>
         )}
 
-        {/* Location Names */}
-        <div className="space-y-3">
-          <label className="block text-[13px] font-bold text-[#202326]">
-            Location Name (Multilingual)
-          </label>
-
-          <div className="grid grid-cols-1 gap-3">
-            <div>
-              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
-                <FlagUK />
-                <span>English Name *</span>
-              </div>
-              <input
-                type="text"
-                required
-                value={formData.name.en}
-                onChange={(e) =>
-                  setFormData((prev) => ({
-                    ...prev,
-                    name: { ...prev.name, en: e.target.value },
-                  }))
-                }
-                placeholder="e.g. Hurghada, El Gouna, Sahl Hasheesh"
-                className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
-                <FlagGermany />
-                <span>German Name (Deutsch)</span>
-              </div>
-              <input
-                type="text"
-                value={formData.name.de}
-                onChange={(e) =>
-                  setFormData((prev) => ({
-                    ...prev,
-                    name: { ...prev.name, de: e.target.value },
-                  }))
-                }
-                placeholder="e.g. Hurghada, El Gouna"
-                className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
-                <FlagEgypt />
-                <span>Arabic Name (العربية)</span>
-              </div>
-              <input
-                type="text"
-                dir="rtl"
-                value={formData.name.ar}
-                onChange={(e) =>
-                  setFormData((prev) => ({
-                    ...prev,
-                    name: { ...prev.name, ar: e.target.value },
-                  }))
-                }
-                placeholder="مثال: الغردقة، الجونة، سهل حشيش"
-                className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Location Descriptions */}
-        <div className="space-y-3">
-          <label className="block text-[13px] font-bold text-[#202326]">
-            Description (Multilingual)
-          </label>
-
-          <div className="space-y-3">
-            <div>
-              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
-                <FlagUK />
-                <span>English Description</span>
-              </div>
-              <textarea
-                rows={3}
-                value={formData.description.en}
-                onChange={(e) =>
-                  setFormData((prev) => ({
-                    ...prev,
-                    description: { ...prev.description, en: e.target.value },
-                  }))
-                }
-                placeholder="Describe the area, coastal access, lifestyle and investment appeal..."
-                className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
-                <FlagGermany />
-                <span>German Description</span>
-              </div>
-              <textarea
-                rows={3}
-                value={formData.description.de}
-                onChange={(e) =>
-                  setFormData((prev) => ({
-                    ...prev,
-                    description: { ...prev.description, de: e.target.value },
-                  }))
-                }
-                placeholder="Deutsche Beschreibung..."
-                className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
-                <FlagEgypt />
-                <span>Arabic Description</span>
-              </div>
-              <textarea
-                rows={3}
-                dir="rtl"
-                value={formData.description.ar}
-                onChange={(e) =>
-                  setFormData((prev) => ({
-                    ...prev,
-                    description: { ...prev.description, ar: e.target.value },
-                  }))
-                }
-                placeholder="وصف الوجهة الساحلية وأهم مميزاتها الاستثمارية..."
-                className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
-              />
-            </div>
-          </div>
-        </div>
+        {/* Location Names & Descriptions */}
+        <ProjectLocationLanguageFields
+          formData={formData}
+          onChange={setFormData}
+        />
 
         {/* Media Attachments during Creation */}
         {!isEditMode && (

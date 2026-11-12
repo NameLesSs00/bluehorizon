@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { FiChevronLeft, FiChevronRight, FiEdit2, FiImage, FiMapPin, FiTrash2 } from "react-icons/fi";
+import { FiChevronLeft, FiChevronRight, FiCreditCard, FiEdit2, FiImage, FiMapPin, FiTrash2 } from "react-icons/fi";
 import { LuBuilding, LuSparkles } from "react-icons/lu";
 import { getFullProjectImageUrl } from "@/clientApi/projectsApi";
 import { useDeleteProjectMutation } from "@/features/projects/useProjectsQueries";
@@ -20,6 +20,7 @@ interface ProjectsTableProps {
   onPageChange: (newPage: number) => void;
   onEdit: (project: ProjectItem) => void;
   onManageImages: (project: ProjectItem) => void;
+  onManagePaymentPlans: (project: ProjectItem) => void;
 }
 
 function formatPriceRange(project: ProjectItem, currencyCode: string): string {
@@ -42,14 +43,13 @@ export default function ProjectsTable({
   onPageChange,
   onEdit,
   onManageImages,
+  onManagePaymentPlans,
 }: ProjectsTableProps) {
   const deleteMutation = useDeleteProjectMutation();
   const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null);
 
   function handleConfirmDelete(id: number) {
-    deleteMutation.mutate(id, {
-      onSettled: () => setConfirmDeleteId(null),
-    });
+    deleteMutation.mutate(id, { onSettled: () => setConfirmDeleteId(null) });
   }
 
   if (isLoading) {
@@ -104,10 +104,7 @@ export default function ProjectsTable({
                 const priceText = formatPriceRange(proj, selectedCurrency);
 
                 const deliveryFormatted = proj.deliveryDate
-                  ? new Date(proj.deliveryDate).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                    })
+                  ? new Date(proj.deliveryDate).toLocaleDateString("en-US", { year: "numeric", month: "short" })
                   : "Ready / TBD";
 
                 return (
@@ -219,6 +216,14 @@ export default function ProjectsTable({
                         </div>
                       ) : (
                         <div className="inline-flex items-center gap-1.5">
+                          <button
+                            type="button"
+                            onClick={() => onManagePaymentPlans(proj)}
+                            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#145C4B] hover:bg-[#FAF8F5]"
+                          >
+                            <FiCreditCard className="h-3.5 w-3.5" />
+                            <span>Plans</span>
+                          </button>
                           <button
                             type="button"
                             onClick={() => onManageImages(proj)}

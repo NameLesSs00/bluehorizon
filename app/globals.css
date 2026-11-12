@@ -23,3 +23,25 @@
   }
 }
 
+.custom-admin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.custom-admin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-admin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-admin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+}
+
+.custom-admin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
