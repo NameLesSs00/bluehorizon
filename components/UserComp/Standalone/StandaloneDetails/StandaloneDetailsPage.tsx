@@ -124,8 +124,8 @@ export default function StandaloneDetailsPage({ id }: StandaloneDetailsPageProps
           {/* Similar Recommended Units */}
           <StandaloneSimilarUnits
             currentUnitId={unit.id}
-            propertyType={unit.propertyType}
-            city={unit.city}
+            // propertyType={unit.propertyType}
+            // city={unit.city}
           />
         </div>
       </main>

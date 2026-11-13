@@ -12,6 +12,10 @@ export interface UnitItem {
   price: string;
   imageSrc: string;
   location?: string;
+  type?: "primary" | "resale";
+  href?: string;
+  rawPrice?: number;
+  category?: string;
 }
 
 interface ProjectUnitCardProps {
@@ -20,6 +24,9 @@ interface ProjectUnitCardProps {
 
 export default function ProjectUnitCard({ unit }: ProjectUnitCardProps) {
   const isResale = unit.badge === "Resale";
+  const linkHref =
+    unit.href ||
+    `/units/${unit.id}?type=${unit.type || (isResale ? "resale" : "primary")}`;
 
   return (
     <div className="group flex flex-col justify-between rounded-[20px] border border-[#E1E7E3] bg-white p-3 sm:p-3.5 transition-all duration-200 hover:-translate-y-1 hover:border-[#145C4B]/40 hover:shadow-md">
@@ -120,7 +127,7 @@ export default function ProjectUnitCard({ unit }: ProjectUnitCardProps) {
         </span>
 
         <Link
-          href={`/properties/${unit.id}`}
+          href={linkHref}
           className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-[#145C4B] py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#0F473A]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
