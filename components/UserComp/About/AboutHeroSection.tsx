@@ -23,13 +23,14 @@ export default function AboutHeroSection() {
       {/* Hero Banner Card */}
       <div className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] min-h-[440px] sm:min-h-[480px] lg:min-h-[500px] flex items-end">
         {/* Background Photo */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <Image
             src="/aboutus/hero.png"
             alt="Redefining Real Estate Excellence in the Red Sea"
             fill
             priority
             sizes="(max-width: 1360px) 100vw, 1360px"
+            className="object-cover object-center"
           />
         </div>
 

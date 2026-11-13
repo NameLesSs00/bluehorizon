@@ -24,7 +24,7 @@ export default function ProjectDetailsHeroBanner({
             fill
             priority
             sizes="(max-width: 768px) 100vw, (max-width: 1400px) 95vw, 1360px"
-            className="object-cover transition-transform duration-500 hover:scale-[1.02]"
+            className="object-cover object-center transition-transform duration-500 hover:scale-[1.02]"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center p-8 bg-[#FAF8F5]">

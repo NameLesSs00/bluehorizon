@@ -13,6 +13,7 @@ export interface RentalLocationItem {
   description: string;
   videoUrl: string | null;
   images: RentalLocationImageItem[];
+  propertiesCount?: number;
 }
 
 export interface PaginatedRentalLocationsData {

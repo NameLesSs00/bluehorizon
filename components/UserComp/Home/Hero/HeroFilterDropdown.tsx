@@ -48,36 +48,36 @@ export default function HeroFilterDropdown({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center gap-3.5 sm:gap-4 px-4 py-3 sm:px-5 sm:py-3.5 text-left transition-colors hover:bg-neutral-50/80 rounded-2xl"
+        className="flex w-full items-center gap-2 sm:gap-3.5 px-2.5 py-2 sm:px-4 sm:py-3 lg:px-5 lg:py-3.5 text-left transition-colors hover:bg-neutral-50/80 rounded-xl sm:rounded-2xl border border-[#E6EAE7] lg:border-none"
       >
         {/* Icon */}
-        <div className="relative flex h-10 w-10 shrink-0 items-center justify-center">
+        <div className="relative flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center">
           <Image
             src={iconSrc}
             alt={iconAlt}
-            width={32}
-            height={32}
-            className="h-7 w-7 sm:h-8 sm:w-8 object-contain"
+            width={28}
+            height={28}
+            className="h-5 w-5 sm:h-7 sm:w-7 lg:h-8 lg:w-8 object-contain"
           />
         </div>
 
         {/* Text Stack */}
         <div className="min-w-0 flex-1">
           <p
-            className="text-[12px] sm:text-[13px] font-medium text-[#65706B] leading-none"
+            className="text-[10px] sm:text-[12px] font-medium text-[#65706B] leading-none"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {label}
           </p>
-          <div className="mt-1.5 flex items-center gap-2">
+          <div className="mt-1 flex items-center gap-1 sm:gap-1.5">
             <span
-              className="truncate text-[14px] sm:text-[16px] font-semibold text-[#202326]"
+              className="truncate text-[12px] sm:text-[14px] lg:text-[16px] font-semibold text-[#202326]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {selectedValue}
             </span>
             <FiChevronDown
-              className={`h-4 w-4 shrink-0 text-[#202326] transition-transform duration-200 ${
+              className={`h-3.5 w-3.5 shrink-0 text-[#202326] transition-transform duration-200 ${
                 isOpen ? "rotate-180" : ""
               }`}
             />
@@ -87,7 +87,7 @@ export default function HeroFilterDropdown({
 
       {/* Popover Menu */}
       {isOpen && (
-        <div className="absolute left-0 top-full z-50 mt-2 max-h-72 w-64 overflow-y-auto rounded-2xl border border-[#E6EAE7] bg-white py-2 shadow-2xl">
+        <div className="absolute left-0 top-full z-50 mt-2 max-h-72 w-full min-w-[200px] sm:w-64 overflow-y-auto rounded-2xl border border-[#E6EAE7] bg-white py-2 shadow-2xl">
           {options.map((opt, idx) => (
             <button
               key={`${opt.label}-${idx}`}

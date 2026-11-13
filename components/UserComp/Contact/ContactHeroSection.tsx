@@ -23,13 +23,14 @@ export default function ContactHeroSection() {
       {/* Hero Banner Card */}
       <div className="relative flex min-h-[360px] items-center overflow-hidden rounded-[24px] sm:min-h-[400px] sm:rounded-[32px] lg:min-h-[440px]">
         {/* Background Miniature House Image */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <Image
             src="/ContactUs/hero.png"
             alt="Contact Blue Horizon Real Estate"
             fill
             priority
             sizes="(max-width: 1360px) 100vw, 1360px"
+            className="object-cover object-center"
           />
         </div>
 

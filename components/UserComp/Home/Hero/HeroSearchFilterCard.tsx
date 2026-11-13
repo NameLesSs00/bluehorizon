@@ -100,9 +100,9 @@ export default function HeroSearchFilterCard() {
 
   return (
     <div className="w-full max-w-[1300px] drop-shadow-[0_20px_35px_rgba(0,0,0,0.08)]">
-      {/* Top Segmented Tabs - Generously Sized & Seamlessly Attached */}
-      <div className="flex">
-        <div className="relative z-10 -mb-[2px] inline-flex items-center gap-1.5 rounded-t-3xl bg-white px-5 pt-3.5 pb-3 sm:px-6 sm:pt-4 sm:pb-3.5">
+      {/* Desktop Top Segmented Tabs - Attached only on large screens */}
+      <div className="hidden lg:flex">
+        <div className="relative z-10 -mb-[2px] inline-flex items-center gap-1.5 rounded-t-3xl bg-white px-6 pt-4 pb-3.5">
           {TABS.map((tab) => {
             const isActive = activeTab === tab;
             return (
@@ -110,7 +110,7 @@ export default function HeroSearchFilterCard() {
                 key={tab}
                 type="button"
                 onClick={() => setActiveTab(tab)}
-                className={`rounded-full px-6 py-2.5 sm:px-7 sm:py-3 text-[14px] sm:text-[15px] font-semibold transition-all ${
+                className={`rounded-full px-7 py-3 text-[15px] font-semibold transition-all ${
                   isActive
                     ? "bg-[#0F473A] text-white"
                     : "text-[#202326] hover:text-[#0F473A]"
@@ -124,11 +124,33 @@ export default function HeroSearchFilterCard() {
         </div>
       </div>
 
-      {/* Main Filter Body Card - More Spacious, Elegant & Big */}
-      <div className="rounded-b-[32px] rounded-tr-[32px] bg-white p-4 sm:p-5 lg:p-6">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
-          {/* 4 Filter Columns with subtle vertical separators */}
-          <div className="flex flex-1 flex-col gap-2 sm:grid sm:grid-cols-2 lg:flex lg:flex-row lg:items-center lg:gap-0">
+      {/* Main Filter Body Card */}
+      <div className="rounded-[24px] lg:rounded-b-[32px] lg:rounded-tr-[32px] lg:rounded-tl-none bg-white p-3.5 sm:p-5 lg:p-6 border border-[#E6EAE7]/80 lg:border-none shadow-lg lg:shadow-none">
+        {/* Mobile Full-Width Segmented Tabs */}
+        <div className="grid grid-cols-3 gap-1 rounded-full bg-[#F3F5F3] p-1 mb-3 lg:hidden">
+          {TABS.map((tab) => {
+            const isActive = activeTab === tab;
+            return (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setActiveTab(tab)}
+                className={`rounded-full py-2 text-xs font-semibold transition-all text-center ${
+                  isActive
+                    ? "bg-[#0F473A] text-white shadow-2xs"
+                    : "text-[#202326] hover:text-[#0F473A]"
+                }`}
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                {tab}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="flex flex-col gap-3 sm:gap-4 lg:flex-row lg:items-center">
+          {/* 4 Filter Columns: 2x2 grid on mobile/tablet, horizontal bar on desktop */}
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:flex lg:flex-1 lg:flex-row lg:items-center lg:gap-0">
             {/* Categories */}
             <HeroFilterDropdown
               iconSrc="/HomePage/hero/label.svg"
@@ -180,10 +202,10 @@ export default function HeroSearchFilterCard() {
           <button
             type="button"
             onClick={handleSearch}
-            className="inline-flex shrink-0 items-center justify-center gap-3 rounded-full bg-[#0F473A] px-8 py-4 sm:px-9 sm:py-4.5 text-[15px] sm:text-[16px] font-semibold text-white shadow-md transition-all hover:bg-[#145C4B] hover:shadow-xl"
+            className="inline-flex w-full lg:w-auto shrink-0 items-center justify-center gap-2.5 rounded-full bg-[#0F473A] px-6 py-3 sm:py-3.5 lg:px-9 lg:py-4.5 text-[14px] sm:text-[15px] lg:text-[16px] font-semibold text-white shadow-md transition-all hover:bg-[#145C4B] hover:shadow-xl"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            <FiSearch className="h-5 w-5" />
+            <FiSearch className="h-4 w-4 sm:h-5 sm:w-5" />
             <span>Search Properties</span>
           </button>
         </div>

@@ -29,7 +29,7 @@ export default function RentalLocationCard({
 
   return (
     <Link
-      href={`/properties?type=rent&locationId=${location.id}`}
+      href={`/locations/${location.id}`}
       className="group relative flex aspect-[300/380] w-full flex-col justify-end overflow-hidden rounded-[20px] bg-[#FAF8F5] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
     >
       {/* Background Image */}
@@ -51,14 +51,25 @@ export default function RentalLocationCard({
         }}
       />
 
-      {/* Bottom Content Area - Title and Diagonal Arrow (No Properties Count) */}
+      {/* Bottom Content Area - Title, Property Count, and Diagonal Arrow */}
       <div className="relative z-20 flex items-end justify-between p-6">
-        <h3
-          className="text-[22px] sm:text-[24px] font-semibold leading-tight text-white transition-colors"
-          style={{ fontFamily: "var(--font-manrope)" }}
-        >
-          {location.name}
-        </h3>
+        <div className="space-y-1">
+          <h3
+            className="text-[22px] sm:text-[24px] font-semibold leading-tight text-white transition-colors"
+            style={{ fontFamily: "var(--font-manrope)" }}
+          >
+            {location.name}
+          </h3>
+
+          {typeof location.propertiesCount === "number" && (
+            <p
+              className="text-[13px] font-normal leading-none text-white/90"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              {location.propertiesCount} properties
+            </p>
+          )}
+        </div>
 
         {/* Diagonal Arrow Indicator */}
         <div className="flex h-7 w-7 shrink-0 items-center justify-center text-white transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">

@@ -20,7 +20,19 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
       ? getFullStandaloneUnitMediaUrl(primaryImage.imageUrl)
       : "/default-fallback.png";
 
-  const propertyTag = unit.propertyType || null;
+  const resolveBadgeTag = () => {
+    if (unit.propertyType && unit.propertyType.trim().length > 0) {
+      return unit.propertyType.trim();
+    }
+    if (typeof unit.noBedRoom === "number") {
+      if (unit.noBedRoom === 0) return "Studio";
+      if (unit.noBedRoom === 1) return "1 Bedroom";
+      if (unit.noBedRoom > 1) return `${unit.noBedRoom} Bedrooms`;
+    }
+    return "Villa";
+  };
+
+  const propertyTag = resolveBadgeTag();
 
   // Formatted price
   const formattedPrice =

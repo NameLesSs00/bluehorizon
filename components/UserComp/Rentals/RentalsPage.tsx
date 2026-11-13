@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { usePublicRentalsQuery } from "@/features/rentals/useRentalsQueries";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import Navbar from "@/components/UserComp/Common/Navbar";
@@ -12,12 +13,16 @@ import RentalUnitsGrid from "./RentalUnitsGrid";
 import RentalCtaSection from "./RentalCtaSection";
 
 export default function RentalsPage() {
+  const searchParams = useSearchParams();
+  const urlLocationId = searchParams.get("locationId") || "";
+  const urlPropertyType = searchParams.get("propertyType") || "";
+
   const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
   const [pageNumber, setPageNumber] = useState(1);
   const [filters, setFilters] = useState<RentalFilterState>({
     searchTerm: "",
-    locationId: "",
-    propertyType: "",
+    locationId: urlLocationId,
+    propertyType: urlPropertyType,
     bedrooms: "",
     minPrice: "",
     maxPrice: "",
@@ -120,7 +125,7 @@ export default function RentalsPage() {
         <RentalHeroSection />
 
         {/* Main Content Area: Sidebar + Grid */}
-        <div className="mx-auto mt-12 w-full max-w-[1360px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto mt-12 w-full max-w-[1536px] px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-start gap-8">
             <RentalFilterSidebar
               initialFilters={filters}

@@ -19,7 +19,7 @@ export default function HeroBannerContent() {
 
       {/* Main Heading */}
       <h1
-        className="mt-4 text-3xl font-bold leading-[1.05] tracking-[-0.02em] text-white sm:text-5xl lg:text-[54px]"
+        className="mt-3 sm:mt-4 text-[28px] sm:text-5xl lg:text-[54px] font-bold leading-[1.1] sm:leading-[1.05] tracking-[-0.02em] text-white"
         style={{ fontFamily: "var(--font-manrope)" }}
       >
         Find Your Place.
@@ -29,7 +29,7 @@ export default function HeroBannerContent() {
 
       {/* Subtitle */}
       <p
-        className="mt-5 max-w-xl text-[15px] sm:text-[16px] font-normal leading-[25px] text-white/90"
+        className="mt-3.5 sm:mt-5 max-w-xl text-[14px] sm:text-[16px] font-normal leading-[22px] sm:leading-[25px] text-white/90"
         style={{ fontFamily: "var(--font-inter)" }}
       >
         Discover exceptional properties, premium developments, and opportunities
@@ -37,10 +37,10 @@ export default function HeroBannerContent() {
       </p>
 
       {/* Action Buttons */}
-      <div className="mt-8 flex flex-wrap items-center gap-4">
+      <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
         <Link
-          href="/properties"
-          className="inline-flex items-center gap-2.5 rounded-full bg-[#0F473A] px-8 py-4 text-[15px] font-semibold text-white shadow-md transition-all hover:bg-[#145C4B] hover:shadow-lg"
+          href="/standalone"
+          className="inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-full bg-[#145C4B] border border-white/20 px-7 py-3.5 sm:px-8 sm:py-4 text-[14px] sm:text-[15px] font-semibold text-white shadow-md transition-all hover:bg-[#0F473A] hover:shadow-lg text-center"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           <span>Explore Properties</span>
@@ -49,7 +49,7 @@ export default function HeroBannerContent() {
 
         <Link
           href="/projects"
-          className="inline-flex items-center justify-center rounded-full border border-white/80 bg-white/5 px-8 py-4 text-[14px] font-semibold text-white backdrop-blur-xs transition-all hover:bg-white/15"
+          className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-white/80 bg-white/10 px-7 py-3.5 sm:px-8 sm:py-4 text-[14px] font-semibold text-white backdrop-blur-xs transition-all hover:bg-white/20 text-center"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           Discover Our Projects

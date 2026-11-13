@@ -29,8 +29,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang="en" className={`${inter.variable} ${manrope.variable} overflow-x-clip`}>
+      <body className="font-sans antialiased overflow-x-clip min-h-screen">
         <QueryProvider>
           {children}
           <ToastProvider />

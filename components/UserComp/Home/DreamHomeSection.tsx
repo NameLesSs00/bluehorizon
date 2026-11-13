@@ -6,7 +6,7 @@ interface DreamHomeSectionProps {
 }
 
 export default function DreamHomeSection({
-  sectionClassName = "bg-white py-12 sm:py-16",
+  sectionClassName = "bg-white py-8 sm:py-10 lg:py-12",
 }: DreamHomeSectionProps) {
   return (
     <section className={sectionClassName}>
@@ -23,7 +23,7 @@ export default function DreamHomeSection({
               </p>
 
               <h2
-                className="mt-4 max-w-md text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-white sm:text-[40px] lg:text-[44px]"
+                className="mt-3 sm:mt-4 max-w-md text-[26px] font-normal leading-[1.18] sm:leading-[1.15] tracking-[-0.03em] text-white sm:text-[36px] lg:text-[44px]"
                 style={{ fontFamily: "var(--font-manrope)" }}
               >
                 Let&rsquo;s find your dream home.

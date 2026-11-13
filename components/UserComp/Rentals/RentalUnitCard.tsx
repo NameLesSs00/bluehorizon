@@ -26,10 +26,30 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
       ? resolvedImageUrl
       : "/default-fallback.png";
 
-  const categoryBadge =
-    unit.categoryItems?.[0]?.name ||
-    PROPERTY_TYPE_LABELS[unit.propertyType] ||
-    "Rental";
+  const resolveBadgeText = () => {
+    if (
+      unit.propertyType !== undefined &&
+      unit.propertyType !== null &&
+      PROPERTY_TYPE_LABELS[unit.propertyType]
+    ) {
+      return PROPERTY_TYPE_LABELS[unit.propertyType];
+    }
+    const catName = unit.categoryItems?.[0]?.name;
+    if (
+      catName &&
+      !["home", "rental", "unit", "properties"].includes(catName.toLowerCase())
+    ) {
+      return catName;
+    }
+    if (typeof unit.bedroomNo === "number") {
+      if (unit.bedroomNo === 0) return "Studio";
+      if (unit.bedroomNo === 1) return "1 Bedroom";
+      if (unit.bedroomNo > 1) return `${unit.bedroomNo} Bedrooms`;
+    }
+    return "Villa";
+  };
+
+  const categoryBadge = resolveBadgeText();
 
   const primaryPrice =
     unit.prices?.find((p) => p.currency.toUpperCase() === "EGP") ||

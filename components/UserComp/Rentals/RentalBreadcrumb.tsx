@@ -7,7 +7,7 @@ export default function RentalBreadcrumb() {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="mx-auto w-full max-w-[1360px] px-4 pt-6 pb-4 sm:px-6 lg:px-8"
+      className="mx-auto w-full max-w-[1536px] px-4 pt-6 pb-4 sm:px-6 lg:px-8"
       style={{ fontFamily: "var(--font-inter)" }}
     >
       <ol className="flex items-center gap-2 text-xs font-medium text-[#65706B]">

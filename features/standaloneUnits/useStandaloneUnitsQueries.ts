@@ -11,6 +11,26 @@ import { useAdminAuthStore } from "@/features/admin/useAdminAuthStore";
 
 export const STANDALONE_UNITS_QUERY_KEY = ["standalone-units"] as const;
 
+export function usePublicStandaloneUnitsQuery(
+  params?: StandaloneUnitsQueryParams
+) {
+  return useQuery({
+    queryKey: [
+      ...STANDALONE_UNITS_QUERY_KEY,
+      "public",
+      params?.Language || "en",
+      params?.Currency || "USD",
+      params?.SearchTerm || "",
+      params?.PropertyType || "",
+      params?.City || "",
+      params?.PageNumber || 1,
+      params?.PageSize || 10,
+    ],
+    queryFn: () => getStandaloneUnits(params),
+    staleTime: 1000 * 60 * 5,
+  });
+}
+
 export function useStandaloneUnitsQuery(params?: StandaloneUnitsQueryParams) {
   const accessToken = useAdminAuthStore((state) => state.accessToken);
 

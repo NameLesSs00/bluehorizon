@@ -32,7 +32,7 @@ const FEATURES: FeatureItem[] = [
 
 export default function WhyBlueHorizonSection() {
   return (
-    <section className="bg-white py-10 sm:py-14 transition-colors duration-500 ease-in-out ">
+    <section className="bg-white py-6 sm:py-8 lg:py-10 transition-colors duration-500 ease-in-out">
       <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-8 ">
         <div
           className="relative flex flex-col overflow-hidden bg-[#145C4B] shadow-xs lg:h-[255px] lg:flex-row lg:items-stretch"
@@ -49,7 +49,7 @@ export default function WhyBlueHorizonSection() {
               </p>
 
               <h2
-                className="mt-2 text-[22px] font-bold leading-[1.18] tracking-[-0.02em] text-white sm:text-[26px] lg:text-[28px]"
+                className="mt-2 text-[20px] font-bold leading-[1.18] tracking-[-0.02em] text-white sm:text-[24px] lg:text-[28px]"
                 style={{ fontFamily: "var(--font-manrope)" }}
               >
                 More Than a Home,
@@ -92,24 +92,24 @@ export default function WhyBlueHorizonSection() {
 
           {/* Middle Column: 4 Features */}
           <div className="flex items-center justify-around px-6 py-8 sm:px-8 lg:flex-1 lg:px-4 lg:py-0">
-            <div className="grid w-full grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-4 lg:grid-cols-4 lg:gap-2">
+            <div className="grid w-full grid-cols-2 gap-5 sm:grid-cols-4 sm:gap-4 lg:grid-cols-4 lg:gap-2">
               {FEATURES.map((item) => (
                 <div
                   key={item.titleLine1 + item.titleLine2}
                   className="flex flex-col items-center justify-center text-center"
                 >
-                  <div className="relative flex h-18 w-9 shrink-0 items-center justify-center">
+                  <div className="relative flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center">
                     <Image
                       src={item.icon}
                       alt={`${item.titleLine1} ${item.titleLine2}`}
                       width={28}
                       height={28}
-                      className="h-18 w-19 object-contain"
+                      className="h-7 w-7 sm:h-8 sm:w-8 object-contain"
                     />
                   </div>
 
                   <p
-                    className="mt-3 text-[13px] font-medium leading-[1.25]  text-white sm:text-[14px]"
+                    className="mt-2.5 text-[12px] sm:text-[13px] lg:text-[14px] font-medium leading-[1.25] text-white"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     {item.titleLine1}
@@ -122,7 +122,7 @@ export default function WhyBlueHorizonSection() {
           </div>
 
           {/* Right Column: Building Image with ONLY Gradient Overlay */}
-          <div className="relative h-48 w-full shrink-0 overflow-hidden lg:h-full lg:w-[354px] xl:w-[374px]">
+          <div className="relative h-44 sm:h-52 w-full shrink-0 overflow-hidden lg:h-full lg:w-[354px] xl:w-[374px]">
             <Image
               src="/HomePage/WhyBlueHorizon/Architecture — reference crop.png"
               alt="Why Blue Horizon Architecture"

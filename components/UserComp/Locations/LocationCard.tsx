@@ -27,7 +27,7 @@ export default function LocationCard({ location, region }: LocationCardProps) {
 
   return (
     <Link
-      href={`/areas/${location.id}`}
+      href={`/locations/${location.id}`}
       className="group relative block h-[360px] sm:h-[400px] w-full overflow-hidden rounded-[24px] sm:rounded-[28px] border border-[#E1E7E3] shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#145C4B]/40"
     >
       {/* Background Image */}

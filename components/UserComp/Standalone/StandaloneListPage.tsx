@@ -81,7 +81,7 @@ export default function StandaloneListPage() {
         <StandaloneHeroSection />
 
         {/* Main Content Area */}
-        <div className="mx-auto mt-10 w-full max-w-[1360px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto mt-10 w-full max-w-[1536px] px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-start gap-8">
             {/* Left Filter Sidebar */}
             <StandaloneFilterSidebar

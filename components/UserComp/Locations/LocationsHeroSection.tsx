@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function LocationsHeroSection() {
   return (
-    <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-6">
+    <section className="mx-auto w-full max-w-[1536px] px-4 sm:px-6 lg:px-8 mt-6">
       {/* Breadcrumb Navigation */}
       <nav
         aria-label="Breadcrumb"
@@ -20,7 +20,7 @@ export default function LocationsHeroSection() {
       </nav>
 
       {/* Hero Banner Card */}
-      <div className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] min-h-[380px] sm:min-h-[420px] lg:min-h-[460px] flex items-end bg-[#0F473A] shadow-xl">
+      <div className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] min-h-[440px] sm:min-h-[500px] lg:min-h-[540px] flex items-end bg-[#0F473A] shadow-xl">
         {/* Background Photo */}
         <div className="absolute inset-0 z-0">
           <Image

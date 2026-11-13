@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function StandaloneHeroSection() {
   return (
-    <section className="mx-auto w-full max-w-[1360px] px-4 pt-6 sm:px-6 lg:px-8">
+    <section className="mx-auto w-full max-w-[1536px] px-4 pt-6 sm:px-6 lg:px-8">
       {/* Breadcrumb above hero banner */}
       <nav
         aria-label="Breadcrumb"
@@ -18,7 +18,7 @@ export default function StandaloneHeroSection() {
       </nav>
 
       {/* Hero Banner Card */}
-      <div className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] min-h-[320px] sm:min-h-[380px] lg:min-h-[420px] flex items-center shadow-lg">
+      <div className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] min-h-[420px] sm:min-h-[480px] lg:min-h-[520px] flex items-center shadow-lg">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -26,7 +26,7 @@ export default function StandaloneHeroSection() {
             alt="Standalone properties background"
             fill
             priority
-            sizes="(max-width: 1360px) 100vw, 1360px"
+            sizes="(max-width: 1536px) 100vw, 1536px"
             className="object-cover object-center"
           />
         </div>
@@ -35,13 +35,13 @@ export default function StandaloneHeroSection() {
         <div
           className="absolute inset-0 z-10"
           style={{
-background: "linear-gradient(180deg, rgba(15, 71, 58, 0) 21.63%, #0F473A 94.71%)"
-,
+            background:
+              "linear-gradient(180deg, rgba(15, 71, 58, 0) 21.63%, #0F473A 94.71%)",
           }}
         />
 
         {/* Banner Content */}
-        <div className="relative z-20 max-w-2xl p-6 sm:p-10 lg:p-14">
+        <div className="relative z-20 max-w-3xl p-6 sm:p-12 lg:p-16">
           {/* Badge */}
           <span
             className="inline-block rounded-full bg-white px-3.5 py-1 text-[11px] font-bold tracking-wider text-[#145C4B] shadow-sm uppercase"

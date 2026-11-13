@@ -23,7 +23,7 @@ export default function LocationsFilterBar({
   onSelectRegion,
 }: LocationsFilterBarProps) {
   return (
-    <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-8 sm:mt-10">
+    <section className="mx-auto w-full max-w-[1536px] px-4 sm:px-6 lg:px-8 mt-8 sm:mt-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         {/* Left: Search Input */}
         <div className="relative w-full max-w-md">

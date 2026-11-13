@@ -69,6 +69,23 @@ export function useRentalByIdQuery(
   });
 }
 
+export function usePublicRentalByIdQuery(
+  id?: number | null,
+  language: string = "en",
+  currency: string = "USD"
+) {
+  return useQuery({
+    queryKey: [...RENTALS_QUERY_KEY, "public-single", id, language, currency],
+    queryFn: async () => {
+      if (!id || id <= 0) return null;
+      const res = await getRentalById(id, language, currency);
+      return res.data;
+    },
+    enabled: typeof id === "number" && id > 0,
+    staleTime: 1000 * 60 * 5,
+  });
+}
+
 export function useLocalizedRentalQuery(id?: number | null, isOpen?: boolean) {
   const accessToken = useAdminAuthStore((state) => state.accessToken);
 

@@ -91,9 +91,9 @@ export default function FeaturedProjectsSection() {
     .map(formatProjectCard);
 
   return (
-    <section className="bg-white pt-24 pb-16 sm:pt-28 sm:pb-20">
+    <section className="bg-white py-8 sm:py-10 lg:py-12">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        <header className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p
               className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#145C4B]"
@@ -102,7 +102,7 @@ export default function FeaturedProjectsSection() {
               DISCOVER THE EXTRAORDINARY
             </p>
             <h2
-              className="mt-2 text-[32px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#202326] sm:text-[38px]"
+              className="mt-2 text-[24px] sm:text-[30px] lg:text-[38px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#202326]"
               style={{ fontFamily: "var(--font-manrope)" }}
             >
               Featured Projects

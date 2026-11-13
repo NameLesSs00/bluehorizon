@@ -20,9 +20,9 @@ export default function PopularAreasSection() {
   }
 
   return (
-    <section className="bg-white pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-40">
+    <section className="bg-white pt-8 sm:pt-10 lg:pt-28 pb-8 sm:pb-10 lg:pb-12">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        <header className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p
               className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#145C4B]"
@@ -31,7 +31,7 @@ export default function PopularAreasSection() {
               FIND YOUR NEIGHBORHOOD
             </p>
             <h2
-              className="mt-2 text-[32px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#202326] sm:text-[38px]"
+              className="mt-2 text-[24px] sm:text-[30px] lg:text-[38px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#202326]"
               style={{ fontFamily: "var(--font-manrope)" }}
             >
               Explore Popular Areas

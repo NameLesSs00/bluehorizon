@@ -22,8 +22,8 @@ const CONTACT_CHANNELS: ContactChannel[] = [
   },
   {
     icon: "/ContactUs/icon-box (2).svg",
-    label: "OUR OFFICES",
-    value: "Red Sea Coast: Hurghada Promenade, Egypt",
+    label: "OUR OFFICE",
+    value: "El Kawthar, Hurghada, Red Sea, Egypt",
   },
   {
     icon: "/ContactUs/icon-box (3).svg",

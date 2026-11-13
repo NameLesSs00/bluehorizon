@@ -26,13 +26,8 @@ export default function FaqsSection() {
     setOpenId((prev) => (prev === id ? null : id));
   }
 
-  // If no real FAQ items are available from the backend, hide the section entirely
-  if (!isLoading && faqs.length === 0) {
-    return null;
-  }
-
   return (
-    <section className="bg-[#E8F1EC] py-16 sm:py-24">
+    <section className="bg-[#E8F1EC] py-10 sm:py-14 lg:py-16">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-start">
           {/* Left Column: Heading, Subtitles & CTA */}
@@ -53,7 +48,7 @@ export default function FaqsSection() {
               </p>
 
               <h2
-                className="mt-4 text-[32px] sm:text-[38px] font-normal leading-[1.2] tracking-[-0.03em] text-[#202326]"
+                className="mt-4 text-[26px] sm:text-[34px] lg:text-[38px] font-normal leading-[1.2] tracking-[-0.03em] text-[#202326]"
                 style={{ fontFamily: "var(--font-manrope)" }}
               >
                 A little clarity.
@@ -95,8 +90,19 @@ export default function FaqsSection() {
                   </p>
                 </div>
               ) : faqs.length === 0 ? (
-                <div className="p-10 text-center text-[14px] text-[#65706B]">
-                  No questions available at the moment.
+                <div className="flex flex-col items-center justify-center p-10 sm:p-14 text-center">
+                  <p
+                    className="text-[15px] font-medium text-[#202326]"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    We don&apos;t have FAQs yet.
+                  </p>
+                  <p
+                    className="mt-1.5 text-[13px] text-[#65706B]"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    Our team is here to answer any questions you may have.
+                  </p>
                 </div>
               ) : (
                 faqs.map((faq) => {
@@ -107,11 +113,11 @@ export default function FaqsSection() {
                       <button
                         type="button"
                         onClick={() => toggleFaq(faq.id)}
-                        className="flex w-full items-center justify-between gap-4 px-6 py-6 sm:px-8 text-left transition-colors hover:bg-[#FAF8F5]/60"
+                        className="flex w-full items-center justify-between gap-4 px-5 py-4.5 sm:px-8 sm:py-6 text-left transition-colors hover:bg-[#FAF8F5]/60"
                         aria-expanded={isOpen}
                       >
                         <span
-                          className="flex-1 text-center text-[15px] font-normal leading-[25px] tracking-normal text-[#202326]"
+                          className="flex-1 text-center text-[14px] sm:text-[15px] font-normal leading-[25px] tracking-normal text-[#202326]"
                           style={{ fontFamily: "var(--font-inter)" }}
                         >
                           {faq.question}
@@ -136,7 +142,7 @@ export default function FaqsSection() {
                             className="overflow-hidden"
                           >
                             <div
-                              className="px-6 pb-6 pt-1 sm:px-8 text-center text-[14px] leading-[1.65] text-[#65706B]"
+                              className="px-5 pb-5 pt-1 sm:px-8 sm:pb-6 text-center text-[13.5px] sm:text-[14px] leading-[1.65] text-[#65706B]"
                               style={{ fontFamily: "var(--font-inter)" }}
                             >
                               {faq.answer}

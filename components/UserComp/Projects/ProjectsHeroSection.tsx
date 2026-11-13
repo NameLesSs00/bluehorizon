@@ -26,7 +26,7 @@ export default function ProjectsHeroSection() {
       />
 
       {/* Hero Content */}
-      <div className="relative z-20 mx-auto max-w-[1360px] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+      <div className="relative z-20 mx-auto max-w-[1536px] px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
         {/* Breadcrumb Navigation */}
         <nav
           aria-label="Breadcrumb"

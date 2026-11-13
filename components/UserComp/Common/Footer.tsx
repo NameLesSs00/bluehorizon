@@ -2,14 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="bg-[#0F473A] pt-8 pb-8 sm:pt-12 sm:pb-10">
-      {/* Outer wrapper spanning wider with tight side padding */}
+      {/* Outer wrapper */}
       <div className="mx-auto w-full max-w-[1720px] px-3 sm:px-6 lg:px-8">
         {/* Inner Floating Card */}
         <div className="rounded-[28px] bg-[#FAF8F5] px-8 py-10 sm:px-12 sm:py-14 lg:px-16 lg:py-16 shadow-xl">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-10">
-            {/* Brand & SEO Description */}
+            {/* Brand & Description */}
             <div className="lg:col-span-5 flex flex-col justify-start">
               <div className="relative h-20 w-64 sm:h-24 sm:w-80">
                 <Image
@@ -25,40 +27,40 @@ export default function Footer() {
                 className="mt-6 max-w-lg text-[14px] font-normal leading-[1.7] text-[#65706B]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                Blue Horizon is your trusted real estate partner in Hurghada and
-                the Red Sea coast. Whether you are looking to buy a luxury
-                villa, invest in off-plan compounds, or rent a modern seaside
-                apartment in El Kawthar and beyond, we connect you with
-                exceptional homes and high-yield property opportunities in
-                Egypt.
+                Blue Horizon is your premier real estate partner across Hurghada
+                and the Red Sea coast. Whether you are looking to purchase a
+                coastal villa, invest in off-plan compounds, or lease a modern
+                apartment in El Kawthar and surrounding prime destinations, we
+                connect you with verified homes and high-yield property
+                opportunities in Egypt.
               </p>
             </div>
 
-            {/* Discover Links */}
+            {/* Properties Links */}
             <div className="lg:col-span-2 lg:pt-3">
               <h3
                 className="text-[17px] font-bold leading-none tracking-normal text-[#000000]"
                 style={{ fontFamily: "var(--font-manrope)" }}
               >
-                Discover
+                Properties
               </h3>
               <ul className="mt-6 space-y-3.5">
                 <li>
                   <Link
-                    href="/properties?type=buy"
+                    href="/standalone"
                     className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
-                    Buy a home
+                    Standalone units
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/properties?type=rent"
+                    href="/rent"
                     className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
-                    Rent a home
+                    Units for rent
                   </Link>
                 </li>
                 <li>
@@ -67,7 +69,7 @@ export default function Footer() {
                     className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
-                    Featured projects
+                    Compounds &amp; projects
                   </Link>
                 </li>
                 <li>
@@ -76,21 +78,39 @@ export default function Footer() {
                     className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
-                    Popular areas
+                    Explore areas
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/locations"
+                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    Rental locations
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* Blue Horizon Links */}
+            {/* Quick Links */}
             <div className="lg:col-span-2 lg:pt-3">
               <h3
                 className="text-[17px] font-bold leading-none tracking-normal text-[#000000]"
                 style={{ fontFamily: "var(--font-manrope)" }}
               >
-                Blue Horizon
+                Quick Links
               </h3>
               <ul className="mt-6 space-y-3.5">
+                <li>
+                  <Link
+                    href="/"
+                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    Home
+                  </Link>
+                </li>
                 <li>
                   <Link
                     href="/about"
@@ -102,20 +122,11 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="/services"
-                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
-                    style={{ fontFamily: "var(--font-inter)" }}
-                  >
-                    Our services
-                  </Link>
-                </li>
-                <li>
-                  <Link
                     href="/blogs"
                     className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
-                    Blogs &amp; insights
+                    Blogs &amp; guides
                   </Link>
                 </li>
                 <li>
@@ -165,43 +176,30 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar: 3-column balanced grid so center links are strictly centered */}
+        {/* Bottom Bar: Copyright & Made By centered, Socials on the right */}
         <div className="mt-8 border-t border-white/15 pt-6">
-          <div className="grid grid-cols-1 items-center gap-4 sm:grid-cols-3">
-            {/* Left: Copyright */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            {/* Desktop Left Spacer to keep center text strictly centered */}
+            <div className="hidden sm:block sm:w-36" aria-hidden="true" />
+
+            {/* Centered Copyright & Made by */}
             <p
-              className="text-center text-[11px] font-normal leading-none text-[#CBDFD5] sm:text-left"
+              className="text-center text-[12px] font-normal leading-relaxed text-[#CBDFD5]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              &copy; 2026 Blue HORIZON. All rights reserved. Powered by{" "}
+              &copy; {currentYear} Blue Horizon. All rights reserved. Powered by{" "}
               <a
                 href="https://tech-gear.net/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline underline-offset-2 transition-colors hover:text-white"
+                className="underline underline-offset-2 transition-colors hover:text-white font-medium"
               >
                 Tech Gear Solutions
               </a>
             </p>
 
-            {/* Center: Legal Links strictly centered */}
-            <div
-              className="flex items-center justify-center gap-6 text-[11px] font-normal leading-none text-[#CBDFD5]"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              <Link
-                href="/privacy-policy"
-                className="transition-colors hover:text-white"
-              >
-                Privacy policy
-              </Link>
-              <Link href="/terms" className="transition-colors hover:text-white">
-                Terms &amp; conditions
-              </Link>
-            </div>
-
-            {/* Right: Social Icons aligned right */}
-            <div className="flex items-center justify-center gap-5 sm:justify-end">
+            {/* Right: Social Media Icons */}
+            <div className="flex items-center justify-center sm:justify-end gap-5 sm:w-36">
               <a
                 href="https://instagram.com"
                 target="_blank"

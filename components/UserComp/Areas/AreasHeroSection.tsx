@@ -26,7 +26,7 @@ export default function AreasHeroSection() {
       />
 
       {/* Hero Content */}
-      <div className="relative z-20 mx-auto max-w-[1320px] px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-32">
+      <div className="relative z-20 mx-auto max-w-[1536px] px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
         {/* Breadcrumbs */}
         <nav
           aria-label="Breadcrumb"
