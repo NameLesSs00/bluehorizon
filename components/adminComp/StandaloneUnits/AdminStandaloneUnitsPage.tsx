@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { FiPlus, FiSearch } from "react-icons/fi";
@@ -13,14 +13,33 @@ import StandaloneUnitImagesDrawer from "./StandaloneUnitImagesDrawer";
 
 const PROPERTY_TYPES = [
   "All Types",
-  "Villa",
   "Apartment",
-  "Chalet",
+  "Villa",
   "Townhouse",
-  "Duplex",
-  "Penthouse",
   "Studio",
+  "Penthouse",
+  "OneBedroom",
+  "TwoBedroom",
+  "ThreeBedroom",
+  "Chalet",
+  "FourBedroom",
+  "Duplex",
 ];
+
+const PROPERTY_TYPE_DISPLAY_LABELS: Record<string, string> = {
+  "All Types": "All Types",
+  Apartment: "Apartment",
+  Villa: "Villa",
+  Townhouse: "Townhouse",
+  Studio: "Studio",
+  Penthouse: "Penthouse",
+  OneBedroom: "1 Bedroom",
+  TwoBedroom: "2 Bedrooms",
+  ThreeBedroom: "3 Bedrooms",
+  Chalet: "Chalet",
+  FourBedroom: "4 Bedrooms",
+  Duplex: "Duplex",
+};
 
 export default function AdminStandaloneUnitsPage() {
   // Sync exchange rates into currency store
@@ -128,7 +147,7 @@ export default function AdminStandaloneUnitsPage() {
           >
             {PROPERTY_TYPES.map((type) => (
               <option key={type} value={type}>
-                {type}
+                {PROPERTY_TYPE_DISPLAY_LABELS[type] || type}
               </option>
             ))}
           </select>

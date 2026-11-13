@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 
@@ -110,11 +110,15 @@ export default function StandaloneFilterSidebar({
                 <option value="">Any Type</option>
                 <option value="Apartment">Apartment</option>
                 <option value="Villa">Villa</option>
+                <option value="Townhouse">Townhouse</option>
                 <option value="Studio">Studio</option>
                 <option value="Penthouse">Penthouse</option>
-                <option value="Duplex">Duplex</option>
+                <option value="OneBedroom">1 Bedroom</option>
+                <option value="TwoBedroom">2 Bedrooms</option>
+                <option value="ThreeBedroom">3 Bedrooms</option>
                 <option value="Chalet">Chalet</option>
-                <option value="Townhouse">Townhouse</option>
+                <option value="FourBedroom">4 Bedrooms</option>
+                <option value="Duplex">Duplex</option>
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3.5 text-[#6B7570]">
                 <svg

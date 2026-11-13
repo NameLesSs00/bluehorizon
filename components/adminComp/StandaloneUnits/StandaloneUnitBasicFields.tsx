@@ -1,16 +1,34 @@
-﻿"use client";
+"use client";
 
 import { FiDollarSign } from "react-icons/fi";
 
 const PROPERTY_TYPES = [
-  "Villa",
   "Apartment",
-  "Chalet",
+  "Villa",
   "Townhouse",
-  "Duplex",
-  "Penthouse",
   "Studio",
+  "Penthouse",
+  "OneBedroom",
+  "TwoBedroom",
+  "ThreeBedroom",
+  "Chalet",
+  "FourBedroom",
+  "Duplex",
 ];
+
+const PROPERTY_TYPE_DISPLAY_LABELS: Record<string, string> = {
+  Apartment: "Apartment",
+  Villa: "Villa",
+  Townhouse: "Townhouse",
+  Studio: "Studio",
+  Penthouse: "Penthouse",
+  OneBedroom: "1 Bedroom",
+  TwoBedroom: "2 Bedrooms",
+  ThreeBedroom: "3 Bedrooms",
+  Chalet: "Chalet",
+  FourBedroom: "4 Bedrooms",
+  Duplex: "Duplex",
+};
 
 interface StandaloneUnitBasicFieldsProps {
   area: number;
@@ -88,7 +106,7 @@ export default function StandaloneUnitBasicFields({
           >
             {PROPERTY_TYPES.map((type) => (
               <option key={type} value={type}>
-                {type}
+                {PROPERTY_TYPE_DISPLAY_LABELS[type] || type}
               </option>
             ))}
           </select>

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { FormEvent, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -72,7 +72,7 @@ export default function AddAdminModal({ isOpen, onClose }: AddAdminModalProps) {
                 required
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                placeholder="Pola"
+                placeholder="First name"
                 className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
                 style={{ fontFamily: "var(--font-inter)" }}
               />
@@ -92,7 +92,7 @@ export default function AddAdminModal({ isOpen, onClose }: AddAdminModalProps) {
                 required
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                placeholder="Samy"
+                placeholder="Last name"
                 className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
                 style={{ fontFamily: "var(--font-inter)" }}
               />
@@ -113,7 +113,7 @@ export default function AddAdminModal({ isOpen, onClose }: AddAdminModalProps) {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@bluehorizon.com"
+              placeholder="admin@example.com"
               className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
               style={{ fontFamily: "var(--font-inter)" }}
             />
@@ -134,7 +134,7 @@ export default function AddAdminModal({ isOpen, onClose }: AddAdminModalProps) {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Strong password (e.g. Pola123!)"
+                placeholder="Enter password"
                 className="w-full rounded-xl border border-[#D0D9EA] py-2.5 pr-10 pl-3.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
                 style={{ fontFamily: "var(--font-inter)" }}
               />
