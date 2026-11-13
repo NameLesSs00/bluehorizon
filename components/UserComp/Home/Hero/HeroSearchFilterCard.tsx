@@ -90,11 +90,9 @@ export default function HeroSearchFilterCard() {
     if (priceVal?.max) params.set("maxPrice", String(priceVal.max));
 
     if (activeTab === "Rent") {
-      params.set("type", "rent");
-      router.push(`/properties?${params.toString()}`);
+      router.push(`/rent?${params.toString()}`);
     } else if (activeTab === "Standalone") {
-      params.set("category", "standalone");
-      router.push(`/properties?${params.toString()}`);
+      router.push(`/standalone?${params.toString()}`);
     } else {
       router.push(`/projects?${params.toString()}`);
     }

@@ -16,3 +16,4 @@ export default async function Page({ params }: PageProps) {
   const unitId = parseInt(resolvedParams.id, 10) || 0;
   return <StandaloneDetailsPage id={unitId} />;
 }
+
