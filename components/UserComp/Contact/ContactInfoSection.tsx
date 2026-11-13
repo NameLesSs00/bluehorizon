@@ -1,11 +1,16 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { useCreateContactMutation } from "@/features/contacts/useContactsQueries";
 import ContactInfoChannels from "./ContactInfoChannels";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { fadeInUpVariants } from "@/shared/utils/animations";
 
 export default function ContactInfoSection() {
+  const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -48,27 +53,32 @@ export default function ContactInfoSection() {
         <ContactInfoChannels />
 
         {/* Right Column: Send an Inquiry Form */}
-        <div className="rounded-[24px] border border-[#D9E2EE] bg-white p-7 sm:p-10 shadow-xs lg:col-span-7">
+        <motion.div
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeInUpVariants}
+          className="rounded-[24px] border border-[#D9E2EE] bg-white p-7 sm:p-10 shadow-xs lg:col-span-7"
+        >
           <p
             className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            SEND AN INQUIRY
+            {t("contact.form.eyebrow")}
           </p>
 
           <h2
             className="mt-1.5 text-[26px] sm:text-[28px] font-bold tracking-tight text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            How Can We Help You?
+            {t("contact.form.heading")}
           </h2>
 
           <p
             className="mt-2 text-[13.5px] font-normal leading-relaxed text-[#6B7570]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Fill out your details and our senior property advisor will reach out
-            within 2 hours.
+            {t("contact.form.description")}
           </p>
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-4">
@@ -80,13 +90,13 @@ export default function ContactInfoSection() {
                   className="mb-1.5 block text-[12px] font-medium text-[#202326]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
-                  First Name *
+                  {t("contact.form.firstName")}
                 </label>
                 <input
                   id="contact-first-name"
                   type="text"
                   required
-                  placeholder="e.g. Ahmed"
+                  placeholder={t("contact.form.firstNamePlaceholder")}
                   value={formData.firstName}
                   onChange={(e) =>
                     setFormData((prev) => ({
@@ -105,13 +115,13 @@ export default function ContactInfoSection() {
                   className="mb-1.5 block text-[12px] font-medium text-[#202326]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
-                  Last Name *
+                  {t("contact.form.lastName")}
                 </label>
                 <input
                   id="contact-last-name"
                   type="text"
                   required
-                  placeholder="e.g. Hassan"
+                  placeholder={t("contact.form.lastNamePlaceholder")}
                   value={formData.lastName}
                   onChange={(e) =>
                     setFormData((prev) => ({
@@ -133,13 +143,13 @@ export default function ContactInfoSection() {
                   className="mb-1.5 block text-[12px] font-medium text-[#202326]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
-                  Phone Number *
+                  {t("contact.form.phone")}
                 </label>
                 <input
                   id="contact-phone"
                   type="tel"
                   required
-                  placeholder="+20 100 000 0000"
+                  placeholder={t("contact.form.phonePlaceholder")}
                   value={formData.phone}
                   onChange={(e) =>
                     setFormData((prev) => ({
@@ -158,13 +168,13 @@ export default function ContactInfoSection() {
                   className="mb-1.5 block text-[12px] font-medium text-[#202326]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
-                  Email Address *
+                  {t("contact.form.email")}
                 </label>
                 <input
                   id="contact-email"
                   type="email"
                   required
-                  placeholder="name@example.com"
+                  placeholder={t("contact.form.emailPlaceholder")}
                   value={formData.email}
                   onChange={(e) =>
                     setFormData((prev) => ({
@@ -185,13 +195,13 @@ export default function ContactInfoSection() {
                 className="mb-1.5 block text-[12px] font-medium text-[#202326]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                Message or Preferred Unit Details *
+                {t("contact.form.message")}
               </label>
               <textarea
                 id="contact-notes"
                 required
                 rows={4}
-                placeholder="Tell us about the area, property type, or payment plan you are looking for..."
+                placeholder={t("contact.form.messagePlaceholder")}
                 value={formData.notes}
                 onChange={(e) =>
                   setFormData((prev) => ({
@@ -208,11 +218,13 @@ export default function ContactInfoSection() {
             <button
               type="submit"
               disabled={createMutation.isPending}
-              className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#2B5FA6] py-3.5 text-[14px] font-semibold text-white transition-all hover:bg-[#1B3A6B] disabled:opacity-70"
+              className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#2B5FA6] py-3.5 text-[14px] font-semibold text-white transition-all duration-200 hover:bg-[#1B3A6B] hover:shadow-xs active:scale-[0.99] disabled:opacity-70"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span>
-                {createMutation.isPending ? "Sending..." : "Send Inquiry"}
+                {createMutation.isPending
+                  ? t("contact.form.sending")
+                  : t("contact.form.sendInquiry")}
               </span>
               <Image
                 src="/ContactUs/icon-send.svg"
@@ -241,14 +253,12 @@ export default function ContactInfoSection() {
                 <path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
               <span style={{ fontFamily: "var(--font-inter)" }}>
-                Your information is kept strictly confidential and protected
-                under our privacy terms.
+                {t("contact.form.privacyNote")}
               </span>
             </div>
           </form>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
-

@@ -66,11 +66,147 @@
   },
   "about": {
     "title": "Über Blue Horizon",
-    "subtitle": "Luxus- und Küstenwohnen am Roten Meer neu definiert."
+    "subtitle": "Luxus- und Küstenwohnen am Roten Meer neu definiert.",
+    "hero": {
+      "pill": "ERSTKLASSIGE IMMOBILIENBERATUNG",
+      "heading": "Immobilienexzellenz am Roten Meer neu definiert",
+      "description": "Stärken Sie Ihre Immobilieninvestitionen mit vertrauensvoller Beratung, nahtloser digitaler Suche und tiefem lokalen Fachwissen in den begehrtesten Küsten- und Stadtzielen Ägyptens.",
+      "exploreProjects": "Projekte entdecken",
+      "talkAdvisor": "Mit einem Berater sprechen",
+      "breadcrumbHome": "Startseite",
+      "breadcrumbAbout": "Über uns"
+    },
+    "metrics": {
+      "yearsExperience": "JAHRE ERFAHRUNG",
+      "propertyVolume": "IMMOBILIENVOLUMEN",
+      "happyHomeowners": "ZUFRIEDENE EIGENTÜMER",
+      "clientSatisfaction": "KUNDENZUFRIEDENHEIT"
+    },
+    "visionMission": {
+      "eyebrow": "KERNZWECK",
+      "heading": "Geleitet von Integrität und Innovation",
+      "description": "Langfristiges Kundenvertrauen durch vollständige Transparenz und datengestützte Immobilienberatung aufbauen.",
+      "vision": {
+        "title": "Unsere Vision",
+        "description": "Das führende und vertrauenswürdigste digitale Immobilien-Ökosystem am Roten Meer und in Ägypten zu sein, das Käufer, internationale Investoren und Entwickler mit unübertroffener Marktintelligenz verbindet.",
+        "point1": "Wegweisende digitale Immobilien-Entdeckungstools",
+        "point2": "Ägyptische Küstenimmobilien auf globalen Bühnen positionieren"
+      },
+      "mission": {
+        "title": "Unsere Mission",
+        "description": "Kunden mit transparenter Beratung, personalisiertem Portfolio-Matching und reibungslosem rechtlichen Schutz in jeder Phase des Immobilienerwerbs, der Verwaltung und des Wiederverkaufs zu stärken.",
+        "point1": "Vollständige Käufersicherheit und rechtliche Verifizierung",
+        "point2": "Kapitalwertsteigerung und Mietrenditen maximieren"
+      }
+    },
+    "offer": {
+      "eyebrow": "MASSGESCHNEIDERTE LÖSUNGEN",
+      "heading": "Was wir anbieten?",
+      "description": "Umfassende End-to-End-Dienstleistungen für Käufer, Privateigentümer und institutionelle Immobilieninvestoren.",
+      "offPlan": {
+        "title": "Exklusive Off-Plan-Projekte",
+        "description": "Direkter Launch-Zugang zu Top-Küstenresorts und Gated Communities ohne Käuferprovision."
+      },
+      "resaleVillas": {
+        "title": "Freistehende Wiederverkaufsvillen",
+        "description": "Geprüfte Luxushäuser, freistehende Strandvillen und bezugsfertige Doppelhäuser in Toplagen."
+      },
+      "rentalMgmt": {
+        "title": "Mietverwaltung mit hoher Rendite",
+        "description": "Vollständige Mietdienstleistungen inklusive Gastmanagement, Kurzzeitvermietung und regelmäßiger Auszahlungen."
+      },
+      "legalAdvisory": {
+        "title": "Rechts- und Investitionsberatung",
+        "description": "Hauseigene Rechtsexperten prüfen Eigentumsurkunden und Entwicklerverträge und beraten bei Steuerfragen für ausländische Investoren."
+      },
+      "valuation": {
+        "title": "Bewertung und Markteinblicke",
+        "description": "Datengestützte Bewertungsmodelle und vierteljährliche Marktberichte helfen Käufern, optimale Ein- und Ausstiegszeitpunkte zu finden."
+      },
+      "concierge": {
+        "title": "VIP-Concierge und Umzug",
+        "description": "Dedizierte Unterstützung für internationale Käufer einschließlich Flughafentransfers, Besichtigungen und Einrichtung der Nebenkosten."
+      }
+    },
+    "process": {
+      "eyebrow": "STRUKTURIERTER PROZESS",
+      "heading": "Ihre Immobilienreise beginnt bei uns",
+      "description": "Ein optimierter 4-Schritte-Weg, der Stress eliminiert und Seelenfrieden garantiert.",
+      "step1": {
+        "title": "Entdecken und Beraten",
+        "description": "Wir analysieren Ihre Lebensstilpräferenzen und finanziellen Ziele, um eine gezielte Auswahlliste von Erst- und Küstenimmobilien zu erstellen."
+      },
+      "step2": {
+        "title": "Private und virtuelle Touren",
+        "description": "Erleben Sie betreute Vor-Ort-Besichtigungen oder immersive HD-3D-Virtualtouren mit unseren Gebietsexperten."
+      },
+      "step3": {
+        "title": "Rechtsschutz und Konditionen",
+        "description": "Unsere Rechtsberater prüfen Verträge, Treuhandklauseln und Zahlungspläne für vollständige finanzielle Sicherheit."
+      },
+      "step4": {
+        "title": "Übergabe und Renditemanagement",
+        "description": "Von der Schlüsselübergabe bis zur langfristigen Mieterplatzierung und Immobilienverwaltung stehen wir nach der Übergabe an Ihrer Seite."
+      }
+    },
+    "cta": {
+      "pill": "HEUTE KONTAKT AUFNEHMEN",
+      "heading": "Bereit, Ihr nächstes Luxusheim oder eine renditestarke Investition zu finden?",
+      "description": "Sprechen Sie noch heute mit unseren Immobilienspezialisten für eine private Beratung, virtuelle Besichtigung oder maßgeschneiderte Investitionsportfoliopräsentation.",
+      "scheduleCall": "Anruf vereinbaren",
+      "exploreProjects": "Projekte entdecken"
+    }
   },
   "contact": {
     "title": "Kontaktieren Sie uns",
-    "subtitle": "Unsere Immobilienberater unterstützen Sie bei jedem Schritt."
+    "subtitle": "Unsere Immobilienberater unterstützen Sie bei jedem Schritt.",
+    "hero": {
+      "pill": "WIR SIND FÜR SIE DA",
+      "heading": "Nehmen Sie Kontakt auf",
+      "description": "Wir helfen Ihnen, Ihre Traumluxusimmobilie in erstklassigen Küstenzielen und Städten zu finden. Kontaktieren Sie uns für Beratungen, Besichtigungen oder Investitionsberatung.",
+      "breadcrumbHome": "Startseite",
+      "breadcrumbContact": "Kontakt"
+    },
+    "channels": {
+      "eyebrow": "DIREKTKONTAKT",
+      "heading": "Unsere Kontaktinformationen",
+      "description": "Haben Sie eine Frage zu einer Anlage, Wiederverkaufseinheit oder Mietinvestition? Wenden Sie sich über einen der folgenden Kanäle an unsere Immobilienberater.",
+      "phoneLabel": "TELEFONNUMMERN",
+      "emailLabel": "E-MAIL-ADRESSEN",
+      "officeLabel": "UNSER BÜRO",
+      "hoursLabel": "GESCHÄFTSZEITEN",
+      "followChannels": "Folgen Sie uns:"
+    },
+    "form": {
+      "eyebrow": "ANFRAGE SENDEN",
+      "heading": "Wie können wir Ihnen helfen?",
+      "description": "Füllen Sie Ihre Daten aus und unser leitender Immobilienberater wird sich innerhalb von 2 Stunden bei Ihnen melden.",
+      "firstName": "Vorname *",
+      "lastName": "Nachname *",
+      "phone": "Telefonnummer *",
+      "email": "E-Mail-Adresse *",
+      "message": "Nachricht oder bevorzugte Einheitendetails *",
+      "firstNamePlaceholder": "z.B. Thomas",
+      "lastNamePlaceholder": "z.B. Müller",
+      "phonePlaceholder": "+49 100 000 0000",
+      "emailPlaceholder": "name@example.com",
+      "messagePlaceholder": "Teilen Sie uns den Bereich, Immobilientyp oder Zahlungsplan mit, nach dem Sie suchen...",
+      "sendInquiry": "Anfrage senden",
+      "sending": "Wird gesendet...",
+      "privacyNote": "Ihre Informationen werden streng vertraulich behandelt und gemäß unseren Datenschutzbestimmungen geschützt."
+    },
+    "office": {
+      "eyebrow": "BESUCHEN SIE UNSER BÜRO",
+      "heading": "Unser Bürostandort",
+      "badge": "Hauptbüro Hurghada"
+    },
+    "cta": {
+      "pill": "SOFORTIGE ANTWORTEN GESUCHT?",
+      "heading": "Sprechen Sie jetzt mit einem leitenden Spezialisten",
+      "description": "Unsere Hotline ist 6 Tage die Woche für dringende Immobilienanfragen und Tourenbuchungen verfügbar.",
+      "whatsapp": "WhatsApp-Chat",
+      "call": "Anrufen"
+    }
   },
   "blogs": {
     "title": "Artikel & Markteinblicke",
@@ -170,4 +306,3 @@
     }
   }
 }
-
