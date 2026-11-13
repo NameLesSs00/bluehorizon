@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import AreaProjectsFilterSidebar, {
@@ -132,7 +132,7 @@ export default function AreaAvailableProjectsSection({
               {Array.from({ length: 6 }).map((_, idx) => (
                 <div
                   key={idx}
-                  className="h-[360px] animate-pulse rounded-[20px] bg-[#F3F5F3] border border-[#E1E7E3]"
+                  className="h-[360px] animate-pulse rounded-[20px] bg-[#F0F3FA] border border-[#D9E2EE]"
                 />
               ))}
             </div>
@@ -161,7 +161,7 @@ export default function AreaAvailableProjectsSection({
                 disabled={currentPage <= 1}
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                 aria-label="Previous Page"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E1E7E3] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F3F5F3] disabled:opacity-40 disabled:cursor-not-allowed"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#D9E2EE] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F0F3FA] disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 &lt;
               </button>
@@ -176,8 +176,8 @@ export default function AreaAvailableProjectsSection({
                       onClick={() => setCurrentPage(pageNum)}
                       className={`flex h-9 w-9 items-center justify-center rounded-lg text-xs font-semibold transition-colors ${
                         isActive
-                          ? "bg-[#145C4B] text-white"
-                          : "border border-[#E1E7E3] bg-white text-[#202326] hover:bg-[#F3F5F3]"
+                          ? "bg-[#2B5FA6] text-white"
+                          : "border border-[#D9E2EE] bg-white text-[#202326] hover:bg-[#F0F3FA]"
                       }`}
                       style={{ fontFamily: "var(--font-inter)" }}
                     >
@@ -192,7 +192,7 @@ export default function AreaAvailableProjectsSection({
                 disabled={currentPage >= totalPages}
                 onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                 aria-label="Next Page"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E1E7E3] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F3F5F3] disabled:opacity-40 disabled:cursor-not-allowed"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#D9E2EE] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F0F3FA] disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 &gt;
               </button>

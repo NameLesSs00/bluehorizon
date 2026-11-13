@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { FiChevronRight } from "react-icons/fi";
@@ -28,11 +28,11 @@ export default function RentalRelatedUnits({
   }
 
   return (
-    <section className="mt-16 sm:mt-20 pt-10 border-t border-[#E1E7E3]">
+    <section className="mt-16 sm:mt-20 pt-10 border-t border-[#D9E2EE]">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
         <div>
           <h2
-            className="text-2xl sm:text-3xl font-bold text-[#145C4B]"
+            className="text-2xl sm:text-3xl font-bold text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
             Related Rental Properties
@@ -47,7 +47,7 @@ export default function RentalRelatedUnits({
 
         <Link
           href="/rent"
-          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#145C4B] transition-colors hover:text-[#0F473A]"
+          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#2B5FA6] transition-colors hover:text-[#1B3A6B]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           <span>View all rentals</span>
@@ -60,7 +60,7 @@ export default function RentalRelatedUnits({
           {[1, 2, 3].map((n) => (
             <div
               key={n}
-              className="h-80 animate-pulse rounded-[20px] bg-[#E8F1EC]"
+              className="h-80 animate-pulse rounded-[20px] bg-[#E5ECF6]"
             />
           ))}
         </div>

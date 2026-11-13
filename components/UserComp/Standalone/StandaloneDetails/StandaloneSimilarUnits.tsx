@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useQuery } from "@tanstack/react-query";
 import { getStandaloneUnits } from "@/clientApi/standaloneUnitsApi";
@@ -39,7 +39,7 @@ export default function StandaloneSimilarUnits({
 
   return (
     <section className="mt-16 sm:mt-20">
-      <div className="border-t border-[#E1E7E3] pt-12">
+      <div className="border-t border-[#D9E2EE] pt-12">
         {/* Section Header */}
         <div>
           <h2
@@ -62,7 +62,7 @@ export default function StandaloneSimilarUnits({
             {Array.from({ length: 4 }).map((_, idx) => (
               <div
                 key={idx}
-                className="h-[360px] animate-pulse rounded-[20px] border border-[#E1E7E3] bg-[#F3F5F3]"
+                className="h-[360px] animate-pulse rounded-[20px] border border-[#D9E2EE] bg-[#F0F3FA]"
               />
             ))}
           </div>

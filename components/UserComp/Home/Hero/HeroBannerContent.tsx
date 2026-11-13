@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi";
@@ -40,7 +40,7 @@ export default function HeroBannerContent() {
       <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
         <Link
           href="/standalone"
-          className="inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-full bg-[#145C4B] border border-white/20 px-7 py-3.5 sm:px-8 sm:py-4 text-[14px] sm:text-[15px] font-semibold text-white shadow-md transition-all hover:bg-[#0F473A] hover:shadow-lg text-center"
+          className="inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-full bg-[#2B5FA6] border border-white/20 px-7 py-3.5 sm:px-8 sm:py-4 text-[14px] sm:text-[15px] font-semibold text-white shadow-md transition-all hover:bg-[#1B3A6B] hover:shadow-lg text-center"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           <span>Explore Properties</span>

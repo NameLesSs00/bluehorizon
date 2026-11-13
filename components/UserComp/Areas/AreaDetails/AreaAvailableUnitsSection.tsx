@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState, useEffect } from "react";
 import ProjectUnitCard, {
@@ -191,12 +191,12 @@ export default function AreaAvailableUnitsSection({
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div
                   key={i}
-                  className="h-[360px] animate-pulse rounded-[20px] bg-[#F3F5F3] border border-[#E1E7E3]"
+                  className="h-[360px] animate-pulse rounded-[20px] bg-[#F0F3FA] border border-[#D9E2EE]"
                 />
               ))}
             </div>
           ) : paginatedUnits.length === 0 ? (
-            <div className="flex flex-col items-center justify-center rounded-[20px] border border-dashed border-[#E1E7E3] bg-white py-16 px-6 text-center">
+            <div className="flex flex-col items-center justify-center rounded-[20px] border border-dashed border-[#D9E2EE] bg-white py-16 px-6 text-center">
               <p
                 className="text-base font-semibold text-[#202326]"
                 style={{ fontFamily: "var(--font-manrope)" }}
@@ -212,7 +212,7 @@ export default function AreaAvailableUnitsSection({
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="mt-4 rounded-full bg-[#145C4B] px-5 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#0F473A]"
+                className="mt-4 rounded-full bg-[#2B5FA6] px-5 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
               >
                 Reset Filters
               </button>
@@ -235,7 +235,7 @@ export default function AreaAvailableUnitsSection({
                     type="button"
                     disabled={currentPage <= 1}
                     onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E1E7E3] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F3F5F3] disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#D9E2EE] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F0F3FA] disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     &lt;
                   </button>
@@ -250,8 +250,8 @@ export default function AreaAvailableUnitsSection({
                           onClick={() => setCurrentPage(page)}
                           className={`flex h-9 w-9 items-center justify-center rounded-lg text-xs font-semibold transition-colors ${
                             isActive
-                              ? "bg-[#145C4B] text-white"
-                              : "border border-[#E1E7E3] bg-white text-[#202326] hover:bg-[#F3F5F3]"
+                              ? "bg-[#2B5FA6] text-white"
+                              : "border border-[#D9E2EE] bg-white text-[#202326] hover:bg-[#F0F3FA]"
                           }`}
                         >
                           {page}
@@ -264,7 +264,7 @@ export default function AreaAvailableUnitsSection({
                     type="button"
                     disabled={currentPage >= totalPages}
                     onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E1E7E3] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F3F5F3] disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#D9E2EE] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F0F3FA] disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     &gt;
                   </button>

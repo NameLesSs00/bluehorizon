@@ -59,7 +59,7 @@ export default function ContactDetailsDrawer({
       <div className="flex h-full flex-col justify-between space-y-6">
         <div className="space-y-6">
           {/* Header Status Bar */}
-          <div className="flex items-center justify-between rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-4">
+          <div className="flex items-center justify-between rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-4">
             <div>
               <p
                 className="text-[11px] font-bold uppercase tracking-wider text-[#65706B]"
@@ -71,7 +71,7 @@ export default function ContactDetailsDrawer({
                 <span
                   className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold uppercase ${
                     contact.status === "Viewed"
-                      ? "bg-emerald-100 text-emerald-800"
+                      ? "bg-blue-100 text-blue-800"
                       : "bg-amber-100 text-amber-800"
                   }`}
                   style={{ fontFamily: "var(--font-inter)" }}
@@ -92,8 +92,8 @@ export default function ContactDetailsDrawer({
               onClick={handleToggleStatus}
               className={`rounded-xl px-4 py-2 text-[12px] font-semibold transition-colors ${
                 isPending
-                  ? "bg-[#0F473A] text-white hover:bg-[#145C4B]"
-                  : "border border-[#DCE2DE] bg-white text-[#202326] hover:bg-[#F3F5F3]"
+                  ? "bg-[#1B3A6B] text-white hover:bg-[#2B5FA6]"
+                  : "border border-[#D0D9EA] bg-white text-[#202326] hover:bg-[#F0F3FA]"
               }`}
               style={{ fontFamily: "var(--font-inter)" }}
             >
@@ -106,9 +106,9 @@ export default function ContactDetailsDrawer({
           </div>
 
           {/* Contact Information */}
-          <div className="rounded-xl border border-[#E6EAE7] bg-white p-5 space-y-4">
+          <div className="rounded-xl border border-[#E2E8F3] bg-white p-5 space-y-4">
             <h4
-              className="text-[13px] font-bold uppercase tracking-wider text-[#145C4B]"
+              className="text-[13px] font-bold uppercase tracking-wider text-[#2B5FA6]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               Contact Person
@@ -124,8 +124,8 @@ export default function ContactDetailsDrawer({
 
               <div>
                 <p className="text-[11px] text-[#65706B]">Inquiry Type</p>
-                <span className="mt-0.5 inline-flex items-center gap-1 rounded-md bg-[#F3F5F3] px-2.5 py-0.5 text-[12px] font-medium text-[#202326]">
-                  <FiTag className="h-3 w-3 text-[#145C4B]" />
+                <span className="mt-0.5 inline-flex items-center gap-1 rounded-md bg-[#F0F3FA] px-2.5 py-0.5 text-[12px] font-medium text-[#202326]">
+                  <FiTag className="h-3 w-3 text-[#2B5FA6]" />
                   <span>{contact.type}</span>
                 </span>
               </div>
@@ -134,7 +134,7 @@ export default function ContactDetailsDrawer({
                 <p className="text-[11px] text-[#65706B]">Email Address</p>
                 <a
                   href={`mailto:${contact.email}`}
-                  className="mt-0.5 inline-flex items-center gap-1.5 text-[13px] text-[#145C4B] hover:underline"
+                  className="mt-0.5 inline-flex items-center gap-1.5 text-[13px] text-[#2B5FA6] hover:underline"
                 >
                   <FiMail className="h-3.5 w-3.5" />
                   <span>{contact.email}</span>
@@ -145,7 +145,7 @@ export default function ContactDetailsDrawer({
                 <p className="text-[11px] text-[#65706B]">Phone Number</p>
                 <a
                   href={`tel:${contact.phone}`}
-                  className="mt-0.5 inline-flex items-center gap-1.5 text-[13px] text-[#145C4B] hover:underline"
+                  className="mt-0.5 inline-flex items-center gap-1.5 text-[13px] text-[#2B5FA6] hover:underline"
                 >
                   <FiPhone className="h-3.5 w-3.5" />
                   <span>{contact.phone}</span>
@@ -169,24 +169,24 @@ export default function ContactDetailsDrawer({
           </div>
 
           {/* Customer Message / Notes */}
-          <div className="rounded-xl border border-[#E6EAE7] bg-white p-5 space-y-2">
+          <div className="rounded-xl border border-[#E2E8F3] bg-white p-5 space-y-2">
             <h4
-              className="text-[13px] font-bold uppercase tracking-wider text-[#145C4B]"
+              className="text-[13px] font-bold uppercase tracking-wider text-[#2B5FA6]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               Client Message &amp; Notes
             </h4>
-            <div className="rounded-lg bg-[#FAF8F5] p-4 text-[13px] leading-relaxed text-[#202326] whitespace-pre-wrap">
+            <div className="rounded-lg bg-[#F9F7F4] p-4 text-[13px] leading-relaxed text-[#202326] whitespace-pre-wrap">
               {contact.notes || "No additional notes provided by client."}
             </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-end border-t border-[#E6EAE7] pt-4">
+        <div className="flex items-center justify-end border-t border-[#E2E8F3] pt-4">
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-[#DCE2DE] px-5 py-2.5 text-[13px] font-medium text-[#65706B] transition-colors hover:bg-[#F3F5F3]"
+            className="rounded-xl border border-[#D0D9EA] px-5 py-2.5 text-[13px] font-medium text-[#65706B] transition-colors hover:bg-[#F0F3FA]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             Close Panel

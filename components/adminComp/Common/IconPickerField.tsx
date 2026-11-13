@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { FiCheck, FiFolder, FiX } from "react-icons/fi";
@@ -67,9 +67,9 @@ export default function IconPickerField({
       </div>
 
       {/* Clean Trigger Card */}
-      <div className="flex flex-col gap-3 rounded-2xl border border-[#DCE2DE] bg-white p-4 shadow-2xs sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 rounded-2xl border border-[#D0D9EA] bg-white p-4 shadow-2xs sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3.5">
-          <div className="flex h-13 w-13 shrink-0 items-center justify-center rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] text-[#145C4B]">
+          <div className="flex h-13 w-13 shrink-0 items-center justify-center rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] text-[#2B5FA6]">
             {SelectedIcon ? (
               <DynamicIcon name={value} className="h-7 w-7" />
             ) : (
@@ -95,7 +95,7 @@ export default function IconPickerField({
         <button
           type="button"
           onClick={() => setIsModalOpen(true)}
-          className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#DCE2DE] bg-[#FAF8F5] px-4 py-2 text-[13px] font-semibold text-[#202326] transition-all hover:border-[#145C4B] hover:bg-white hover:text-[#145C4B] hover:shadow-xs"
+          className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#D0D9EA] bg-[#F9F7F4] px-4 py-2 text-[13px] font-semibold text-[#202326] transition-all hover:border-[#2B5FA6] hover:bg-white hover:text-[#2B5FA6] hover:shadow-xs"
         >
           {value ? "Change Icon" : "Choose Icon"}
         </button>

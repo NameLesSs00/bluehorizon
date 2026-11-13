@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { usePublicProjectLocationsQuery } from "@/features/projectLocations/useProjectLocationsQueries";
 import AreaListCard from "./AreaListCard";
@@ -17,7 +17,7 @@ export default function AreasListSection() {
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         {isLoading ? (
           <div className="flex h-72 w-full flex-col items-center justify-center rounded-[22px] border border-[#DCE4DF] bg-white">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#145C4B] border-t-transparent" />
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#2B5FA6] border-t-transparent" />
             <p
               className="mt-3 text-[13px] text-[#65706B]"
               style={{ fontFamily: "var(--font-inter)" }}

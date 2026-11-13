@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 
 export interface ProjectCardData {
@@ -24,9 +24,9 @@ export default function FeaturedProjectCard({
   return (
     <Link
       href={`/projects/${project.id}`}
-      className="group flex flex-col overflow-hidden rounded-[16px] border border-[#E6EAE7] bg-white transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+      className="group flex flex-col overflow-hidden rounded-[16px] border border-[#E2E8F3] bg-white transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
     >
-      <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#FAF8F5]">
+      <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#F9F7F4]">
         {project.isFallback ? (
           <div className="absolute inset-0 flex items-center justify-center p-6">
             <div className="relative h-20 w-36 transition-transform duration-300 group-hover:scale-105">
@@ -51,7 +51,7 @@ export default function FeaturedProjectCard({
         {project.badge && (
           <div className="absolute top-[14px] left-[14px] rounded-full bg-white px-3 py-1.5 shadow-sm">
             <span
-              className="block text-[10px] font-medium uppercase leading-none tracking-normal text-[#145C4B]"
+              className="block text-[10px] font-medium uppercase leading-none tracking-normal text-[#2B5FA6]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {project.badge}
@@ -88,7 +88,7 @@ export default function FeaturedProjectCard({
 
         <div className="mt-4 space-y-1">
           <p
-            className="text-[18px] font-bold leading-none tracking-normal text-[#145C4B]"
+            className="text-[18px] font-bold leading-none tracking-normal text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {project.price}

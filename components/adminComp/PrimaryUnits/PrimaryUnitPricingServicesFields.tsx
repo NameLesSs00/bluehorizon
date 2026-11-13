@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FiCheck, FiDollarSign, FiPlus, FiStar } from "react-icons/fi";
 import { PrimaryUnitFormPayload } from "@/models/primaryUnit";
@@ -32,7 +32,7 @@ export default function PrimaryUnitPricingServicesFields({
 
   return (
     <div className="space-y-5">
-      <h3 className="border-b border-[#E6EAE7] pb-2 text-[14px] font-bold text-[#145C4B]">
+      <h3 className="border-b border-[#E2E8F3] pb-2 text-[14px] font-bold text-[#2B5FA6]">
         Pricing, Amenities &amp; Services
       </h3>
 
@@ -58,7 +58,7 @@ export default function PrimaryUnitPricingServicesFields({
               }))
             }
             placeholder="e.g. 245000"
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white py-2.5 pr-3.5 pl-9 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white py-2.5 pr-3.5 pl-9 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>
         <p className="mt-1 text-[11px] text-[#5A6561]">
@@ -67,7 +67,7 @@ export default function PrimaryUnitPricingServicesFields({
       </div>
 
       {/* Featured Toggle */}
-      <div className="flex items-center justify-between rounded-xl border border-[#E6EAE7] bg-[#F7F9F8] p-3.5">
+      <div className="flex items-center justify-between rounded-xl border border-[#E2E8F3] bg-[#F7F9F8] p-3.5">
         <div className="flex items-center gap-2.5">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10 text-amber-600">
             <FiStar className="h-4 w-4" />
@@ -93,7 +93,7 @@ export default function PrimaryUnitPricingServicesFields({
             }
             className="peer sr-only"
           />
-          <div className="peer h-6 w-11 rounded-full bg-gray-300 peer-checked:bg-[#145C4B] peer-checked:after:translate-x-full peer-checked:after:border-white after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-['']" />
+          <div className="peer h-6 w-11 rounded-full bg-gray-300 peer-checked:bg-[#2B5FA6] peer-checked:after:translate-x-full peer-checked:after:border-white after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-['']" />
         </label>
       </div>
 
@@ -121,8 +121,8 @@ export default function PrimaryUnitPricingServicesFields({
                   onClick={() => toggleService(svc.id)}
                   className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[12px] font-medium transition-all ${
                     selected
-                      ? "border-[#145C4B] bg-[#145C4B] text-white shadow-xs"
-                      : "border-[#DCE2DE] bg-white text-[#202326] hover:border-[#145C4B]/40 hover:bg-[#F7F9F8]"
+                      ? "border-[#2B5FA6] bg-[#2B5FA6] text-white shadow-xs"
+                      : "border-[#D0D9EA] bg-white text-[#202326] hover:border-[#2B5FA6]/40 hover:bg-[#F7F9F8]"
                   }`}
                 >
                   {selected ? (

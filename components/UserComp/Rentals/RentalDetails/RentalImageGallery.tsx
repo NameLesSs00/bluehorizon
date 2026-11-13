@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -54,7 +54,7 @@ export default function RentalImageGallery({
         {/* Main Large Hero Image */}
         <div
           onClick={() => openLightbox(currentMainIdx)}
-          className="group relative h-[320px] sm:h-[420px] lg:h-[480px] lg:col-span-7 overflow-hidden rounded-[20px] sm:rounded-[24px] border border-[#E1E7E3] bg-[#FAF8F5] cursor-pointer"
+          className="group relative h-[320px] sm:h-[420px] lg:h-[480px] lg:col-span-7 overflow-hidden rounded-[20px] sm:rounded-[24px] border border-[#D9E2EE] bg-[#F9F7F4] cursor-pointer"
         >
           <Image
             src={mainImageUrl}
@@ -83,7 +83,7 @@ export default function RentalImageGallery({
                   const targetIdx = idx + 1 < validImages.length ? idx + 1 : 0;
                   openLightbox(targetIdx);
                 }}
-                className="group relative h-full w-full overflow-hidden rounded-[16px] sm:rounded-[20px] border border-[#E1E7E3] bg-[#FAF8F5] text-left transition-transform hover:scale-[1.01]"
+                className="group relative h-full w-full overflow-hidden rounded-[16px] sm:rounded-[20px] border border-[#D9E2EE] bg-[#F9F7F4] text-left transition-transform hover:scale-[1.01]"
               >
                 <Image
                   src={imgUrl}

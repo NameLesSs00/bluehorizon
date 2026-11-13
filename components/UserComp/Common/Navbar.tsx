@@ -43,7 +43,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-[#E1E7E3]/80 bg-white/95 backdrop-blur-md shadow-2xs transition-shadow">
+      <header className="sticky top-0 z-40 w-full border-b border-[#D9E2EE]/80 bg-white/95 backdrop-blur-md shadow-2xs transition-shadow">
         <div className="mx-auto flex h-18 sm:h-20 lg:h-24 w-full max-w-[1360px] items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           <Link
@@ -73,13 +73,13 @@ export default function Navbar() {
                   href={localizedHref(item.href)}
                   className={`relative py-1 text-sm whitespace-nowrap transition-colors ${
                     active
-                      ? "font-semibold text-[#145C4B]"
-                      : "font-normal text-[#202326] hover:text-[#145C4B]"
+                      ? "font-semibold text-[#2B5FA6]"
+                      : "font-normal text-[#202326] hover:text-[#2B5FA6]"
                   }`}
                 >
                   {item.label}
                   {active && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-[#145C4B]" />
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-[#2B5FA6]" />
                   )}
                 </Link>
               );
@@ -101,7 +101,7 @@ export default function Navbar() {
             {/* Contact Us Button - visible on desktop */}
             <Link
               href={localizedHref("/contact")}
-              className="hidden lg:flex h-10 items-center justify-center rounded-full bg-[#0F473A] px-5 text-sm font-semibold text-white whitespace-nowrap transition-colors hover:bg-[#145C4B]"
+              className="hidden lg:flex h-10 items-center justify-center rounded-full bg-[#B8963E] px-5 text-sm font-semibold text-white whitespace-nowrap transition-colors hover:bg-[#D4A843] shadow-xs"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               Contact Us
@@ -112,7 +112,7 @@ export default function Navbar() {
               type="button"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open navigation menu"
-              className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#E1E7E3] text-[#202326] transition-colors hover:bg-[#F3F5F3] lg:hidden shrink-0"
+              className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#D9E2EE] text-[#202326] transition-colors hover:bg-[#F0F3FA] lg:hidden shrink-0"
             >
               <FiMenu className="h-5 w-5" />
             </button>

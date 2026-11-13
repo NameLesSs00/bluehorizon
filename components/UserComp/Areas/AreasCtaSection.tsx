@@ -1,12 +1,12 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi";
 
 export default function AreasCtaSection() {
   return (
-    <section className="bg-[#F3F5F3] py-10 sm:py-16">
+    <section className="bg-[#F0F3FA] py-10 sm:py-16">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[22px] bg-[#0F473A]">
+        <div className="relative overflow-hidden rounded-[22px] bg-[#1B3A6B]">
           {/* Background Topographic Image */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -36,7 +36,7 @@ export default function AreasCtaSection() {
               </h2>
 
               <p
-                className="mt-3.5 text-[14px] font-normal leading-[1.6] text-[#CBDFD5] sm:text-[15px]"
+                className="mt-3.5 text-[14px] font-normal leading-[1.6] text-[#C5D3E8] sm:text-[15px]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Our team will help you compare areas and find the right property.
@@ -46,7 +46,7 @@ export default function AreasCtaSection() {
             <div className="shrink-0">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2.5 rounded-[16px] bg-white px-8 py-4 text-[14px] font-semibold text-[#145C4B] transition-all duration-200 hover:bg-[#F3F7F5] sm:px-9 sm:py-4 sm:text-[15px]"
+                className="group inline-flex items-center gap-2.5 rounded-[16px] bg-white px-8 py-4 text-[14px] font-semibold text-[#2B5FA6] transition-all duration-200 hover:bg-[#F3F7F5] sm:px-9 sm:py-4 sm:text-[15px]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <span>Contact Us</span>

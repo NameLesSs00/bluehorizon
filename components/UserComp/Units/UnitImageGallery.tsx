@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -50,7 +50,7 @@ export default function UnitImageGallery({
           /* Single Image */
           <div
             onClick={() => openLightbox(0)}
-            className="group relative aspect-[16/9] md:aspect-[21/9] w-full cursor-pointer overflow-hidden rounded-[24px] bg-[#FAF8F5] border border-[#E1E7E3]"
+            className="group relative aspect-[16/9] md:aspect-[21/9] w-full cursor-pointer overflow-hidden rounded-[24px] bg-[#F9F7F4] border border-[#D9E2EE]"
           >
             <Image
               src={mainImage.url || "/default-fallback.png"}
@@ -67,7 +67,7 @@ export default function UnitImageGallery({
             {/* Main Featured Photo (7 of 12 cols = ~58%) */}
             <div
               onClick={() => openLightbox(0)}
-              className="group relative md:col-span-7 aspect-[4/3] md:aspect-auto md:min-h-[460px] cursor-pointer overflow-hidden rounded-[20px] bg-[#FAF8F5] border border-[#E1E7E3]"
+              className="group relative md:col-span-7 aspect-[4/3] md:aspect-auto md:min-h-[460px] cursor-pointer overflow-hidden rounded-[20px] bg-[#F9F7F4] border border-[#D9E2EE]"
             >
               <Image
                 src={mainImage.url || "/default-fallback.png"}
@@ -90,7 +90,7 @@ export default function UnitImageGallery({
                   <div
                     key={img.url || idx}
                     onClick={() => openLightbox(imgIndex)}
-                    className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-[16px] bg-[#FAF8F5] border border-[#E1E7E3]"
+                    className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-[16px] bg-[#F9F7F4] border border-[#D9E2EE]"
                   >
                     <Image
                       src={img.url || "/default-fallback.png"}

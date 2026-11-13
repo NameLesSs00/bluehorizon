@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -212,7 +212,7 @@ export default function ProjectAvailableUnitsSection({
         {/* Right: Units Grid */}
         <div className="w-full flex-1">
           {filteredUnits.length === 0 ? (
-            <div className="flex flex-col items-center justify-center rounded-[20px] border border-dashed border-[#DCE2DE] bg-white p-12 text-center">
+            <div className="flex flex-col items-center justify-center rounded-[20px] border border-dashed border-[#D0D9EA] bg-white p-12 text-center">
               <h3
                 className="text-lg font-bold text-[#202326]"
                 style={{ fontFamily: "var(--font-manrope)" }}
@@ -228,7 +228,7 @@ export default function ProjectAvailableUnitsSection({
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="mt-5 rounded-xl bg-[#145C4B] px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#0F473A]"
+                className="mt-5 rounded-xl bg-[#2B5FA6] px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
               >
                 Reset Filters
               </button>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
@@ -68,7 +68,7 @@ function PropertyCategoryItemsContent() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p
-            className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#145C4B]"
+            className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             RENTAL AMENITIES REPOSITORY
@@ -90,7 +90,7 @@ function PropertyCategoryItemsContent() {
         <button
           type="button"
           onClick={handleOpenCreate}
-          className="inline-flex items-center gap-2 rounded-xl bg-[#0F473A] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#145C4B]"
+          className="inline-flex items-center gap-2 rounded-xl bg-[#1B3A6B] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#2B5FA6]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           <FiPlus className="h-4 w-4" />
@@ -99,9 +99,9 @@ function PropertyCategoryItemsContent() {
       </div>
 
       {/* Filter by Parent Category */}
-      <div className="flex flex-col gap-3 rounded-2xl border border-[#E6EAE7] bg-white p-4 shadow-2xs sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 rounded-2xl border border-[#E2E8F3] bg-white p-4 shadow-2xs sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-2 text-[13px] font-semibold text-[#202326]">
-          <FiFilter className="h-4 w-4 text-[#145C4B]" />
+          <FiFilter className="h-4 w-4 text-[#2B5FA6]" />
           <span>Filter by Parent Category:</span>
         </div>
 
@@ -112,7 +112,7 @@ function PropertyCategoryItemsContent() {
               setSelectedCategoryId(parseInt(e.target.value) || 0);
               setPageNumber(1);
             }}
-            className="rounded-xl border border-[#DCE2DE] bg-[#FAF8F5] px-3.5 py-2 text-[13px] font-medium text-[#202326] outline-none transition-all focus:border-[#145C4B] focus:bg-white"
+            className="rounded-xl border border-[#D0D9EA] bg-[#F9F7F4] px-3.5 py-2 text-[13px] font-medium text-[#202326] outline-none transition-all focus:border-[#2B5FA6] focus:bg-white"
           >
             <option value={0}>All Categories ({categories.length})</option>
             {categories.map((cat) => (
@@ -129,7 +129,7 @@ function PropertyCategoryItemsContent() {
                 setSelectedCategoryId(0);
                 setPageNumber(1);
               }}
-              className="rounded-xl border border-[#DCE2DE] px-3 py-2 text-[12px] font-medium text-[#65706B] hover:bg-neutral-100 hover:text-[#202326]"
+              className="rounded-xl border border-[#D0D9EA] px-3 py-2 text-[12px] font-medium text-[#65706B] hover:bg-neutral-100 hover:text-[#202326]"
             >
               Reset
             </button>
@@ -166,7 +166,7 @@ export default function AdminPropertyCategoryItemsPage() {
       <Suspense
         fallback={
           <div className="flex h-72 w-full items-center justify-center">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#0F473A] border-t-transparent" />
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#1B3A6B] border-t-transparent" />
           </div>
         }
       >

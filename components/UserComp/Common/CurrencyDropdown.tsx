@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
@@ -31,7 +31,7 @@ export default function CurrencyDropdown() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex h-9 items-center gap-1.5 rounded-full border border-[#E1E7E3] bg-[#FCFCFC] px-3.5 text-xs font-semibold text-[#202326] transition-colors hover:border-[#145C4B]/40 hover:bg-white"
+        className="flex h-9 items-center gap-1.5 rounded-full border border-[#D9E2EE] bg-[#FCFCFC] px-3.5 text-xs font-semibold text-[#202326] transition-colors hover:border-[#2B5FA6]/40 hover:bg-white"
       >
         <span>{currentCurrency}</span>
         <FiChevronDown
@@ -42,7 +42,7 @@ export default function CurrencyDropdown() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full z-50 mt-1.5 w-28 overflow-hidden rounded-xl border border-[#E1E7E3] bg-white py-1 shadow-lg">
+        <div className="absolute right-0 top-full z-50 mt-1.5 w-28 overflow-hidden rounded-xl border border-[#D9E2EE] bg-white py-1 shadow-lg">
           {availableCurrencies.map((code) => (
             <button
               key={code}
@@ -51,9 +51,9 @@ export default function CurrencyDropdown() {
                 setCurrency(code);
                 setIsOpen(false);
               }}
-              className={`flex w-full items-center justify-between px-3.5 py-1.5 text-xs font-medium transition-colors hover:bg-[#FAF8F5] ${
+              className={`flex w-full items-center justify-between px-3.5 py-1.5 text-xs font-medium transition-colors hover:bg-[#F9F7F4] ${
                 currentCurrency === code
-                  ? "font-bold text-[#145C4B] bg-[#FAF8F5]"
+                  ? "font-bold text-[#2B5FA6] bg-[#F9F7F4]"
                   : "text-[#202326]"
               }`}
             >

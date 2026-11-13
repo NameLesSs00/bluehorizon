@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   FlagEgypt,
@@ -20,7 +20,7 @@ export default function PrimaryUnitLanguageFields({
 }: PrimaryUnitLanguageFieldsProps) {
   return (
     <div className="space-y-6">
-      <h3 className="border-b border-[#E6EAE7] pb-2 text-[14px] font-bold text-[#145C4B]">
+      <h3 className="border-b border-[#E2E8F3] pb-2 text-[14px] font-bold text-[#2B5FA6]">
         Multilingual Content (All Languages)
       </h3>
 
@@ -31,7 +31,7 @@ export default function PrimaryUnitLanguageFields({
         </label>
         <div className="grid grid-cols-1 gap-3">
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagUK className="h-3.5 w-3.5" />
               <span>English Title *</span>
             </div>
@@ -46,12 +46,12 @@ export default function PrimaryUnitLanguageFields({
                 }))
               }
               placeholder="e.g. Garden View Duplex Suite"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagGermany className="h-3.5 w-3.5" />
               <span>German Title (Deutsch)</span>
             </div>
@@ -65,12 +65,12 @@ export default function PrimaryUnitLanguageFields({
                 }))
               }
               placeholder="e.g. Gartenblick-Duplex-Suite"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagEgypt className="h-3.5 w-3.5" />
               <span>Arabic Title (العربية)</span>
             </div>
@@ -85,7 +85,7 @@ export default function PrimaryUnitLanguageFields({
                 }))
               }
               placeholder="مثال: جناح دوبلكس بإطلالة على الحديقة"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
         </div>
@@ -98,7 +98,7 @@ export default function PrimaryUnitLanguageFields({
         </label>
         <div className="grid grid-cols-1 gap-3">
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagUK className="h-3.5 w-3.5" />
               <span>English Description *</span>
             </div>
@@ -113,12 +113,12 @@ export default function PrimaryUnitLanguageFields({
                 }))
               }
               placeholder="Enter comprehensive English unit description..."
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagGermany className="h-3.5 w-3.5" />
               <span>German Description</span>
             </div>
@@ -132,12 +132,12 @@ export default function PrimaryUnitLanguageFields({
                 }))
               }
               placeholder="Geben Sie eine ausführliche Beschreibung auf Deutsch ein..."
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagEgypt className="h-3.5 w-3.5" />
               <span>Arabic Description (العربية)</span>
             </div>
@@ -152,7 +152,7 @@ export default function PrimaryUnitLanguageFields({
                 }))
               }
               placeholder="أدخل وصف الوحدة باللغة العربية..."
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
         </div>
@@ -165,7 +165,7 @@ export default function PrimaryUnitLanguageFields({
         </label>
         <div className="grid grid-cols-1 gap-3">
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagUK className="h-3.5 w-3.5" />
               <span>English View</span>
             </div>
@@ -179,12 +179,12 @@ export default function PrimaryUnitLanguageFields({
                 }))
               }
               placeholder="e.g. Landscaped Garden & Pool View"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagGermany className="h-3.5 w-3.5" />
               <span>German View</span>
             </div>
@@ -198,12 +198,12 @@ export default function PrimaryUnitLanguageFields({
                 }))
               }
               placeholder="e.g. Blick auf den angelegten Garten und Pool"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagEgypt className="h-3.5 w-3.5" />
               <span>Arabic View (العربية)</span>
             </div>
@@ -218,7 +218,7 @@ export default function PrimaryUnitLanguageFields({
                 }))
               }
               placeholder="مثال: إطلالة على الحديقة المنسقة والمسبح"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
         </div>
@@ -231,7 +231,7 @@ export default function PrimaryUnitLanguageFields({
         </label>
         <div className="grid grid-cols-1 gap-3">
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagUK className="h-3.5 w-3.5" />
               <span>English Floor Name</span>
             </div>
@@ -245,12 +245,12 @@ export default function PrimaryUnitLanguageFields({
                 }))
               }
               placeholder="e.g. Ground Floor"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagGermany className="h-3.5 w-3.5" />
               <span>German Floor Name</span>
             </div>
@@ -264,12 +264,12 @@ export default function PrimaryUnitLanguageFields({
                 }))
               }
               placeholder="e.g. Erdgeschoss"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagEgypt className="h-3.5 w-3.5" />
               <span>Arabic Floor Name (العربية)</span>
             </div>
@@ -284,7 +284,7 @@ export default function PrimaryUnitLanguageFields({
                 }))
               }
               placeholder="مثال: الطابق الأرضي"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
         </div>

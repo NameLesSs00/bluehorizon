@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FiTrash2 } from "react-icons/fi";
 import { LocalizedBlogSectionInput } from "@/models/blog";
@@ -29,9 +29,9 @@ export default function BlogSectionFormCard({
   onChange,
 }: BlogSectionFormCardProps) {
   return (
-    <div className="rounded-xl border border-[#E6EAE7] bg-white p-5 space-y-4 shadow-xs">
-      <div className="flex items-center justify-between border-b border-[#E6EAE7] pb-3">
-        <span className="text-[13px] font-bold text-[#145C4B]">
+    <div className="rounded-xl border border-[#E2E8F3] bg-white p-5 space-y-4 shadow-xs">
+      <div className="flex items-center justify-between border-b border-[#E2E8F3] pb-3">
+        <span className="text-[13px] font-bold text-[#2B5FA6]">
           Section #{section.sectionNumber}
         </span>
         {totalSections > 1 && (
@@ -62,7 +62,7 @@ export default function BlogSectionFormCard({
             value={section.tittle.en}
             onChange={(e) => onChange(index, "tittle", "en", e.target.value)}
             placeholder="e.g. 1. Define Your Budget"
-            className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -76,7 +76,7 @@ export default function BlogSectionFormCard({
             value={section.tittle.de}
             onChange={(e) => onChange(index, "tittle", "de", e.target.value)}
             placeholder="e.g. 1. Budget festlegen"
-            className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -91,7 +91,7 @@ export default function BlogSectionFormCard({
             value={section.tittle.ar}
             onChange={(e) => onChange(index, "tittle", "ar", e.target.value)}
             placeholder="مثال: ١. حدد ميزانيتك"
-            className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
       </div>
@@ -112,7 +112,7 @@ export default function BlogSectionFormCard({
             value={section.content.en}
             onChange={(e) => onChange(index, "content", "en", e.target.value)}
             placeholder="Write section explanation in English..."
-            className="mt-1.5 w-full resize-none rounded-xl border border-[#DCE2DE] bg-white p-3 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1.5 w-full resize-none rounded-xl border border-[#D0D9EA] bg-white p-3 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -126,7 +126,7 @@ export default function BlogSectionFormCard({
             value={section.content.de}
             onChange={(e) => onChange(index, "content", "de", e.target.value)}
             placeholder="Write section explanation in German..."
-            className="mt-1.5 w-full resize-none rounded-xl border border-[#DCE2DE] bg-white p-3 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1.5 w-full resize-none rounded-xl border border-[#D0D9EA] bg-white p-3 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -141,7 +141,7 @@ export default function BlogSectionFormCard({
             value={section.content.ar}
             onChange={(e) => onChange(index, "content", "ar", e.target.value)}
             placeholder="اكتب تفاصيل هذا القسم باللغة العربية..."
-            className="mt-1.5 w-full resize-none rounded-xl border border-[#DCE2DE] bg-white p-3 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1.5 w-full resize-none rounded-xl border border-[#D0D9EA] bg-white p-3 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 
 export default function StandaloneHeroSection() {
@@ -10,11 +10,11 @@ export default function StandaloneHeroSection() {
         className="mb-4 flex items-center gap-2 text-xs sm:text-sm font-medium text-[#6B7570]"
         style={{ fontFamily: "var(--font-inter)" }}
       >
-        <Link href="/" className="transition-colors hover:text-[#145C4B]">
+        <Link href="/" className="transition-colors hover:text-[#2B5FA6]">
           Home
         </Link>
         <span className="text-[#6B7570]/60">/</span>
-        <span className="font-semibold text-[#145C4B]">Standalone units</span>
+        <span className="font-semibold text-[#2B5FA6]">Standalone units</span>
       </nav>
 
       {/* Hero Banner Card */}
@@ -36,7 +36,7 @@ export default function StandaloneHeroSection() {
           className="absolute inset-0 z-10"
           style={{
             background:
-              "linear-gradient(180deg, rgba(15, 71, 58, 0) 21.63%, #0F473A 94.71%)",
+              "linear-gradient(180deg, rgba(27, 58, 107, 0) 21.63%, #1B3A6B 94.71%)",
           }}
         />
 
@@ -44,7 +44,7 @@ export default function StandaloneHeroSection() {
         <div className="relative z-20 max-w-3xl p-6 sm:p-12 lg:p-16">
           {/* Badge */}
           <span
-            className="inline-block rounded-full bg-white px-3.5 py-1 text-[11px] font-bold tracking-wider text-[#145C4B] shadow-sm uppercase"
+            className="inline-block rounded-full bg-white px-3.5 py-1 text-[11px] font-bold tracking-wider text-[#2B5FA6] shadow-sm uppercase"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             Verified Premium Units

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FiChevronRight, FiInbox } from "react-icons/fi";
 import { RentalItem } from "@/models/rental";
@@ -47,17 +47,17 @@ export default function RentalUnitsGrid({
           {[1, 2, 3, 4, 5, 6].map((n) => (
             <div
               key={n}
-              className="overflow-hidden rounded-[20px] border border-[#E1E7E3] bg-white p-4"
+              className="overflow-hidden rounded-[20px] border border-[#D9E2EE] bg-white p-4"
             >
-              <div className="h-48 w-full animate-pulse rounded-[16px] bg-[#E8F1EC]" />
-              <div className="mt-4 h-5 w-3/4 animate-pulse rounded bg-[#E1E7E3]" />
-              <div className="mt-2 h-4 w-1/2 animate-pulse rounded bg-[#F3F5F3]" />
-              <div className="mt-4 h-9 w-full animate-pulse rounded-[10px] bg-[#F3F5F3]" />
+              <div className="h-48 w-full animate-pulse rounded-[16px] bg-[#E5ECF6]" />
+              <div className="mt-4 h-5 w-3/4 animate-pulse rounded bg-[#D9E2EE]" />
+              <div className="mt-2 h-4 w-1/2 animate-pulse rounded bg-[#F0F3FA]" />
+              <div className="mt-4 h-9 w-full animate-pulse rounded-[10px] bg-[#F0F3FA]" />
             </div>
           ))}
         </div>
       ) : displayUnits.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-[24px] border border-[#E1E7E3] bg-white px-6 py-16 text-center">
+        <div className="flex flex-col items-center justify-center rounded-[24px] border border-[#D9E2EE] bg-white px-6 py-16 text-center">
           <FiInbox className="h-10 w-10 text-[#9CA3AF]" />
           <h3
             className="mt-3 text-lg font-bold text-[#202326]"
@@ -74,7 +74,7 @@ export default function RentalUnitsGrid({
           <button
             type="button"
             onClick={onResetFilters}
-            className="mt-5 rounded-full bg-[#0F473A] px-6 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#145C4B]"
+            className="mt-5 rounded-full bg-[#1B3A6B] px-6 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             Reset Filters
@@ -98,8 +98,8 @@ export default function RentalUnitsGrid({
               onClick={() => onPageChange(p)}
               className={`flex h-9 w-9 items-center justify-center rounded-[10px] text-xs font-semibold transition-all ${
                 currentPage === p
-                  ? "bg-[#0F473A] text-white shadow-xs"
-                  : "border border-[#E1E7E3] bg-white text-[#202326] hover:bg-[#FAF8F5]"
+                  ? "bg-[#1B3A6B] text-white shadow-xs"
+                  : "border border-[#D9E2EE] bg-white text-[#202326] hover:bg-[#F9F7F4]"
               }`}
               style={{ fontFamily: "var(--font-inter)" }}
             >
@@ -111,7 +111,7 @@ export default function RentalUnitsGrid({
             <button
               type="button"
               onClick={() => onPageChange(currentPage + 1)}
-              className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-[#E1E7E3] bg-white text-[#202326] transition-all hover:bg-[#FAF8F5]"
+              className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-[#D9E2EE] bg-white text-[#202326] transition-all hover:bg-[#F9F7F4]"
               aria-label="Next page"
             >
               <FiChevronRight className="h-4 w-4" />

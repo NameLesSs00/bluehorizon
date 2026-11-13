@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -64,9 +64,9 @@ export default function BlogImagesDrawer({
     >
       <div className="space-y-6">
         {/* Main Cover Image */}
-        <div className="rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-5 space-y-3">
+        <div className="rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-5 space-y-3">
           <div className="flex items-center justify-between">
-            <h4 className="text-[13px] font-bold uppercase tracking-wider text-[#145C4B]">
+            <h4 className="text-[13px] font-bold uppercase tracking-wider text-[#2B5FA6]">
               Blog Cover Image
             </h4>
             {blog.imageUrl && (
@@ -83,7 +83,7 @@ export default function BlogImagesDrawer({
           </div>
 
           {blog.imageUrl ? (
-            <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-[#DCE2DE] bg-neutral-100">
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-[#D0D9EA] bg-neutral-100">
               <Image
                 src={getFullImageUrl(blog.imageUrl)}
                 alt={blog.title}
@@ -92,7 +92,7 @@ export default function BlogImagesDrawer({
               />
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-[#DCE2DE] bg-white p-6 text-center">
+            <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-[#D0D9EA] bg-white p-6 text-center">
               <FiUploadCloud className="h-8 w-8 text-[#65706B]" />
               <p className="mt-1 text-[13px] text-[#65706B]">
                 No cover image uploaded yet.
@@ -109,7 +109,7 @@ export default function BlogImagesDrawer({
               accept="image/*"
               disabled={uploadCoverMutation.isPending}
               onChange={handleCoverFileChange}
-              className="mt-1.5 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-lg file:border-0 file:bg-[#0F473A] file:px-3 file:py-1.5 file:text-[12px] file:font-semibold file:text-white hover:file:bg-[#145C4B]"
+              className="mt-1.5 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-lg file:border-0 file:bg-[#1B3A6B] file:px-3 file:py-1.5 file:text-[12px] file:font-semibold file:text-white hover:file:bg-[#2B5FA6]"
             />
           </div>
         </div>
@@ -123,11 +123,11 @@ export default function BlogImagesDrawer({
           {blog.sections.map((sec) => (
             <div
               key={sec.id}
-              className="rounded-xl border border-[#E6EAE7] bg-white p-4 space-y-3"
+              className="rounded-xl border border-[#E2E8F3] bg-white p-4 space-y-3"
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="text-[12px] font-bold text-[#145C4B]">
+                  <span className="text-[12px] font-bold text-[#2B5FA6]">
                     Section #{sec.sectionNumber}
                   </span>
                   <p className="text-[13px] font-medium text-[#202326]">
@@ -154,7 +154,7 @@ export default function BlogImagesDrawer({
               </div>
 
               {sec.imageUrl && (
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-[#DCE2DE]">
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-[#D0D9EA]">
                   <Image
                     src={getFullImageUrl(sec.imageUrl)}
                     alt={sec.tittle}
@@ -175,7 +175,7 @@ export default function BlogImagesDrawer({
                   accept="image/*"
                   disabled={uploadSectionMutation.isPending}
                   onChange={(e) => handleSectionFileChange(sec.id, e)}
-                  className="mt-1 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-md file:border-0 file:bg-[#145C4B] file:px-2.5 file:py-1 file:text-[11px] file:text-white"
+                  className="mt-1 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-md file:border-0 file:bg-[#2B5FA6] file:px-2.5 file:py-1 file:text-[11px] file:text-white"
                 />
               </div>
             </div>

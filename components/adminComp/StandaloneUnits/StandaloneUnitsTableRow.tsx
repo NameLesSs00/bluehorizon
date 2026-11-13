@@ -60,11 +60,11 @@ export default function StandaloneUnitsTableRow({
       : "$";
 
   return (
-    <tr className="transition-colors hover:bg-[#F3F5F3]/50">
+    <tr className="transition-colors hover:bg-[#F0F3FA]/50">
       {/* Property Details */}
       <td className="px-6 py-4">
         <div className="flex items-center gap-3.5">
-          <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-xl border border-[#DCE2DE] bg-neutral-100">
+          <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-xl border border-[#D0D9EA] bg-neutral-100">
             {primaryImage ? (
               <Image
                 src={getFullStandaloneUnitMediaUrl(primaryImage)}
@@ -73,7 +73,7 @@ export default function StandaloneUnitsTableRow({
                 className="object-cover"
               />
             ) : (
-              <div className="flex h-full w-full items-center justify-center bg-[#0F473A]/10 text-[#0F473A]">
+              <div className="flex h-full w-full items-center justify-center bg-[#1B3A6B]/10 text-[#1B3A6B]">
                 <LuBuilding className="h-6 w-6" />
               </div>
             )}
@@ -93,7 +93,7 @@ export default function StandaloneUnitsTableRow({
             </div>
 
             <div className="mt-1 flex items-center gap-1.5 text-[12px] text-[#65706B]">
-              <FiMapPin className="h-3.5 w-3.5 text-[#145C4B]" />
+              <FiMapPin className="h-3.5 w-3.5 text-[#2B5FA6]" />
               <span>
                 {[unit.city, unit.district].filter(Boolean).join(", ") ||
                   "Hurghada"}
@@ -106,7 +106,7 @@ export default function StandaloneUnitsTableRow({
       {/* Type & Specs */}
       <td className="px-6 py-4">
         <div className="space-y-1">
-          <span className="inline-block rounded-md border border-[#E1E7E3] bg-[#FAF8F5] px-2 py-0.5 text-[11px] font-semibold text-[#145C4B]">
+          <span className="inline-block rounded-md border border-[#D9E2EE] bg-[#F9F7F4] px-2 py-0.5 text-[11px] font-semibold text-[#2B5FA6]">
             {unit.propertyType || "Villa"}
           </span>
           <p className="text-[12px] text-[#65706B]">
@@ -117,7 +117,7 @@ export default function StandaloneUnitsTableRow({
 
       {/* Price */}
       <td className="px-6 py-4">
-        <p className="text-[14px] font-bold text-[#0F473A]">
+        <p className="text-[14px] font-bold text-[#1B3A6B]">
           {currencySymbol}
           {displayPrice.toLocaleString()}
         </p>
@@ -140,7 +140,7 @@ export default function StandaloneUnitsTableRow({
             }
             className={`inline-flex items-center gap-1 rounded-md border px-2.5 py-1 text-[11px] font-semibold transition-all ${
               unit.isActive
-                ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                ? "border-blue-200 bg-blue-50 text-blue-800"
                 : "border-neutral-200 bg-neutral-100 text-neutral-600"
             }`}
           >
@@ -187,7 +187,7 @@ export default function StandaloneUnitsTableRow({
             <button
               type="button"
               onClick={() => setConfirmDelete(false)}
-              className="rounded-lg border border-[#DCE2DE] px-2 py-1 text-[11px] font-medium text-[#65706B] hover:bg-[#F3F5F3]"
+              className="rounded-lg border border-[#D0D9EA] px-2 py-1 text-[11px] font-medium text-[#65706B] hover:bg-[#F0F3FA]"
             >
               Cancel
             </button>
@@ -197,7 +197,7 @@ export default function StandaloneUnitsTableRow({
             <button
               type="button"
               onClick={() => onManageImages(unit)}
-              className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#145C4B] hover:bg-[#FAF8F5]"
+              className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#2B5FA6] hover:bg-[#F9F7F4]"
             >
               <FiImage className="h-3.5 w-3.5" />
               <span>Images ({imageCount})</span>
@@ -205,7 +205,7 @@ export default function StandaloneUnitsTableRow({
             <button
               type="button"
               onClick={() => onEdit(unit)}
-              className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#F3F5F3]"
+              className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#F0F3FA]"
             >
               <FiEdit2 className="h-3.5 w-3.5" />
               <span>Edit</span>

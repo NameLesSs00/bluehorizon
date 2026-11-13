@@ -1,4 +1,4 @@
-import { StandaloneUnitItem } from "@/models/standaloneUnit";
+﻿import { StandaloneUnitItem } from "@/models/standaloneUnit";
 
 interface StandaloneFacilitiesSectionProps {
   unit: StandaloneUnitItem;
@@ -16,7 +16,7 @@ export default function StandaloneFacilitiesSection({
   }
 
   return (
-    <div className="rounded-[20px] border border-[#E1E7E3] bg-white p-6 sm:p-8 shadow-sm">
+    <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-8 shadow-sm">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -35,7 +35,7 @@ export default function StandaloneFacilitiesSection({
         </div>
 
         <span
-          className="rounded-full bg-[#E8F1EC] px-3.5 py-1 text-xs font-semibold text-[#145C4B]"
+          className="rounded-full bg-[#E5ECF6] px-3.5 py-1 text-xs font-semibold text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           {count} Included
@@ -47,10 +47,10 @@ export default function StandaloneFacilitiesSection({
         {services.map((service) => (
           <div
             key={service.id}
-            className="flex flex-col items-center justify-center rounded-[16px] border border-[#E1E7E3] bg-[#F3F5F3] p-4 text-center transition-colors hover:bg-white hover:border-[#145C4B]/40"
+            className="flex flex-col items-center justify-center rounded-[16px] border border-[#D9E2EE] bg-[#F0F3FA] p-4 text-center transition-colors hover:bg-white hover:border-[#2B5FA6]/40"
           >
             {/* Facility Icon */}
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#145C4B] shadow-xs">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#2B5FA6] shadow-xs">
               <svg
                 width="18"
                 height="18"

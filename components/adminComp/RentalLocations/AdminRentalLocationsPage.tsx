@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
@@ -53,7 +53,7 @@ export default function AdminRentalLocationsPage() {
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#145C4B]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]">
               RENTAL DESTINATIONS &amp; AREAS
             </p>
             <h1 className="mt-1 text-[28px] font-semibold text-[#202326]">
@@ -67,7 +67,7 @@ export default function AdminRentalLocationsPage() {
 
           <div className="flex items-center gap-3">
             {locationsData?.totalCount !== undefined && (
-              <span className="inline-flex items-center rounded-full bg-[#FAF8F5] border border-[#E6EAE7] px-3 py-1.5 text-[12px] font-medium text-[#202326]">
+              <span className="inline-flex items-center rounded-full bg-[#F9F7F4] border border-[#E2E8F3] px-3 py-1.5 text-[12px] font-medium text-[#202326]">
                 {locationsData.totalCount} Location
                 {locationsData.totalCount !== 1 ? "s" : ""}
               </span>
@@ -76,7 +76,7 @@ export default function AdminRentalLocationsPage() {
             <button
               type="button"
               onClick={handleOpenCreate}
-              className="inline-flex items-center gap-2 rounded-xl bg-[#0F473A] px-4 py-2.5 text-[13px] font-semibold text-white shadow-sm transition-colors hover:bg-[#145C4B]"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#1B3A6B] px-4 py-2.5 text-[13px] font-semibold text-white shadow-sm transition-colors hover:bg-[#2B5FA6]"
             >
               <FiPlus className="h-4 w-4" />
               <span>New Rental Location</span>

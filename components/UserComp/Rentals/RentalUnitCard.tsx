@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -62,9 +62,9 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
   const locationName = unit.rentalLocation?.name || "Hurghada, Red Sea";
 
   return (
-    <div className="group flex flex-col overflow-hidden rounded-[20px] border border-[#E1E7E3] bg-white transition-all duration-300 hover:shadow-xl hover:border-[#0F473A]/30">
+    <div className="group flex flex-col overflow-hidden rounded-[20px] border border-[#D9E2EE] bg-white transition-all duration-300 hover:shadow-xl hover:border-[#1B3A6B]/30">
       {/* Image Container with Category Badge */}
-      <div className="relative h-[210px] w-full overflow-hidden bg-[#FAF8F5]">
+      <div className="relative h-[210px] w-full overflow-hidden bg-[#F9F7F4]">
         <Image
           src={displayImage}
           alt={unit.name}
@@ -75,7 +75,7 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
         />
 
         {/* Category Badge */}
-        <div className="absolute top-3.5 left-3.5 z-10 rounded-full bg-white/95 px-3 py-1 text-[11px] font-semibold text-[#0F473A] shadow-xs backdrop-blur-xs">
+        <div className="absolute top-3.5 left-3.5 z-10 rounded-full bg-white/95 px-3 py-1 text-[11px] font-semibold text-[#1B3A6B] shadow-xs backdrop-blur-xs">
           <span style={{ fontFamily: "var(--font-inter)" }}>{categoryBadge}</span>
         </div>
       </div>
@@ -85,7 +85,7 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
         <div>
           {/* Title */}
           <h3
-            className="line-clamp-1 text-[17px] font-bold text-[#202326] transition-colors group-hover:text-[#0F473A]"
+            className="line-clamp-1 text-[17px] font-bold text-[#202326] transition-colors group-hover:text-[#1B3A6B]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
             {unit.name}
@@ -101,21 +101,21 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
 
           {/* Specs Row */}
           <div
-            className="mt-4 flex items-center gap-2.5 text-[11px] text-[#65706B] border-y border-[#F3F5F3] py-2.5"
+            className="mt-4 flex items-center gap-2.5 text-[11px] text-[#65706B] border-y border-[#F0F3FA] py-2.5"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <div className="flex items-center gap-1">
-              <TbRulerMeasure className="h-3.5 w-3.5 text-[#0F473A]" />
+              <TbRulerMeasure className="h-3.5 w-3.5 text-[#1B3A6B]" />
               <span>{unit.size || 125} m²</span>
             </div>
             <span>•</span>
             <div className="flex items-center gap-1">
-              <TbBed className="h-3.5 w-3.5 text-[#0F473A]" />
+              <TbBed className="h-3.5 w-3.5 text-[#1B3A6B]" />
               <span>{unit.bedroomNo || 2} Rooms</span>
             </div>
             <span>•</span>
             <div className="flex items-center gap-1">
-              <TbBath className="h-3.5 w-3.5 text-[#0F473A]" />
+              <TbBath className="h-3.5 w-3.5 text-[#1B3A6B]" />
               <span>{unit.bathroomNo || 2} Baths</span>
             </div>
           </div>
@@ -133,7 +133,7 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
               className="flex items-center gap-1 text-[11px] text-[#65706B]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              <FiMapPin className="h-3 w-3 text-[#0F473A]" />
+              <FiMapPin className="h-3 w-3 text-[#1B3A6B]" />
               <span className="line-clamp-1 max-w-[110px]">{locationName}</span>
             </div>
           </div>
@@ -143,7 +143,7 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
         <div className="mt-4 pt-1">
           <Link
             href={`/rent/${unit.id}`}
-            className="inline-flex w-full items-center justify-center gap-1.5 rounded-[10px] bg-[#0F473A] py-2.5 text-xs font-semibold text-white shadow-xs transition-colors hover:bg-[#145C4B]"
+            className="inline-flex w-full items-center justify-center gap-1.5 rounded-[10px] bg-[#1B3A6B] py-2.5 text-xs font-semibold text-white shadow-xs transition-colors hover:bg-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <span>View Details</span>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +12,7 @@ export default function LocationsHeroSection() {
         className="mb-4 flex items-center gap-2 text-[13px] text-[#6B7570]"
         style={{ fontFamily: "var(--font-inter)" }}
       >
-        <Link href="/" className="transition-colors hover:text-[#145C4B]">
+        <Link href="/" className="transition-colors hover:text-[#2B5FA6]">
           Home
         </Link>
         <span className="text-[#6B7570]/60">/</span>
@@ -20,7 +20,7 @@ export default function LocationsHeroSection() {
       </nav>
 
       {/* Hero Banner Card */}
-      <div className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] min-h-[440px] sm:min-h-[500px] lg:min-h-[540px] flex items-end bg-[#0F473A] shadow-xl">
+      <div className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] min-h-[440px] sm:min-h-[500px] lg:min-h-[540px] flex items-end bg-[#1B3A6B] shadow-xl">
         {/* Background Photo */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -37,7 +37,7 @@ export default function LocationsHeroSection() {
         <div
           className="absolute inset-0 z-10"
           style={{
-            background: "linear-gradient(180deg, rgba(15, 71, 58, 0) 21.63%, #0F473A 94.71%)"
+            background: "linear-gradient(180deg, rgba(27, 58, 107, 0) 21.63%, #1B3A6B 94.71%)"
           }}
         />
 
@@ -46,7 +46,7 @@ export default function LocationsHeroSection() {
           <div className="max-w-3xl">
             {/* Tag Badge */}
             <span
-              className="inline-block rounded-full bg-white px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-[#145C4B] shadow-sm"
+              className="inline-block rounded-full bg-white px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-[#2B5FA6] shadow-sm"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               PREMIER DESTINATIONS

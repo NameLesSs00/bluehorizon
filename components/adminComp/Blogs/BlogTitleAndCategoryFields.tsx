@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FiCalendar, FiTag } from "react-icons/fi";
 import { LocalizedText } from "@/models/faq";
@@ -41,8 +41,8 @@ export default function BlogTitleAndCategoryFields({
   return (
     <div className="space-y-5">
       {/* Category & Date Card */}
-      <div className="rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-5 space-y-4">
-        <h4 className="flex items-center gap-1.5 text-[13px] font-bold uppercase tracking-wider text-[#145C4B]">
+      <div className="rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-5 space-y-4">
+        <h4 className="flex items-center gap-1.5 text-[13px] font-bold uppercase tracking-wider text-[#2B5FA6]">
           <FiTag className="h-4 w-4" />
           <span>Category &amp; Publication Date</span>
         </h4>
@@ -60,8 +60,8 @@ export default function BlogTitleAndCategoryFields({
                 onClick={() => setBlogType({ en: cat.en, de: cat.de, ar: cat.ar })}
                 className={`rounded-lg border px-2.5 py-1 text-[11px] font-semibold transition-all ${
                   blogType.en === cat.en
-                    ? "border-[#145C4B] bg-[#145C4B] text-white"
-                    : "border-[#DCE2DE] bg-white text-[#202326] hover:bg-[#F3F5F3]"
+                    ? "border-[#2B5FA6] bg-[#2B5FA6] text-white"
+                    : "border-[#D0D9EA] bg-white text-[#202326] hover:bg-[#F0F3FA]"
                 }`}
               >
                 {cat.en}
@@ -83,7 +83,7 @@ export default function BlogTitleAndCategoryFields({
               value={blogType.en}
               onChange={(e) => setTitleCategory(e.target.value, "en")}
               placeholder="e.g. Buying Guide"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
 
@@ -97,7 +97,7 @@ export default function BlogTitleAndCategoryFields({
               value={blogType.de}
               onChange={(e) => setBlogType({ ...blogType, de: e.target.value })}
               placeholder="e.g. Kaufberater"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
 
@@ -112,7 +112,7 @@ export default function BlogTitleAndCategoryFields({
               value={blogType.ar}
               onChange={(e) => setBlogType({ ...blogType, ar: e.target.value })}
               placeholder="مثال: دليل الشراء"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function BlogTitleAndCategoryFields({
         {/* Publish Date */}
         <div>
           <label className="flex items-center gap-1.5 text-[12px] font-medium text-[#202326]">
-            <FiCalendar className="h-3.5 w-3.5 text-[#145C4B]" />
+            <FiCalendar className="h-3.5 w-3.5 text-[#2B5FA6]" />
             <span>Publish Date &amp; Time *</span>
           </label>
           <input
@@ -128,14 +128,14 @@ export default function BlogTitleAndCategoryFields({
             required
             value={publishDate}
             onChange={(e) => setPublishDate(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
       </div>
 
       {/* Blog Title Card */}
-      <div className="rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-5 space-y-4">
-        <h4 className="text-[13px] font-bold uppercase tracking-wider text-[#145C4B]">
+      <div className="rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-5 space-y-4">
+        <h4 className="text-[13px] font-bold uppercase tracking-wider text-[#2B5FA6]">
           Blog Title
         </h4>
 
@@ -150,7 +150,7 @@ export default function BlogTitleAndCategoryFields({
             value={title.en}
             onChange={(e) => setTitle({ ...title, en: e.target.value })}
             placeholder="e.g. Top 5 Tips for Buying Your First Property"
-            className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -165,7 +165,7 @@ export default function BlogTitleAndCategoryFields({
             value={title.de}
             onChange={(e) => setTitle({ ...title, de: e.target.value })}
             placeholder="e.g. Die 5 besten Tipps für den ersten Immobilienkauf"
-            className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -181,7 +181,7 @@ export default function BlogTitleAndCategoryFields({
             value={title.ar}
             onChange={(e) => setTitle({ ...title, ar: e.target.value })}
             placeholder="مثال: أهم ٥ نصائح لشراء عقارك الأول"
-            className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -193,7 +193,7 @@ export default function BlogTitleAndCategoryFields({
             type="file"
             accept="image/*"
             onChange={(e) => setCoverFile(e.target.files?.[0] || null)}
-            className="mt-1.5 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-lg file:border-0 file:bg-[#0F473A] file:px-3 file:py-1.5 file:text-[12px] file:font-semibold file:text-white hover:file:bg-[#145C4B]"
+            className="mt-1.5 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-lg file:border-0 file:bg-[#1B3A6B] file:px-3 file:py-1.5 file:text-[12px] file:font-semibold file:text-white hover:file:bg-[#2B5FA6]"
           />
         </div>
       </div>

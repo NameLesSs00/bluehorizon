@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { usePublicProjectLocationsQuery } from "@/features/projectLocations/useProjectLocationsQueries";
 import { useProjectTypesQuery } from "@/features/projectTypes/useProjectTypesQueries";
@@ -43,9 +43,9 @@ export default function ProjectsFilterSidebar({
   const projectTypes = typesData?.items || [];
 
   return (
-    <div className="rounded-[20px] border border-[#E1E7E3] bg-white p-6 shadow-xs">
+    <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-6 shadow-xs">
       {/* Filters Header */}
-      <div className="flex items-center justify-between border-b border-[#E1E7E3]/60 pb-4">
+      <div className="flex items-center justify-between border-b border-[#D9E2EE]/60 pb-4">
         <h2
           className="text-[18px] font-bold text-[#202326]"
           style={{ fontFamily: "var(--font-manrope)" }}
@@ -55,7 +55,7 @@ export default function ProjectsFilterSidebar({
         <button
           type="button"
           onClick={onReset}
-          className="text-[12px] font-semibold text-[#145C4B] transition-colors hover:text-[#0F473A]"
+          className="text-[12px] font-semibold text-[#2B5FA6] transition-colors hover:text-[#1B3A6B]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           Reset All
@@ -78,7 +78,7 @@ export default function ProjectsFilterSidebar({
             placeholder="Search by name..."
             value={filters.searchTerm}
             onChange={(e) => onChange({ searchTerm: e.target.value })}
-            className="w-full rounded-[12px] border border-transparent bg-[#F3F5F3] px-3.5 py-2.5 text-[13.5px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#145C4B]/40 focus:bg-white focus:outline-none"
+            className="w-full rounded-[12px] border border-transparent bg-[#F0F3FA] px-3.5 py-2.5 text-[13.5px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#2B5FA6]/40 focus:bg-white focus:outline-none"
             style={{ fontFamily: "var(--font-inter)" }}
           />
         </div>
@@ -97,7 +97,7 @@ export default function ProjectsFilterSidebar({
               id="filter-area"
               value={filters.locationId}
               onChange={(e) => onChange({ locationId: e.target.value })}
-              className="w-full appearance-none rounded-[12px] border border-transparent bg-[#F3F5F3] px-3.5 py-2.5 pr-8 text-[13.5px] text-[#202326] transition-all focus:border-[#145C4B]/40 focus:bg-white focus:outline-none"
+              className="w-full appearance-none rounded-[12px] border border-transparent bg-[#F0F3FA] px-3.5 py-2.5 pr-8 text-[13.5px] text-[#202326] transition-all focus:border-[#2B5FA6]/40 focus:bg-white focus:outline-none"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <option value="">Any Area</option>
@@ -135,7 +135,7 @@ export default function ProjectsFilterSidebar({
               id="filter-type"
               value={filters.projectTypeId}
               onChange={(e) => onChange({ projectTypeId: e.target.value })}
-              className="w-full appearance-none rounded-[12px] border border-transparent bg-[#F3F5F3] px-3.5 py-2.5 pr-8 text-[13.5px] text-[#202326] transition-all focus:border-[#145C4B]/40 focus:bg-white focus:outline-none"
+              className="w-full appearance-none rounded-[12px] border border-transparent bg-[#F0F3FA] px-3.5 py-2.5 pr-8 text-[13.5px] text-[#202326] transition-all focus:border-[#2B5FA6]/40 focus:bg-white focus:outline-none"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <option value="">Any Type</option>
@@ -173,7 +173,7 @@ export default function ProjectsFilterSidebar({
               id="filter-payment"
               value={filters.paymentType}
               onChange={(e) => onChange({ paymentType: e.target.value })}
-              className="w-full appearance-none rounded-[12px] border border-transparent bg-[#F3F5F3] px-3.5 py-2.5 pr-8 text-[13.5px] text-[#202326] transition-all focus:border-[#145C4B]/40 focus:bg-white focus:outline-none"
+              className="w-full appearance-none rounded-[12px] border border-transparent bg-[#F0F3FA] px-3.5 py-2.5 pr-8 text-[13.5px] text-[#202326] transition-all focus:border-[#2B5FA6]/40 focus:bg-white focus:outline-none"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <option value="">Any Type</option>
@@ -209,7 +209,7 @@ export default function ProjectsFilterSidebar({
             type="date"
             value={filters.deliveryFrom}
             onChange={(e) => onChange({ deliveryFrom: e.target.value })}
-            className="w-full rounded-[12px] border border-transparent bg-[#F3F5F3] px-3.5 py-2.5 text-[13.5px] text-[#202326] transition-all focus:border-[#145C4B]/40 focus:bg-white focus:outline-none"
+            className="w-full rounded-[12px] border border-transparent bg-[#F0F3FA] px-3.5 py-2.5 text-[13.5px] text-[#202326] transition-all focus:border-[#2B5FA6]/40 focus:bg-white focus:outline-none"
             style={{ fontFamily: "var(--font-inter)" }}
           />
         </div>
@@ -228,7 +228,7 @@ export default function ProjectsFilterSidebar({
             type="date"
             value={filters.deliveryTo}
             onChange={(e) => onChange({ deliveryTo: e.target.value })}
-            className="w-full rounded-[12px] border border-transparent bg-[#F3F5F3] px-3.5 py-2.5 text-[13.5px] text-[#202326] transition-all focus:border-[#145C4B]/40 focus:bg-white focus:outline-none"
+            className="w-full rounded-[12px] border border-transparent bg-[#F0F3FA] px-3.5 py-2.5 text-[13.5px] text-[#202326] transition-all focus:border-[#2B5FA6]/40 focus:bg-white focus:outline-none"
             style={{ fontFamily: "var(--font-inter)" }}
           />
         </div>
@@ -248,7 +248,7 @@ export default function ProjectsFilterSidebar({
             placeholder="EGP Min"
             value={filters.minPrice}
             onChange={(e) => onChange({ minPrice: e.target.value })}
-            className="w-full rounded-[12px] border border-transparent bg-[#F3F5F3] px-3.5 py-2.5 text-[13.5px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#145C4B]/40 focus:bg-white focus:outline-none"
+            className="w-full rounded-[12px] border border-transparent bg-[#F0F3FA] px-3.5 py-2.5 text-[13.5px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#2B5FA6]/40 focus:bg-white focus:outline-none"
             style={{ fontFamily: "var(--font-inter)" }}
           />
         </div>
@@ -268,7 +268,7 @@ export default function ProjectsFilterSidebar({
             placeholder="EGP Max"
             value={filters.maxPrice}
             onChange={(e) => onChange({ maxPrice: e.target.value })}
-            className="w-full rounded-[12px] border border-transparent bg-[#F3F5F3] px-3.5 py-2.5 text-[13.5px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#145C4B]/40 focus:bg-white focus:outline-none"
+            className="w-full rounded-[12px] border border-transparent bg-[#F0F3FA] px-3.5 py-2.5 text-[13.5px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#2B5FA6]/40 focus:bg-white focus:outline-none"
             style={{ fontFamily: "var(--font-inter)" }}
           />
         </div>
@@ -278,7 +278,7 @@ export default function ProjectsFilterSidebar({
           <button
             type="button"
             onClick={onApply}
-            className="w-full rounded-[12px] bg-[#145C4B] py-3 text-[14px] font-semibold text-white transition-all hover:bg-[#0F473A]"
+            className="w-full rounded-[12px] bg-[#2B5FA6] py-3 text-[14px] font-semibold text-white transition-all hover:bg-[#1B3A6B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             Apply Filters

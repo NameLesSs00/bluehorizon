@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
@@ -32,10 +32,10 @@ export default function RentalDetailsPage({ id }: RentalDetailsPageProps) {
       <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
         <Navbar />
         <main className="mx-auto w-full max-w-[1536px] flex-1 px-4 py-12 sm:px-6 lg:px-8">
-          <div className="h-6 w-48 animate-pulse rounded-[12px] bg-[#E1E7E3]" />
-          <div className="mt-4 h-10 w-96 animate-pulse rounded-[12px] bg-[#E1E7E3]" />
-          <div className="mt-6 h-[480px] animate-pulse rounded-[24px] bg-[#E8F1EC]" />
-          <div className="mt-8 h-24 animate-pulse rounded-[20px] bg-[#E8F1EC]" />
+          <div className="h-6 w-48 animate-pulse rounded-[12px] bg-[#D9E2EE]" />
+          <div className="mt-4 h-10 w-96 animate-pulse rounded-[12px] bg-[#D9E2EE]" />
+          <div className="mt-6 h-[480px] animate-pulse rounded-[24px] bg-[#E5ECF6]" />
+          <div className="mt-8 h-24 animate-pulse rounded-[20px] bg-[#E5ECF6]" />
         </main>
         <Footer />
       </div>

@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 
 export default function AreasHeroSection() {
@@ -21,7 +21,7 @@ export default function AreasHeroSection() {
         className="absolute inset-0 z-10"
         style={{
           background:
-            "linear-gradient(90deg, #145C4B 31.77%, rgba(20, 92, 75, 0.8) 46.15%, rgba(20, 92, 75, 0) 80.77%)",
+            "linear-gradient(90deg, #2B5FA6 31.77%, rgba(43, 95, 166, 0.8) 46.15%, rgba(43, 95, 166, 0) 80.77%)",
         }}
       />
 

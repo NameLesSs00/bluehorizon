@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { FiChevronRight } from "react-icons/fi";
 
 interface RentalBreadcrumbProps {
@@ -16,11 +16,11 @@ export default function RentalBreadcrumb({
       className="flex items-center gap-2 text-xs sm:text-sm font-medium text-[#65706B]"
       style={{ fontFamily: "var(--font-inter)" }}
     >
-      <Link href="/" className="transition-colors hover:text-[#0F473A]">
+      <Link href="/" className="transition-colors hover:text-[#1B3A6B]">
         Home
       </Link>
       <FiChevronRight className="h-3 w-3 text-[#9CA3AF]" />
-      <Link href="/rent" className="transition-colors hover:text-[#0F473A]">
+      <Link href="/rent" className="transition-colors hover:text-[#1B3A6B]">
         For Rent
       </Link>
       {locationName && (
@@ -30,7 +30,7 @@ export default function RentalBreadcrumb({
         </>
       )}
       <FiChevronRight className="h-3 w-3 text-[#9CA3AF]" />
-      <span className="font-semibold text-[#0F473A] line-clamp-1 max-w-xs sm:max-w-md">
+      <span className="font-semibold text-[#1B3A6B] line-clamp-1 max-w-xs sm:max-w-md">
         {unitName}
       </span>
     </nav>

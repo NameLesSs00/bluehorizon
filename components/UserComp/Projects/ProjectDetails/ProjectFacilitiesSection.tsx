@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { ProjectFacilityRef } from "@/models/project";
 
 interface ProjectFacilitiesSectionProps {
@@ -48,7 +48,7 @@ export default function ProjectFacilitiesSection({
 
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-14 sm:mt-16">
-      <div className="rounded-[24px] bg-[#F3F5F3] p-6 sm:p-8 lg:p-10 border border-[#E1E7E3]/60">
+      <div className="rounded-[24px] bg-[#F0F3FA] p-6 sm:p-8 lg:p-10 border border-[#D9E2EE]/60">
         {/* Header Row */}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
@@ -69,7 +69,7 @@ export default function ProjectFacilitiesSection({
           {hasFacilities && (
             <div className="self-start sm:self-auto shrink-0">
               <span
-                className="inline-flex items-center rounded-full border border-[#DCE2DE] bg-white px-4 py-1.5 text-xs font-semibold text-[#145C4B] shadow-xs"
+                className="inline-flex items-center rounded-full border border-[#D0D9EA] bg-white px-4 py-1.5 text-xs font-semibold text-[#2B5FA6] shadow-xs"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {countBadge}
@@ -80,7 +80,7 @@ export default function ProjectFacilitiesSection({
 
         {/* Facility Cards Grid or Empty State */}
         {!hasFacilities ? (
-          <div className="mt-8 flex h-28 w-full items-center justify-center rounded-[16px] border border-[#E1E7E3] bg-white p-6 text-center text-sm text-[#6B7570]">
+          <div className="mt-8 flex h-28 w-full items-center justify-center rounded-[16px] border border-[#D9E2EE] bg-white p-6 text-center text-sm text-[#6B7570]">
             No specific facilities listed for this development yet.
           </div>
         ) : (
@@ -88,7 +88,7 @@ export default function ProjectFacilitiesSection({
             {displayItems.map((facility) => (
               <div
                 key={facility.id}
-                className="flex flex-col items-center justify-center rounded-[16px] border border-[#E1E7E3] bg-white p-4 text-center transition-all duration-300 hover:border-[#145C4B]/50 hover:shadow-xs min-h-[110px]"
+                className="flex flex-col items-center justify-center rounded-[16px] border border-[#D9E2EE] bg-white p-4 text-center transition-all duration-300 hover:border-[#2B5FA6]/50 hover:shadow-xs min-h-[110px]"
               >
                 <div className="relative h-11 w-11 shrink-0">
                   <Image

@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 
 interface MetricItem {
   icon: string;
@@ -36,7 +36,7 @@ export default function AboutMetricsSection() {
         {METRICS.map((metric) => (
           <div
             key={metric.label}
-            className="flex flex-col items-center justify-center rounded-[22px] border border-[#E1E7E3] bg-white px-6 py-8 text-center transition-all duration-200 hover:border-[#145C4B]/40 hover:shadow-sm"
+            className="flex flex-col items-center justify-center rounded-[22px] border border-[#D9E2EE] bg-white px-6 py-8 text-center transition-all duration-200 hover:border-[#2B5FA6]/40 hover:shadow-sm"
           >
             <div className="relative h-11 w-11 shrink-0">
               <Image

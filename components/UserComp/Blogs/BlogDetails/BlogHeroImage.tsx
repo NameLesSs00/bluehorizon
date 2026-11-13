@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { useState } from "react";
@@ -21,7 +21,7 @@ export default function BlogHeroImage({
 
   return (
     <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-2">
-      <div className="relative h-[340px] sm:h-[440px] lg:h-[500px] w-full overflow-hidden rounded-[24px] sm:rounded-[28px] border border-[#E1E7E3] bg-[#F3F5F3] shadow-sm">
+      <div className="relative h-[340px] sm:h-[440px] lg:h-[500px] w-full overflow-hidden rounded-[24px] sm:rounded-[28px] border border-[#D9E2EE] bg-[#F0F3FA] shadow-sm">
         <Image
           src={resolvedSrc}
           alt={title || "Blog cover"}

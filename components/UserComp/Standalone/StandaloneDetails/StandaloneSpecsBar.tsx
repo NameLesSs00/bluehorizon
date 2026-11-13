@@ -1,4 +1,4 @@
-import { StandaloneUnitItem } from "@/models/standaloneUnit";
+﻿import { StandaloneUnitItem } from "@/models/standaloneUnit";
 
 interface StandaloneSpecsBarProps {
   unit: StandaloneUnitItem;
@@ -67,9 +67,9 @@ export default function StandaloneSpecsBar({ unit }: StandaloneSpecsBarProps) {
   }
 
   return (
-    <div className="mt-6 overflow-x-auto rounded-[20px] border border-[#E1E7E3] bg-white p-5 sm:p-6 shadow-sm">
+    <div className="mt-6 overflow-x-auto rounded-[20px] border border-[#D9E2EE] bg-white p-5 sm:p-6 shadow-sm">
       <div
-        className="grid min-w-[500px] divide-x divide-[#E1E7E3] text-center"
+        className="grid min-w-[500px] divide-x divide-[#D9E2EE] text-center"
         style={{
           gridTemplateColumns: `repeat(${specs.length}, minmax(0, 1fr))`,
         }}

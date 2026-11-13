@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -22,13 +22,13 @@ export default function AreaListCard({ area }: AreaListCardProps) {
   return (
     <Link
       href={`/areas/${area.id}`}
-      className="group block overflow-hidden rounded-[22px] border border-[#DCE4DF] bg-white transition-all duration-300 hover:bg-[#E8F1EC] hover:shadow-md cursor-pointer"
+      className="group block overflow-hidden rounded-[22px] border border-[#DCE4DF] bg-white transition-all duration-300 hover:bg-[#E5ECF6] hover:shadow-md cursor-pointer"
     >
       <div className="grid grid-cols-1 md:grid-cols-12 md:items-stretch">
         {/* Left Column: Image with 22px outer curvature */}
         <div className="relative min-h-[240px] sm:min-h-[280px] md:col-span-5 md:min-h-[320px] overflow-hidden rounded-[22px] md:rounded-r-none">
           {isFallback ? (
-            <div className="absolute inset-0 flex items-center justify-center p-8 bg-[#FAF8F5]">
+            <div className="absolute inset-0 flex items-center justify-center p-8 bg-[#F9F7F4]">
               <div className="relative h-28 w-44 transition-transform duration-500 group-hover:scale-105">
                 <Image
                   src="/default-fallback.png"
@@ -71,7 +71,7 @@ export default function AreaListCard({ area }: AreaListCardProps) {
 
           <div className="mt-8 flex justify-end">
             <span
-              className="inline-flex items-center gap-2 rounded-full bg-[#145C4B] px-6 py-2.5 text-[13px] font-medium text-white transition-all duration-200 group-hover:bg-[#0F473A] group-hover:gap-3"
+              className="inline-flex items-center gap-2 rounded-full bg-[#2B5FA6] px-6 py-2.5 text-[13px] font-medium text-white transition-all duration-200 group-hover:bg-[#1B3A6B] group-hover:gap-3"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span>View Area</span>

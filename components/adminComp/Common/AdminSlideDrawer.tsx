@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect } from "react";
 import { FiX } from "react-icons/fi";
@@ -51,12 +51,12 @@ export default function AdminSlideDrawer({
 
       {/* Slide Drawer on the Right */}
       <div
-        className={`relative z-10 flex h-full w-full ${maxWidthClass} flex-col bg-white shadow-2xl border-l border-[#E6EAE7] animate-in slide-in-from-right duration-200`}
+        className={`relative z-10 flex h-full w-full ${maxWidthClass} flex-col bg-white shadow-2xl border-l border-[#E2E8F3] animate-in slide-in-from-right duration-200`}
         role="dialog"
         aria-modal="true"
       >
         {/* Drawer Header */}
-        <div className="flex items-center justify-between border-b border-[#E6EAE7] px-6 py-5">
+        <div className="flex items-center justify-between border-b border-[#E2E8F3] px-6 py-5">
           <div>
             <h3
               className="text-[18px] font-semibold text-[#202326]"
@@ -77,7 +77,7 @@ export default function AdminSlideDrawer({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-2 text-[#65706B] transition-colors hover:bg-[#F3F5F3] hover:text-[#202326]"
+            className="rounded-lg p-2 text-[#65706B] transition-colors hover:bg-[#F0F3FA] hover:text-[#202326]"
             aria-label="Close panel"
           >
             <FiX className="h-5 w-5" />

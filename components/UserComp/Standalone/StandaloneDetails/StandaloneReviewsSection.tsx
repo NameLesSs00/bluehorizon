@@ -1,4 +1,4 @@
-import { StandaloneUnitItem } from "@/models/standaloneUnit";
+﻿import { StandaloneUnitItem } from "@/models/standaloneUnit";
 
 interface StandaloneReviewsSectionProps {
   unit: StandaloneUnitItem;
@@ -20,7 +20,7 @@ export default function StandaloneReviewsSection({
   ).toFixed(1);
 
   return (
-    <div className="rounded-[20px] border border-[#E1E7E3] bg-white p-6 sm:p-8 shadow-sm">
+    <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-8 shadow-sm">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -40,7 +40,7 @@ export default function StandaloneReviewsSection({
 
         <button
           type="button"
-          className="self-start sm:self-auto rounded-[12px] border border-[#145C4B] px-5 py-2 text-xs sm:text-sm font-semibold text-[#145C4B] transition-colors hover:bg-[#E8F1EC]"
+          className="self-start sm:self-auto rounded-[12px] border border-[#2B5FA6] px-5 py-2 text-xs sm:text-sm font-semibold text-[#2B5FA6] transition-colors hover:bg-[#E5ECF6]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           Write a Review
@@ -48,16 +48,16 @@ export default function StandaloneReviewsSection({
       </div>
 
       {/* Rating Summary Card */}
-      <div className="mt-6 flex flex-col sm:flex-row items-center gap-6 rounded-[16px] border border-[#E1E7E3] bg-[#F3F5F3] p-6">
+      <div className="mt-6 flex flex-col sm:flex-row items-center gap-6 rounded-[16px] border border-[#D9E2EE] bg-[#F0F3FA] p-6">
         {/* Big Number */}
-        <div className="flex flex-col items-center sm:border-r sm:border-[#E1E7E3] sm:pr-8">
+        <div className="flex flex-col items-center sm:border-r sm:border-[#D9E2EE] sm:pr-8">
           <span
             className="text-4xl sm:text-5xl font-extrabold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
             {averageRating}
           </span>
-          <div className="mt-2 flex items-center gap-1 text-[#145C4B]">
+          <div className="mt-2 flex items-center gap-1 text-[#2B5FA6]">
             {Array.from({ length: 5 }).map((_, i) => (
               <svg
                 key={i}
@@ -89,9 +89,9 @@ export default function StandaloneReviewsSection({
             return (
               <div key={stars} className="flex items-center gap-3 text-xs text-[#6B7570]">
                 <span className="w-3 text-right">{stars}</span>
-                <div className="h-2 flex-1 rounded-full bg-[#E1E7E3] overflow-hidden">
+                <div className="h-2 flex-1 rounded-full bg-[#D9E2EE] overflow-hidden">
                   <div
-                    className="h-full bg-[#145C4B] rounded-full"
+                    className="h-full bg-[#2B5FA6] rounded-full"
                     style={{ width: `${percentage}%` }}
                   />
                 </div>
@@ -116,10 +116,10 @@ export default function StandaloneReviewsSection({
           return (
             <div
               key={rev.id}
-              className="rounded-[16px] border border-[#E1E7E3] bg-[#F3F5F3] p-4 sm:p-5"
+              className="rounded-[16px] border border-[#D9E2EE] bg-[#F0F3FA] p-4 sm:p-5"
             >
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#145C4B] text-xs font-bold text-white">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#2B5FA6] text-xs font-bold text-white">
                   {initials}
                 </div>
                 <div>

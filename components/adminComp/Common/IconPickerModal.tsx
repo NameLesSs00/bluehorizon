@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import { FiSearch, FiX } from "react-icons/fi";
@@ -90,11 +90,11 @@ export default function IconPickerModal({
       onClick={onClose}
     >
       <div
-        className="flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-[#DCE2DE] bg-white shadow-2xl"
+        className="flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-[#D0D9EA] bg-white shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="flex items-center justify-between border-b border-[#E6EAE7] px-6 py-4.5 bg-[#FAF8F5]">
+        <div className="flex items-center justify-between border-b border-[#E2E8F3] px-6 py-4.5 bg-[#F9F7F4]">
           <div>
             <h3
               className="text-[18px] font-bold text-[#202326]"
@@ -109,23 +109,23 @@ export default function IconPickerModal({
           <button
             type="button"
             onClick={onClose}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#DCE2DE] bg-white text-[#65706B] transition-colors hover:bg-neutral-100 hover:text-[#202326]"
+            className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#D0D9EA] bg-white text-[#65706B] transition-colors hover:bg-neutral-100 hover:text-[#202326]"
           >
             <FiX className="h-5 w-5" />
           </button>
         </div>
 
         {/* Search & Category Filter Toolbar */}
-        <div className="border-b border-[#E6EAE7] p-5 space-y-3 bg-white">
+        <div className="border-b border-[#E2E8F3] p-5 space-y-3 bg-white">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             {/* Category Filter Pills */}
-            <div className="inline-flex rounded-xl border border-[#DCE2DE] bg-[#FAF8F5] p-1">
+            <div className="inline-flex rounded-xl border border-[#D0D9EA] bg-[#F9F7F4] p-1">
               <button
                 type="button"
                 onClick={() => setActiveCategory("all")}
                 className={`rounded-lg px-3.5 py-1.5 text-[12px] font-semibold transition-all ${
                   activeCategory === "all"
-                    ? "bg-[#145C4B] text-white shadow-xs"
+                    ? "bg-[#2B5FA6] text-white shadow-xs"
                     : "text-[#65706B] hover:text-[#202326]"
                 }`}
               >
@@ -136,7 +136,7 @@ export default function IconPickerModal({
                 onClick={() => setActiveCategory("projectType")}
                 className={`rounded-lg px-3.5 py-1.5 text-[12px] font-semibold transition-all ${
                   activeCategory === "projectType"
-                    ? "bg-[#145C4B] text-white shadow-xs"
+                    ? "bg-[#2B5FA6] text-white shadow-xs"
                     : "text-[#65706B] hover:text-[#202326]"
                 }`}
               >
@@ -147,7 +147,7 @@ export default function IconPickerModal({
                 onClick={() => setActiveCategory("facility")}
                 className={`rounded-lg px-3 py-1.5 text-[12px] font-semibold transition-all ${
                   activeCategory === "facility"
-                    ? "bg-[#145C4B] text-white shadow-xs"
+                    ? "bg-[#2B5FA6] text-white shadow-xs"
                     : "text-[#65706B] hover:text-[#202326]"
                 }`}
               >
@@ -158,7 +158,7 @@ export default function IconPickerModal({
                 onClick={() => setActiveCategory("service")}
                 className={`rounded-lg px-3 py-1.5 text-[12px] font-semibold transition-all ${
                   activeCategory === "service"
-                    ? "bg-[#145C4B] text-white shadow-xs"
+                    ? "bg-[#2B5FA6] text-white shadow-xs"
                     : "text-[#65706B] hover:text-[#202326]"
                 }`}
               >
@@ -169,7 +169,7 @@ export default function IconPickerModal({
                 onClick={() => setActiveCategory("rentalAmenity")}
                 className={`rounded-lg px-3 py-1.5 text-[12px] font-semibold transition-all ${
                   activeCategory === "rentalAmenity"
-                    ? "bg-[#145C4B] text-white shadow-xs"
+                    ? "bg-[#2B5FA6] text-white shadow-xs"
                     : "text-[#65706B] hover:text-[#202326]"
                 }`}
               >
@@ -185,7 +185,7 @@ export default function IconPickerModal({
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search by villa, pool, gym, etc..."
-                className="w-full rounded-xl border border-[#DCE2DE] bg-white py-2 pl-9 pr-8 text-[13px] text-[#202326] outline-none transition-all placeholder:text-[#65706B] focus:border-[#145C4B] focus:ring-2 focus:ring-[#145C4B]/15"
+                className="w-full rounded-xl border border-[#D0D9EA] bg-white py-2 pl-9 pr-8 text-[13px] text-[#202326] outline-none transition-all placeholder:text-[#65706B] focus:border-[#2B5FA6] focus:ring-2 focus:ring-[#2B5FA6]/15"
               />
               {searchTerm && (
                 <button
@@ -227,9 +227,9 @@ export default function IconPickerModal({
         </div>
 
         {/* Modal Footer with Active Selection & Actions */}
-        <div className="flex flex-col gap-3 border-t border-[#E6EAE7] bg-[#FAF8F5] px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 border-t border-[#E2E8F3] bg-[#F9F7F4] px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#DCE2DE] bg-white text-[#145C4B]">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#D0D9EA] bg-white text-[#2B5FA6]">
               {ActiveIconPreview ? (
                 <ActiveIconPreview className="h-6 w-6" />
               ) : (
@@ -237,7 +237,7 @@ export default function IconPickerModal({
               )}
             </div>
             <div className="min-w-0">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-[#145C4B]">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-[#2B5FA6]">
                 Selected Icon
               </p>
               <p className="truncate text-[13px] font-semibold text-[#202326]">
@@ -250,7 +250,7 @@ export default function IconPickerModal({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-[#DCE2DE] bg-white px-4 py-2 text-[13px] font-medium text-[#202326] transition-colors hover:bg-neutral-50"
+              className="rounded-xl border border-[#D0D9EA] bg-white px-4 py-2 text-[13px] font-medium text-[#202326] transition-colors hover:bg-neutral-50"
             >
               Cancel
             </button>
@@ -258,7 +258,7 @@ export default function IconPickerModal({
               type="button"
               onClick={handleApply}
               disabled={!tempSelection}
-              className="rounded-xl bg-[#145C4B] px-5 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-[#0F473A] disabled:opacity-50"
+              className="rounded-xl bg-[#2B5FA6] px-5 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-[#1B3A6B] disabled:opacity-50"
             >
               Apply Icon
             </button>

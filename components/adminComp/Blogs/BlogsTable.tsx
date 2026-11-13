@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -47,9 +47,9 @@ export default function BlogsTable({
 
   if (isLoading) {
     return (
-      <div className="flex h-72 w-full items-center justify-center rounded-2xl border border-[#E6EAE7] bg-white">
+      <div className="flex h-72 w-full items-center justify-center rounded-2xl border border-[#E2E8F3] bg-white">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#0F473A] border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#1B3A6B] border-t-transparent" />
           <p className="text-[13px] text-[#65706B]">Loading articles and blogs...</p>
         </div>
       </div>
@@ -57,11 +57,11 @@ export default function BlogsTable({
   }
 
   return (
-    <div className="w-full overflow-hidden rounded-2xl border border-[#E6EAE7] bg-white shadow-sm">
+    <div className="w-full overflow-hidden rounded-2xl border border-[#E2E8F3] bg-white shadow-sm">
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-[#E6EAE7] bg-[#FAF8F5]">
+            <tr className="border-b border-[#E2E8F3] bg-[#F9F7F4]">
               <th className="w-24 px-6 py-4 text-[12px] font-bold uppercase tracking-[0.08em] text-[#65706B]">
                 Cover
               </th>
@@ -79,7 +79,7 @@ export default function BlogsTable({
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#E6EAE7]">
+          <tbody className="divide-y divide-[#E2E8F3]">
             {blogs.length === 0 ? (
               <tr>
                 <td
@@ -102,10 +102,10 @@ export default function BlogsTable({
                 return (
                   <tr
                     key={blog.id}
-                    className="transition-colors hover:bg-[#F3F5F3]/50"
+                    className="transition-colors hover:bg-[#F0F3FA]/50"
                   >
                     <td className="px-6 py-4">
-                      <div className="relative h-12 w-16 overflow-hidden rounded-lg border border-[#DCE2DE] bg-neutral-100">
+                      <div className="relative h-12 w-16 overflow-hidden rounded-lg border border-[#D0D9EA] bg-neutral-100">
                         {blog.imageUrl ? (
                           <Image
                             src={getFullImageUrl(blog.imageUrl)}
@@ -132,7 +132,7 @@ export default function BlogsTable({
 
                     <td className="px-6 py-4">
                       <div className="space-y-1">
-                        <span className="inline-block rounded-md border border-[#E1E7E3] bg-[#FAF8F5] px-2 py-0.5 text-[11px] font-semibold text-[#145C4B]">
+                        <span className="inline-block rounded-md border border-[#D9E2EE] bg-[#F9F7F4] px-2 py-0.5 text-[11px] font-semibold text-[#2B5FA6]">
                           {blog.blogType || "General"}
                         </span>
                         <p className="text-[11px] text-[#65706B]">{formattedDate}</p>
@@ -140,7 +140,7 @@ export default function BlogsTable({
                     </td>
 
                     <td className="px-6 py-4">
-                      <span className="rounded-md bg-[#FAF8F5] border border-[#E6EAE7] px-2.5 py-1 text-[12px] font-medium text-[#202326]">
+                      <span className="rounded-md bg-[#F9F7F4] border border-[#E2E8F3] px-2.5 py-1 text-[12px] font-medium text-[#202326]">
                         {blog.sections.length} Section{blog.sections.length !== 1 ? "s" : ""}
                       </span>
                     </td>
@@ -159,7 +159,7 @@ export default function BlogsTable({
                         <button
                           type="button"
                           onClick={() => setConfirmDeleteId(null)}
-                          className="rounded-lg border border-[#DCE2DE] px-2 py-1 text-[11px] font-medium text-[#65706B] hover:bg-[#F3F5F3]"
+                          className="rounded-lg border border-[#D0D9EA] px-2 py-1 text-[11px] font-medium text-[#65706B] hover:bg-[#F0F3FA]"
                         >
                           Cancel
                         </button>
@@ -170,17 +170,17 @@ export default function BlogsTable({
                           type="button"
                           onClick={() => onManageImages(blog)}
                           title="Manage images"
-                          className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] px-2.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#FAF8F5]"
+                          className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] px-2.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#F9F7F4]"
                         >
-                          <FiImage className="h-3.5 w-3.5 text-[#145C4B]" />
+                          <FiImage className="h-3.5 w-3.5 text-[#2B5FA6]" />
                           <span>Images</span>
                         </button>
                         <button
                           type="button"
                           onClick={() => onEdit(blog)}
-                          className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] px-2.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#FAF8F5]"
+                          className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] px-2.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#F9F7F4]"
                         >
-                          <FiEdit2 className="h-3.5 w-3.5 text-[#145C4B]" />
+                          <FiEdit2 className="h-3.5 w-3.5 text-[#2B5FA6]" />
                           <span>Edit</span>
                         </button>
                         <button
@@ -202,7 +202,7 @@ export default function BlogsTable({
       </div>
 
       {/* Pagination Footer */}
-      <div className="flex items-center justify-between border-t border-[#E6EAE7] bg-[#FAF8F5] px-6 py-4">
+      <div className="flex items-center justify-between border-t border-[#E2E8F3] bg-[#F9F7F4] px-6 py-4">
         <p className="text-[13px] text-[#65706B]">
           Page <span className="font-semibold text-[#202326]">{pageNumber}</span> of{" "}
           <span className="font-semibold text-[#202326]">{Math.max(1, totalPages)}</span>
@@ -213,7 +213,7 @@ export default function BlogsTable({
             type="button"
             disabled={!hasPreviousPage && pageNumber <= 1}
             onClick={() => onPageChange(Math.max(1, pageNumber - 1))}
-            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white px-3.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#F3F5F3] disabled:opacity-45"
+            className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-3.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#F0F3FA] disabled:opacity-45"
           >
             <FiChevronLeft className="h-4 w-4" />
             <span>Previous</span>
@@ -223,7 +223,7 @@ export default function BlogsTable({
             type="button"
             disabled={!hasNextPage && pageNumber >= totalPages}
             onClick={() => onPageChange(pageNumber + 1)}
-            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white px-3.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#F3F5F3] disabled:opacity-45"
+            className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-3.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#F0F3FA] disabled:opacity-45"
           >
             <span>Next</span>
             <FiChevronRight className="h-4 w-4" />

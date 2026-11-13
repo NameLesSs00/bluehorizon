@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
@@ -55,7 +55,7 @@ export default function AdminRentalsPage() {
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#145C4B]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]">
               VACATION &amp; SHORT-TERM LISTINGS
             </p>
             <h1 className="mt-1 text-[28px] font-semibold text-[#202326]">
@@ -69,7 +69,7 @@ export default function AdminRentalsPage() {
 
           <div className="flex flex-wrap items-center gap-3">
             {/* Currency Switcher Filter */}
-            <div className="inline-flex rounded-xl border border-[#DCE2DE] bg-white p-1">
+            <div className="inline-flex rounded-xl border border-[#D0D9EA] bg-white p-1">
               {CURRENCIES.map((cur) => (
                 <button
                   key={cur}
@@ -80,7 +80,7 @@ export default function AdminRentalsPage() {
                   }}
                   className={`rounded-lg px-2.5 py-1 text-[11px] font-bold uppercase transition-all ${
                     activeCurrency === cur
-                      ? "bg-[#145C4B] text-white shadow-sm"
+                      ? "bg-[#2B5FA6] text-white shadow-sm"
                       : "text-[#65706B] hover:text-[#202326]"
                   }`}
                 >
@@ -90,7 +90,7 @@ export default function AdminRentalsPage() {
             </div>
 
             {rentalsData?.totalCount !== undefined && (
-              <span className="inline-flex items-center rounded-full bg-[#FAF8F5] border border-[#E6EAE7] px-3 py-1.5 text-[12px] font-medium text-[#202326]">
+              <span className="inline-flex items-center rounded-full bg-[#F9F7F4] border border-[#E2E8F3] px-3 py-1.5 text-[12px] font-medium text-[#202326]">
                 {rentalsData.totalCount} Rental
                 {rentalsData.totalCount !== 1 ? "s" : ""}
               </span>
@@ -99,7 +99,7 @@ export default function AdminRentalsPage() {
             <button
               type="button"
               onClick={handleOpenCreate}
-              className="inline-flex items-center gap-2 rounded-xl bg-[#0F473A] px-4 py-2.5 text-[13px] font-semibold text-white shadow-sm transition-colors hover:bg-[#145C4B]"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#1B3A6B] px-4 py-2.5 text-[13px] font-semibold text-white shadow-sm transition-colors hover:bg-[#2B5FA6]"
             >
               <FiPlus className="h-4 w-4" />
               <span>New Rental Property</span>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { RentalLocationItem } from "@/models/rentalLocation";
 import LocationCard from "./LocationCard";
@@ -24,7 +24,7 @@ export default function LocationsGridSection({
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <h2
-            className="text-2xl sm:text-3xl font-bold text-[#145C4B]"
+            className="text-2xl sm:text-3xl font-bold text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
             Featured Locations
@@ -53,19 +53,19 @@ export default function LocationsGridSection({
           {Array.from({ length: 6 }).map((_, idx) => (
             <div
               key={idx}
-              className="h-[360px] sm:h-[400px] animate-pulse rounded-[24px] sm:rounded-[28px] border border-[#E1E7E3] bg-[#F3F5F3]"
+              className="h-[360px] sm:h-[400px] animate-pulse rounded-[24px] sm:rounded-[28px] border border-[#D9E2EE] bg-[#F0F3FA]"
             />
           ))}
         </div>
       ) : locations.length === 0 ? (
-        <div className="mt-8 flex flex-col items-center justify-center rounded-[24px] border border-[#E1E7E3] bg-white p-12 sm:p-16 text-center">
-          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#E8F1EC]">
+        <div className="mt-8 flex flex-col items-center justify-center rounded-[24px] border border-[#D9E2EE] bg-white p-12 sm:p-16 text-center">
+          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#E5ECF6]">
             <svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="#145C4B"
+              stroke="#2B5FA6"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -90,7 +90,7 @@ export default function LocationsGridSection({
             <button
               type="button"
               onClick={onClearFilters}
-              className="mt-6 rounded-full bg-[#145C4B] px-6 py-2.5 text-xs sm:text-sm font-semibold text-white transition-colors hover:bg-[#0F473A]"
+              className="mt-6 rounded-full bg-[#2B5FA6] px-6 py-2.5 text-xs sm:text-sm font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               Clear Filters

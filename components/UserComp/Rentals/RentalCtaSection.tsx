@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { usePublicSiteSettingsQuery } from "@/features/keyValues/useKeyValuesQueries";
@@ -13,7 +13,7 @@ export default function RentalCtaSection() {
 
   return (
     <section className="mx-auto mt-16 sm:mt-20 w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mb-16 sm:mb-24">
-      <div className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] bg-[#0F473A] shadow-xl">
+      <div className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] bg-[#1B3A6B] shadow-xl">
         {/* Topographic Background Pattern */}
         <div className="absolute inset-0 z-0 opacity-40">
           <Image
@@ -29,7 +29,7 @@ export default function RentalCtaSection() {
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8 p-8 sm:p-12 lg:p-14">
           <div className="max-w-2xl">
             <span
-              className="text-[11px] font-bold uppercase tracking-wider text-[#E8F1EC]"
+              className="text-[11px] font-bold uppercase tracking-wider text-[#E5ECF6]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               NEED IMMEDIATE ASSISTANCE?
@@ -57,7 +57,7 @@ export default function RentalCtaSection() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-xs sm:text-sm font-semibold text-[#202326] shadow-sm transition-colors hover:bg-[#F3F5F3]"
+                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-xs sm:text-sm font-semibold text-[#202326] shadow-sm transition-colors hover:bg-[#F0F3FA]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 WhatsApp Chat

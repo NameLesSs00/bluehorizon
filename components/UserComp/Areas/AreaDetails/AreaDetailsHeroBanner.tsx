@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 
 interface AreaDetailsHeroBannerProps {
   title?: string;
@@ -14,7 +14,7 @@ export default function AreaDetailsHeroBanner({
 
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8">
-      <div className="relative h-[260px] sm:h-[360px] lg:h-[440px] w-full overflow-hidden rounded-[24px] bg-[#E8F1EC]">
+      <div className="relative h-[260px] sm:h-[360px] lg:h-[440px] w-full overflow-hidden rounded-[24px] bg-[#E5ECF6]">
         <Image
           src={imageSrc}
           alt={altText}

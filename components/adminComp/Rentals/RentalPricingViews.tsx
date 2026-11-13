@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { RentalFormPayload } from "@/models/rental";
 
@@ -30,8 +30,8 @@ export default function RentalPricingViews({
   ];
 
   return (
-    <div className="space-y-4 rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-4">
-      <p className="text-[12px] font-bold uppercase tracking-wider text-[#145C4B]">
+    <div className="space-y-4 rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-4">
+      <p className="text-[12px] font-bold uppercase tracking-wider text-[#2B5FA6]">
         Pricing, Status &amp; Views
       </p>
 
@@ -58,7 +58,7 @@ export default function RentalPricingViews({
                 }))
               }
               placeholder="e.g. 150"
-              className="w-full rounded-xl border border-[#DCE2DE] bg-white pl-8 pr-3.5 py-2 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3.5 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
           <span className="mt-1 block text-[10px] text-[#65706B]">
@@ -77,7 +77,7 @@ export default function RentalPricingViews({
                   isAvailable: e.target.checked,
                 }))
               }
-              className="h-4 w-4 rounded border-gray-300 text-[#145C4B] focus:ring-[#145C4B]"
+              className="h-4 w-4 rounded border-gray-300 text-[#2B5FA6] focus:ring-[#2B5FA6]"
             />
             <span className="text-[13px] font-medium text-[#202326]">
               Available for Rent
@@ -99,7 +99,7 @@ export default function RentalPricingViews({
                   isFeatured: e.target.checked,
                 }))
               }
-              className="h-4 w-4 rounded border-gray-300 text-[#145C4B] focus:ring-[#145C4B]"
+              className="h-4 w-4 rounded border-gray-300 text-[#2B5FA6] focus:ring-[#2B5FA6]"
             />
             <span className="text-[13px] font-medium text-[#202326]">
               Featured Listing
@@ -122,8 +122,8 @@ export default function RentalPricingViews({
               key={view.key}
               className={`flex cursor-pointer items-center gap-2 rounded-xl border p-2.5 transition-colors ${
                 formData[view.key]
-                  ? "border-[#145C4B] bg-[#145C4B]/5 text-[#145C4B]"
-                  : "border-[#DCE2DE] bg-white text-[#202326] hover:bg-neutral-50"
+                  ? "border-[#2B5FA6] bg-[#2B5FA6]/5 text-[#2B5FA6]"
+                  : "border-[#D0D9EA] bg-white text-[#202326] hover:bg-neutral-50"
               }`}
             >
               <input
@@ -135,7 +135,7 @@ export default function RentalPricingViews({
                     [view.key]: e.target.checked,
                   }))
                 }
-                className="h-3.5 w-3.5 rounded border-gray-300 text-[#145C4B] focus:ring-[#145C4B]"
+                className="h-3.5 w-3.5 rounded border-gray-300 text-[#2B5FA6] focus:ring-[#2B5FA6]"
               />
               <span className="text-[12px] font-medium">{view.label}</span>
             </label>
@@ -155,7 +155,7 @@ export default function RentalPricingViews({
             onChange((prev) => ({ ...prev, notes: e.target.value }))
           }
           placeholder="e.g. Check-in after 2:00 PM, quiet hours after 10:00 PM..."
-          className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+          className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
         />
       </div>
     </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FiDollarSign } from "react-icons/fi";
 
@@ -70,8 +70,8 @@ export default function StandaloneUnitBasicFields({
   setPostalCode,
 }: StandaloneUnitBasicFieldsProps) {
   return (
-    <div className="space-y-4 rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-5">
-      <h4 className="text-[13px] font-bold uppercase tracking-wider text-[#145C4B]">
+    <div className="space-y-4 rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-5">
+      <h4 className="text-[13px] font-bold uppercase tracking-wider text-[#2B5FA6]">
         Property Specifications &amp; Pricing
       </h4>
 
@@ -84,7 +84,7 @@ export default function StandaloneUnitBasicFields({
           <select
             value={propertyType}
             onChange={(e) => setPropertyType(e.target.value)}
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           >
             {PROPERTY_TYPES.map((type) => (
               <option key={type} value={type}>
@@ -107,7 +107,7 @@ export default function StandaloneUnitBasicFields({
               value={priceUSD || ""}
               onChange={(e) => setPriceUSD(parseFloat(e.target.value) || 0)}
               placeholder="e.g. 250000"
-              className="w-full rounded-xl border border-[#DCE2DE] bg-white py-2.5 pr-3 pl-9 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white py-2.5 pr-3 pl-9 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
         </div>
@@ -126,7 +126,7 @@ export default function StandaloneUnitBasicFields({
             value={area || ""}
             onChange={(e) => setArea(parseFloat(e.target.value) || 0)}
             placeholder="120"
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -139,7 +139,7 @@ export default function StandaloneUnitBasicFields({
             min="0"
             value={noBedRoom}
             onChange={(e) => setNoBedRoom(parseInt(e.target.value, 10) || 0)}
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -152,7 +152,7 @@ export default function StandaloneUnitBasicFields({
             min="0"
             value={noBathRoom}
             onChange={(e) => setNoBathRoom(parseInt(e.target.value, 10) || 0)}
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -165,7 +165,7 @@ export default function StandaloneUnitBasicFields({
             min="0"
             value={noKitchen}
             onChange={(e) => setNoKitchen(parseInt(e.target.value, 10) || 0)}
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
       </div>
@@ -181,7 +181,7 @@ export default function StandaloneUnitBasicFields({
             min="0"
             value={floorNumber}
             onChange={(e) => setFloorNumber(parseInt(e.target.value, 10) || 0)}
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -194,7 +194,7 @@ export default function StandaloneUnitBasicFields({
             min="1"
             value={noFloor}
             onChange={(e) => setNoFloor(parseInt(e.target.value, 10) || 1)}
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -207,7 +207,7 @@ export default function StandaloneUnitBasicFields({
             value={buildingNumber}
             onChange={(e) => setBuildingNumber(e.target.value)}
             placeholder="e.g. 12"
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -220,7 +220,7 @@ export default function StandaloneUnitBasicFields({
             value={apartmentNumber}
             onChange={(e) => setApartmentNumber(e.target.value)}
             placeholder="e.g. 302"
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
       </div>
@@ -236,7 +236,7 @@ export default function StandaloneUnitBasicFields({
             value={postalCode}
             onChange={(e) => setPostalCode(e.target.value)}
             placeholder="e.g. 84511"
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -250,7 +250,7 @@ export default function StandaloneUnitBasicFields({
             value={latitude || ""}
             onChange={(e) => setLatitude(parseFloat(e.target.value) || 0)}
             placeholder="27.2579"
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -264,7 +264,7 @@ export default function StandaloneUnitBasicFields({
             value={longitude || ""}
             onChange={(e) => setLongitude(parseFloat(e.target.value) || 0)}
             placeholder="33.8116"
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
       </div>

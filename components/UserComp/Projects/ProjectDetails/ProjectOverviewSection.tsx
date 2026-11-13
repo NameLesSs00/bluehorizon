@@ -1,4 +1,4 @@
-interface ProjectOverviewSectionProps {
+﻿interface ProjectOverviewSectionProps {
   title?: string;
   locationName?: string | null;
   description?: string | null;
@@ -44,7 +44,7 @@ export default function ProjectOverviewSection({
 
         {hasCount && (
           <div className="self-start md:self-auto shrink-0">
-            <div className="flex flex-col items-center justify-center rounded-[20px] bg-[#F3F5F3] px-8 py-5 sm:px-10 sm:py-6 text-center border border-[#E1E7E3]/60">
+            <div className="flex flex-col items-center justify-center rounded-[20px] bg-[#F0F3FA] px-8 py-5 sm:px-10 sm:py-6 text-center border border-[#D9E2EE]/60">
               <span
                 className="text-3xl sm:text-[38px] font-bold leading-none text-[#202326]"
                 style={{ fontFamily: "var(--font-manrope)" }}

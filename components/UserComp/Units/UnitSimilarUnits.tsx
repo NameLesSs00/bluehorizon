@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useQuery } from "@tanstack/react-query";
 import ProjectUnitCard, {
@@ -132,7 +132,7 @@ export default function UnitSimilarUnits({
   }
 
   return (
-    <section className="mt-12 pt-10 border-t border-[#E1E7E3]">
+    <section className="mt-12 pt-10 border-t border-[#D9E2EE]">
       <div className="mb-6">
         <h2
           className="text-xl sm:text-2xl font-bold text-[#202326]"

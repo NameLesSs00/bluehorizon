@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -48,9 +48,9 @@ export default function ContactInfoSection() {
         <ContactInfoChannels />
 
         {/* Right Column: Send an Inquiry Form */}
-        <div className="rounded-[24px] border border-[#E1E7E3] bg-white p-7 sm:p-10 shadow-xs lg:col-span-7">
+        <div className="rounded-[24px] border border-[#D9E2EE] bg-white p-7 sm:p-10 shadow-xs lg:col-span-7">
           <p
-            className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#145C4B]"
+            className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             SEND AN INQUIRY
@@ -94,7 +94,7 @@ export default function ContactInfoSection() {
                       firstName: e.target.value,
                     }))
                   }
-                  className="w-full rounded-[12px] border border-transparent bg-[#F3F5F3] px-4 py-3 text-[14px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#145C4B]/40 focus:bg-white focus:outline-none"
+                  className="w-full rounded-[12px] border border-transparent bg-[#F0F3FA] px-4 py-3 text-[14px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#2B5FA6]/40 focus:bg-white focus:outline-none"
                   style={{ fontFamily: "var(--font-inter)" }}
                 />
               </div>
@@ -119,7 +119,7 @@ export default function ContactInfoSection() {
                       lastName: e.target.value,
                     }))
                   }
-                  className="w-full rounded-[12px] border border-transparent bg-[#F3F5F3] px-4 py-3 text-[14px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#145C4B]/40 focus:bg-white focus:outline-none"
+                  className="w-full rounded-[12px] border border-transparent bg-[#F0F3FA] px-4 py-3 text-[14px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#2B5FA6]/40 focus:bg-white focus:outline-none"
                   style={{ fontFamily: "var(--font-inter)" }}
                 />
               </div>
@@ -147,7 +147,7 @@ export default function ContactInfoSection() {
                       phone: e.target.value,
                     }))
                   }
-                  className="w-full rounded-[12px] border border-transparent bg-[#F3F5F3] px-4 py-3 text-[14px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#145C4B]/40 focus:bg-white focus:outline-none"
+                  className="w-full rounded-[12px] border border-transparent bg-[#F0F3FA] px-4 py-3 text-[14px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#2B5FA6]/40 focus:bg-white focus:outline-none"
                   style={{ fontFamily: "var(--font-inter)" }}
                 />
               </div>
@@ -172,7 +172,7 @@ export default function ContactInfoSection() {
                       email: e.target.value,
                     }))
                   }
-                  className="w-full rounded-[12px] border border-transparent bg-[#F3F5F3] px-4 py-3 text-[14px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#145C4B]/40 focus:bg-white focus:outline-none"
+                  className="w-full rounded-[12px] border border-transparent bg-[#F0F3FA] px-4 py-3 text-[14px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#2B5FA6]/40 focus:bg-white focus:outline-none"
                   style={{ fontFamily: "var(--font-inter)" }}
                 />
               </div>
@@ -199,7 +199,7 @@ export default function ContactInfoSection() {
                     notes: e.target.value,
                   }))
                 }
-                className="w-full resize-none rounded-[12px] border border-transparent bg-[#F3F5F3] p-4 text-[14px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#145C4B]/40 focus:bg-white focus:outline-none"
+                className="w-full resize-none rounded-[12px] border border-transparent bg-[#F0F3FA] p-4 text-[14px] text-[#202326] placeholder-[#6B7570]/70 transition-all focus:border-[#2B5FA6]/40 focus:bg-white focus:outline-none"
                 style={{ fontFamily: "var(--font-inter)" }}
               />
             </div>
@@ -208,7 +208,7 @@ export default function ContactInfoSection() {
             <button
               type="submit"
               disabled={createMutation.isPending}
-              className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#145C4B] py-3.5 text-[14px] font-semibold text-white transition-all hover:bg-[#0F473A] disabled:opacity-70"
+              className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#2B5FA6] py-3.5 text-[14px] font-semibold text-white transition-all hover:bg-[#1B3A6B] disabled:opacity-70"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span>

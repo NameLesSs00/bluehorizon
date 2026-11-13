@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -20,9 +20,9 @@ export default function AdminShell({
 
   return (
     <AdminAuthGuard mode="protected" requireSuperAdmin={requireSuperAdmin}>
-      <div className="min-h-screen bg-[#F3F5F3] lg:flex">
+      <div className="min-h-screen bg-[#F0F3FA] lg:flex">
         {/* Mobile Header Bar (Only visible on screens < lg) */}
-        <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-[#0B382E] bg-[#0F473A] px-4 text-white sm:px-6 lg:hidden">
+        <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-[#162E56] bg-[#1B3A6B] px-4 text-white sm:px-6 lg:hidden">
           <Link href="/admin/dashboard" className="inline-flex items-center">
             <div className="relative h-9 w-36">
               <Image

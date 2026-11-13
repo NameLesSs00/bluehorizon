@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { createContact } from "@/clientApi/contactsApi";
@@ -61,9 +61,9 @@ export default function UnitInquiryCard({
   };
 
   return (
-    <div className="sticky top-24 rounded-[24px] border border-[#E1E7E3] bg-white p-6 sm:p-7 shadow-sm">
+    <div className="sticky top-24 rounded-[24px] border border-[#D9E2EE] bg-white p-6 sm:p-7 shadow-sm">
       {/* Price Header */}
-      <div className="pb-5 border-b border-[#E1E7E3]">
+      <div className="pb-5 border-b border-[#D9E2EE]">
         <span
           className="block text-xs font-semibold uppercase tracking-wider text-[#6B7570]"
           style={{ fontFamily: "var(--font-inter)" }}
@@ -71,7 +71,7 @@ export default function UnitInquiryCard({
           Asking Price
         </span>
         <span
-          className="block text-2xl sm:text-3xl font-extrabold text-[#145C4B]"
+          className="block text-2xl sm:text-3xl font-extrabold text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-manrope)" }}
         >
           {priceFormatted}
@@ -94,9 +94,9 @@ export default function UnitInquiryCard({
         </p>
 
         {submitSuccess ? (
-          <div className="mt-5 rounded-xl bg-[#E8F1EC] p-4 text-center">
+          <div className="mt-5 rounded-xl bg-[#E5ECF6] p-4 text-center">
             <h4
-              className="text-sm font-bold text-[#145C4B]"
+              className="text-sm font-bold text-[#2B5FA6]"
               style={{ fontFamily: "var(--font-manrope)" }}
             >
               Inquiry Sent Successfully
@@ -110,7 +110,7 @@ export default function UnitInquiryCard({
             <button
               type="button"
               onClick={() => setSubmitSuccess(false)}
-              className="mt-3 text-xs font-semibold text-[#145C4B] underline"
+              className="mt-3 text-xs font-semibold text-[#2B5FA6] underline"
             >
               Send another inquiry
             </button>
@@ -134,7 +134,7 @@ export default function UnitInquiryCard({
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="First name"
-                  className="w-full rounded-xl bg-[#F3F5F3] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-none border border-transparent focus:border-[#145C4B]"
+                  className="w-full rounded-xl bg-[#F0F3FA] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-none border border-transparent focus:border-[#2B5FA6]"
                 />
               </div>
 
@@ -147,7 +147,7 @@ export default function UnitInquiryCard({
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Last name"
-                  className="w-full rounded-xl bg-[#F3F5F3] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-none border border-transparent focus:border-[#145C4B]"
+                  className="w-full rounded-xl bg-[#F0F3FA] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-none border border-transparent focus:border-[#2B5FA6]"
                 />
               </div>
             </div>
@@ -162,7 +162,7 @@ export default function UnitInquiryCard({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@example.com"
-                className="w-full rounded-xl bg-[#F3F5F3] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-none border border-transparent focus:border-[#145C4B]"
+                className="w-full rounded-xl bg-[#F0F3FA] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-none border border-transparent focus:border-[#2B5FA6]"
               />
             </div>
 
@@ -176,7 +176,7 @@ export default function UnitInquiryCard({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="+20 ..."
-                className="w-full rounded-xl bg-[#F3F5F3] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-none border border-transparent focus:border-[#145C4B]"
+                className="w-full rounded-xl bg-[#F0F3FA] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-none border border-transparent focus:border-[#2B5FA6]"
               />
             </div>
 
@@ -188,14 +188,14 @@ export default function UnitInquiryCard({
                 rows={3}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full rounded-xl bg-[#F3F5F3] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-none border border-transparent focus:border-[#145C4B] resize-none"
+                className="w-full rounded-xl bg-[#F0F3FA] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-none border border-transparent focus:border-[#2B5FA6] resize-none"
               />
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full rounded-xl bg-[#145C4B] py-3 text-xs font-bold text-white transition-colors hover:bg-[#0F473A] disabled:opacity-60 cursor-pointer"
+              className="w-full rounded-xl bg-[#2B5FA6] py-3 text-xs font-bold text-white transition-colors hover:bg-[#1B3A6B] disabled:opacity-60 cursor-pointer"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {isSubmitting ? "Sending Inquiry..." : "Send Inquiry"}

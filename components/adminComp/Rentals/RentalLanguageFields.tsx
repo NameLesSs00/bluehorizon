@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   FlagEgypt,
@@ -28,7 +28,7 @@ export default function RentalLanguageFields({
 
         <div className="grid grid-cols-1 gap-3">
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagUK className="h-3.5 w-3.5" />
               <span>English Title *</span>
             </div>
@@ -43,12 +43,12 @@ export default function RentalLanguageFields({
                 }))
               }
               placeholder="e.g. Seaside Luxury Pool Villa"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagGermany className="h-3.5 w-3.5" />
               <span>German Title (Deutsch)</span>
             </div>
@@ -62,12 +62,12 @@ export default function RentalLanguageFields({
                 }))
               }
               placeholder="e.g. Luxus-Pool-Villa am Meer"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagEgypt className="h-3.5 w-3.5" />
               <span>Arabic Title (العربية)</span>
             </div>
@@ -82,7 +82,7 @@ export default function RentalLanguageFields({
                 }))
               }
               placeholder="مثال: فيلا فاخرة على شاطئ البحر مع مسبح"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
         </div>
@@ -96,7 +96,7 @@ export default function RentalLanguageFields({
 
         <div className="space-y-3">
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagUK className="h-3.5 w-3.5" />
               <span>English Description</span>
             </div>
@@ -110,12 +110,12 @@ export default function RentalLanguageFields({
                 }))
               }
               placeholder="Detail the vacation unit layout, comfort, and interior appeal..."
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagGermany className="h-3.5 w-3.5" />
               <span>German Description</span>
             </div>
@@ -129,12 +129,12 @@ export default function RentalLanguageFields({
                 }))
               }
               placeholder="Deutsche Beschreibung der Unterkunft..."
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagEgypt className="h-3.5 w-3.5" />
               <span>Arabic Description</span>
             </div>
@@ -149,7 +149,7 @@ export default function RentalLanguageFields({
                 }))
               }
               placeholder="وصف تفصيلي للشقة أو الفيلا ومميزات الإقامة..."
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
         </div>
@@ -163,7 +163,7 @@ export default function RentalLanguageFields({
 
         <div className="space-y-3">
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagUK className="h-3.5 w-3.5" />
               <span>English Policy</span>
             </div>
@@ -180,12 +180,12 @@ export default function RentalLanguageFields({
                 }))
               }
               placeholder="e.g. Free cancellation up to 7 days before check-in."
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagGermany className="h-3.5 w-3.5" />
               <span>German Policy</span>
             </div>
@@ -202,12 +202,12 @@ export default function RentalLanguageFields({
                 }))
               }
               placeholder="e.g. Kostenlose Stornierung bis zu 7 Tage vor Anreise."
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagEgypt className="h-3.5 w-3.5" />
               <span>Arabic Policy</span>
             </div>
@@ -225,7 +225,7 @@ export default function RentalLanguageFields({
                 }))
               }
               placeholder="مثال: إلغاء مجاني حتى 7 أيام قبل تسجيل الوصول."
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
         </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import Image from "next/image";
@@ -122,7 +122,7 @@ export default function ProjectLocationMediaDrawer({
               </p>
             </div>
 
-            <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl bg-[#0F473A] px-3.5 py-2 text-[12px] font-semibold text-white transition-colors hover:bg-[#145C4B]">
+            <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl bg-[#1B3A6B] px-3.5 py-2 text-[12px] font-semibold text-white transition-colors hover:bg-[#2B5FA6]">
               <FiPlus className="h-4 w-4" />
               <span>Add Photos</span>
               <input
@@ -138,7 +138,7 @@ export default function ProjectLocationMediaDrawer({
           </div>
 
           {images.length === 0 ? (
-            <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-[#DCE2DE] bg-[#FAF8F5] p-8 text-center">
+            <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-[#D0D9EA] bg-[#F9F7F4] p-8 text-center">
               <FiImage className="h-8 w-8 text-[#9BA5A0]" />
               <p className="mt-2 text-[13px] font-medium text-[#202326]">
                 No photos in this gallery yet
@@ -152,7 +152,7 @@ export default function ProjectLocationMediaDrawer({
               {images.map((img) => (
                 <div
                   key={img.id}
-                  className="group relative overflow-hidden rounded-xl border border-[#E6EAE7] bg-white shadow-sm transition-all hover:shadow-md"
+                  className="group relative overflow-hidden rounded-xl border border-[#E2E8F3] bg-white shadow-sm transition-all hover:shadow-md"
                 >
                   <div className="relative aspect-video w-full bg-neutral-100">
                     <Image
@@ -162,13 +162,13 @@ export default function ProjectLocationMediaDrawer({
                       className="object-cover"
                     />
                     {img.isPrimary && (
-                      <span className="absolute top-2 left-2 rounded-md bg-[#0F473A] px-2 py-0.5 text-[10px] font-bold text-white shadow-sm">
+                      <span className="absolute top-2 left-2 rounded-md bg-[#1B3A6B] px-2 py-0.5 text-[10px] font-bold text-white shadow-sm">
                         Primary
                       </span>
                     )}
                   </div>
 
-                  <div className="flex items-center justify-between border-t border-[#E6EAE7] bg-[#FAF8F5] p-2 text-[11px]">
+                  <div className="flex items-center justify-between border-t border-[#E2E8F3] bg-[#F9F7F4] p-2 text-[11px]">
                     {!img.isPrimary ? (
                       <button
                         type="button"
@@ -179,13 +179,13 @@ export default function ProjectLocationMediaDrawer({
                             imageId: img.id,
                           })
                         }
-                        className="inline-flex items-center gap-1 font-semibold text-[#145C4B] hover:underline"
+                        className="inline-flex items-center gap-1 font-semibold text-[#2B5FA6] hover:underline"
                       >
                         <FiCheck className="h-3.5 w-3.5" />
                         <span>Set Primary</span>
                       </button>
                     ) : (
-                      <span className="font-semibold text-[#0F473A]">
+                      <span className="font-semibold text-[#1B3A6B]">
                         Current Primary
                       </span>
                     )}
@@ -220,7 +220,7 @@ export default function ProjectLocationMediaDrawer({
         </div>
 
         {/* Video Section */}
-        <div className="space-y-4 border-t border-[#E6EAE7] pt-6">
+        <div className="space-y-4 border-t border-[#E2E8F3] pt-6">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-[14px] font-bold text-[#202326]">
@@ -246,7 +246,7 @@ export default function ProjectLocationMediaDrawer({
 
           {activeVideoUrl ? (
             <div className="space-y-3">
-              <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-[#DCE2DE] bg-black">
+              <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-[#D0D9EA] bg-black">
                 <video
                   key={activeVideoUrl}
                   src={getFullLocationMediaUrl(activeVideoUrl)}
@@ -264,17 +264,17 @@ export default function ProjectLocationMediaDrawer({
                   accept="video/*"
                   disabled={uploadVideoMutation.isPending}
                   onChange={handleVideoUpload}
-                  className="mt-1 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-lg file:border-0 file:bg-[#0F473A] file:px-3 file:py-1.5 file:text-[12px] file:font-semibold file:text-white hover:file:bg-[#145C4B]"
+                  className="mt-1 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-lg file:border-0 file:bg-[#1B3A6B] file:px-3 file:py-1.5 file:text-[12px] file:font-semibold file:text-white hover:file:bg-[#2B5FA6]"
                 />
               </div>
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-[#DCE2DE] bg-[#FAF8F5] p-6 text-center">
+            <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-[#D0D9EA] bg-[#F9F7F4] p-6 text-center">
               <FiFilm className="h-8 w-8 text-[#9BA5A0]" />
               <p className="mt-2 text-[13px] font-medium text-[#202326]">
                 No video attached
               </p>
-              <label className="mt-3 inline-flex cursor-pointer items-center gap-1.5 rounded-xl bg-[#0F473A] px-4 py-2 text-[12px] font-semibold text-white transition-colors hover:bg-[#145C4B]">
+              <label className="mt-3 inline-flex cursor-pointer items-center gap-1.5 rounded-xl bg-[#1B3A6B] px-4 py-2 text-[12px] font-semibold text-white transition-colors hover:bg-[#2B5FA6]">
                 <FiUploadCloud className="h-4 w-4" />
                 <span>Upload Video</span>
                 <input

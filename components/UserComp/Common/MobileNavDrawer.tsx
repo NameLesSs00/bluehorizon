@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect } from "react";
 import Image from "next/image";
@@ -65,7 +65,7 @@ export default function MobileNavDrawer({
         aria-label="Mobile Navigation Menu"
       >
         {/* Drawer Header */}
-        <div className="flex h-18 sm:h-20 items-center justify-between border-b border-[#E1E7E3] px-5 sm:px-8">
+        <div className="flex h-18 sm:h-20 items-center justify-between border-b border-[#D9E2EE] px-5 sm:px-8">
           <Link
             href={localizedHref("/")}
             onClick={onClose}
@@ -83,14 +83,14 @@ export default function MobileNavDrawer({
             type="button"
             onClick={onClose}
             aria-label="Close menu"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E1E7E3] text-[#202326] transition-colors hover:bg-[#F3F5F3]"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D9E2EE] text-[#202326] transition-colors hover:bg-[#F0F3FA]"
           >
             <FiX className="h-5 w-5" />
           </button>
         </div>
 
         {/* Top Utility Bar with Language & Currency at the top with links */}
-        <div className="relative z-30 flex items-center justify-between border-b border-[#E1E7E3] px-5 sm:px-8 py-3 bg-[#FAFBF9]">
+        <div className="relative z-30 flex items-center justify-between border-b border-[#D9E2EE] px-5 sm:px-8 py-3 bg-[#FAFBF9]">
           <span className="text-[12px] font-semibold uppercase tracking-wider text-[#6B7570]">
             Preferences
           </span>
@@ -111,8 +111,8 @@ export default function MobileNavDrawer({
                 onClick={onClose}
                 className={`flex items-center justify-between rounded-2xl px-5 py-3.5 sm:py-4 text-[16px] sm:text-[17px] font-semibold transition-all ${
                   active
-                    ? "bg-[#0F473A] text-white shadow-xs"
-                    : "text-[#202326] hover:bg-[#F3F5F3] hover:text-[#0F473A]"
+                    ? "bg-[#1B3A6B] text-white shadow-xs"
+                    : "text-[#202326] hover:bg-[#F0F3FA] hover:text-[#1B3A6B]"
                 }`}
               >
                 <span>{item.label}</span>
@@ -127,11 +127,11 @@ export default function MobileNavDrawer({
         </nav>
 
         {/* Drawer Bottom CTA Button */}
-        <div className="border-t border-[#E1E7E3] p-5 sm:p-8 bg-[#FAFBF9]">
+        <div className="border-t border-[#D9E2EE] p-5 sm:p-8 bg-[#FAFBF9]">
           <Link
             href={localizedHref("/contact")}
             onClick={onClose}
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#0F473A] text-[15px] font-semibold text-white shadow-md transition-colors hover:bg-[#145C4B]"
+            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#1B3A6B] text-[15px] font-semibold text-white shadow-md transition-colors hover:bg-[#2B5FA6]"
           >
             <span>Contact Us</span>
             <FiArrowRight className="h-4 w-4" />

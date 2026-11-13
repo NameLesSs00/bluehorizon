@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 interface UnitBreadcrumbProps {
   unitName?: string;
@@ -23,7 +23,7 @@ export default function UnitBreadcrumb({
         style={{ fontFamily: "var(--font-inter)" }}
       >
         <li>
-          <Link href="/" className="transition-colors hover:text-[#145C4B]">
+          <Link href="/" className="transition-colors hover:text-[#2B5FA6]">
             Home
           </Link>
         </li>
@@ -35,7 +35,7 @@ export default function UnitBreadcrumb({
         <li>
           <Link
             href="/projects"
-            className="transition-colors hover:text-[#145C4B]"
+            className="transition-colors hover:text-[#2B5FA6]"
           >
             Projects
           </Link>
@@ -49,7 +49,7 @@ export default function UnitBreadcrumb({
             <li>
               <Link
                 href={`/projects/${projectId}`}
-                className="transition-colors hover:text-[#145C4B]"
+                className="transition-colors hover:text-[#2B5FA6]"
               >
                 {projectName}
               </Link>

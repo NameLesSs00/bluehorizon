@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { FiPlus, FiCreditCard } from "react-icons/fi";
@@ -99,7 +99,7 @@ export default function ProjectPaymentPlansDrawer({
             <button
               type="button"
               onClick={handleOpenCreate}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-[#0F473A] px-4 py-2 text-[12px] font-semibold text-white transition-colors hover:bg-[#145C4B]"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-[#1B3A6B] px-4 py-2 text-[12px] font-semibold text-white transition-colors hover:bg-[#2B5FA6]"
             >
               <FiPlus className="h-4 w-4" />
               <span>Add Plan</span>
@@ -109,12 +109,12 @@ export default function ProjectPaymentPlansDrawer({
           {isLoading ? (
             <div className="flex h-56 items-center justify-center">
               <div className="flex flex-col items-center gap-2">
-                <div className="h-7 w-7 animate-spin rounded-full border-2 border-[#145C4B] border-t-transparent" />
+                <div className="h-7 w-7 animate-spin rounded-full border-2 border-[#2B5FA6] border-t-transparent" />
                 <p className="text-[12px] text-[#65706B]">Loading payment plans...</p>
               </div>
             </div>
           ) : plans.length === 0 ? (
-            <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-[#DCE2DE] bg-[#FAF8F5] p-12 text-center">
+            <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-[#D0D9EA] bg-[#F9F7F4] p-12 text-center">
               <FiCreditCard className="h-10 w-10 text-[#9BA5A0]" />
               <p className="mt-3 text-[14px] font-semibold text-[#202326]">
                 No payment plans configured

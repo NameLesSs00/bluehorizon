@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 
 interface ServiceOffer {
   icon: string;
@@ -52,7 +52,7 @@ export default function AboutOfferSection() {
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <p
-            className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#145C4B]"
+            className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             TAILORED SOLUTIONS
@@ -80,7 +80,7 @@ export default function AboutOfferSection() {
         {OFFERS.map((offer) => (
           <div
             key={offer.title}
-            className="flex flex-col justify-between rounded-[24px] border border-[#E1E7E3] bg-white p-7 sm:p-8 transition-all duration-200 hover:border-[#145C4B]/40 hover:shadow-xs"
+            className="flex flex-col justify-between rounded-[24px] border border-[#D9E2EE] bg-white p-7 sm:p-8 transition-all duration-200 hover:border-[#2B5FA6]/40 hover:shadow-xs"
           >
             <div>
               <div className="relative h-11 w-11 shrink-0">

@@ -1,4 +1,4 @@
-import { RentalItem, PROPERTY_TYPE_LABELS } from "@/models/rental";
+﻿import { RentalItem, PROPERTY_TYPE_LABELS } from "@/models/rental";
 
 interface RentalSpecsBarProps {
   unit: RentalItem;
@@ -69,13 +69,13 @@ export default function RentalSpecsBar({ unit }: RentalSpecsBarProps) {
   }
 
   return (
-    <div className="mt-6 rounded-[16px] border border-[#E1E7E3] bg-white p-4 sm:p-5 shadow-xs">
+    <div className="mt-6 rounded-[16px] border border-[#D9E2EE] bg-white p-4 sm:p-5 shadow-xs">
       <div className="flex flex-wrap items-center gap-y-4 gap-x-6 sm:gap-x-8">
         {specs.map((item, idx) => (
           <div
             key={item.label}
             className={`flex flex-col ${
-              idx !== 0 ? "sm:border-l sm:border-[#E1E7E3] sm:pl-6" : ""
+              idx !== 0 ? "sm:border-l sm:border-[#D9E2EE] sm:pl-6" : ""
             }`}
           >
             <span

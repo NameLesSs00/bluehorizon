@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 
 export default function ContactHeroSection() {
@@ -12,7 +12,7 @@ export default function ContactHeroSection() {
       >
         <Link
           href="/"
-          className="transition-colors hover:text-[#145C4B]"
+          className="transition-colors hover:text-[#2B5FA6]"
         >
           Home
         </Link>
@@ -39,7 +39,7 @@ export default function ContactHeroSection() {
           className="absolute inset-0 z-10"
           style={{
             background:
-              "linear-gradient(180deg, rgba(15, 71, 58, 0) 30.77%, #0F473A 100%)"
+              "linear-gradient(180deg, rgba(27, 58, 107, 0) 30.77%, #1B3A6B 100%)"
           }}
         />
 
@@ -48,7 +48,7 @@ export default function ContactHeroSection() {
           <div className="max-w-xl">
             {/* Pill Tag */}
             <span
-              className="inline-block rounded-full border border-white/20 bg-[#0F473A]/85 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#E8F1EC]"
+              className="inline-block rounded-full border border-white/20 bg-[#1B3A6B]/85 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#E5ECF6]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               WE&apos;RE HERE TO HELP

@@ -1,4 +1,4 @@
-interface LocationOverviewSectionProps {
+﻿interface LocationOverviewSectionProps {
   locationName?: string;
   description?: string | null;
   activeRentalsCount?: number;
@@ -36,7 +36,7 @@ export default function LocationOverviewSection({
         {/* Left Column: Title, Description & Highlight Tags */}
         <div className="max-w-3xl">
           <p
-            className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#145C4B]"
+            className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             DISCOVER THE LOCATION
@@ -61,7 +61,7 @@ export default function LocationOverviewSection({
             {RENTAL_HIGHLIGHT_TAGS.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center rounded-full bg-white px-3.5 py-1.5 text-xs font-medium text-[#145C4B] border border-[#E1E7E3] shadow-2xs"
+                className="inline-flex items-center rounded-full bg-white px-3.5 py-1.5 text-xs font-medium text-[#2B5FA6] border border-[#D9E2EE] shadow-2xs"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {tag}
@@ -72,10 +72,10 @@ export default function LocationOverviewSection({
 
         {/* Right Column: Key Stats Card */}
         <div className="self-start lg:self-auto shrink-0 w-full sm:w-auto">
-          <div className="flex sm:flex-col items-center justify-between sm:justify-center rounded-[24px] bg-white px-8 py-5 sm:px-10 sm:py-7 text-center border border-[#E1E7E3] shadow-xs">
+          <div className="flex sm:flex-col items-center justify-between sm:justify-center rounded-[24px] bg-white px-8 py-5 sm:px-10 sm:py-7 text-center border border-[#D9E2EE] shadow-xs">
             <div>
               <span
-                className="text-3xl sm:text-[40px] font-bold leading-none text-[#145C4B]"
+                className="text-3xl sm:text-[40px] font-bold leading-none text-[#2B5FA6]"
                 style={{ fontFamily: "var(--font-manrope)" }}
               >
                 {count > 0 ? `${count}+` : "Verified"}
@@ -87,7 +87,7 @@ export default function LocationOverviewSection({
                 Available rentals
               </span>
             </div>
-            <div className="sm:mt-4 sm:pt-4 sm:border-t sm:border-[#E1E7E3]/80">
+            <div className="sm:mt-4 sm:pt-4 sm:border-t sm:border-[#D9E2EE]/80">
               <span
                 className="text-xs text-[#8A9590]"
                 style={{ fontFamily: "var(--font-inter)" }}

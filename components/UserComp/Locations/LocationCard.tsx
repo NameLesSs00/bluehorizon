@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -28,7 +28,7 @@ export default function LocationCard({ location, region }: LocationCardProps) {
   return (
     <Link
       href={`/locations/${location.id}`}
-      className="group relative block h-[360px] sm:h-[400px] w-full overflow-hidden rounded-[24px] sm:rounded-[28px] border border-[#E1E7E3] shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#145C4B]/40"
+      className="group relative block h-[360px] sm:h-[400px] w-full overflow-hidden rounded-[24px] sm:rounded-[28px] border border-[#D9E2EE] shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#2B5FA6]/40"
     >
       {/* Background Image */}
       <Image
@@ -45,13 +45,13 @@ export default function LocationCard({ location, region }: LocationCardProps) {
         className="absolute inset-0 z-10"
         style={{
           background:
-            "linear-gradient(180deg, rgba(15, 71, 58, 0) 30%, rgba(15, 71, 58, 0.92) 100%)",
+            "linear-gradient(180deg, rgba(27, 58, 107, 0) 30%, rgba(27, 58, 107, 0.92) 100%)",
         }}
       />
 
       {/* Top Left Region Badge - only render if real region is provided */}
       {region && (
-        <div className="absolute top-5 left-5 z-20 rounded-full bg-white/95 px-3.5 py-1 text-xs font-semibold text-[#145C4B] shadow-sm backdrop-blur-sm">
+        <div className="absolute top-5 left-5 z-20 rounded-full bg-white/95 px-3.5 py-1 text-xs font-semibold text-[#2B5FA6] shadow-sm backdrop-blur-sm">
           <span style={{ fontFamily: "var(--font-inter)" }}>{region}</span>
         </div>
       )}
@@ -60,7 +60,7 @@ export default function LocationCard({ location, region }: LocationCardProps) {
       <div className="absolute bottom-0 left-0 right-0 z-20 flex items-end justify-between gap-4 p-5 sm:p-6">
         <div>
           <h2
-            className="text-xl sm:text-2xl font-bold text-white transition-colors group-hover:text-[#E8F1EC]"
+            className="text-xl sm:text-2xl font-bold text-white transition-colors group-hover:text-[#E5ECF6]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
             {location.name}
@@ -68,13 +68,13 @@ export default function LocationCard({ location, region }: LocationCardProps) {
         </div>
 
         {/* Action Button: White Circle with Arrow Up-Right */}
-        <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-full bg-white text-[#145C4B] shadow-md transition-transform duration-300 group-hover:scale-110">
+        <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-full bg-white text-[#2B5FA6] shadow-md transition-transform duration-300 group-hover:scale-110">
           <svg
             width="18"
             height="18"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#145C4B"
+            stroke="#2B5FA6"
             strokeWidth="2.2"
             strokeLinecap="round"
             strokeLinejoin="round"

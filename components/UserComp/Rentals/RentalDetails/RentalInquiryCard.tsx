@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { toast } from "sonner";
@@ -52,7 +52,7 @@ export default function RentalInquiryCard({ unit }: RentalInquiryCardProps) {
 
   return (
     <aside className="w-full lg:w-[360px] xl:w-[400px] shrink-0">
-      <div className="sticky top-28 rounded-[24px] border border-[#E1E7E3] bg-white p-6 sm:p-7 shadow-lg">
+      <div className="sticky top-28 rounded-[24px] border border-[#D9E2EE] bg-white p-6 sm:p-7 shadow-lg">
         {/* Asking Price Header */}
         <div>
           <span
@@ -63,7 +63,7 @@ export default function RentalInquiryCard({ unit }: RentalInquiryCardProps) {
           </span>
           <div className="mt-1 flex items-baseline gap-2">
             <span
-              className="text-2xl sm:text-3xl font-bold text-[#145C4B]"
+              className="text-2xl sm:text-3xl font-bold text-[#2B5FA6]"
               style={{ fontFamily: "var(--font-manrope)" }}
             >
               {priceFormatted}
@@ -96,7 +96,7 @@ export default function RentalInquiryCard({ unit }: RentalInquiryCardProps) {
               placeholder="e.g. Ahmed"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              className="mt-1 w-full rounded-[10px] border border-[#E1E7E3] bg-[#FCFCFC] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] placeholder:text-[#9CA3AF] focus:border-[#145C4B] focus:bg-white focus:outline-hidden"
+              className="mt-1 w-full rounded-[10px] border border-[#D9E2EE] bg-[#FCFCFC] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] placeholder:text-[#9CA3AF] focus:border-[#2B5FA6] focus:bg-white focus:outline-hidden"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -116,7 +116,7 @@ export default function RentalInquiryCard({ unit }: RentalInquiryCardProps) {
               placeholder="e.g. Ali"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              className="mt-1 w-full rounded-[10px] border border-[#E1E7E3] bg-[#FCFCFC] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] placeholder:text-[#9CA3AF] focus:border-[#145C4B] focus:bg-white focus:outline-hidden"
+              className="mt-1 w-full rounded-[10px] border border-[#D9E2EE] bg-[#FCFCFC] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] placeholder:text-[#9CA3AF] focus:border-[#2B5FA6] focus:bg-white focus:outline-hidden"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -136,7 +136,7 @@ export default function RentalInquiryCard({ unit }: RentalInquiryCardProps) {
               placeholder="name@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 w-full rounded-[10px] border border-[#E1E7E3] bg-[#FCFCFC] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] placeholder:text-[#9CA3AF] focus:border-[#145C4B] focus:bg-white focus:outline-hidden"
+              className="mt-1 w-full rounded-[10px] border border-[#D9E2EE] bg-[#FCFCFC] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] placeholder:text-[#9CA3AF] focus:border-[#2B5FA6] focus:bg-white focus:outline-hidden"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -156,7 +156,7 @@ export default function RentalInquiryCard({ unit }: RentalInquiryCardProps) {
               placeholder="+20 100 000 0000"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="mt-1 w-full rounded-[10px] border border-[#E1E7E3] bg-[#FCFCFC] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] placeholder:text-[#9CA3AF] focus:border-[#145C4B] focus:bg-white focus:outline-hidden"
+              className="mt-1 w-full rounded-[10px] border border-[#D9E2EE] bg-[#FCFCFC] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] placeholder:text-[#9CA3AF] focus:border-[#2B5FA6] focus:bg-white focus:outline-hidden"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -175,7 +175,7 @@ export default function RentalInquiryCard({ unit }: RentalInquiryCardProps) {
               placeholder="I am interested in leasing this unit..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="mt-1 w-full resize-none rounded-[10px] border border-[#E1E7E3] bg-[#FCFCFC] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] placeholder:text-[#9CA3AF] focus:border-[#145C4B] focus:bg-white focus:outline-hidden"
+              className="mt-1 w-full resize-none rounded-[10px] border border-[#D9E2EE] bg-[#FCFCFC] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] placeholder:text-[#9CA3AF] focus:border-[#2B5FA6] focus:bg-white focus:outline-hidden"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -183,7 +183,7 @@ export default function RentalInquiryCard({ unit }: RentalInquiryCardProps) {
           <button
             type="submit"
             disabled={submitting}
-            className="mt-2 flex h-11 w-full items-center justify-center gap-2 rounded-full bg-[#0F473A] text-sm font-semibold text-white shadow-md transition-all hover:bg-[#145C4B] disabled:opacity-50"
+            className="mt-2 flex h-11 w-full items-center justify-center gap-2 rounded-full bg-[#1B3A6B] text-sm font-semibold text-white shadow-md transition-all hover:bg-[#2B5FA6] disabled:opacity-50"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <span>{submitting ? "Sending..." : "Send Inquiry"}</span>

@@ -1,18 +1,18 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 export default function NotFoundPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-[#F3F5F3] px-4 py-16 text-center">
+    <main className="flex min-h-screen flex-col items-center justify-center bg-[#F0F3FA] px-4 py-16 text-center">
       <div className="flex max-w-lg flex-col items-center">
         <span
-          className="text-[80px] font-semibold leading-none tracking-[-0.04em] text-[#145C4B]/20 sm:text-[110px]"
+          className="text-[80px] font-semibold leading-none tracking-[-0.04em] text-[#2B5FA6]/20 sm:text-[110px]"
           style={{ fontFamily: "var(--font-manrope)" }}
         >
           404
         </span>
 
         <p
-          className="mt-2 text-[11px] font-bold uppercase leading-none tracking-[0.14em] text-[#145C4B]"
+          className="mt-2 text-[11px] font-bold uppercase leading-none tracking-[0.14em] text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           PAGE NOT FOUND
@@ -35,7 +35,7 @@ export default function NotFoundPage() {
         <div className="mt-8">
           <Link
             href="/"
-            className="inline-flex items-center justify-center rounded-full bg-[#145C4B] px-8 py-3.5 text-[14px] font-medium text-white transition-colors hover:bg-[#0F473A]"
+            className="inline-flex items-center justify-center rounded-full bg-[#2B5FA6] px-8 py-3.5 text-[14px] font-medium text-white transition-colors hover:bg-[#1B3A6B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             Back to Homepage

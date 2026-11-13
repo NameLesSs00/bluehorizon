@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -28,9 +28,9 @@ export default function BlogCard({ blog }: BlogCardProps) {
   const blogHref = `/blogs/${encodeURIComponent(blog.title || String(blog.id))}`;
 
   return (
-    <Link className="group flex flex-col overflow-hidden rounded-[24px] border border-[#E1E7E3] bg-white transition-all duration-300 hover:shadow-xl hover:border-[#145C4B]/40" href={blogHref}>
+    <Link className="group flex flex-col overflow-hidden rounded-[24px] border border-[#D9E2EE] bg-white transition-all duration-300 hover:shadow-xl hover:border-[#2B5FA6]/40" href={blogHref}>
       {/* Top Image Container */}
-      <div className="relative h-[220px] sm:h-[240px] w-full overflow-hidden bg-[#F3F5F3]">
+      <div className="relative h-[220px] sm:h-[240px] w-full overflow-hidden bg-[#F0F3FA]">
         <Image
           src={displayImage}
           alt={blog.title}
@@ -42,7 +42,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
 
         {/* Date Badge Overlay */}
         {blog.date && (
-          <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 rounded-[20px] bg-[#E8F1EC] px-3.5 py-1.5 text-xs font-semibold text-[#145C4B]">
+          <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 rounded-[20px] bg-[#E5ECF6] px-3.5 py-1.5 text-xs font-semibold text-[#2B5FA6]">
             <Image
               src="/Blogs/svg (3).svg"
               alt="Calendar"
@@ -60,7 +60,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
         <div>
           {/* Category Pill */}
           {blog.category && (
-            <div className="mb-3.5 w-fit rounded-[16px] bg-[#E8F1EC] px-3.5 py-1 text-xs font-semibold text-[#145C4B]">
+            <div className="mb-3.5 w-fit rounded-[16px] bg-[#E5ECF6] px-3.5 py-1 text-xs font-semibold text-[#2B5FA6]">
               <span style={{ fontFamily: "var(--font-inter)" }}>
                 {blog.category}
               </span>
@@ -69,7 +69,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
 
           {/* Title */}
           <h3
-            className="line-clamp-2 text-lg sm:text-[19px] font-bold text-[#202326] leading-snug group-hover:text-[#145C4B] transition-colors"
+            className="line-clamp-2 text-lg sm:text-[19px] font-bold text-[#202326] leading-snug group-hover:text-[#2B5FA6] transition-colors"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
             {blog.title}
@@ -89,7 +89,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
         {/* Read More Action */}
         <div className="mt-6 pt-2">
           <span
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#145C4B] transition-colors group-hover:text-[#0F473A]"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#2B5FA6] transition-colors group-hover:text-[#1B3A6B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <Image

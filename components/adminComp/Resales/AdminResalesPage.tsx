@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { FiPlus, FiSearch } from "react-icons/fi";
@@ -57,7 +57,7 @@ export default function AdminResalesPage() {
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#145C4B]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]">
               PROPERTY SALES &amp; INVESTMENTS
             </p>
             <h1 className="mt-1 text-[28px] font-semibold text-[#202326]">
@@ -70,7 +70,7 @@ export default function AdminResalesPage() {
 
           <div className="flex flex-wrap items-center gap-3">
             {/* Currency Switcher */}
-            <div className="inline-flex rounded-xl border border-[#DCE2DE] bg-white p-1">
+            <div className="inline-flex rounded-xl border border-[#D0D9EA] bg-white p-1">
               {CURRENCIES.map((cur) => (
                 <button
                   key={cur}
@@ -81,7 +81,7 @@ export default function AdminResalesPage() {
                   }}
                   className={`rounded-lg px-2.5 py-1 text-[11px] font-bold uppercase transition-all ${
                     activeCurrency === cur
-                      ? "bg-[#145C4B] text-white shadow-xs"
+                      ? "bg-[#2B5FA6] text-white shadow-xs"
                       : "text-[#65706B] hover:text-[#202326]"
                   }`}
                 >
@@ -91,7 +91,7 @@ export default function AdminResalesPage() {
             </div>
 
             {resalesData?.totalCount !== undefined && (
-              <span className="inline-flex items-center rounded-full border border-[#E6EAE7] bg-[#FAF8F5] px-3 py-1.5 text-[12px] font-medium text-[#202326]">
+              <span className="inline-flex items-center rounded-full border border-[#E2E8F3] bg-[#F9F7F4] px-3 py-1.5 text-[12px] font-medium text-[#202326]">
                 {resalesData.totalCount} Resale
                 {resalesData.totalCount !== 1 ? "s" : ""}
               </span>
@@ -100,7 +100,7 @@ export default function AdminResalesPage() {
             <button
               type="button"
               onClick={handleOpenCreate}
-              className="inline-flex items-center gap-2 rounded-xl bg-[#0F473A] px-4 py-2.5 text-[13px] font-semibold text-white shadow-xs transition-colors hover:bg-[#145C4B]"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#1B3A6B] px-4 py-2.5 text-[13px] font-semibold text-white shadow-xs transition-colors hover:bg-[#2B5FA6]"
             >
               <FiPlus className="h-4 w-4" />
               <span>New Resale Property</span>
@@ -120,7 +120,7 @@ export default function AdminResalesPage() {
                 setPageNumber(1);
               }}
               placeholder="Search by title, code or project..."
-              className="w-full rounded-xl border border-[#DCE2DE] bg-white py-2.5 pr-4 pl-10 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white py-2.5 pr-4 pl-10 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
         </div>

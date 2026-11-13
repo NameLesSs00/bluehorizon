@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -95,7 +95,7 @@ export default function KeyValueFormModal({
               value={key}
               onChange={(e) => setKey(e.target.value)}
               placeholder="e.g. FaceBook, Instagram, WhatsApp, SupportEmail"
-              className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -115,17 +115,17 @@ export default function KeyValueFormModal({
               value={value}
               onChange={(e) => setValue(e.target.value)}
               placeholder="e.g. https://www.facebook.com/bluehorizon"
-              className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
         </div>
 
-        <div className="mt-8 flex items-center justify-end gap-3 border-t border-[#E6EAE7] pt-4">
+        <div className="mt-8 flex items-center justify-end gap-3 border-t border-[#E2E8F3] pt-4">
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-[#DCE2DE] px-4 py-2.5 text-[13px] font-medium text-[#65706B] transition-colors hover:bg-[#F3F5F3]"
+            className="rounded-xl border border-[#D0D9EA] px-4 py-2.5 text-[13px] font-medium text-[#65706B] transition-colors hover:bg-[#F0F3FA]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             Cancel
@@ -133,7 +133,7 @@ export default function KeyValueFormModal({
           <button
             type="submit"
             disabled={isPending}
-            className="rounded-xl bg-[#0F473A] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#145C4B] disabled:opacity-65"
+            className="rounded-xl bg-[#1B3A6B] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#2B5FA6] disabled:opacity-65"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {isPending

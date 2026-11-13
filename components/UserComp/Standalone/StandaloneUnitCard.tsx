@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -61,9 +61,9 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
   const hasBaths = typeof unit.noBathRoom === "number" && unit.noBathRoom > 0;
 
   return (
-    <div className="group flex flex-col overflow-hidden rounded-[20px] border border-[#E1E7E3] bg-white shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#145C4B]/40">
+    <div className="group flex flex-col overflow-hidden rounded-[20px] border border-[#D9E2EE] bg-white shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#2B5FA6]/40">
       {/* Image Container */}
-      <div className="relative h-[220px] w-full overflow-hidden bg-[#F3F5F3]">
+      <div className="relative h-[220px] w-full overflow-hidden bg-[#F0F3FA]">
         <Image
           src={resolvedUrl}
           alt={unit.name}
@@ -75,7 +75,7 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
 
         {/* Property Type Badge - only if real data */}
         {propertyTag && (
-          <div className="absolute top-3.5 left-3.5 z-10 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-[#145C4B] shadow-sm backdrop-blur-sm">
+          <div className="absolute top-3.5 left-3.5 z-10 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-[#2B5FA6] shadow-sm backdrop-blur-sm">
             <span style={{ fontFamily: "var(--font-inter)" }}>{propertyTag}</span>
           </div>
         )}
@@ -85,7 +85,7 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
       <div className="flex flex-1 flex-col p-4 sm:p-5">
         {/* Title */}
         <h3
-          className="text-base sm:text-lg font-bold text-[#202326] transition-colors group-hover:text-[#145C4B] line-clamp-1"
+          className="text-base sm:text-lg font-bold text-[#202326] transition-colors group-hover:text-[#2B5FA6] line-clamp-1"
           style={{ fontFamily: "var(--font-manrope)" }}
         >
           {unit.name}
@@ -128,7 +128,7 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
             )}
 
             {hasArea && (hasRooms || hasBaths) && (
-              <span className="text-[#E1E7E3]">&bull;</span>
+              <span className="text-[#D9E2EE]">&bull;</span>
             )}
 
             {hasRooms && (
@@ -152,7 +152,7 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
             )}
 
             {hasRooms && hasBaths && (
-              <span className="text-[#E1E7E3]">&bull;</span>
+              <span className="text-[#D9E2EE]">&bull;</span>
             )}
 
             {hasBaths && (
@@ -177,7 +177,7 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
         )}
 
         {/* Price & Action */}
-        <div className="mt-4 pt-3 border-t border-[#E1E7E3]/60 flex flex-col gap-3">
+        <div className="mt-4 pt-3 border-t border-[#D9E2EE]/60 flex flex-col gap-3">
           <div
             className="text-base sm:text-lg font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
@@ -187,7 +187,7 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
 
           <Link
             href={`/standalone/${unit.id}`}
-            className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#145C4B] py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#0F473A]"
+            className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#2B5FA6] py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#1B3A6B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <span>View Details</span>

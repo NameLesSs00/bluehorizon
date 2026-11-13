@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 
@@ -24,7 +24,7 @@ export default function BlogsFilterBar({
 }: BlogsFilterBarProps) {
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-[20px] bg-white border border-[#E1E7E3] p-3 sm:px-6 sm:py-3.5 shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-[20px] bg-white border border-[#D9E2EE] p-3 sm:px-6 sm:py-3.5 shadow-sm">
         {/* Left: Filter Label & Icon */}
         <div className="flex items-center gap-2 shrink-0">
           <Image
@@ -53,8 +53,8 @@ export default function BlogsFilterBar({
                 onClick={() => onSelectCategory(category)}
                 className={`rounded-[18px] px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold transition-all ${
                   isActive
-                    ? "bg-[#145C4B] text-white shadow-sm"
-                    : "border border-[#E1E7E3] bg-[#F3F5F3] text-[#202326] hover:bg-[#E8F1EC] hover:text-[#145C4B]"
+                    ? "bg-[#2B5FA6] text-white shadow-sm"
+                    : "border border-[#D9E2EE] bg-[#F0F3FA] text-[#202326] hover:bg-[#E5ECF6] hover:text-[#2B5FA6]"
                 }`}
                 style={{ fontFamily: "var(--font-inter)" }}
               >

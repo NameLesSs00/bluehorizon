@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { FiChevronRight } from "react-icons/fi";
@@ -14,7 +14,7 @@ export default function RentalBreadcrumb() {
         <li>
           <Link
             href="/"
-            className="transition-colors hover:text-[#0F473A]"
+            className="transition-colors hover:text-[#1B3A6B]"
           >
             Home
           </Link>
@@ -22,7 +22,7 @@ export default function RentalBreadcrumb() {
         <li>
           <FiChevronRight className="h-3.5 w-3.5 text-[#9CA3AF]" />
         </li>
-        <li className="font-semibold text-[#0F473A]">Units for Rent</li>
+        <li className="font-semibold text-[#1B3A6B]">Units for Rent</li>
       </ol>
     </nav>
   );

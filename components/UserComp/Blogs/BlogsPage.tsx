@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FormEvent, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -103,7 +103,7 @@ export default function BlogsPage() {
   const totalCount = blogsData?.totalCount || 0;
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#F3F5F3]">
+    <div className="flex min-h-screen flex-col bg-[#F0F3FA]">
       <Navbar />
       <main className="flex-1 pb-8">
         <BlogsHeroSection

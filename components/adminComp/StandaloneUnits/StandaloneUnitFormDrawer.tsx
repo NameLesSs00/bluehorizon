@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -192,7 +192,7 @@ export default function StandaloneUnitFormDrawer({
     >
       {isPreloading ? (
         <div className="flex h-64 items-center justify-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#0F473A] border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#1B3A6B] border-t-transparent" />
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6" noValidate>
@@ -258,18 +258,18 @@ export default function StandaloneUnitFormDrawer({
             onFilesSelected={setInitialImages}
           />
 
-          <div className="flex items-center justify-end gap-3 border-t border-[#E6EAE7] pt-4">
+          <div className="flex items-center justify-end gap-3 border-t border-[#E2E8F3] pt-4">
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-[#DCE2DE] bg-white px-4 py-2.5 text-[13px] font-medium text-[#65706B] hover:bg-[#F3F5F3]"
+              className="rounded-xl border border-[#D0D9EA] bg-white px-4 py-2.5 text-[13px] font-medium text-[#65706B] hover:bg-[#F0F3FA]"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isPending}
-              className="inline-flex items-center gap-2 rounded-xl bg-[#0F473A] px-6 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#145C4B] disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#1B3A6B] px-6 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#2B5FA6] disabled:opacity-50"
             >
               {isPending
                 ? "Saving..."

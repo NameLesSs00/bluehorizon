@@ -27,7 +27,7 @@ export default function AdminContactsPage() {
         {/* Header */}
         <div>
           <p
-            className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#145C4B]"
+            className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             INQUIRIES &amp; LEADS CONTROLLER
@@ -48,7 +48,7 @@ export default function AdminContactsPage() {
 
         {/* Status Metrics Bar */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border border-[#E6EAE7] bg-white p-5 shadow-xs">
+          <div className="rounded-2xl border border-[#E2E8F3] bg-white p-5 shadow-xs">
             <p className="text-[11px] font-bold uppercase tracking-wider text-[#65706B]">
               Total Inquiries
             </p>
@@ -66,11 +66,11 @@ export default function AdminContactsPage() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-emerald-200 bg-emerald-50/50 p-5 shadow-xs">
-            <p className="text-[11px] font-bold uppercase tracking-wider text-emerald-800">
+          <div className="rounded-2xl border border-blue-200 bg-blue-50/50 p-5 shadow-xs">
+            <p className="text-[11px] font-bold uppercase tracking-wider text-blue-800">
               Viewed / Processed
             </p>
-            <p className="mt-1 text-[26px] font-bold text-emerald-900">
+            <p className="mt-1 text-[26px] font-bold text-blue-900">
               {viewedCount}
             </p>
           </div>

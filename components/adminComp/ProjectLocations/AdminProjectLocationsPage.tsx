@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
@@ -51,7 +51,7 @@ export default function AdminProjectLocationsPage() {
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#145C4B]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]">
               DEVELOPMENT &amp; UNIT LOCATIONS
             </p>
             <h1 className="mt-1 text-[28px] font-semibold text-[#202326]">
@@ -65,7 +65,7 @@ export default function AdminProjectLocationsPage() {
           <button
             type="button"
             onClick={handleOpenCreate}
-            className="inline-flex items-center gap-2 rounded-xl bg-[#0F473A] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#145C4B]"
+            className="inline-flex items-center gap-2 rounded-xl bg-[#1B3A6B] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#2B5FA6]"
           >
             <FiPlus className="h-4 w-4" />
             <span>Add Project Location</span>

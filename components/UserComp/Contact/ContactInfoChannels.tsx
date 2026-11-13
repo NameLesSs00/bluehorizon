@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import {
@@ -66,7 +66,7 @@ export default function ContactInfoChannels() {
   return (
     <div className="lg:col-span-5">
       <p
-        className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#145C4B]"
+        className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]"
         style={{ fontFamily: "var(--font-inter)" }}
       >
         DIRECT REACH
@@ -94,12 +94,12 @@ export default function ContactInfoChannels() {
           [1, 2, 3, 4].map((i) => (
             <div
               key={i}
-              className="flex items-center gap-4 rounded-[18px] border border-[#E1E7E3] bg-white p-4 sm:p-5"
+              className="flex items-center gap-4 rounded-[18px] border border-[#D9E2EE] bg-white p-4 sm:p-5"
             >
-              <div className="h-12 w-12 shrink-0 animate-pulse rounded-xl bg-[#E8F1EC]" />
+              <div className="h-12 w-12 shrink-0 animate-pulse rounded-xl bg-[#E5ECF6]" />
               <div className="flex-1 space-y-2">
-                <div className="h-3 w-24 animate-pulse rounded bg-[#E1E7E3]" />
-                <div className="h-4 w-44 animate-pulse rounded bg-[#F3F5F3]" />
+                <div className="h-3 w-24 animate-pulse rounded bg-[#D9E2EE]" />
+                <div className="h-4 w-44 animate-pulse rounded bg-[#F0F3FA]" />
               </div>
             </div>
           ))
@@ -108,7 +108,7 @@ export default function ContactInfoChannels() {
             .filter((item) => Boolean(item.value))
             .map((item) => {
               const content = (
-                <div className="flex items-center gap-4 rounded-[18px] border border-[#E1E7E3] bg-white p-4 sm:p-5 transition-all duration-200 hover:border-[#145C4B]/40 hover:shadow-xs">
+                <div className="flex items-center gap-4 rounded-[18px] border border-[#D9E2EE] bg-white p-4 sm:p-5 transition-all duration-200 hover:border-[#2B5FA6]/40 hover:shadow-xs">
                   <div className="relative h-12 w-12 shrink-0">
                     <Image
                       src={item.icon}
@@ -154,7 +154,7 @@ export default function ContactInfoChannels() {
       </div>
 
       {/* Social Channels Bar */}
-      <div className="mt-4 flex items-center justify-between rounded-[18px] border border-[#E1E7E3] bg-white p-4 sm:p-5 shadow-xs">
+      <div className="mt-4 flex items-center justify-between rounded-[18px] border border-[#D9E2EE] bg-white p-4 sm:p-5 shadow-xs">
         <span
           className="text-[13px] sm:text-[14px] font-bold text-[#202326]"
           style={{ fontFamily: "var(--font-manrope)" }}
@@ -168,7 +168,7 @@ export default function ContactInfoChannels() {
               {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
-                  className="h-10 w-10 animate-pulse rounded-full bg-[#E8F1EC]"
+                  className="h-10 w-10 animate-pulse rounded-full bg-[#E5ECF6]"
                 />
               ))}
             </div>
@@ -180,7 +180,7 @@ export default function ContactInfoChannels() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="WhatsApp"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0F473A] text-white shadow-xs transition-all duration-200 hover:bg-[#25D366] hover:scale-110 active:scale-95"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1B3A6B] text-white shadow-xs transition-all duration-200 hover:bg-[#25D366] hover:scale-110 active:scale-95"
                 >
                   <FaWhatsapp className="h-5 w-5" />
                 </a>
@@ -192,7 +192,7 @@ export default function ContactInfoChannels() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0F473A] text-white shadow-xs transition-all duration-200 hover:bg-[#E1306C] hover:scale-110 active:scale-95"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1B3A6B] text-white shadow-xs transition-all duration-200 hover:bg-[#E1306C] hover:scale-110 active:scale-95"
                 >
                   <FaInstagram className="h-4.5 w-4.5" />
                 </a>
@@ -204,7 +204,7 @@ export default function ContactInfoChannels() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0F473A] text-white shadow-xs transition-all duration-200 hover:bg-[#0077B5] hover:scale-110 active:scale-95"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1B3A6B] text-white shadow-xs transition-all duration-200 hover:bg-[#0077B5] hover:scale-110 active:scale-95"
                 >
                   <FaLinkedinIn className="h-4 w-4" />
                 </a>
@@ -216,7 +216,7 @@ export default function ContactInfoChannels() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0F473A] text-white shadow-xs transition-all duration-200 hover:bg-[#1877F2] hover:scale-110 active:scale-95"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1B3A6B] text-white shadow-xs transition-all duration-200 hover:bg-[#1877F2] hover:scale-110 active:scale-95"
                 >
                   <FaFacebookF className="h-4 w-4" />
                 </a>

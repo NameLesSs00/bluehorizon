@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -112,8 +112,8 @@ export default function HeroSearchFilterCard() {
                 onClick={() => setActiveTab(tab)}
                 className={`rounded-full px-7 py-3 text-[15px] font-semibold transition-all ${
                   isActive
-                    ? "bg-[#0F473A] text-white"
-                    : "text-[#202326] hover:text-[#0F473A]"
+                    ? "bg-[#1B3A6B] text-white"
+                    : "text-[#202326] hover:text-[#1B3A6B]"
                 }`}
                 style={{ fontFamily: "var(--font-inter)" }}
               >
@@ -125,9 +125,9 @@ export default function HeroSearchFilterCard() {
       </div>
 
       {/* Main Filter Body Card */}
-      <div className="rounded-[24px] lg:rounded-b-[32px] lg:rounded-tr-[32px] lg:rounded-tl-none bg-white p-3.5 sm:p-5 lg:p-6 border border-[#E6EAE7]/80 lg:border-none shadow-lg lg:shadow-none">
+      <div className="rounded-[24px] lg:rounded-b-[32px] lg:rounded-tr-[32px] lg:rounded-tl-none bg-white p-3.5 sm:p-5 lg:p-6 border border-[#E2E8F3]/80 lg:border-none shadow-lg lg:shadow-none">
         {/* Mobile Full-Width Segmented Tabs */}
-        <div className="grid grid-cols-3 gap-1 rounded-full bg-[#F3F5F3] p-1 mb-3 lg:hidden">
+        <div className="grid grid-cols-3 gap-1 rounded-full bg-[#F0F3FA] p-1 mb-3 lg:hidden">
           {TABS.map((tab) => {
             const isActive = activeTab === tab;
             return (
@@ -137,8 +137,8 @@ export default function HeroSearchFilterCard() {
                 onClick={() => setActiveTab(tab)}
                 className={`rounded-full py-2 text-xs font-semibold transition-all text-center ${
                   isActive
-                    ? "bg-[#0F473A] text-white shadow-2xs"
-                    : "text-[#202326] hover:text-[#0F473A]"
+                    ? "bg-[#1B3A6B] text-white shadow-2xs"
+                    : "text-[#202326] hover:text-[#1B3A6B]"
                 }`}
                 style={{ fontFamily: "var(--font-inter)" }}
               >
@@ -161,7 +161,7 @@ export default function HeroSearchFilterCard() {
               onSelect={setSelectedCategory}
             />
 
-            <div className="hidden h-11 w-[1px] bg-[#E6EAE7] lg:block shrink-0 mx-2" />
+            <div className="hidden h-11 w-[1px] bg-[#E2E8F3] lg:block shrink-0 mx-2" />
 
             {/* Property Type */}
             <HeroFilterDropdown
@@ -173,7 +173,7 @@ export default function HeroSearchFilterCard() {
               onSelect={setSelectedType}
             />
 
-            <div className="hidden h-11 w-[1px] bg-[#E6EAE7] lg:block shrink-0 mx-2" />
+            <div className="hidden h-11 w-[1px] bg-[#E2E8F3] lg:block shrink-0 mx-2" />
 
             {/* Price Range */}
             <HeroFilterDropdown
@@ -185,7 +185,7 @@ export default function HeroSearchFilterCard() {
               onSelect={setSelectedPrice}
             />
 
-            <div className="hidden h-11 w-[1px] bg-[#E6EAE7] lg:block shrink-0 mx-2" />
+            <div className="hidden h-11 w-[1px] bg-[#E2E8F3] lg:block shrink-0 mx-2" />
 
             {/* Area */}
             <HeroFilterDropdown
@@ -202,7 +202,7 @@ export default function HeroSearchFilterCard() {
           <button
             type="button"
             onClick={handleSearch}
-            className="inline-flex w-full lg:w-auto shrink-0 items-center justify-center gap-2.5 rounded-full bg-[#0F473A] px-6 py-3 sm:py-3.5 lg:px-9 lg:py-4.5 text-[14px] sm:text-[15px] lg:text-[16px] font-semibold text-white shadow-md transition-all hover:bg-[#145C4B] hover:shadow-xl"
+            className="inline-flex w-full lg:w-auto shrink-0 items-center justify-center gap-2.5 rounded-full bg-[#1B3A6B] px-6 py-3 sm:py-3.5 lg:px-9 lg:py-4.5 text-[14px] sm:text-[15px] lg:text-[16px] font-semibold text-white shadow-md transition-all hover:bg-[#2B5FA6] hover:shadow-xl"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <FiSearch className="h-4 w-4 sm:h-5 sm:w-5" />

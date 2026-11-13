@@ -1,4 +1,4 @@
-interface AreaOverviewSectionProps {
+﻿interface AreaOverviewSectionProps {
   areaName?: string;
   description?: string | null;
   activeUnitsCount?: number;
@@ -34,7 +34,7 @@ export default function AreaOverviewSection({
         {/* Left Column: Title, Narrative Text & Highlight Chips */}
         <div className="max-w-3xl">
           <p
-            className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#145C4B]"
+            className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             DISCOVER THE NEIGHBORHOOD
@@ -59,10 +59,10 @@ export default function AreaOverviewSection({
 
         {/* Right Column: Key Stats Card */}
         <div className="self-start lg:self-auto shrink-0 w-full sm:w-auto">
-          <div className="flex sm:flex-col items-center justify-between sm:justify-center rounded-[24px] bg-white px-8 py-5 sm:px-10 sm:py-7 text-center border border-[#E1E7E3] shadow-xs">
+          <div className="flex sm:flex-col items-center justify-between sm:justify-center rounded-[24px] bg-white px-8 py-5 sm:px-10 sm:py-7 text-center border border-[#D9E2EE] shadow-xs">
             <div>
               <span
-                className="text-3xl sm:text-[40px] font-bold leading-none text-[#145C4B]"
+                className="text-3xl sm:text-[40px] font-bold leading-none text-[#2B5FA6]"
                 style={{ fontFamily: "var(--font-manrope)" }}
               >
                 {totalCount > 0 ? `${totalCount}+` : "Verified"}
@@ -74,7 +74,7 @@ export default function AreaOverviewSection({
                 Available units
               </span>
             </div>
-            <div className="sm:mt-4 sm:pt-4 sm:border-t sm:border-[#E1E7E3]/80">
+            <div className="sm:mt-4 sm:pt-4 sm:border-t sm:border-[#D9E2EE]/80">
               <span
                 className="text-xs text-[#8A9590]"
                 style={{ fontFamily: "var(--font-inter)" }}

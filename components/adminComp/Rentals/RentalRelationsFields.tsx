@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { usePropertyCategoryItemsQuery } from "@/features/propertyCategoryItems/usePropertyCategoryItemsQueries";
 import { useInfoAreaPlacesQuery } from "@/features/infoAreaPlaces/useInfoAreaPlacesQueries";
@@ -72,9 +72,9 @@ export default function RentalRelationsFields({
   return (
     <div className="space-y-6">
       {/* Category / Amenities Items */}
-      <div className="space-y-3 rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-4">
+      <div className="space-y-3 rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-4">
         <div className="flex items-center justify-between">
-          <p className="text-[12px] font-bold uppercase tracking-wider text-[#145C4B]">
+          <p className="text-[12px] font-bold uppercase tracking-wider text-[#2B5FA6]">
             Rental Amenities &amp; Features ({formData.propertyCategoryItemIds.length})
           </p>
           <span className="text-[11px] text-[#65706B]">
@@ -99,8 +99,8 @@ export default function RentalRelationsFields({
                   onClick={() => handleToggleCategoryItem(item.id)}
                   className={`rounded-full px-3.5 py-1.5 text-[12px] font-medium transition-all ${
                     isSelected
-                      ? "bg-[#145C4B] text-white shadow-sm"
-                      : "border border-[#DCE2DE] bg-white text-[#202326] hover:bg-[#FAF8F5]"
+                      ? "bg-[#2B5FA6] text-white shadow-sm"
+                      : "border border-[#D0D9EA] bg-white text-[#202326] hover:bg-[#F9F7F4]"
                   }`}
                 >
                   {item.name}
@@ -112,9 +112,9 @@ export default function RentalRelationsFields({
       </div>
 
       {/* Nearby Places / Landmarks */}
-      <div className="space-y-3 rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-4">
+      <div className="space-y-3 rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-4">
         <div className="flex items-center justify-between">
-          <p className="text-[12px] font-bold uppercase tracking-wider text-[#145C4B]">
+          <p className="text-[12px] font-bold uppercase tracking-wider text-[#2B5FA6]">
             Nearby Places &amp; Distances ({formData.infoAreaPlaces.length})
           </p>
           <span className="text-[11px] text-[#65706B]">
@@ -139,8 +139,8 @@ export default function RentalRelationsFields({
                   key={place.id}
                   className={`flex flex-col gap-2 rounded-xl border p-3 transition-colors sm:flex-row sm:items-center sm:justify-between ${
                     isSelected
-                      ? "border-[#145C4B] bg-white"
-                      : "border-[#E6EAE7] bg-white/70"
+                      ? "border-[#2B5FA6] bg-white"
+                      : "border-[#E2E8F3] bg-white/70"
                   }`}
                 >
                   <label className="flex cursor-pointer items-center gap-2.5">
@@ -148,7 +148,7 @@ export default function RentalRelationsFields({
                       type="checkbox"
                       checked={isSelected}
                       onChange={() => handleTogglePlace(place.id)}
-                      className="h-4 w-4 rounded border-gray-300 text-[#145C4B] focus:ring-[#145C4B]"
+                      className="h-4 w-4 rounded border-gray-300 text-[#2B5FA6] focus:ring-[#2B5FA6]"
                     />
                     <span className="text-[13px] font-semibold text-[#202326]">
                       {place.name}
@@ -167,7 +167,7 @@ export default function RentalRelationsFields({
                           handleUpdateDistance(place.id, e.target.value)
                         }
                         placeholder="e.g. 500 meters or 5 min drive"
-                        className="rounded-lg border border-[#DCE2DE] bg-neutral-50 px-2.5 py-1 text-[12px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+                        className="rounded-lg border border-[#D0D9EA] bg-neutral-50 px-2.5 py-1 text-[12px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
                       />
                     </div>
                   )}

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { BlogSectionItem } from "@/models/blog";
@@ -23,7 +23,7 @@ export default function BlogMainContent({
       <div className="flex flex-wrap items-center gap-3">
         {category && (
           <span
-            className="rounded-full bg-[#E8F1EC] px-3.5 py-1 text-xs font-semibold text-[#145C4B]"
+            className="rounded-full bg-[#E5ECF6] px-3.5 py-1 text-xs font-semibold text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {category}
@@ -92,7 +92,7 @@ export default function BlogMainContent({
               )}
 
               {sectionImageUrl && (
-                <div className="relative mt-6 mb-2 h-[260px] sm:h-[340px] lg:h-[380px] w-full overflow-hidden rounded-[24px] border border-[#E1E7E3] bg-[#F3F5F3]">
+                <div className="relative mt-6 mb-2 h-[260px] sm:h-[340px] lg:h-[380px] w-full overflow-hidden rounded-[24px] border border-[#D9E2EE] bg-[#F0F3FA]">
                   <Image
                     src={sectionImageUrl}
                     alt={sectionTitle || "Section illustration"}

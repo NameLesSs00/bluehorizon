@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useQuery } from "@tanstack/react-query";
 import { FiCheckSquare, FiSquare, FiStar, FiImage } from "react-icons/fi";
@@ -38,7 +38,7 @@ export default function StandaloneUnitServicesFields({
   return (
     <div className="space-y-5">
       {/* Featured Property Toggle */}
-      <div className="flex items-center justify-between rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-4">
+      <div className="flex items-center justify-between rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-4">
         <div>
           <span className="flex items-center gap-1.5 text-[13px] font-bold text-[#202326]">
             <FiStar className="h-4 w-4 text-amber-500" />
@@ -53,7 +53,7 @@ export default function StandaloneUnitServicesFields({
           type="button"
           onClick={() => setIsFeatured(!isFeatured)}
           className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-            isFeatured ? "bg-[#0F473A]" : "bg-neutral-200"
+            isFeatured ? "bg-[#1B3A6B]" : "bg-neutral-200"
           }`}
         >
           <span
@@ -66,9 +66,9 @@ export default function StandaloneUnitServicesFields({
 
       {/* Initial Photos Selection (When Creating) */}
       {!isEditing && onFilesSelected && (
-        <div className="rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-4">
+        <div className="rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-4">
           <label className="flex items-center gap-2 text-[12px] font-bold text-[#202326]">
-            <FiImage className="h-4 w-4 text-[#145C4B]" />
+            <FiImage className="h-4 w-4 text-[#2B5FA6]" />
             <span>Initial Property Gallery Images (Optional)</span>
           </label>
           <input
@@ -79,15 +79,15 @@ export default function StandaloneUnitServicesFields({
               const files = e.target.files ? Array.from(e.target.files) : [];
               onFilesSelected(files);
             }}
-            className="mt-2 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-lg file:border-0 file:bg-[#0F473A] file:px-3 file:py-1.5 file:text-[12px] file:font-semibold file:text-white hover:file:bg-[#145C4B]"
+            className="mt-2 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-lg file:border-0 file:bg-[#1B3A6B] file:px-3 file:py-1.5 file:text-[12px] file:font-semibold file:text-white hover:file:bg-[#2B5FA6]"
           />
         </div>
       )}
 
       {/* Amenities & Services */}
-      <div className="space-y-3 rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-5">
+      <div className="space-y-3 rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-5">
         <div className="flex items-center justify-between">
-          <h4 className="text-[13px] font-bold uppercase tracking-wider text-[#145C4B]">
+          <h4 className="text-[13px] font-bold uppercase tracking-wider text-[#2B5FA6]">
             Included Services &amp; Amenities ({selectedServiceIds.length})
           </h4>
           <span className="text-[11px] text-[#65706B]">
@@ -112,12 +112,12 @@ export default function StandaloneUnitServicesFields({
                   onClick={() => toggleService(srv.id)}
                   className={`flex items-center gap-2 rounded-xl border p-2.5 text-left text-[12px] transition-colors ${
                     isChecked
-                      ? "border-[#145C4B] bg-[#E8F1EC] text-[#0F473A] font-semibold"
-                      : "border-[#DCE2DE] bg-white text-[#202326] hover:bg-[#F3F5F3]"
+                      ? "border-[#2B5FA6] bg-[#E5ECF6] text-[#1B3A6B] font-semibold"
+                      : "border-[#D0D9EA] bg-white text-[#202326] hover:bg-[#F0F3FA]"
                   }`}
                 >
                   {isChecked ? (
-                    <FiCheckSquare className="h-4 w-4 shrink-0 text-[#145C4B]" />
+                    <FiCheckSquare className="h-4 w-4 shrink-0 text-[#2B5FA6]" />
                   ) : (
                     <FiSquare className="h-4 w-4 shrink-0 text-[#9BA5A0]" />
                   )}

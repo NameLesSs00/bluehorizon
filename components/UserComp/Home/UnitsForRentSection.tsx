@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -16,13 +16,13 @@ export default function UnitsForRentSection() {
   const displayUnits = rawUnits.slice(0, 4);
 
   return (
-    <section className="bg-[#F3F5F3] py-8 sm:py-10 lg:py-12">
+    <section className="bg-[#F0F3FA] py-8 sm:py-10 lg:py-12">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p
-              className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#145C4B]"
+              className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               FEEL AT HOME, RIGHT AWAY
@@ -43,7 +43,7 @@ export default function UnitsForRentSection() {
 
           <Link
             href="/rent"
-            className="inline-flex items-center gap-2 self-start text-[14px] font-semibold text-[#145C4B] transition-opacity hover:opacity-80 md:self-end"
+            className="inline-flex items-center gap-2 self-start text-[14px] font-semibold text-[#2B5FA6] transition-opacity hover:opacity-80 md:self-end"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <span>Browse all rentals</span>
@@ -63,12 +63,12 @@ export default function UnitsForRentSection() {
             {[1, 2, 3, 4].map((n) => (
               <div
                 key={n}
-                className="h-[420px] w-full animate-pulse rounded-[20px] bg-[#E8F1EC]"
+                className="h-[420px] w-full animate-pulse rounded-[20px] bg-[#E5ECF6]"
               />
             ))}
           </div>
         ) : displayUnits.length === 0 ? (
-          <div className="flex h-44 w-full flex-col items-center justify-center rounded-2xl border border-[#E6EAE7] bg-white p-8 text-center">
+          <div className="flex h-44 w-full flex-col items-center justify-center rounded-2xl border border-[#E2E8F3] bg-white p-8 text-center">
             <p
               className="text-[15px] font-semibold text-[#202326]"
               style={{ fontFamily: "var(--font-manrope)" }}

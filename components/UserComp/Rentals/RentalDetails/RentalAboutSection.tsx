@@ -1,4 +1,4 @@
-import { RentalItem } from "@/models/rental";
+﻿import { RentalItem } from "@/models/rental";
 
 interface RentalAboutSectionProps {
   unit: RentalItem;
@@ -42,9 +42,9 @@ export default function RentalAboutSection({ unit }: RentalAboutSectionProps) {
   }
 
   return (
-    <div className="rounded-[20px] border border-[#E1E7E3] bg-white p-6 sm:p-7 shadow-xs">
+    <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-7 shadow-xs">
       <h2
-        className="text-xl sm:text-2xl font-bold text-[#145C4B]"
+        className="text-xl sm:text-2xl font-bold text-[#2B5FA6]"
         style={{ fontFamily: "var(--font-manrope)" }}
       >
         About This Rental
@@ -71,7 +71,7 @@ export default function RentalAboutSection({ unit }: RentalAboutSectionProps) {
           {highlights.map((h) => (
             <div
               key={h.label}
-              className="rounded-[14px] border border-[#E1E7E3]/80 bg-[#FAF8F5] p-3.5 text-center"
+              className="rounded-[14px] border border-[#D9E2EE]/80 bg-[#F9F7F4] p-3.5 text-center"
             >
               <span
                 className="block text-[11px] font-medium text-[#65706B]"

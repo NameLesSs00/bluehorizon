@@ -45,11 +45,11 @@ export default function RentalsTableRow({
   const typeLabel = PROPERTY_TYPE_LABELS[rental.propertyType] || "Rental";
 
   return (
-    <tr className="transition-colors hover:bg-[#F3F5F3]/50">
+    <tr className="transition-colors hover:bg-[#F0F3FA]/50">
       {/* 1. Property Name & Thumbnail */}
       <td className="px-6 py-5">
         <div className="flex items-center gap-4">
-          <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-xl border border-[#DCE2DE] bg-neutral-100">
+          <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-xl border border-[#D0D9EA] bg-neutral-100">
             {primaryImage?.imageUrl ? (
               <Image
                 src={getFullRentalMediaUrl(primaryImage.imageUrl)}
@@ -58,7 +58,7 @@ export default function RentalsTableRow({
                 className="object-cover"
               />
             ) : (
-              <div className="flex h-full w-full items-center justify-center bg-[#0F473A]/10 text-[#0F473A]">
+              <div className="flex h-full w-full items-center justify-center bg-[#1B3A6B]/10 text-[#1B3A6B]">
                 <FiHome className="h-6 w-6" />
               </div>
             )}
@@ -70,7 +70,7 @@ export default function RentalsTableRow({
               <span className="rounded bg-neutral-100 px-1.5 py-0.5 text-[10px] font-bold uppercase text-[#65706B]">
                 {rental.code}
               </span>
-              <span className="rounded bg-[#145C4B]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[#145C4B]">
+              <span className="rounded bg-[#2B5FA6]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[#2B5FA6]">
                 {typeLabel}
               </span>
             </div>
@@ -103,7 +103,7 @@ export default function RentalsTableRow({
 
       {/* 3. Nightly Rate */}
       <td className="px-6 py-5">
-        <p className="text-[14px] font-bold text-[#145C4B]">{formatPrice()}</p>
+        <p className="text-[14px] font-bold text-[#2B5FA6]">{formatPrice()}</p>
         <span className="text-[10px] text-[#65706B]">per night</span>
       </td>
 
@@ -114,7 +114,7 @@ export default function RentalsTableRow({
             <span
               className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${
                 rental.isAvailable
-                  ? "bg-[#25D366]/20 text-[#0F473A]"
+                  ? "bg-[#25D366]/20 text-[#1B3A6B]"
                   : "bg-neutral-200 text-neutral-600"
               }`}
             >
@@ -140,7 +140,7 @@ export default function RentalsTableRow({
               </span>
             )}
             {rental.hasGardenView && (
-              <span className="rounded bg-emerald-50 px-1.5 py-0.5 text-[9px] font-medium text-emerald-700">
+              <span className="rounded bg-lime-50 px-1.5 py-0.5 text-[9px] font-medium text-lime-700">
                 Garden
               </span>
             )}
@@ -154,7 +154,7 @@ export default function RentalsTableRow({
           <button
             type="button"
             onClick={() => onManageMedia(rental)}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[#DCE2DE] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#145C4B] transition-colors hover:bg-[#FAF8F5]"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#2B5FA6] transition-colors hover:bg-[#F9F7F4]"
             title="Manage Photos"
           >
             <FiImage className="h-3.5 w-3.5" />
@@ -164,7 +164,7 @@ export default function RentalsTableRow({
           <button
             type="button"
             onClick={() => onEdit(rental)}
-            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white p-2 text-[#202326] transition-colors hover:bg-[#FAF8F5]"
+            className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white p-2 text-[#202326] transition-colors hover:bg-[#F9F7F4]"
             title="Edit Rental Details"
           >
             <FiEdit2 className="h-3.5 w-3.5" />
@@ -183,7 +183,7 @@ export default function RentalsTableRow({
               <button
                 type="button"
                 onClick={() => setIsConfirmingDelete(false)}
-                className="rounded-lg border border-[#DCE2DE] bg-white px-2 py-1 text-[11px] text-[#65706B] hover:bg-neutral-100"
+                className="rounded-lg border border-[#D0D9EA] bg-white px-2 py-1 text-[11px] text-[#65706B] hover:bg-neutral-100"
               >
                 Cancel
               </button>

@@ -30,7 +30,7 @@ export default function RentalLocationCard({
   return (
     <Link
       href={`/locations/${location.id}`}
-      className="group relative flex aspect-[300/380] w-full flex-col justify-end overflow-hidden rounded-[20px] bg-[#FAF8F5] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
+      className="group relative flex aspect-[300/380] w-full flex-col justify-end overflow-hidden rounded-[20px] bg-[#F9F7F4] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
     >
       {/* Background Image */}
       <Image
@@ -42,12 +42,12 @@ export default function RentalLocationCard({
         className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
       />
 
-      {/* Dark Emerald Bottom Gradient */}
+      {/* Dark Navy Bottom Gradient */}
       <div
         className="pointer-events-none absolute inset-0 z-10"
         style={{
           background:
-            "linear-gradient(180deg, rgba(7, 39, 28, 0) 35%, rgba(7, 39, 28, 0.2) 60%, rgba(7, 39, 28, 0.94) 100%)",
+            "linear-gradient(180deg, rgba(22, 46, 86, 0) 35%, rgba(22, 46, 86, 0.2) 60%, rgba(22, 46, 86, 0.94) 100%)",
         }}
       />
 

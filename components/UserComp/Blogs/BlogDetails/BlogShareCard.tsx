@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { toast } from "sonner";
@@ -60,7 +60,7 @@ export default function BlogShareCard({ title }: BlogShareCardProps) {
   };
 
   return (
-    <div className="rounded-[20px] border border-[#E1E7E3] bg-white p-5 sm:p-6 shadow-sm">
+    <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-5 sm:p-6 shadow-sm">
       <h3
         className="text-xs font-bold uppercase tracking-wider text-[#6B7570] mb-3.5"
         style={{ fontFamily: "var(--font-inter)" }}
@@ -73,7 +73,7 @@ export default function BlogShareCard({ title }: BlogShareCardProps) {
         <button
           type="button"
           onClick={handleCopy}
-          className="flex flex-col items-center justify-center gap-1.5 rounded-[12px] border border-[#E1E7E3] bg-[#FCFCFC] py-3 px-1 text-xs font-medium text-[#202326] transition-all hover:bg-[#E8F1EC] hover:border-[#145C4B]/40 hover:text-[#145C4B]"
+          className="flex flex-col items-center justify-center gap-1.5 rounded-[12px] border border-[#D9E2EE] bg-[#FCFCFC] py-3 px-1 text-xs font-medium text-[#202326] transition-all hover:bg-[#E5ECF6] hover:border-[#2B5FA6]/40 hover:text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           <Image
@@ -89,7 +89,7 @@ export default function BlogShareCard({ title }: BlogShareCardProps) {
         <button
           type="button"
           onClick={handleEmail}
-          className="flex flex-col items-center justify-center gap-1.5 rounded-[12px] border border-[#E1E7E3] bg-[#FCFCFC] py-3 px-1 text-xs font-medium text-[#202326] transition-all hover:bg-[#E8F1EC] hover:border-[#145C4B]/40 hover:text-[#145C4B]"
+          className="flex flex-col items-center justify-center gap-1.5 rounded-[12px] border border-[#D9E2EE] bg-[#FCFCFC] py-3 px-1 text-xs font-medium text-[#202326] transition-all hover:bg-[#E5ECF6] hover:border-[#2B5FA6]/40 hover:text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           <Image
@@ -105,7 +105,7 @@ export default function BlogShareCard({ title }: BlogShareCardProps) {
         <button
           type="button"
           onClick={handleWhatsApp}
-          className="flex flex-col items-center justify-center gap-1.5 rounded-[12px] border border-[#E1E7E3] bg-[#FCFCFC] py-3 px-1 text-xs font-medium text-[#202326] transition-all hover:bg-[#E8F1EC] hover:border-[#145C4B]/40 hover:text-[#145C4B]"
+          className="flex flex-col items-center justify-center gap-1.5 rounded-[12px] border border-[#D9E2EE] bg-[#FCFCFC] py-3 px-1 text-xs font-medium text-[#202326] transition-all hover:bg-[#E5ECF6] hover:border-[#2B5FA6]/40 hover:text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           <Image
@@ -121,7 +121,7 @@ export default function BlogShareCard({ title }: BlogShareCardProps) {
         <button
           type="button"
           onClick={handleShare}
-          className="flex flex-col items-center justify-center gap-1.5 rounded-[12px] border border-[#E1E7E3] bg-[#FCFCFC] py-3 px-1 text-xs font-medium text-[#202326] transition-all hover:bg-[#E8F1EC] hover:border-[#145C4B]/40 hover:text-[#145C4B]"
+          className="flex flex-col items-center justify-center gap-1.5 rounded-[12px] border border-[#D9E2EE] bg-[#FCFCFC] py-3 px-1 text-xs font-medium text-[#202326] transition-all hover:bg-[#E5ECF6] hover:border-[#2B5FA6]/40 hover:text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           <Image

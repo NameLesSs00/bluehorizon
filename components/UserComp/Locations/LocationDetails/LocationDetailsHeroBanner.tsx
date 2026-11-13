@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { FiPlay } from "react-icons/fi";
 
 interface LocationDetailsHeroBannerProps {
@@ -17,7 +17,7 @@ export default function LocationDetailsHeroBanner({
 
   return (
     <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-5 sm:mt-6">
-      <div className="relative h-[320px] sm:h-[400px] lg:h-[460px] w-full overflow-hidden rounded-[24px] sm:rounded-[32px] border border-[#E1E7E3] shadow-xs">
+      <div className="relative h-[320px] sm:h-[400px] lg:h-[460px] w-full overflow-hidden rounded-[24px] sm:rounded-[32px] border border-[#D9E2EE] shadow-xs">
         {/* Background Image */}
         <Image
           src={displayImage}
@@ -33,7 +33,7 @@ export default function LocationDetailsHeroBanner({
           className="absolute inset-0 z-10"
           style={{
             background:
-              "linear-gradient(180deg, rgba(15, 71, 58, 0.1) 0%, rgba(15, 71, 58, 0.35) 45%, rgba(15, 71, 58, 0.94) 100%)",
+              "linear-gradient(180deg, rgba(27, 58, 107, 0.1) 0%, rgba(27, 58, 107, 0.35) 45%, rgba(27, 58, 107, 0.94) 100%)",
           }}
         />
 
@@ -42,7 +42,7 @@ export default function LocationDetailsHeroBanner({
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p
-                className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#CBDFD5]"
+                className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#C5D3E8]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 RENTAL DESTINATION
@@ -60,10 +60,10 @@ export default function LocationDetailsHeroBanner({
                 href={videoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 self-start rounded-full bg-white/90 px-5 py-2.5 text-xs font-semibold text-[#145C4B] shadow-sm backdrop-blur-sm transition-all hover:bg-white hover:shadow-md sm:self-auto"
+                className="inline-flex items-center gap-2 self-start rounded-full bg-white/90 px-5 py-2.5 text-xs font-semibold text-[#2B5FA6] shadow-sm backdrop-blur-sm transition-all hover:bg-white hover:shadow-md sm:self-auto"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                <FiPlay className="h-3.5 w-3.5 fill-[#145C4B]" />
+                <FiPlay className="h-3.5 w-3.5 fill-[#2B5FA6]" />
                 <span>Watch Area Tour</span>
               </a>
             )}

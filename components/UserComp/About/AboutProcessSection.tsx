@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 
 interface ProcessStep {
   step: string;
@@ -42,11 +42,11 @@ export default function AboutProcessSection() {
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       {/* Light Gray / Green Container Card */}
-      <div className="rounded-[28px] sm:rounded-[32px] bg-[#F3F5F3] border border-[#E1E7E3]/70 px-6 py-10 sm:px-10 sm:py-14 lg:px-14 lg:py-16">
+      <div className="rounded-[28px] sm:rounded-[32px] bg-[#F0F3FA] border border-[#D9E2EE]/70 px-6 py-10 sm:px-10 sm:py-14 lg:px-14 lg:py-16">
         {/* Section Header */}
         <div className="text-center">
           <p
-            className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#145C4B]"
+            className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             STRUCTURED PROCESS
@@ -73,7 +73,7 @@ export default function AboutProcessSection() {
           {STEPS.map((step) => (
             <div
               key={step.step}
-              className="flex flex-col justify-between rounded-[20px] border border-[#E1E7E3] bg-white p-6 sm:p-7 transition-all duration-200 hover:border-[#145C4B]/40 hover:shadow-xs"
+              className="flex flex-col justify-between rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-7 transition-all duration-200 hover:border-[#2B5FA6]/40 hover:shadow-xs"
             >
               <div>
                 <div className="flex items-center justify-between">

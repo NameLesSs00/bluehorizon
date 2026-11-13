@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { RentalItem } from "@/models/rental";
 
 interface RentalViewsSectionProps {
@@ -55,10 +55,10 @@ export default function RentalViewsSection({ unit }: RentalViewsSectionProps) {
   }
 
   return (
-    <div className="mt-6 rounded-[16px] border border-[#E1E7E3] bg-white p-4 sm:p-5 shadow-xs">
+    <div className="mt-6 rounded-[16px] border border-[#D9E2EE] bg-white p-4 sm:p-5 shadow-xs">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-3.5">
         <h2
-          className="text-base sm:text-lg font-bold text-[#145C4B]"
+          className="text-base sm:text-lg font-bold text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-manrope)" }}
         >
           Scenic Views &amp; Orientation
@@ -76,7 +76,7 @@ export default function RentalViewsSection({ unit }: RentalViewsSectionProps) {
         {activeViews.map((v) => (
           <div
             key={v.key}
-            className="flex items-center gap-2.5 rounded-[12px] border border-[#145C4B]/15 bg-[#F4F8F6] px-3 py-2 text-left transition-colors hover:border-[#145C4B]/35"
+            className="flex items-center gap-2.5 rounded-[12px] border border-[#2B5FA6]/15 bg-[#F4F8F6] px-3 py-2 text-left transition-colors hover:border-[#2B5FA6]/35"
           >
             <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white shadow-2xs">
               <Image

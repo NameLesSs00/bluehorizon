@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { BlogSectionItem } from "@/models/blog";
@@ -24,7 +24,7 @@ export default function BlogTableOfContents({
   }
 
   return (
-    <div className="rounded-[20px] border border-[#E1E7E3] bg-white p-5 sm:p-6 shadow-sm">
+    <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-5 sm:p-6 shadow-sm">
       <div className="flex items-center gap-2 mb-4">
         <Image
           src="/Blogs/BlogDetails/icon-list.svg"
@@ -54,8 +54,8 @@ export default function BlogTableOfContents({
                 onClick={() => handleScrollTo(`section-${sectionNum}`)}
                 className={`text-left leading-snug transition-colors line-clamp-2 ${
                   isFirst
-                    ? "font-semibold text-[#145C4B]"
-                    : "font-medium text-[#6B7570] hover:text-[#145C4B]"
+                    ? "font-semibold text-[#2B5FA6]"
+                    : "font-medium text-[#6B7570] hover:text-[#2B5FA6]"
                 }`}
               >
                 <span className="font-bold mr-1.5">{sectionNum}.</span>
@@ -70,7 +70,7 @@ export default function BlogTableOfContents({
             <button
               type="button"
               onClick={() => handleScrollTo("recent-articles")}
-              className="text-left font-medium text-[#6B7570] hover:text-[#145C4B] transition-colors leading-snug"
+              className="text-left font-medium text-[#6B7570] hover:text-[#2B5FA6] transition-colors leading-snug"
             >
               <span className="font-bold mr-1.5">{sections.length + 1}.</span>
               <span>Related Articles</span>

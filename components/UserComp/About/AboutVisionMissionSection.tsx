@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 
 interface CardContent {
   icon: string;
@@ -36,7 +36,7 @@ export default function AboutVisionMissionSection() {
       {/* Section Header */}
       <div className="text-center">
         <p
-          className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#145C4B]"
+          className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           CORE PURPOSE
@@ -63,7 +63,7 @@ export default function AboutVisionMissionSection() {
         {CARDS.map((card) => (
           <div
             key={card.title}
-            className="flex flex-col justify-between rounded-[24px] border border-[#E1E7E3] bg-white p-8 sm:p-10 transition-all duration-200 hover:border-[#145C4B]/40 hover:shadow-xs"
+            className="flex flex-col justify-between rounded-[24px] border border-[#D9E2EE] bg-white p-8 sm:p-10 transition-all duration-200 hover:border-[#2B5FA6]/40 hover:shadow-xs"
           >
             <div>
               {/* Icon */}
@@ -104,7 +104,7 @@ export default function AboutVisionMissionSection() {
                     viewBox="0 0 18 18"
                     fill="none"
                     aria-hidden="true"
-                    className="mt-0.5 shrink-0 text-[#145C4B]"
+                    className="mt-0.5 shrink-0 text-[#2B5FA6]"
                   >
                     <path
                       d="M3.75 9.75L7.5 13.5L14.25 4.5"

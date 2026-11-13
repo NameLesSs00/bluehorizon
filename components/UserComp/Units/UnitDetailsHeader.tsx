@@ -1,4 +1,4 @@
-interface UnitDetailsHeaderProps {
+﻿interface UnitDetailsHeaderProps {
   title: string;
   location?: string;
   priceFormatted: string;
@@ -25,7 +25,7 @@ export default function UnitDetailsHeader({
               className={`rounded-full px-3 py-1 text-xs font-semibold ${
                 isResale
                   ? "bg-[#202326] text-white"
-                  : "bg-[#E8F1EC] text-[#145C4B]"
+                  : "bg-[#E5ECF6] text-[#2B5FA6]"
               }`}
               style={{ fontFamily: "var(--font-inter)" }}
             >
@@ -34,7 +34,7 @@ export default function UnitDetailsHeader({
 
             {propertyType && (
               <span
-                className="rounded-full bg-[#F3F5F3] px-3 py-1 text-xs font-medium text-[#6B7570] border border-[#E1E7E3]"
+                className="rounded-full bg-[#F0F3FA] px-3 py-1 text-xs font-medium text-[#6B7570] border border-[#D9E2EE]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {propertyType}
@@ -61,7 +61,7 @@ export default function UnitDetailsHeader({
               >
                 <path
                   d="M8 1.5C5.23858 1.5 3 3.73858 3 6.5C3 10.25 8 14.5 8 14.5C8 14.5 13 10.25 13 6.5C13 3.73858 10.7614 1.5 8 1.5ZM8 8.25C7.0335 8.25 6.25 7.4665 6.25 6.5C6.25 5.5335 7.0335 4.75 8 4.75C8.9665 4.75 9.75 5.5335 9.75 6.5C9.75 7.4665 8.9665 8.25 8 8.25Z"
-                  stroke="#145C4B"
+                  stroke="#2B5FA6"
                   strokeWidth="1.4"
                 />
               </svg>
@@ -79,7 +79,7 @@ export default function UnitDetailsHeader({
             Asking Price
           </span>
           <span
-            className="block text-2xl sm:text-3xl font-extrabold text-[#145C4B]"
+            className="block text-2xl sm:text-3xl font-extrabold text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
             {priceFormatted}

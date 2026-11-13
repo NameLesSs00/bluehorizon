@@ -1,4 +1,4 @@
-import { StandaloneUnitItem } from "@/models/standaloneUnit";
+﻿import { StandaloneUnitItem } from "@/models/standaloneUnit";
 
 interface StandaloneDetailsHeaderProps {
   unit: StandaloneUnitItem;
@@ -26,7 +26,7 @@ export default function StandaloneDetailsHeader({
       {/* Title & Location Info */}
       <div>
         <h1
-          className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#145C4B]"
+          className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-manrope)" }}
         >
           {unit.name}
@@ -51,7 +51,7 @@ export default function StandaloneDetailsHeader({
           Asking Resale Price
         </span>
         <div
-          className="mt-0.5 text-2xl sm:text-3xl lg:text-4xl font-bold text-[#145C4B]"
+          className="mt-0.5 text-2xl sm:text-3xl lg:text-4xl font-bold text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-manrope)" }}
         >
           {formattedPrice}

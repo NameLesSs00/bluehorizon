@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { getFullProjectImageUrl } from "@/clientApi/projectsApi";
 
 interface ProjectDetailsHeroBannerProps {
@@ -16,7 +16,7 @@ export default function ProjectDetailsHeroBanner({
 
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8">
-      <div className="relative h-[260px] sm:h-[360px] lg:h-[440px] w-full overflow-hidden rounded-[24px] bg-[#E8F1EC]">
+      <div className="relative h-[260px] sm:h-[360px] lg:h-[440px] w-full overflow-hidden rounded-[24px] bg-[#E5ECF6]">
         {hasValidImage ? (
           <Image
             src={resolvedUrl}
@@ -27,7 +27,7 @@ export default function ProjectDetailsHeroBanner({
             className="object-cover object-center transition-transform duration-500 hover:scale-[1.02]"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center p-8 bg-[#FAF8F5]">
+          <div className="flex h-full w-full items-center justify-center p-8 bg-[#F9F7F4]">
             <div className="relative h-28 w-52 opacity-80">
               <Image
                 src="/default-fallback.png"

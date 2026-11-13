@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -125,7 +125,7 @@ export default function RentalLocationFormDrawer({
     >
       <form onSubmit={handleSubmit} className="space-y-6">
         {isLoadingDetails && isEditMode && (
-          <div className="rounded-xl border border-[#CBDFD5] bg-[#FAF8F5] p-3 text-[12px] text-[#145C4B]">
+          <div className="rounded-xl border border-[#C5D3E8] bg-[#F9F7F4] p-3 text-[12px] text-[#2B5FA6]">
             Loading localized translations for EN, DE, and AR...
           </div>
         )}
@@ -147,11 +147,11 @@ export default function RentalLocationFormDrawer({
         )}
 
         {/* Actions */}
-        <div className="flex items-center justify-end gap-3 border-t border-[#E6EAE7] pt-4">
+        <div className="flex items-center justify-end gap-3 border-t border-[#E2E8F3] pt-4">
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-[#DCE2DE] bg-white px-4 py-2.5 text-[13px] font-medium text-[#202326] transition-colors hover:bg-[#FAF8F5]"
+            className="rounded-xl border border-[#D0D9EA] bg-white px-4 py-2.5 text-[13px] font-medium text-[#202326] transition-colors hover:bg-[#F9F7F4]"
           >
             Cancel
           </button>
@@ -159,7 +159,7 @@ export default function RentalLocationFormDrawer({
           <button
             type="submit"
             disabled={isSaving}
-            className="rounded-xl bg-[#145C4B] px-5 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-[#0F473A] disabled:opacity-50"
+            className="rounded-xl bg-[#2B5FA6] px-5 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-[#1B3A6B] disabled:opacity-50"
           >
             {isSaving
               ? "Saving..."

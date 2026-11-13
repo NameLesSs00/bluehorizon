@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -150,7 +150,7 @@ export default function PropertyCategoryItemFormDrawer({
       {isLoadingDetails ? (
         <div className="flex h-72 w-full items-center justify-center">
           <div className="flex flex-col items-center gap-3">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#0F473A] border-t-transparent" />
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#1B3A6B] border-t-transparent" />
             <p className="text-[13px] text-[#65706B]">
               Fetching translations...
             </p>
@@ -164,14 +164,14 @@ export default function PropertyCategoryItemFormDrawer({
         >
           <div className="space-y-6">
             {/* Parent Category Selector */}
-            <div className="rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-5">
+            <div className="rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-5">
               <label className="block text-[12px] font-semibold text-[#202326]">
                 Parent Property Category <span className="text-red-500">*</span>
               </label>
               <select
                 value={categoryId}
                 onChange={(e) => setCategoryId(parseInt(e.target.value) || 0)}
-                className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[14px] text-[#202326] outline-none transition-all focus:border-[#145C4B] focus:ring-2 focus:ring-[#145C4B]/15"
+                className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[14px] text-[#202326] outline-none transition-all focus:border-[#2B5FA6] focus:ring-2 focus:ring-[#2B5FA6]/15"
               >
                 <option value={0} disabled>
                   Select a parent category...
@@ -195,7 +195,7 @@ export default function PropertyCategoryItemFormDrawer({
             />
 
             {/* Display Order & Icon Picker */}
-            <div className="rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-5 space-y-4">
+            <div className="rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-5 space-y-4">
               <div>
                 <label className="block text-[12px] font-semibold text-[#202326]">
                   Display Order
@@ -205,7 +205,7 @@ export default function PropertyCategoryItemFormDrawer({
                   min={1}
                   value={displayOrder}
                   onChange={(e) => setDisplayOrder(parseInt(e.target.value) || 1)}
-                  className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[14px] text-[#202326] outline-none transition-all focus:border-[#145C4B] focus:ring-2 focus:ring-[#145C4B]/15"
+                  className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[14px] text-[#202326] outline-none transition-all focus:border-[#2B5FA6] focus:ring-2 focus:ring-[#2B5FA6]/15"
                 />
               </div>
 
@@ -220,19 +220,19 @@ export default function PropertyCategoryItemFormDrawer({
           </div>
 
           {/* Action Buttons */}
-          <div className="sticky bottom-0 flex items-center justify-end gap-3 border-t border-[#E6EAE7] bg-white pt-4">
+          <div className="sticky bottom-0 flex items-center justify-end gap-3 border-t border-[#E2E8F3] bg-white pt-4">
             <button
               type="button"
               onClick={onClose}
               disabled={isSaving}
-              className="rounded-xl border border-[#DCE2DE] px-4 py-2 text-[13px] font-medium text-[#202326] transition-colors hover:bg-[#F3F5F3]"
+              className="rounded-xl border border-[#D0D9EA] px-4 py-2 text-[13px] font-medium text-[#202326] transition-colors hover:bg-[#F0F3FA]"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSaving}
-              className="inline-flex items-center gap-2 rounded-xl bg-[#145C4B] px-5 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-[#0F473A] disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#2B5FA6] px-5 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-[#1B3A6B] disabled:opacity-50"
             >
               <FiSave className="h-4 w-4" />
               <span>

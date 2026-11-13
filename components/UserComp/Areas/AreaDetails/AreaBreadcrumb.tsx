@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 interface AreaBreadcrumbProps {
   areaName?: string;
@@ -19,7 +19,7 @@ export default function AreaBreadcrumb({ areaName }: AreaBreadcrumbProps) {
         <li>
           <Link
             href="/"
-            className="transition-colors hover:text-[#145C4B]"
+            className="transition-colors hover:text-[#2B5FA6]"
           >
             Home
           </Link>
@@ -30,7 +30,7 @@ export default function AreaBreadcrumb({ areaName }: AreaBreadcrumbProps) {
         <li>
           <Link
             href="/areas"
-            className="transition-colors hover:text-[#145C4B]"
+            className="transition-colors hover:text-[#2B5FA6]"
           >
             Areas
           </Link>

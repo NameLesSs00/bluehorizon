@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FormEvent, useState } from "react";
 import Image from "next/image";
@@ -32,9 +32,9 @@ export default function AdminLoginPage() {
 
   return (
     <AdminAuthGuard mode="guest-only">
-      <div className="flex min-h-screen w-full flex-col lg:flex-row bg-[#FAF8F5]">
+      <div className="flex min-h-screen w-full flex-col lg:flex-row bg-[#F9F7F4]">
         {/* Left Side: Visual Image Panel */}
-        <div className="relative h-72 w-full lg:h-auto lg:w-1/2 xl:w-[55%] overflow-hidden bg-[#0F473A]">
+        <div className="relative h-72 w-full lg:h-auto lg:w-1/2 xl:w-[55%] overflow-hidden bg-[#1B3A6B]">
           <Image
             src="/admin/Login/loginPageImage.png"
             alt="Blue Horizon Red Sea Properties"
@@ -42,11 +42,11 @@ export default function AdminLoginPage() {
             priority
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0F473A]/85 via-[#0F473A]/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1B3A6B]/85 via-[#1B3A6B]/30 to-transparent" />
 
           <div className="absolute inset-x-0 bottom-0 p-8 sm:p-12 lg:p-16 text-white">
             <p
-              className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#CBDFD5]"
+              className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#C5D3E8]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               BLUE HORIZON PORTAL
@@ -84,7 +84,7 @@ export default function AdminLoginPage() {
 
             <div className="mt-8">
               <p
-                className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#145C4B]"
+                className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#2B5FA6]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 ADMINISTRATION ACCESS
@@ -124,7 +124,7 @@ export default function AdminLoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="admin@realestate.com"
-                    className="w-full rounded-xl border border-[#DCE2DE] bg-white py-3.5 pr-4 pl-11 text-[14px] text-[#202326] placeholder-[#9BA5A0] transition-colors focus:border-[#0F473A] focus:outline-none"
+                    className="w-full rounded-xl border border-[#D0D9EA] bg-white py-3.5 pr-4 pl-11 text-[14px] text-[#202326] placeholder-[#9BA5A0] transition-colors focus:border-[#1B3A6B] focus:outline-none"
                     style={{ fontFamily: "var(--font-inter)" }}
                   />
                 </div>
@@ -150,7 +150,7 @@ export default function AdminLoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
-                    className="w-full rounded-xl border border-[#DCE2DE] bg-white py-3.5 pr-11 pl-11 text-[14px] text-[#202326] placeholder-[#9BA5A0] transition-colors focus:border-[#0F473A] focus:outline-none"
+                    className="w-full rounded-xl border border-[#D0D9EA] bg-white py-3.5 pr-11 pl-11 text-[14px] text-[#202326] placeholder-[#9BA5A0] transition-colors focus:border-[#1B3A6B] focus:outline-none"
                     style={{ fontFamily: "var(--font-inter)" }}
                   />
                   <button
@@ -173,7 +173,7 @@ export default function AdminLoginPage() {
               <button
                 type="submit"
                 disabled={loginMutation.isPending}
-                className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-[#0F473A] px-6 py-3.5 text-[14px] font-semibold text-white transition-all hover:bg-[#145C4B] disabled:cursor-not-allowed disabled:opacity-65"
+                className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-[#1B3A6B] px-6 py-3.5 text-[14px] font-semibold text-white transition-all hover:bg-[#2B5FA6] disabled:cursor-not-allowed disabled:opacity-65"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {loginMutation.isPending ? (

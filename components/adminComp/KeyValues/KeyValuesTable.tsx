@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FiEdit2, FiExternalLink } from "react-icons/fi";
 import { KeyValueItem } from "@/models/keyValue";
@@ -16,9 +16,9 @@ export default function KeyValuesTable({
 }: KeyValuesTableProps) {
   if (isLoading) {
     return (
-      <div className="flex h-64 items-center justify-center rounded-2xl border border-[#E6EAE7] bg-white">
+      <div className="flex h-64 items-center justify-center rounded-2xl border border-[#E2E8F3] bg-white">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-7 w-7 animate-spin rounded-full border-2 border-[#0F473A] border-t-transparent" />
+          <div className="h-7 w-7 animate-spin rounded-full border-2 border-[#1B3A6B] border-t-transparent" />
           <p
             className="text-[13px] text-[#65706B]"
             style={{ fontFamily: "var(--font-inter)" }}
@@ -31,11 +31,11 @@ export default function KeyValuesTable({
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-[#E6EAE7] bg-white shadow-sm">
+    <div className="overflow-hidden rounded-2xl border border-[#E2E8F3] bg-white shadow-sm">
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-[#E6EAE7] bg-[#FAF8F5]">
+            <tr className="border-b border-[#E2E8F3] bg-[#F9F7F4]">
               <th
                 className="px-6 py-4 text-[11px] font-bold uppercase tracking-[0.08em] text-[#65706B]"
                 style={{ fontFamily: "var(--font-inter)" }}
@@ -56,7 +56,7 @@ export default function KeyValuesTable({
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#E6EAE7]">
+          <tbody className="divide-y divide-[#E2E8F3]">
             {items.length === 0 ? (
               <tr>
                 <td
@@ -78,11 +78,11 @@ export default function KeyValuesTable({
                 return (
                   <tr
                     key={item.id}
-                    className="transition-colors hover:bg-[#F3F5F3]/50"
+                    className="transition-colors hover:bg-[#F0F3FA]/50"
                   >
                     <td className="px-6 py-4">
                       <span
-                        className="rounded-lg bg-[#FAF8F5] border border-[#E6EAE7] px-3 py-1 text-[13px] font-semibold text-[#202326]"
+                        className="rounded-lg bg-[#F9F7F4] border border-[#E2E8F3] px-3 py-1 text-[13px] font-semibold text-[#202326]"
                         style={{ fontFamily: "var(--font-inter)" }}
                       >
                         {item.key}
@@ -95,7 +95,7 @@ export default function KeyValuesTable({
                           href={item.value}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-[13px] text-[#145C4B] hover:underline"
+                          className="inline-flex items-center gap-1.5 text-[13px] text-[#2B5FA6] hover:underline"
                           style={{ fontFamily: "var(--font-inter)" }}
                         >
                           <span className="max-w-md truncate">{item.value}</span>
@@ -115,7 +115,7 @@ export default function KeyValuesTable({
                       <button
                         type="button"
                         onClick={() => onEdit(item)}
-                        className="inline-flex items-center gap-1.5 rounded-lg border border-[#DCE2DE] px-3 py-1.5 text-[12px] font-semibold text-[#145C4B] transition-colors hover:bg-[#145C4B] hover:text-white"
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-[#D0D9EA] px-3 py-1.5 text-[12px] font-semibold text-[#2B5FA6] transition-colors hover:bg-[#2B5FA6] hover:text-white"
                         style={{ fontFamily: "var(--font-inter)" }}
                       >
                         <FiEdit2 className="h-3.5 w-3.5" />

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -33,7 +33,7 @@ export default function StandaloneImageGallery({
   return (
     <div className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-4">
       {/* Main Large Image */}
-      <div className="relative h-[320px] sm:h-[420px] lg:h-[480px] lg:col-span-7 overflow-hidden rounded-[20px] sm:rounded-[24px] border border-[#E1E7E3] bg-[#F3F5F3]">
+      <div className="relative h-[320px] sm:h-[420px] lg:h-[480px] lg:col-span-7 overflow-hidden rounded-[20px] sm:rounded-[24px] border border-[#D9E2EE] bg-[#F0F3FA]">
         <Image
           src={mainImageUrl}
           alt={title}
@@ -63,7 +63,7 @@ export default function StandaloneImageGallery({
                   if (originalIndex >= 0) setSelectedIdx(originalIndex);
                 }
               }}
-              className="group relative h-full w-full overflow-hidden rounded-[16px] sm:rounded-[20px] border border-[#E1E7E3] bg-[#F3F5F3] text-left transition-transform hover:scale-[1.01]"
+              className="group relative h-full w-full overflow-hidden rounded-[16px] sm:rounded-[20px] border border-[#D9E2EE] bg-[#F0F3FA] text-left transition-transform hover:scale-[1.01]"
             >
               <Image
                 src={imgUrl}

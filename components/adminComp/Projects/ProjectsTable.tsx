@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -54,9 +54,9 @@ export default function ProjectsTable({
 
   if (isLoading) {
     return (
-      <div className="flex h-72 w-full items-center justify-center rounded-2xl border border-[#E6EAE7] bg-white">
+      <div className="flex h-72 w-full items-center justify-center rounded-2xl border border-[#E2E8F3] bg-white">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#0F473A] border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#1B3A6B] border-t-transparent" />
           <p className="text-[13px] text-[#65706B]">Loading developments &amp; projects...</p>
         </div>
       </div>
@@ -64,11 +64,11 @@ export default function ProjectsTable({
   }
 
   return (
-    <div className="w-full overflow-hidden rounded-2xl border border-[#E6EAE7] bg-white shadow-sm">
+    <div className="w-full overflow-hidden rounded-2xl border border-[#E2E8F3] bg-white shadow-sm">
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-[#E6EAE7] bg-[#FAF8F5]">
+            <tr className="border-b border-[#E2E8F3] bg-[#F9F7F4]">
               <th className="px-6 py-4 text-[12px] font-bold uppercase tracking-[0.08em] text-[#65706B]">
                 Project
               </th>
@@ -86,7 +86,7 @@ export default function ProjectsTable({
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#E6EAE7]">
+          <tbody className="divide-y divide-[#E2E8F3]">
             {projects.length === 0 ? (
               <tr>
                 <td colSpan={5} className="px-6 py-16 text-center text-[14px] text-[#65706B]">
@@ -108,10 +108,10 @@ export default function ProjectsTable({
                   : "Ready / TBD";
 
                 return (
-                  <tr key={proj.id} className="transition-colors hover:bg-[#F3F5F3]/50">
+                  <tr key={proj.id} className="transition-colors hover:bg-[#F0F3FA]/50">
                     <td className="px-6 py-5">
                       <div className="flex items-center gap-3.5">
-                        <div className="relative h-12 w-16 shrink-0 overflow-hidden rounded-xl border border-[#DCE2DE] bg-neutral-100">
+                        <div className="relative h-12 w-16 shrink-0 overflow-hidden rounded-xl border border-[#D0D9EA] bg-neutral-100">
                           {coverImage ? (
                             <Image
                               src={getFullProjectImageUrl(coverImage)}
@@ -120,7 +120,7 @@ export default function ProjectsTable({
                               className="object-cover"
                             />
                           ) : (
-                            <div className="flex h-full w-full items-center justify-center bg-[#0F473A]/10 text-[#0F473A]">
+                            <div className="flex h-full w-full items-center justify-center bg-[#1B3A6B]/10 text-[#1B3A6B]">
                               <LuBuilding className="h-5 w-5" />
                             </div>
                           )}
@@ -132,7 +132,7 @@ export default function ProjectsTable({
                               {proj.name}
                             </span>
                             {proj.isFeature && (
-                              <span className="inline-flex items-center gap-1 rounded-md bg-[#25D366]/15 px-2 py-0.5 text-[10px] font-bold text-[#0F473A]">
+                              <span className="inline-flex items-center gap-1 rounded-md bg-[#25D366]/15 px-2 py-0.5 text-[10px] font-bold text-[#1B3A6B]">
                                 <LuSparkles className="h-3 w-3" />
                                 <span>Featured</span>
                               </span>
@@ -148,7 +148,7 @@ export default function ProjectsTable({
                     <td className="px-6 py-5">
                       <div className="space-y-1.5">
                         <div className="flex items-center gap-1 text-[13px] font-semibold text-[#202326]">
-                          <FiMapPin className="h-3.5 w-3.5 text-[#145C4B]" />
+                          <FiMapPin className="h-3.5 w-3.5 text-[#2B5FA6]" />
                           <span>{proj.locationName || "Location TBD"}</span>
                         </div>
 
@@ -156,9 +156,9 @@ export default function ProjectsTable({
                           {proj.projectTypes?.map((t) => (
                             <span
                               key={t.id}
-                              className="inline-flex items-center gap-1 rounded-md border border-[#E6EAE7] bg-[#FAF8F5] px-2 py-0.5 text-[11px] text-[#202326]"
+                              className="inline-flex items-center gap-1 rounded-md border border-[#E2E8F3] bg-[#F9F7F4] px-2 py-0.5 text-[11px] text-[#202326]"
                             >
-                              <DynamicIcon name={t.icon} className="h-3 w-3 text-[#145C4B]" />
+                              <DynamicIcon name={t.icon} className="h-3 w-3 text-[#2B5FA6]" />
                               <span>{t.name}</span>
                             </span>
                           ))}
@@ -167,7 +167,7 @@ export default function ProjectsTable({
                     </td>
 
                     <td className="px-6 py-5">
-                      <p className="text-[14px] font-bold text-[#0F473A]">
+                      <p className="text-[14px] font-bold text-[#1B3A6B]">
                         {priceText}
                       </p>
                       <span className="text-[11px] text-[#65706B]">
@@ -209,7 +209,7 @@ export default function ProjectsTable({
                           <button
                             type="button"
                             onClick={() => setConfirmDeleteId(null)}
-                            className="rounded-lg border border-[#DCE2DE] px-2.5 py-1.5 text-[12px] font-medium text-[#65706B] hover:bg-[#F3F5F3]"
+                            className="rounded-lg border border-[#D0D9EA] px-2.5 py-1.5 text-[12px] font-medium text-[#65706B] hover:bg-[#F0F3FA]"
                           >
                             Cancel
                           </button>
@@ -219,7 +219,7 @@ export default function ProjectsTable({
                           <button
                             type="button"
                             onClick={() => onManagePaymentPlans(proj)}
-                            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#145C4B] hover:bg-[#FAF8F5]"
+                            className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#2B5FA6] hover:bg-[#F9F7F4]"
                           >
                             <FiCreditCard className="h-3.5 w-3.5" />
                             <span>Plans</span>
@@ -227,7 +227,7 @@ export default function ProjectsTable({
                           <button
                             type="button"
                             onClick={() => onManageImages(proj)}
-                            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#145C4B] hover:bg-[#FAF8F5]"
+                            className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#2B5FA6] hover:bg-[#F9F7F4]"
                           >
                             <FiImage className="h-3.5 w-3.5" />
                             <span>Images ({imageCount})</span>
@@ -235,7 +235,7 @@ export default function ProjectsTable({
                           <button
                             type="button"
                             onClick={() => onEdit(proj)}
-                            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#F3F5F3]"
+                            className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#F0F3FA]"
                           >
                             <FiEdit2 className="h-3.5 w-3.5" />
                             <span>Edit</span>
@@ -260,7 +260,7 @@ export default function ProjectsTable({
       </div>
 
       {/* Pagination Footer */}
-      <div className="flex items-center justify-between border-t border-[#E6EAE7] bg-[#FAF8F5] px-6 py-4">
+      <div className="flex items-center justify-between border-t border-[#E2E8F3] bg-[#F9F7F4] px-6 py-4">
         <p className="text-[13px] text-[#65706B]">
           Page <span className="font-semibold text-[#202326]">{pageNumber}</span> of{" "}
           <span className="font-semibold text-[#202326]">{Math.max(1, totalPages)}</span>
@@ -271,7 +271,7 @@ export default function ProjectsTable({
             type="button"
             disabled={!hasPreviousPage && pageNumber <= 1}
             onClick={() => onPageChange(Math.max(1, pageNumber - 1))}
-            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white px-3.5 py-1.5 text-[12px] font-medium text-[#202326] transition-colors hover:bg-[#F3F5F3] disabled:cursor-not-allowed disabled:opacity-45"
+            className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-3.5 py-1.5 text-[12px] font-medium text-[#202326] transition-colors hover:bg-[#F0F3FA] disabled:cursor-not-allowed disabled:opacity-45"
           >
             <FiChevronLeft className="h-4 w-4" />
             <span>Previous</span>
@@ -281,7 +281,7 @@ export default function ProjectsTable({
             type="button"
             disabled={!hasNextPage && pageNumber >= totalPages}
             onClick={() => onPageChange(pageNumber + 1)}
-            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] bg-white px-3.5 py-1.5 text-[12px] font-medium text-[#202326] transition-colors hover:bg-[#F3F5F3] disabled:cursor-not-allowed disabled:opacity-45"
+            className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-3.5 py-1.5 text-[12px] font-medium text-[#202326] transition-colors hover:bg-[#F0F3FA] disabled:cursor-not-allowed disabled:opacity-45"
           >
             <span>Next</span>
             <FiChevronRight className="h-4 w-4" />

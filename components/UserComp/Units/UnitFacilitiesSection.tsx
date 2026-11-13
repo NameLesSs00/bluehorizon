@@ -1,4 +1,4 @@
-import * as MdIcons from "react-icons/md";
+﻿import * as MdIcons from "react-icons/md";
 import * as FaIcons from "react-icons/fa";
 import * as BsIcons from "react-icons/bs";
 import * as IoIcons from "react-icons/io5";
@@ -39,8 +39,8 @@ export default function UnitFacilitiesSection({
   }
 
   return (
-    <section className="rounded-[20px] border border-[#E1E7E3] bg-white p-6 sm:p-8 shadow-xs">
-      <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#E1E7E3]">
+    <section className="rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-8 shadow-xs">
+      <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#D9E2EE]">
         <h2
           className="text-xl sm:text-2xl font-bold text-[#202326]"
           style={{ fontFamily: "var(--font-manrope)" }}
@@ -48,7 +48,7 @@ export default function UnitFacilitiesSection({
           Facilities & Amenities
         </h2>
         <span
-          className="rounded-full bg-[#E8F1EC] px-3 py-1 text-xs font-semibold text-[#145C4B]"
+          className="rounded-full bg-[#E5ECF6] px-3 py-1 text-xs font-semibold text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           {services.length} {services.length === 1 ? "Amenity" : "Amenities"}
@@ -59,20 +59,20 @@ export default function UnitFacilitiesSection({
         {services.map((service) => (
           <div
             key={service.id || service.name}
-            className="flex items-center gap-3 rounded-xl bg-[#F3F5F3] p-3 border border-[#E1E7E3]/60 transition-colors hover:border-[#145C4B]/30"
+            className="flex items-center gap-3 rounded-xl bg-[#F0F3FA] p-3 border border-[#D9E2EE]/60 transition-colors hover:border-[#2B5FA6]/30"
           >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white text-[#145C4B] shadow-xs">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white text-[#2B5FA6] shadow-xs">
               {service.icon ? (() => {
                 const ResolvedIcon = resolveIcon(service.icon);
                 return ResolvedIcon ? (
-                  <ResolvedIcon size={20} color="#145C4B" aria-hidden="true" />
+                  <ResolvedIcon size={20} color="#2B5FA6" aria-hidden="true" />
                 ) : (
                   <svg
                     width="18"
                     height="18"
                     viewBox="0 0 20 20"
                     fill="none"
-                    stroke="#145C4B"
+                    stroke="#2B5FA6"
                     strokeWidth="1.6"
                   >
                     <path d="M4 10l4 4 8-8" strokeLinecap="round" strokeLinejoin="round" />
@@ -84,7 +84,7 @@ export default function UnitFacilitiesSection({
                   height="18"
                   viewBox="0 0 20 20"
                   fill="none"
-                  stroke="#145C4B"
+                  stroke="#2B5FA6"
                   strokeWidth="1.6"
                 >
                   <path d="M4 10l4 4 8-8" strokeLinecap="round" strokeLinejoin="round" />

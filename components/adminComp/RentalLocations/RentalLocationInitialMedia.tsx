@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 interface RentalLocationInitialMediaProps {
   initialImages: File[];
@@ -14,8 +14,8 @@ export default function RentalLocationInitialMedia({
   setInitialVideo,
 }: RentalLocationInitialMediaProps) {
   return (
-    <div className="space-y-4 rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-4">
-      <p className="text-[12px] font-bold uppercase tracking-wider text-[#145C4B]">
+    <div className="space-y-4 rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-4">
+      <p className="text-[12px] font-bold uppercase tracking-wider text-[#2B5FA6]">
         Initial Media (Optional)
       </p>
 
@@ -32,10 +32,10 @@ export default function RentalLocationInitialMedia({
               setInitialImages(Array.from(e.target.files));
             }
           }}
-          className="mt-1 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-lg file:border-0 file:bg-[#145C4B] file:px-3 file:py-1.5 file:text-[12px] file:font-semibold file:text-white hover:file:bg-[#0F473A]"
+          className="mt-1 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-lg file:border-0 file:bg-[#2B5FA6] file:px-3 file:py-1.5 file:text-[12px] file:font-semibold file:text-white hover:file:bg-[#1B3A6B]"
         />
         {initialImages.length > 0 && (
-          <p className="mt-1 text-[11px] text-[#145C4B]">
+          <p className="mt-1 text-[11px] text-[#2B5FA6]">
             {initialImages.length} photo(s) selected
           </p>
         )}
@@ -51,10 +51,10 @@ export default function RentalLocationInitialMedia({
           onChange={(e) => {
             setInitialVideo(e.target.files?.[0] || null);
           }}
-          className="mt-1 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-lg file:border-0 file:bg-[#145C4B] file:px-3 file:py-1.5 file:text-[12px] file:font-semibold file:text-white hover:file:bg-[#0F473A]"
+          className="mt-1 block w-full text-[12px] text-[#65706B] file:mr-3 file:rounded-lg file:border-0 file:bg-[#2B5FA6] file:px-3 file:py-1.5 file:text-[12px] file:font-semibold file:text-white hover:file:bg-[#1B3A6B]"
         />
         {initialVideo && (
-          <p className="mt-1 text-[11px] text-[#145C4B]">
+          <p className="mt-1 text-[11px] text-[#2B5FA6]">
             Selected video: {initialVideo.name}
           </p>
         )}

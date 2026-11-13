@@ -16,12 +16,12 @@ export default function RentalHeroSection() {
           className="object-cover object-center"
         />
 
-        {/* Specified Emerald Gradient Filter */}
+        {/* Specified Navy Gradient Filter */}
         <div
           className="pointer-events-none absolute inset-0 z-10"
           style={{
             background:
-              "linear-gradient(180deg, rgba(15, 71, 58, 0) 21.63%, #0F473A 94.71%)",
+              "linear-gradient(180deg, rgba(27, 58, 107, 0) 21.63%, #1B3A6B 94.71%)",
           }}
         />
 

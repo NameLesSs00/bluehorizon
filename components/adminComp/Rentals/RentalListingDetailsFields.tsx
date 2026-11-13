@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { FiPlus, FiX } from "react-icons/fi";
@@ -49,8 +49,8 @@ export default function RentalListingDetailsFields({
   }
 
   return (
-    <div className="space-y-4 rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-4">
-      <p className="text-[12px] font-bold uppercase tracking-wider text-[#145C4B]">
+    <div className="space-y-4 rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-4">
+      <p className="text-[12px] font-bold uppercase tracking-wider text-[#2B5FA6]">
         Stay Amenities &amp; Guest Rules
       </p>
 
@@ -71,12 +71,12 @@ export default function RentalListingDetailsFields({
               }
             }}
             placeholder="e.g. Daily Housekeeping, High-Speed Wi-Fi, Airport Shuttle"
-            className="flex-1 rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+            className="flex-1 rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
           />
           <button
             type="button"
             onClick={handleAddService}
-            className="inline-flex items-center gap-1 rounded-xl bg-[#145C4B] px-3.5 py-2 text-[12px] font-semibold text-white transition-colors hover:bg-[#0F473A]"
+            className="inline-flex items-center gap-1 rounded-xl bg-[#2B5FA6] px-3.5 py-2 text-[12px] font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
           >
             <FiPlus className="h-3.5 w-3.5" />
             <span>Add</span>
@@ -88,7 +88,7 @@ export default function RentalListingDetailsFields({
             {details.services.map((service) => (
               <span
                 key={service}
-                className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#E6EAE7] px-3 py-1 text-[11px] font-medium text-[#202326]"
+                className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#E2E8F3] px-3 py-1 text-[11px] font-medium text-[#202326]"
               >
                 <span>{service}</span>
                 <button
@@ -122,7 +122,7 @@ export default function RentalListingDetailsFields({
               }))
             }
             placeholder="e.g. Available upon prior request"
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>
 
@@ -144,7 +144,7 @@ export default function RentalListingDetailsFields({
               }))
             }
             placeholder="e.g. 25"
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>
       </div>
@@ -166,13 +166,13 @@ export default function RentalListingDetailsFields({
             }))
           }
           placeholder="e.g. Up to 2 additional guests allowed upon prior request"
-          className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+          className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
         />
       </div>
 
       {/* Guest Perks / Checkboxes */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 pt-1">
-        <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-[#DCE2DE] bg-white p-2.5">
+        <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-[#D0D9EA] bg-white p-2.5">
           <input
             type="checkbox"
             checked={details.familyFriendly}
@@ -185,14 +185,14 @@ export default function RentalListingDetailsFields({
                 },
               }))
             }
-            className="h-4 w-4 rounded border-gray-300 text-[#145C4B] focus:ring-[#145C4B]"
+            className="h-4 w-4 rounded border-gray-300 text-[#2B5FA6] focus:ring-[#2B5FA6]"
           />
           <span className="text-[12px] font-medium text-[#202326]">
             Family Friendly
           </span>
         </label>
 
-        <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-[#DCE2DE] bg-white p-2.5">
+        <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-[#D0D9EA] bg-white p-2.5">
           <input
             type="checkbox"
             checked={details.privateEntrance}
@@ -205,7 +205,7 @@ export default function RentalListingDetailsFields({
                 },
               }))
             }
-            className="h-4 w-4 rounded border-gray-300 text-[#145C4B] focus:ring-[#145C4B]"
+            className="h-4 w-4 rounded border-gray-300 text-[#2B5FA6] focus:ring-[#2B5FA6]"
           />
           <span className="text-[12px] font-medium text-[#202326]">
             Private Entrance

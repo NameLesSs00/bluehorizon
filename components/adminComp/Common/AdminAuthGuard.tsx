@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -42,8 +42,8 @@ export default function AdminAuthGuard({
 
   if (!hasHydrated) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#F3F5F3]">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#0F473A] border-t-transparent" />
+      <div className="flex min-h-screen items-center justify-center bg-[#F0F3FA]">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#1B3A6B] border-t-transparent" />
       </div>
     );
   }

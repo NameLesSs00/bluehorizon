@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FlagEgypt, FlagGermany, FlagUK } from "@/components/adminComp/Common/LanguageFlags";
 
@@ -40,7 +40,7 @@ export default function ProjectLanguageFields({
         </label>
         <div className="grid grid-cols-1 gap-3">
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagUK />
               <span>English *</span>
             </div>
@@ -50,11 +50,11 @@ export default function ProjectLanguageFields({
               value={nameEn}
               onChange={(e) => setNameEn(e.target.value)}
               placeholder="e.g. Modern Sunset Residence"
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagGermany />
               <span>German (Deutsch)</span>
             </div>
@@ -63,11 +63,11 @@ export default function ProjectLanguageFields({
               value={nameDe}
               onChange={(e) => setNameDe(e.target.value)}
               placeholder="Deutsche Projektbezeichnung..."
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagEgypt />
               <span>Arabic (العربية)</span>
             </div>
@@ -77,7 +77,7 @@ export default function ProjectLanguageFields({
               value={nameAr}
               onChange={(e) => setNameAr(e.target.value)}
               placeholder="اسم المشروع بالعربية..."
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
         </div>
@@ -90,7 +90,7 @@ export default function ProjectLanguageFields({
         </label>
         <div className="space-y-3">
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagUK />
               <span>English Description</span>
             </div>
@@ -99,11 +99,11 @@ export default function ProjectLanguageFields({
               value={descEn}
               onChange={(e) => setDescEn(e.target.value)}
               placeholder="Describe master plan, lifestyle, architecture, and sea proximity..."
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagGermany />
               <span>German Description</span>
             </div>
@@ -112,11 +112,11 @@ export default function ProjectLanguageFields({
               value={descDe}
               onChange={(e) => setDescDe(e.target.value)}
               placeholder="Deutsche Beschreibung..."
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
           <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#145C4B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
               <FlagEgypt />
               <span>Arabic Description</span>
             </div>
@@ -126,7 +126,7 @@ export default function ProjectLanguageFields({
               value={descAr}
               onChange={(e) => setDescAr(e.target.value)}
               placeholder="وصف المشروع المعماري والموقع والإطلالة..."
-              className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
         </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FiMapPin } from "react-icons/fi";
 import { usePublicSiteSettingsQuery } from "@/features/keyValues/useKeyValuesQueries";
@@ -15,12 +15,12 @@ export default function ContactOfficeLocationsSection() {
 
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
-      <div className="rounded-[24px] border border-[#E1E7E3] bg-white p-6 shadow-xs sm:p-8 lg:p-10">
+      <div className="rounded-[24px] border border-[#D9E2EE] bg-white p-6 shadow-xs sm:p-8 lg:p-10">
         {/* Header */}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <span
-              className="inline-block text-[11px] font-bold uppercase tracking-[0.14em] text-[#145C4B]"
+              className="inline-block text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               VISIT OUR OFFICE
@@ -34,15 +34,15 @@ export default function ContactOfficeLocationsSection() {
             </h2>
 
             <div className="mt-2 flex items-center gap-2 text-[13.5px] font-medium text-[#6B7570]">
-              <FiMapPin className="h-4 w-4 shrink-0 text-[#145C4B]" />
+              <FiMapPin className="h-4 w-4 shrink-0 text-[#2B5FA6]" />
               {isLoading ? (
-                <div className="h-4 w-52 animate-pulse rounded bg-[#E1E7E3]" />
+                <div className="h-4 w-52 animate-pulse rounded bg-[#D9E2EE]" />
               ) : (
                 <a
                   href={mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-colors hover:text-[#145C4B] hover:underline"
+                  className="transition-colors hover:text-[#2B5FA6] hover:underline"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
                   {address}
@@ -53,7 +53,7 @@ export default function ContactOfficeLocationsSection() {
 
           <div className="self-start sm:self-center">
             <span
-              className="inline-flex items-center rounded-full bg-[#E8F1EC] px-4 py-1.5 text-xs font-semibold text-[#145C4B]"
+              className="inline-flex items-center rounded-full bg-[#E5ECF6] px-4 py-1.5 text-xs font-semibold text-[#2B5FA6]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               Hurghada Head Office
@@ -62,9 +62,9 @@ export default function ContactOfficeLocationsSection() {
         </div>
 
         {/* Full-width Google Map without overlay box */}
-        <div className="relative mt-6 h-[340px] w-full overflow-hidden rounded-[20px] border border-[#E1E7E3] sm:h-[420px]">
+        <div className="relative mt-6 h-[340px] w-full overflow-hidden rounded-[20px] border border-[#D9E2EE] sm:h-[420px]">
           {isLoading ? (
-            <div className="h-full w-full animate-pulse bg-[#E8F1EC]" />
+            <div className="h-full w-full animate-pulse bg-[#E5ECF6]" />
           ) : (
             <iframe
               src={mapUrl}

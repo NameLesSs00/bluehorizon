@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -96,7 +96,7 @@ export default function FeaturedProjectsSection() {
         <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p
-              className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#145C4B]"
+              className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               DISCOVER THE EXTRAORDINARY
@@ -118,7 +118,7 @@ export default function FeaturedProjectsSection() {
 
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 self-start text-[14px] font-semibold leading-none text-[#145C4B] transition-opacity hover:opacity-80 md:self-end"
+            className="inline-flex items-center gap-2 self-start text-[14px] font-semibold leading-none text-[#2B5FA6] transition-opacity hover:opacity-80 md:self-end"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <span>Explore all projects</span>
@@ -133,8 +133,8 @@ export default function FeaturedProjectsSection() {
         </header>
 
         {isLoading ? (
-          <div className="flex h-64 w-full flex-col items-center justify-center rounded-2xl border border-[#E6EAE7] bg-white">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#145C4B] border-t-transparent" />
+          <div className="flex h-64 w-full flex-col items-center justify-center rounded-2xl border border-[#E2E8F3] bg-white">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#2B5FA6] border-t-transparent" />
             <p
               className="mt-3 text-[13px] text-[#65706B]"
               style={{ fontFamily: "var(--font-inter)" }}
@@ -143,7 +143,7 @@ export default function FeaturedProjectsSection() {
             </p>
           </div>
         ) : displayProjects.length === 0 ? (
-          <div className="flex h-48 w-full items-center justify-center rounded-2xl border border-[#E6EAE7] bg-white text-[14px] text-[#65706B]">
+          <div className="flex h-48 w-full items-center justify-center rounded-2xl border border-[#E2E8F3] bg-white text-[14px] text-[#65706B]">
             No projects available at the moment.
           </div>
         ) : (

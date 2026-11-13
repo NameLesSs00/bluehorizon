@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -27,21 +27,21 @@ export default function FaqsSection() {
   }
 
   return (
-    <section className="bg-[#E8F1EC] py-10 sm:py-14 lg:py-16">
+    <section className="bg-[#E5ECF6] py-10 sm:py-14 lg:py-16">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-start">
           {/* Left Column: Heading, Subtitles & CTA */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               <h3
-                className="text-[25px] font-bold leading-none tracking-normal text-[#145C4B]"
+                className="text-[25px] font-bold leading-none tracking-normal text-[#2B5FA6]"
                 style={{ fontFamily: "var(--font-manrope)" }}
               >
                 FAQs
               </h3>
 
               <p
-                className="mt-4 text-[11px] font-normal uppercase leading-none tracking-[0.12em] text-[#145C4B]"
+                className="mt-4 text-[11px] font-normal uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 WE’RE HERE TO HELP
@@ -68,7 +68,7 @@ export default function FaqsSection() {
             <div className="mt-8 sm:mt-10">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-[#145C4B] px-8 py-3.5 text-[14px] font-medium text-white transition-colors hover:bg-[#0F473A]"
+                className="inline-flex items-center justify-center rounded-full bg-[#2B5FA6] px-8 py-3.5 text-[14px] font-medium text-white transition-colors hover:bg-[#1B3A6B]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Talk to our team
@@ -78,10 +78,10 @@ export default function FaqsSection() {
 
           {/* Right Column: FAQ Accordion Card */}
           <div className="lg:col-span-7">
-            <div className="overflow-hidden rounded-[24px] bg-white shadow-sm divide-y divide-[#E6EAE7]">
+            <div className="overflow-hidden rounded-[24px] bg-white shadow-sm divide-y divide-[#E2E8F3]">
               {isLoading ? (
                 <div className="flex flex-col items-center justify-center p-12 text-center">
-                  <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#145C4B] border-t-transparent" />
+                  <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#2B5FA6] border-t-transparent" />
                   <p
                     className="mt-3 text-[13px] text-[#65706B]"
                     style={{ fontFamily: "var(--font-inter)" }}
@@ -113,7 +113,7 @@ export default function FaqsSection() {
                       <button
                         type="button"
                         onClick={() => toggleFaq(faq.id)}
-                        className="flex w-full items-center justify-between gap-4 px-5 py-4.5 sm:px-8 sm:py-6 text-left transition-colors hover:bg-[#FAF8F5]/60"
+                        className="flex w-full items-center justify-between gap-4 px-5 py-4.5 sm:px-8 sm:py-6 text-left transition-colors hover:bg-[#F9F7F4]/60"
                         aria-expanded={isOpen}
                       >
                         <span

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/UserComp/Common/Navbar";
@@ -51,13 +51,13 @@ export default function UnitDetailsPage({ id, type = "primary" }: UnitDetailsPag
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen flex-col bg-[#F3F5F3]">
+      <div className="flex min-h-screen flex-col bg-[#F0F3FA]">
         <Navbar />
         <main className="flex-1 pb-16">
           <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 pt-8">
-            <div className="h-4 w-48 animate-pulse rounded bg-[#E1E7E3] mb-6" />
-            <div className="h-10 w-80 animate-pulse rounded bg-[#E1E7E3] mb-6" />
-            <div className="h-[360px] lg:h-[460px] w-full animate-pulse rounded-[24px] bg-[#E8F1EC] mb-8" />
+            <div className="h-4 w-48 animate-pulse rounded bg-[#D9E2EE] mb-6" />
+            <div className="h-10 w-80 animate-pulse rounded bg-[#D9E2EE] mb-6" />
+            <div className="h-[360px] lg:h-[460px] w-full animate-pulse rounded-[24px] bg-[#E5ECF6] mb-8" />
             <div className="h-24 w-full animate-pulse rounded-[20px] bg-white mb-8" />
           </div>
         </main>
@@ -158,7 +158,7 @@ export default function UnitDetailsPage({ id, type = "primary" }: UnitDetailsPag
 
   if (!unit) {
     return (
-      <div className="flex min-h-screen flex-col bg-[#F3F5F3]">
+      <div className="flex min-h-screen flex-col bg-[#F0F3FA]">
         <Navbar />
         <main className="flex-1 flex items-center justify-center p-8">
           <div className="max-w-md rounded-[24px] bg-white p-8 text-center shadow-xs">
@@ -182,7 +182,7 @@ export default function UnitDetailsPage({ id, type = "primary" }: UnitDetailsPag
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#F3F5F3]">
+    <div className="flex min-h-screen flex-col bg-[#F0F3FA]">
       <Navbar />
 
       <main className="flex-1 pb-20">

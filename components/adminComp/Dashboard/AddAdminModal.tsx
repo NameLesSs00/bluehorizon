@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FormEvent, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -73,7 +73,7 @@ export default function AddAdminModal({ isOpen, onClose }: AddAdminModalProps) {
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 placeholder="Pola"
-                className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+                className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
                 style={{ fontFamily: "var(--font-inter)" }}
               />
             </div>
@@ -93,7 +93,7 @@ export default function AddAdminModal({ isOpen, onClose }: AddAdminModalProps) {
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
                 placeholder="Samy"
-                className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+                className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
                 style={{ fontFamily: "var(--font-inter)" }}
               />
             </div>
@@ -114,7 +114,7 @@ export default function AddAdminModal({ isOpen, onClose }: AddAdminModalProps) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="admin@bluehorizon.com"
-              className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -135,7 +135,7 @@ export default function AddAdminModal({ isOpen, onClose }: AddAdminModalProps) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Strong password (e.g. Pola123!)"
-                className="w-full rounded-xl border border-[#DCE2DE] py-2.5 pr-10 pl-3.5 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+                className="w-full rounded-xl border border-[#D0D9EA] py-2.5 pr-10 pl-3.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
                 style={{ fontFamily: "var(--font-inter)" }}
               />
               <button
@@ -153,11 +153,11 @@ export default function AddAdminModal({ isOpen, onClose }: AddAdminModalProps) {
           </div>
         </div>
 
-        <div className="mt-8 flex items-center justify-end gap-3 border-t border-[#E6EAE7] pt-4">
+        <div className="mt-8 flex items-center justify-end gap-3 border-t border-[#E2E8F3] pt-4">
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-[#DCE2DE] px-4 py-2.5 text-[13px] font-medium text-[#65706B] transition-colors hover:bg-[#F3F5F3]"
+            className="rounded-xl border border-[#D0D9EA] px-4 py-2.5 text-[13px] font-medium text-[#65706B] transition-colors hover:bg-[#F0F3FA]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             Cancel
@@ -165,7 +165,7 @@ export default function AddAdminModal({ isOpen, onClose }: AddAdminModalProps) {
           <button
             type="submit"
             disabled={addAdminMutation.isPending}
-            className="rounded-xl bg-[#0F473A] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#145C4B] disabled:opacity-65"
+            className="rounded-xl bg-[#1B3A6B] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#2B5FA6] disabled:opacity-65"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {addAdminMutation.isPending ? "Creating..." : "Create Admin"}

@@ -1,4 +1,4 @@
-import { RentalItem } from "@/models/rental";
+﻿import { RentalItem } from "@/models/rental";
 
 interface RentalDetailsHeaderProps {
   unit: RentalItem;
@@ -20,7 +20,7 @@ export default function RentalDetailsHeader({ unit }: RentalDetailsHeaderProps) 
   return (
     <div className="mt-4">
       <h1
-        className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#145C4B]"
+        className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#2B5FA6]"
         style={{ fontFamily: "var(--font-manrope)" }}
       >
         {unit.name}

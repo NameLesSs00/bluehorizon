@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 export const LOCATION_REGIONS = [
   "All Regions",
@@ -27,7 +27,7 @@ export default function LocationsFilterBar({
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         {/* Left: Search Input */}
         <div className="relative w-full max-w-md">
-          <div className="flex items-center gap-2.5 rounded-full bg-[#F3F5F3] px-4 py-3 border border-[#E1E7E3]/60 focus-within:border-[#145C4B] focus-within:bg-white transition-colors">
+          <div className="flex items-center gap-2.5 rounded-full bg-[#F0F3FA] px-4 py-3 border border-[#D9E2EE]/60 focus-within:border-[#2B5FA6] focus-within:bg-white transition-colors">
             <svg
               width="16"
               height="16"
@@ -73,8 +73,8 @@ export default function LocationsFilterBar({
                 onClick={() => onSelectRegion(region)}
                 className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-semibold transition-all ${
                   isActive
-                    ? "bg-[#0F473A] text-white shadow-sm"
-                    : "border border-[#E1E7E3] bg-[#FCFCFC] text-[#202326] hover:bg-[#E8F1EC] hover:text-[#145C4B]"
+                    ? "bg-[#1B3A6B] text-white shadow-sm"
+                    : "border border-[#D9E2EE] bg-[#FCFCFC] text-[#202326] hover:bg-[#E5ECF6] hover:text-[#2B5FA6]"
                 }`}
                 style={{ fontFamily: "var(--font-inter)" }}
               >

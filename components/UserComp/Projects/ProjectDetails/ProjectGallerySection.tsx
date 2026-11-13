@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { getFullProjectImageUrl } from "@/clientApi/projectsApi";
 
 interface ProjectGallerySectionProps {
@@ -45,7 +45,7 @@ export default function ProjectGallerySection({
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
         {/* Left Column: Large Showcase Image */}
-        <div className="relative h-[320px] sm:h-[420px] lg:h-[520px] w-full overflow-hidden rounded-[20px] bg-[#FAF8F5]">
+        <div className="relative h-[320px] sm:h-[420px] lg:h-[520px] w-full overflow-hidden rounded-[20px] bg-[#F9F7F4]">
           <Image
             src={img1}
             alt={`${projectTitle} Gallery 1`}
@@ -58,7 +58,7 @@ export default function ProjectGallerySection({
         {/* Right Column: 1 Top Wide + 2 Bottom Side-by-Side */}
         <div className="flex flex-col gap-4 sm:gap-5">
           {/* Top Wide Image */}
-          <div className="relative h-[200px] sm:h-[248px] w-full overflow-hidden rounded-[20px] bg-[#FAF8F5]">
+          <div className="relative h-[200px] sm:h-[248px] w-full overflow-hidden rounded-[20px] bg-[#F9F7F4]">
             <Image
               src={img2}
               alt={`${projectTitle} Gallery 2`}
@@ -70,7 +70,7 @@ export default function ProjectGallerySection({
 
           {/* Bottom Row: 2 Split Images */}
           <div className="grid grid-cols-2 gap-4 sm:gap-5">
-            <div className="relative h-[180px] sm:h-[256px] w-full overflow-hidden rounded-[20px] bg-[#FAF8F5]">
+            <div className="relative h-[180px] sm:h-[256px] w-full overflow-hidden rounded-[20px] bg-[#F9F7F4]">
               <Image
                 src={img3}
                 alt={`${projectTitle} Gallery 3`}
@@ -80,7 +80,7 @@ export default function ProjectGallerySection({
               />
             </div>
 
-            <div className="relative h-[180px] sm:h-[256px] w-full overflow-hidden rounded-[20px] bg-[#FAF8F5]">
+            <div className="relative h-[180px] sm:h-[256px] w-full overflow-hidden rounded-[20px] bg-[#F9F7F4]">
               <Image
                 src={img4}
                 alt={`${projectTitle} Gallery 4`}

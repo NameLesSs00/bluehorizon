@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -116,7 +116,7 @@ export default function QuestionFormModal({
     >
       {isPreloading ? (
         <div className="flex h-64 items-center justify-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#0F473A] border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#1B3A6B] border-t-transparent" />
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="flex h-full flex-col justify-between" noValidate>
@@ -124,7 +124,7 @@ export default function QuestionFormModal({
             {/* Titles Section */}
             <div className="space-y-4">
               <h4
-                className="text-[13px] font-bold uppercase tracking-wider text-[#145C4B]"
+                className="text-[13px] font-bold uppercase tracking-wider text-[#2B5FA6]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Question / Title
@@ -142,7 +142,7 @@ export default function QuestionFormModal({
                   value={title.en}
                   onChange={(e) => setTitle({ ...title, en: e.target.value })}
                   placeholder="How can I purchase a villa in Hurghada?"
-                  className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+                  className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
                   style={{ fontFamily: "var(--font-inter)" }}
                 />
               </div>
@@ -159,7 +159,7 @@ export default function QuestionFormModal({
                   value={title.de}
                   onChange={(e) => setTitle({ ...title, de: e.target.value })}
                   placeholder="Wie kann ich eine Villa in Hurghada kaufen?"
-                  className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+                  className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
                   style={{ fontFamily: "var(--font-inter)" }}
                 />
               </div>
@@ -177,16 +177,16 @@ export default function QuestionFormModal({
                   value={title.ar}
                   onChange={(e) => setTitle({ ...title, ar: e.target.value })}
                   placeholder="كيف يمكنني شراء فيلا في الغردقة؟"
-                  className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+                  className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
                   style={{ fontFamily: "var(--font-inter)" }}
                 />
               </div>
             </div>
 
             {/* Descriptions Section */}
-            <div className="space-y-4 border-t border-[#E6EAE7] pt-4">
+            <div className="space-y-4 border-t border-[#E2E8F3] pt-4">
               <h4
-                className="text-[13px] font-bold uppercase tracking-wider text-[#145C4B]"
+                className="text-[13px] font-bold uppercase tracking-wider text-[#2B5FA6]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Answer / Description
@@ -206,7 +206,7 @@ export default function QuestionFormModal({
                     setDescription({ ...description, en: e.target.value })
                   }
                   placeholder="Detailed answer in English..."
-                  className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+                  className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
                   style={{ fontFamily: "var(--font-inter)" }}
                 />
               </div>
@@ -225,7 +225,7 @@ export default function QuestionFormModal({
                     setDescription({ ...description, de: e.target.value })
                   }
                   placeholder="Detaillierte Antwort auf Deutsch..."
-                  className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+                  className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
                   style={{ fontFamily: "var(--font-inter)" }}
                 />
               </div>
@@ -245,18 +245,18 @@ export default function QuestionFormModal({
                     setDescription({ ...description, ar: e.target.value })
                   }
                   placeholder="الإجابة بالتفصيل باللغة العربية..."
-                  className="mt-1.5 w-full rounded-xl border border-[#DCE2DE] px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+                  className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
                   style={{ fontFamily: "var(--font-inter)" }}
                 />
               </div>
             </div>
           </div>
 
-          <div className="mt-8 flex items-center justify-end gap-3 border-t border-[#E6EAE7] pt-4">
+          <div className="mt-8 flex items-center justify-end gap-3 border-t border-[#E2E8F3] pt-4">
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-[#DCE2DE] px-4 py-2.5 text-[13px] font-medium text-[#65706B] transition-colors hover:bg-[#F3F5F3]"
+              className="rounded-xl border border-[#D0D9EA] px-4 py-2.5 text-[13px] font-medium text-[#65706B] transition-colors hover:bg-[#F0F3FA]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               Cancel
@@ -264,7 +264,7 @@ export default function QuestionFormModal({
             <button
               type="submit"
               disabled={isPending}
-              className="rounded-xl bg-[#0F473A] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#145C4B] disabled:opacity-65"
+              className="rounded-xl bg-[#1B3A6B] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#2B5FA6] disabled:opacity-65"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {isPending

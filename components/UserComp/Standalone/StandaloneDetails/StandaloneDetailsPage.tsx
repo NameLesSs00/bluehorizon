@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -34,10 +34,10 @@ export default function StandaloneDetailsPage({ id }: StandaloneDetailsPageProps
       <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
         <Navbar />
         <main className="flex-1 mx-auto w-full max-w-[1360px] px-4 py-12 sm:px-6 lg:px-8">
-          <div className="h-6 w-48 animate-pulse rounded-[12px] bg-[#E1E7E3]" />
-          <div className="mt-6 h-10 w-96 animate-pulse rounded-[12px] bg-[#E1E7E3]" />
-          <div className="mt-8 h-[450px] animate-pulse rounded-[24px] bg-[#F3F5F3]" />
-          <div className="mt-8 h-24 animate-pulse rounded-[20px] bg-[#F3F5F3]" />
+          <div className="h-6 w-48 animate-pulse rounded-[12px] bg-[#D9E2EE]" />
+          <div className="mt-6 h-10 w-96 animate-pulse rounded-[12px] bg-[#D9E2EE]" />
+          <div className="mt-8 h-[450px] animate-pulse rounded-[24px] bg-[#F0F3FA]" />
+          <div className="mt-8 h-24 animate-pulse rounded-[20px] bg-[#F0F3FA]" />
         </main>
         <Footer />
       </div>
@@ -49,7 +49,7 @@ export default function StandaloneDetailsPage({ id }: StandaloneDetailsPageProps
       <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
         <Navbar />
         <main className="flex flex-1 flex-col items-center justify-center px-4 py-24 text-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#E8F1EC] text-[#145C4B]">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#E5ECF6] text-[#2B5FA6]">
             <svg
               width="28"
               height="28"
@@ -80,7 +80,7 @@ export default function StandaloneDetailsPage({ id }: StandaloneDetailsPageProps
           </p>
           <Link
             href="/standalone"
-            className="mt-6 rounded-[12px] bg-[#145C4B] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#0F473A]"
+            className="mt-6 rounded-[12px] bg-[#2B5FA6] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             Back to Standalone Units

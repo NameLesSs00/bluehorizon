@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -48,7 +48,7 @@ export default function HomeBlogsSection() {
         <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p
-              className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#145C4B]"
+              className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               OUR BLOGS
@@ -69,7 +69,7 @@ export default function HomeBlogsSection() {
 
           <Link
             href="/blogs"
-            className="inline-flex items-center gap-2 self-start text-[14px] font-semibold text-[#145C4B] transition-opacity hover:opacity-80 md:self-end"
+            className="inline-flex items-center gap-2 self-start text-[14px] font-semibold text-[#2B5FA6] transition-opacity hover:opacity-80 md:self-end"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <span>View all articles</span>
@@ -89,17 +89,17 @@ export default function HomeBlogsSection() {
             {[1, 2, 3].map((n) => (
               <div
                 key={n}
-                className="overflow-hidden rounded-[24px] border border-[#E1E7E3] bg-white p-4"
+                className="overflow-hidden rounded-[24px] border border-[#D9E2EE] bg-white p-4"
               >
-                <div className="h-52 w-full animate-pulse rounded-2xl bg-[#E8F1EC]" />
-                <div className="mt-4 h-5 w-24 animate-pulse rounded-full bg-[#E1E7E3]" />
-                <div className="mt-3 h-6 w-3/4 animate-pulse rounded bg-[#E1E7E3]" />
-                <div className="mt-2 h-4 w-full animate-pulse rounded bg-[#F3F5F3]" />
+                <div className="h-52 w-full animate-pulse rounded-2xl bg-[#E5ECF6]" />
+                <div className="mt-4 h-5 w-24 animate-pulse rounded-full bg-[#D9E2EE]" />
+                <div className="mt-3 h-6 w-3/4 animate-pulse rounded bg-[#D9E2EE]" />
+                <div className="mt-2 h-4 w-full animate-pulse rounded bg-[#F0F3FA]" />
               </div>
             ))}
           </div>
         ) : displayBlogs.length === 0 ? (
-          <div className="flex h-44 w-full flex-col items-center justify-center rounded-2xl border border-[#E6EAE7] bg-[#FAF8F5] p-8 text-center">
+          <div className="flex h-44 w-full flex-col items-center justify-center rounded-2xl border border-[#E2E8F3] bg-[#F9F7F4] p-8 text-center">
             <p
               className="text-[15px] font-semibold text-[#202326]"
               style={{ fontFamily: "var(--font-manrope)" }}

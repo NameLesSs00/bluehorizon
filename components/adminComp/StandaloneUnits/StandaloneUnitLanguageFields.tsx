@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { LocalizedText } from "@/models/faq";
 import {
@@ -29,8 +29,8 @@ export default function StandaloneUnitLanguageFields({
   setFloorName,
 }: StandaloneUnitLanguageFieldsProps) {
   return (
-    <div className="space-y-4 rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-5">
-      <h4 className="text-[13px] font-bold uppercase tracking-wider text-[#145C4B]">
+    <div className="space-y-4 rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-5">
+      <h4 className="text-[13px] font-bold uppercase tracking-wider text-[#2B5FA6]">
         Property Descriptions &amp; Names
       </h4>
 
@@ -51,7 +51,7 @@ export default function StandaloneUnitLanguageFields({
             value={name.en}
             onChange={(e) => setName({ ...name, en: e.target.value })}
             placeholder="e.g. Luxury Beachfront Standalone Villa"
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -65,7 +65,7 @@ export default function StandaloneUnitLanguageFields({
             value={name.de}
             onChange={(e) => setName({ ...name, de: e.target.value })}
             placeholder="e.g. Luxuriöse freistehende Strandvilla"
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -80,7 +80,7 @@ export default function StandaloneUnitLanguageFields({
             value={name.ar}
             onChange={(e) => setName({ ...name, ar: e.target.value })}
             placeholder="مثال: فيلا مستقلة فاخرة على شاطئ البحر"
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
       </div>
@@ -101,7 +101,7 @@ export default function StandaloneUnitLanguageFields({
             value={description.en}
             onChange={(e) => setDescription({ ...description, en: e.target.value })}
             placeholder="Describe the unit features, finishes, and layout..."
-            className="mt-1 w-full resize-none rounded-xl border border-[#DCE2DE] bg-white p-3 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1 w-full resize-none rounded-xl border border-[#D0D9EA] bg-white p-3 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -115,7 +115,7 @@ export default function StandaloneUnitLanguageFields({
             value={description.de}
             onChange={(e) => setDescription({ ...description, de: e.target.value })}
             placeholder="Beschreiben Sie die Ausstattungsmerkmale..."
-            className="mt-1 w-full resize-none rounded-xl border border-[#DCE2DE] bg-white p-3 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1 w-full resize-none rounded-xl border border-[#D0D9EA] bg-white p-3 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -130,7 +130,7 @@ export default function StandaloneUnitLanguageFields({
             value={description.ar}
             onChange={(e) => setDescription({ ...description, ar: e.target.value })}
             placeholder="اكتب وصفاً مميزاً للوحدة وتشطيباتها..."
-            className="mt-1 w-full resize-none rounded-xl border border-[#DCE2DE] bg-white p-3 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1 w-full resize-none rounded-xl border border-[#D0D9EA] bg-white p-3 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
       </div>
@@ -146,7 +146,7 @@ export default function StandaloneUnitLanguageFields({
             value={view.en}
             onChange={(e) => setView({ ...view, en: e.target.value })}
             placeholder="e.g. Direct Sea View"
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
 
@@ -159,7 +159,7 @@ export default function StandaloneUnitLanguageFields({
             value={floorName.en}
             onChange={(e) => setFloorName({ ...floorName, en: e.target.value })}
             placeholder="e.g. Ground Floor & Garden"
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
       </div>

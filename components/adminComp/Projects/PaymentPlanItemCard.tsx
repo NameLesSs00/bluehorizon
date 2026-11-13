@@ -31,7 +31,7 @@ export default function PaymentPlanItemCard({
     .join(" ");
 
   return (
-    <div className="flex flex-col justify-between rounded-xl border border-[#DCE2DE] bg-white p-4 shadow-2xs transition-all hover:border-[#145C4B]/40">
+    <div className="flex flex-col justify-between rounded-xl border border-[#D0D9EA] bg-white p-4 shadow-2xs transition-all hover:border-[#2B5FA6]/40">
       <div>
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
@@ -39,7 +39,7 @@ export default function PaymentPlanItemCard({
               className={`inline-flex items-center rounded-md border px-2.5 py-0.5 text-[11px] font-semibold tracking-wide ${
                 isCash
                   ? "border-blue-200 bg-blue-50 text-blue-700"
-                  : "border-emerald-200 bg-emerald-50 text-emerald-700"
+                  : "border-amber-200 bg-amber-50 text-amber-700"
               }`}
             >
               {plan.paymentType}
@@ -60,7 +60,7 @@ export default function PaymentPlanItemCard({
             <button
               type="button"
               onClick={() => onEdit(plan)}
-              className="rounded-lg p-1.5 text-[#65706B] transition-colors hover:bg-[#F3F5F3] hover:text-[#202326]"
+              className="rounded-lg p-1.5 text-[#65706B] transition-colors hover:bg-[#F0F3FA] hover:text-[#202326]"
               title="Edit Payment Plan"
             >
               <FiEdit2 className="h-4 w-4" />
@@ -77,7 +77,7 @@ export default function PaymentPlanItemCard({
         </div>
 
         <div className="mt-3 grid grid-cols-2 gap-3 text-[12px]">
-          <div className="rounded-lg bg-[#FAF8F5] p-2.5">
+          <div className="rounded-lg bg-[#F9F7F4] p-2.5">
             <span className="flex items-center gap-1 font-medium text-[#65706B]">
               <FiPercent className="h-3 w-3" />
               Commission
@@ -89,7 +89,7 @@ export default function PaymentPlanItemCard({
 
           {!isCash ? (
             <>
-              <div className="rounded-lg bg-[#FAF8F5] p-2.5">
+              <div className="rounded-lg bg-[#F9F7F4] p-2.5">
                 <span className="flex items-center gap-1 font-medium text-[#65706B]">
                   <FiDollarSign className="h-3 w-3" />
                   Down Payment
@@ -99,7 +99,7 @@ export default function PaymentPlanItemCard({
                 </span>
               </div>
 
-              <div className="col-span-2 rounded-lg bg-[#FAF8F5] p-2.5">
+              <div className="col-span-2 rounded-lg bg-[#F9F7F4] p-2.5">
                 <span className="flex items-center gap-1 font-medium text-[#65706B]">
                   <FiClock className="h-3 w-3" />
                   Installment Term
@@ -110,7 +110,7 @@ export default function PaymentPlanItemCard({
               </div>
             </>
           ) : (
-            <div className="rounded-lg bg-[#FAF8F5] p-2.5">
+            <div className="rounded-lg bg-[#F9F7F4] p-2.5">
               <span className="flex items-center gap-1 font-medium text-[#65706B]">
                 <FiDollarSign className="h-3 w-3" />
                 Payment Mode
@@ -141,7 +141,7 @@ export default function PaymentPlanItemCard({
             <button
               type="button"
               onClick={() => setConfirmDelete(false)}
-              className="rounded border border-[#DCE2DE] bg-white px-2 py-1 text-[11px] font-medium text-[#65706B] hover:bg-[#F3F5F3]"
+              className="rounded border border-[#D0D9EA] bg-white px-2 py-1 text-[11px] font-medium text-[#65706B] hover:bg-[#F0F3FA]"
             >
               Cancel
             </button>

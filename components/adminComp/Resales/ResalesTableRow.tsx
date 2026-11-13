@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -66,11 +66,11 @@ export default function ResalesTableRow({
       : PROPERTY_TYPE_LABELS[propertyTypeNum] || "Resale";
 
   return (
-    <tr className="transition-colors hover:bg-[#F3F5F3]/50">
+    <tr className="transition-colors hover:bg-[#F0F3FA]/50">
       {/* 1. Property Name & Thumbnail */}
       <td className="px-6 py-5">
         <div className="flex items-center gap-4">
-          <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-xl border border-[#DCE2DE] bg-neutral-100">
+          <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-xl border border-[#D0D9EA] bg-neutral-100">
             {primaryImageUrl ? (
               <Image
                 src={getFullResaleMediaUrl(primaryImageUrl)}
@@ -79,7 +79,7 @@ export default function ResalesTableRow({
                 className="object-cover"
               />
             ) : (
-              <div className="flex h-full w-full items-center justify-center bg-[#0F473A]/10 text-[#0F473A]">
+              <div className="flex h-full w-full items-center justify-center bg-[#1B3A6B]/10 text-[#1B3A6B]">
                 <FiHome className="h-6 w-6" />
               </div>
             )}
@@ -91,7 +91,7 @@ export default function ResalesTableRow({
               <span className="rounded bg-neutral-100 px-1.5 py-0.5 text-[10px] font-bold uppercase text-[#65706B]">
                 {resale.markerId || `#${resale.id}`}
               </span>
-              <span className="rounded bg-[#145C4B]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[#145C4B]">
+              <span className="rounded bg-[#2B5FA6]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[#2B5FA6]">
                 {typeLabel}
               </span>
             </div>
@@ -123,7 +123,7 @@ export default function ResalesTableRow({
           )}
         </div>
         {resale.services && resale.services.length > 0 && (
-          <p className="mt-1 text-[10px] text-[#145C4B]">
+          <p className="mt-1 text-[10px] text-[#2B5FA6]">
             {resale.services.length} services included
           </p>
         )}
@@ -131,7 +131,7 @@ export default function ResalesTableRow({
 
       {/* 3. Base Price */}
       <td className="px-6 py-5">
-        <p className="text-[14px] font-bold text-[#145C4B]">{formatPrice()}</p>
+        <p className="text-[14px] font-bold text-[#2B5FA6]">{formatPrice()}</p>
         <span className="text-[10px] text-[#65706B]">converted price</span>
       </td>
 
@@ -150,7 +150,7 @@ export default function ResalesTableRow({
             disabled={updateStatusMutation.isPending}
             className={`inline-flex w-fit items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider transition-opacity hover:opacity-80 disabled:opacity-50 ${
               resale.isActive
-                ? "bg-[#25D366]/20 text-[#0F473A]"
+                ? "bg-[#25D366]/20 text-[#1B3A6B]"
                 : "bg-neutral-200 text-neutral-600"
             }`}
           >
@@ -199,7 +199,7 @@ export default function ResalesTableRow({
             <button
               type="button"
               onClick={() => setIsConfirmingDelete(false)}
-              className="rounded-lg border border-[#DCE2DE] bg-white px-3 py-1 text-[11px] font-medium text-[#202326] hover:bg-[#F3F5F3]"
+              className="rounded-lg border border-[#D0D9EA] bg-white px-3 py-1 text-[11px] font-medium text-[#202326] hover:bg-[#F0F3FA]"
             >
               Cancel
             </button>
@@ -209,12 +209,12 @@ export default function ResalesTableRow({
             <button
               type="button"
               onClick={() => onManageMedia(resale)}
-              className="relative rounded-lg p-2 text-[#5A6561] transition-colors hover:bg-[#F3F5F3] hover:text-[#0F473A]"
+              className="relative rounded-lg p-2 text-[#5A6561] transition-colors hover:bg-[#F0F3FA] hover:text-[#1B3A6B]"
               title="Manage Photos"
             >
               <FiImage className="h-4 w-4" />
               {imageCount > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#0F473A] text-[9px] font-bold text-white">
+                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#1B3A6B] text-[9px] font-bold text-white">
                   {imageCount}
                 </span>
               )}
@@ -223,7 +223,7 @@ export default function ResalesTableRow({
             <button
               type="button"
               onClick={() => onEdit(resale)}
-              className="rounded-lg p-2 text-[#5A6561] transition-colors hover:bg-[#F3F5F3] hover:text-[#0F473A]"
+              className="rounded-lg p-2 text-[#5A6561] transition-colors hover:bg-[#F0F3FA] hover:text-[#1B3A6B]"
               title="Edit Property"
             >
               <FiEdit2 className="h-4 w-4" />

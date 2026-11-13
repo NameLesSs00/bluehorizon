@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 interface ProjectBreadcrumbProps {
   projectName?: string;
@@ -19,7 +19,7 @@ export default function ProjectBreadcrumb({ projectName }: ProjectBreadcrumbProp
         <li>
           <Link
             href="/"
-            className="transition-colors hover:text-[#145C4B]"
+            className="transition-colors hover:text-[#2B5FA6]"
           >
             Home
           </Link>
@@ -30,7 +30,7 @@ export default function ProjectBreadcrumb({ projectName }: ProjectBreadcrumbProp
         <li>
           <Link
             href="/areas"
-            className="transition-colors hover:text-[#145C4B]"
+            className="transition-colors hover:text-[#2B5FA6]"
           >
             Areas
           </Link>
@@ -41,7 +41,7 @@ export default function ProjectBreadcrumb({ projectName }: ProjectBreadcrumbProp
         <li>
           <Link
             href="/projects"
-            className="transition-colors hover:text-[#145C4B]"
+            className="transition-colors hover:text-[#2B5FA6]"
           >
             Projects
           </Link>

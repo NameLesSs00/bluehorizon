@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { FiPlus, FiSearch } from "react-icons/fi";
@@ -79,7 +79,7 @@ export default function AdminStandaloneUnitsPage() {
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#145C4B]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]">
               PROPERTY MANAGEMENT
             </p>
             <h1 className="mt-1 text-[28px] font-semibold text-[#202326]">
@@ -93,7 +93,7 @@ export default function AdminStandaloneUnitsPage() {
           <button
             type="button"
             onClick={handleOpenCreate}
-            className="inline-flex items-center gap-2 rounded-xl bg-[#0F473A] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#145C4B]"
+            className="inline-flex items-center gap-2 rounded-xl bg-[#1B3A6B] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#2B5FA6]"
           >
             <FiPlus className="h-4 w-4" />
             <span>Add Standalone Property</span>
@@ -101,7 +101,7 @@ export default function AdminStandaloneUnitsPage() {
         </div>
 
         {/* Filter Controls */}
-        <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-[#E6EAE7] bg-white p-4 shadow-xs">
+        <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-[#E2E8F3] bg-white p-4 shadow-xs">
           {/* Search */}
           <div className="relative min-w-[240px] flex-1 sm:flex-initial">
             <FiSearch className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-[#9BA5A0]" />
@@ -113,7 +113,7 @@ export default function AdminStandaloneUnitsPage() {
                 setPageNumber(1);
               }}
               placeholder="Search standalone properties..."
-              className="w-full rounded-xl border border-[#DCE2DE] bg-white py-2 pr-3 pl-9 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#0F473A] focus:outline-none"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white py-2 pr-3 pl-9 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
 
@@ -124,7 +124,7 @@ export default function AdminStandaloneUnitsPage() {
               setSelectedPropertyType(e.target.value);
               setPageNumber(1);
             }}
-            className="rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           >
             {PROPERTY_TYPES.map((type) => (
               <option key={type} value={type}>
@@ -134,7 +134,7 @@ export default function AdminStandaloneUnitsPage() {
           </select>
 
           {/* Status Filter */}
-          <div className="inline-flex rounded-xl border border-[#DCE2DE] bg-white p-0.5">
+          <div className="inline-flex rounded-xl border border-[#D0D9EA] bg-white p-0.5">
             <button
               type="button"
               onClick={() => {
@@ -143,7 +143,7 @@ export default function AdminStandaloneUnitsPage() {
               }}
               className={`rounded-lg px-3 py-1.5 text-[12px] font-medium transition-colors ${
                 activeFilter === undefined
-                  ? "bg-[#145C4B] text-white"
+                  ? "bg-[#2B5FA6] text-white"
                   : "text-[#65706B] hover:text-[#202326]"
               }`}
             >
@@ -157,7 +157,7 @@ export default function AdminStandaloneUnitsPage() {
               }}
               className={`rounded-lg px-3 py-1.5 text-[12px] font-medium transition-colors ${
                 activeFilter === true
-                  ? "bg-[#145C4B] text-white"
+                  ? "bg-[#2B5FA6] text-white"
                   : "text-[#65706B] hover:text-[#202326]"
               }`}
             >
@@ -171,7 +171,7 @@ export default function AdminStandaloneUnitsPage() {
               }}
               className={`rounded-lg px-3 py-1.5 text-[12px] font-medium transition-colors ${
                 activeFilter === false
-                  ? "bg-[#145C4B] text-white"
+                  ? "bg-[#2B5FA6] text-white"
                   : "text-[#65706B] hover:text-[#202326]"
               }`}
             >
@@ -185,7 +185,7 @@ export default function AdminStandaloneUnitsPage() {
             <select
               value={currentCurrency}
               onChange={(e) => setCurrency(e.target.value)}
-              className="rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] font-semibold text-[#0F473A] focus:border-[#0F473A] focus:outline-none"
+              className="rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] font-semibold text-[#1B3A6B] focus:border-[#1B3A6B] focus:outline-none"
             >
               {availableCurrencies.map((code) => (
                 <option key={code} value={code}>

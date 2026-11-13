@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { FiPlus, FiShield, FiUsers } from "react-icons/fi";
@@ -38,7 +38,7 @@ export default function AdminDashboardPage() {
         {/* Page Title & Metrics */}
         <div>
           <p
-            className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#145C4B]"
+            className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             ADMINISTRATORS CONTROLLER
@@ -59,11 +59,11 @@ export default function AdminDashboardPage() {
 
         {/* Overview Stats */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="flex items-center justify-between rounded-2xl border border-[#E6EAE7] bg-white p-6 shadow-sm">
+          <div className="flex items-center justify-between rounded-2xl border border-[#E2E8F3] bg-white p-6 shadow-sm">
             <div>
               <div className="flex items-center gap-2">
                 <p
-                  className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#145C4B]"
+                  className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#2B5FA6]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
                   CURRENT SESSION
@@ -71,8 +71,8 @@ export default function AdminDashboardPage() {
                 <span
                   className={`rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide uppercase ${
                     isSuperAdmin
-                      ? "bg-[#145C4B]/10 text-[#145C4B]"
-                      : "bg-[#E6EAE7] text-[#65706B]"
+                      ? "bg-[#2B5FA6]/10 text-[#2B5FA6]"
+                      : "bg-[#E2E8F3] text-[#65706B]"
                   }`}
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
@@ -92,15 +92,15 @@ export default function AdminDashboardPage() {
                 {currentUser?.email}
               </p>
             </div>
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0F473A]/10 text-[#0F473A]">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1B3A6B]/10 text-[#1B3A6B]">
               <FiShield className="h-6 w-6" />
             </div>
           </div>
 
-          <div className="flex items-center justify-between rounded-2xl border border-[#E6EAE7] bg-white p-6 shadow-sm">
+          <div className="flex items-center justify-between rounded-2xl border border-[#E2E8F3] bg-white p-6 shadow-sm">
             <div>
               <p
-                className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#145C4B]"
+                className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#2B5FA6]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 TOTAL ADMINISTRATORS
@@ -118,7 +118,7 @@ export default function AdminDashboardPage() {
                 Registered admin accounts
               </p>
             </div>
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0F473A]/10 text-[#0F473A]">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1B3A6B]/10 text-[#1B3A6B]">
               <FiUsers className="h-6 w-6" />
             </div>
           </div>
@@ -138,7 +138,7 @@ export default function AdminDashboardPage() {
               <button
                 type="button"
                 onClick={() => setIsAddAdminOpen(true)}
-                className="inline-flex items-center gap-2 rounded-xl bg-[#0F473A] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#145C4B]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#1B3A6B] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#2B5FA6]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <FiPlus className="h-4 w-4" />

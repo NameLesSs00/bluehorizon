@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
@@ -39,7 +39,7 @@ export default function FooterSocialLinks({
           target="_blank"
           rel="noopener noreferrer"
           aria-label="WhatsApp"
-          className="text-[#CBDFD5] transition-transform hover:scale-110 hover:text-white"
+          className="text-[#C5D3E8] transition-transform hover:scale-110 hover:text-white"
         >
           <FaWhatsapp className="h-[18px] w-[18px]" />
         </a>

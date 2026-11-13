@@ -58,9 +58,9 @@ export default function ContactsTable({
 
   if (isLoading) {
     return (
-      <div className="flex h-72 w-full items-center justify-center rounded-2xl border border-[#E6EAE7] bg-white">
+      <div className="flex h-72 w-full items-center justify-center rounded-2xl border border-[#E2E8F3] bg-white">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#0F473A] border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#1B3A6B] border-t-transparent" />
           <p
             className="text-[13px] text-[#65706B]"
             style={{ fontFamily: "var(--font-inter)" }}
@@ -73,11 +73,11 @@ export default function ContactsTable({
   }
 
   return (
-    <div className="w-full overflow-hidden rounded-2xl border border-[#E6EAE7] bg-white shadow-sm">
+    <div className="w-full overflow-hidden rounded-2xl border border-[#E2E8F3] bg-white shadow-sm">
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-[#E6EAE7] bg-[#FAF8F5]">
+            <tr className="border-b border-[#E2E8F3] bg-[#F9F7F4]">
               <th
                 className="px-6 py-4 text-[12px] font-bold uppercase tracking-[0.08em] text-[#65706B]"
                 style={{ fontFamily: "var(--font-inter)" }}
@@ -116,7 +116,7 @@ export default function ContactsTable({
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#E6EAE7]">
+          <tbody className="divide-y divide-[#E2E8F3]">
             {contacts.length === 0 ? (
               <tr>
                 <td
@@ -131,7 +131,7 @@ export default function ContactsTable({
               contacts.map((contact) => (
                 <tr
                   key={contact.id}
-                  className="transition-colors hover:bg-[#F3F5F3]/50"
+                  className="transition-colors hover:bg-[#F0F3FA]/50"
                 >
                   <td className="px-6 py-4">
                     <p
@@ -151,14 +151,14 @@ export default function ContactsTable({
                   <td className="px-6 py-4 space-y-0.5">
                     <a
                       href={`mailto:${contact.email}`}
-                      className="flex items-center gap-1.5 text-[12px] text-[#202326] hover:text-[#145C4B]"
+                      className="flex items-center gap-1.5 text-[12px] text-[#202326] hover:text-[#2B5FA6]"
                     >
                       <FiMail className="h-3 w-3 text-[#65706B]" />
                       <span>{contact.email}</span>
                     </a>
                     <a
                       href={`tel:${contact.phone}`}
-                      className="flex items-center gap-1.5 text-[12px] text-[#65706B] hover:text-[#145C4B]"
+                      className="flex items-center gap-1.5 text-[12px] text-[#65706B] hover:text-[#2B5FA6]"
                     >
                       <FiPhone className="h-3 w-3 text-[#65706B]" />
                       <span>{contact.phone}</span>
@@ -166,7 +166,7 @@ export default function ContactsTable({
                   </td>
 
                   <td className="px-6 py-4">
-                    <span className="rounded-md bg-[#FAF8F5] border border-[#E6EAE7] px-2.5 py-1 text-[12px] font-medium text-[#202326]">
+                    <span className="rounded-md bg-[#F9F7F4] border border-[#E2E8F3] px-2.5 py-1 text-[12px] font-medium text-[#202326]">
                       {contact.type}
                     </span>
                   </td>
@@ -175,7 +175,7 @@ export default function ContactsTable({
                     <span
                       className={`inline-block rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase ${
                         contact.status === "Viewed"
-                          ? "bg-emerald-100 text-emerald-800"
+                          ? "bg-blue-100 text-blue-800"
                           : "bg-amber-100 text-amber-800"
                       }`}
                       style={{ fontFamily: "var(--font-inter)" }}
@@ -206,7 +206,7 @@ export default function ContactsTable({
                         <button
                           type="button"
                           onClick={() => setConfirmDeleteId(null)}
-                          className="rounded-lg border border-[#DCE2DE] px-2 py-1 text-[11px] font-medium text-[#65706B] hover:bg-[#F3F5F3]"
+                          className="rounded-lg border border-[#D0D9EA] px-2 py-1 text-[11px] font-medium text-[#65706B] hover:bg-[#F0F3FA]"
                           style={{ fontFamily: "var(--font-inter)" }}
                         >
                           Cancel
@@ -219,7 +219,7 @@ export default function ContactsTable({
                             type="button"
                             title="Mark as Viewed"
                             onClick={() => handleQuickMarkViewed(contact.id)}
-                            className="inline-flex items-center gap-1 rounded-lg border border-emerald-200 px-2.5 py-1.5 text-[12px] font-medium text-emerald-700 hover:bg-emerald-50"
+                            className="inline-flex items-center gap-1 rounded-lg border border-blue-200 px-2.5 py-1.5 text-[12px] font-medium text-blue-700 hover:bg-blue-50"
                             style={{ fontFamily: "var(--font-inter)" }}
                           >
                             <FiCheck className="h-3.5 w-3.5" />
@@ -229,10 +229,10 @@ export default function ContactsTable({
                         <button
                           type="button"
                           onClick={() => onViewDetails(contact)}
-                          className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] px-2.5 py-1.5 text-[12px] font-medium text-[#202326] transition-colors hover:bg-[#FAF8F5]"
+                          className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] px-2.5 py-1.5 text-[12px] font-medium text-[#202326] transition-colors hover:bg-[#F9F7F4]"
                           style={{ fontFamily: "var(--font-inter)" }}
                         >
-                          <FiEye className="h-3.5 w-3.5 text-[#145C4B]" />
+                          <FiEye className="h-3.5 w-3.5 text-[#2B5FA6]" />
                           <span>Details</span>
                         </button>
                         <button

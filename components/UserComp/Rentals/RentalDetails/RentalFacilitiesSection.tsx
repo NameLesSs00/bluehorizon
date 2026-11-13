@@ -1,4 +1,4 @@
-import {
+﻿import {
   TbPool,
   TbSmartHome,
   TbCar,
@@ -70,11 +70,11 @@ export default function RentalFacilitiesSection({
   }));
 
   return (
-    <div className="rounded-[20px] border border-[#E1E7E3] bg-white p-6 sm:p-7 shadow-xs">
+    <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-7 shadow-xs">
       <div className="flex items-start justify-between gap-4">
         <div>
           <h2
-            className="text-xl sm:text-2xl font-bold text-[#145C4B]"
+            className="text-xl sm:text-2xl font-bold text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
             Facilities &amp; Amenities
@@ -88,7 +88,7 @@ export default function RentalFacilitiesSection({
         </div>
 
         <span
-          className="inline-flex shrink-0 items-center rounded-full bg-[#E8F1EC] px-3.5 py-1 text-xs font-semibold text-[#145C4B]"
+          className="inline-flex shrink-0 items-center rounded-full bg-[#E5ECF6] px-3.5 py-1 text-xs font-semibold text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           {items.length} Included
@@ -101,9 +101,9 @@ export default function RentalFacilitiesSection({
           return (
             <div
               key={facility.name}
-              className="flex flex-col items-center justify-center rounded-[16px] border border-[#E1E7E3]/80 bg-[#FAF8F5] p-4 text-center transition-all hover:border-[#145C4B]/40 hover:shadow-2xs"
+              className="flex flex-col items-center justify-center rounded-[16px] border border-[#D9E2EE]/80 bg-[#F9F7F4] p-4 text-center transition-all hover:border-[#2B5FA6]/40 hover:shadow-2xs"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#145C4B] shadow-2xs">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#2B5FA6] shadow-2xs">
                 <IconComponent className="h-5 w-5" />
               </div>
               <span

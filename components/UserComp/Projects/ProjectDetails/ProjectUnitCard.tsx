@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 
 export interface UnitItem {
@@ -29,10 +29,10 @@ export default function ProjectUnitCard({ unit }: ProjectUnitCardProps) {
     `/units/${unit.id}?type=${unit.type || (isResale ? "resale" : "primary")}`;
 
   return (
-    <div className="group flex flex-col justify-between rounded-[20px] border border-[#E1E7E3] bg-white p-3 sm:p-3.5 transition-all duration-200 hover:-translate-y-1 hover:border-[#145C4B]/40 hover:shadow-md">
+    <div className="group flex flex-col justify-between rounded-[20px] border border-[#D9E2EE] bg-white p-3 sm:p-3.5 transition-all duration-200 hover:-translate-y-1 hover:border-[#2B5FA6]/40 hover:shadow-md">
       <div>
         {/* Thumbnail with Badge */}
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[14px] bg-[#FAF8F5]">
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[14px] bg-[#F9F7F4]">
           <Image
             src={unit.imageSrc || "/default-fallback.png"}
             alt={unit.title}
@@ -45,7 +45,7 @@ export default function ProjectUnitCard({ unit }: ProjectUnitCardProps) {
             className={`absolute top-2.5 left-2.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold backdrop-blur-xs shadow-xs ${
               isResale
                 ? "bg-[#202326]/85 text-white"
-                : "bg-white/95 text-[#145C4B]"
+                : "bg-white/95 text-[#2B5FA6]"
             }`}
             style={{ fontFamily: "var(--font-inter)" }}
           >
@@ -56,7 +56,7 @@ export default function ProjectUnitCard({ unit }: ProjectUnitCardProps) {
         {/* Content */}
         <div className="pt-3 pb-1">
           <h4
-            className="truncate text-[15px] sm:text-[16px] font-bold text-[#202326] transition-colors group-hover:text-[#145C4B]"
+            className="truncate text-[15px] sm:text-[16px] font-bold text-[#202326] transition-colors group-hover:text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
             {unit.title}
@@ -118,7 +118,7 @@ export default function ProjectUnitCard({ unit }: ProjectUnitCardProps) {
       </div>
 
       {/* Card Footer: Price & CTA */}
-      <div className="mt-3 pt-3 border-t border-[#E1E7E3]">
+      <div className="mt-3 pt-3 border-t border-[#D9E2EE]">
         <span
           className="block text-base sm:text-[17px] font-bold text-[#202326]"
           style={{ fontFamily: "var(--font-manrope)" }}
@@ -128,7 +128,7 @@ export default function ProjectUnitCard({ unit }: ProjectUnitCardProps) {
 
         <Link
           href={linkHref}
-          className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-[#145C4B] py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#0F473A]"
+          className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-[#2B5FA6] py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           <span>View Details</span>

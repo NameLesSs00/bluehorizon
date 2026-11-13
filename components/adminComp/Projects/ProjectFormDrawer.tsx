@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -214,7 +214,7 @@ export default function ProjectFormDrawer({
     >
       <form onSubmit={handleSubmit} className="space-y-6">
         {isLoadingDetails && isEditMode && (
-          <div className="rounded-xl border border-[#CBDFD5] bg-[#FAF8F5] p-3 text-[12px] text-[#145C4B]">
+          <div className="rounded-xl border border-[#C5D3E8] bg-[#F9F7F4] p-3 text-[12px] text-[#2B5FA6]">
             Loading localized translations and multi-currency prices...
           </div>
         )}
@@ -264,18 +264,18 @@ export default function ProjectFormDrawer({
           />
         )}
 
-        <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#E6EAE7]">
+        <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#E2E8F3]">
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-[#DCE2DE] bg-white px-5 py-2.5 text-[13px] font-medium text-[#65706B] hover:bg-[#F3F5F3]"
+            className="rounded-xl border border-[#D0D9EA] bg-white px-5 py-2.5 text-[13px] font-medium text-[#65706B] hover:bg-[#F0F3FA]"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={isSaving}
-            className="rounded-xl bg-[#0F473A] px-6 py-2.5 text-[13px] font-semibold text-white hover:bg-[#145C4B] disabled:opacity-50"
+            className="rounded-xl bg-[#1B3A6B] px-6 py-2.5 text-[13px] font-semibold text-white hover:bg-[#2B5FA6] disabled:opacity-50"
           >
             {isSaving
               ? "Saving..."

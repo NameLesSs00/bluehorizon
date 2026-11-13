@@ -1,4 +1,4 @@
-import { StandaloneUnitItem } from "@/models/standaloneUnit";
+﻿import { StandaloneUnitItem } from "@/models/standaloneUnit";
 
 interface StandaloneAboutSectionProps {
   unit: StandaloneUnitItem;
@@ -19,7 +19,7 @@ export default function StandaloneAboutSection({
   }
 
   return (
-    <div className="rounded-[20px] border border-[#E1E7E3] bg-white p-6 sm:p-8 shadow-sm">
+    <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-8 shadow-sm">
       <h2
         className="text-xl sm:text-2xl font-bold text-[#202326]"
         style={{ fontFamily: "var(--font-manrope)" }}
@@ -41,7 +41,7 @@ export default function StandaloneAboutSection({
 
       {/* Geographic Location & Legal Registry Details Card */}
       {hasLocation && (
-        <div className="mt-8 rounded-[16px] border border-[#E1E7E3] bg-[#F3F5F3] p-5 sm:p-6">
+        <div className="mt-8 rounded-[16px] border border-[#D9E2EE] bg-[#F0F3FA] p-5 sm:p-6">
           <h3
             className="text-xs sm:text-sm font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
@@ -52,7 +52,7 @@ export default function StandaloneAboutSection({
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
             {/* Country */}
             {unit.country && (
-              <div className="rounded-[12px] bg-white p-3.5 border border-[#E1E7E3]">
+              <div className="rounded-[12px] bg-white p-3.5 border border-[#D9E2EE]">
                 <span
                   className="block text-[10px] font-bold uppercase tracking-wider text-[#6B7570]"
                   style={{ fontFamily: "var(--font-inter)" }}
@@ -70,7 +70,7 @@ export default function StandaloneAboutSection({
 
             {/* City / Governorate */}
             {cityGov && (
-              <div className="rounded-[12px] bg-white p-3.5 border border-[#E1E7E3]">
+              <div className="rounded-[12px] bg-white p-3.5 border border-[#D9E2EE]">
                 <span
                   className="block text-[10px] font-bold uppercase tracking-wider text-[#6B7570]"
                   style={{ fontFamily: "var(--font-inter)" }}
@@ -88,7 +88,7 @@ export default function StandaloneAboutSection({
 
             {/* Street / District */}
             {streetDistrict && (
-              <div className="rounded-[12px] bg-white p-3.5 border border-[#E1E7E3]">
+              <div className="rounded-[12px] bg-white p-3.5 border border-[#D9E2EE]">
                 <span
                   className="block text-[10px] font-bold uppercase tracking-wider text-[#6B7570]"
                   style={{ fontFamily: "var(--font-inter)" }}

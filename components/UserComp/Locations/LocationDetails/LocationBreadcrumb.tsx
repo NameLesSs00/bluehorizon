@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { FiChevronRight } from "react-icons/fi";
 
 interface LocationBreadcrumbProps {
@@ -17,21 +17,21 @@ export default function LocationBreadcrumb({
       >
         <Link
           href="/"
-          className="transition-colors hover:text-[#145C4B]"
+          className="transition-colors hover:text-[#2B5FA6]"
         >
           Home
         </Link>
         <FiChevronRight className="h-3 w-3 shrink-0 text-[#A1AAA5]" />
         <Link
           href="/locations"
-          className="transition-colors hover:text-[#145C4B]"
+          className="transition-colors hover:text-[#2B5FA6]"
         >
           Locations
         </Link>
         {locationName && (
           <>
             <FiChevronRight className="h-3 w-3 shrink-0 text-[#A1AAA5]" />
-            <span className="font-semibold text-[#145C4B] truncate max-w-[200px] sm:max-w-xs">
+            <span className="font-semibold text-[#2B5FA6] truncate max-w-[200px] sm:max-w-xs">
               {locationName}
             </span>
           </>

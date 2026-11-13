@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import Image from "next/image";
@@ -83,7 +83,7 @@ export default function ProjectImagesDrawer({
             </p>
           </div>
 
-          <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl bg-[#0F473A] px-4 py-2 text-[12px] font-semibold text-white transition-colors hover:bg-[#145C4B]">
+          <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl bg-[#1B3A6B] px-4 py-2 text-[12px] font-semibold text-white transition-colors hover:bg-[#2B5FA6]">
             <FiPlus className="h-4 w-4" />
             <span>Add Photos</span>
             <input
@@ -101,12 +101,12 @@ export default function ProjectImagesDrawer({
         {isLoading && !latestProject ? (
           <div className="flex h-56 items-center justify-center">
             <div className="flex flex-col items-center gap-2">
-              <div className="h-7 w-7 animate-spin rounded-full border-2 border-[#145C4B] border-t-transparent" />
+              <div className="h-7 w-7 animate-spin rounded-full border-2 border-[#2B5FA6] border-t-transparent" />
               <p className="text-[12px] text-[#65706B]">Loading project gallery...</p>
             </div>
           </div>
         ) : images.length === 0 ? (
-          <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-[#DCE2DE] bg-[#FAF8F5] p-12 text-center">
+          <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-[#D0D9EA] bg-[#F9F7F4] p-12 text-center">
             <LuBuilding className="h-10 w-10 text-[#9BA5A0]" />
             <p className="mt-3 text-[14px] font-semibold text-[#202326]">
               No images uploaded yet
@@ -120,7 +120,7 @@ export default function ProjectImagesDrawer({
             {images.map((img, idx) => (
               <div
                 key={`${img.imageUrl}-${idx}`}
-                className="group relative overflow-hidden rounded-xl border border-[#E6EAE7] bg-white shadow-xs"
+                className="group relative overflow-hidden rounded-xl border border-[#E2E8F3] bg-white shadow-xs"
               >
                 <div className="relative aspect-video w-full bg-neutral-100">
                   <Image
@@ -130,14 +130,14 @@ export default function ProjectImagesDrawer({
                     className="object-cover"
                   />
                   {img.isPrimary && (
-                    <span className="absolute top-2 left-2 flex items-center gap-1 rounded-md bg-[#0F473A] px-2 py-0.5 text-[10px] font-bold text-white shadow-xs">
+                    <span className="absolute top-2 left-2 flex items-center gap-1 rounded-md bg-[#1B3A6B] px-2 py-0.5 text-[10px] font-bold text-white shadow-xs">
                       <FiCheck className="h-3 w-3" />
                       <span>Primary</span>
                     </span>
                   )}
                 </div>
 
-                <div className="flex items-center justify-between border-t border-[#E6EAE7] bg-[#FAF8F5] p-2.5 text-[11px]">
+                <div className="flex items-center justify-between border-t border-[#E2E8F3] bg-[#F9F7F4] p-2.5 text-[11px]">
                   <span className="max-w-[140px] truncate text-[#65706B]">
                     Photo #{idx + 1}
                   </span>

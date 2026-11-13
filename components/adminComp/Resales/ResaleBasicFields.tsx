@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { PROPERTY_TYPE_LABELS, PropertyType, ResaleFormPayload } from "@/models/resale";
 import { useProjectsQuery } from "@/features/projects/useProjectsQueries";
@@ -23,7 +23,7 @@ export default function ResaleBasicFields({
 
   return (
     <div className="space-y-4">
-      <h3 className="border-b border-[#E6EAE7] pb-2 text-[14px] font-bold text-[#145C4B]">
+      <h3 className="border-b border-[#E2E8F3] pb-2 text-[14px] font-bold text-[#2B5FA6]">
         Property Association & Specifications
       </h3>
 
@@ -40,7 +40,7 @@ export default function ResaleBasicFields({
               projectId: e.target.value ? Number(e.target.value) : undefined,
             }))
           }
-          className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+          className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
         >
           <option value="">
             {isLoadingProjects ? "Loading projects..." : "Select Project (Optional)"}
@@ -66,7 +66,7 @@ export default function ResaleBasicFields({
               propertyType: Number(e.target.value) as PropertyType,
             }))
           }
-          className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+          className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
         >
           {Object.entries(PROPERTY_TYPE_LABELS).map(([val, label]) => (
             <option key={val} value={val}>
@@ -92,7 +92,7 @@ export default function ResaleBasicFields({
                 noBedRoom: Math.max(0, parseInt(e.target.value) || 0),
               }))
             }
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>
 
@@ -110,7 +110,7 @@ export default function ResaleBasicFields({
                 noBathRoom: Math.max(0, parseInt(e.target.value) || 0),
               }))
             }
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>
 
@@ -128,7 +128,7 @@ export default function ResaleBasicFields({
                 noKitchen: Math.max(0, parseInt(e.target.value) || 0),
               }))
             }
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>
       </div>
@@ -148,7 +148,7 @@ export default function ResaleBasicFields({
                 floorNumber: parseInt(e.target.value) || 0,
               }))
             }
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>
 
@@ -166,7 +166,7 @@ export default function ResaleBasicFields({
                 area: Math.max(0, parseFloat(e.target.value) || 0),
               }))
             }
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>
       </div>

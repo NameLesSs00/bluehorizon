@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 
 interface FeatureItem {
@@ -35,7 +35,7 @@ export default function WhyBlueHorizonSection() {
     <section className="bg-white py-6 sm:py-8 lg:py-10 transition-colors duration-500 ease-in-out">
       <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-8 ">
         <div
-          className="relative flex flex-col overflow-hidden bg-[#145C4B] shadow-xs lg:h-[255px] lg:flex-row lg:items-stretch"
+          className="relative flex flex-col overflow-hidden bg-[#2B5FA6] shadow-xs lg:h-[255px] lg:flex-row lg:items-stretch"
           style={{ borderRadius: "17.07px" }}
         >
           {/* Left Column: Heading, Subtitle & Button */}
@@ -69,7 +69,7 @@ export default function WhyBlueHorizonSection() {
             <div className="mt-5 lg:mt-0">
               <Link
                 href="/about"
-                className="group inline-flex h-[37px] items-center gap-2 rounded-full bg-white px-5 text-[13px] font-semibold text-[#145C4B] transition-all duration-200 hover:bg-[#F3F5F3]"
+                className="group inline-flex h-[37px] items-center gap-2 rounded-full bg-white px-5 text-[13px] font-semibold text-[#2B5FA6] transition-all duration-200 hover:bg-[#F0F3FA]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <span>Learn More</span>
@@ -137,7 +137,7 @@ export default function WhyBlueHorizonSection() {
               className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(90deg, #145C4B 5.08%, rgba(20, 92, 75, 0) 39.9%)",
+                  "linear-gradient(90deg, #2B5FA6 5.08%, rgba(43, 95, 166, 0) 39.9%)",
               }}
             />
           </div>

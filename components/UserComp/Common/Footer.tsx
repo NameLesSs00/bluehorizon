@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -23,11 +23,11 @@ export default function Footer() {
   const cleanPhone = phone.replace(/\s+/g, "");
 
   return (
-    <footer className="bg-[#0F473A] pt-8 pb-8 sm:pt-12 sm:pb-10">
+    <footer className="bg-[#1B3A6B] pt-8 pb-8 sm:pt-12 sm:pb-10">
       {/* Outer wrapper */}
       <div className="mx-auto w-full max-w-[1720px] px-3 sm:px-6 lg:px-8">
         {/* Inner Floating Card */}
-        <div className="rounded-[28px] bg-[#FAF8F5] px-8 py-10 sm:px-12 sm:py-14 lg:px-16 lg:py-16 shadow-xl">
+        <div className="rounded-[28px] bg-[#F9F7F4] px-8 py-10 sm:px-12 sm:py-14 lg:px-16 lg:py-16 shadow-xl">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-10">
             {/* Brand & Description */}
             <div className="lg:col-span-5 flex flex-col justify-start">
@@ -66,7 +66,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href="/standalone"
-                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
+                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#2B5FA6]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     Standalone units
@@ -75,7 +75,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href="/rent"
-                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
+                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#2B5FA6]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     Units for rent
@@ -84,7 +84,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href="/projects"
-                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
+                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#2B5FA6]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     Compounds &amp; projects
@@ -93,7 +93,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href="/areas"
-                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
+                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#2B5FA6]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     Explore areas
@@ -102,7 +102,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href="/locations"
-                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
+                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#2B5FA6]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     Rental locations
@@ -123,7 +123,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href="/"
-                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
+                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#2B5FA6]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     Home
@@ -132,7 +132,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href="/about"
-                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
+                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#2B5FA6]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     About us
@@ -141,7 +141,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href="/blogs"
-                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
+                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#2B5FA6]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     Blogs &amp; guides
@@ -150,7 +150,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href="/contact"
-                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#145C4B]"
+                    className="text-[13px] font-normal leading-[1.5] text-[#000000] transition-colors hover:text-[#2B5FA6]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     Contact us
@@ -169,10 +169,10 @@ export default function Footer() {
               </h3>
               {isLoading ? (
                 <div className="mt-6 space-y-3">
-                  <div className="h-4 w-32 animate-pulse rounded bg-[#E6EAE7]" />
-                  <div className="h-4 w-44 animate-pulse rounded bg-[#E6EAE7]" />
-                  <div className="h-4 w-52 animate-pulse rounded bg-[#E6EAE7]" />
-                  <div className="h-4 w-36 animate-pulse rounded bg-[#E6EAE7]" />
+                  <div className="h-4 w-32 animate-pulse rounded bg-[#E2E8F3]" />
+                  <div className="h-4 w-44 animate-pulse rounded bg-[#E2E8F3]" />
+                  <div className="h-4 w-52 animate-pulse rounded bg-[#E2E8F3]" />
+                  <div className="h-4 w-36 animate-pulse rounded bg-[#E2E8F3]" />
                 </div>
               ) : (
                 <div
@@ -183,7 +183,7 @@ export default function Footer() {
                     <p>
                       <a
                         href={`tel:${cleanPhone}`}
-                        className="transition-colors hover:text-[#145C4B]"
+                        className="transition-colors hover:text-[#2B5FA6]"
                       >
                         {phone}
                       </a>
@@ -193,7 +193,7 @@ export default function Footer() {
                     <p>
                       <a
                         href={`mailto:${email}`}
-                        className="transition-colors hover:text-[#145C4B]"
+                        className="transition-colors hover:text-[#2B5FA6]"
                       >
                         {email}
                       </a>
@@ -217,7 +217,7 @@ export default function Footer() {
 
             {/* Centered Copyright & Made by */}
             <p
-              className="text-center text-[12px] font-normal leading-relaxed text-[#CBDFD5]"
+              className="text-center text-[12px] font-normal leading-relaxed text-[#C5D3E8]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               &copy; {currentYear} Blue Horizon. All rights reserved. Powered by{" "}

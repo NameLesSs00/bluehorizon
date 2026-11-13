@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 
@@ -49,9 +49,9 @@ export default function StandaloneFilterSidebar({
 
   return (
     <aside className="w-full lg:w-[280px] xl:w-[320px] shrink-0">
-      <div className="rounded-[20px] border border-[#E1E7E3] bg-white p-5 sm:p-6 shadow-sm">
+      <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-5 sm:p-6 shadow-sm">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-[#E1E7E3] pb-4">
+        <div className="flex items-center justify-between border-b border-[#D9E2EE] pb-4">
           <h2
             className="text-lg font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
@@ -61,7 +61,7 @@ export default function StandaloneFilterSidebar({
           <button
             type="button"
             onClick={handleReset}
-            className="text-xs font-semibold text-[#145C4B] transition-colors hover:text-[#0F473A] hover:underline"
+            className="text-xs font-semibold text-[#2B5FA6] transition-colors hover:text-[#1B3A6B] hover:underline"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             Reset All
@@ -85,7 +85,7 @@ export default function StandaloneFilterSidebar({
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search by name..."
-              className="mt-1.5 w-full rounded-[12px] border border-[#E1E7E3] bg-[#F3F5F3] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#145C4B] focus:bg-white"
+              className="mt-1.5 w-full rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#2B5FA6] focus:bg-white"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -104,7 +104,7 @@ export default function StandaloneFilterSidebar({
                 id="filter-unit-type"
                 value={propertyType}
                 onChange={(e) => setPropertyType(e.target.value)}
-                className="w-full appearance-none rounded-[12px] border border-[#E1E7E3] bg-[#F3F5F3] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors focus:border-[#145C4B] focus:bg-white"
+                className="w-full appearance-none rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors focus:border-[#2B5FA6] focus:bg-white"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <option value="">Any Type</option>
@@ -147,7 +147,7 @@ export default function StandaloneFilterSidebar({
                 id="filter-bedrooms"
                 value={bedrooms}
                 onChange={(e) => setBedrooms(e.target.value)}
-                className="w-full appearance-none rounded-[12px] border border-[#E1E7E3] bg-[#F3F5F3] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors focus:border-[#145C4B] focus:bg-white"
+                className="w-full appearance-none rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors focus:border-[#2B5FA6] focus:bg-white"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <option value="">Any</option>
@@ -190,7 +190,7 @@ export default function StandaloneFilterSidebar({
               value={minPrice}
               onChange={(e) => setMinPrice(e.target.value)}
               placeholder="EGP Min"
-              className="mt-1.5 w-full rounded-[12px] border border-[#E1E7E3] bg-[#F3F5F3] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#145C4B] focus:bg-white"
+              className="mt-1.5 w-full rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#2B5FA6] focus:bg-white"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -211,7 +211,7 @@ export default function StandaloneFilterSidebar({
               value={maxPrice}
               onChange={(e) => setMaxPrice(e.target.value)}
               placeholder="EGP Max"
-              className="mt-1.5 w-full rounded-[12px] border border-[#E1E7E3] bg-[#F3F5F3] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#145C4B] focus:bg-white"
+              className="mt-1.5 w-full rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#2B5FA6] focus:bg-white"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -220,7 +220,7 @@ export default function StandaloneFilterSidebar({
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full rounded-[12px] bg-[#145C4B] py-3 text-center text-xs sm:text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#0F473A]"
+              className="w-full rounded-[12px] bg-[#2B5FA6] py-3 text-center text-xs sm:text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#1B3A6B]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               Apply Filters

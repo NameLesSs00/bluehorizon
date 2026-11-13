@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FurnitureTypeEnum } from "@/models/project";
 import { useProjectLocationsQuery } from "@/features/projectLocations/useProjectLocationsQueries";
@@ -67,7 +67,7 @@ export default function ProjectRelationsFields({
               const val = e.target.value ? parseInt(e.target.value, 10) : null;
               onLocationChange(val);
             }}
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2.5 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           >
             <option value="">Select a location (Hurghada, El Gouna, etc.)</option>
             {locations.map((loc) => (
@@ -86,7 +86,7 @@ export default function ProjectRelationsFields({
             type="date"
             value={deliveryDate}
             onChange={(e) => onDeliveryDateChange(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2.5 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
       </div>
@@ -104,7 +104,7 @@ export default function ProjectRelationsFields({
               onFurnitureTypeChange(val);
               onIsFurnitureChange(val !== FurnitureTypeEnum.None);
             }}
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2.5 text-[13px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           >
             <option value={FurnitureTypeEnum.None}>None (Unfurnished)</option>
             <option value={FurnitureTypeEnum.Semi}>Semi-Furnished</option>
@@ -113,12 +113,12 @@ export default function ProjectRelationsFields({
         </div>
 
         <div className="flex flex-col justify-end">
-          <label className="inline-flex cursor-pointer items-center gap-3 rounded-xl border border-[#DCE2DE] bg-white p-3 hover:bg-[#FAF8F5]">
+          <label className="inline-flex cursor-pointer items-center gap-3 rounded-xl border border-[#D0D9EA] bg-white p-3 hover:bg-[#F9F7F4]">
             <input
               type="checkbox"
               checked={isFurniture}
               onChange={(e) => onIsFurnitureChange(e.target.checked)}
-              className="h-4 w-4 rounded text-[#0F473A] focus:ring-[#0F473A]"
+              className="h-4 w-4 rounded text-[#1B3A6B] focus:ring-[#1B3A6B]"
             />
             <span className="text-[13px] font-medium text-[#202326]">
               Furniture Included
@@ -127,14 +127,14 @@ export default function ProjectRelationsFields({
         </div>
 
         <div className="flex flex-col justify-end">
-          <label className="inline-flex cursor-pointer items-center gap-3 rounded-xl border border-[#DCE2DE] bg-white p-3 hover:bg-[#FAF8F5]">
+          <label className="inline-flex cursor-pointer items-center gap-3 rounded-xl border border-[#D0D9EA] bg-white p-3 hover:bg-[#F9F7F4]">
             <input
               type="checkbox"
               checked={isFeature}
               onChange={(e) => onIsFeatureChange(e.target.checked)}
-              className="h-4 w-4 rounded text-[#0F473A] focus:ring-[#0F473A]"
+              className="h-4 w-4 rounded text-[#1B3A6B] focus:ring-[#1B3A6B]"
             />
-            <span className="text-[13px] font-semibold text-[#145C4B]">
+            <span className="text-[13px] font-semibold text-[#2B5FA6]">
               Featured Project
             </span>
           </label>
@@ -156,8 +156,8 @@ export default function ProjectRelationsFields({
                 onClick={() => onToggleProjectType(t.id)}
                 className={`inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-[12px] font-medium transition-all ${
                   isSelected
-                    ? "border-[#0F473A] bg-[#0F473A] text-white shadow-xs"
-                    : "border-[#DCE2DE] bg-white text-[#202326] hover:bg-[#F3F5F3]"
+                    ? "border-[#1B3A6B] bg-[#1B3A6B] text-white shadow-xs"
+                    : "border-[#D0D9EA] bg-white text-[#202326] hover:bg-[#F0F3FA]"
                 }`}
               >
                 <DynamicIcon name={t.icon} className="h-3.5 w-3.5 shrink-0" />
@@ -183,8 +183,8 @@ export default function ProjectRelationsFields({
                 onClick={() => onToggleFacility(fac.id)}
                 className={`inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-[12px] font-medium transition-all ${
                   isSelected
-                    ? "border-[#145C4B] bg-[#145C4B] text-white shadow-xs"
-                    : "border-[#DCE2DE] bg-white text-[#202326] hover:bg-[#F3F5F3]"
+                    ? "border-[#2B5FA6] bg-[#2B5FA6] text-white shadow-xs"
+                    : "border-[#D0D9EA] bg-white text-[#202326] hover:bg-[#F0F3FA]"
                 }`}
               >
                 <DynamicIcon name={fac.icon} className="h-3.5 w-3.5 shrink-0" />

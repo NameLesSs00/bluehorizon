@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -59,7 +59,7 @@ export default function AdminSidebar({
 
   return (
     <>
-      <aside className="flex h-full w-full flex-col justify-between border-r border-[#0B382E] bg-[#0F473A] text-white shrink-0 overflow-hidden">
+      <aside className="flex h-full w-full flex-col justify-between border-r border-[#162E56] bg-[#1B3A6B] text-white shrink-0 overflow-hidden">
         {/* Top Header: Logo & Portal Identity */}
         <div className="shrink-0 p-6 pb-2">
           <Link
@@ -80,7 +80,7 @@ export default function AdminSidebar({
 
           <div className="mt-4 rounded-xl bg-white/10 px-3.5 py-2">
             <p
-              className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#CBDFD5]"
+              className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#C5D3E8]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               ADMINISTRATION PORTAL
@@ -118,7 +118,7 @@ export default function AdminSidebar({
                 }}
                 className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-[13px] font-medium transition-all ${
                   item.active
-                    ? "bg-[#145C4B] font-semibold text-white shadow-xs"
+                    ? "bg-[#2B5FA6] font-semibold text-white shadow-xs"
                     : "text-white/80 hover:bg-white/10 hover:text-white"
                 }`}
                 style={{ fontFamily: "var(--font-inter)" }}
@@ -131,7 +131,7 @@ export default function AdminSidebar({
         </nav>
 
         {/* Sidebar Footer: Current User & Quick Actions */}
-        <div className="shrink-0 border-t border-white/15 bg-[#0F473A] p-6">
+        <div className="shrink-0 border-t border-white/15 bg-[#1B3A6B] p-6">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white">
               <FiShield className="h-5 w-5" />
@@ -156,7 +156,7 @@ export default function AdminSidebar({
                 </span>
               </div>
               <p
-                className="truncate text-[11px] text-[#CBDFD5]"
+                className="truncate text-[11px] text-[#C5D3E8]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {currentUser?.email}
@@ -171,7 +171,7 @@ export default function AdminSidebar({
               className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-left text-[12px] text-white/85 transition-colors hover:bg-white/10 hover:text-white"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              <FiEdit2 className="h-3.5 w-3.5 text-[#CBDFD5]" />
+              <FiEdit2 className="h-3.5 w-3.5 text-[#C5D3E8]" />
               <span>Edit My Profile</span>
             </button>
 
@@ -181,7 +181,7 @@ export default function AdminSidebar({
               className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-left text-[12px] text-white/85 transition-colors hover:bg-white/10 hover:text-white"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              <FiKey className="h-3.5 w-3.5 text-[#CBDFD5]" />
+              <FiKey className="h-3.5 w-3.5 text-[#C5D3E8]" />
               <span>Change My Password</span>
             </button>
 

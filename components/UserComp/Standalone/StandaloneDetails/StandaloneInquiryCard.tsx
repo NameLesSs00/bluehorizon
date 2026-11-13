@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { toast } from "sonner";
@@ -41,7 +41,7 @@ export default function StandaloneInquiryCard({
 
   return (
     <aside className="w-full lg:w-[340px] xl:w-[380px] shrink-0">
-      <div className="sticky top-24 rounded-[20px] border border-[#E1E7E3] bg-white p-6 sm:p-7 shadow-sm">
+      <div className="sticky top-24 rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-7 shadow-sm">
         {/* Header with price */}
         <span
           className="block text-[11px] font-bold uppercase tracking-wider text-[#6B7570]"
@@ -50,7 +50,7 @@ export default function StandaloneInquiryCard({
           Asking Price
         </span>
         <div
-          className="mt-1 text-2xl sm:text-3xl font-bold text-[#145C4B]"
+          className="mt-1 text-2xl sm:text-3xl font-bold text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-manrope)" }}
         >
           {formattedPrice}
@@ -74,7 +74,7 @@ export default function StandaloneInquiryCard({
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               placeholder="e.g. Ahmed"
-              className="mt-1.5 w-full rounded-[12px] border border-[#E1E7E3] bg-[#F3F5F3] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#145C4B] focus:bg-white"
+              className="mt-1.5 w-full rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#2B5FA6] focus:bg-white"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -95,7 +95,7 @@ export default function StandaloneInquiryCard({
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               placeholder="e.g. Ali"
-              className="mt-1.5 w-full rounded-[12px] border border-[#E1E7E3] bg-[#F3F5F3] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#145C4B] focus:bg-white"
+              className="mt-1.5 w-full rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#2B5FA6] focus:bg-white"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -116,7 +116,7 @@ export default function StandaloneInquiryCard({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="name@example.com"
-              className="mt-1.5 w-full rounded-[12px] border border-[#E1E7E3] bg-[#F3F5F3] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#145C4B] focus:bg-white"
+              className="mt-1.5 w-full rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#2B5FA6] focus:bg-white"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -137,7 +137,7 @@ export default function StandaloneInquiryCard({
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="+20 100 000 0000"
-              className="mt-1.5 w-full rounded-[12px] border border-[#E1E7E3] bg-[#F3F5F3] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#145C4B] focus:bg-white"
+              className="mt-1.5 w-full rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#2B5FA6] focus:bg-white"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -158,7 +158,7 @@ export default function StandaloneInquiryCard({
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Message..."
-              className="mt-1.5 w-full resize-none rounded-[12px] border border-[#E1E7E3] bg-[#F3F5F3] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#145C4B] focus:bg-white"
+              className="mt-1.5 w-full resize-none rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#2B5FA6] focus:bg-white"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -166,7 +166,7 @@ export default function StandaloneInquiryCard({
           {/* Submit */}
           <button
             type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#145C4B] py-3 text-xs sm:text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#0F473A]"
+            className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#2B5FA6] py-3 text-xs sm:text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#1B3A6B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <span>{submitted ? "Inquiry Sent" : "Send Inquiry"}</span>

@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 
 export interface ProjectDisplayItem {
@@ -18,11 +18,11 @@ export default function ProjectGridCard({ project }: ProjectGridCardProps) {
   return (
     <Link
       href={`/projects/${project.id}`}
-      className="group flex flex-col justify-between overflow-hidden rounded-[20px] border border-[#E1E7E3] bg-white transition-all duration-200 hover:-translate-y-1 hover:border-[#145C4B]/40 hover:shadow-md"
+      className="group flex flex-col justify-between overflow-hidden rounded-[20px] border border-[#D9E2EE] bg-white transition-all duration-200 hover:-translate-y-1 hover:border-[#2B5FA6]/40 hover:shadow-md"
     >
       <div>
         {/* Project Card Image */}
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#FAF8F5]">
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#F9F7F4]">
           {project.isFallback ? (
             <div className="absolute inset-0 flex items-center justify-center p-6">
               <div className="relative h-20 w-36 transition-transform duration-300 group-hover:scale-105">
@@ -48,7 +48,7 @@ export default function ProjectGridCard({ project }: ProjectGridCardProps) {
         {/* Project Content */}
         <div className="p-5 sm:p-6 pb-2">
           <h3
-            className="text-[18px] sm:text-[19px] font-bold leading-snug text-[#202326] transition-colors group-hover:text-[#145C4B]"
+            className="text-[18px] sm:text-[19px] font-bold leading-snug text-[#202326] transition-colors group-hover:text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
             {project.title}
@@ -80,7 +80,7 @@ export default function ProjectGridCard({ project }: ProjectGridCardProps) {
           </span>
         </div>
 
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E8F1EC] text-[#145C4B] transition-transform duration-200 group-hover:translate-x-1">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E5ECF6] text-[#2B5FA6] transition-transform duration-200 group-hover:translate-x-1">
           <svg
             width="14"
             height="14"
@@ -90,7 +90,7 @@ export default function ProjectGridCard({ project }: ProjectGridCardProps) {
           >
             <path
               d="M2.91669 7H11.0834M11.0834 7L7.00002 2.91667M11.0834 7L7.00002 11.0833"
-              stroke="#145C4B"
+              stroke="#2B5FA6"
               strokeWidth="1.6"
               strokeLinecap="round"
               strokeLinejoin="round"

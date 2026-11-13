@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 
 export default function AboutHeroSection() {
@@ -12,7 +12,7 @@ export default function AboutHeroSection() {
       >
         <Link
           href="/"
-          className="transition-colors hover:text-[#145C4B]"
+          className="transition-colors hover:text-[#2B5FA6]"
         >
           Home
         </Link>
@@ -39,7 +39,7 @@ export default function AboutHeroSection() {
           className="absolute inset-0 z-10"
           style={{
             background:
-              " linear-gradient(180deg, rgba(15, 71, 58, 0) 11.06%, rgba(15, 71, 58, 0.9) 89.42%)",
+              " linear-gradient(180deg, rgba(27, 58, 107, 0) 11.06%, rgba(27, 58, 107, 0.9) 89.42%)",
           }}
         />
 
@@ -48,7 +48,7 @@ export default function AboutHeroSection() {
           <div className="max-w-2xl">
             {/* Pill Tag */}
             <span
-              className="inline-block rounded-full bg-[#0F473A]/85 border border-white/20 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#E8F1EC]"
+              className="inline-block rounded-full bg-[#1B3A6B]/85 border border-white/20 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#E5ECF6]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               PREMIER REAL ESTATE CONSULTANCY
@@ -76,7 +76,7 @@ export default function AboutHeroSection() {
             <div className="mt-8 flex flex-wrap items-center gap-3.5">
               <Link
                 href="/projects"
-                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-[14px] font-semibold text-[#145C4B] transition-all hover:bg-[#F3F5F3]"
+                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-[14px] font-semibold text-[#2B5FA6] transition-all hover:bg-[#F0F3FA]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Explore Projects
@@ -84,7 +84,7 @@ export default function AboutHeroSection() {
 
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-[#0F473A]/60 border border-white/30 px-7 py-3 text-[14px] font-medium text-white transition-all hover:bg-[#0F473A]"
+                className="inline-flex items-center justify-center rounded-full bg-[#1B3A6B]/60 border border-white/30 px-7 py-3 text-[14px] font-medium text-white transition-all hover:bg-[#1B3A6B]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Talk to an Advisor

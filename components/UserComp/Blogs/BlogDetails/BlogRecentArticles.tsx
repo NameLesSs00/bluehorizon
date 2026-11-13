@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import BlogCard, { BlogCardData } from "../BlogCard";
@@ -38,7 +38,7 @@ export default function BlogRecentArticles({
 
         <Link
           href="/blogs"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#145C4B] hover:text-[#0F473A] transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#2B5FA6] hover:text-[#1B3A6B] transition-colors"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           <span>View All Articles</span>

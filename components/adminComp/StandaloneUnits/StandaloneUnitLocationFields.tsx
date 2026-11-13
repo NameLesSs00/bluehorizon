@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FiMapPin } from "react-icons/fi";
 import { LocalizedText } from "@/models/faq";
@@ -34,9 +34,9 @@ export default function StandaloneUnitLocationFields({
   setAddress,
 }: StandaloneUnitLocationFieldsProps) {
   return (
-    <div className="space-y-4 rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-5">
+    <div className="space-y-4 rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-5">
       <div className="flex items-center justify-between">
-        <h4 className="flex items-center gap-1.5 text-[13px] font-bold uppercase tracking-wider text-[#145C4B]">
+        <h4 className="flex items-center gap-1.5 text-[13px] font-bold uppercase tracking-wider text-[#2B5FA6]">
           <FiMapPin className="h-4 w-4" />
           <span>Location &amp; Address</span>
         </h4>
@@ -46,7 +46,7 @@ export default function StandaloneUnitLocationFields({
             setCountry({ en: "Egypt", de: "Ägypten", ar: "مصر" });
             setCity({ en: "Hurghada", de: "Hurghada", ar: "الغردقة" });
           }}
-          className="rounded-lg border border-[#DCE2DE] bg-white px-2.5 py-1 text-[11px] font-medium text-[#145C4B] hover:bg-[#F3F5F3]"
+          className="rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1 text-[11px] font-medium text-[#2B5FA6] hover:bg-[#F0F3FA]"
         >
           Preset: Hurghada, Egypt
         </button>
@@ -65,14 +65,14 @@ export default function StandaloneUnitLocationFields({
               value={country.en}
               onChange={(e) => setCountry({ ...country, en: e.target.value })}
               placeholder="Country (EN) e.g. Egypt"
-              className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
             <input
               type="text"
               value={country.de}
               onChange={(e) => setCountry({ ...country, de: e.target.value })}
               placeholder="Country (DE) e.g. Ägypten"
-              className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
             <input
               type="text"
@@ -80,7 +80,7 @@ export default function StandaloneUnitLocationFields({
               value={country.ar}
               onChange={(e) => setCountry({ ...country, ar: e.target.value })}
               placeholder="الدولة (عربي) مثال: مصر"
-              className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
         </div>
@@ -96,14 +96,14 @@ export default function StandaloneUnitLocationFields({
               value={city.en}
               onChange={(e) => setCity({ ...city, en: e.target.value })}
               placeholder="City (EN) e.g. Hurghada"
-              className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
             <input
               type="text"
               value={city.de}
               onChange={(e) => setCity({ ...city, de: e.target.value })}
               placeholder="City (DE) e.g. Hurghada"
-              className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
             <input
               type="text"
@@ -111,7 +111,7 @@ export default function StandaloneUnitLocationFields({
               value={city.ar}
               onChange={(e) => setCity({ ...city, ar: e.target.value })}
               placeholder="المدينة (عربي) مثال: الغردقة"
-              className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
         </div>
@@ -129,7 +129,7 @@ export default function StandaloneUnitLocationFields({
               value={district.en}
               onChange={(e) => setDistrict({ ...district, en: e.target.value })}
               placeholder="District (EN) e.g. El Memsha"
-              className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
             <input
               type="text"
@@ -137,7 +137,7 @@ export default function StandaloneUnitLocationFields({
               value={district.ar}
               onChange={(e) => setDistrict({ ...district, ar: e.target.value })}
               placeholder="الحي / المنطقة (عربي) مثال: الممشى السياحي"
-              className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
         </div>
@@ -152,7 +152,7 @@ export default function StandaloneUnitLocationFields({
               value={street.en}
               onChange={(e) => setStreet({ ...street, en: e.target.value })}
               placeholder="Street (EN) e.g. Sheraton Road"
-              className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
             <input
               type="text"
@@ -160,7 +160,7 @@ export default function StandaloneUnitLocationFields({
               value={street.ar}
               onChange={(e) => setStreet({ ...street, ar: e.target.value })}
               placeholder="اسم الشارع (عربي) مثال: طريق شيراتون"
-              className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
         </div>
@@ -177,7 +177,7 @@ export default function StandaloneUnitLocationFields({
             value={address.en}
             onChange={(e) => setAddress({ ...address, en: e.target.value })}
             placeholder="Address (EN) e.g. Villa 12, Sunset Avenue, Hurghada"
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
           <input
             type="text"
@@ -185,7 +185,7 @@ export default function StandaloneUnitLocationFields({
             value={address.ar}
             onChange={(e) => setAddress({ ...address, ar: e.target.value })}
             placeholder="العنوان بالكامل (عربي)"
-            className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[12px] text-[#202326] focus:border-[#0F473A] focus:outline-none"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
       </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRentalLocationsQuery } from "@/features/rentalLocations/useRentalLocationsQueries";
 import {
@@ -33,8 +33,8 @@ export default function RentalBasicFields({
   );
 
   return (
-    <div className="space-y-4 rounded-xl border border-[#E6EAE7] bg-[#FAF8F5] p-4">
-      <p className="text-[12px] font-bold uppercase tracking-wider text-[#145C4B]">
+    <div className="space-y-4 rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-4">
+      <p className="text-[12px] font-bold uppercase tracking-wider text-[#2B5FA6]">
         Basic Specifications
       </p>
 
@@ -51,7 +51,7 @@ export default function RentalBasicFields({
               onChange((prev) => ({ ...prev, code: e.target.value }))
             }
             placeholder="e.g. HRG-RES-702"
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>
 
@@ -67,7 +67,7 @@ export default function RentalBasicFields({
                 propertyType: Number(e.target.value) as PropertyType,
               }))
             }
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
           >
             {propertyTypes.map((pt) => (
               <option key={pt.value} value={pt.value}>
@@ -92,7 +92,7 @@ export default function RentalBasicFields({
                 rentalLocationId: Number(e.target.value),
               }))
             }
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
           >
             <option value="" disabled>
               Select Destination Area
@@ -116,7 +116,7 @@ export default function RentalBasicFields({
               onChange((prev) => ({ ...prev, floor: e.target.value }))
             }
             placeholder="e.g. Ground Floor, 2nd Floor, Penthouse"
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>
       </div>
@@ -137,7 +137,7 @@ export default function RentalBasicFields({
                 bedroomNo: Number(e.target.value),
               }))
             }
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-1.5 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-1.5 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>
 
@@ -155,7 +155,7 @@ export default function RentalBasicFields({
                 bathroomNo: Number(e.target.value),
               }))
             }
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-1.5 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-1.5 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>
 
@@ -173,7 +173,7 @@ export default function RentalBasicFields({
                 capacity: Number(e.target.value),
               }))
             }
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-1.5 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-1.5 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>
 
@@ -191,7 +191,7 @@ export default function RentalBasicFields({
                 size: Number(e.target.value),
               }))
             }
-            className="mt-1 w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-1.5 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-1.5 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>
       </div>

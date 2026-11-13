@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { FormEvent } from "react";
@@ -24,7 +24,7 @@ export default function BlogsHeroSection({
 
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8">
-      <div className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] bg-[#0F473A] shadow-xl">
+      <div className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] bg-[#1B3A6B] shadow-xl">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -41,7 +41,7 @@ export default function BlogsHeroSection({
         <div
           className="absolute inset-0 z-10"
           style={{
-            background: "linear-gradient(90deg, #145C4B 44.23%, rgba(20, 92, 75, 0.85) 67.31%)"
+            background: "linear-gradient(90deg, #2B5FA6 44.23%, rgba(43, 95, 166, 0.85) 67.31%)"
           }}
         />
 
@@ -51,7 +51,7 @@ export default function BlogsHeroSection({
           {/* Left Column: Heading, Subtitle & Search */}
           <div className="lg:col-span-8 flex flex-col justify-center">
             {/* Tag Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3.5 py-1.5 text-xs font-medium text-[#E8F1EC] w-fit">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3.5 py-1.5 text-xs font-medium text-[#E5ECF6] w-fit">
               <Image
                 src="/Blogs/svg.svg"
                 alt=""
@@ -74,7 +74,7 @@ export default function BlogsHeroSection({
 
             {/* Subtitle */}
             <p
-              className="mt-4 max-w-2xl text-sm sm:text-[15px] leading-relaxed text-[#E8F1EC]/90"
+              className="mt-4 max-w-2xl text-sm sm:text-[15px] leading-relaxed text-[#E5ECF6]/90"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               Discover expert market analyses, investment strategy guides, coastal
@@ -107,7 +107,7 @@ export default function BlogsHeroSection({
 
               <button
                 type="submit"
-                className="shrink-0 rounded-full bg-[#145C4B] px-6 sm:px-7 py-2.5 text-xs sm:text-sm font-semibold text-white transition-colors hover:bg-[#0F473A]"
+                className="shrink-0 rounded-full bg-[#2B5FA6] px-6 sm:px-7 py-2.5 text-xs sm:text-sm font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Search
@@ -143,7 +143,7 @@ export default function BlogsHeroSection({
 
               {/* Bottom Card Divider & Stats */}
               {articlesCountLabel && (
-                <div className="mt-6 pt-5 border-t border-[#E1E7E3] w-full flex items-center justify-center text-xs font-medium text-[#202326]">
+                <div className="mt-6 pt-5 border-t border-[#D9E2EE] w-full flex items-center justify-center text-xs font-medium text-[#202326]">
                   <div className="flex items-center gap-1.5">
                     <Image
                       src="/Blogs/svg (1).svg"

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { usePublicProjectsQuery } from "@/features/projects/useProjectsQueries";
@@ -109,7 +109,7 @@ export default function ProjectsListSection() {
   }
 
   return (
-    <section className="bg-[#F3F5F3] py-10 sm:py-14">
+    <section className="bg-[#F0F3FA] py-10 sm:py-14">
       <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8 items-start">
           {/* Left Column: Filter Sidebar */}
@@ -125,8 +125,8 @@ export default function ProjectsListSection() {
           {/* Right Column: Projects Cards Grid & Pagination */}
           <div className="lg:col-span-8 xl:col-span-9">
             {isLoading ? (
-              <div className="flex h-72 w-full flex-col items-center justify-center rounded-[20px] border border-[#E1E7E3] bg-white">
-                <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#145C4B] border-t-transparent" />
+              <div className="flex h-72 w-full flex-col items-center justify-center rounded-[20px] border border-[#D9E2EE] bg-white">
+                <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#2B5FA6] border-t-transparent" />
                 <p
                   className="mt-3 text-[13px] text-[#6B7570]"
                   style={{ fontFamily: "var(--font-inter)" }}
@@ -135,7 +135,7 @@ export default function ProjectsListSection() {
                 </p>
               </div>
             ) : displayProjects.length === 0 ? (
-              <div className="flex min-h-[300px] w-full flex-col items-center justify-center rounded-[20px] border border-[#E1E7E3] bg-white p-8 text-center">
+              <div className="flex min-h-[300px] w-full flex-col items-center justify-center rounded-[20px] border border-[#D9E2EE] bg-white p-8 text-center">
                 <p
                   className="text-[16px] font-bold text-[#202326]"
                   style={{ fontFamily: "var(--font-manrope)" }}
@@ -151,7 +151,7 @@ export default function ProjectsListSection() {
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="mt-4 rounded-full bg-[#145C4B] px-5 py-2 text-[12.5px] font-semibold text-white transition-colors hover:bg-[#0F473A]"
+                  className="mt-4 rounded-full bg-[#2B5FA6] px-5 py-2 text-[12.5px] font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
                   Reset Filters
@@ -173,7 +173,7 @@ export default function ProjectsListSection() {
                   onClick={() => setPage((prev) => Math.max(1, prev - 1))}
                   disabled={page <= 1}
                   aria-label="Previous Page"
-                  className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-[#E1E7E3] bg-white text-[13px] text-[#6B7570] transition-colors hover:border-[#145C4B] hover:text-[#145C4B] disabled:opacity-40"
+                  className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-[#D9E2EE] bg-white text-[13px] text-[#6B7570] transition-colors hover:border-[#2B5FA6] hover:text-[#2B5FA6] disabled:opacity-40"
                 >
                   &lt;
                 </button>
@@ -185,8 +185,8 @@ export default function ProjectsListSection() {
                       type="button"
                       onClick={() => setPage(pageNum)}
                       className={`flex h-9 w-9 items-center justify-center rounded-[10px] text-[13px] font-semibold transition-all ${page === pageNum
-                          ? "bg-[#145C4B] text-white shadow-xs"
-                          : "border border-transparent bg-white text-[#6B7570] hover:border-[#E1E7E3] hover:text-[#202326]"
+                          ? "bg-[#2B5FA6] text-white shadow-xs"
+                          : "border border-transparent bg-white text-[#6B7570] hover:border-[#D9E2EE] hover:text-[#202326]"
                         }`}
                       style={{ fontFamily: "var(--font-inter)" }}
                     >
@@ -200,7 +200,7 @@ export default function ProjectsListSection() {
                   onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))}
                   disabled={page >= totalPages}
                   aria-label="Next Page"
-                  className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-[#E1E7E3] bg-white text-[13px] text-[#6B7570] transition-colors hover:border-[#145C4B] hover:text-[#145C4B] disabled:opacity-40"
+                  className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-[#D9E2EE] bg-white text-[13px] text-[#6B7570] transition-colors hover:border-[#2B5FA6] hover:text-[#2B5FA6] disabled:opacity-40"
                 >
                   &gt;
                 </button>

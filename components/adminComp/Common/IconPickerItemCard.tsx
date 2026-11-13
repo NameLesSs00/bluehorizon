@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FiCheck } from "react-icons/fi";
 import { RegisteredIcon } from "@/shared/utils/iconRegistry";
@@ -25,15 +25,15 @@ export default function IconPickerItemCard({
       onDoubleClick={() => onDoubleClick(item.name)}
       className={`group relative flex flex-col items-center justify-center gap-2.5 rounded-2xl border p-4 text-center transition-all ${
         isSelected
-          ? "border-[#145C4B] bg-[#145C4B]/10 text-[#145C4B] ring-2 ring-[#145C4B]/20"
-          : "border-[#E6EAE7] bg-[#FAF8F5]/60 text-[#202326] hover:border-[#145C4B]/40 hover:bg-white hover:shadow-xs"
+          ? "border-[#2B5FA6] bg-[#2B5FA6]/10 text-[#2B5FA6] ring-2 ring-[#2B5FA6]/20"
+          : "border-[#E2E8F3] bg-[#F9F7F4]/60 text-[#202326] hover:border-[#2B5FA6]/40 hover:bg-white hover:shadow-xs"
       }`}
     >
       <div
         className={`flex h-12 w-12 items-center justify-center rounded-xl transition-transform group-hover:scale-110 ${
           isSelected
-            ? "bg-[#145C4B] text-white"
-            : "bg-white text-[#145C4B] shadow-2xs border border-[#E6EAE7]"
+            ? "bg-[#2B5FA6] text-white"
+            : "bg-white text-[#2B5FA6] shadow-2xs border border-[#E2E8F3]"
         }`}
       >
         <IconComponent className="h-6 w-6" />
@@ -47,7 +47,7 @@ export default function IconPickerItemCard({
       </div>
 
       {isSelected && (
-        <span className="absolute right-2 top-2 flex h-4 w-4 items-center justify-center rounded-full bg-[#145C4B] text-[9px] text-white">
+        <span className="absolute right-2 top-2 flex h-4 w-4 items-center justify-center rounded-full bg-[#2B5FA6] text-[9px] text-white">
           <FiCheck />
         </span>
       )}

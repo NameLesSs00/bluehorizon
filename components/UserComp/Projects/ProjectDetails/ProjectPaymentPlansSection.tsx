@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useQuery } from "@tanstack/react-query";
 import { fetchPaymentPlans } from "@/clientApi/paymentPlansApi";
@@ -70,7 +70,7 @@ export default function ProjectPaymentPlansSection({
       {/* Header */}
       <div className="mb-8">
         <span
-          className="text-xs font-bold tracking-[0.1em] text-[#145C4B] uppercase"
+          className="text-xs font-bold tracking-[0.1em] text-[#2B5FA6] uppercase"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           PURCHASE OPTIONS
@@ -95,12 +95,12 @@ export default function ProjectPaymentPlansSection({
           {[1, 2, 3].map((n) => (
             <div
               key={n}
-              className="h-64 animate-pulse rounded-[20px] bg-[#E8F1EC]"
+              className="h-64 animate-pulse rounded-[20px] bg-[#E5ECF6]"
             />
           ))}
         </div>
       ) : plans.length === 0 ? (
-        <div className="flex h-36 w-full flex-col items-center justify-center rounded-[20px] border border-[#E1E7E3] bg-white p-8 text-center">
+        <div className="flex h-36 w-full flex-col items-center justify-center rounded-[20px] border border-[#D9E2EE] bg-white p-8 text-center">
           <p
             className="text-[15px] font-semibold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
@@ -124,8 +124,8 @@ export default function ProjectPaymentPlansSection({
                 key={plan.id}
                 className={`rounded-[20px] p-6 sm:p-7 transition-all duration-200 hover:-translate-y-1 ${
                   isFeatured
-                    ? "bg-[#145C4B] text-white shadow-md"
-                    : "bg-white text-[#202326] border border-[#E1E7E3] hover:border-[#145C4B]/40 hover:shadow-xs"
+                    ? "bg-[#2B5FA6] text-white shadow-md"
+                    : "bg-white text-[#202326] border border-[#D9E2EE] hover:border-[#2B5FA6]/40 hover:shadow-xs"
                 }`}
               >
                 {/* Card Header */}
@@ -142,7 +142,7 @@ export default function ProjectPaymentPlansSection({
                     className={`rounded-full px-3 py-1 text-xs font-medium ${
                       isFeatured
                         ? "bg-white/20 text-white"
-                        : "bg-[#F3F5F3] text-[#6B7570]"
+                        : "bg-[#F0F3FA] text-[#6B7570]"
                     }`}
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
@@ -153,7 +153,7 @@ export default function ProjectPaymentPlansSection({
                 {/* Divider */}
                 <div
                   className={`my-6 border-t ${
-                    isFeatured ? "border-white/20" : "border-[#E1E7E3]"
+                    isFeatured ? "border-white/20" : "border-[#D9E2EE]"
                   }`}
                 />
 

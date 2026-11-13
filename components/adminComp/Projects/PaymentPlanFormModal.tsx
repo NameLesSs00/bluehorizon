@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { FiX } from "react-icons/fi";
@@ -91,14 +91,14 @@ export default function PaymentPlanFormModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
       <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
-        <div className="flex items-center justify-between border-b border-[#E6EAE7] pb-4">
+        <div className="flex items-center justify-between border-b border-[#E2E8F3] pb-4">
           <h3 className="text-[17px] font-semibold text-[#202326]">
             {planToEdit ? "Edit Payment Plan" : "Add Payment Plan"}
           </h3>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-1 text-[#65706B] hover:bg-[#F3F5F3] hover:text-[#202326]"
+            className="rounded-lg p-1 text-[#65706B] hover:bg-[#F0F3FA] hover:text-[#202326]"
           >
             <FiX className="h-5 w-5" />
           </button>
@@ -116,8 +116,8 @@ export default function PaymentPlanFormModal({
                 onClick={() => setPaymentType("Cash")}
                 className={`rounded-xl border py-2.5 text-[13px] font-semibold transition-all ${
                   isCash
-                    ? "border-[#145C4B] bg-[#145C4B] text-white"
-                    : "border-[#DCE2DE] bg-white text-[#202326] hover:bg-[#F3F5F3]"
+                    ? "border-[#2B5FA6] bg-[#2B5FA6] text-white"
+                    : "border-[#D0D9EA] bg-white text-[#202326] hover:bg-[#F0F3FA]"
                 }`}
               >
                 Cash
@@ -127,8 +127,8 @@ export default function PaymentPlanFormModal({
                 onClick={() => setPaymentType("Installment")}
                 className={`rounded-xl border py-2.5 text-[13px] font-semibold transition-all ${
                   !isCash
-                    ? "border-[#145C4B] bg-[#145C4B] text-white"
-                    : "border-[#DCE2DE] bg-white text-[#202326] hover:bg-[#F3F5F3]"
+                    ? "border-[#2B5FA6] bg-[#2B5FA6] text-white"
+                    : "border-[#D0D9EA] bg-white text-[#202326] hover:bg-[#F0F3FA]"
                 }`}
               >
                 Installment
@@ -147,7 +147,7 @@ export default function PaymentPlanFormModal({
                 onChange={(e) =>
                   setStatus(Number(e.target.value) as PaymentPlanStatus)
                 }
-                className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+                className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
               >
                 <option value={0}>Approved</option>
                 <option value={1}>Sold</option>
@@ -166,14 +166,14 @@ export default function PaymentPlanFormModal({
                 value={commissionRate}
                 onChange={(e) => setCommissionRate(parseFloat(e.target.value) || 0)}
                 placeholder="e.g. 5"
-                className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+                className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
               />
             </div>
           </div>
 
           {/* Conditional Installment Fields */}
           {!isCash && (
-            <div className="space-y-3 rounded-xl border border-[#DCE2DE] bg-[#FAF8F5] p-3.5">
+            <div className="space-y-3 rounded-xl border border-[#D0D9EA] bg-[#F9F7F4] p-3.5">
               <div>
                 <label className="mb-1 block text-[12px] font-medium text-[#202326]">
                   Down Payment (USD) *
@@ -187,7 +187,7 @@ export default function PaymentPlanFormModal({
                     setDownPaymentAmountUSD(parseFloat(e.target.value) || 0)
                   }
                   placeholder="e.g. 15000"
-                  className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+                  className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
                 />
               </div>
 
@@ -204,7 +204,7 @@ export default function PaymentPlanFormModal({
                       setInstallmentYears(parseInt(e.target.value, 10) || 0)
                     }
                     placeholder="e.g. 3"
-                    className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+                    className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
                   />
                 </div>
 
@@ -220,7 +220,7 @@ export default function PaymentPlanFormModal({
                       setInstallmentMonths(parseInt(e.target.value, 10) || 0)
                     }
                     placeholder="e.g. 6"
-                    className="w-full rounded-xl border border-[#DCE2DE] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#145C4B] focus:outline-none"
+                    className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
                   />
                 </div>
               </div>
@@ -232,14 +232,14 @@ export default function PaymentPlanFormModal({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-[#DCE2DE] bg-white px-4 py-2 text-[13px] font-medium text-[#65706B] hover:bg-[#F3F5F3]"
+              className="rounded-xl border border-[#D0D9EA] bg-white px-4 py-2 text-[13px] font-medium text-[#65706B] hover:bg-[#F0F3FA]"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="rounded-xl bg-[#145C4B] px-5 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-[#0F473A] disabled:opacity-50"
+              className="rounded-xl bg-[#2B5FA6] px-5 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-[#1B3A6B] disabled:opacity-50"
             >
               {isSubmitting
                 ? "Saving..."

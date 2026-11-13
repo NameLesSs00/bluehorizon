@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { FiUpload, FiX } from "react-icons/fi";
@@ -161,7 +161,7 @@ export default function ResaleFormDrawer({
     >
       {isLoadingDetails && isEditMode ? (
         <div className="flex h-64 items-center justify-center">
-          <div className="h-7 w-7 animate-spin rounded-full border-2 border-[#145C4B] border-t-transparent" />
+          <div className="h-7 w-7 animate-spin rounded-full border-2 border-[#2B5FA6] border-t-transparent" />
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6 pb-12">
@@ -177,15 +177,15 @@ export default function ResaleFormDrawer({
           {/* Section 4: Initial Photo Upload (Create mode) */}
           {!isEditMode && (
             <div className="space-y-3">
-              <h3 className="border-b border-[#E6EAE7] pb-2 text-[14px] font-bold text-[#145C4B]">
+              <h3 className="border-b border-[#E2E8F3] pb-2 text-[14px] font-bold text-[#2B5FA6]">
                 Property Photos (Initial Upload)
               </h3>
               <p className="text-[11px] text-[#5A6561]">
                 Upload property gallery images directly upon listing creation:
               </p>
 
-              <label className="flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-[#DCE2DE] bg-[#F7F9F8] p-6 text-center transition-colors hover:border-[#145C4B] hover:bg-[#F0F4F2]">
-                <FiUpload className="h-6 w-6 text-[#145C4B]" />
+              <label className="flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-[#D0D9EA] bg-[#F7F9F8] p-6 text-center transition-colors hover:border-[#2B5FA6] hover:bg-[#F0F4F2]">
+                <FiUpload className="h-6 w-6 text-[#2B5FA6]" />
                 <span className="mt-2 text-[12px] font-semibold text-[#202326]">
                   Click to select photos
                 </span>
@@ -206,7 +206,7 @@ export default function ResaleFormDrawer({
                   {initialImages.map((file, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center gap-1.5 rounded-lg border border-[#DCE2DE] bg-white px-2.5 py-1 text-[11px] text-[#202326]"
+                      className="flex items-center gap-1.5 rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1 text-[11px] text-[#202326]"
                     >
                       <span className="max-w-[140px] truncate">{file.name}</span>
                       <button
@@ -224,19 +224,19 @@ export default function ResaleFormDrawer({
           )}
 
           {/* Footer Actions */}
-          <div className="sticky bottom-0 -mx-6 -mb-12 flex items-center justify-end gap-3 border-t border-[#E6EAE7] bg-white p-4">
+          <div className="sticky bottom-0 -mx-6 -mb-12 flex items-center justify-end gap-3 border-t border-[#E2E8F3] bg-white p-4">
             <button
               type="button"
               disabled={isPending}
               onClick={onClose}
-              className="rounded-xl border border-[#DCE2DE] px-4 py-2.5 text-[13px] font-semibold text-[#5A6561] hover:bg-[#F7F9F8]"
+              className="rounded-xl border border-[#D0D9EA] px-4 py-2.5 text-[13px] font-semibold text-[#5A6561] hover:bg-[#F7F9F8]"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isPending}
-              className="flex items-center gap-2 rounded-xl bg-[#145C4B] px-5 py-2.5 text-[13px] font-semibold text-white transition-opacity hover:bg-[#0F473A] disabled:opacity-50"
+              className="flex items-center gap-2 rounded-xl bg-[#2B5FA6] px-5 py-2.5 text-[13px] font-semibold text-white transition-opacity hover:bg-[#1B3A6B] disabled:opacity-50"
             >
               {isPending
                 ? "Saving..."

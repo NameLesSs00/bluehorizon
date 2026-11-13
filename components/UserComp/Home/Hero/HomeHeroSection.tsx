@@ -18,8 +18,8 @@ export default function HomeHeroSection() {
             priority
             className="object-cover object-center"
           />
-          {/* Soft emerald gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F473A] via-[#0F473A]/85 sm:via-[#0F473A]/80 via-75% sm:via-35% to-transparent" />
+          {/* Soft deep navy gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1B3A6B] via-[#1B3A6B]/85 sm:via-[#1B3A6B]/80 via-75% sm:via-35% to-transparent" />
         </div>
 
         {/* Main Content Area */}

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FiSearch } from "react-icons/fi";
 
@@ -51,9 +51,9 @@ export default function RentalLocationFilterSidebar({
 }: RentalLocationFilterSidebarProps) {
   return (
     <aside className="w-full lg:w-[280px] shrink-0">
-      <div className="rounded-[20px] border border-[#E1E7E3] bg-white p-5 sm:p-6 shadow-xs sticky top-28">
+      <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-5 sm:p-6 shadow-xs sticky top-28">
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-[#E1E7E3]">
+        <div className="flex items-center justify-between pb-4 border-b border-[#D9E2EE]">
           <h3
             className="text-base font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
@@ -63,7 +63,7 @@ export default function RentalLocationFilterSidebar({
           <button
             type="button"
             onClick={onResetFilters}
-            className="text-xs font-medium text-[#6B7570] transition-colors hover:text-[#145C4B]"
+            className="text-xs font-medium text-[#6B7570] transition-colors hover:text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             Reset All
@@ -86,7 +86,7 @@ export default function RentalLocationFilterSidebar({
                 value={filterState.searchTerm}
                 onChange={(e) => onFilterChange("searchTerm", e.target.value)}
                 placeholder="Name, floor, code..."
-                className="w-full rounded-xl bg-[#F3F5F3] pl-9 pr-3.5 py-2.5 text-xs text-[#202326] placeholder-[#8A9590] outline-hidden border border-transparent focus:border-[#145C4B] transition-colors"
+                className="w-full rounded-xl bg-[#F0F3FA] pl-9 pr-3.5 py-2.5 text-xs text-[#202326] placeholder-[#8A9590] outline-hidden border border-transparent focus:border-[#2B5FA6] transition-colors"
                 style={{ fontFamily: "var(--font-inter)" }}
               />
             </div>
@@ -103,7 +103,7 @@ export default function RentalLocationFilterSidebar({
             <select
               value={filterState.bedrooms}
               onChange={(e) => onFilterChange("bedrooms", e.target.value)}
-              className="w-full rounded-xl bg-[#F3F5F3] px-3.5 py-2.5 text-xs text-[#202326] outline-hidden border border-transparent focus:border-[#145C4B] transition-colors cursor-pointer"
+              className="w-full rounded-xl bg-[#F0F3FA] px-3.5 py-2.5 text-xs text-[#202326] outline-hidden border border-transparent focus:border-[#2B5FA6] transition-colors cursor-pointer"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {BEDROOM_OPTIONS.map((opt) => (
@@ -125,7 +125,7 @@ export default function RentalLocationFilterSidebar({
             <select
               value={filterState.view}
               onChange={(e) => onFilterChange("view", e.target.value)}
-              className="w-full rounded-xl bg-[#F3F5F3] px-3.5 py-2.5 text-xs text-[#202326] outline-hidden border border-transparent focus:border-[#145C4B] transition-colors cursor-pointer"
+              className="w-full rounded-xl bg-[#F0F3FA] px-3.5 py-2.5 text-xs text-[#202326] outline-hidden border border-transparent focus:border-[#2B5FA6] transition-colors cursor-pointer"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {VIEW_OPTIONS.map((opt) => (
@@ -147,7 +147,7 @@ export default function RentalLocationFilterSidebar({
             <select
               value={filterState.capacity}
               onChange={(e) => onFilterChange("capacity", e.target.value)}
-              className="w-full rounded-xl bg-[#F3F5F3] px-3.5 py-2.5 text-xs text-[#202326] outline-hidden border border-transparent focus:border-[#145C4B] transition-colors cursor-pointer"
+              className="w-full rounded-xl bg-[#F0F3FA] px-3.5 py-2.5 text-xs text-[#202326] outline-hidden border border-transparent focus:border-[#2B5FA6] transition-colors cursor-pointer"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {CAPACITY_OPTIONS.map((opt) => (
@@ -172,7 +172,7 @@ export default function RentalLocationFilterSidebar({
                 value={filterState.minPrice}
                 onChange={(e) => onFilterChange("minPrice", e.target.value)}
                 placeholder="Min"
-                className="w-full rounded-xl bg-[#F3F5F3] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-hidden border border-transparent focus:border-[#145C4B] transition-colors"
+                className="w-full rounded-xl bg-[#F0F3FA] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-hidden border border-transparent focus:border-[#2B5FA6] transition-colors"
                 style={{ fontFamily: "var(--font-inter)" }}
               />
               <input
@@ -180,7 +180,7 @@ export default function RentalLocationFilterSidebar({
                 value={filterState.maxPrice}
                 onChange={(e) => onFilterChange("maxPrice", e.target.value)}
                 placeholder="Max"
-                className="w-full rounded-xl bg-[#F3F5F3] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-hidden border border-transparent focus:border-[#145C4B] transition-colors"
+                className="w-full rounded-xl bg-[#F0F3FA] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-hidden border border-transparent focus:border-[#2B5FA6] transition-colors"
                 style={{ fontFamily: "var(--font-inter)" }}
               />
             </div>
