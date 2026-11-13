@@ -1,12 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import ProjectUnitsFilterSidebar, {
   UnitsFilterState,
 } from "./ProjectUnitsFilterSidebar";
 import ProjectUnitCard, { UnitItem } from "./ProjectUnitCard";
 import { usePublicPrimaryUnitsQuery } from "@/features/primaryUnits/usePrimaryUnitsQueries";
 import { getFullPrimaryUnitMediaUrl } from "@/clientApi/primaryUnitsApi";
+import { getResales, getFullResaleMediaUrl } from "@/clientApi/resalesApi";
+import { PROPERTY_TYPE_LABELS } from "@/models/resale";
 
 interface ProjectAvailableUnitsSectionProps {
   projectId?: number;
@@ -32,45 +35,107 @@ export default function ProjectAvailableUnitsSection({
   const [filterState, setFilterState] =
     useState<UnitsFilterState>(INITIAL_FILTERS);
 
-  // Fetch real units from primary units API if projectId is provided
-  const { data: primaryData, isLoading } = usePublicPrimaryUnitsQuery(
-    projectId && projectId > 0
-      ? {
-          ProjectId: projectId,
-          PageNumber: 1,
-          PageSize: 50,
-        }
-      : undefined
-  );
+  // Fetch primary units from existing PrimaryUnits API
+  const { data: primaryData, isLoading: isPrimaryLoading } =
+    usePublicPrimaryUnitsQuery(
+      projectId && projectId > 0
+        ? {
+            ProjectId: projectId,
+            PageNumber: 1,
+            PageSize: 50,
+          }
+        : undefined
+    );
 
-  // Map real API units if available
-  const apiUnits: UnitItem[] = (primaryData?.items || []).map((u) => {
+  // Fetch resale units from existing Resale API
+  const { data: resaleData, isLoading: isResaleLoading } = useQuery({
+    queryKey: ["resales", "project", projectId],
+    queryFn: () =>
+      getResales({
+        ProjectId: projectId,
+        PageNumber: 1,
+        PageSize: 50,
+      }),
+    enabled: typeof projectId === "number" && projectId > 0,
+    staleTime: 1000 * 60 * 5,
+  });
+
+  // Map Primary units strictly from PrimaryUnits API
+  const primaryUnits: UnitItem[] = (primaryData?.items || []).map((u) => {
     const primaryImg = u.images?.find((img) => img.isPrimary) || u.images?.[0];
     const imageSrc = primaryImg?.imageUrl
       ? getFullPrimaryUnitMediaUrl(primaryImg.imageUrl)
       : "/default-fallback.png";
 
-    const priceUsd = u.prices?.find((p) => p.currency === "USD")?.price || u.prices?.[0]?.price;
+    const priceUsd =
+      u.prices?.find((p) => p.currency === "USD")?.price || u.prices?.[0]?.price;
     const priceFormatted =
       typeof priceUsd === "number" && priceUsd > 0
         ? `$ ${priceUsd.toLocaleString()}`
         : "Price on request";
 
+    const catName =
+      typeof u.propertyType === "number"
+        ? PROPERTY_TYPE_LABELS[u.propertyType as keyof typeof PROPERTY_TYPE_LABELS] || ""
+        : String(u.propertyType || "");
+
     return {
       id: u.id,
       title: u.name,
       description: u.description || "",
-      badge: "Primary",
+      badge: "Primary" as const,
+      type: "primary" as const,
+      href: `/units/${u.id}?type=primary`,
       area: u.area ? `${u.area} m²` : "",
       rooms: u.noBedRoom ? `${u.noBedRoom} Rooms` : "",
       baths: u.noBathRoom ? `${u.noBathRoom} Baths` : "",
       price: priceFormatted,
+      rawPrice: priceUsd,
+      category: catName,
       imageSrc,
       location: locationOrProjectName,
     };
   });
 
-  const availableUnits = propUnits || apiUnits;
+  // Map Resale units strictly from Resale API
+  const resaleUnits: UnitItem[] = (resaleData?.items || []).map((r) => {
+    const firstImg = r.imageUrls?.[0];
+    const imageSrc = firstImg
+      ? getFullResaleMediaUrl(firstImg)
+      : "/default-fallback.png";
+
+    const priceUsd =
+      r.prices?.find((p) => p.currency === "USD")?.price || r.prices?.[0]?.price;
+    const priceFormatted =
+      typeof priceUsd === "number" && priceUsd > 0
+        ? `$ ${priceUsd.toLocaleString()}`
+        : "Price on request";
+
+    const catName =
+      typeof r.propertyType === "number"
+        ? PROPERTY_TYPE_LABELS[r.propertyType as keyof typeof PROPERTY_TYPE_LABELS] || ""
+        : String(r.propertyType || "");
+
+    return {
+      id: r.id,
+      title: r.name,
+      description: r.description || "",
+      badge: "Resale" as const,
+      type: "resale" as const,
+      href: `/units/${r.id}?type=resale`,
+      area: r.area ? `${r.area} m²` : "",
+      rooms: r.noBedRoom ? `${r.noBedRoom} Rooms` : "",
+      baths: r.noBathRoom ? `${r.noBathRoom} Baths` : "",
+      price: priceFormatted,
+      rawPrice: priceUsd,
+      category: catName,
+      imageSrc,
+      location: locationOrProjectName,
+    };
+  });
+
+  const availableUnits = propUnits || [...primaryUnits, ...resaleUnits];
+  const isLoading = isPrimaryLoading || isResaleLoading;
 
   // If no units exist after loading, hide the section entirely
   if (!isLoading && availableUnits.length === 0) {
@@ -94,10 +159,7 @@ export default function ProjectAvailableUnitsSection({
 
   // Filter units based on user selection
   const filteredUnits = availableUnits.filter((unit) => {
-    if (
-      filterState.unitType !== "All" &&
-      unit.badge !== filterState.unitType
-    ) {
+    if (filterState.unitType !== "All" && unit.badge !== filterState.unitType) {
       return false;
     }
     if (
@@ -105,6 +167,21 @@ export default function ProjectAvailableUnitsSection({
       !unit.title.toLowerCase().includes(filterState.searchTerm.toLowerCase())
     ) {
       return false;
+    }
+    if (
+      filterState.category !== "Any Type" &&
+      unit.category &&
+      !unit.category.toLowerCase().includes(filterState.category.toLowerCase())
+    ) {
+      return false;
+    }
+    if (filterState.minPrice && unit.rawPrice !== undefined) {
+      const min = parseFloat(filterState.minPrice);
+      if (!isNaN(min) && unit.rawPrice < min) return false;
+    }
+    if (filterState.maxPrice && unit.rawPrice !== undefined) {
+      const max = parseFloat(filterState.maxPrice);
+      if (!isNaN(max) && unit.rawPrice > max) return false;
     }
     return true;
   });
@@ -164,7 +241,7 @@ export default function ProjectAvailableUnitsSection({
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {filteredUnits.map((unit) => (
-                <ProjectUnitCard key={unit.id} unit={unit} />
+                <ProjectUnitCard key={`${unit.badge}-${unit.id}`} unit={unit} />
               ))}
             </div>
           )}

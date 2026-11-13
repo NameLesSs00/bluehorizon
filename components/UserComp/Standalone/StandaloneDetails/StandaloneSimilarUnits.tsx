@@ -21,8 +21,8 @@ export default function StandaloneSimilarUnits({
       getStandaloneUnits({
         Language: "en",
         Currency: "USD",
-        PropertyType: propertyType || undefined,
-        City: city || undefined,
+        // PropertyType: propertyType || undefined,
+        // City: city || undefined,
         PageNumber: 1,
         PageSize: 5,
       }),
