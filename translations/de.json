@@ -48,20 +48,117 @@
       "headingLine2": "Investieren Sie in Ihre Zukunft.",
       "subtitle": "Entdecken Sie außergewöhnliche Immobilien, Premium-Projekte und Chancen für Ihren Lebensstil.",
       "exploreProperties": "Immobilien entdecken",
-      "discoverProjects": "Projekte entdecken"
+      "discoverProjects": "Projekte entdecken",
+      "search": {
+        "tabBuy": "Kaufen",
+        "tabRent": "Mieten",
+        "tabStandalone": "Freistehende Einheiten",
+        "categories": "Kategorien",
+        "propertyType": "Immobilientyp",
+        "priceRange": "Preisspanne",
+        "area": "Gebiet",
+        "bedrooms": "Schlafzimmer",
+        "anyCategory": "Jede Kategorie",
+        "allTypes": "Alle Typen",
+        "anyBedrooms": "Beliebige Zimmer",
+        "budgetPlaceholder": "{currency} Budget",
+        "anyArea": "Jedes Gebiet",
+        "searchButton": "Immobilien suchen"
+      }
     },
     "popularAreas": {
       "eyebrow": "FINDEN SIE IHRE UMGEBUNG",
       "heading": "Beliebte Regionen entdecken",
       "subtitle": "Entdecken Sie Top-Lagen und finden Sie Ihr ideales Gebiet.",
       "discoverAll": "Alle Gebiete entdecken",
-      "propertiesCount": "Immobilien"
+      "propertiesCount": "Immobilien",
+      "noAreasFound": "Zurzeit sind keine beliebten Gebiete verfügbar."
     },
     "featuredProjects": {
       "eyebrow": "TOP-ANGEBOTE",
       "heading": "Ausgewählte Projekte entdecken",
       "subtitle": "Entdecken Sie erstklassige Entwicklungen und renditestarke Anlageobjekte.",
-      "viewAll": "Alle Projekte anzeigen"
+      "viewAll": "Alle Projekte anzeigen",
+      "featuredBadge": "AUSGEWÄHLTES PROJEKT",
+      "priceOnRequest": "Preis auf Anfrage",
+      "startingFrom": "Ab",
+      "upTo": "Bis zu",
+      "fullyFurnished": "Voll möbliert",
+      "semiFurnished": "Teilmöbliert",
+      "facilities": "Einrichtungen",
+      "exploreProject": "Projekt entdecken",
+      "delivery": "Fertigstellung {year}",
+      "noProjectsFound": "Zurzeit sind keine ausgewählten Projekte verfügbar."
+    },
+    "whyUs": {
+      "eyebrow": "WARUM BLUE HORIZON?",
+      "headingLine1": "Mehr als ein Zuhause,",
+      "headingLine2": "Ein besserer Lebensstil",
+      "description": "Wir engagieren uns für erstklassige Immobilien, verlässliche Dienstleistungen und eine reibungslose Betreuung.",
+      "learnMore": "Mehr erfahren",
+      "features": {
+        "premiumQuality": {
+          "line1": "Erstklassige",
+          "line2": "Qualität"
+        },
+        "trustedExperience": {
+          "line1": "Verlässliche",
+          "line2": "Erfahrung"
+        },
+        "dedicatedSupport": {
+          "line1": "Engagierte",
+          "line2": "Unterstützung"
+        },
+        "afterSalesCare": {
+          "line1": "After-Sales-",
+          "line2": "Service"
+        }
+      }
+    },
+    "featuredStandalone": {
+      "eyebrow": "IHR EIGENES REICH",
+      "heading": "Ausgewählte freistehende Einheiten",
+      "subtitle": "Unabhängige Häuser außerhalb geschlossener Wohnanlagen in etablierten Wohngegenden.",
+      "viewAll": "Alle freistehenden Einheiten anzeigen",
+      "noUnitsFound": "Zurzeit sind keine freistehenden Einheiten verfügbar."
+    },
+    "popularRentalLocations": {
+      "eyebrow": "IHR WOHLFÜHLORT",
+      "heading": "Beliebte Mietstandorte",
+      "subtitle": "Entdecken Sie erstklassige Destinationen und finden Sie Ihre ideale Lage.",
+      "discoverAll": "Alle Standorte entdecken",
+      "noLocationsFound": "Zurzeit sind keine Mietstandorte verfügbar."
+    },
+    "unitsForRent": {
+      "eyebrow": "SOFORT WIE ZUHAUSE FÜHLEN",
+      "heading": "Mieteinheiten",
+      "subtitle": "Komfortable Mietobjekte für jeden Lebensstil. Finden Sie den passenden Ort für Ihr nächstes Kapitel.",
+      "browseAll": "Alle Mietobjekte durchsuchen",
+      "noUnitsFound": "Zurzeit sind keine Mieteinheiten verfügbar."
+    },
+    "blogs": {
+      "eyebrow": "UNSERE BLOGS",
+      "heading": "Immobilien-Blog",
+      "subtitle": "Einblicke, Ratgeber und Markttrends für fundierte Immobilienentscheidungen.",
+      "exploreAll": "Alle Artikel lesen",
+      "recent": "Neu",
+      "readMore": "Mehr über diesen Artikel lesen.",
+      "noBlogsFound": "Noch keine Artikel veröffentlicht."
+    },
+    "faqs": {
+      "eyebrow": "WIR SIND FÜR SIE DA",
+      "title": "Häufige Fragen",
+      "headingLine1": "Mehr Klarheit.",
+      "headingLine2": "Volles Vertrauen.",
+      "description": "Haben Sie Fragen zu Kauf, Miete oder Investition? Hier finden Sie Antworten auf häufige Fragen.",
+      "supportPrompt": "Haben Sie noch Fragen? Unser Team berät Sie gerne.",
+      "contactSupport": "Support kontaktieren"
+    },
+    "dreamHome": {
+      "eyebrow": "IHR NÄCHSTES KAPITEL BEGINNT HIER",
+      "heading": "Lassen Sie uns Ihr Traumhaus finden.",
+      "subtitle": "Sagen Sie uns, was Ihnen wichtig ist. Unsere Experten kümmern sich um den Rest.",
+      "findMyHome": "Mein Traumhaus finden"
     }
   },
   "about": {
@@ -303,6 +400,74 @@
       "title": "Freistehende Einheit nicht gefunden",
       "body": "Die freistehende Wohneinheit, die Sie suchen, existiert nicht oder ist derzeit nicht verfugbar.",
       "back": "Zuruck zu den freistehenden Einheiten"
+    }
+  },
+  "standaloneList": {
+    "breadcrumb": {
+      "home": "Startseite",
+      "standalone": "Freistehende Einheiten"
+    },
+    "hero": {
+      "badge": "Verifizierte Premium-Einheiten",
+      "title": "Freistehende Immobilien zum Verkauf",
+      "description": "Entdecken Sie eine vielfältige Auswahl an unabhängigen Wohnungen, Villen und Wohneinheiten außerhalb geschlossener Wohnanlagen mit maximaler Flexibilität und Privatsphäre in begehrten Lagen Ägyptens."
+    },
+    "filters": {
+      "title": "Filter",
+      "search": "Suche",
+      "searchPlaceholder": "Nach Name suchen...",
+      "unitType": "Immobilientyp",
+      "anyType": "Alle Typen",
+      "types": {
+        "Apartment": "Wohnung",
+        "Villa": "Villa",
+        "Townhouse": "Reihenhaus",
+        "Studio": "Studio",
+        "Penthouse": "Penthouse",
+        "OneBedroom": "1 Schlafzimmer",
+        "TwoBedroom": "2 Schlafzimmer",
+        "ThreeBedroom": "3 Schlafzimmer",
+        "Chalet": "Chalet",
+        "FourBedroom": "4 Schlafzimmer",
+        "Duplex": "Maisonette"
+      },
+      "bedrooms": "Schlafzimmer",
+      "any": "Alle",
+      "bedroom1": "1 Schlafzimmer",
+      "bedrooms2": "2 Schlafzimmer",
+      "bedrooms3": "3 Schlafzimmer",
+      "bedrooms4": "4 Schlafzimmer",
+      "bedrooms5Plus": "5+ Schlafzimmer",
+      "minPrice": "Mindestpreis",
+      "maxPrice": "Höchstpreis",
+      "minPricePlaceholder": "Mindestpreis",
+      "maxPricePlaceholder": "Höchstpreis",
+      "apply": "Filter anwenden",
+      "reset": "Alle Filter zurücksetzen",
+      "done": "Fertig"
+    },
+    "grid": {
+      "title": "Verfügbare Einheiten",
+      "subtitle": "Entdecken Sie erstklassige Wohneinheiten, die zum sofortigen Verkauf bereitstehen.",
+      "emptyTitle": "Keine freistehenden Einheiten gefunden",
+      "emptyDescription": "Wir konnten keine Einheiten finden, die Ihren Filterkriterien entsprechen. Versuchen Sie, Ihre Suche anzupassen oder die Filter zurückzusetzen.",
+      "resetFilters": "Filter zurücksetzen",
+      "nextPage": "Nächste Seite"
+    },
+    "card": {
+      "priceOnRequest": "Preis auf Anfrage",
+      "viewDetails": "Details ansehen",
+      "bed": "Zimmer",
+      "beds": "Zimmer",
+      "bath": "Bad",
+      "baths": "Bäder"
+    },
+    "cta": {
+      "eyebrow": "Benötigen Sie sofortige Hilfe?",
+      "heading": "Sprechen Sie mit unserem Vertriebsteam",
+      "description": "Unsere Immobilienberater helfen Ihnen gerne bei der Erkundung verfügbarer freistehender Einheiten, bieten detaillierte Informationen und vereinbaren private Besichtigungen.",
+      "whatsapp": "WhatsApp-Chat",
+      "call": "Anrufen"
     }
   }
 }

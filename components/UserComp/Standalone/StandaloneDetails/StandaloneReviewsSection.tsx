@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { StandaloneUnitItem } from "@/models/standaloneUnit";
 import { useTranslation } from "@/features/i18n/useTranslation";
 
@@ -11,6 +13,8 @@ export default function StandaloneReviewsSection({
   unit,
 }: StandaloneReviewsSectionProps) {
   const { t } = useTranslation();
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
   const reviews = unit.reviews || [];
 
   // If no real reviews exist from backend, hide the section entirely
@@ -24,7 +28,13 @@ export default function StandaloneReviewsSection({
   ).toFixed(1);
 
   return (
-    <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-8 shadow-sm">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 24 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-8 shadow-sm"
+    >
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -165,6 +175,6 @@ export default function StandaloneReviewsSection({
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -1,14 +1,19 @@
-﻿import Image from "next/image";
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 import { getFullLocationMediaUrl } from "@/clientApi/projectLocationsApi";
 import { ProjectLocationItem } from "@/models/projectLocation";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface PopularAreaCardProps {
   area: ProjectLocationItem;
 }
 
 export default function PopularAreaCard({ area }: PopularAreaCardProps) {
+  const { t, locale, direction } = useTranslation();
+
   const primaryImage =
     area.images?.find((img) => img.isPrimary) || area.images?.[0];
 
@@ -19,7 +24,7 @@ export default function PopularAreaCard({ area }: PopularAreaCardProps) {
 
   return (
     <Link
-      href={`/areas/${area.id}`}
+      href={`/${locale}/areas/${area.id}`}
       className="group relative flex aspect-[300/380] w-full flex-col justify-end overflow-hidden rounded-[16px] bg-[#F9F7F4] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
     >
       {/* Background Image / Fallback Emblem */}
@@ -68,17 +73,19 @@ export default function PopularAreaCard({ area }: PopularAreaCardProps) {
               className="text-[12px] font-normal leading-none tracking-normal text-white/90"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              {area.propertiesCount} properties
+              {area.propertiesCount}{" "}
+              {t("home.popularAreas.propertiesCount", "properties")}
             </p>
           )}
         </div>
 
         {/* Diagonal Arrow Indicator */}
         <div className="flex h-7 w-7 shrink-0 items-center justify-center text-white transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-          <FiArrowUpRight className="h-5 w-5" />
+          <FiArrowUpRight
+            className={`h-5 w-5 ${direction === "rtl" ? "scale-x-[-1]" : ""}`}
+          />
         </div>
       </div>
     </Link>
   );
 }
-

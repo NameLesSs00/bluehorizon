@@ -2,6 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { getStandaloneUnitById } from "@/clientApi/standaloneUnitsApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
@@ -53,7 +54,12 @@ export default function StandaloneDetailsPage({ id }: StandaloneDetailsPageProps
     return (
       <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
         <Navbar />
-        <main className="flex flex-1 flex-col items-center justify-center px-4 py-24 text-center">
+        <motion.main
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="flex flex-1 flex-col items-center justify-center px-4 py-24 text-center"
+        >
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#E5ECF6] text-[#2B5FA6]">
             <svg
               width="28"
@@ -92,7 +98,7 @@ export default function StandaloneDetailsPage({ id }: StandaloneDetailsPageProps
           >
             {t("standaloneDetail.notFound.back", "Back to Standalone Units")}
           </Link>
-        </main>
+        </motion.main>
         <Footer />
       </div>
     );
@@ -101,7 +107,12 @@ export default function StandaloneDetailsPage({ id }: StandaloneDetailsPageProps
   return (
     <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
       <Navbar />
-      <main className="flex-1 pb-16">
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.45, ease: "easeOut" }}
+        className="flex-1 pb-16"
+      >
         <div className="mx-auto w-full max-w-[1360px] px-4 pt-6 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <StandaloneBreadcrumb unitName={unit.name} />
@@ -131,11 +142,9 @@ export default function StandaloneDetailsPage({ id }: StandaloneDetailsPageProps
           {/* Similar Recommended Units */}
           <StandaloneSimilarUnits
             currentUnitId={unit.id}
-            // propertyType={unit.propertyType}
-            // city={unit.city}
           />
         </div>
-      </main>
+      </motion.main>
 
       <Footer />
     </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import HeroBannerContent from "./HeroBannerContent";
 import HeroSearchFilterCard from "./HeroSearchFilterCard";
 
@@ -9,7 +10,7 @@ export default function HomeHeroSection() {
     <div className="relative w-full">
       {/* Hero Banner Section */}
       <section className="relative flex min-h-[380px] sm:min-h-[480px] lg:min-h-[780px] w-full flex-col justify-center overflow-visible">
-        {/* Background Villa Image - Covers only the hero banner */}
+        {/* Background Villa Image */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <Image
             src="/HomePage/hero/homeImage.jpg"
@@ -27,20 +28,30 @@ export default function HomeHeroSection() {
           <HeroBannerContent />
         </div>
 
-        {/* Desktop Floating Search Filter Card - Absolutely split 50/50 across the hero bottom boundary */}
-        <div className="hidden lg:block absolute bottom-0 left-0 right-0 z-30 translate-y-1/2 pointer-events-none">
+        {/* Desktop Floating Search Filter Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+          className="hidden lg:block absolute bottom-0 left-0 right-0 z-30 translate-y-1/2 pointer-events-none"
+        >
           <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 pointer-events-auto">
             <div className="flex justify-start">
               <HeroSearchFilterCard />
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* Mobile & Tablet Search Filter Card - Natural document flow with smooth pull-up */}
-      <div className="block lg:hidden relative z-20 mx-auto w-full max-w-[1360px] px-3.5 sm:px-6 -mt-8 sm:-mt-12">
+      {/* Mobile & Tablet Search Filter Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+        className="block lg:hidden relative z-20 mx-auto w-full max-w-[1360px] px-3.5 sm:px-6 -mt-8 sm:-mt-12"
+      >
         <HeroSearchFilterCard />
-      </div>
+      </motion.div>
     </div>
   );
 }

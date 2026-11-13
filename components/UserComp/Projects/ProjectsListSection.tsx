@@ -1,9 +1,12 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { usePublicProjectsQuery } from "@/features/projects/useProjectsQueries";
 import { getFullProjectImageUrl } from "@/clientApi/projectsApi";
 import { ProjectItem } from "@/models/project";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import ProjectsFilterSidebar, {
   ProjectFilterValues,
 } from "./ProjectsFilterSidebar";
@@ -20,17 +23,20 @@ const INITIAL_FILTERS: ProjectFilterValues = {
   maxPrice: "",
 };
 
-function formatApiProject(item: ProjectItem): ProjectDisplayItem {
+function formatApiProject(item: ProjectItem, preferredCurrency: string): ProjectDisplayItem {
   const hasImage = Boolean(item.imageUrls && item.imageUrls.length > 0);
   const coverImage = hasImage
     ? getFullProjectImageUrl(item.imageUrls[0])
     : "/default-fallback.png";
 
+  const currencyPrice = item.prices?.find(
+    (p) => p.currency.toUpperCase() === preferredCurrency.toUpperCase()
+  );
   const egpPrice = item.prices?.find(
     (p) => p.currency.toUpperCase() === "EGP"
   );
   const fallbackPrice = item.prices?.[0];
-  const activePrice = egpPrice || fallbackPrice;
+  const activePrice = currencyPrice || egpPrice || fallbackPrice;
 
   let priceFormatted = "Price on request";
   if (activePrice?.minimumPrice) {
@@ -62,14 +68,39 @@ function formatApiProject(item: ProjectItem): ProjectDisplayItem {
 }
 
 export default function ProjectsListSection() {
-  const [filters, setFilters] = useState<ProjectFilterValues>(INITIAL_FILTERS);
+  const searchParams = useSearchParams();
+  const { locale } = useTranslation();
+  const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
+
+  const urlLocationId = searchParams.get("locationId") || "";
+  const urlProjectTypeId =
+    searchParams.get("projectTypeId") || searchParams.get("typeId") || "";
+  const urlMinPrice = searchParams.get("minPrice") || "";
+  const urlMaxPrice = searchParams.get("maxPrice") || "";
+  const urlSearchTerm = searchParams.get("searchTerm") || "";
+
+  const initialValues: ProjectFilterValues = useMemo(
+    () => ({
+      searchTerm: urlSearchTerm,
+      locationId: urlLocationId,
+      projectTypeId: urlProjectTypeId,
+      paymentType: "",
+      deliveryFrom: "",
+      deliveryTo: "",
+      minPrice: urlMinPrice,
+      maxPrice: urlMaxPrice,
+    }),
+    [urlLocationId, urlProjectTypeId, urlMinPrice, urlMaxPrice, urlSearchTerm]
+  );
+
+  const [filters, setFilters] = useState<ProjectFilterValues>(initialValues);
   const [appliedFilters, setAppliedFilters] =
-    useState<ProjectFilterValues>(INITIAL_FILTERS);
+    useState<ProjectFilterValues>(initialValues);
   const [page, setPage] = useState<number>(1);
 
   const { data: projectsData, isLoading } = usePublicProjectsQuery({
-    Language: "en",
-    Currency: "EGP",
+    Language: locale,
+    Currency: currentCurrency || "EGP",
     PageNumber: page,
     PageSize: 6,
     SearchTerm: appliedFilters.searchTerm.trim() || undefined,
@@ -90,7 +121,9 @@ export default function ProjectsListSection() {
   });
 
   const apiProjects = projectsData?.items || [];
-  const displayProjects = apiProjects.map(formatApiProject);
+  const displayProjects = apiProjects.map((p) =>
+    formatApiProject(p, currentCurrency)
+  );
   const totalPages = projectsData?.totalPages || 1;
 
   function handleFilterChange(updated: Partial<ProjectFilterValues>) {

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
 import { StandaloneUnitImageItem } from "@/models/standaloneUnit";
 import { getFullStandaloneUnitMediaUrl } from "@/clientApi/standaloneUnitsApi";
@@ -66,7 +67,12 @@ export default function StandaloneImageGallery({
 
   return (
     <>
-      <div className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-3.5 sm:gap-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
+        className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-3.5 sm:gap-4"
+      >
         {/* Main Large Hero Image with Next/Prev arrows */}
         <div
           onClick={() => openLightbox(currentMainIdx)}
@@ -155,62 +161,74 @@ export default function StandaloneImageGallery({
             );
           })}
         </div>
-      </div>
+      </motion.div>
 
       {/* Lightbox Modal with Full Next & Prev Navigation */}
-      {lightboxOpen && validImages.length > 0 && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
-        >
-          <button
-            type="button"
-            onClick={() => setLightboxOpen(false)}
-            aria-label={t("standaloneDetail.gallery.closeGallery", "Close photo gallery")}
-            className="absolute top-5 right-5 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
+      <AnimatePresence>
+        {lightboxOpen && validImages.length > 0 && (
+          <motion.div
+            role="dialog"
+            aria-modal="true"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
           >
-            <FiX className="h-6 w-6" />
-          </button>
+            <button
+              type="button"
+              onClick={() => setLightboxOpen(false)}
+              aria-label={t("standaloneDetail.gallery.closeGallery", "Close photo gallery")}
+              className="absolute top-5 right-5 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
+            >
+              <FiX className="h-6 w-6" />
+            </button>
 
-          <button
-            type="button"
-            onClick={prevLightboxImage}
-            aria-label={t("standaloneDetail.gallery.prevImage", "Previous image")}
-            className="absolute left-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
-          >
-            <FiChevronLeft className="h-6 w-6" />
-          </button>
+            <button
+              type="button"
+              onClick={prevLightboxImage}
+              aria-label={t("standaloneDetail.gallery.prevImage", "Previous image")}
+              className="absolute left-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
+            >
+              <FiChevronLeft className="h-6 w-6" />
+            </button>
 
-          <div className="relative h-[75vh] w-[90vw] max-w-5xl">
-            <Image
-              src={
-                validImages[lightboxIdx]?.imageUrl
-                  ? getFullStandaloneUnitMediaUrl(
-                      validImages[lightboxIdx].imageUrl
-                    )
-                  : "/default-fallback.png"
-              }
-              alt={`${title} - Photo ${lightboxIdx + 1}`}
-              fill
-              className="object-contain"
-            />
-          </div>
+            <motion.div
+              key={lightboxIdx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.2 }}
+              className="relative h-[75vh] w-[90vw] max-w-5xl"
+            >
+              <Image
+                src={
+                  validImages[lightboxIdx]?.imageUrl
+                    ? getFullStandaloneUnitMediaUrl(
+                        validImages[lightboxIdx].imageUrl
+                      )
+                    : "/default-fallback.png"
+                }
+                alt={`${title} - Photo ${lightboxIdx + 1}`}
+                fill
+                className="object-contain"
+              />
+            </motion.div>
 
-          <button
-            type="button"
-            onClick={nextLightboxImage}
-            aria-label={t("standaloneDetail.gallery.nextImage", "Next image")}
-            className="absolute right-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
-          >
-            <FiChevronRight className="h-6 w-6" />
-          </button>
+            <button
+              type="button"
+              onClick={nextLightboxImage}
+              aria-label={t("standaloneDetail.gallery.nextImage", "Next image")}
+              className="absolute right-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
+            >
+              <FiChevronRight className="h-6 w-6" />
+            </button>
 
-          <div className="absolute bottom-5 text-sm font-semibold text-white/80">
-            {lightboxIdx + 1} / {validImages.length}
-          </div>
-        </div>
-      )}
+            <div className="absolute bottom-5 text-sm font-semibold text-white/80">
+              {lightboxIdx + 1} / {validImages.length}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

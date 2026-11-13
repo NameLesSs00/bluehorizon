@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import StandaloneListPage from "@/components/UserComp/Standalone/StandaloneListPage";
 
 export const metadata: Metadata = {
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <StandaloneListPage />;
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#F0F3FA]" />}>
+      <StandaloneListPage />
+    </Suspense>
+  );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { createContact } from "@/clientApi/contactsApi";
 import { StandaloneUnitItem } from "@/models/standaloneUnit";
@@ -96,7 +97,12 @@ export default function StandaloneInquiryCard({
 
   return (
     <aside className="w-full lg:w-[340px] xl:w-[380px] shrink-0">
-      <div className="sticky top-24 rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-7 shadow-sm">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+        className="sticky top-24 rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-7 shadow-sm"
+      >
         {/* Header with price */}
         <span
           className="block text-[11px] font-bold uppercase tracking-wider text-[#6B7570]"
@@ -279,7 +285,7 @@ export default function StandaloneInquiryCard({
             </button>
           </form>
         )}
-      </div>
+      </motion.div>
     </aside>
   );
 }

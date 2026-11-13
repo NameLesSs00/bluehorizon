@@ -1,5 +1,8 @@
-﻿import Image from "next/image";
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 export interface ProjectCardData {
   id: string;
@@ -21,9 +24,11 @@ interface FeaturedProjectCardProps {
 export default function FeaturedProjectCard({
   project,
 }: FeaturedProjectCardProps) {
+  const { locale, direction } = useTranslation();
+
   return (
     <Link
-      href={`/projects/${project.id}`}
+      href={`/${locale}/projects/${project.id}`}
       className="group flex flex-col overflow-hidden rounded-[16px] border border-[#E2E8F3] bg-white transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
     >
       <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#F9F7F4]">
@@ -49,7 +54,7 @@ export default function FeaturedProjectCard({
         )}
 
         {project.badge && (
-          <div className="absolute top-[14px] left-[14px] rounded-full bg-white px-3 py-1.5 shadow-sm">
+          <div className="absolute top-[14px] start-[14px] rounded-full bg-white px-3 py-1.5 shadow-sm">
             <span
               className="block text-[10px] font-medium uppercase leading-none tracking-normal text-[#2B5FA6]"
               style={{ fontFamily: "var(--font-inter)" }}
@@ -72,7 +77,7 @@ export default function FeaturedProjectCard({
           <div className="flex items-center gap-1.5 pt-0.5">
             <Image
               src="/HomePage/FeaturedProjects/location.svg"
-              alt="Location"
+              alt=""
               width={11}
               height={13}
               className="h-[13px] w-[11px] shrink-0"
@@ -112,10 +117,12 @@ export default function FeaturedProjectCard({
             </span>
             <Image
               src="/HomePage/FeaturedProjects/link.svg"
-              alt="View project"
+              alt=""
               width={9}
               height={9}
-              className="h-[9px] w-[9px] shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              className={`h-[9px] w-[9px] shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
+                direction === "rtl" ? "scale-x-[-1]" : ""
+              }`}
             />
           </div>
         </div>
@@ -123,4 +130,3 @@ export default function FeaturedProjectCard({
     </Link>
   );
 }
-

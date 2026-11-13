@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { StandaloneUnitItem } from "@/models/standaloneUnit";
 import { useTranslation } from "@/features/i18n/useTranslation";
 
@@ -11,6 +13,8 @@ export default function StandaloneAboutSection({
   unit,
 }: StandaloneAboutSectionProps) {
   const { t } = useTranslation();
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
 
   const hasDescription = Boolean(
     unit.description && unit.description.trim().length > 0
@@ -28,7 +32,13 @@ export default function StandaloneAboutSection({
   }
 
   return (
-    <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-8 shadow-sm">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 24 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-8 shadow-sm"
+    >
       <h2
         className="text-xl sm:text-2xl font-bold text-[#202326]"
         style={{ fontFamily: "var(--font-manrope)" }}
@@ -150,6 +160,6 @@ export default function StandaloneAboutSection({
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -48,7 +48,7 @@ export default function HeroFilterDropdown({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center gap-2 sm:gap-3.5 px-2.5 py-2 sm:px-4 sm:py-3 lg:px-5 lg:py-3.5 text-left transition-colors hover:bg-neutral-50/80 rounded-xl sm:rounded-2xl border border-[#E2E8F3] lg:border-none"
+        className="flex w-full items-center gap-2 sm:gap-3.5 px-2.5 py-2 sm:px-4 sm:py-3 lg:px-5 lg:py-3.5 text-start transition-colors hover:bg-neutral-50/80 rounded-xl sm:rounded-2xl border border-[#E2E8F3] lg:border-none"
       >
         {/* Icon */}
         <div className="relative flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center">
@@ -87,7 +87,7 @@ export default function HeroFilterDropdown({
 
       {/* Popover Menu */}
       {isOpen && (
-        <div className="absolute left-0 top-full z-50 mt-2 max-h-72 w-full min-w-[200px] sm:w-64 overflow-y-auto rounded-2xl border border-[#E2E8F3] bg-white py-2 shadow-2xl">
+        <div className="absolute start-0 top-full z-50 mt-2 max-h-72 w-full min-w-[200px] sm:w-64 overflow-y-auto rounded-2xl border border-[#E2E8F3] bg-white py-2 shadow-2xl">
           {options.map((opt, idx) => (
             <button
               key={`${opt.label}-${idx}`}
@@ -96,14 +96,17 @@ export default function HeroFilterDropdown({
                 onSelect(opt);
                 setIsOpen(false);
               }}
-              className={`flex w-full items-center justify-between px-4 py-2.5 text-left text-[14px] transition-colors hover:bg-[#F9F7F4] ${
+              className={`flex w-full items-center justify-between px-4 py-2.5 text-start text-[14px] transition-colors hover:bg-[#F9F7F4] ${
                 selectedValue === opt.label
-                  ? "font-semibold text-[#2B5FA6] bg-[#F9F7F4]"
-                  : "font-normal text-[#202326]"
+                  ? "bg-[#E5ECF6] font-bold text-[#1B3A6B]"
+                  : "text-[#202326]"
               }`}
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span className="truncate">{opt.label}</span>
+              {selectedValue === opt.label && (
+                <div className="h-1.5 w-1.5 rounded-full bg-[#1B3A6B] shrink-0" />
+              )}
             </button>
           ))}
         </div>

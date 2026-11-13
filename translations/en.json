@@ -48,20 +48,117 @@
       "headingLine2": "Invest in Your Future.",
       "subtitle": "Discover exceptional properties, premium developments, and opportunities designed around your lifestyle.",
       "exploreProperties": "Explore Properties",
-      "discoverProjects": "Discover Our Projects"
+      "discoverProjects": "Discover Our Projects",
+      "search": {
+        "tabBuy": "Buy",
+        "tabRent": "Rent",
+        "tabStandalone": "Standalone",
+        "categories": "Categories",
+        "propertyType": "Property Type",
+        "priceRange": "Price Range",
+        "area": "Area",
+        "bedrooms": "Bedrooms",
+        "anyCategory": "Any Category",
+        "allTypes": "All Types",
+        "anyBedrooms": "Any Bedrooms",
+        "budgetPlaceholder": "{currency} Budget",
+        "anyArea": "Any Area",
+        "searchButton": "Search Properties"
+      }
     },
     "popularAreas": {
       "eyebrow": "FIND YOUR NEIGHBORHOOD",
       "heading": "Explore Popular Areas",
       "subtitle": "Discover top Places and find your ideal Area.",
       "discoverAll": "Discover all areas",
-      "propertiesCount": "Properties"
+      "propertiesCount": "properties",
+      "noAreasFound": "No popular areas available at the moment."
     },
     "featuredProjects": {
       "eyebrow": "FEATURED OPPORTUNITIES",
       "heading": "Explore Featured Projects",
       "subtitle": "Discover premier developments and high-yield investment properties.",
-      "viewAll": "View all projects"
+      "viewAll": "View all projects",
+      "featuredBadge": "FEATURED PROJECT",
+      "priceOnRequest": "Price on request",
+      "startingFrom": "Starting from",
+      "upTo": "Up to",
+      "fullyFurnished": "Fully Furnished",
+      "semiFurnished": "Semi-Furnished",
+      "facilities": "Facilities",
+      "exploreProject": "Explore Project",
+      "delivery": "Delivery {year}",
+      "noProjectsFound": "No featured projects currently available."
+    },
+    "whyUs": {
+      "eyebrow": "WHY BLUE HORIZON?",
+      "headingLine1": "More Than a Home,",
+      "headingLine2": "A Better Lifestyle",
+      "description": "We are committed to providing you with premium properties, trusted services, and a seamless experience.",
+      "learnMore": "Learn More",
+      "features": {
+        "premiumQuality": {
+          "line1": "Premium",
+          "line2": "Quality"
+        },
+        "trustedExperience": {
+          "line1": "Trusted",
+          "line2": "Experience"
+        },
+        "dedicatedSupport": {
+          "line1": "Dedicated",
+          "line2": "Support"
+        },
+        "afterSalesCare": {
+          "line1": "After-Sales",
+          "line2": "Care"
+        }
+      }
+    },
+    "featuredStandalone": {
+      "eyebrow": "A PLACE OF YOUR OWN",
+      "heading": "Featured Standalone Units",
+      "subtitle": "Independent homes outside gated communities, in established neighborhoods you will love.",
+      "viewAll": "View all standalone units",
+      "noUnitsFound": "No standalone units available at this time."
+    },
+    "popularRentalLocations": {
+      "eyebrow": "FIND YOUR COMFORTABLE ZONE",
+      "heading": "Popular Rental Locations",
+      "subtitle": "Discover top destinations and find your ideal location.",
+      "discoverAll": "Discover all locations",
+      "noLocationsFound": "No rental locations available at this time."
+    },
+    "unitsForRent": {
+      "eyebrow": "FEEL AT HOME, RIGHT AWAY",
+      "heading": "Units for Rent",
+      "subtitle": "Comfortable rentals for every lifestyle. Find the perfect place for your next chapter.",
+      "browseAll": "Browse all rentals",
+      "noUnitsFound": "No rental units available at this time."
+    },
+    "blogs": {
+      "eyebrow": "OUR BLOGS",
+      "heading": "Real Estate Blogs",
+      "subtitle": "Insights, guides, and trends to help you make informed property decisions.",
+      "exploreAll": "Explore all articles",
+      "recent": "Recent",
+      "readMore": "Read more about this article.",
+      "noBlogsFound": "No articles published yet."
+    },
+    "faqs": {
+      "eyebrow": "WE ARE HERE TO HELP",
+      "title": "FAQs",
+      "headingLine1": "A little clarity.",
+      "headingLine2": "A lot of confidence.",
+      "description": "Got questions about buying, renting, or investing? Find answers to the questions we hear most often.",
+      "supportPrompt": "Still have questions? Our team is always here to guide you.",
+      "contactSupport": "Contact Support"
+    },
+    "dreamHome": {
+      "eyebrow": "YOUR NEXT CHAPTER STARTS HERE",
+      "heading": "Let us find your dream home.",
+      "subtitle": "Tell us what matters to you. Our experts will take it from there.",
+      "findMyHome": "Find my home"
     }
   },
   "about": {
@@ -303,6 +400,74 @@
       "title": "Standalone Unit Not Found",
       "body": "The standalone residential unit you are looking for does not exist or is currently unavailable.",
       "back": "Back to Standalone Units"
+    }
+  },
+  "standaloneList": {
+    "breadcrumb": {
+      "home": "Home",
+      "standalone": "Standalone units"
+    },
+    "hero": {
+      "badge": "Verified Premium Units",
+      "title": "Standalone Properties for Sale",
+      "description": "Discover a diverse selection of independent apartments, villas, and residential units outside gated communities, offering flexibility, privacy, and prime locations across Egypt's most sought-after neighborhoods."
+    },
+    "filters": {
+      "title": "Filters",
+      "search": "Search",
+      "searchPlaceholder": "Search by name...",
+      "unitType": "Unit Type",
+      "anyType": "Any Type",
+      "types": {
+        "Apartment": "Apartment",
+        "Villa": "Villa",
+        "Townhouse": "Townhouse",
+        "Studio": "Studio",
+        "Penthouse": "Penthouse",
+        "OneBedroom": "1 Bedroom",
+        "TwoBedroom": "2 Bedrooms",
+        "ThreeBedroom": "3 Bedrooms",
+        "Chalet": "Chalet",
+        "FourBedroom": "4 Bedrooms",
+        "Duplex": "Duplex"
+      },
+      "bedrooms": "Bedrooms",
+      "any": "Any",
+      "bedroom1": "1 Bedroom",
+      "bedrooms2": "2 Bedrooms",
+      "bedrooms3": "3 Bedrooms",
+      "bedrooms4": "4 Bedrooms",
+      "bedrooms5Plus": "5+ Bedrooms",
+      "minPrice": "Minimum Price",
+      "maxPrice": "Maximum Price",
+      "minPricePlaceholder": "Min Price",
+      "maxPricePlaceholder": "Max Price",
+      "apply": "Apply Filters",
+      "reset": "Reset All Filters",
+      "done": "Done"
+    },
+    "grid": {
+      "title": "Available Units",
+      "subtitle": "Explore top-tier residential units ready for immediate sale.",
+      "emptyTitle": "No Standalone Units Found",
+      "emptyDescription": "We could not find any units matching your filter criteria. Try adjusting your search or resetting the filters.",
+      "resetFilters": "Reset Filters",
+      "nextPage": "Next page"
+    },
+    "card": {
+      "priceOnRequest": "Price on request",
+      "viewDetails": "View Details",
+      "bed": "Bed",
+      "beds": "Beds",
+      "bath": "Bath",
+      "baths": "Baths"
+    },
+    "cta": {
+      "eyebrow": "Need Immediate Assistance?",
+      "heading": "Talk to Our Sales Team",
+      "description": "Our property advisors are ready to help you explore available standalone units, provide detailed information, and arrange private viewings to find the right property for you.",
+      "whatsapp": "WhatsApp Chat",
+      "call": "Call"
     }
   }
 }

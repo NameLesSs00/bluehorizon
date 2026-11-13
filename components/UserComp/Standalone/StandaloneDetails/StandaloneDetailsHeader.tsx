@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { StandaloneUnitItem } from "@/models/standaloneUnit";
 import { useTranslation } from "@/features/i18n/useTranslation";
 
@@ -38,7 +39,12 @@ export default function StandaloneDetailsHeader({ unit }: StandaloneDetailsHeade
   }
 
   return (
-    <div className="mt-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+      className="mt-4 flex flex-col md:flex-row md:items-end justify-between gap-4"
+    >
       {/* Title & Location Info */}
       <div>
         <h1
@@ -73,6 +79,6 @@ export default function StandaloneDetailsHeader({ unit }: StandaloneDetailsHeade
           {formattedPrice}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

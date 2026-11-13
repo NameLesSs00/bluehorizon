@@ -7,12 +7,14 @@ import { FiChevronRight, FiMapPin } from "react-icons/fi";
 import { TbBath, TbBed, TbRulerMeasure } from "react-icons/tb";
 import { StandaloneUnitItem } from "@/models/standaloneUnit";
 import { getFullStandaloneUnitMediaUrl } from "@/clientApi/standaloneUnitsApi";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface StandaloneUnitCardProps {
   unit: StandaloneUnitItem;
 }
 
 export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
+  const { t, locale } = useTranslation();
   const [imageError, setImageError] = useState(false);
 
   const primaryImage =
@@ -24,14 +26,18 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
 
   const resolveBadgeTag = () => {
     if (unit.propertyType && unit.propertyType.trim().length > 0) {
-      return unit.propertyType.trim();
+      const typeKey = unit.propertyType.trim();
+      return t(`standaloneList.filters.types.${typeKey}`, typeKey);
     }
     if (typeof unit.noBedRoom === "number") {
-      if (unit.noBedRoom === 0) return "Studio";
-      if (unit.noBedRoom === 1) return "1 Bedroom";
-      if (unit.noBedRoom > 1) return `${unit.noBedRoom} Bedrooms`;
+      if (unit.noBedRoom === 0)
+        return t("standaloneList.filters.types.Studio", "Studio");
+      if (unit.noBedRoom === 1)
+        return `1 ${t("standaloneList.card.bed", "Bed")}`;
+      if (unit.noBedRoom > 1)
+        return `${unit.noBedRoom} ${t("standaloneList.card.beds", "Beds")}`;
     }
-    return "Villa";
+    return t("standaloneList.filters.types.Villa", "Villa");
   };
 
   const propertyTag = resolveBadgeTag();
@@ -51,7 +57,7 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
   const formattedPrice =
     typeof unit.price === "number" && unit.price > 0
       ? `${currencySymbol}${unit.price.toLocaleString()}`
-      : "Price on request";
+      : t("standaloneList.card.priceOnRequest", "Price on request");
 
   const descriptionText =
     unit.description ||
@@ -75,7 +81,7 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
           className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
         />
 
-        {/* Property Type Badge - only if real data */}
+        {/* Property Type Badge */}
         {propertyTag && (
           <div className="absolute top-3.5 left-3.5 z-10 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-[#2B5FA6] shadow-sm backdrop-blur-sm">
             <span style={{ fontFamily: "var(--font-inter)" }}>{propertyTag}</span>
@@ -103,7 +109,7 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
           </p>
         )}
 
-        {/* Specs Row - Evenly spaced with space-around distribution */}
+        {/* Specs Row */}
         {(hasArea || hasRooms || hasBaths) && (
           <div
             className="my-3 flex items-center justify-around rounded-xl border border-[#D9E2EE]/60 bg-[#F0F3FA]/60 py-2.5 px-3 text-[11px] sm:text-xs text-[#202326]"
@@ -123,7 +129,12 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
             {hasRooms && (
               <div className="flex items-center gap-1.5 font-medium whitespace-nowrap">
                 <TbBed className="h-4 w-4 text-[#1B3A6B] shrink-0" />
-                <span className="whitespace-nowrap">{unit.noBedRoom} {unit.noBedRoom === 1 ? "Bed" : "Beds"}</span>
+                <span className="whitespace-nowrap">
+                  {unit.noBedRoom}{" "}
+                  {unit.noBedRoom === 1
+                    ? t("standaloneList.card.bed", "Bed")
+                    : t("standaloneList.card.beds", "Beds")}
+                </span>
               </div>
             )}
 
@@ -134,7 +145,12 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
             {hasBaths && (
               <div className="flex items-center gap-1.5 font-medium whitespace-nowrap">
                 <TbBath className="h-4 w-4 text-[#1B3A6B] shrink-0" />
-                <span className="whitespace-nowrap">{unit.noBathRoom} {unit.noBathRoom === 1 ? "Bath" : "Baths"}</span>
+                <span className="whitespace-nowrap">
+                  {unit.noBathRoom}{" "}
+                  {unit.noBathRoom === 1
+                    ? t("standaloneList.card.bath", "Bath")
+                    : t("standaloneList.card.baths", "Baths")}
+                </span>
               </div>
             )}
           </div>
@@ -162,11 +178,11 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
           </div>
 
           <Link
-            href={`/standalone/${unit.id}`}
+            href={`/${locale}/standalone/${unit.id}`}
             className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#2B5FA6] py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#1B3A6B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            <span>View Details</span>
+            <span>{t("standaloneList.card.viewDetails", "View Details")}</span>
             <FiChevronRight className="h-4 w-4" />
           </Link>
         </div>

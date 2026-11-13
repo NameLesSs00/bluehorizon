@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 import { RentalLocationItem } from "@/models/rentalLocation";
 import { getFullRentalLocationMediaUrl } from "@/clientApi/rentalLocationsApi";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface RentalLocationCardProps {
   location: RentalLocationItem;
@@ -14,6 +15,7 @@ interface RentalLocationCardProps {
 export default function RentalLocationCard({
   location,
 }: RentalLocationCardProps) {
+  const { t, locale, direction } = useTranslation();
   const [imageError, setImageError] = useState(false);
 
   const primaryImage =
@@ -29,7 +31,7 @@ export default function RentalLocationCard({
 
   return (
     <Link
-      href={`/locations/${location.id}`}
+      href={`/${locale}/locations/${location.id}`}
       className="group relative flex aspect-[300/380] w-full flex-col justify-end overflow-hidden rounded-[20px] bg-[#F9F7F4] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
     >
       {/* Background Image */}
@@ -51,7 +53,7 @@ export default function RentalLocationCard({
         }}
       />
 
-      {/* Bottom Content Area - Title, Property Count, and Diagonal Arrow */}
+      {/* Bottom Content Area */}
       <div className="relative z-20 flex items-end justify-between p-6">
         <div className="space-y-1">
           <h3
@@ -66,17 +68,19 @@ export default function RentalLocationCard({
               className="text-[13px] font-normal leading-none text-white/90"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              {location.propertiesCount} properties
+              {location.propertiesCount}{" "}
+              {t("home.popularAreas.propertiesCount", "properties")}
             </p>
           )}
         </div>
 
         {/* Diagonal Arrow Indicator */}
         <div className="flex h-7 w-7 shrink-0 items-center justify-center text-white transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-          <FiArrowUpRight className="h-5 w-5" />
+          <FiArrowUpRight
+            className={`h-5 w-5 ${direction === "rtl" ? "scale-x-[-1]" : ""}`}
+          />
         </div>
       </div>
     </Link>
   );
 }
-

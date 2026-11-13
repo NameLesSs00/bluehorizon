@@ -1,6 +1,9 @@
-﻿"use client";
+"use client";
 
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { StandaloneUnitItem } from "@/models/standaloneUnit";
+import { useTranslation } from "@/features/i18n/useTranslation";
 import StandaloneUnitCard from "./StandaloneUnitCard";
 
 interface StandaloneUnitsGridProps {
@@ -13,6 +16,15 @@ interface StandaloneUnitsGridProps {
   onResetFilters: () => void;
 }
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.42, delay: i * 0.08, ease: "easeOut" as const },
+  }),
+};
+
 export default function StandaloneUnitsGrid({
   units,
   isLoading,
@@ -21,6 +33,10 @@ export default function StandaloneUnitsGrid({
   onPageChange,
   onResetFilters,
 }: StandaloneUnitsGridProps) {
+  const { t } = useTranslation();
+  const headerRef = useRef<HTMLDivElement>(null);
+  const headerInView = useInView(headerRef, { once: true, margin: "-60px" });
+
   // Generate pagination buttons
   const renderPagination = () => {
     if (totalPages <= 1) return null;
@@ -38,7 +54,12 @@ export default function StandaloneUnitsGrid({
     }
 
     return (
-      <div className="mt-10 flex items-center justify-center gap-2">
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+        className="mt-10 flex items-center justify-center gap-2"
+      >
         {pages.map((p) => {
           const isActive = p === currentPage;
           return (
@@ -62,7 +83,7 @@ export default function StandaloneUnitsGrid({
           <button
             type="button"
             onClick={() => onPageChange(currentPage + 1)}
-            aria-label="Next page"
+            aria-label={t("standaloneList.grid.nextPage", "Next page")}
             className="flex h-10 w-10 items-center justify-center rounded-[12px] border border-[#D9E2EE] bg-white text-[#202326] transition-colors hover:bg-[#F0F3FA]"
           >
             <svg
@@ -79,27 +100,35 @@ export default function StandaloneUnitsGrid({
             </svg>
           </button>
         )}
-      </div>
+      </motion.div>
     );
   };
 
   return (
     <div className="flex-1">
       {/* Section Header */}
-      <div>
+      <motion.div
+        ref={headerRef}
+        initial={{ opacity: 0, y: 20 }}
+        animate={headerInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.45, ease: "easeOut" }}
+      >
         <h2
           className="text-2xl sm:text-3xl font-bold text-[#202326]"
           style={{ fontFamily: "var(--font-manrope)" }}
         >
-          Available Units
+          {t("standaloneList.grid.title", "Available Units")}
         </h2>
         <p
           className="mt-1 text-xs sm:text-sm text-[#6B7570]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          Explore top-tier residential units ready for immediate sale.
+          {t(
+            "standaloneList.grid.subtitle",
+            "Explore top-tier residential units ready for immediate sale."
+          )}
         </p>
-      </div>
+      </motion.div>
 
       {/* Grid or States */}
       {isLoading ? (
@@ -112,7 +141,12 @@ export default function StandaloneUnitsGrid({
           ))}
         </div>
       ) : units.length === 0 ? (
-        <div className="mt-6 flex flex-col items-center justify-center rounded-[20px] border border-[#D9E2EE] bg-white p-12 sm:p-16 text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="mt-6 flex flex-col items-center justify-center rounded-[20px] border border-[#D9E2EE] bg-white p-12 sm:p-16 text-center"
+        >
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#E5ECF6]">
             <svg
               width="24"
@@ -133,14 +167,16 @@ export default function StandaloneUnitsGrid({
             className="text-lg sm:text-xl font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            No Standalone Units Found
+            {t("standaloneList.grid.emptyTitle", "No Standalone Units Found")}
           </h3>
           <p
             className="mt-2 text-xs sm:text-sm text-[#6B7570] max-w-md"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            We could not find any units matching your filter criteria. Try
-            adjusting your search or resetting the filters.
+            {t(
+              "standaloneList.grid.emptyDescription",
+              "We could not find any units matching your filter criteria. Try adjusting your search or resetting the filters."
+            )}
           </p>
           <button
             type="button"
@@ -148,14 +184,22 @@ export default function StandaloneUnitsGrid({
             className="mt-6 rounded-[12px] bg-[#2B5FA6] px-6 py-2.5 text-xs sm:text-sm font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Reset Filters
+            {t("standaloneList.grid.resetFilters", "Reset Filters")}
           </button>
-        </div>
+        </motion.div>
       ) : (
         <>
           <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-            {units.map((unit) => (
-              <StandaloneUnitCard key={unit.id} unit={unit} />
+            {units.map((unit, idx) => (
+              <motion.div
+                key={unit.id}
+                custom={idx}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <StandaloneUnitCard unit={unit} />
+              </motion.div>
             ))}
           </div>
 
@@ -165,4 +209,3 @@ export default function StandaloneUnitsGrid({
     </div>
   );
 }
-

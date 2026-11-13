@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { usePublicRentalsQuery } from "@/features/rentals/useRentalsQueries";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
+import { useTranslation } from "@/features/i18n/useTranslation";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
 import RentalBreadcrumb from "./RentalBreadcrumb";
@@ -14,22 +15,27 @@ import RentalCtaSection from "./RentalCtaSection";
 
 export default function RentalsPage() {
   const searchParams = useSearchParams();
+  const { locale } = useTranslation();
   const urlLocationId = searchParams.get("locationId") || "";
   const urlPropertyType = searchParams.get("propertyType") || "";
+  const urlBedrooms = searchParams.get("bedrooms") || "";
+  const urlMinPrice = searchParams.get("minPrice") || "";
+  const urlMaxPrice = searchParams.get("maxPrice") || "";
+  const urlSearchTerm = searchParams.get("searchTerm") || "";
 
   const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
   const [pageNumber, setPageNumber] = useState(1);
   const [filters, setFilters] = useState<RentalFilterState>({
-    searchTerm: "",
+    searchTerm: urlSearchTerm,
     locationId: urlLocationId,
     propertyType: urlPropertyType,
-    bedrooms: "",
-    minPrice: "",
-    maxPrice: "",
+    bedrooms: urlBedrooms,
+    minPrice: urlMinPrice,
+    maxPrice: urlMaxPrice,
   });
 
   const { data: rentalsData, isLoading } = usePublicRentalsQuery({
-    Language: "en",
+    Language: locale,
     Currency: currentCurrency || "EGP",
     PageNumber: pageNumber,
     PageSize: 9,

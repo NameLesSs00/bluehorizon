@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -7,12 +7,15 @@ import { FiMapPin, FiChevronRight } from "react-icons/fi";
 import { TbBed, TbBath, TbRulerMeasure } from "react-icons/tb";
 import { RentalItem, PROPERTY_TYPE_LABELS } from "@/models/rental";
 import { getFullRentalMediaUrl } from "@/clientApi/rentalsApi";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 
 interface RentalUnitCardProps {
   unit: RentalItem;
 }
 
 export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
+  const { t, locale, direction } = useTranslation();
   const [imageError, setImageError] = useState(false);
 
   const primaryImage =
@@ -42,22 +45,25 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
       return catName;
     }
     if (typeof unit.bedroomNo === "number") {
-      if (unit.bedroomNo === 0) return "Studio";
-      if (unit.bedroomNo === 1) return "1 Bedroom";
-      if (unit.bedroomNo > 1) return `${unit.bedroomNo} Bedrooms`;
+      if (unit.bedroomNo === 0) return t("standaloneList.filters.types.Studio", "Studio");
+      if (unit.bedroomNo === 1) return `1 ${t("standaloneDetail.specs.room", "Room")}`;
+      if (unit.bedroomNo > 1) return `${unit.bedroomNo} ${t("standaloneDetail.specs.rooms", "Rooms")}`;
     }
-    return "Villa";
+    return t("standaloneList.filters.types.Villa", "Villa");
   };
 
   const categoryBadge = resolveBadgeText();
 
+  const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
+
   const primaryPrice =
-    unit.prices?.find((p) => p.currency.toUpperCase() === "EGP") ||
-    unit.prices?.[0];
+    unit.prices?.find(
+      (p) => p.currency.toUpperCase() === currentCurrency.toUpperCase()
+    ) || unit.prices?.[0];
 
   const priceText = primaryPrice
     ? `${primaryPrice.currency.toUpperCase()} ${Number(primaryPrice.price).toLocaleString()}`
-    : "Price upon inquiry";
+    : t("home.featuredProjects.priceOnRequest", "Price on request");
 
   const locationName = unit.rentalLocation?.name || "Hurghada, Red Sea";
 
@@ -75,7 +81,7 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
         />
 
         {/* Category Badge */}
-        <div className="absolute top-3.5 left-3.5 z-10 rounded-full bg-white/95 px-3 py-1 text-[11px] font-semibold text-[#1B3A6B] shadow-xs backdrop-blur-xs">
+        <div className="absolute top-3.5 start-3.5 z-10 rounded-full bg-white/95 px-3 py-1 text-[11px] font-semibold text-[#1B3A6B] shadow-xs backdrop-blur-xs">
           <span style={{ fontFamily: "var(--font-inter)" }}>{categoryBadge}</span>
         </div>
       </div>
@@ -111,12 +117,22 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
             <span>•</span>
             <div className="flex items-center gap-1">
               <TbBed className="h-3.5 w-3.5 text-[#1B3A6B]" />
-              <span>{unit.bedroomNo || 2} Rooms</span>
+              <span>
+                {unit.bedroomNo || 2}{" "}
+                {(unit.bedroomNo || 2) === 1
+                  ? t("standaloneDetail.specs.room", "Room")
+                  : t("standaloneDetail.specs.rooms", "Rooms")}
+              </span>
             </div>
             <span>•</span>
             <div className="flex items-center gap-1">
               <TbBath className="h-3.5 w-3.5 text-[#1B3A6B]" />
-              <span>{unit.bathroomNo || 2} Baths</span>
+              <span>
+                {unit.bathroomNo || 2}{" "}
+                {(unit.bathroomNo || 2) === 1
+                  ? t("standaloneDetail.specs.bath", "Bath")
+                  : t("standaloneDetail.specs.baths", "Baths")}
+              </span>
             </div>
           </div>
 
@@ -142,16 +158,17 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
         {/* View Details Action Button */}
         <div className="mt-4 pt-1">
           <Link
-            href={`/rent/${unit.id}`}
+            href={`/${locale}/rent/${unit.id}`}
             className="inline-flex w-full items-center justify-center gap-1.5 rounded-[10px] bg-[#1B3A6B] py-2.5 text-xs font-semibold text-white shadow-xs transition-colors hover:bg-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            <span>View Details</span>
-            <FiChevronRight className="h-3.5 w-3.5" />
+            <span>{t("standaloneList.card.viewDetails", "View Details")}</span>
+            <FiChevronRight
+              className={`h-3.5 w-3.5 ${direction === "rtl" ? "rotate-180" : ""}`}
+            />
           </Link>
         </div>
       </div>
     </div>
   );
 }
-

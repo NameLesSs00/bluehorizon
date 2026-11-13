@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useTranslation } from "@/features/i18n/useTranslation";
 
@@ -16,7 +17,10 @@ export default function StandaloneBreadcrumb({ unitName }: StandaloneBreadcrumbP
     segments.length > 0 && ["en", "de", "ar"].includes(segments[0]) ? segments[0] : "en";
 
   return (
-    <nav
+    <motion.nav
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
       aria-label="Breadcrumb"
       className="flex items-center gap-2 text-xs sm:text-sm font-medium text-[#6B7570]"
       style={{ fontFamily: "var(--font-inter)" }}
@@ -32,6 +36,6 @@ export default function StandaloneBreadcrumb({ unitName }: StandaloneBreadcrumbP
       <span className="font-semibold text-[#2B5FA6] line-clamp-1 max-w-xs sm:max-w-md">
         {unitName}
       </span>
-    </nav>
+    </motion.nav>
   );
 }

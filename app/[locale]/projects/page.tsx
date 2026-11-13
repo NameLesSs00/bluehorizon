@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import ProjectsPage from "@/components/UserComp/Projects/ProjectsPage";
 
 export const metadata: Metadata = {
@@ -8,6 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <ProjectsPage />;
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#F0F3FA]" />}>
+      <ProjectsPage />
+    </Suspense>
+  );
 }
 

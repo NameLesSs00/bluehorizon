@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { FiSearch, FiChevronDown, FiRotateCcw } from "react-icons/fi";
@@ -31,12 +31,16 @@ const BEDROOM_OPTIONS = [
 
 const UNIT_TYPE_OPTIONS = [
   { value: "", label: "Any Type" },
-  { value: String(PropertyType.Apartment), label: PROPERTY_TYPE_LABELS[PropertyType.Apartment] },
-  { value: String(PropertyType.Villa), label: PROPERTY_TYPE_LABELS[PropertyType.Villa] },
-  { value: String(PropertyType.Townhouse), label: PROPERTY_TYPE_LABELS[PropertyType.Townhouse] },
-  { value: String(PropertyType.Studio), label: PROPERTY_TYPE_LABELS[PropertyType.Studio] },
-  { value: String(PropertyType.Chalet), label: PROPERTY_TYPE_LABELS[PropertyType.Chalet] },
-  { value: String(PropertyType.Penthouse), label: PROPERTY_TYPE_LABELS[PropertyType.Penthouse] },
+  { value: String(PropertyType.Apartment), label: "Apartment" },
+  { value: String(PropertyType.Villa), label: "Villa" },
+  { value: String(PropertyType.Townhouse), label: "Townhouse" },
+  { value: String(PropertyType.Studio), label: "Studio" },
+  { value: String(PropertyType.Penthouse), label: "Penthouse" },
+  { value: String(PropertyType.Chalet), label: "Chalet" },
+  { value: String(PropertyType.OneBedroom), label: "1 Bedroom" },
+  { value: String(PropertyType.TwoBedroom), label: "2 Bedrooms" },
+  { value: String(PropertyType.ThreeBedroom), label: "3 Bedrooms" },
+  { value: String(PropertyType.FourBedroom), label: "4 Bedrooms" },
 ];
 
 export default function RentalFilterSidebar({

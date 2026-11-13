@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { getStandaloneUnits } from "@/clientApi/standaloneUnitsApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
@@ -12,6 +14,15 @@ interface StandaloneSimilarUnitsProps {
   city?: string;
 }
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, delay: i * 0.1, ease: "easeOut" as const },
+  }),
+};
+
 export default function StandaloneSimilarUnits({
   currentUnitId,
   propertyType,
@@ -19,6 +30,8 @@ export default function StandaloneSimilarUnits({
 }: StandaloneSimilarUnitsProps) {
   const { t, locale } = useTranslation();
   const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   const { data, isLoading } = useQuery({
     queryKey: [
@@ -33,8 +46,6 @@ export default function StandaloneSimilarUnits({
       getStandaloneUnits({
         Language: locale,
         Currency: currentCurrency,
-        // PropertyType: propertyType || undefined,
-        // City: city || undefined,
         PageNumber: 1,
         PageSize: 5,
       }),
@@ -60,7 +71,13 @@ export default function StandaloneSimilarUnits({
       );
 
   return (
-    <section className="mt-16 sm:mt-20">
+    <motion.section
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.55, ease: "easeOut" }}
+      className="mt-16 sm:mt-20"
+    >
       <div className="border-t border-[#D9E2EE] pt-12">
         {/* Section Header */}
         <div>
@@ -78,7 +95,7 @@ export default function StandaloneSimilarUnits({
           </p>
         </div>
 
-        {/* Grid: 3 columns give each card comfortable width */}
+        {/* Grid: 3 columns */}
         {isLoading ? (
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 3 }).map((_, idx) => (
@@ -94,23 +111,27 @@ export default function StandaloneSimilarUnits({
               const isLastOdd =
                 idx === similarUnits.length - 1 && similarUnits.length % 2 !== 0;
               return (
-                <div
+                <motion.div
                   key={item.id}
+                  custom={idx}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
                   className={
                     isLastOdd
                       ? "sm:col-span-2 sm:flex sm:justify-center lg:col-span-1 lg:block lg:justify-normal"
                       : ""
                   }
                 >
-                  <div className={isLastOdd ? "sm:w-1/2 lg:w-full" : ""}>
+                  <div className={isLastOdd ? "sm:w-1/2 lg:w-full" : "w-full"}>
                     <StandaloneUnitCard unit={item} />
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
         )}
       </div>
-    </section>
+    </motion.section>
   );
 }

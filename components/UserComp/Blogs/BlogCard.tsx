@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 export interface BlogCardData {
   id: number;
@@ -18,6 +19,7 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ blog }: BlogCardProps) {
+  const { t, locale, direction } = useTranslation();
   const [imageError, setImageError] = useState(false);
 
   const displayImage =
@@ -25,10 +27,13 @@ export default function BlogCard({ blog }: BlogCardProps) {
       ? blog.imageUrl
       : "/default-fallback.png";
 
-  const blogHref = `/blogs/${encodeURIComponent(blog.title || String(blog.id))}`;
+  const blogHref = `/${locale}/blogs/${encodeURIComponent(blog.title || String(blog.id))}`;
 
   return (
-    <Link className="group flex flex-col overflow-hidden rounded-[24px] border border-[#D9E2EE] bg-white transition-all duration-300 hover:shadow-xl hover:border-[#2B5FA6]/40" href={blogHref}>
+    <Link
+      className="group flex flex-col overflow-hidden rounded-[24px] border border-[#D9E2EE] bg-white transition-all duration-300 hover:shadow-xl hover:border-[#2B5FA6]/40"
+      href={blogHref}
+    >
       {/* Top Image Container */}
       <div className="relative h-[220px] sm:h-[240px] w-full overflow-hidden bg-[#F0F3FA]">
         <Image
@@ -42,10 +47,10 @@ export default function BlogCard({ blog }: BlogCardProps) {
 
         {/* Date Badge Overlay */}
         {blog.date && (
-          <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 rounded-[20px] bg-[#E5ECF6] px-3.5 py-1.5 text-xs font-semibold text-[#2B5FA6]">
+          <div className="absolute top-4 start-4 z-10 flex items-center gap-1.5 rounded-[20px] bg-[#E5ECF6] px-3.5 py-1.5 text-xs font-semibold text-[#2B5FA6]">
             <Image
               src="/Blogs/svg (3).svg"
-              alt="Calendar"
+              alt=""
               width={14}
               height={14}
               className="shrink-0"
@@ -97,13 +102,14 @@ export default function BlogCard({ blog }: BlogCardProps) {
               alt=""
               width={18}
               height={18}
-              className="shrink-0 transition-transform duration-200 group-hover:translate-x-1"
+              className={`shrink-0 transition-transform duration-200 group-hover:translate-x-1 ${
+                direction === "rtl" ? "scale-x-[-1]" : ""
+              }`}
             />
-            <span>Read More</span>
+            <span>{t("home.blogs.readMore", "Read More")}</span>
           </span>
         </div>
       </div>
     </Link>
   );
 }
-
