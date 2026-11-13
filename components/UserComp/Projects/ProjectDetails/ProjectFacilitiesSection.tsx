@@ -34,30 +34,21 @@ function resolveFacilityIcon(name: string): string {
   return "/Projectdetails/fac-ic.svg";
 }
 
-const REFERENCE_FACILITIES = [
-  { id: "fac-1", name: "Lagoon", iconSrc: "/Projectdetails/fac-ic.svg" },
-  { id: "fac-2", name: "Swimming Pools", iconSrc: "/Projectdetails/fac-ic (1).svg" },
-  { id: "fac-3", name: "Beach Access", iconSrc: "/Projectdetails/fac-ic (7).svg" },
-  { id: "fac-4", name: "Clubhouse", iconSrc: "/Projectdetails/fac-ic (2).svg" },
-  { id: "fac-5", name: "Restaurants", iconSrc: "/Projectdetails/fac-ic (6).svg" },
-  { id: "fac-6", name: "Cafés", iconSrc: "/Projectdetails/fac-ic (3).svg" },
-  { id: "fac-7", name: "Gym & Fitness", iconSrc: "/Projectdetails/fac-ic (5).svg" },
-  { id: "fac-8", name: "Spa & Wellness", iconSrc: "/Projectdetails/fac-ic (4).svg" },
-];
-
 export default function ProjectFacilitiesSection({
   facilities,
 }: ProjectFacilitiesSectionProps) {
-  const displayItems =
-    facilities && facilities.length > 0
-      ? facilities.map((f) => ({
-          id: f.id,
-          name: f.name,
-          iconSrc: resolveFacilityIcon(f.name),
-        }))
-      : REFERENCE_FACILITIES;
+  // If no real facilities exist from backend, hide the section entirely
+  if (!facilities || facilities.length === 0) {
+    return null;
+  }
 
-  const countBadge = `${displayItems.length}+ Amenities Available`;
+  const displayItems = facilities.map((f) => ({
+    id: f.id,
+    name: f.name,
+    iconSrc: resolveFacilityIcon(f.name),
+  }));
+
+  const countBadge = `${displayItems.length} Amenities Available`;
 
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-14 sm:mt-16">
@@ -89,7 +80,7 @@ export default function ProjectFacilitiesSection({
           </div>
         </div>
 
-        {/* 8 Facility Cards Grid */}
+        {/* Facility Cards Grid */}
         <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
           {displayItems.map((facility) => (
             <div

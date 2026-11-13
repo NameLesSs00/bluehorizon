@@ -66,8 +66,9 @@ export default function ProjectDetailsPage({ id }: ProjectDetailsPageProps) {
           title={project?.name}
         />
         <ProjectFacilitiesSection facilities={project?.facilities} />
-        <ProjectPaymentPlansSection />
+        <ProjectPaymentPlansSection projectId={project?.id} />
         <ProjectAvailableUnitsSection
+          projectId={project?.id}
           locationOrProjectName={project?.locationName || project?.name}
         />
       </main>

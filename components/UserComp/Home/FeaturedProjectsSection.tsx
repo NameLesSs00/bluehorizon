@@ -41,7 +41,7 @@ function formatProjectCard(item: ProjectItem): ProjectCardData {
   const propertyTypes =
     item.projectTypes && item.projectTypes.length > 0
       ? item.projectTypes.map((t) => t.name).join(" & ")
-      : "Luxury Residences";
+      : "";
 
   const specsSummary =
     item.furnitureType === "Fully" || item.furnitureType === 2
@@ -64,7 +64,7 @@ function formatProjectCard(item: ProjectItem): ProjectCardData {
     id: String(item.id),
     badge,
     title: item.name,
-    location: item.locationName || "Hurghada, Red Sea",
+    location: item.locationName || "",
     price: priceText,
     propertyTypes,
     specsSummary,

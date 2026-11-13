@@ -26,8 +26,6 @@ const INITIAL_FILTERS: AreaProjectsFilterState = {
   maxPrice: "",
 };
 
-
-
 export default function AreaAvailableProjectsSection({
   areaId,
   areaName,
@@ -37,8 +35,9 @@ export default function AreaAvailableProjectsSection({
     useState<AreaProjectsFilterState>(INITIAL_FILTERS);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const displayName = areaName || "Sahl Hasheesh";
-  const headingText = `Available Projects in ${displayName}`;
+  const headingText = areaName
+    ? `Available Projects in ${areaName}`
+    : "Available Projects";
 
   // Query pre-existing public projects hook for this location
   const { data: projectsData, isLoading } = usePublicProjectsQuery({
@@ -57,7 +56,7 @@ export default function AreaAvailableProjectsSection({
       const priceText =
         typeof minPrice === "number" && minPrice > 0
           ? `${currency} ${minPrice.toLocaleString()}`
-          : "EGP 4,500,000";
+          : "Price on request";
 
       const rawImg = item.imageUrls?.[0];
       const resolvedImg = getFullProjectImageUrl(rawImg);
@@ -65,7 +64,7 @@ export default function AreaAvailableProjectsSection({
       return {
         id: item.id,
         title: item.name,
-        description: item.description || "A luxury living experience.",
+        description: item.description || "",
         priceFormatted: priceText,
         imageSrc: resolvedImg || "/default-fallback.png",
         isFallback: !resolvedImg,
@@ -155,51 +154,52 @@ export default function AreaAvailableProjectsSection({
           )}
 
           {/* Pagination Controls */}
-          <div className="mt-10 flex items-center justify-center gap-2">
-            <button
-              type="button"
-              disabled={currentPage <= 1}
-              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-              aria-label="Previous Page"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E1E7E3] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F3F5F3] disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              &lt;
-            </button>
+          {totalPages > 1 && (
+            <div className="mt-10 flex items-center justify-center gap-2">
+              <button
+                type="button"
+                disabled={currentPage <= 1}
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                aria-label="Previous Page"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E1E7E3] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F3F5F3] disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                &lt;
+              </button>
 
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-              (pageNum) => {
-                const isActive = pageNum === currentPage;
-                return (
-                  <button
-                    key={pageNum}
-                    type="button"
-                    onClick={() => setCurrentPage(pageNum)}
-                    className={`flex h-9 w-9 items-center justify-center rounded-lg text-xs font-semibold transition-colors ${
-                      isActive
-                        ? "bg-[#145C4B] text-white"
-                        : "border border-[#E1E7E3] bg-white text-[#202326] hover:bg-[#F3F5F3]"
-                    }`}
-                    style={{ fontFamily: "var(--font-inter)" }}
-                  >
-                    {pageNum}
-                  </button>
-                );
-              }
-            )}
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (pageNum) => {
+                  const isActive = pageNum === currentPage;
+                  return (
+                    <button
+                      key={pageNum}
+                      type="button"
+                      onClick={() => setCurrentPage(pageNum)}
+                      className={`flex h-9 w-9 items-center justify-center rounded-lg text-xs font-semibold transition-colors ${
+                        isActive
+                          ? "bg-[#145C4B] text-white"
+                          : "border border-[#E1E7E3] bg-white text-[#202326] hover:bg-[#F3F5F3]"
+                      }`}
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      {pageNum}
+                    </button>
+                  );
+                }
+              )}
 
-            <button
-              type="button"
-              disabled={currentPage >= totalPages}
-              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-              aria-label="Next Page"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E1E7E3] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F3F5F3] disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              &gt;
-            </button>
-          </div>
+              <button
+                type="button"
+                disabled={currentPage >= totalPages}
+                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                aria-label="Next Page"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E1E7E3] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F3F5F3] disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                &gt;
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>
   );
 }
-

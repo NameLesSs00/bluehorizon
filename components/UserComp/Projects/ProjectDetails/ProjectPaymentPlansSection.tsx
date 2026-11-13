@@ -1,4 +1,9 @@
-interface PaymentPlanItem {
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
+import { fetchPaymentPlans } from "@/clientApi/paymentPlansApi";
+
+interface PaymentPlanDisplayItem {
   id: string | number;
   planName: string;
   badge: string;
@@ -10,45 +15,61 @@ interface PaymentPlanItem {
 }
 
 interface ProjectPaymentPlansSectionProps {
-  plans?: PaymentPlanItem[];
+  projectId?: number;
+  plans?: PaymentPlanDisplayItem[];
 }
 
-const UI_PLANS: PaymentPlanItem[] = [
-  {
-    id: "plan-01",
-    planName: "Plan 01",
-    badge: "Default Plan",
-    downPayment: "25%",
-    installments: "6 Years",
-    maintenance: "10%",
-    cashDiscount: "30%",
-    isFeatured: true,
-  },
-  {
-    id: "plan-02",
-    planName: "Plan 02",
-    badge: "Flexible",
-    downPayment: "15%",
-    installments: "5 Years",
-    maintenance: "10%",
-    cashDiscount: "30%",
-    isFeatured: false,
-  },
-  {
-    id: "plan-03",
-    planName: "Plan 03",
-    badge: "Extended",
-    downPayment: "10%",
-    installments: "4 Years",
-    maintenance: "10%",
-    cashDiscount: "30%",
-    isFeatured: false,
-  },
-];
-
 export default function ProjectPaymentPlansSection({
-  plans = UI_PLANS,
+  projectId,
+  plans: propPlans,
 }: ProjectPaymentPlansSectionProps) {
+  // Query real payment plans from backend API if projectId is provided
+  const { data: plansData, isLoading } = useQuery({
+    queryKey: ["payment-plans", "public", projectId],
+    queryFn: () =>
+      fetchPaymentPlans({
+        projectId: projectId!,
+        PageNumber: 1,
+        PageSize: 10,
+      }),
+    enabled: typeof projectId === "number" && projectId > 0,
+    staleTime: 1000 * 60 * 5,
+  });
+
+  const apiPlans: PaymentPlanDisplayItem[] = (plansData?.items || []).map(
+    (item, idx) => {
+      const downPaymentVal = item.downPayment?.usd
+        ? `$ ${item.downPayment.usd.toLocaleString()}`
+        : item.downPayment?.egp
+        ? `EGP ${item.downPayment.egp.toLocaleString()}`
+        : "N/A";
+
+      const installmentText = item.installmentYears
+        ? `${item.installmentYears} Years`
+        : item.installmentMonths
+        ? `${item.installmentMonths} Months`
+        : "Flexible";
+
+      return {
+        id: item.id,
+        planName: item.paymentType === "Cash" ? "Cash Plan" : `Plan 0${idx + 1}`,
+        badge: item.status || item.paymentType,
+        downPayment: downPaymentVal,
+        installments: installmentText,
+        maintenance: `${item.commissionRate || 0}%`,
+        cashDiscount: item.paymentType === "Cash" ? "Available" : "N/A",
+        isFeatured: idx === 0,
+      };
+    }
+  );
+
+  const plans = propPlans || apiPlans;
+
+  // If no real plans are provided or returned, hide the section entirely
+  if (!isLoading && plans.length === 0) {
+    return null;
+  }
+
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-14 sm:mt-16">
       {/* Header */}
@@ -73,7 +94,7 @@ export default function ProjectPaymentPlansSection({
         </p>
       </div>
 
-      {/* 3 Plans Grid */}
+      {/* Plans Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {plans.map((plan) => {
           const isFeatured = Boolean(plan.isFeatured);

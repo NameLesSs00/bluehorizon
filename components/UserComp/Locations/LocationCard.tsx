@@ -25,8 +25,6 @@ export default function LocationCard({ location, region }: LocationCardProps) {
       ? resolvedImageUrl
       : "/default-fallback.png";
 
-  const displayRegion = region || "Red Sea";
-
   return (
     <Link
       href={`/areas/${location.id}`}
@@ -42,7 +40,7 @@ export default function LocationCard({ location, region }: LocationCardProps) {
         className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
       />
 
-      {/* Specified Linear Gradient Overlay */}
+      {/* Linear Gradient Overlay */}
       <div
         className="absolute inset-0 z-10"
         style={{
@@ -51,10 +49,12 @@ export default function LocationCard({ location, region }: LocationCardProps) {
         }}
       />
 
-      {/* Top Left Region Badge */}
-      <div className="absolute top-5 left-5 z-20 rounded-full bg-white/95 px-3.5 py-1 text-xs font-semibold text-[#145C4B] shadow-sm backdrop-blur-sm">
-        <span style={{ fontFamily: "var(--font-inter)" }}>{displayRegion}</span>
-      </div>
+      {/* Top Left Region Badge - only render if real region is provided */}
+      {region && (
+        <div className="absolute top-5 left-5 z-20 rounded-full bg-white/95 px-3.5 py-1 text-xs font-semibold text-[#145C4B] shadow-sm backdrop-blur-sm">
+          <span style={{ fontFamily: "var(--font-inter)" }}>{region}</span>
+        </div>
+      )}
 
       {/* Bottom Content Area */}
       <div className="absolute bottom-0 left-0 right-0 z-20 flex items-end justify-between gap-4 p-5 sm:p-6">
@@ -87,4 +87,3 @@ export default function LocationCard({ location, region }: LocationCardProps) {
     </Link>
   );
 }
-

@@ -116,17 +116,17 @@ export default function BlogDetailsPage({ name }: BlogDetailsPageProps) {
             day: "numeric",
             year: "numeric",
           })
-        : "Recent";
+        : "";
 
       return {
         id: item.id,
         title: item.title,
-        category: (item as unknown as { category?: string })?.category || "Article",
+        category: (item as unknown as { category?: string })?.category || "",
         date: itemFormattedDate,
         description:
           item.sections?.[0]?.content ||
           item.sections?.[0]?.tittle ||
-          "Read more about this article.",
+          "",
         imageUrl: getFullImageUrl(item.imageUrl),
       };
     });
