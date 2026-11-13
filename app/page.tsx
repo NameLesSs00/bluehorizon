@@ -1,5 +1,6 @@
-import HomePage from "@/components/UserComp/Home/HomePage";
+import { redirect } from "next/navigation";
+import { DEFAULT_LOCALE } from "@/features/i18n/i18nConfig";
 
-export default function Page() {
-  return <HomePage />;
+export default function RootPage() {
+  redirect(`/${DEFAULT_LOCALE}`);
 }

@@ -26,9 +26,21 @@ export default function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const segments = pathname ? pathname.split("/").filter(Boolean) : [];
+  const currentLocale =
+    segments.length > 0 && (segments[0] === "en" || segments[0] === "de" || segments[0] === "ar")
+      ? segments[0]
+      : "en";
+
+  const localizedHref = (href: string) => {
+    if (href === "/") return `/${currentLocale}`;
+    return `/${currentLocale}${href.startsWith("/") ? href : `/${href}`}`;
+  };
+
   const isActive = (href: string) => {
-    if (href === "/" && pathname === "/") return true;
-    if (href !== "/" && pathname.startsWith(href)) return true;
+    const target = localizedHref(href);
+    if (href === "/" && (pathname === "/" || pathname === `/${currentLocale}`)) return true;
+    if (href !== "/" && (pathname === target || pathname.startsWith(`${target}/`))) return true;
     return false;
   };
 
@@ -36,7 +48,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-[#E1E7E3]/70 bg-white/95 backdrop-blur-md">
       <div className="mx-auto flex h-20 sm:h-24 w-full max-w-[1360px] items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="relative block h-14 w-44 sm:h-16 sm:w-56 md:h-16 md:w-60 shrink-0">
+        <Link href={localizedHref("/")} className="relative block h-14 w-44 sm:h-16 sm:w-56 md:h-16 md:w-60 shrink-0">
           <Image
             src="/logo.svg"
             alt="Blue Horizon"
@@ -57,7 +69,7 @@ export default function Navbar() {
             return (
               <Link
                 key={item.href}
-                href={item.href}
+                href={localizedHref(item.href)}
                 className={`relative py-1 text-sm transition-colors ${
                   active
                     ? "font-semibold text-[#145C4B]"
@@ -83,7 +95,7 @@ export default function Navbar() {
 
           {/* Contact Us Button */}
           <Link
-            href="/contact"
+            href={localizedHref("/contact")}
             className="flex h-10 items-center justify-center rounded-full bg-[#0F473A] px-5 text-xs sm:text-sm font-semibold text-white transition-colors hover:bg-[#145C4B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
@@ -131,7 +143,7 @@ export default function Navbar() {
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
-                href={item.href}
+                href={localizedHref(item.href)}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`py-2 text-sm font-medium ${
                   isActive(item.href)
@@ -144,7 +156,7 @@ export default function Navbar() {
             ))}
             <div className="pt-3 border-t border-[#E1E7E3]">
               <Link
-                href="/contact"
+                href={localizedHref("/contact")}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex h-10 w-full items-center justify-center rounded-full bg-[#145C4B] text-sm font-semibold text-white"
               >

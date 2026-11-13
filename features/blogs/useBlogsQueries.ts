@@ -37,6 +37,19 @@ export function useBlogsQuery(params?: BlogsQueryParams) {
   });
 }
 
+export function usePublicBlogsQuery(params?: BlogsQueryParams) {
+  return useQuery({
+    queryKey: [
+      "publicBlogs",
+      params?.Language || "en",
+      params?.PageNumber || 1,
+      params?.PageSize || 3,
+    ],
+    queryFn: () => getBlogs(params),
+    staleTime: 1000 * 60 * 5,
+  });
+}
+
 export function useCreateBlogMutation(
   onSuccessCallback?: (createdId: number) => void
 ) {

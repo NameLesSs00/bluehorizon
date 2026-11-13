@@ -64,12 +64,12 @@ export default function BlogCard({ blog }: BlogCardProps) {
           </div>
 
           {/* Title */}
-          <h2
+          <h3
             className="line-clamp-2 text-lg sm:text-[19px] font-bold text-[#202326] leading-snug group-hover:text-[#145C4B] transition-colors"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            <Link href={blogHref}>{blog.title}</Link>
-          </h2>
+            {blog.title}
+          </h3>
 
           {/* Excerpt */}
           <p
@@ -82,9 +82,8 @@ export default function BlogCard({ blog }: BlogCardProps) {
 
         {/* Read More Action */}
         <div className="mt-6 pt-2">
-          <Link
-            href={blogHref}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#145C4B] transition-colors hover:text-[#0F473A]"
+          <span
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#145C4B] transition-colors group-hover:text-[#0F473A]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <Image
@@ -95,7 +94,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
               className="shrink-0 transition-transform duration-200 group-hover:translate-x-1"
             />
             <span>Read More</span>
-          </Link>
+          </span>
         </div>
       </div>
     </Link>

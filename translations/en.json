@@ -1,0 +1,72 @@
+{
+  "common": {
+    "nav": {
+      "home": "Home",
+      "projects": "Projects",
+      "standalone": "Standalone",
+      "rent": "Rent",
+      "blogs": "Blogs",
+      "aboutUs": "About Us",
+      "contactUs": "Contact Us"
+    },
+    "search": {
+      "categories": "Categories",
+      "propertyType": "Property Type",
+      "priceRange": "Price Range",
+      "area": "Area",
+      "searchProperties": "Search Properties",
+      "anyCategory": "Any Category",
+      "allTypes": "All Types",
+      "anyArea": "Any Area",
+      "buy": "Buy",
+      "rent": "Rent",
+      "standalone": "Standalone"
+    },
+    "footer": {
+      "tagline": "Discover exceptional properties and premium developments designed around your lifestyle.",
+      "quickLinks": "Quick Links",
+      "contactInfo": "Contact Information",
+      "allRightsReserved": "All rights reserved."
+    }
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "FIND YOUR PLACE",
+      "headingLine1": "Find Your Place.",
+      "headingLine2": "Invest in Your Future.",
+      "subtitle": "Discover exceptional properties, premium developments, and opportunities designed around your lifestyle.",
+      "exploreProperties": "Explore Properties",
+      "discoverProjects": "Discover Our Projects"
+    },
+    "popularAreas": {
+      "eyebrow": "FIND YOUR NEIGHBORHOOD",
+      "heading": "Explore Popular Areas",
+      "subtitle": "Discover top Places and find your ideal Area.",
+      "discoverAll": "Discover all areas",
+      "propertiesCount": "Properties"
+    },
+    "featuredProjects": {
+      "eyebrow": "FEATURED OPPORTUNITIES",
+      "heading": "Explore Featured Projects",
+      "subtitle": "Discover premier developments and high-yield investment properties.",
+      "viewAll": "View all projects"
+    }
+  },
+  "about": {
+    "title": "About Blue Horizon",
+    "subtitle": "Redefining coastal and luxury living across the Red Sea."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Our property advisors are ready to assist you with every step."
+  },
+  "blogs": {
+    "title": "Articles & Market Insights",
+    "subtitle": "Stay informed with our latest real estate updates and expert analysis."
+  },
+  "locations": {
+    "title": "Prime Coastal & Urban Locations",
+    "subtitle": "Explore premier real estate investment destinations across Egypt."
+  }
+}
+

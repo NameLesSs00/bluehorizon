@@ -3,6 +3,8 @@ import HomeHeroSection from "./Hero/HomeHeroSection";
 import FeaturedProjectsSection from "./FeaturedProjectsSection";
 import PopularAreasSection from "./PopularAreasSection";
 import WhyBlueHorizonSection from "./WhyBlueHorizonSection";
+import PopularRentalLocationsSection from "./PopularRentalLocationsSection";
+import HomeBlogsSection from "./HomeBlogsSection";
 import FaqsSection from "./FaqsSection";
 import DreamHomeSection from "./DreamHomeSection";
 import Footer from "@/components/UserComp/Common/Footer";
@@ -19,6 +21,8 @@ export default function HomePage() {
         <PopularAreasSection />
         <FeaturedProjectsSection />
         <WhyBlueHorizonSection />
+        <PopularRentalLocationsSection />
+        <HomeBlogsSection />
         <FaqsSection />
         <DreamHomeSection />
       </main>

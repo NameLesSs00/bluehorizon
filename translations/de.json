@@ -1,0 +1,72 @@
+{
+  "common": {
+    "nav": {
+      "home": "Startseite",
+      "projects": "Projekte",
+      "standalone": "Freistehend",
+      "rent": "Mieten",
+      "blogs": "Blog",
+      "aboutUs": "Über uns",
+      "contactUs": "Kontakt"
+    },
+    "search": {
+      "categories": "Kategorien",
+      "propertyType": "Immobilientyp",
+      "priceRange": "Preisspanne",
+      "area": "Standort",
+      "searchProperties": "Immobilien suchen",
+      "anyCategory": "Alle Kategorien",
+      "allTypes": "Alle Typen",
+      "anyArea": "Alle Standorte",
+      "buy": "Kaufen",
+      "rent": "Mieten",
+      "standalone": "Freistehend"
+    },
+    "footer": {
+      "tagline": "Entdecken Sie erstklassige Immobilien und Premium-Projekte für Ihren Lebensstil.",
+      "quickLinks": "Schnelllinks",
+      "contactInfo": "Kontaktinformationen",
+      "allRightsReserved": "Alle Rechte vorbehalten."
+    }
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "FINDEN SIE IHR ZUHAUSE",
+      "headingLine1": "Finden Sie Ihr Zuhause.",
+      "headingLine2": "Investieren Sie in Ihre Zukunft.",
+      "subtitle": "Entdecken Sie außergewöhnliche Immobilien, Premium-Projekte und Chancen für Ihren Lebensstil.",
+      "exploreProperties": "Immobilien entdecken",
+      "discoverProjects": "Projekte entdecken"
+    },
+    "popularAreas": {
+      "eyebrow": "FINDEN SIE IHRE UMGEBUNG",
+      "heading": "Beliebte Regionen entdecken",
+      "subtitle": "Entdecken Sie Top-Lagen und finden Sie Ihr ideales Gebiet.",
+      "discoverAll": "Alle Gebiete entdecken",
+      "propertiesCount": "Immobilien"
+    },
+    "featuredProjects": {
+      "eyebrow": "TOP-ANGEBOTE",
+      "heading": "Ausgewählte Projekte entdecken",
+      "subtitle": "Entdecken Sie erstklassige Entwicklungen und renditestarke Anlageobjekte.",
+      "viewAll": "Alle Projekte anzeigen"
+    }
+  },
+  "about": {
+    "title": "Über Blue Horizon",
+    "subtitle": "Luxus- und Küstenwohnen am Roten Meer neu definiert."
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Unsere Immobilienberater unterstützen Sie bei jedem Schritt."
+  },
+  "blogs": {
+    "title": "Artikel & Markteinblicke",
+    "subtitle": "Bleiben Sie auf dem Laufenden mit aktuellen Marktanalysen und Fachartikeln."
+  },
+  "locations": {
+    "title": "Erstklassige Standorte",
+    "subtitle": "Entdecken Sie erstklassige Immobilieninvestitionsziele in ganz Ägypten."
+  }
+}
+
