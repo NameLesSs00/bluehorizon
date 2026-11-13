@@ -54,11 +54,147 @@
   },
   "about": {
     "title": "About Blue Horizon",
-    "subtitle": "Redefining coastal and luxury living across the Red Sea."
+    "subtitle": "Redefining coastal and luxury living across the Red Sea.",
+    "hero": {
+      "pill": "PREMIER REAL ESTATE CONSULTANCY",
+      "heading": "Redefining Real Estate Excellence in the Red Sea",
+      "description": "Empower your property investments with trusted guidance, seamless digital search and deep local expertise across Egypt's most sought-after coastal and urban destinations.",
+      "exploreProjects": "Explore Projects",
+      "talkAdvisor": "Talk to an Advisor",
+      "breadcrumbHome": "Home",
+      "breadcrumbAbout": "About Us"
+    },
+    "metrics": {
+      "yearsExperience": "YEARS EXPERIENCE",
+      "propertyVolume": "PROPERTY VOLUME",
+      "happyHomeowners": "HAPPY HOMEOWNERS",
+      "clientSatisfaction": "CLIENT SATISFACTION"
+    },
+    "visionMission": {
+      "eyebrow": "CORE PURPOSE",
+      "heading": "Guided by Integrity & Innovation",
+      "description": "Building long-term client trust through complete transparency and data-backed real estate consulting.",
+      "vision": {
+        "title": "Our Vision",
+        "description": "To be the leading, most trusted digital real estate ecosystem across the Red Sea and Egypt, seamlessly connecting homebuyers, international investors and property developers with unrivaled market intelligence.",
+        "point1": "Pioneering digital property discovery tools",
+        "point2": "Elevating Egyptian coastal real estate on global stages"
+      },
+      "mission": {
+        "title": "Our Mission",
+        "description": "To empower clients with transparent advice, personalized portfolio matching and zero-friction legal protection throughout every phase of property acquisition, management and resale.",
+        "point1": "End-to-end buyer security and legal verification",
+        "point2": "Maximizing capital appreciation and rental yield returns"
+      }
+    },
+    "offer": {
+      "eyebrow": "TAILORED SOLUTIONS",
+      "heading": "What We Offer?",
+      "description": "Comprehensive end-to-end services tailored for homebuyers, private owners and institutional real estate investors.",
+      "offPlan": {
+        "title": "Exclusive Off-Plan Projects",
+        "description": "Direct launch access to top master-planned coastal resorts and gated communities with zero buyer commission."
+      },
+      "resaleVillas": {
+        "title": "Standalone Resale Villas",
+        "description": "Vetted luxury homes, standalone beachfront villas and ready-to-move twin houses across prime destinations."
+      },
+      "rentalMgmt": {
+        "title": "High-Yield Rental Management",
+        "description": "Complete hands-free rental services including guest management, short-term holiday leasing and regular payouts."
+      },
+      "legalAdvisory": {
+        "title": "Legal & Investment Advisory",
+        "description": "In-house legal experts reviewing ownership deeds, developer contracts and tax guidance for foreign investors."
+      },
+      "valuation": {
+        "title": "Valuation & Market Insights",
+        "description": "Data-driven valuation models and quarterly market reports helping buyers time their entry and exit points."
+      },
+      "concierge": {
+        "title": "VIP Concierge & Relocation",
+        "description": "Dedicated assistance for international buyers including airport transfers, site inspections and utility setup."
+      }
+    },
+    "process": {
+      "eyebrow": "STRUCTURED PROCESS",
+      "heading": "Your Property Journey Starts With Us",
+      "description": "A streamlined 4-step path designed to eliminate stress and guarantee peace of mind.",
+      "step1": {
+        "title": "Discover & Consult",
+        "description": "We analyze your lifestyle preferences and financial goals to curate a targeted shortlist of primary and coastal properties."
+      },
+      "step2": {
+        "title": "Private & Virtual Tours",
+        "description": "Experience hosted on-site walkthroughs or immersive HD 3D virtual tours with our dedicated area specialists."
+      },
+      "step3": {
+        "title": "Legal Shield & Terms",
+        "description": "Our legal advisors review contracts, developer escrow clauses and payment plans for total financial security."
+      },
+      "step4": {
+        "title": "Handover & Yield Mgmt",
+        "description": "From key collection to long-term tenant placement and property management, we stay by your side post-handover."
+      }
+    },
+    "cta": {
+      "pill": "GET IN TOUCH TODAY",
+      "heading": "Ready to Find Your Next Luxury Home or High-Yield Investment?",
+      "description": "Speak with our real estate specialists today for a private consultation, virtual walkthrough or customized investment portfolio presentation.",
+      "scheduleCall": "Schedule a Call",
+      "exploreProjects": "Explore Projects"
+    }
   },
   "contact": {
     "title": "Contact Us",
-    "subtitle": "Our property advisors are ready to assist you with every step."
+    "subtitle": "Our property advisors are ready to assist you with every step.",
+    "hero": {
+      "pill": "WE'RE HERE TO HELP",
+      "heading": "Get in Touch with Us",
+      "description": "We are here to help you find your dream luxury property across prime coastal and urban destinations. Reach out for consultations, site visits, or investment guidance.",
+      "breadcrumbHome": "Home",
+      "breadcrumbContact": "Contact Us"
+    },
+    "channels": {
+      "eyebrow": "DIRECT REACH",
+      "heading": "Our Contact Information",
+      "description": "Have a question about a compound, resale unit, or rental investment? Connect with our dedicated property advisors through any of the channels below.",
+      "phoneLabel": "PHONE NUMBERS",
+      "emailLabel": "EMAIL ADDRESSES",
+      "officeLabel": "OUR OFFICE",
+      "hoursLabel": "WORKING HOURS",
+      "followChannels": "Follow Our Channels:"
+    },
+    "form": {
+      "eyebrow": "SEND AN INQUIRY",
+      "heading": "How Can We Help You?",
+      "description": "Fill out your details and our senior property advisor will reach out within 2 hours.",
+      "firstName": "First Name *",
+      "lastName": "Last Name *",
+      "phone": "Phone Number *",
+      "email": "Email Address *",
+      "message": "Message or Preferred Unit Details *",
+      "firstNamePlaceholder": "e.g. Ahmed",
+      "lastNamePlaceholder": "e.g. Hassan",
+      "phonePlaceholder": "+20 100 000 0000",
+      "emailPlaceholder": "name@example.com",
+      "messagePlaceholder": "Tell us about the area, property type, or payment plan you are looking for...",
+      "sendInquiry": "Send Inquiry",
+      "sending": "Sending...",
+      "privacyNote": "Your information is kept strictly confidential and protected under our privacy terms."
+    },
+    "office": {
+      "eyebrow": "VISIT OUR OFFICE",
+      "heading": "Our Office Location",
+      "badge": "Hurghada Head Office"
+    },
+    "cta": {
+      "pill": "NEED IMMEDIATE ANSWERS?",
+      "heading": "Speak to a Senior Specialist Now",
+      "description": "Our hotline is available 6 days a week for urgent property inquiries and tour bookings.",
+      "whatsapp": "WhatsApp Chat",
+      "call": "Call"
+    }
   },
   "blogs": {
     "title": "Articles & Market Insights",
@@ -69,4 +205,3 @@
     "subtitle": "Explore premier real estate investment destinations across Egypt."
   }
 }
-

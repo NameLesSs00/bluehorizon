@@ -1,6 +1,7 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   FaFacebookF,
   FaInstagram,
@@ -8,6 +9,11 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { usePublicSiteSettingsQuery } from "@/features/keyValues/useKeyValuesQueries";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import {
+  containerStaggerVariants,
+  cardItemVariants,
+} from "@/shared/utils/animations";
 
 interface ContactChannel {
   icon: string;
@@ -19,6 +25,8 @@ interface ContactChannel {
 }
 
 export default function ContactInfoChannels() {
+  const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
   const { data: settingsData, isLoading } = usePublicSiteSettingsQuery();
   const settings = settingsData?.map || {};
 
@@ -38,19 +46,19 @@ export default function ContactInfoChannels() {
   const channels: ContactChannel[] = [
     {
       icon: "/ContactUs/icon-box.svg",
-      label: "PHONE NUMBERS",
+      label: t("contact.channels.phoneLabel"),
       value: phone,
       href: cleanPhone ? `tel:${cleanPhone}` : undefined,
     },
     {
       icon: "/ContactUs/icon-box (1).svg",
-      label: "EMAIL ADDRESSES",
+      label: t("contact.channels.emailLabel"),
       value: email,
       href: email ? `mailto:${email}` : undefined,
     },
     {
       icon: "/ContactUs/icon-box (2).svg",
-      label: "OUR OFFICE",
+      label: t("contact.channels.officeLabel"),
       value: address,
       href: googleMapsUrl || undefined,
       target: "_blank",
@@ -58,7 +66,7 @@ export default function ContactInfoChannels() {
     },
     {
       icon: "/ContactUs/icon-box (3).svg",
-      label: "WORKING HOURS",
+      label: t("contact.channels.hoursLabel"),
       value: workingHours,
     },
   ];
@@ -69,27 +77,31 @@ export default function ContactInfoChannels() {
         className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]"
         style={{ fontFamily: "var(--font-inter)" }}
       >
-        DIRECT REACH
+        {t("contact.channels.eyebrow")}
       </p>
 
       <h2
         className="mt-2 text-[26px] sm:text-[30px] font-bold leading-tight tracking-tight text-[#202326]"
         style={{ fontFamily: "var(--font-manrope)" }}
       >
-        Our Contact Information
+        {t("contact.channels.heading")}
       </h2>
 
       <p
         className="mt-3 text-[13.5px] font-normal leading-[1.65] text-[#6B7570]"
         style={{ fontFamily: "var(--font-inter)" }}
       >
-        Have a question about a compound, resale unit, or rental
-        investment? Connect with our dedicated property advisors through
-        any of the channels below.
+        {t("contact.channels.description")}
       </p>
 
       {/* 4 Contact Cards */}
-      <div className="mt-8 space-y-3.5">
+      <motion.div
+        initial={shouldReduceMotion ? false : "hidden"}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={containerStaggerVariants}
+        className="mt-8 space-y-3.5"
+      >
         {isLoading ? (
           [1, 2, 3, 4].map((i) => (
             <div
@@ -108,7 +120,10 @@ export default function ContactInfoChannels() {
             .filter((item) => Boolean(item.value))
             .map((item) => {
               const content = (
-                <div className="flex items-center gap-4 rounded-[18px] border border-[#D9E2EE] bg-white p-4 sm:p-5 transition-all duration-200 hover:border-[#2B5FA6]/40 hover:shadow-xs">
+                <motion.div
+                  variants={cardItemVariants}
+                  className="flex items-center gap-4 rounded-[18px] border border-[#D9E2EE] bg-white p-4 sm:p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#2B5FA6]/40 hover:shadow-xs"
+                >
                   <div className="relative h-12 w-12 shrink-0">
                     <Image
                       src={item.icon}
@@ -133,7 +148,7 @@ export default function ContactInfoChannels() {
                       {item.value}
                     </span>
                   </div>
-                </div>
+                </motion.div>
               );
 
               return item.href ? (
@@ -151,7 +166,7 @@ export default function ContactInfoChannels() {
               );
             })
         )}
-      </div>
+      </motion.div>
 
       {/* Social Channels Bar */}
       <div className="mt-4 flex items-center justify-between rounded-[18px] border border-[#D9E2EE] bg-white p-4 sm:p-5 shadow-xs">
@@ -159,7 +174,7 @@ export default function ContactInfoChannels() {
           className="text-[13px] sm:text-[14px] font-bold text-[#202326]"
           style={{ fontFamily: "var(--font-manrope)" }}
         >
-          Follow Our Channels:
+          {t("contact.channels.followChannels")}
         </span>
 
         <div className="flex items-center gap-2.5">

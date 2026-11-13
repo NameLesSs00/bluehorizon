@@ -1,7 +1,16 @@
-﻿import Image from "next/image";
+"use client";
+
 import Link from "next/link";
+import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
+import { motion, useReducedMotion } from "framer-motion";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { fadeInUpVariants } from "@/shared/utils/animations";
 
 export default function ContactHeroSection() {
+  const { t, locale, direction } = useTranslation();
+  const isRtl = direction === "rtl";
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 pt-4 sm:px-6 sm:pt-6 lg:px-8">
       {/* Breadcrumb Navigation */}
@@ -11,35 +20,46 @@ export default function ContactHeroSection() {
         style={{ fontFamily: "var(--font-inter)" }}
       >
         <Link
-          href="/"
+          href={`/${locale}`}
           className="transition-colors hover:text-[#2B5FA6]"
         >
-          Home
+          {t("contact.hero.breadcrumbHome")}
         </Link>
-        <span className="text-[#6B7570]/60">&gt;</span>
-        <span className="font-semibold text-[#202326]">Contact Us</span>
+        {isRtl ? (
+          <FiChevronLeft className="h-3.5 w-3.5 text-[#6B7570]/60 shrink-0" />
+        ) : (
+          <FiChevronRight className="h-3.5 w-3.5 text-[#6B7570]/60 shrink-0" />
+        )}
+        <span className="font-semibold text-[#202326]">
+          {t("contact.hero.breadcrumbContact")}
+        </span>
       </nav>
 
       {/* Hero Banner Card */}
-      <div className="relative flex min-h-[360px] items-center overflow-hidden rounded-[24px] sm:min-h-[400px] sm:rounded-[32px] lg:min-h-[440px]">
+      <motion.div
+        initial={shouldReduceMotion ? false : "hidden"}
+        animate="visible"
+        variants={fadeInUpVariants}
+        className="relative flex min-h-[360px] items-center overflow-hidden rounded-[24px] sm:min-h-[400px] sm:rounded-[32px] lg:min-h-[440px]"
+      >
         {/* Background Miniature House Image */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <Image
-            src="/ContactUs/hero.png"
-            alt="Contact Blue Horizon Real Estate"
-            fill
-            priority
-            sizes="(max-width: 1360px) 100vw, 1360px"
-            className="object-cover object-center"
-          />
-        </div>
+        <div
+          className={`absolute inset-0 z-0 overflow-hidden ${
+            isRtl ? "scale-x-[-1]" : ""
+          }`}
+          style={{
+            backgroundImage: "url('/ContactUs/hero.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
 
         {/* Specified Linear Gradient Overlay for Text Readability */}
         <div
           className="absolute inset-0 z-10"
           style={{
             background:
-              "linear-gradient(180deg, rgba(27, 58, 107, 0) 30.77%, #1B3A6B 100%)"
+              "linear-gradient(180deg, rgba(27, 58, 107, 0) 30.77%, #1B3A6B 100%)",
           }}
         />
 
@@ -51,7 +71,7 @@ export default function ContactHeroSection() {
               className="inline-block rounded-full border border-white/20 bg-[#1B3A6B]/85 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#E5ECF6]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              WE&apos;RE HERE TO HELP
+              {t("contact.hero.pill")}
             </span>
 
             {/* Main Headline */}
@@ -59,7 +79,7 @@ export default function ContactHeroSection() {
               className="mt-4 text-[32px] font-bold leading-[1.14] tracking-[-0.02em] text-white sm:text-[42px] lg:text-[48px]"
               style={{ fontFamily: "var(--font-manrope)" }}
             >
-              Get in Touch with Us
+              {t("contact.hero.heading")}
             </h1>
 
             {/* Subtitle */}
@@ -67,14 +87,11 @@ export default function ContactHeroSection() {
               className="mt-4 max-w-lg text-[14px] font-normal leading-[1.65] text-white/90 sm:text-[15px]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              We are here to help you find your dream luxury property across
-              prime coastal and urban destinations. Reach out for
-              consultations, site visits, or investment guidance.
+              {t("contact.hero.description")}
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
-
