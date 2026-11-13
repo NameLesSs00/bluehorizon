@@ -1,23 +1,39 @@
-﻿import { StandaloneUnitItem } from "@/models/standaloneUnit";
+"use client";
+
+import { StandaloneUnitItem } from "@/models/standaloneUnit";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface StandaloneDetailsHeaderProps {
   unit: StandaloneUnitItem;
 }
 
-export default function StandaloneDetailsHeader({
-  unit,
-}: StandaloneDetailsHeaderProps) {
+export default function StandaloneDetailsHeader({ unit }: StandaloneDetailsHeaderProps) {
+  const { t } = useTranslation();
+
+  const currencySymbol =
+    unit.currencyCode === "USD"
+      ? "$ "
+      : unit.currencyCode === "EUR"
+      ? "€ "
+      : unit.currencyCode === "GBP"
+      ? "£ "
+      : unit.currencyCode
+      ? `${unit.currencyCode} `
+      : "EGP ";
+
   const formattedPrice =
     typeof unit.price === "number" && unit.price > 0
-      ? `EGP ${unit.price.toLocaleString()}`
-      : "Price on request";
+      ? `${currencySymbol}${unit.price.toLocaleString()}`
+      : t("standaloneDetail.header.priceOnRequest", "Price on request");
 
   const locationParts: string[] = [];
-  if (unit.country) locationParts.push(`Country: ${unit.country}`);
-  if (unit.city) locationParts.push(`City: ${unit.city}`);
+  if (unit.country)
+    locationParts.push(`${t("standaloneDetail.header.country", "Country")}: ${unit.country}`);
+  if (unit.city)
+    locationParts.push(`${t("standaloneDetail.header.city", "City")}: ${unit.city}`);
   if (unit.district || unit.street) {
     locationParts.push(
-      `Street: ${[unit.street, unit.district].filter(Boolean).join(", ")}`
+      `${t("standaloneDetail.header.street", "Street")}: ${[unit.street, unit.district].filter(Boolean).join(", ")}`
     );
   }
 
@@ -37,7 +53,7 @@ export default function StandaloneDetailsHeader({
             className="mt-2 text-xs sm:text-sm text-[#6B7570]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            {locationParts.join(" \u00A0\u00A0\u00A0 ")}
+            {locationParts.join("   ")}
           </p>
         )}
       </div>
@@ -48,7 +64,7 @@ export default function StandaloneDetailsHeader({
           className="block text-[11px] font-bold uppercase tracking-wider text-[#6B7570]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          Asking Resale Price
+          {t("standaloneDetail.header.askingResalePrice", "Asking Resale Price")}
         </span>
         <div
           className="mt-0.5 text-2xl sm:text-3xl lg:text-4xl font-bold text-[#2B5FA6]"
@@ -60,4 +76,3 @@ export default function StandaloneDetailsHeader({
     </div>
   );
 }
-

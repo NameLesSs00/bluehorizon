@@ -3,7 +3,7 @@
     "nav": {
       "home": "الرئيسية",
       "projects": "المشاريع",
-      "standalone": "فيلات مستقلة",
+      "standalone": "وحدات مستقلة",
       "rent": "إيجار",
       "blogs": "المقالات",
       "aboutUs": "من نحن",
@@ -24,9 +24,21 @@
     },
     "footer": {
       "tagline": "اكتشف عقارات استثنائية ومشاريع متميزة مصممة لتناسب أسلوب حياتك.",
+      "description": "بلو هورايزون هو شريكك العقاري الأول عبر الغردقة وساحل البحر الأحمر. سواء كنت تبحث عن شراء فيلا ساحلية، أو الاستثمار في مجمعات على الخريطة، أو استئجار شقة عصرية في الكوثر والمناطق الرئيسية المجاورة.",
+      "properties": "العقارات",
+      "standaloneUnits": "وحدات مستقلة",
+      "unitsForRent": "وحدات للإيجار",
+      "compoundsProjects": "مجمعات ومشاريع",
+      "exploreAreas": "استكشف المناطق",
+      "rentalLocations": "مواقع الإيجار",
       "quickLinks": "روابط سريعة",
-      "contactInfo": "معلومات الاتصال",
-      "allRightsReserved": "جميع الحقوق محفوظة."
+      "home": "الرئيسية",
+      "aboutUs": "من نحن",
+      "blogsGuides": "مقالات وأدلة",
+      "contactUs": "تواصل معنا",
+      "getInTouch": "تواصل معنا",
+      "allRightsReserved": "جميع الحقوق محفوظة.",
+      "poweredBy": "بدعم من"
     }
   },
   "home": {
@@ -67,6 +79,95 @@
   "locations": {
     "title": "أبرز المواقع والوجهات",
     "subtitle": "استكشف أرقى وجهات الاستثمار العقاري في مختلف أنحاء مصر."
+  },
+  "standaloneDetail": {
+    "breadcrumb": {
+      "home": "الرئيسية",
+      "standalone": "وحدات مستقلة"
+    },
+    "header": {
+      "askingResalePrice": "سعر البيع المطلوب",
+      "priceOnRequest": "السعر عند الطلب",
+      "country": "الدولة",
+      "city": "المدينة",
+      "street": "الشارع"
+    },
+    "specs": {
+      "totalPrice": "السعر الإجمالي",
+      "totalArea": "المساحة الإجمالية",
+      "unitType": "نوع الوحدة",
+      "primaryView": "الإطلالة الرئيسية",
+      "bedrooms": "غرف النوم",
+      "bathrooms": "الحمامات",
+      "kitchens": "المطابخ",
+      "floor": "الطابق",
+      "room": "غرفة",
+      "rooms": "غرف",
+      "bath": "حمام",
+      "baths": "حمامات",
+      "kitchen": "مطبخ",
+      "ground": "الأرضي"
+    },
+    "about": {
+      "title": "عن هذه الوحدة المستقلة",
+      "orientationView": "الاتجاه والإطلالة",
+      "locationTitle": "الموقع الجغرافي وتفاصيل السجل القانوني",
+      "country": "الدولة",
+      "cityGov": "المدينة / المحافظة",
+      "streetDistrict": "الشارع / الحي"
+    },
+    "facilities": {
+      "title": "المرافق والمزايا",
+      "subtitle": "مزايا الوحدة الخاصة وامتيازات الحياة في المجمع",
+      "included": "مضمّن"
+    },
+    "inquiry": {
+      "askingPrice": "السعر المطلوب",
+      "priceOnRequest": "السعر عند الطلب",
+      "thankYouTitle": "شكرا على استفسارك!",
+      "thankYouBody": "لقد تلقينا بياناتك وسيتواصل معك فريقنا قريبا.",
+      "sendAnother": "إرسال استفسار آخر",
+      "firstName": "الاسم الأول",
+      "firstNameRequired": "الاسم الأول *",
+      "lastName": "اسم العائلة",
+      "emailAddress": "البريد الإلكتروني",
+      "emailAddressRequired": "البريد الإلكتروني *",
+      "phoneNumber": "رقم الهاتف",
+      "phoneNumberRequired": "رقم الهاتف *",
+      "message": "الرسالة",
+      "messagePlaceholder": "اكتب استفسارك أو أسئلتك...",
+      "submit": "إرسال الاستفسار",
+      "submitting": "جارٍ الإرسال...",
+      "errorRequired": "يرجى ملء جميع الحقول المطلوبة.",
+      "errorFailed": "فشل إرسال الاستفسار. يرجى المحاولة لاحقا.",
+      "defaultMessage": "مرحبا، أنا مهتم بـ {name} وأود الحصول على مزيد من التفاصيل.",
+      "toastSuccess": "شكرا لك! تم إرسال استفسارك بنجاح."
+    },
+    "similar": {
+      "title": "وحدات مشابهة موصى بها",
+      "subtitleCity": "استكشف وحدات فاخرة مشابهة في {city}",
+      "subtitleDefault": "استكشف وحدات فاخرة مشابهة جاهزة للتملك"
+    },
+    "gallery": {
+      "morePhotos": "+{count} صور إضافية",
+      "prevImage": "الصورة السابقة",
+      "nextImage": "الصورة التالية",
+      "closeGallery": "إغلاق المعرض"
+    },
+    "reviews": {
+      "title": "تقييمات العملاء والزوار",
+      "subtitle": "آراء موثوقة من زيارات الموقع ومعاينات العقار",
+      "writeReview": "اكتب تقييما",
+      "review": "تقييم",
+      "reviews": "تقييمات",
+      "inspectedOn": "تمت المعاينة بتاريخ",
+      "verifiedVisitor": "زائر تم التحقق منه"
+    },
+    "notFound": {
+      "title": "الوحدة المستقلة غير موجودة",
+      "body": "الوحدة السكنية المستقلة التي تبحث عنها غير موجودة أو غير متاحة حاليا.",
+      "back": "العودة إلى الوحدات المستقلة"
+    }
   }
 }
 

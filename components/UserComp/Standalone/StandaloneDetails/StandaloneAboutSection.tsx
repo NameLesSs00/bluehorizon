@@ -1,4 +1,7 @@
+"use client";
+
 import { StandaloneUnitItem } from "@/models/standaloneUnit";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface StandaloneAboutSectionProps {
   unit: StandaloneUnitItem;
@@ -7,6 +10,8 @@ interface StandaloneAboutSectionProps {
 export default function StandaloneAboutSection({
   unit,
 }: StandaloneAboutSectionProps) {
+  const { t } = useTranslation();
+
   const hasDescription = Boolean(
     unit.description && unit.description.trim().length > 0
   );
@@ -28,7 +33,7 @@ export default function StandaloneAboutSection({
         className="text-xl sm:text-2xl font-bold text-[#202326]"
         style={{ fontFamily: "var(--font-manrope)" }}
       >
-        About This Standalone Property
+        {t("standaloneDetail.about.title", "About This Standalone Property")}
       </h2>
 
       {/* Primary View Callout Badge / Card */}
@@ -54,7 +59,7 @@ export default function StandaloneAboutSection({
               className="block text-[10.5px] font-bold uppercase tracking-wider text-[#6B7570]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Orientation &amp; Outlook View
+              {t("standaloneDetail.about.orientationView", "Orientation & Outlook View")}
             </span>
             <p
               className="text-xs sm:text-sm font-semibold text-[#1B3A6B]"
@@ -85,7 +90,7 @@ export default function StandaloneAboutSection({
             className="text-xs sm:text-sm font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            Geographic Location &amp; Legal Registry Details
+            {t("standaloneDetail.about.locationTitle", "Geographic Location & Legal Registry Details")}
           </h3>
 
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -96,7 +101,7 @@ export default function StandaloneAboutSection({
                   className="block text-[10px] font-bold uppercase tracking-wider text-[#6B7570]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
-                  Country
+                  {t("standaloneDetail.about.country", "Country")}
                 </span>
                 <span
                   className="mt-1 block text-xs sm:text-sm font-semibold text-[#202326]"
@@ -114,7 +119,7 @@ export default function StandaloneAboutSection({
                   className="block text-[10px] font-bold uppercase tracking-wider text-[#6B7570]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
-                  City / Governorate
+                  {t("standaloneDetail.about.cityGov", "City / Governorate")}
                 </span>
                 <span
                   className="mt-1 block text-xs sm:text-sm font-semibold text-[#202326]"
@@ -132,7 +137,7 @@ export default function StandaloneAboutSection({
                   className="block text-[10px] font-bold uppercase tracking-wider text-[#6B7570]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
-                  Street / District
+                  {t("standaloneDetail.about.streetDistrict", "Street / District")}
                 </span>
                 <span
                   className="mt-1 block text-xs sm:text-sm font-semibold text-[#202326]"

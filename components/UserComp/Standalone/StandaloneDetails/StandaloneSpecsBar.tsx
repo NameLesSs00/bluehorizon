@@ -1,10 +1,14 @@
+"use client";
+
 import { StandaloneUnitItem } from "@/models/standaloneUnit";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface StandaloneSpecsBarProps {
   unit: StandaloneUnitItem;
 }
 
 export default function StandaloneSpecsBar({ unit }: StandaloneSpecsBarProps) {
+  const { t } = useTranslation();
   const specs: { label: string; value: string }[] = [];
 
   const currencySymbol =
@@ -20,88 +24,94 @@ export default function StandaloneSpecsBar({ unit }: StandaloneSpecsBarProps) {
 
   if (typeof unit.price === "number" && unit.price > 0) {
     specs.push({
-      label: "TOTAL PRICE",
+      label: t("standaloneDetail.specs.totalPrice", "TOTAL PRICE"),
       value: `${currencySymbol}${unit.price.toLocaleString()}`,
     });
   }
 
   if (typeof unit.area === "number" && unit.area > 0) {
     specs.push({
-      label: "TOTAL AREA",
+      label: t("standaloneDetail.specs.totalArea", "TOTAL AREA"),
       value: `${unit.area} m²`,
     });
   }
 
   if (unit.propertyType) {
     specs.push({
-      label: "UNIT TYPE",
+      label: t("standaloneDetail.specs.unitType", "UNIT TYPE"),
       value: unit.propertyType,
     });
   }
 
   if (unit.view) {
     specs.push({
-      label: "PRIMARY VIEW",
+      label: t("standaloneDetail.specs.primaryView", "PRIMARY VIEW"),
       value: unit.view,
     });
   }
 
   if (typeof unit.noBedRoom === "number" && unit.noBedRoom > 0) {
     specs.push({
-      label: "BEDROOMS",
-      value: `${unit.noBedRoom} ${unit.noBedRoom === 1 ? "Room" : "Rooms"}`,
+      label: t("standaloneDetail.specs.bedrooms", "BEDROOMS"),
+      value: `${unit.noBedRoom} ${
+        unit.noBedRoom === 1
+          ? t("standaloneDetail.specs.room", "Room")
+          : t("standaloneDetail.specs.rooms", "Rooms")
+      }`,
     });
   }
 
   if (typeof unit.noBathRoom === "number" && unit.noBathRoom > 0) {
     specs.push({
-      label: "BATHROOMS",
-      value: `${unit.noBathRoom} ${unit.noBathRoom === 1 ? "Bath" : "Baths"}`,
+      label: t("standaloneDetail.specs.bathrooms", "BATHROOMS"),
+      value: `${unit.noBathRoom} ${
+        unit.noBathRoom === 1
+          ? t("standaloneDetail.specs.bath", "Bath")
+          : t("standaloneDetail.specs.baths", "Baths")
+      }`,
     });
   }
 
   if (typeof unit.noKitchen === "number" && unit.noKitchen > 0) {
     specs.push({
-      label: "KITCHENS",
-      value: `${unit.noKitchen} Kitchen`,
+      label: t("standaloneDetail.specs.kitchens", "KITCHENS"),
+      value: `${unit.noKitchen} ${t("standaloneDetail.specs.kitchen", "Kitchen")}`,
     });
   }
 
   if (unit.floorName) {
     specs.push({
-      label: "FLOOR",
+      label: t("standaloneDetail.specs.floor", "FLOOR"),
       value: unit.floorName,
     });
   } else if (typeof unit.floorNumber === "number") {
     specs.push({
-      label: "FLOOR",
-      value: unit.floorNumber === 0 ? "Ground" : `${unit.floorNumber}th`,
+      label: t("standaloneDetail.specs.floor", "FLOOR"),
+      value:
+        unit.floorNumber === 0
+          ? t("standaloneDetail.specs.ground", "Ground")
+          : `${unit.floorNumber}th`,
     });
   }
 
-  if (specs.length === 0) {
-    return null;
-  }
+  if (specs.length === 0) return null;
 
   return (
-    <div className="mt-6 overflow-x-auto rounded-[20px] border border-[#D9E2EE] bg-white p-5 sm:p-6 shadow-sm">
-      <div
-        className="grid min-w-[560px] divide-x divide-[#D9E2EE] text-center"
-        style={{
-          gridTemplateColumns: `repeat(${specs.length}, minmax(0, 1fr))`,
-        }}
-      >
+    <div className="mt-6 rounded-[20px] border border-[#D9E2EE] bg-white p-5 sm:p-6 shadow-sm">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-6">
         {specs.map((item, idx) => (
-          <div key={idx} className="px-3">
+          <div
+            key={idx}
+            className="flex flex-col items-center text-center px-2 border-r border-[#D9E2EE] last:border-r-0"
+          >
             <span
-              className="block text-[11px] font-bold uppercase tracking-wider text-[#6B7570]"
+              className="block text-[10px] font-bold uppercase tracking-wider text-[#6B7570]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {item.label}
             </span>
             <span
-              className="mt-1 block text-sm sm:text-base font-bold text-[#202326] truncate"
-              title={item.value}
+              className="mt-1 block text-sm sm:text-base font-bold text-[#202326] text-center leading-snug"
               style={{ fontFamily: "var(--font-manrope)" }}
             >
               {item.value}

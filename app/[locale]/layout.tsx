@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import LocaleProvider from "@/shared/providers/LocaleProvider";
 import FloatingWhatsAppButton from "@/components/UserComp/Common/FloatingWhatsAppButton";
+import ScrollToTop from "@/components/UserComp/Common/ScrollToTop";
 import { isValidLocale, SupportedLocale } from "@/features/i18n/i18nConfig";
 
 interface LocaleLayoutProps {
@@ -21,6 +22,7 @@ export default async function LocaleLayout({
 
   return (
     <LocaleProvider locale={locale as SupportedLocale}>
+      <ScrollToTop />
       {children}
       <FloatingWhatsAppButton />
     </LocaleProvider>

@@ -23,10 +23,22 @@
       "standalone": "Freistehend"
     },
     "footer": {
-      "tagline": "Entdecken Sie erstklassige Immobilien und Premium-Projekte für Ihren Lebensstil.",
+      "tagline": "Entdecken Sie erstklassige Immobilien und Premium-Projekte fur Ihren Lebensstil.",
+      "description": "Blue Horizon ist Ihr erstklassiger Immobilienpartner in Hurghada und an der Roten-Meer-Kuste. Ob Kustenvilla, Off-Plan-Anlage oder moderne Wohnung in El Kawthar und den umliegenden Toplagen.",
+      "properties": "Immobilien",
+      "standaloneUnits": "Freistehende Einheiten",
+      "unitsForRent": "Mieteinheiten",
+      "compoundsProjects": "Wohnanlagen & Projekte",
+      "exploreAreas": "Gebiete entdecken",
+      "rentalLocations": "Mietstandorte",
       "quickLinks": "Schnelllinks",
-      "contactInfo": "Kontaktinformationen",
-      "allRightsReserved": "Alle Rechte vorbehalten."
+      "home": "Startseite",
+      "aboutUs": "Uber uns",
+      "blogsGuides": "Blog & Ratgeber",
+      "contactUs": "Kontakt",
+      "getInTouch": "Kontakt aufnehmen",
+      "allRightsReserved": "Alle Rechte vorbehalten.",
+      "poweredBy": "Betrieben von"
     }
   },
   "home": {
@@ -66,7 +78,96 @@
   },
   "locations": {
     "title": "Erstklassige Standorte",
-    "subtitle": "Entdecken Sie erstklassige Immobilieninvestitionsziele in ganz Ägypten."
+    "subtitle": "Entdecken Sie erstklassige Immobilieninvestitionsziele in ganz Agypten."
+  },
+  "standaloneDetail": {
+    "breadcrumb": {
+      "home": "Startseite",
+      "standalone": "Freistehende Einheiten"
+    },
+    "header": {
+      "askingResalePrice": "Geforderter Wiederverkaufspreis",
+      "priceOnRequest": "Preis auf Anfrage",
+      "country": "Land",
+      "city": "Stadt",
+      "street": "Strasse"
+    },
+    "specs": {
+      "totalPrice": "GESAMTPREIS",
+      "totalArea": "GESAMTFLACHE",
+      "unitType": "EINHEITENTYP",
+      "primaryView": "HAUPTAUSSICHT",
+      "bedrooms": "SCHLAFZIMMER",
+      "bathrooms": "BADEZIMMER",
+      "kitchens": "KUCHEN",
+      "floor": "STOCKWERK",
+      "room": "Zimmer",
+      "rooms": "Zimmer",
+      "bath": "Bad",
+      "baths": "Bader",
+      "kitchen": "Kuche",
+      "ground": "Erdgeschoss"
+    },
+    "about": {
+      "title": "Uber diese freistehende Immobilie",
+      "orientationView": "Ausrichtung & Aussicht",
+      "locationTitle": "Geografischer Standort & Rechtsregisterdetails",
+      "country": "LAND",
+      "cityGov": "STADT / GOVERNORAT",
+      "streetDistrict": "STRASSE / BEZIRK"
+    },
+    "facilities": {
+      "title": "Einrichtungen & Ausstattung",
+      "subtitle": "Ausstattung der privaten Einheit und Lifestyle-Vorteile der Anlage",
+      "included": "Inklusive"
+    },
+    "inquiry": {
+      "askingPrice": "Angeforderter Preis",
+      "priceOnRequest": "Preis auf Anfrage",
+      "thankYouTitle": "Danke fur Ihre Anfrage!",
+      "thankYouBody": "Wir haben Ihre Daten erhalten und unser Team wird sich bald bei Ihnen melden.",
+      "sendAnother": "Weitere Anfrage senden",
+      "firstName": "Vorname",
+      "firstNameRequired": "Vorname *",
+      "lastName": "Nachname",
+      "emailAddress": "E-Mail-Adresse",
+      "emailAddressRequired": "E-Mail-Adresse *",
+      "phoneNumber": "Telefonnummer",
+      "phoneNumberRequired": "Telefonnummer *",
+      "message": "Nachricht",
+      "messagePlaceholder": "Schreiben Sie Ihre Anfrage oder Fragen...",
+      "submit": "Anfrage senden",
+      "submitting": "Anfrage wird gesendet...",
+      "errorRequired": "Bitte fullen Sie alle Pflichtfelder aus.",
+      "errorFailed": "Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es spater erneut.",
+      "defaultMessage": "Hallo, ich interessiere mich fur {name} und mochte weitere Details erhalten.",
+      "toastSuccess": "Vielen Dank! Ihre Anfrage wurde erfolgreich ubermittelt."
+    },
+    "similar": {
+      "title": "Ahnliche empfohlene Einheiten",
+      "subtitleCity": "Entdecken Sie ahnliche Luxusresidenzen in {city}",
+      "subtitleDefault": "Entdecken Sie ahnliche Luxusresidenzen, die zur Eigentumsbildung bereitstehen"
+    },
+    "gallery": {
+      "morePhotos": "+{count} weitere Fotos",
+      "prevImage": "Vorheriges Bild",
+      "nextImage": "Nächstes Bild",
+      "closeGallery": "Fotogalerie schließen"
+    },
+    "reviews": {
+      "title": "Kunden- & Besucherbewertungen",
+      "subtitle": "Verifiziertes Feedback aus Besichtigungen und Objektinspektionen",
+      "writeReview": "Bewertung schreiben",
+      "review": "Bewertung",
+      "reviews": "Bewertungen",
+      "inspectedOn": "Besichtigt am",
+      "verifiedVisitor": "Verifizierter Besucher"
+    },
+    "notFound": {
+      "title": "Freistehende Einheit nicht gefunden",
+      "body": "Die freistehende Wohneinheit, die Sie suchen, existiert nicht oder ist derzeit nicht verfugbar.",
+      "back": "Zuruck zu den freistehenden Einheiten"
+    }
   }
 }
 

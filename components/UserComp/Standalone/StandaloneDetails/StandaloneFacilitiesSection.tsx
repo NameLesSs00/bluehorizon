@@ -1,5 +1,8 @@
+"use client";
+
 import { StandaloneUnitItem } from "@/models/standaloneUnit";
 import DynamicIcon from "@/components/adminComp/Common/DynamicIcon";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface StandaloneFacilitiesSectionProps {
   unit: StandaloneUnitItem;
@@ -8,6 +11,7 @@ interface StandaloneFacilitiesSectionProps {
 export default function StandaloneFacilitiesSection({
   unit,
 }: StandaloneFacilitiesSectionProps) {
+  const { t } = useTranslation();
   const services = unit.services || [];
   const count = services.length;
 
@@ -25,13 +29,16 @@ export default function StandaloneFacilitiesSection({
             className="text-xl sm:text-2xl font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            Facilities &amp; Amenities
+            {t("standaloneDetail.facilities.title", "Facilities & Amenities")}
           </h2>
           <p
             className="mt-1 text-xs sm:text-sm text-[#6B7570]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Private unit inclusions and compound lifestyle privileges
+            {t(
+              "standaloneDetail.facilities.subtitle",
+              "Private unit inclusions and compound lifestyle privileges"
+            )}
           </p>
         </div>
 
@@ -39,7 +46,7 @@ export default function StandaloneFacilitiesSection({
           className="rounded-full bg-[#E5ECF6] px-3.5 py-1 text-xs font-semibold text-[#2B5FA6]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          {count} Included
+          {count} {t("standaloneDetail.facilities.included", "Included")}
         </span>
       </div>
 

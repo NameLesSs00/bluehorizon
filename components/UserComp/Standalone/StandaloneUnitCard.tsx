@@ -103,38 +103,38 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
           </p>
         )}
 
-        {/* Specs Row - Centered with modern clean icons */}
+        {/* Specs Row - Evenly spaced with space-around distribution */}
         {(hasArea || hasRooms || hasBaths) && (
           <div
-            className="my-3 flex items-center justify-center gap-3 rounded-xl border border-[#D9E2EE]/60 bg-[#F0F3FA]/60 py-2.5 px-3 text-xs text-[#202326]"
+            className="my-3 flex items-center justify-around rounded-xl border border-[#D9E2EE]/60 bg-[#F0F3FA]/60 py-2.5 px-3 text-[11px] sm:text-xs text-[#202326]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {hasArea && (
-              <div className="flex items-center gap-1.5 font-medium">
-                <TbRulerMeasure className="h-4 w-4 text-[#1B3A6B]" />
-                <span>{unit.area} m²</span>
+              <div className="flex items-center gap-1.5 font-medium whitespace-nowrap">
+                <TbRulerMeasure className="h-4 w-4 text-[#1B3A6B] shrink-0" />
+                <span className="whitespace-nowrap">{unit.area} m²</span>
               </div>
             )}
 
             {hasArea && (hasRooms || hasBaths) && (
-              <span className="text-[#D9E2EE] font-bold">&bull;</span>
+              <span className="text-[#D9E2EE] font-bold select-none">&bull;</span>
             )}
 
             {hasRooms && (
-              <div className="flex items-center gap-1.5 font-medium">
-                <TbBed className="h-4 w-4 text-[#1B3A6B]" />
-                <span>{unit.noBedRoom} {unit.noBedRoom === 1 ? "Bed" : "Beds"}</span>
+              <div className="flex items-center gap-1.5 font-medium whitespace-nowrap">
+                <TbBed className="h-4 w-4 text-[#1B3A6B] shrink-0" />
+                <span className="whitespace-nowrap">{unit.noBedRoom} {unit.noBedRoom === 1 ? "Bed" : "Beds"}</span>
               </div>
             )}
 
             {hasRooms && hasBaths && (
-              <span className="text-[#D9E2EE] font-bold">&bull;</span>
+              <span className="text-[#D9E2EE] font-bold select-none">&bull;</span>
             )}
 
             {hasBaths && (
-              <div className="flex items-center gap-1.5 font-medium">
-                <TbBath className="h-4 w-4 text-[#1B3A6B]" />
-                <span>{unit.noBathRoom} {unit.noBathRoom === 1 ? "Bath" : "Baths"}</span>
+              <div className="flex items-center gap-1.5 font-medium whitespace-nowrap">
+                <TbBath className="h-4 w-4 text-[#1B3A6B] shrink-0" />
+                <span className="whitespace-nowrap">{unit.noBathRoom} {unit.noBathRoom === 1 ? "Bath" : "Baths"}</span>
               </div>
             )}
           </div>

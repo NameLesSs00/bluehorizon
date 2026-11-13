@@ -1,7 +1,9 @@
-﻿"use client";
+"use client";
 
 import { useQuery } from "@tanstack/react-query";
 import { getStandaloneUnits } from "@/clientApi/standaloneUnitsApi";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import StandaloneUnitCard from "../StandaloneUnitCard";
 
 interface StandaloneSimilarUnitsProps {
@@ -15,12 +17,22 @@ export default function StandaloneSimilarUnits({
   propertyType,
   city,
 }: StandaloneSimilarUnitsProps) {
+  const { t, locale } = useTranslation();
+  const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
+
   const { data, isLoading } = useQuery({
-    queryKey: ["standalone-units", "similar", propertyType, city],
+    queryKey: [
+      "standalone-units",
+      "similar",
+      propertyType,
+      city,
+      locale,
+      currentCurrency,
+    ],
     queryFn: () =>
       getStandaloneUnits({
-        Language: "en",
-        Currency: "USD",
+        Language: locale,
+        Currency: currentCurrency,
         // PropertyType: propertyType || undefined,
         // City: city || undefined,
         PageNumber: 1,
@@ -31,11 +43,21 @@ export default function StandaloneSimilarUnits({
 
   const similarUnits = (data?.items || [])
     .filter((u) => u.id !== currentUnitId)
-    .slice(0, 4);
+    .slice(0, 3);
 
   if (!isLoading && similarUnits.length === 0) {
     return null;
   }
+
+  const subtitle = city
+    ? t(
+        "standaloneDetail.similar.subtitleCity",
+        `Explore similar luxury residences in ${city}`
+      ).replace("{city}", city)
+    : t(
+        "standaloneDetail.similar.subtitleDefault",
+        "Explore similar luxury residences ready for ownership"
+      );
 
   return (
     <section className="mt-16 sm:mt-20">
@@ -46,20 +68,20 @@ export default function StandaloneSimilarUnits({
             className="text-2xl sm:text-3xl font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            Similar Recommended Units
+            {t("standaloneDetail.similar.title", "Similar Recommended Units")}
           </h2>
           <p
             className="mt-1 text-xs sm:text-sm text-[#6B7570]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Explore similar luxury residences {city ? `in ${city}` : "ready for ownership"}
+            {subtitle}
           </p>
         </div>
 
-        {/* Grid */}
+        {/* Grid: 3 columns give each card comfortable width */}
         {isLoading ? (
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {Array.from({ length: 4 }).map((_, idx) => (
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Array.from({ length: 3 }).map((_, idx) => (
               <div
                 key={idx}
                 className="h-[360px] animate-pulse rounded-[20px] border border-[#D9E2EE] bg-[#F0F3FA]"
@@ -67,14 +89,28 @@ export default function StandaloneSimilarUnits({
             ))}
           </div>
         ) : (
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {similarUnits.map((item) => (
-              <StandaloneUnitCard key={item.id} unit={item} />
-            ))}
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {similarUnits.map((item, idx) => {
+              const isLastOdd =
+                idx === similarUnits.length - 1 && similarUnits.length % 2 !== 0;
+              return (
+                <div
+                  key={item.id}
+                  className={
+                    isLastOdd
+                      ? "sm:col-span-2 sm:flex sm:justify-center lg:col-span-1 lg:block lg:justify-normal"
+                      : ""
+                  }
+                >
+                  <div className={isLastOdd ? "sm:w-1/2 lg:w-full" : ""}>
+                    <StandaloneUnitCard unit={item} />
+                  </div>
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
     </section>
   );
 }
-

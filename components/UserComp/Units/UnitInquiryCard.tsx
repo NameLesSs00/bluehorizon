@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { createContact } from "@/clientApi/contactsApi";
@@ -21,7 +21,7 @@ export default function UnitInquiryCard({
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState(
-    `Hello, I am interested in ${unitTitle} (ID: ${unitId}, ${unitType}) and would like to receive more details.`
+    `Hello, I am interested in ${unitTitle} and would like to receive more details.`
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);

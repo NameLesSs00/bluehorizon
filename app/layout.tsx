@@ -30,6 +30,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable} overflow-x-clip`}>
+      <head>
+        {/* Disable browser scroll restoration so pages always start at the top */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }`,
+          }}
+        />
+      </head>
       <body className="font-sans antialiased overflow-x-clip min-h-screen">
         <QueryProvider>
           {children}

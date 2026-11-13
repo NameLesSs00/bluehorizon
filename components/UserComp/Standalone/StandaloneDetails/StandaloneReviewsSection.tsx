@@ -1,4 +1,7 @@
-﻿import { StandaloneUnitItem } from "@/models/standaloneUnit";
+﻿"use client";
+
+import { StandaloneUnitItem } from "@/models/standaloneUnit";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface StandaloneReviewsSectionProps {
   unit: StandaloneUnitItem;
@@ -7,6 +10,7 @@ interface StandaloneReviewsSectionProps {
 export default function StandaloneReviewsSection({
   unit,
 }: StandaloneReviewsSectionProps) {
+  const { t } = useTranslation();
   const reviews = unit.reviews || [];
 
   // If no real reviews exist from backend, hide the section entirely
@@ -28,13 +32,16 @@ export default function StandaloneReviewsSection({
             className="text-xl sm:text-2xl font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            Client &amp; Visitor Reviews
+            {t("standaloneDetail.reviews.title", "Client & Visitor Reviews")}
           </h2>
           <p
             className="mt-1 text-xs sm:text-sm text-[#6B7570]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Verified feedback from site visits and property inspections
+            {t(
+              "standaloneDetail.reviews.subtitle",
+              "Verified feedback from site visits and property inspections"
+            )}
           </p>
         </div>
 
@@ -43,7 +50,7 @@ export default function StandaloneReviewsSection({
           className="self-start sm:self-auto rounded-[12px] border border-[#2B5FA6] px-5 py-2 text-xs sm:text-sm font-semibold text-[#2B5FA6] transition-colors hover:bg-[#E5ECF6]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          Write a Review
+          {t("standaloneDetail.reviews.writeReview", "Write a Review")}
         </button>
       </div>
 
@@ -74,7 +81,10 @@ export default function StandaloneReviewsSection({
             className="mt-1 text-xs text-[#6B7570]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            {reviews.length} {reviews.length === 1 ? "review" : "reviews"}
+            {reviews.length}{" "}
+            {reviews.length === 1
+              ? t("standaloneDetail.reviews.review", "review")
+              : t("standaloneDetail.reviews.reviews", "reviews")}
           </span>
         </div>
 
@@ -134,8 +144,13 @@ export default function StandaloneReviewsSection({
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     {rev.createdAt
-                      ? `Inspected on ${new Date(rev.createdAt).toLocaleDateString()}`
-                      : "Verified Visitor"}
+                      ? `${t("standaloneDetail.reviews.inspectedOn", "Inspected on")} ${new Date(
+                          rev.createdAt
+                        ).toLocaleDateString()}`
+                      : t(
+                          "standaloneDetail.reviews.verifiedVisitor",
+                          "Verified Visitor"
+                        )}
                   </span>
                 </div>
               </div>

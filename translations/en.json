@@ -24,9 +24,21 @@
     },
     "footer": {
       "tagline": "Discover exceptional properties and premium developments designed around your lifestyle.",
+      "description": "Blue Horizon is your premier real estate partner across Hurghada and the Red Sea coast. Whether you are looking to purchase a coastal villa, invest in off-plan compounds, or lease a modern apartment in El Kawthar and surrounding prime destinations.",
+      "properties": "Properties",
+      "standaloneUnits": "Standalone units",
+      "unitsForRent": "Units for rent",
+      "compoundsProjects": "Compounds & projects",
+      "exploreAreas": "Explore areas",
+      "rentalLocations": "Rental locations",
       "quickLinks": "Quick Links",
-      "contactInfo": "Contact Information",
-      "allRightsReserved": "All rights reserved."
+      "home": "Home",
+      "aboutUs": "About us",
+      "blogsGuides": "Blogs & guides",
+      "contactUs": "Contact us",
+      "getInTouch": "Get in touch",
+      "allRightsReserved": "All rights reserved.",
+      "poweredBy": "Powered by"
     }
   },
   "home": {
@@ -67,6 +79,95 @@
   "locations": {
     "title": "Prime Coastal & Urban Locations",
     "subtitle": "Explore premier real estate investment destinations across Egypt."
+  },
+  "standaloneDetail": {
+    "breadcrumb": {
+      "home": "Home",
+      "standalone": "Standalone"
+    },
+    "header": {
+      "askingResalePrice": "Asking Resale Price",
+      "priceOnRequest": "Price on request",
+      "country": "Country",
+      "city": "City",
+      "street": "Street"
+    },
+    "specs": {
+      "totalPrice": "TOTAL PRICE",
+      "totalArea": "TOTAL AREA",
+      "unitType": "UNIT TYPE",
+      "primaryView": "PRIMARY VIEW",
+      "bedrooms": "BEDROOMS",
+      "bathrooms": "BATHROOMS",
+      "kitchens": "KITCHENS",
+      "floor": "FLOOR",
+      "room": "Room",
+      "rooms": "Rooms",
+      "bath": "Bath",
+      "baths": "Baths",
+      "kitchen": "Kitchen",
+      "ground": "Ground"
+    },
+    "about": {
+      "title": "About This Standalone Property",
+      "orientationView": "Orientation & Outlook View",
+      "locationTitle": "Geographic Location & Legal Registry Details",
+      "country": "COUNTRY",
+      "cityGov": "CITY / GOVERNORATE",
+      "streetDistrict": "STREET / DISTRICT"
+    },
+    "facilities": {
+      "title": "Facilities & Amenities",
+      "subtitle": "Private unit inclusions and compound lifestyle privileges",
+      "included": "Included"
+    },
+    "inquiry": {
+      "askingPrice": "Asking Price",
+      "priceOnRequest": "Price on request",
+      "thankYouTitle": "Thanks for your query!",
+      "thankYouBody": "We have received your details and our team will contact you soon.",
+      "sendAnother": "Send Another Inquiry",
+      "firstName": "First Name",
+      "firstNameRequired": "First Name *",
+      "lastName": "Last Name",
+      "emailAddress": "Email Address",
+      "emailAddressRequired": "Email Address *",
+      "phoneNumber": "Phone Number",
+      "phoneNumberRequired": "Phone Number *",
+      "message": "Message",
+      "messagePlaceholder": "Write your inquiry or questions...",
+      "submit": "Submit Inquiry",
+      "submitting": "Submitting Inquiry...",
+      "errorRequired": "Please fill in all required fields.",
+      "errorFailed": "Failed to submit inquiry. Please try again later.",
+      "defaultMessage": "Hello, I am interested in {name} and would like to receive more details.",
+      "toastSuccess": "Thank you! Your inquiry has been submitted successfully."
+    },
+    "similar": {
+      "title": "Similar Recommended Units",
+      "subtitleCity": "Explore similar luxury residences in {city}",
+      "subtitleDefault": "Explore similar luxury residences ready for ownership"
+    },
+    "gallery": {
+      "morePhotos": "+{count} More Photos",
+      "prevImage": "Previous image",
+      "nextImage": "Next image",
+      "closeGallery": "Close photo gallery"
+    },
+    "reviews": {
+      "title": "Client & Visitor Reviews",
+      "subtitle": "Verified feedback from site visits and property inspections",
+      "writeReview": "Write a Review",
+      "review": "review",
+      "reviews": "reviews",
+      "inspectedOn": "Inspected on",
+      "verifiedVisitor": "Verified Visitor"
+    },
+    "notFound": {
+      "title": "Standalone Unit Not Found",
+      "body": "The standalone residential unit you are looking for does not exist or is currently unavailable.",
+      "back": "Back to Standalone Units"
+    }
   }
 }
 

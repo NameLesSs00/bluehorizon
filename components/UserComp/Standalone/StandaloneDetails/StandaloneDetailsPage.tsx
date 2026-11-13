@@ -3,6 +3,8 @@
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { getStandaloneUnitById } from "@/clientApi/standaloneUnitsApi";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import StandaloneBreadcrumb from "./StandaloneBreadcrumb";
 import StandaloneDetailsHeader from "./StandaloneDetailsHeader";
 import StandaloneImageGallery from "./StandaloneImageGallery";
@@ -20,9 +22,12 @@ interface StandaloneDetailsPageProps {
 }
 
 export default function StandaloneDetailsPage({ id }: StandaloneDetailsPageProps) {
+  const { t, locale } = useTranslation();
+  const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
+
   const { data: res, isLoading, isError } = useQuery({
-    queryKey: ["standalone-units", "detail", id],
-    queryFn: () => getStandaloneUnitById(id, "en", "USD"),
+    queryKey: ["standalone-units", "detail", id, locale, currentCurrency],
+    queryFn: () => getStandaloneUnitById(id, locale, currentCurrency),
     enabled: id > 0,
     staleTime: 1000 * 60 * 5,
   });
@@ -69,21 +74,23 @@ export default function StandaloneDetailsPage({ id }: StandaloneDetailsPageProps
             className="mt-4 text-2xl font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            Standalone Unit Not Found
+            {t("standaloneDetail.notFound.title", "Standalone Unit Not Found")}
           </h2>
           <p
             className="mt-2 text-sm text-[#6B7570] max-w-md"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            The standalone residential unit you are looking for does not exist or
-            is currently unavailable.
+            {t(
+              "standaloneDetail.notFound.body",
+              "The standalone residential unit you are looking for does not exist or is currently unavailable."
+            )}
           </p>
           <Link
-            href="/standalone"
+            href={`/${locale}/standalone`}
             className="mt-6 rounded-[12px] bg-[#2B5FA6] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Back to Standalone Units
+            {t("standaloneDetail.notFound.back", "Back to Standalone Units")}
           </Link>
         </main>
         <Footer />
@@ -134,4 +141,3 @@ export default function StandaloneDetailsPage({ id }: StandaloneDetailsPageProps
     </div>
   );
 }
-
