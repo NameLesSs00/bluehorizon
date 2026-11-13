@@ -10,6 +10,7 @@ import ProjectGridCard, {
   ProjectDisplayItem,
 } from "@/components/UserComp/Projects/ProjectGridCard";
 import { usePublicProjectsQuery } from "@/features/projects/useProjectsQueries";
+import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import { getFullProjectImageUrl } from "@/clientApi/projectsApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import {
@@ -40,33 +41,49 @@ export default function AreaAvailableProjectsSection({
 }: AreaAvailableProjectsSectionProps) {
   const { t, locale, direction } = useTranslation();
   const shouldReduceMotion = useReducedMotion();
+  const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
 
   const [filterState, setFilterState] =
     useState<AreaProjectsFilterState>(INITIAL_FILTERS);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const headingText = areaName
-    ? t("areas.details.availableProjectsTitle").replace("{name}", areaName)
-    : t("areas.details.defaultAvailableProjectsTitle");
+    ? t("areas.details.availableProjectsTitle", "Available Projects in {name}").replace(
+        "{name}",
+        areaName
+      )
+    : t("areas.details.defaultAvailableProjectsTitle", "Available Projects");
 
-  // Query public projects hook for this location
   const { data: projectsData, isLoading } = usePublicProjectsQuery({
     LocationId: areaId > 0 ? areaId : undefined,
     Language: locale,
-    Currency: "EGP",
+    Currency: currentCurrency || "EGP",
     PageNumber: currentPage,
     PageSize: 6,
+    SearchTerm: filterState.searchTerm.trim() || undefined,
+    Search: filterState.searchTerm.trim() || undefined,
+    MinimumPrice: filterState.minPrice ? Number(filterState.minPrice) : undefined,
+    MaximumPrice: filterState.maxPrice ? Number(filterState.maxPrice) : undefined,
+    DeliveryDateFrom: filterState.deliveryDateFrom || undefined,
+    DeliveryDateTo: filterState.deliveryDateTo || undefined,
   });
 
   const apiProjects: ProjectDisplayItem[] = (projectsData?.items || []).map(
     (item) => {
-      const egpPrice = item.prices?.find((p) => p.currency === "EGP");
-      const minPrice = egpPrice?.minimumPrice || item.prices?.[0]?.minimumPrice;
-      const currency = egpPrice ? "EGP" : item.prices?.[0]?.currency || "EGP";
+      const targetPrice = item.prices?.find(
+        (p) => p.currency.toUpperCase() === (currentCurrency || "EGP").toUpperCase()
+      );
+      const egpPrice = item.prices?.find(
+        (p) => p.currency.toUpperCase() === "EGP"
+      );
+      const activePrice = targetPrice || egpPrice || item.prices?.[0];
+      const minPrice = activePrice?.minimumPrice;
+      const currency = activePrice?.currency || currentCurrency || "EGP";
+
       const priceText =
         typeof minPrice === "number" && minPrice > 0
           ? `${currency} ${minPrice.toLocaleString()}`
-          : t("projects.grid.priceOnRequest");
+          : t("projects.grid.priceOnRequest", "Price on request");
 
       const rawImg = item.imageUrls?.[0];
       const resolvedImg = getFullProjectImageUrl(rawImg);
@@ -82,7 +99,6 @@ export default function AreaAvailableProjectsSection({
     }
   );
 
-  const displayProjects = apiProjects;
   const totalPages = projectsData?.totalPages || 1;
 
   useEffect(() => {
@@ -121,7 +137,7 @@ export default function AreaAvailableProjectsSection({
           className="mt-1 text-sm text-[#6B7570]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          {t("areas.details.availableUnitsSubtitle")}
+          {t("areas.details.availableUnitsSubtitle", "Explore top-tier residential developments tailored to your lifestyle.")}
         </p>
       </div>
 
@@ -150,13 +166,13 @@ export default function AreaAvailableProjectsSection({
                 />
               ))}
             </div>
-          ) : displayProjects.length === 0 ? (
+          ) : apiProjects.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-20 text-center">
               <p
                 className="text-base font-medium text-[#6B7570]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                {t("areas.details.noProjectsTitle")}
+                {t("areas.details.noProjectsTitle", "No available projects found")}
               </p>
             </div>
           ) : (
@@ -166,7 +182,7 @@ export default function AreaAvailableProjectsSection({
               initial={shouldReduceMotion ? undefined : "hidden"}
               animate={shouldReduceMotion ? undefined : "visible"}
             >
-              {displayProjects.map((project) => (
+              {apiProjects.map((project) => (
                 <motion.div
                   key={project.id}
                   variants={shouldReduceMotion ? undefined : cardItemVariants}

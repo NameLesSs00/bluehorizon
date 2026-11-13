@@ -7,14 +7,12 @@ import { fadeInUpVariants } from "@/shared/utils/animations";
 interface AreaOverviewSectionProps {
   areaName?: string;
   description?: string | null;
-  activeUnitsCount?: number;
   activeProjectsCount?: number;
 }
 
 export default function AreaOverviewSection({
   areaName,
   description,
-  activeUnitsCount,
   activeProjectsCount,
 }: AreaOverviewSectionProps) {
   const { t, direction } = useTranslation();
@@ -22,24 +20,20 @@ export default function AreaOverviewSection({
 
   const name = areaName || "this area";
   const displayHeading = areaName
-    ? t("areas.details.overviewTitle").replace("{name}", areaName)
-    : t("areas.details.defaultOverviewTitle");
+    ? t("areas.details.overviewTitle", "{name} Area Overview").replace("{name}", areaName)
+    : t("areas.details.defaultOverviewTitle", "Area Overview");
 
-  const defaultDescription = t("areas.details.defaultDescription").replace(
-    "{name}",
-    name
-  );
+  const defaultDescription = t(
+    "areas.details.defaultDescription",
+    "Welcome to {name}, one of the Red Sea's most prestigious and sought-after destinations."
+  ).replace("{name}", name);
+
   const textToShow =
     description && description.trim().length > 0
       ? description
       : defaultDescription;
 
-  const totalCount =
-    typeof activeUnitsCount === "number"
-      ? activeUnitsCount
-      : typeof activeProjectsCount === "number"
-      ? activeProjectsCount
-      : 0;
+  const totalCount = typeof activeProjectsCount === "number" ? activeProjectsCount : 0;
 
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12">
@@ -58,7 +52,7 @@ export default function AreaOverviewSection({
             className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            {t("areas.details.discoverNeighborhood")}
+            {t("areas.details.discoverNeighborhood", "DISCOVER THE NEIGHBORHOOD")}
           </p>
 
           <h1
@@ -84,13 +78,13 @@ export default function AreaOverviewSection({
                 className="text-3xl sm:text-[40px] font-bold leading-none text-[#2B5FA6]"
                 style={{ fontFamily: "var(--font-manrope)" }}
               >
-                {totalCount > 0 ? `${totalCount}+` : t("areas.details.verifiedBadge")}
+                {totalCount > 0 ? `${totalCount}+` : t("areas.details.verifiedBadge", "Verified")}
               </span>
               <span
                 className="block mt-2 text-xs sm:text-[13px] font-semibold text-[#202326]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                {t("areas.details.availableUnits")}
+                {t("areas.details.availableProjects", "Available projects")}
               </span>
             </div>
             <div className="sm:mt-4 sm:pt-4 sm:border-t sm:border-[#D9E2EE]/80">
@@ -98,7 +92,7 @@ export default function AreaOverviewSection({
                 className="text-xs text-[#8A9590]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                {t("areas.details.primaryAndResale")}
+                {t("areas.details.verifiedBadge", "Developments")}
               </span>
             </div>
           </div>

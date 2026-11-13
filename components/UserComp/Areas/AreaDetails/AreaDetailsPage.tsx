@@ -5,7 +5,6 @@ import { useState } from "react";
 import AreaBreadcrumb from "./AreaBreadcrumb";
 import AreaDetailsHeroBanner from "./AreaDetailsHeroBanner";
 import AreaOverviewSection from "./AreaOverviewSection";
-import AreaAvailableUnitsSection from "./AreaAvailableUnitsSection";
 import AreaAvailableProjectsSection from "./AreaAvailableProjectsSection";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
@@ -21,7 +20,7 @@ interface AreaDetailsPageProps {
 
 export default function AreaDetailsPage({ id }: AreaDetailsPageProps) {
   const { locale } = useTranslation();
-  const [activeUnitsCount, setActiveUnitsCount] = useState<number>(0);
+  const [activeProjectsCount, setActiveProjectsCount] = useState<number>(0);
 
   const { data: areaRes, isLoading } = useQuery({
     queryKey: ["publicAreaLocation", id, locale],
@@ -71,16 +70,12 @@ export default function AreaDetailsPage({ id }: AreaDetailsPageProps) {
         <AreaOverviewSection
           areaName={area?.name}
           description={area?.description}
-          activeUnitsCount={activeUnitsCount}
-        />
-        <AreaAvailableUnitsSection
-          areaId={id}
-          areaName={area?.name}
-          onCountLoaded={setActiveUnitsCount}
+          activeProjectsCount={activeProjectsCount}
         />
         <AreaAvailableProjectsSection
           areaId={id}
           areaName={area?.name}
+          onCountLoaded={setActiveProjectsCount}
         />
       </main>
       <Footer />
