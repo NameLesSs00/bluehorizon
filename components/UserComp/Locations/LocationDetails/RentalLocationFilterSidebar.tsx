@@ -1,6 +1,14 @@
-﻿"use client";
+"use client";
 
-import { FiSearch } from "react-icons/fi";
+import { useState } from "react";
+import {
+  FiFilter,
+  FiChevronDown,
+  FiChevronUp,
+  FiRotateCcw,
+} from "react-icons/fi";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import RentalLocationFilterFields from "./RentalLocationFilterFields";
 
 export interface RentalLocationFilterState {
   searchTerm: string;
@@ -21,173 +29,91 @@ interface RentalLocationFilterSidebarProps {
   totalCount: number;
 }
 
-const BEDROOM_OPTIONS = [
-  { label: "Any Bedrooms", value: "Any" },
-  { label: "1 Bedroom", value: "1" },
-  { label: "2 Bedrooms", value: "2" },
-  { label: "3 Bedrooms", value: "3" },
-  { label: "4+ Bedrooms", value: "4+" },
-];
-
-const VIEW_OPTIONS = [
-  { label: "All Views", value: "all" },
-  { label: "Sea View", value: "sea" },
-  { label: "Pool View", value: "pool" },
-  { label: "Garden View", value: "garden" },
-];
-
-const CAPACITY_OPTIONS = [
-  { label: "Any Guests", value: "Any" },
-  { label: "2+ Guests", value: "2" },
-  { label: "4+ Guests", value: "4" },
-  { label: "6+ Guests", value: "6" },
-];
-
 export default function RentalLocationFilterSidebar({
   filterState,
   onFilterChange,
   onResetFilters,
-  totalCount,
 }: RentalLocationFilterSidebarProps) {
+  const { t } = useTranslation();
+  const [isOpen, setIsOpen] = useState(true);
+
+  const hasActiveFilters =
+    filterState.searchTerm.trim() !== "" ||
+    filterState.bedrooms !== "Any" ||
+    filterState.view !== "all" ||
+    filterState.capacity !== "Any" ||
+    filterState.minPrice !== "" ||
+    filterState.maxPrice !== "";
+
+  const activeCount = [
+    filterState.searchTerm.trim() !== "",
+    filterState.bedrooms !== "Any",
+    filterState.view !== "all",
+    filterState.capacity !== "Any",
+    filterState.minPrice !== "",
+    filterState.maxPrice !== "",
+  ].filter(Boolean).length;
+
   return (
-    <aside className="w-full lg:w-[280px] shrink-0">
-      <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-5 sm:p-6 shadow-xs sticky top-28">
-        {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-[#D9E2EE]">
-          <h3
-            className="text-base font-bold text-[#202326]"
-            style={{ fontFamily: "var(--font-manrope)" }}
-          >
-            Filter Rentals
-          </h3>
-          <button
-            type="button"
-            onClick={onResetFilters}
-            className="text-xs font-medium text-[#6B7570] transition-colors hover:text-[#2B5FA6]"
-            style={{ fontFamily: "var(--font-inter)" }}
-          >
-            Reset All
-          </button>
-        </div>
+    <aside className="w-full lg:w-[280px] xl:w-[320px] shrink-0">
+      {/* Mobile Toggle Header */}
+      <button
+        type="button"
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="flex w-full items-center justify-between rounded-[16px] border border-[#D9E2EE] bg-white px-5 py-3.5 lg:hidden"
+        style={{ fontFamily: "var(--font-inter)" }}
+      >
+        <span className="flex items-center gap-2 text-sm font-semibold text-[#202326]">
+          <FiFilter className="h-4 w-4 text-[#2B5FA6]" />
+          {t("locations.details.filters.title")}
+          {hasActiveFilters && (
+            <span className="rounded-full bg-[#2B5FA6] px-2 py-0.5 text-[10px] font-bold text-white">
+              {t("locations.details.filters.activeCount").replace(
+                "{count}",
+                String(activeCount)
+              )}
+            </span>
+          )}
+        </span>
+        {isOpen ? (
+          <FiChevronUp className="h-4 w-4 text-[#6B7570]" />
+        ) : (
+          <FiChevronDown className="h-4 w-4 text-[#6B7570]" />
+        )}
+      </button>
 
-        <div className="mt-4 space-y-4">
-          {/* Search Input */}
-          <div>
-            <label
-              className="block text-xs font-semibold text-[#202326] mb-1.5"
-              style={{ fontFamily: "var(--font-inter)" }}
+      {/* Collapsible Content */}
+      <div className={`${isOpen ? "block" : "hidden"} lg:block`}>
+        <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-5 sm:p-6 shadow-xs sticky top-28 mt-3 lg:mt-0">
+          {/* Header */}
+          <div className="flex items-center justify-between pb-4 border-b border-[#D9E2EE]">
+            <h3
+              className="text-base font-bold text-[#202326]"
+              style={{ fontFamily: "var(--font-manrope)" }}
             >
-              Search Rentals
-            </label>
-            <div className="relative">
-              <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#8A9590]" />
-              <input
-                type="text"
-                value={filterState.searchTerm}
-                onChange={(e) => onFilterChange("searchTerm", e.target.value)}
-                placeholder="Name, floor, code..."
-                className="w-full rounded-xl bg-[#F0F3FA] pl-9 pr-3.5 py-2.5 text-xs text-[#202326] placeholder-[#8A9590] outline-hidden border border-transparent focus:border-[#2B5FA6] transition-colors"
+              {t("locations.details.filters.title")}
+            </h3>
+            {hasActiveFilters && (
+              <button
+                type="button"
+                onClick={onResetFilters}
+                className="flex items-center gap-1.5 text-xs font-medium text-[#6B7570] transition-colors hover:text-[#2B5FA6]"
                 style={{ fontFamily: "var(--font-inter)" }}
-              />
-            </div>
+              >
+                <FiRotateCcw className="h-3.5 w-3.5" />
+                {t("locations.details.filters.reset")}
+              </button>
+            )}
           </div>
 
-          {/* Bedrooms Dropdown */}
-          <div>
-            <label
-              className="block text-xs font-semibold text-[#202326] mb-1.5"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              Bedrooms
-            </label>
-            <select
-              value={filterState.bedrooms}
-              onChange={(e) => onFilterChange("bedrooms", e.target.value)}
-              className="w-full rounded-xl bg-[#F0F3FA] px-3.5 py-2.5 text-xs text-[#202326] outline-hidden border border-transparent focus:border-[#2B5FA6] transition-colors cursor-pointer"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              {BEDROOM_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* View Dropdown */}
-          <div>
-            <label
-              className="block text-xs font-semibold text-[#202326] mb-1.5"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              Scenic View
-            </label>
-            <select
-              value={filterState.view}
-              onChange={(e) => onFilterChange("view", e.target.value)}
-              className="w-full rounded-xl bg-[#F0F3FA] px-3.5 py-2.5 text-xs text-[#202326] outline-hidden border border-transparent focus:border-[#2B5FA6] transition-colors cursor-pointer"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              {VIEW_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Capacity Dropdown */}
-          <div>
-            <label
-              className="block text-xs font-semibold text-[#202326] mb-1.5"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              Guests / Capacity
-            </label>
-            <select
-              value={filterState.capacity}
-              onChange={(e) => onFilterChange("capacity", e.target.value)}
-              className="w-full rounded-xl bg-[#F0F3FA] px-3.5 py-2.5 text-xs text-[#202326] outline-hidden border border-transparent focus:border-[#2B5FA6] transition-colors cursor-pointer"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              {CAPACITY_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Price Range */}
-          <div>
-            <label
-              className="block text-xs font-semibold text-[#202326] mb-1.5"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              Price / Night ($)
-            </label>
-            <div className="grid grid-cols-2 gap-2">
-              <input
-                type="number"
-                value={filterState.minPrice}
-                onChange={(e) => onFilterChange("minPrice", e.target.value)}
-                placeholder="Min"
-                className="w-full rounded-xl bg-[#F0F3FA] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-hidden border border-transparent focus:border-[#2B5FA6] transition-colors"
-                style={{ fontFamily: "var(--font-inter)" }}
-              />
-              <input
-                type="number"
-                value={filterState.maxPrice}
-                onChange={(e) => onFilterChange("maxPrice", e.target.value)}
-                placeholder="Max"
-                className="w-full rounded-xl bg-[#F0F3FA] px-3 py-2 text-xs text-[#202326] placeholder-[#8A9590] outline-hidden border border-transparent focus:border-[#2B5FA6] transition-colors"
-                style={{ fontFamily: "var(--font-inter)" }}
-              />
-            </div>
-          </div>
+          <RentalLocationFilterFields
+            filterState={filterState}
+            onFilterChange={onFilterChange}
+            onResetFilters={onResetFilters}
+            hasActiveFilters={hasActiveFilters}
+          />
         </div>
       </div>
     </aside>
   );
 }
-

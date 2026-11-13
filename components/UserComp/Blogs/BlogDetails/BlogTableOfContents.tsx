@@ -1,6 +1,7 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
+import { useTranslation } from "@/features/i18n/useTranslation";
 import { BlogSectionItem } from "@/models/blog";
 
 interface BlogTableOfContentsProps {
@@ -12,6 +13,8 @@ export default function BlogTableOfContents({
   sections,
   hasRecentArticles = true,
 }: BlogTableOfContentsProps) {
+  const { t } = useTranslation();
+
   const handleScrollTo = (targetId: string) => {
     const el = document.getElementById(targetId);
     if (el) {
@@ -36,7 +39,7 @@ export default function BlogTableOfContents({
           className="text-sm font-bold text-[#202326]"
           style={{ fontFamily: "var(--font-manrope)" }}
         >
-          Table of Contents
+          {t("blogs.details.tableOfContents")}
         </h3>
       </div>
 
@@ -50,30 +53,29 @@ export default function BlogTableOfContents({
           return (
             <li key={section.id || idx}>
               <button
-                type="button"
                 onClick={() => handleScrollTo(`section-${sectionNum}`)}
-                className={`text-left leading-snug transition-colors line-clamp-2 ${
+                className={`text-start transition-colors duration-150 line-clamp-2 ${
                   isFirst
-                    ? "font-semibold text-[#2B5FA6]"
-                    : "font-medium text-[#6B7570] hover:text-[#2B5FA6]"
+                    ? "font-semibold text-[#2B5FA6] hover:text-[#1B3A6B]"
+                    : "text-[#6B7570] hover:text-[#202326]"
                 }`}
               >
-                <span className="font-bold mr-1.5">{sectionNum}.</span>
-                <span>{sectionTitle}</span>
+                <span className="font-medium mr-1.5 rtl:mr-0 rtl:ml-1.5 text-[#2B5FA6]">
+                  {sectionNum}.
+                </span>
+                {sectionTitle}
               </button>
             </li>
           );
         })}
 
         {hasRecentArticles && (
-          <li>
+          <li className="pt-2 border-t border-[#D9E2EE]">
             <button
-              type="button"
               onClick={() => handleScrollTo("recent-articles")}
-              className="text-left font-medium text-[#6B7570] hover:text-[#2B5FA6] transition-colors leading-snug"
+              className="text-start text-[#6B7570] hover:text-[#202326] transition-colors duration-150 line-clamp-1"
             >
-              <span className="font-bold mr-1.5">{sections.length + 1}.</span>
-              <span>Related Articles</span>
+              {t("blogs.details.recentArticlesTitle")}
             </button>
           </li>
         )}
@@ -81,4 +83,3 @@ export default function BlogTableOfContents({
     </div>
   );
 }
-

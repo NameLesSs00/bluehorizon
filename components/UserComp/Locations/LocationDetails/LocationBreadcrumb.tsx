@@ -1,5 +1,8 @@
-﻿import Link from "next/link";
+﻿"use client";
+
+import Link from "next/link";
 import { FiChevronRight } from "react-icons/fi";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface LocationBreadcrumbProps {
   locationName?: string;
@@ -8,6 +11,8 @@ interface LocationBreadcrumbProps {
 export default function LocationBreadcrumb({
   locationName,
 }: LocationBreadcrumbProps) {
+  const { t, locale, direction } = useTranslation();
+
   return (
     <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
       <nav
@@ -16,21 +21,25 @@ export default function LocationBreadcrumb({
         style={{ fontFamily: "var(--font-inter)" }}
       >
         <Link
-          href="/"
+          href={`/${locale}`}
           className="transition-colors hover:text-[#2B5FA6]"
         >
-          Home
+          {t("locations.details.breadcrumbHome")}
         </Link>
-        <FiChevronRight className="h-3 w-3 shrink-0 text-[#A1AAA5]" />
+        <FiChevronRight
+          className={`h-3 w-3 shrink-0 text-[#A1AAA5] ${direction === "rtl" ? "rotate-180" : ""}`}
+        />
         <Link
-          href="/locations"
+          href={`/${locale}/locations`}
           className="transition-colors hover:text-[#2B5FA6]"
         >
-          Locations
+          {t("locations.details.breadcrumbLocations")}
         </Link>
         {locationName && (
           <>
-            <FiChevronRight className="h-3 w-3 shrink-0 text-[#A1AAA5]" />
+            <FiChevronRight
+              className={`h-3 w-3 shrink-0 text-[#A1AAA5] ${direction === "rtl" ? "rotate-180" : ""}`}
+            />
             <span className="font-semibold text-[#2B5FA6] truncate max-w-[200px] sm:max-w-xs">
               {locationName}
             </span>
@@ -40,4 +49,3 @@ export default function LocationBreadcrumb({
     </div>
   );
 }
-

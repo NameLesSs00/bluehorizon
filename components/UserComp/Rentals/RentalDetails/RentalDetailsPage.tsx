@@ -1,9 +1,11 @@
-﻿"use client";
+"use client";
 
+import Link from "next/link";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
 import { usePublicRentalByIdQuery } from "@/features/rentals/useRentalsQueries";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
+import { useTranslation } from "@/features/i18n/useTranslation";
 import RentalBreadcrumb from "./RentalBreadcrumb";
 import RentalDetailsHeader from "./RentalDetailsHeader";
 import RentalImageGallery from "./RentalImageGallery";
@@ -20,10 +22,11 @@ interface RentalDetailsPageProps {
 }
 
 export default function RentalDetailsPage({ id }: RentalDetailsPageProps) {
+  const { t, locale } = useTranslation();
   const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
   const { data: unit, isLoading } = usePublicRentalByIdQuery(
     id,
-    "en",
+    locale,
     currentCurrency || "EGP"
   );
 
@@ -52,14 +55,21 @@ export default function RentalDetailsPage({ id }: RentalDetailsPageProps) {
               className="text-2xl font-bold text-[#202326]"
               style={{ fontFamily: "var(--font-manrope)" }}
             >
-              Rental Unit Not Found
+              {t("rent.details.notFoundTitle")}
             </h2>
             <p
               className="mt-2 text-sm text-[#65706B]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              The requested rental unit could not be located or is no longer available.
+              {t("rent.details.notFoundSubtitle")}
             </p>
+            <Link
+              href={`/${locale}/rent`}
+              className="mt-6 inline-flex items-center rounded-[12px] bg-[#2B5FA6] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              {t("rent.details.backToRentals")}
+            </Link>
           </div>
         </main>
         <Footer />
@@ -71,39 +81,35 @@ export default function RentalDetailsPage({ id }: RentalDetailsPageProps) {
     <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
       <Navbar />
 
-      <main className="mx-auto w-full max-w-[1536px] flex-1 px-4 py-8 sm:px-6 lg:px-8">
-        {/* Breadcrumb Navigation */}
-        <RentalBreadcrumb
-          locationName={unit.rentalLocation?.name}
-          unitName={unit.name}
-        />
-
-        {/* Title & Location Header */}
+      <main className="mx-auto w-full max-w-[1536px] flex-1 px-4 py-6 sm:px-6 lg:px-8 pb-16">
+        <RentalBreadcrumb unitName={unit.name} />
         <RentalDetailsHeader unit={unit} />
 
-        {/* Asymmetrical Image Gallery */}
-        <RentalImageGallery images={unit.images || []} title={unit.name} />
+        {/* Gallery */}
+        <div className="mt-6">
+          <RentalImageGallery images={unit.images || []} title={unit.name} />
+        </div>
 
-        {/* 7-Metric Key Specs Strip */}
-        <RentalSpecsBar unit={unit} />
+        {/* Key Specs Bar */}
+        <div className="mt-6">
+          <RentalSpecsBar unit={unit} />
+        </div>
 
-        {/* Scenic Views & Orientation (Only renders true views) */}
-        <RentalViewsSection unit={unit} />
-
-        {/* 2-Column Main Section: Left Details + Right Sticky Inquiry */}
+        {/* Main Content + Sidebar */}
         <div className="mt-8 flex flex-col lg:flex-row items-start gap-8">
-          {/* Left Column */}
-          <div className="w-full flex-1 space-y-8">
+          {/* Left Column: Sections */}
+          <div className="flex-1 space-y-6 w-full">
+            <RentalViewsSection unit={unit} />
             <RentalAboutSection unit={unit} />
             <RentalFacilitiesSection unit={unit} />
             <RentalRulesSection unit={unit} />
           </div>
 
-          {/* Right Column (Sticky Inquiry Card) */}
+          {/* Right Column: Sticky Inquiry Card */}
           <RentalInquiryCard unit={unit} />
         </div>
 
-        {/* Related Rental Properties (5 Cards, excluding current ID) */}
+        {/* Related Units Carousel / Grid */}
         <RentalRelatedUnits currentUnitId={unit.id} />
       </main>
 
@@ -111,4 +117,3 @@ export default function RentalDetailsPage({ id }: RentalDetailsPageProps) {
     </div>
   );
 }
-

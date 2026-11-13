@@ -1,5 +1,10 @@
-﻿import Image from "next/image";
+﻿"use client";
+
+import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { FiPlay } from "react-icons/fi";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { fadeInUpVariants } from "@/shared/utils/animations";
 
 interface LocationDetailsHeroBannerProps {
   title?: string;
@@ -12,8 +17,11 @@ export default function LocationDetailsHeroBanner({
   imageUrl,
   videoUrl,
 }: LocationDetailsHeroBannerProps) {
+  const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
+
   const displayImage = imageUrl || "/default-fallback.png";
-  const displayTitle = title || "Rental Destination";
+  const displayTitle = title || t("locations.details.defaultTitle");
 
   return (
     <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-5 sm:mt-6">
@@ -39,13 +47,18 @@ export default function LocationDetailsHeroBanner({
 
         {/* Hero Content Overlay */}
         <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 sm:p-10 lg:p-12">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <motion.div
+            className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
+            variants={shouldReduceMotion ? undefined : fadeInUpVariants}
+            initial="hidden"
+            animate="visible"
+          >
             <div>
               <p
                 className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#C5D3E8]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                RENTAL DESTINATION
+                {t("locations.details.rentalDestination")}
               </p>
               <h1
                 className="mt-2 text-3xl sm:text-4xl lg:text-[46px] font-bold leading-tight text-white"
@@ -64,13 +77,12 @@ export default function LocationDetailsHeroBanner({
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <FiPlay className="h-3.5 w-3.5 fill-[#2B5FA6]" />
-                <span>Watch Area Tour</span>
+                <span>{t("locations.details.watchAreaTour")}</span>
               </a>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
   );
 }
-

@@ -1,7 +1,13 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import BlogCard, { BlogCardData } from "./BlogCard";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import {
+  containerStaggerVariants,
+  cardItemVariants,
+} from "@/shared/utils/animations";
 
 interface BlogsGridSectionProps {
   blogs: BlogCardData[];
@@ -20,6 +26,10 @@ export default function BlogsGridSection({
   onPageChange,
   onResetFilters,
 }: BlogsGridSectionProps) {
+  const { t, direction } = useTranslation();
+  const isRtl = direction === "rtl";
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-10 mb-20 sm:mb-28">
       {isLoading ? (
@@ -45,94 +55,94 @@ export default function BlogsGridSection({
             className="text-xl sm:text-2xl font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            No Articles Found
+            {t("blogs.grid.noArticlesTitle")}
           </h2>
           <p
-            className="mt-2 text-sm text-[#6B7570] max-w-md"
+            className="mt-2 max-w-md text-xs sm:text-sm text-[#6B7570]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            We couldn&apos;t find any articles matching your search or selected filter.
-            Try searching for something else or clearing your filters.
+            {t("blogs.grid.noArticlesSubtitle")}
           </p>
           {onResetFilters && (
             <button
-              type="button"
               onClick={onResetFilters}
-              className="mt-6 rounded-full bg-[#2B5FA6] px-6 py-2.5 text-xs sm:text-sm font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
+              className="mt-6 rounded-full bg-[#1B3A6B] px-6 py-2.5 text-xs sm:text-sm font-semibold text-white transition-all hover:bg-[#162E56]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Clear Filters
+              {t("blogs.grid.resetFilters")}
             </button>
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+        <motion.div
+          initial={shouldReduceMotion ? false : "hidden"}
+          animate="visible"
+          variants={containerStaggerVariants}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7"
+        >
           {blogs.map((blog) => (
-            <BlogCard key={blog.id} blog={blog} />
+            <motion.div key={blog.id} variants={cardItemVariants}>
+              <BlogCard blog={blog} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
 
-      {/* Pagination Controls */}
-      {totalPages > 1 && !isLoading && (
-        <nav
-          aria-label="Blog pages"
-          className="mt-12 sm:mt-16 flex items-center justify-center gap-2"
-        >
-          {/* Previous Page Button */}
-          <button
-            type="button"
-            disabled={currentPage <= 1}
-            onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-            aria-label="Previous Page"
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#D9E2EE] bg-white transition-colors hover:bg-[#F0F3FA] disabled:cursor-not-allowed disabled:opacity-40"
+      {/* Pagination */}
+      {!isLoading && totalPages > 1 && (
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#D9E2EE] pt-6">
+          <span
+            className="text-xs sm:text-sm text-[#6B7570]"
+            style={{ fontFamily: "var(--font-inter)" }}
           >
-            <Image
-              src="/Blogs/Vector (1).svg"
-              alt="Previous"
-              width={6}
-              height={10}
-            />
-          </button>
+            {t("blogs.grid.showing")
+              .replace("{page}", String(currentPage))
+              .replace("{total}", String(totalPages))}
+          </span>
 
-          {/* Numeric Page Buttons */}
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
-            const isActive = pageNum === currentPage;
-            return (
-              <button
-                key={pageNum}
-                type="button"
-                onClick={() => onPageChange(pageNum)}
-                className={`flex h-10 w-10 items-center justify-center rounded-lg text-xs sm:text-sm font-semibold transition-all ${
-                  isActive
-                    ? "bg-[#2B5FA6] text-white shadow-sm"
-                    : "border border-[#D9E2EE] bg-white text-[#202326] hover:bg-[#F0F3FA]"
-                }`}
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
-                {pageNum}
-              </button>
-            );
-          })}
+          <div className="flex items-center gap-2">
+            {/* Prev button */}
+            <button
+              onClick={() => onPageChange(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-[#D9E2EE] bg-white text-xs font-semibold text-[#202326] transition-colors hover:bg-[#F0F3FA] disabled:cursor-not-allowed disabled:opacity-40"
+              aria-label={t("blogs.grid.prevPage")}
+            >
+              {isRtl ? "\u2192" : "\u2190"}
+            </button>
 
-          {/* Next Page Button */}
-          <button
-            type="button"
-            disabled={currentPage >= totalPages}
-            onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-            aria-label="Next Page"
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#D9E2EE] bg-white transition-colors hover:bg-[#F0F3FA] disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            <Image
-              src="/Blogs/Vector.svg"
-              alt="Next"
-              width={6}
-              height={10}
-            />
-          </button>
-        </nav>
+            {/* Page number buttons */}
+            {Array.from({ length: totalPages }).map((_, idx) => {
+              const pageNumber = idx + 1;
+              const isActive = pageNumber === currentPage;
+              return (
+                <button
+                  key={pageNumber}
+                  onClick={() => onPageChange(pageNumber)}
+                  className={`flex h-9 w-9 items-center justify-center rounded-[10px] text-xs font-semibold transition-colors ${
+                    isActive
+                      ? "bg-[#1B3A6B] text-white"
+                      : "border border-[#D9E2EE] bg-white text-[#202326] hover:bg-[#F0F3FA]"
+                  }`}
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  {pageNumber}
+                </button>
+              );
+            })}
+
+            {/* Next button */}
+            <button
+              onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
+              disabled={currentPage === totalPages}
+              className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-[#D9E2EE] bg-white text-xs font-semibold text-[#202326] transition-colors hover:bg-[#F0F3FA] disabled:cursor-not-allowed disabled:opacity-40"
+              aria-label={t("blogs.grid.nextPage")}
+            >
+              {isRtl ? "\u2190" : "\u2192"}
+            </button>
+          </div>
+        </div>
       )}
     </section>
   );
 }
-

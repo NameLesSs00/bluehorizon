@@ -1,6 +1,7 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
+import { useTranslation } from "@/features/i18n/useTranslation";
 import BlogCard, { BlogCardData } from "../BlogCard";
 
 interface BlogRecentArticlesProps {
@@ -10,6 +11,9 @@ interface BlogRecentArticlesProps {
 export default function BlogRecentArticles({
   articles,
 }: BlogRecentArticlesProps) {
+  const { t, locale, direction } = useTranslation();
+  const isRtl = direction === "rtl";
+
   if (!articles || articles.length === 0) {
     return null;
   }
@@ -26,23 +30,23 @@ export default function BlogRecentArticles({
             className="text-2xl sm:text-3xl font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            Recent Articles
+            {t("blogs.details.recentArticlesTitle")}
           </h2>
           <p
             className="mt-1 text-sm text-[#6B7570]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Explore more market analysis and buying guides
+            {t("blogs.details.recentArticlesSubtitle")}
           </p>
         </div>
 
         <Link
-          href="/blogs"
+          href={`/${locale}/blogs`}
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#2B5FA6] hover:text-[#1B3A6B] transition-colors"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          <span>View All Articles</span>
-          <span>&rarr;</span>
+          <span>{t("blogs.details.viewAllArticles")}</span>
+          <span className="rtl:rotate-180">&rarr;</span>
         </Link>
       </div>
 
@@ -55,4 +59,3 @@ export default function BlogRecentArticles({
     </section>
   );
 }
-

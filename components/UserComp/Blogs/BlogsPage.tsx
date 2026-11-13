@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { FormEvent, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -9,16 +9,10 @@ import BlogsFilterBar, { BlogCategory } from "./BlogsFilterBar";
 import BlogsGridSection from "./BlogsGridSection";
 import { BlogCardData } from "./BlogCard";
 import { getBlogs, getFullImageUrl } from "@/clientApi/blogsApi";
-
-const CATEGORY_LIST = [
-  "Buying Guide",
-  "Investment",
-  "Lifestyle",
-  "Market Insights",
-  "Red Sea News",
-];
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 export default function BlogsPage() {
+  const { locale } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [activeSearch, setActiveSearch] = useState<string>("");
@@ -26,10 +20,10 @@ export default function BlogsPage() {
 
   // Public Query fetching from pre-existing clientApi
   const { data: blogsData, isLoading } = useQuery({
-    queryKey: ["publicBlogs", currentPage],
+    queryKey: ["publicBlogs", currentPage, locale],
     queryFn: async () => {
       return await getBlogs({
-        Language: "en",
+        Language: locale,
         PageNumber: currentPage,
         PageSize: 6,
       });
@@ -42,40 +36,41 @@ export default function BlogsPage() {
     const items = blogsData?.items || [];
     return items.map((item) => {
       const assignedCategory = item.blogType?.trim() || "";
+      const localeFormat = locale === "ar" ? "ar-EG" : locale === "de" ? "de-DE" : "en-US";
       const formattedDate = item.publishDate
-        ? new Date(item.publishDate).toLocaleDateString("en-US", {
+        ? new Date(item.publishDate).toLocaleDateString(localeFormat, {
             year: "numeric",
             month: "short",
             day: "numeric",
           })
         : "";
-      const sectionSnippet =
-        item.sections?.[0]?.content ||
-        item.sections?.[0]?.tittle ||
-        "";
 
       return {
         id: item.id,
         title: item.title,
         category: assignedCategory,
         date: formattedDate,
-        description: sectionSnippet,
-        imageUrl: getFullImageUrl(item.imageUrl),
+        description: "",
+        imageUrl: item.imageUrl ? getFullImageUrl(item.imageUrl) : null,
       };
     });
-  }, [blogsData?.items]);
+  }, [blogsData, locale]);
 
-  // Client-side filtering by category and search
+  // Client-side filtering by category & search query
   const filteredBlogs = useMemo(() => {
     return allBlogs.filter((blog) => {
+      // Category Filter
       const matchesCategory =
         selectedCategory === "All" ||
-        blog.category.toLowerCase() === selectedCategory.toLowerCase();
+        blog.category.toLowerCase().includes(selectedCategory.toLowerCase());
 
+      // Search Query Filter
+      const q = activeSearch.toLowerCase().trim();
       const matchesSearch =
-        activeSearch.trim().length === 0 ||
-        blog.title.toLowerCase().includes(activeSearch.toLowerCase()) ||
-        blog.description.toLowerCase().includes(activeSearch.toLowerCase());
+        !q ||
+        blog.title.toLowerCase().includes(q) ||
+        blog.description.toLowerCase().includes(q) ||
+        blog.category.toLowerCase().includes(q);
 
       return matchesCategory && matchesSearch;
     });
@@ -87,11 +82,6 @@ export default function BlogsPage() {
     setCurrentPage(1);
   };
 
-  const handleCategorySelect = (category: BlogCategory) => {
-    setSelectedCategory(category);
-    setCurrentPage(1);
-  };
-
   const handleResetFilters = () => {
     setSearchQuery("");
     setActiveSearch("");
@@ -99,30 +89,31 @@ export default function BlogsPage() {
     setCurrentPage(1);
   };
 
-  const totalPages = blogsData?.totalPages || 1;
-  const totalCount = blogsData?.totalCount || 0;
-
   return (
-    <div className="flex min-h-screen flex-col bg-[#F0F3FA]">
+    <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
       <Navbar />
-      <main className="flex-1 pb-8">
+
+      <main className="flex-1 pb-10">
         <BlogsHeroSection
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
           onSearchSubmit={handleSearchSubmit}
-          totalArticles={totalCount}
+          totalArticles={blogsData?.totalCount}
         />
 
         <BlogsFilterBar
           selectedCategory={selectedCategory}
-          onSelectCategory={handleCategorySelect}
+          onSelectCategory={(cat) => {
+            setSelectedCategory(cat);
+            setCurrentPage(1);
+          }}
         />
 
         <BlogsGridSection
           blogs={filteredBlogs}
           isLoading={isLoading}
-          currentPage={currentPage}
-          totalPages={totalPages}
+          currentPage={blogsData?.pageNumber || currentPage}
+          totalPages={blogsData?.totalPages || 1}
           onPageChange={setCurrentPage}
           onResetFilters={handleResetFilters}
         />
@@ -132,4 +123,3 @@ export default function BlogsPage() {
     </div>
   );
 }
-

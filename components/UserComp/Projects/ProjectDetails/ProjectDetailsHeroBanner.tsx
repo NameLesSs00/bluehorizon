@@ -1,5 +1,10 @@
-﻿import Image from "next/image";
+"use client";
+
+import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { getFullProjectImageUrl } from "@/clientApi/projectsApi";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { fadeInUpVariants } from "@/shared/utils/animations";
 
 interface ProjectDetailsHeroBannerProps {
   title?: string;
@@ -10,13 +15,20 @@ export default function ProjectDetailsHeroBanner({
   title,
   imageUrl,
 }: ProjectDetailsHeroBannerProps) {
+  const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
   const resolvedUrl = getFullProjectImageUrl(imageUrl);
   const hasValidImage = Boolean(resolvedUrl && resolvedUrl.trim().length > 0);
-  const altText = title ? `${title} Banner` : "Project Banner";
+  const altText = title ? `${title} Banner` : t("projects.details.defaultTitle");
 
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8">
-      <div className="relative h-[260px] sm:h-[360px] lg:h-[440px] w-full overflow-hidden rounded-[24px] bg-[#E5ECF6]">
+      <motion.div
+        initial={shouldReduceMotion ? false : "hidden"}
+        animate="visible"
+        variants={fadeInUpVariants}
+        className="relative h-[260px] sm:h-[360px] lg:h-[440px] w-full overflow-hidden rounded-[24px] bg-[#E5ECF6]"
+      >
         {hasValidImage ? (
           <Image
             src={resolvedUrl}
@@ -38,8 +50,7 @@ export default function ProjectDetailsHeroBanner({
             </div>
           </div>
         )}
-      </div>
+      </motion.div>
     </section>
   );
 }
-

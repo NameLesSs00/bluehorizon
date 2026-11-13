@@ -1,11 +1,21 @@
 ﻿"use client";
 
+import { motion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 import { usePublicProjectLocationsQuery } from "@/features/projectLocations/useProjectLocationsQueries";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import {
+  containerStaggerVariants,
+  cardItemVariants,
+} from "@/shared/utils/animations";
 import AreaListCard from "./AreaListCard";
 
 export default function AreasListSection() {
+  const { t, locale } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
+
   const { data, isLoading } = usePublicProjectLocationsQuery({
-    Language: "en",
+    Language: locale,
     PageNumber: 1,
     PageSize: 50,
   });
@@ -22,22 +32,31 @@ export default function AreasListSection() {
               className="mt-3 text-[13px] text-[#65706B]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Loading areas...
+              {t("areas.list.loading")}
             </p>
           </div>
         ) : areas.length === 0 ? (
           <div className="flex h-48 w-full items-center justify-center rounded-[22px] border border-[#DCE4DF] bg-white text-[14px] text-[#65706B]">
-            No areas available at the moment.
+            {t("areas.list.noAreas")}
           </div>
         ) : (
-          <div className="space-y-6 sm:space-y-8">
+          <motion.div
+            className="space-y-6 sm:space-y-8"
+            variants={shouldReduceMotion ? undefined : containerStaggerVariants}
+            initial={shouldReduceMotion ? undefined : "hidden"}
+            animate={shouldReduceMotion ? undefined : "visible"}
+          >
             {areas.map((area) => (
-              <AreaListCard key={area.id} area={area} />
+              <motion.div
+                key={area.id}
+                variants={shouldReduceMotion ? undefined : cardItemVariants}
+              >
+                <AreaListCard area={area} />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
     </section>
   );
 }
-

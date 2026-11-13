@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { getBlogById, getBlogs, getFullImageUrl } from "@/clientApi/blogsApi";
+import { useTranslation } from "@/features/i18n/useTranslation";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import BlogBreadcrumb from "./BlogBreadcrumb";
 import BlogHeroImage from "./BlogHeroImage";
@@ -18,6 +19,7 @@ interface BlogDetailsPageProps {
 }
 
 export default function BlogDetailsPage({ name }: BlogDetailsPageProps) {
+  const { t, locale } = useTranslation();
   const decodedName = decodeURIComponent(name || "").trim();
 
   // Query blog by name
@@ -26,7 +28,7 @@ export default function BlogDetailsPage({ name }: BlogDetailsPageProps) {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["publicBlog", decodedName],
+    queryKey: ["publicBlog", decodedName, locale],
     queryFn: async () => {
       if (!decodedName) return null;
 
@@ -39,7 +41,7 @@ export default function BlogDetailsPage({ name }: BlogDetailsPageProps) {
 
       // Query blogs list and find by title
       const listRes = await getBlogs({
-        Language: "en",
+        Language: locale,
         PageNumber: 1,
         PageSize: 100,
       });
@@ -50,84 +52,59 @@ export default function BlogDetailsPage({ name }: BlogDetailsPageProps) {
 
       const matched = listRes.items.find(
         (b) =>
-          b.title.toLowerCase().trim() === decodedName.toLowerCase() ||
-          normalize(b.title) === normalizedTarget
+          normalize(b.title) === normalizedTarget ||
+          b.title.toLowerCase().trim() === decodedName.toLowerCase()
       );
 
-      if (!matched) return null;
+      if (matched) {
+        const singleRes = await getBlogById(matched.id);
+        return singleRes.data;
+      }
 
-      // Fetch full blog details with sections
-      const res = await getBlogById(matched.id);
-      return res.data || matched;
+      if (listRes.items.length > 0) {
+        const first = await getBlogById(listRes.items[0].id);
+        return first.data;
+      }
+
+      return null;
     },
-    enabled: Boolean(decodedName),
     staleTime: 1000 * 60 * 5,
   });
 
   // Query recent articles for bottom section
-  const { data: recentRes } = useQuery({
-    queryKey: ["publicRecentBlogs", decodedName],
+  const { data: recentData } = useQuery({
+    queryKey: ["publicRecentBlogs", blogRes?.id, locale],
     queryFn: async () => {
-      return await getBlogs({
-        Language: "en",
+      const res = await getBlogs({
+        Language: locale,
         PageNumber: 1,
         PageSize: 4,
       });
+      return res;
     },
     staleTime: 1000 * 60 * 5,
   });
 
-  const blog = blogRes;
-
-  // Extract actual publication date if provided by backend data
-  const rawDate =
-    (blog as unknown as { createdAt?: string })?.createdAt ||
-    (blog as unknown as { publishDate?: string })?.publishDate ||
-    (blog as unknown as { createdDate?: string })?.createdDate ||
-    (blog as unknown as { date?: string })?.date;
-
-  const publicationDate = rawDate
-    ? new Date(rawDate).toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-      })
-    : null;
-
-  // Extract category if available from backend
-  const category =
-    (blog as unknown as { category?: string })?.category || null;
-
-  // Map other blogs for recent section (excluding current)
-  const recentArticles: BlogCardData[] = (recentRes?.items || [])
-    .filter(
-      (item) =>
-        item.id !== blog?.id &&
-        item.title.toLowerCase().trim() !== decodedName.toLowerCase()
-    )
+  const recentArticles: BlogCardData[] = (recentData?.items || [])
+    .filter((item) => item.id !== blogRes?.id)
     .slice(0, 3)
     .map((item) => {
-      const itemRawDate =
-        (item as unknown as { createdAt?: string })?.createdAt ||
-        (item as unknown as { publishDate?: string })?.publishDate;
-      const itemFormattedDate = itemRawDate
-        ? new Date(itemRawDate).toLocaleDateString("en-US", {
+      const localeFormat = locale === "ar" ? "ar-EG" : locale === "de" ? "de-DE" : "en-US";
+      const formattedDate = item.publishDate
+        ? new Date(item.publishDate).toLocaleDateString(localeFormat, {
+            year: "numeric",
             month: "short",
             day: "numeric",
-            year: "numeric",
           })
         : "";
 
       return {
         id: item.id,
         title: item.title,
-        category: (item as unknown as { category?: string })?.category || "",
-        date: itemFormattedDate,
-        description:
-          item.sections?.[0]?.content ||
-          item.sections?.[0]?.tittle ||
-          "",
-        imageUrl: getFullImageUrl(item.imageUrl),
+        category: item.blogType?.trim() || "",
+        date: formattedDate,
+        description: "",
+        imageUrl: item.imageUrl ? getFullImageUrl(item.imageUrl) : null,
       };
     });
 
@@ -135,22 +112,14 @@ export default function BlogDetailsPage({ name }: BlogDetailsPageProps) {
     return (
       <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
         <Navbar />
-        <main className="flex-1 pb-16">
-          <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 pt-8">
-            <div className="h-4 w-48 animate-pulse rounded bg-[#D9E2EE] mb-6" />
-            <div className="h-[360px] sm:h-[440px] w-full animate-pulse rounded-[28px] bg-[#E5ECF6]" />
-            <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
-              <div className="lg:col-span-8 space-y-4">
-                <div className="h-6 w-24 animate-pulse rounded-full bg-[#D9E2EE]" />
-                <div className="h-10 w-3/4 animate-pulse rounded bg-[#D9E2EE]" />
-                <div className="h-4 w-full animate-pulse rounded bg-[#F0F3FA]" />
-                <div className="h-4 w-5/6 animate-pulse rounded bg-[#F0F3FA]" />
-              </div>
-              <div className="lg:col-span-4 space-y-4">
-                <div className="h-32 w-full animate-pulse rounded-[20px] bg-[#F0F3FA]" />
-                <div className="h-44 w-full animate-pulse rounded-[20px] bg-[#F0F3FA]" />
-              </div>
-            </div>
+        <main className="flex-1 mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 py-12">
+          <div className="h-4 w-48 animate-pulse rounded bg-[#E5ECF6] mb-6" />
+          <div className="h-8 w-3/4 animate-pulse rounded bg-[#E5ECF6] mb-8" />
+          <div className="h-[420px] w-full animate-pulse rounded-[24px] bg-[#F0F3FA] mb-12" />
+          <div className="space-y-4">
+            <div className="h-4 w-full animate-pulse rounded bg-[#F0F3FA]" />
+            <div className="h-4 w-5/6 animate-pulse rounded bg-[#F0F3FA]" />
+            <div className="h-4 w-4/6 animate-pulse rounded bg-[#F0F3FA]" />
           </div>
         </main>
         <Footer />
@@ -158,31 +127,30 @@ export default function BlogDetailsPage({ name }: BlogDetailsPageProps) {
     );
   }
 
-  if (isError || !blog) {
+  if (isError || !blogRes) {
     return (
       <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
         <Navbar />
-        <main className="flex-1 flex items-center justify-center py-24 px-4 text-center">
-          <div className="max-w-md rounded-[24px] border border-[#D9E2EE] bg-white p-8 sm:p-10 shadow-sm">
+        <main className="flex-1 mx-auto flex w-full max-w-[1360px] items-center justify-center px-4 py-24 text-center">
+          <div>
             <h1
-              className="text-2xl font-bold text-[#202326]"
+              className="text-2xl sm:text-3xl font-bold text-[#202326]"
               style={{ fontFamily: "var(--font-manrope)" }}
             >
-              Article Not Found
+              {t("blogs.details.notFoundTitle")}
             </h1>
             <p
-              className="mt-3 text-sm text-[#6B7570]"
+              className="mt-2 text-sm text-[#6B7570]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              The blog article you are looking for does not exist or may have
-              been removed.
+              {t("blogs.details.notFoundSubtitle")}
             </p>
             <Link
-              href="/blogs"
-              className="mt-6 inline-flex rounded-full bg-[#2B5FA6] px-6 py-2.5 text-xs sm:text-sm font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
+              href={`/${locale}/blogs`}
+              className="mt-6 inline-flex items-center rounded-full bg-[#1B3A6B] px-6 py-2.5 text-xs sm:text-sm font-semibold text-white transition-all hover:bg-[#162E56]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Back to Blogs
+              {t("blogs.details.backToBlogs")}
             </Link>
           </div>
         </main>
@@ -191,52 +159,57 @@ export default function BlogDetailsPage({ name }: BlogDetailsPageProps) {
     );
   }
 
-  const heroImageUrl = blog.imageUrl ? getFullImageUrl(blog.imageUrl) : null;
-  const sections = blog.sections || [];
+  const localeFormat = locale === "ar" ? "ar-EG" : locale === "de" ? "de-DE" : "en-US";
+  const formattedDate = blogRes.publishDate
+    ? new Date(blogRes.publishDate).toLocaleDateString(localeFormat, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+    : null;
+
+  const heroImage = blogRes.imageUrl
+    ? getFullImageUrl(blogRes.imageUrl)
+    : null;
+
+  const sortedSections = [...(blogRes.sections || [])].sort(
+    (a, b) => (a.sectionNumber || 0) - (b.sectionNumber || 0)
+  );
 
   return (
     <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
       <Navbar />
+
       <main className="flex-1 pb-16">
-        <BlogBreadcrumb title={blog.title} category={category} />
+        <BlogBreadcrumb title={blogRes.title} category={blogRes.blogType} />
 
-        <BlogHeroImage imageUrl={heroImageUrl} title={blog.title} />
+        <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-4">
+          <BlogHeroImage imageUrl={heroImage} title={blogRes.title} />
 
-        {/* Two-Column Layout */}
-        <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            {/* Left Column: Main Article Body */}
+          <div className="mt-10 lg:mt-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             <div className="lg:col-span-8">
               <BlogMainContent
-                title={blog.title}
-                category={category}
-                publicationDate={publicationDate}
-                sections={sections}
+                title={blogRes.title}
+                category={blogRes.blogType}
+                publicationDate={formattedDate}
+                sections={sortedSections}
               />
             </div>
 
-            {/* Right Column: Sticky Sidebar */}
-            <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-8">
-              {/* Share Card (replaces Written By) */}
-              <BlogShareCard title={blog.title} />
-
-              {/* Table of Contents */}
+            <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
+              <BlogShareCard title={blogRes.title} />
               <BlogTableOfContents
-                sections={sections}
+                sections={sortedSections}
                 hasRecentArticles={recentArticles.length > 0}
               />
             </aside>
           </div>
         </div>
 
-        {/* Recent Articles Section */}
-        {recentArticles.length > 0 && (
-          <BlogRecentArticles articles={recentArticles} />
-        )}
+        <BlogRecentArticles articles={recentArticles} />
       </main>
 
       <Footer />
     </div>
   );
 }
-

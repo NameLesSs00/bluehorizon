@@ -1,10 +1,14 @@
-﻿import { RentalItem } from "@/models/rental";
+"use client";
+
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { RentalItem } from "@/models/rental";
 
 interface RentalAboutSectionProps {
   unit: RentalItem;
 }
 
 export default function RentalAboutSection({ unit }: RentalAboutSectionProps) {
+  const { t } = useTranslation();
   const descriptionParagraphs = (unit.description || "")
     .split("\n\n")
     .filter(Boolean);
@@ -13,14 +17,16 @@ export default function RentalAboutSection({ unit }: RentalAboutSectionProps) {
 
   // Availability
   highlights.push({
-    label: "Status",
-    value: unit.isAvailable ? "Available for Rent" : "Currently Unavailable",
+    label: t("rent.details.status"),
+    value: unit.isAvailable
+      ? t("rent.details.available")
+      : t("rent.details.unavailable"),
   });
 
   // Code
   if (unit.code && unit.code.trim().length > 0) {
     highlights.push({
-      label: "Unit Code",
+      label: t("rent.details.code"),
       value: unit.code,
     });
   }
@@ -28,7 +34,7 @@ export default function RentalAboutSection({ unit }: RentalAboutSectionProps) {
   // Location
   if (unit.rentalLocation?.name) {
     highlights.push({
-      label: "Location Area",
+      label: t("rent.details.location"),
       value: unit.rentalLocation.name,
     });
   }
@@ -36,7 +42,7 @@ export default function RentalAboutSection({ unit }: RentalAboutSectionProps) {
   // Floor
   if (unit.floor && unit.floor.trim().length > 0) {
     highlights.push({
-      label: "Floor Level",
+      label: t("rent.details.floor"),
       value: unit.floor,
     });
   }
@@ -47,48 +53,45 @@ export default function RentalAboutSection({ unit }: RentalAboutSectionProps) {
         className="text-xl sm:text-2xl font-bold text-[#2B5FA6]"
         style={{ fontFamily: "var(--font-manrope)" }}
       >
-        About This Rental
+        {t("rent.details.aboutTitle")}
       </h2>
 
-      {/* Description */}
-      <div className="mt-4 space-y-4 text-sm sm:text-[15px] leading-relaxed text-[#65706B]">
-        {descriptionParagraphs.length > 0 ? (
-          descriptionParagraphs.map((para, idx) => (
-            <p key={idx} style={{ fontFamily: "var(--font-inter)" }}>
-              {para}
-            </p>
-          ))
-        ) : (
-          <p style={{ fontFamily: "var(--font-inter)" }}>
-            No description provided for this rental unit.
-          </p>
-        )}
-      </div>
-
-      {/* Highlight Cards strictly from backend */}
+      {/* Highlights Grid */}
       {highlights.length > 0 && (
-        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {highlights.map((h) => (
+        <div className="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3 border-b border-[#D9E2EE] pb-5">
+          {highlights.map((item) => (
             <div
-              key={h.label}
-              className="rounded-[14px] border border-[#D9E2EE]/80 bg-[#F9F7F4] p-3.5 text-center"
+              key={item.label}
+              className="rounded-[12px] bg-[#F0F3FA] p-3 text-start"
             >
               <span
-                className="block text-[11px] font-medium text-[#65706B]"
+                className="block text-[11px] font-semibold text-[#65706B]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                {h.label}
+                {item.label}
               </span>
               <span
-                className="mt-1 block text-xs sm:text-[13px] font-bold text-[#202326] truncate"
+                className="mt-0.5 block text-xs sm:text-sm font-bold text-[#202326] truncate"
                 style={{ fontFamily: "var(--font-manrope)" }}
               >
-                {h.value}
+                {item.value}
               </span>
             </div>
           ))}
         </div>
       )}
+
+      {/* Description Body */}
+      <div
+        className="mt-5 space-y-3.5 text-xs sm:text-sm leading-relaxed text-[#65706B]"
+        style={{ fontFamily: "var(--font-inter)" }}
+      >
+        {descriptionParagraphs.length > 0 ? (
+          descriptionParagraphs.map((para, i) => <p key={i}>{para}</p>)
+        ) : (
+          <p>{unit.description || ""}</p>
+        )}
+      </div>
     </div>
   );
 }

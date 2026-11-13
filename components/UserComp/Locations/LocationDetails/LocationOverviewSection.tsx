@@ -1,27 +1,32 @@
-﻿interface LocationOverviewSectionProps {
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { fadeInUpVariants } from "@/shared/utils/animations";
+
+interface LocationOverviewSectionProps {
   locationName?: string;
   description?: string | null;
   activeRentalsCount?: number;
 }
-
-const RENTAL_HIGHLIGHT_TAGS = [
-  "Beach & Marina Proximity",
-  "Verified Holiday Rentals",
-  "Family-Friendly Stays",
-  "24/7 Concierge Support",
-];
 
 export default function LocationOverviewSection({
   locationName,
   description,
   activeRentalsCount,
 }: LocationOverviewSectionProps) {
-  const name = locationName || "this prime destination";
-  const displayHeading = locationName
-    ? `${locationName} Rental Overview`
-    : "Rental Location Overview";
+  const { t, direction } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
 
-  const defaultDescription = `Experience the ultimate coastal retreat in ${name}. Featuring crystalline azure waters, private beach access, and vibrant leisure promenades, this premier holiday hub is renowned for exceptional short and long-term vacation rentals. Whether you are seeking a chic beachfront studio or a luxury private villa with panoramic sea views, enjoy verified amenities, premium comfort, and tailored hospitality.`;
+  const name = locationName || t("locations.details.defaultTitle");
+  const displayHeading = locationName
+    ? t("locations.details.overviewTitle").replace("{name}", locationName)
+    : t("locations.details.defaultOverviewTitle");
+
+  const defaultDescription = t("locations.details.defaultDescription").replace(
+    "{name}",
+    name
+  );
 
   const textToShow =
     description && description.trim().length > 0
@@ -30,16 +35,31 @@ export default function LocationOverviewSection({
 
   const count = typeof activeRentalsCount === "number" ? activeRentalsCount : 0;
 
+  const highlightTags = [
+    t("locations.details.highlights.tag1"),
+    t("locations.details.highlights.tag2"),
+    t("locations.details.highlights.tag3"),
+    t("locations.details.highlights.tag4"),
+  ];
+
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12">
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+      <motion.div
+        className={`flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between ${
+          direction === "rtl" ? "rtl:lg:flex-row-reverse" : ""
+        }`}
+        variants={shouldReduceMotion ? undefined : fadeInUpVariants}
+        initial={shouldReduceMotion ? undefined : "hidden"}
+        whileInView={shouldReduceMotion ? undefined : "visible"}
+        viewport={{ once: true, amount: 0.2 }}
+      >
         {/* Left Column: Title, Description & Highlight Tags */}
         <div className="max-w-3xl">
           <p
             className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            DISCOVER THE LOCATION
+            {t("locations.details.discoverLocation")}
           </p>
 
           <h2
@@ -58,7 +78,7 @@ export default function LocationOverviewSection({
 
           {/* Highlight Pills */}
           <div className="mt-5 flex flex-wrap items-center gap-2">
-            {RENTAL_HIGHLIGHT_TAGS.map((tag) => (
+            {highlightTags.map((tag) => (
               <span
                 key={tag}
                 className="inline-flex items-center rounded-full bg-white px-3.5 py-1.5 text-xs font-medium text-[#2B5FA6] border border-[#D9E2EE] shadow-2xs"
@@ -78,13 +98,13 @@ export default function LocationOverviewSection({
                 className="text-3xl sm:text-[40px] font-bold leading-none text-[#2B5FA6]"
                 style={{ fontFamily: "var(--font-manrope)" }}
               >
-                {count > 0 ? `${count}+` : "Verified"}
+                {count > 0 ? `${count}+` : t("locations.details.verifiedBadge")}
               </span>
               <span
                 className="block mt-2 text-xs sm:text-[13px] font-semibold text-[#202326]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                Available rentals
+                {t("locations.details.availableRentals")}
               </span>
             </div>
             <div className="sm:mt-4 sm:pt-4 sm:border-t sm:border-[#D9E2EE]/80">
@@ -92,12 +112,12 @@ export default function LocationOverviewSection({
                 className="text-xs text-[#8A9590]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                Serviced & Private
+                {t("locations.details.servicedAndPrivate")}
               </span>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

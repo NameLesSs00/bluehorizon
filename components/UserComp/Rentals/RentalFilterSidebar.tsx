@@ -1,9 +1,10 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
-import { FiSearch, FiChevronDown, FiRotateCcw } from "react-icons/fi";
+import { useEffect, useRef, useState } from "react";
+import { FiRotateCcw, FiSearch } from "react-icons/fi";
 import { usePublicRentalLocationsQuery } from "@/features/rentalLocations/useRentalLocationsQueries";
 import { PROPERTY_TYPE_LABELS, PropertyType } from "@/models/rental";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 export interface RentalFilterState {
   searchTerm: string;
@@ -20,23 +21,18 @@ interface RentalFilterSidebarProps {
   onResetFilters: () => void;
 }
 
-const BEDROOM_OPTIONS = [
-  { value: "", label: "Any" },
-  { value: "1", label: "1 Room" },
-  { value: "2", label: "2 Rooms" },
-  { value: "3", label: "3 Rooms" },
-  { value: "4", label: "4 Rooms" },
-  { value: "5", label: "5+ Rooms" },
-];
-
 const UNIT_TYPE_OPTIONS = [
-  { value: "", label: "Any Type" },
-  { value: String(PropertyType.Apartment), label: PROPERTY_TYPE_LABELS[PropertyType.Apartment] },
-  { value: String(PropertyType.Villa), label: PROPERTY_TYPE_LABELS[PropertyType.Villa] },
-  { value: String(PropertyType.Townhouse), label: PROPERTY_TYPE_LABELS[PropertyType.Townhouse] },
-  { value: String(PropertyType.Studio), label: PROPERTY_TYPE_LABELS[PropertyType.Studio] },
-  { value: String(PropertyType.Chalet), label: PROPERTY_TYPE_LABELS[PropertyType.Chalet] },
-  { value: String(PropertyType.Penthouse), label: PROPERTY_TYPE_LABELS[PropertyType.Penthouse] },
+  PropertyType.Apartment,
+  PropertyType.Villa,
+  PropertyType.Townhouse,
+  PropertyType.Studio,
+  PropertyType.Penthouse,
+  PropertyType.OneBedroom,
+  PropertyType.TwoBedroom,
+  PropertyType.ThreeBedroom,
+  PropertyType.Chalet,
+  PropertyType.FourBedroom,
+  PropertyType.StudioCompact,
 ];
 
 export default function RentalFilterSidebar({
@@ -44,187 +40,262 @@ export default function RentalFilterSidebar({
   onApplyFilters,
   onResetFilters,
 }: RentalFilterSidebarProps) {
-  const [filters, setFilters] = useState<RentalFilterState>(initialFilters);
+  const { t, locale } = useTranslation();
+  const [searchTerm, setSearchTerm] = useState(initialFilters.searchTerm);
+  const [locationId, setLocationId] = useState(initialFilters.locationId);
+  const [propertyType, setPropertyType] = useState(initialFilters.propertyType);
+  const [bedrooms, setBedrooms] = useState(initialFilters.bedrooms);
+  const [minPrice, setMinPrice] = useState(initialFilters.minPrice);
+  const [maxPrice, setMaxPrice] = useState(initialFilters.maxPrice);
+
+  const isInitialMount = useRef(true);
 
   const { data: locationsData } = usePublicRentalLocationsQuery({
-    Language: "en",
+    Language: locale,
     PageSize: 50,
   });
-
   const locations = locationsData?.items || [];
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    onApplyFilters(filters);
-  }
+  // Sync internal state when external initialFilters change
+  useEffect(() => {
+    setSearchTerm(initialFilters.searchTerm);
+    setLocationId(initialFilters.locationId);
+    setPropertyType(initialFilters.propertyType);
+    setBedrooms(initialFilters.bedrooms);
+    setMinPrice(initialFilters.minPrice);
+    setMaxPrice(initialFilters.maxPrice);
+  }, [initialFilters]);
 
-  function handleReset() {
-    const emptyFilters: RentalFilterState = {
-      searchTerm: "",
-      locationId: "",
-      propertyType: "",
-      bedrooms: "",
-      minPrice: "",
-      maxPrice: "",
-    };
-    setFilters(emptyFilters);
+  // Auto-apply filters after 1 second of inactivity (typing debounce)
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      onApplyFilters({
+        searchTerm,
+        locationId,
+        propertyType,
+        bedrooms,
+        minPrice,
+        maxPrice,
+      });
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [searchTerm, locationId, propertyType, bedrooms, minPrice, maxPrice, onApplyFilters]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onApplyFilters({
+      searchTerm,
+      locationId,
+      propertyType,
+      bedrooms,
+      minPrice,
+      maxPrice,
+    });
+  };
+
+  const handleReset = () => {
+    setSearchTerm("");
+    setLocationId("");
+    setPropertyType("");
+    setBedrooms("");
+    setMinPrice("");
+    setMaxPrice("");
     onResetFilters();
-  }
+  };
+
+  const hasActiveFilters = Boolean(
+    searchTerm.trim() ||
+      locationId ||
+      propertyType ||
+      bedrooms ||
+      minPrice ||
+      maxPrice
+  );
 
   return (
-    <aside className="w-full lg:w-[320px] shrink-0">
-      <div className="rounded-[24px] border border-[#D9E2EE] bg-white p-6 shadow-sm">
+    <aside className="w-full lg:w-[280px] xl:w-[320px] shrink-0">
+      <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-5 sm:p-6 shadow-sm">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-[#D9E2EE] pb-4">
+        <div className="border-b border-[#D9E2EE] pb-4">
           <h2
             className="text-lg font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            Filters
+            {t("rent.filters.title")}
           </h2>
-          <button
-            type="button"
-            onClick={handleReset}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#1B3A6B] transition-opacity hover:opacity-75"
-            style={{ fontFamily: "var(--font-inter)" }}
-          >
-            <FiRotateCcw className="h-3 w-3" />
-            <span>Reset All</span>
-          </button>
         </div>
 
+        {/* Filter Form */}
         <form onSubmit={handleSubmit} className="mt-5 space-y-4">
-          {/* Search by Name */}
+          {/* Search */}
           <div>
             <label
-              htmlFor="rental-search"
+              htmlFor="rental-filter-search"
               className="block text-xs font-semibold text-[#202326]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Search
+              {t("rent.filters.searchLabel")}
             </label>
             <div className="relative mt-1.5">
               <input
-                id="rental-search"
+                id="rental-filter-search"
                 type="text"
-                placeholder="Search by name..."
-                value={filters.searchTerm}
-                onChange={(e) =>
-                  setFilters({ ...filters, searchTerm: e.target.value })
-                }
-                className="w-full rounded-[12px] border border-[#D9E2EE] bg-[#F9F7F4] px-3.5 py-2.5 text-xs text-[#202326] placeholder-[#9CA3AF] transition-colors focus:border-[#1B3A6B] focus:bg-white focus:outline-hidden"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder={t("rent.filters.searchPlaceholder")}
+                className="w-full rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] py-2.5 pr-3.5 pl-9 rtl:pr-9 rtl:pl-3.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#2B5FA6] focus:bg-white"
                 style={{ fontFamily: "var(--font-inter)" }}
               />
-              <FiSearch className="pointer-events-none absolute right-3.5 top-3 h-3.5 w-3.5 text-[#9CA3AF]" />
+              <FiSearch className="pointer-events-none absolute top-1/2 left-3 rtl:left-auto rtl:right-3 h-4 w-4 -translate-y-1/2 text-[#6B7570]" />
             </div>
           </div>
 
-          {/* Location Dropdown */}
+          {/* Location Area */}
           <div>
             <label
-              htmlFor="rental-location"
+              htmlFor="rental-filter-location"
               className="block text-xs font-semibold text-[#202326]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Location
+              {t("rent.filters.locationLabel")}
             </label>
             <div className="relative mt-1.5">
               <select
-                id="rental-location"
-                value={filters.locationId}
-                onChange={(e) =>
-                  setFilters({ ...filters, locationId: e.target.value })
-                }
-                className="w-full appearance-none rounded-[12px] border border-[#D9E2EE] bg-[#F9F7F4] px-3.5 py-2.5 pr-8 text-xs text-[#202326] transition-colors focus:border-[#1B3A6B] focus:bg-white focus:outline-hidden"
+                id="rental-filter-location"
+                value={locationId}
+                onChange={(e) => setLocationId(e.target.value)}
+                className="w-full appearance-none rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors focus:border-[#2B5FA6] focus:bg-white"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                <option value="">All Locations</option>
+                <option value="">{t("rent.filters.allLocations")}</option>
                 {locations.map((loc) => (
                   <option key={loc.id} value={String(loc.id)}>
                     {loc.name}
                   </option>
                 ))}
               </select>
-              <FiChevronDown className="pointer-events-none absolute right-3 top-3 h-3.5 w-3.5 text-[#65706B]" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 rtl:right-auto rtl:left-0 flex items-center pr-3.5 rtl:pr-0 rtl:pl-3.5 text-[#6B7570]">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </div>
             </div>
           </div>
 
-          {/* Unit Type Dropdown */}
+          {/* Unit Type */}
           <div>
             <label
-              htmlFor="rental-type"
+              htmlFor="rental-filter-unit-type"
               className="block text-xs font-semibold text-[#202326]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Unit Type
+              {t("rent.filters.typeLabel")}
             </label>
             <div className="relative mt-1.5">
               <select
-                id="rental-type"
-                value={filters.propertyType}
-                onChange={(e) =>
-                  setFilters({ ...filters, propertyType: e.target.value })
-                }
-                className="w-full appearance-none rounded-[12px] border border-[#D9E2EE] bg-[#F9F7F4] px-3.5 py-2.5 pr-8 text-xs text-[#202326] transition-colors focus:border-[#1B3A6B] focus:bg-white focus:outline-hidden"
+                id="rental-filter-unit-type"
+                value={propertyType}
+                onChange={(e) => setPropertyType(e.target.value)}
+                className="w-full appearance-none rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors focus:border-[#2B5FA6] focus:bg-white"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                {UNIT_TYPE_OPTIONS.map((opt) => (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
+                <option value="">{t("rent.filters.anyType")}</option>
+                {UNIT_TYPE_OPTIONS.map((typeEnum) => (
+                  <option key={typeEnum} value={String(typeEnum)}>
+                    {PROPERTY_TYPE_LABELS[typeEnum]}
                   </option>
                 ))}
               </select>
-              <FiChevronDown className="pointer-events-none absolute right-3 top-3 h-3.5 w-3.5 text-[#65706B]" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 rtl:right-auto rtl:left-0 flex items-center pr-3.5 rtl:pr-0 rtl:pl-3.5 text-[#6B7570]">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </div>
             </div>
           </div>
 
-          {/* Bedrooms Dropdown */}
+          {/* Bedrooms */}
           <div>
             <label
-              htmlFor="rental-bedrooms"
+              htmlFor="rental-filter-bedrooms"
               className="block text-xs font-semibold text-[#202326]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Bedrooms
+              {t("rent.filters.bedroomsLabel")}
             </label>
             <div className="relative mt-1.5">
               <select
-                id="rental-bedrooms"
-                value={filters.bedrooms}
-                onChange={(e) =>
-                  setFilters({ ...filters, bedrooms: e.target.value })
-                }
-                className="w-full appearance-none rounded-[12px] border border-[#D9E2EE] bg-[#F9F7F4] px-3.5 py-2.5 pr-8 text-xs text-[#202326] transition-colors focus:border-[#1B3A6B] focus:bg-white focus:outline-hidden"
+                id="rental-filter-bedrooms"
+                value={bedrooms}
+                onChange={(e) => setBedrooms(e.target.value)}
+                className="w-full appearance-none rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors focus:border-[#2B5FA6] focus:bg-white"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                {BEDROOM_OPTIONS.map((opt) => (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ))}
+                <option value="">{t("rent.filters.bedroomsAny")}</option>
+                <option value="1">1 {t("rent.card.bedroomSingle")}</option>
+                <option value="2">2 {t("rent.card.bedrooms").replace("{count}", "2")}</option>
+                <option value="3">3 {t("rent.card.bedrooms").replace("{count}", "3")}</option>
+                <option value="4">4 {t("rent.card.bedrooms").replace("{count}", "4")}</option>
+                <option value="5">{t("rent.filters.bedrooms5Plus")}</option>
               </select>
-              <FiChevronDown className="pointer-events-none absolute right-3 top-3 h-3.5 w-3.5 text-[#65706B]" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 rtl:right-auto rtl:left-0 flex items-center pr-3.5 rtl:pr-0 rtl:pl-3.5 text-[#6B7570]">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </div>
             </div>
           </div>
 
           {/* Minimum Price */}
           <div>
             <label
-              htmlFor="rental-min-price"
+              htmlFor="rental-filter-min-price"
               className="block text-xs font-semibold text-[#202326]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Minimum Price
+              {t("rent.filters.minPrice")}
             </label>
             <input
-              id="rental-min-price"
+              id="rental-filter-min-price"
               type="number"
-              placeholder="EGP Min"
-              value={filters.minPrice}
-              onChange={(e) =>
-                setFilters({ ...filters, minPrice: e.target.value })
-              }
-              className="mt-1.5 w-full rounded-[12px] border border-[#D9E2EE] bg-[#F9F7F4] px-3.5 py-2.5 text-xs text-[#202326] placeholder-[#9CA3AF] transition-colors focus:border-[#1B3A6B] focus:bg-white focus:outline-hidden"
+              min="0"
+              value={minPrice}
+              onChange={(e) => setMinPrice(e.target.value)}
+              placeholder={t("rent.filters.minPrice")}
+              className="mt-1.5 w-full rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#2B5FA6] focus:bg-white"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
@@ -232,38 +303,48 @@ export default function RentalFilterSidebar({
           {/* Maximum Price */}
           <div>
             <label
-              htmlFor="rental-max-price"
+              htmlFor="rental-filter-max-price"
               className="block text-xs font-semibold text-[#202326]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Maximum Price
+              {t("rent.filters.maxPrice")}
             </label>
             <input
-              id="rental-max-price"
+              id="rental-filter-max-price"
               type="number"
-              placeholder="EGP Max"
-              value={filters.maxPrice}
-              onChange={(e) =>
-                setFilters({ ...filters, maxPrice: e.target.value })
-              }
-              className="mt-1.5 w-full rounded-[12px] border border-[#D9E2EE] bg-[#F9F7F4] px-3.5 py-2.5 text-xs text-[#202326] placeholder-[#9CA3AF] transition-colors focus:border-[#1B3A6B] focus:bg-white focus:outline-hidden"
+              min="0"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+              placeholder={t("rent.filters.maxPrice")}
+              className="mt-1.5 w-full rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#2B5FA6] focus:bg-white"
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
 
-          {/* Apply Button */}
-          <div className="pt-2">
+          {/* Submit & Reset Buttons */}
+          <div className="space-y-2.5 pt-2">
             <button
               type="submit"
-              className="w-full rounded-[12px] bg-[#1B3A6B] py-3 text-xs sm:text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#2B5FA6]"
+              className="w-full rounded-[12px] bg-[#2B5FA6] py-3 text-center text-xs sm:text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#1B3A6B]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Apply Filters
+              {t("rent.filters.apply")}
             </button>
+
+            {hasActiveFilters && (
+              <button
+                type="button"
+                onClick={handleReset}
+                className="flex w-full items-center justify-center gap-2 rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] py-2.5 text-center text-xs sm:text-sm font-semibold text-[#1B3A6B] transition-colors hover:border-[#1B3A6B] hover:bg-white"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                <FiRotateCcw className="h-3.5 w-3.5" />
+                <span>{t("rent.grid.resetFilters")}</span>
+              </button>
+            )}
           </div>
         </form>
       </div>
     </aside>
   );
 }
-

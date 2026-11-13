@@ -1,11 +1,19 @@
-﻿"use client";
+"use client";
 
 import { useMemo, useState, useEffect } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { FiRotateCcw } from "react-icons/fi";
 import RentalUnitCard from "@/components/UserComp/Rentals/RentalUnitCard";
 import RentalLocationFilterSidebar, {
   RentalLocationFilterState,
 } from "./RentalLocationFilterSidebar";
+import AreaUnitsPagination from "@/components/UserComp/Areas/AreaDetails/AreaUnitsPagination";
 import { usePublicRentalsQuery } from "@/features/rentals/useRentalsQueries";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import {
+  containerStaggerVariants,
+  cardItemVariants,
+} from "@/shared/utils/animations";
 
 interface LocationAvailableRentalsSectionProps {
   locationId: number;
@@ -29,13 +37,16 @@ export default function LocationAvailableRentalsSection({
   locationName,
   onCountLoaded,
 }: LocationAvailableRentalsSectionProps) {
+  const { t, locale, direction } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
+
   const [filterState, setFilterState] =
     useState<RentalLocationFilterState>(INITIAL_FILTERS);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Fetch all rentals from public query hook
+  // Fetch all rentals from public query hook with active locale
   const { data: rentalsData, isLoading } = usePublicRentalsQuery({
-    Language: "en",
+    Language: locale,
     PageSize: 100,
   });
 
@@ -82,11 +93,13 @@ export default function LocationAvailableRentalsSection({
       const rawNumericPrice = rental.prices?.[0]?.price || 0;
       if (filterState.minPrice) {
         const min = parseInt(filterState.minPrice, 10);
-        if (!isNaN(min) && rawNumericPrice > 0 && rawNumericPrice < min) return false;
+        if (!isNaN(min) && rawNumericPrice > 0 && rawNumericPrice < min)
+          return false;
       }
       if (filterState.maxPrice) {
         const max = parseInt(filterState.maxPrice, 10);
-        if (!isNaN(max) && rawNumericPrice > 0 && rawNumericPrice > max) return false;
+        if (!isNaN(max) && rawNumericPrice > 0 && rawNumericPrice > max)
+          return false;
       }
 
       return true;
@@ -121,8 +134,11 @@ export default function LocationAvailableRentalsSection({
   }, [filteredRentals, currentPage]);
 
   const headingText = locationName
-    ? `Available Rentals in ${locationName}`
-    : "Available Rentals";
+    ? t("locations.details.availableRentalsTitle").replace(
+        "{name}",
+        locationName
+      )
+    : t("locations.details.defaultAvailableRentalsTitle");
 
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16 mb-20">
@@ -138,12 +154,16 @@ export default function LocationAvailableRentalsSection({
           className="mt-1 text-sm text-[#6B7570]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          Discover verified vacation and residential rentals with flexible terms and premier amenities.
+          {t("locations.details.availableRentalsSubtitle")}
         </p>
       </div>
 
       {/* Two-Column Layout: Sidebar on Left, Rentals on Right */}
-      <div className="flex flex-col lg:flex-row items-start gap-8">
+      <div
+        className={`flex flex-col lg:flex-row items-start gap-8 ${
+          direction === "rtl" ? "rtl:lg:flex-row-reverse" : ""
+        }`}
+      >
         {/* Left Filter Sidebar */}
         <RentalLocationFilterSidebar
           filterState={filterState}
@@ -169,72 +189,50 @@ export default function LocationAvailableRentalsSection({
                 className="text-base font-semibold text-[#202326]"
                 style={{ fontFamily: "var(--font-manrope)" }}
               >
-                No rental units match your selected filters.
+                {t("locations.details.noRentalsTitle")}
               </p>
               <p
                 className="mt-1 text-xs text-[#6B7570]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                Try clearing filters or adjusting your search term.
+                {t("locations.details.noRentalsSubtitle")}
               </p>
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="mt-4 rounded-full bg-[#2B5FA6] px-5 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
+                className="mt-4 flex items-center gap-2 rounded-full bg-[#2B5FA6] px-5 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
               >
-                Reset Filters
+                <FiRotateCcw className="h-3.5 w-3.5" />
+                {t("locations.details.filters.resetButton")}
               </button>
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+                variants={
+                  shouldReduceMotion ? undefined : containerStaggerVariants
+                }
+                initial={shouldReduceMotion ? undefined : "hidden"}
+                animate={shouldReduceMotion ? undefined : "visible"}
+              >
                 {paginatedRentals.map((rental) => (
-                  <RentalUnitCard key={rental.id} unit={rental} />
-                ))}
-              </div>
-
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <div className="mt-10 flex items-center justify-center gap-2">
-                  <button
-                    type="button"
-                    disabled={currentPage <= 1}
-                    onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#D9E2EE] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F0F3FA] disabled:opacity-40 disabled:cursor-not-allowed"
-                  >
-                    &lt;
-                  </button>
-
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                    (page) => {
-                      const isActive = page === currentPage;
-                      return (
-                        <button
-                          key={page}
-                          type="button"
-                          onClick={() => setCurrentPage(page)}
-                          className={`flex h-9 w-9 items-center justify-center rounded-lg text-xs font-semibold transition-colors ${
-                            isActive
-                              ? "bg-[#2B5FA6] text-white"
-                              : "border border-[#D9E2EE] bg-white text-[#202326] hover:bg-[#F0F3FA]"
-                          }`}
-                        >
-                          {page}
-                        </button>
-                      );
+                  <motion.div
+                    key={rental.id}
+                    variants={
+                      shouldReduceMotion ? undefined : cardItemVariants
                     }
-                  )}
-
-                  <button
-                    type="button"
-                    disabled={currentPage >= totalPages}
-                    onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#D9E2EE] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F0F3FA] disabled:opacity-40 disabled:cursor-not-allowed"
                   >
-                    &gt;
-                  </button>
-                </div>
-              )}
+                    <RentalUnitCard unit={rental} />
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              <AreaUnitsPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
             </>
           )}
         </div>

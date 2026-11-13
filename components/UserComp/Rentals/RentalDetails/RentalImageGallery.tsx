@@ -1,10 +1,11 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
 import { FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { RentalImageItem } from "@/models/rental";
 import { getFullRentalMediaUrl } from "@/clientApi/rentalsApi";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface RentalImageGalleryProps {
   images: RentalImageItem[];
@@ -15,6 +16,8 @@ export default function RentalImageGallery({
   images,
   title,
 }: RentalImageGalleryProps) {
+  const { t, direction } = useTranslation();
+  const isRtl = direction === "rtl";
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIdx, setLightboxIdx] = useState(0);
@@ -99,7 +102,10 @@ export default function RentalImageGallery({
                       className="text-sm sm:text-base font-bold text-white tracking-wide"
                       style={{ fontFamily: "var(--font-manrope)" }}
                     >
-                      +{extraCount + 1} More Photos
+                      {t("rent.details.morePhotos").replace(
+                        "{count}",
+                        String(extraCount + 1)
+                      )}
                     </span>
                   </div>
                 )}
@@ -119,19 +125,23 @@ export default function RentalImageGallery({
           <button
             type="button"
             onClick={() => setLightboxOpen(false)}
-            aria-label="Close photo gallery"
-            className="absolute top-5 right-5 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
+            aria-label={t("rent.details.closeGallery")}
+            className="absolute top-5 right-5 rtl:right-auto rtl:left-5 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
           >
             <FiX className="h-6 w-6" />
           </button>
 
           <button
             type="button"
-            onClick={prevLightboxImage}
-            aria-label="Previous photo"
-            className="absolute left-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
+            onClick={isRtl ? nextLightboxImage : prevLightboxImage}
+            aria-label={t("rent.details.prevPhoto")}
+            className="absolute left-4 rtl:left-auto rtl:right-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
           >
-            <FiChevronLeft className="h-6 w-6" />
+            {isRtl ? (
+              <FiChevronRight className="h-6 w-6" />
+            ) : (
+              <FiChevronLeft className="h-6 w-6" />
+            )}
           </button>
 
           <div className="relative h-[75vh] w-[90vw] max-w-5xl">
@@ -149,11 +159,15 @@ export default function RentalImageGallery({
 
           <button
             type="button"
-            onClick={nextLightboxImage}
-            aria-label="Next photo"
-            className="absolute right-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
+            onClick={isRtl ? prevLightboxImage : nextLightboxImage}
+            aria-label={t("rent.details.nextPhoto")}
+            className="absolute right-4 rtl:right-auto rtl:left-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
           >
-            <FiChevronRight className="h-6 w-6" />
+            {isRtl ? (
+              <FiChevronLeft className="h-6 w-6" />
+            ) : (
+              <FiChevronRight className="h-6 w-6" />
+            )}
           </button>
 
           <div className="absolute bottom-5 text-sm font-semibold text-white/80">

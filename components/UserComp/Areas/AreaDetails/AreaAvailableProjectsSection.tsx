@@ -1,14 +1,21 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import AreaProjectsFilterSidebar, {
   AreaProjectsFilterState,
 } from "./AreaProjectsFilterSidebar";
+import AreaUnitsPagination from "./AreaUnitsPagination";
 import ProjectGridCard, {
   ProjectDisplayItem,
 } from "@/components/UserComp/Projects/ProjectGridCard";
 import { usePublicProjectsQuery } from "@/features/projects/useProjectsQueries";
 import { getFullProjectImageUrl } from "@/clientApi/projectsApi";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import {
+  containerStaggerVariants,
+  cardItemVariants,
+} from "@/shared/utils/animations";
 
 interface AreaAvailableProjectsSectionProps {
   areaId: number;
@@ -31,18 +38,21 @@ export default function AreaAvailableProjectsSection({
   areaName,
   onCountLoaded,
 }: AreaAvailableProjectsSectionProps) {
+  const { t, locale, direction } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
+
   const [filterState, setFilterState] =
     useState<AreaProjectsFilterState>(INITIAL_FILTERS);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const headingText = areaName
-    ? `Available Projects in ${areaName}`
-    : "Available Projects";
+    ? t("areas.details.availableProjectsTitle").replace("{name}", areaName)
+    : t("areas.details.defaultAvailableProjectsTitle");
 
-  // Query pre-existing public projects hook for this location
+  // Query public projects hook for this location
   const { data: projectsData, isLoading } = usePublicProjectsQuery({
     LocationId: areaId > 0 ? areaId : undefined,
-    Language: "en",
+    Language: locale,
     Currency: "EGP",
     PageNumber: currentPage,
     PageSize: 6,
@@ -56,7 +66,7 @@ export default function AreaAvailableProjectsSection({
       const priceText =
         typeof minPrice === "number" && minPrice > 0
           ? `${currency} ${minPrice.toLocaleString()}`
-          : "Price on request";
+          : t("projects.grid.priceOnRequest");
 
       const rawImg = item.imageUrls?.[0];
       const resolvedImg = getFullProjectImageUrl(rawImg);
@@ -111,12 +121,16 @@ export default function AreaAvailableProjectsSection({
           className="mt-1 text-sm text-[#6B7570]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          Explore top-tier residential developments tailored to your lifestyle.
+          {t("areas.details.availableUnitsSubtitle")}
         </p>
       </div>
 
       {/* Main Two-Column Content */}
-      <div className="flex flex-col lg:flex-row items-start gap-8">
+      <div
+        className={`flex flex-col lg:flex-row items-start gap-8 ${
+          direction === "rtl" ? "rtl:lg:flex-row-reverse" : ""
+        }`}
+      >
         {/* Left: Filter Sidebar */}
         <AreaProjectsFilterSidebar
           filterState={filterState}
@@ -142,62 +156,33 @@ export default function AreaAvailableProjectsSection({
                 className="text-base font-medium text-[#6B7570]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                No projects found in this area.
+                {t("areas.details.noProjectsTitle")}
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+              variants={shouldReduceMotion ? undefined : containerStaggerVariants}
+              initial={shouldReduceMotion ? undefined : "hidden"}
+              animate={shouldReduceMotion ? undefined : "visible"}
+            >
               {displayProjects.map((project) => (
-                <ProjectGridCard key={project.id} project={project} />
+                <motion.div
+                  key={project.id}
+                  variants={shouldReduceMotion ? undefined : cardItemVariants}
+                >
+                  <ProjectGridCard project={project} />
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           )}
 
           {/* Pagination Controls */}
-          {totalPages > 1 && (
-            <div className="mt-10 flex items-center justify-center gap-2">
-              <button
-                type="button"
-                disabled={currentPage <= 1}
-                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                aria-label="Previous Page"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#D9E2EE] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F0F3FA] disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                &lt;
-              </button>
-
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                (pageNum) => {
-                  const isActive = pageNum === currentPage;
-                  return (
-                    <button
-                      key={pageNum}
-                      type="button"
-                      onClick={() => setCurrentPage(pageNum)}
-                      className={`flex h-9 w-9 items-center justify-center rounded-lg text-xs font-semibold transition-colors ${
-                        isActive
-                          ? "bg-[#2B5FA6] text-white"
-                          : "border border-[#D9E2EE] bg-white text-[#202326] hover:bg-[#F0F3FA]"
-                      }`}
-                      style={{ fontFamily: "var(--font-inter)" }}
-                    >
-                      {pageNum}
-                    </button>
-                  );
-                }
-              )}
-
-              <button
-                type="button"
-                disabled={currentPage >= totalPages}
-                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-                aria-label="Next Page"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#D9E2EE] bg-white text-xs font-medium text-[#202326] transition-colors hover:bg-[#F0F3FA] disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                &gt;
-              </button>
-            </div>
-          )}
+          <AreaUnitsPagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
         </div>
       </div>
     </section>

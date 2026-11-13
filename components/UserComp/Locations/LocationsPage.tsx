@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { usePublicRentalLocationsQuery } from "@/features/rentalLocations/useRentalLocationsQueries";
+import { useTranslation } from "@/features/i18n/useTranslation";
 import LocationsHeroSection from "./LocationsHeroSection";
 import LocationsFilterBar, { LocationRegion } from "./LocationsFilterBar";
 import LocationsGridSection from "./LocationsGridSection";
@@ -13,17 +14,16 @@ export default function LocationsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRegion, setSelectedRegion] =
     useState<LocationRegion>("All Regions");
+  const { locale } = useTranslation();
 
-  // Fetch real locations using existing client hook
   const { data: locationsData, isLoading } = usePublicRentalLocationsQuery({
-    Language: "en",
+    Language: locale,
     PageNumber: 1,
     PageSize: 50,
   });
 
   const rawLocations = locationsData?.items || [];
 
-  // Filter locations by search term and region
   const filteredLocations = useMemo(() => {
     return rawLocations.filter((loc) => {
       const matchesSearch =
@@ -35,7 +35,6 @@ export default function LocationsPage() {
 
       if (selectedRegion === "All Regions") return true;
 
-      // Classify region based on location naming
       const lowerName = loc.name.toLowerCase();
       if (selectedRegion === "Greater Cairo") {
         return (
@@ -98,4 +97,3 @@ export default function LocationsPage() {
     </div>
   );
 }
-

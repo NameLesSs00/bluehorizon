@@ -1,5 +1,8 @@
-﻿import Image from "next/image";
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 export interface UnitItem {
   id: string | number;
@@ -16,6 +19,7 @@ export interface UnitItem {
   href?: string;
   rawPrice?: number;
   category?: string;
+  rawBedrooms?: number;
 }
 
 interface ProjectUnitCardProps {
@@ -23,13 +27,27 @@ interface ProjectUnitCardProps {
 }
 
 export default function ProjectUnitCard({ unit }: ProjectUnitCardProps) {
+  const { t, locale, direction } = useTranslation();
+  const isRtl = direction === "rtl";
   const isResale = unit.badge === "Resale";
-  const linkHref =
+
+  const rawHref =
     unit.href ||
     `/units/${unit.id}?type=${unit.type || (isResale ? "resale" : "primary")}`;
 
+  const linkHref = rawHref.startsWith(`/${locale}`)
+    ? rawHref
+    : `/${locale}${rawHref.startsWith("/") ? "" : "/"}${rawHref}`;
+
+  const badgeText = isResale
+    ? t("projects.details.unitCard.resaleBadge")
+    : t("projects.details.unitCard.primaryBadge");
+
   return (
-    <div className="group flex flex-col justify-between rounded-[20px] border border-[#D9E2EE] bg-white p-3 sm:p-3.5 transition-all duration-200 hover:-translate-y-1 hover:border-[#2B5FA6]/40 hover:shadow-md">
+    <Link
+      href={linkHref}
+      className="group flex flex-col justify-between rounded-[20px] border border-[#D9E2EE] bg-white p-3 sm:p-3.5 transition-all duration-200 hover:-translate-y-1 hover:border-[#2B5FA6]/40 hover:shadow-md cursor-pointer"
+    >
       <div>
         {/* Thumbnail with Badge */}
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[14px] bg-[#F9F7F4]">
@@ -42,14 +60,14 @@ export default function ProjectUnitCard({ unit }: ProjectUnitCardProps) {
           />
 
           <span
-            className={`absolute top-2.5 left-2.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold backdrop-blur-xs shadow-xs ${
+            className={`absolute top-2.5 left-2.5 rtl:left-auto rtl:right-2.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold backdrop-blur-xs shadow-xs ${
               isResale
                 ? "bg-[#202326]/85 text-white"
                 : "bg-white/95 text-[#2B5FA6]"
             }`}
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            {unit.badge}
+            {badgeText}
           </span>
         </div>
 
@@ -77,33 +95,43 @@ export default function ProjectUnitCard({ unit }: ProjectUnitCardProps) {
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {/* Area */}
-            <span className="inline-flex items-center gap-1">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <rect x="1.5" y="1.5" width="9" height="9" rx="1.5" stroke="#6B7570" strokeWidth="1.2" />
-                <path d="M4 1.5V4M8 1.5V4M1.5 4H4" stroke="#6B7570" strokeWidth="1.2" />
-              </svg>
-              {unit.area}
-            </span>
+            {unit.area && (
+              <span className="inline-flex items-center gap-1">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <rect x="1.5" y="1.5" width="9" height="9" rx="1.5" stroke="#6B7570" strokeWidth="1.2" />
+                  <path d="M4 1.5V4M8 1.5V4M1.5 4H4" stroke="#6B7570" strokeWidth="1.2" />
+                </svg>
+                {unit.area}
+              </span>
+            )}
 
-            <span className="text-[#A1AAA5]">·</span>
+            {unit.area && unit.rooms && (
+              <span className="text-[#A1AAA5]">·</span>
+            )}
 
             {/* Rooms */}
-            <span className="inline-flex items-center gap-1">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <path d="M1.5 5.5V9.5M10.5 5.5V9.5M1.5 7.5H10.5M3 5.5V4C3 3.44772 3.44772 3 4 3H8C8.55228 3 9 3.44772 9 4V5.5" stroke="#6B7570" strokeWidth="1.2" strokeLinecap="round" />
-              </svg>
-              {unit.rooms}
-            </span>
+            {unit.rooms && (
+              <span className="inline-flex items-center gap-1">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M1.5 5.5V9.5M10.5 5.5V9.5M1.5 7.5H10.5M3 5.5V4C3 3.44772 3.44772 3 4 3H8C8.55228 3 9 3.44772 9 4V5.5" stroke="#6B7570" strokeWidth="1.2" strokeLinecap="round" />
+                </svg>
+                {unit.rooms}
+              </span>
+            )}
 
-            <span className="text-[#A1AAA5]">·</span>
+            {unit.rooms && unit.baths && (
+              <span className="text-[#A1AAA5]">·</span>
+            )}
 
             {/* Baths */}
-            <span className="inline-flex items-center gap-1">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <path d="M2 6.5C2 7.88071 3.11929 9 4.5 9H7.5C8.88071 9 10 7.88071 10 6.5V6H2V6.5ZM3 9V10.5M9 9V10.5M3 4V6" stroke="#6B7570" strokeWidth="1.2" strokeLinecap="round" />
-              </svg>
-              {unit.baths}
-            </span>
+            {unit.baths && (
+              <span className="inline-flex items-center gap-1">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6.5C2 7.88071 3.11929 9 4.5 9H7.5C8.88071 9 10 7.88071 10 6.5V6H2V6.5ZM3 9V10.5M9 9V10.5M3 4V6" stroke="#6B7570" strokeWidth="1.2" strokeLinecap="round" />
+                </svg>
+                {unit.baths}
+              </span>
+            )}
           </div>
 
           {unit.location && (
@@ -126,17 +154,29 @@ export default function ProjectUnitCard({ unit }: ProjectUnitCardProps) {
           {unit.price}
         </span>
 
-        <Link
-          href={linkHref}
-          className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-[#2B5FA6] py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
+        <span
+          className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-[#2B5FA6] py-2.5 text-xs font-semibold text-white transition-colors group-hover:bg-[#1B3A6B]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          <span>View Details</span>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <span>{t("projects.details.unitCard.viewDetails")}</span>
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="none"
+            aria-hidden="true"
+            className={isRtl ? "rotate-180" : ""}
+          >
+            <path
+              d="M4.5 2.5L8 6L4.5 9.5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
-        </Link>
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }

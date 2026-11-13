@@ -1,308 +1,751 @@
 {
-  "common": {
-    "nav": {
-      "home": "Startseite",
-      "projects": "Projekte",
-      "standalone": "Freistehend",
-      "rent": "Mieten",
-      "blogs": "Blog",
-      "aboutUs": "Über uns",
-      "contactUs": "Kontakt"
-    },
-    "search": {
-      "categories": "Kategorien",
-      "propertyType": "Immobilientyp",
-      "priceRange": "Preisspanne",
-      "area": "Standort",
-      "searchProperties": "Immobilien suchen",
-      "anyCategory": "Alle Kategorien",
-      "allTypes": "Alle Typen",
-      "anyArea": "Alle Standorte",
-      "buy": "Kaufen",
-      "rent": "Mieten",
-      "standalone": "Freistehend"
-    },
-    "footer": {
-      "tagline": "Entdecken Sie erstklassige Immobilien und Premium-Projekte fur Ihren Lebensstil.",
-      "description": "Blue Horizon ist Ihr erstklassiger Immobilienpartner in Hurghada und an der Roten-Meer-Kuste. Ob Kustenvilla, Off-Plan-Anlage oder moderne Wohnung in El Kawthar und den umliegenden Toplagen.",
-      "properties": "Immobilien",
-      "standaloneUnits": "Freistehende Einheiten",
-      "unitsForRent": "Mieteinheiten",
-      "compoundsProjects": "Wohnanlagen & Projekte",
-      "exploreAreas": "Gebiete entdecken",
-      "rentalLocations": "Mietstandorte",
-      "quickLinks": "Schnelllinks",
-      "home": "Startseite",
-      "aboutUs": "Uber uns",
-      "blogsGuides": "Blog & Ratgeber",
-      "contactUs": "Kontakt",
-      "getInTouch": "Kontakt aufnehmen",
-      "allRightsReserved": "Alle Rechte vorbehalten.",
-      "poweredBy": "Betrieben von"
-    }
-  },
-  "home": {
-    "hero": {
-      "eyebrow": "FINDEN SIE IHR ZUHAUSE",
-      "headingLine1": "Finden Sie Ihr Zuhause.",
-      "headingLine2": "Investieren Sie in Ihre Zukunft.",
-      "subtitle": "Entdecken Sie außergewöhnliche Immobilien, Premium-Projekte und Chancen für Ihren Lebensstil.",
-      "exploreProperties": "Immobilien entdecken",
-      "discoverProjects": "Projekte entdecken"
-    },
-    "popularAreas": {
-      "eyebrow": "FINDEN SIE IHRE UMGEBUNG",
-      "heading": "Beliebte Regionen entdecken",
-      "subtitle": "Entdecken Sie Top-Lagen und finden Sie Ihr ideales Gebiet.",
-      "discoverAll": "Alle Gebiete entdecken",
-      "propertiesCount": "Immobilien"
-    },
-    "featuredProjects": {
-      "eyebrow": "TOP-ANGEBOTE",
-      "heading": "Ausgewählte Projekte entdecken",
-      "subtitle": "Entdecken Sie erstklassige Entwicklungen und renditestarke Anlageobjekte.",
-      "viewAll": "Alle Projekte anzeigen"
-    }
-  },
-  "about": {
-    "title": "Über Blue Horizon",
-    "subtitle": "Luxus- und Küstenwohnen am Roten Meer neu definiert.",
-    "hero": {
-      "pill": "ERSTKLASSIGE IMMOBILIENBERATUNG",
-      "heading": "Immobilienexzellenz am Roten Meer neu definiert",
-      "description": "Stärken Sie Ihre Immobilieninvestitionen mit vertrauensvoller Beratung, nahtloser digitaler Suche und tiefem lokalen Fachwissen in den begehrtesten Küsten- und Stadtzielen Ägyptens.",
-      "exploreProjects": "Projekte entdecken",
-      "talkAdvisor": "Mit einem Berater sprechen",
-      "breadcrumbHome": "Startseite",
-      "breadcrumbAbout": "Über uns"
-    },
-    "metrics": {
-      "yearsExperience": "JAHRE ERFAHRUNG",
-      "propertyVolume": "IMMOBILIENVOLUMEN",
-      "happyHomeowners": "ZUFRIEDENE EIGENTÜMER",
-      "clientSatisfaction": "KUNDENZUFRIEDENHEIT"
-    },
-    "visionMission": {
-      "eyebrow": "KERNZWECK",
-      "heading": "Geleitet von Integrität und Innovation",
-      "description": "Langfristiges Kundenvertrauen durch vollständige Transparenz und datengestützte Immobilienberatung aufbauen.",
-      "vision": {
-        "title": "Unsere Vision",
-        "description": "Das führende und vertrauenswürdigste digitale Immobilien-Ökosystem am Roten Meer und in Ägypten zu sein, das Käufer, internationale Investoren und Entwickler mit unübertroffener Marktintelligenz verbindet.",
-        "point1": "Wegweisende digitale Immobilien-Entdeckungstools",
-        "point2": "Ägyptische Küstenimmobilien auf globalen Bühnen positionieren"
-      },
-      "mission": {
-        "title": "Unsere Mission",
-        "description": "Kunden mit transparenter Beratung, personalisiertem Portfolio-Matching und reibungslosem rechtlichen Schutz in jeder Phase des Immobilienerwerbs, der Verwaltung und des Wiederverkaufs zu stärken.",
-        "point1": "Vollständige Käufersicherheit und rechtliche Verifizierung",
-        "point2": "Kapitalwertsteigerung und Mietrenditen maximieren"
-      }
-    },
-    "offer": {
-      "eyebrow": "MASSGESCHNEIDERTE LÖSUNGEN",
-      "heading": "Was wir anbieten?",
-      "description": "Umfassende End-to-End-Dienstleistungen für Käufer, Privateigentümer und institutionelle Immobilieninvestoren.",
-      "offPlan": {
-        "title": "Exklusive Off-Plan-Projekte",
-        "description": "Direkter Launch-Zugang zu Top-Küstenresorts und Gated Communities ohne Käuferprovision."
-      },
-      "resaleVillas": {
-        "title": "Freistehende Wiederverkaufsvillen",
-        "description": "Geprüfte Luxushäuser, freistehende Strandvillen und bezugsfertige Doppelhäuser in Toplagen."
-      },
-      "rentalMgmt": {
-        "title": "Mietverwaltung mit hoher Rendite",
-        "description": "Vollständige Mietdienstleistungen inklusive Gastmanagement, Kurzzeitvermietung und regelmäßiger Auszahlungen."
-      },
-      "legalAdvisory": {
-        "title": "Rechts- und Investitionsberatung",
-        "description": "Hauseigene Rechtsexperten prüfen Eigentumsurkunden und Entwicklerverträge und beraten bei Steuerfragen für ausländische Investoren."
-      },
-      "valuation": {
-        "title": "Bewertung und Markteinblicke",
-        "description": "Datengestützte Bewertungsmodelle und vierteljährliche Marktberichte helfen Käufern, optimale Ein- und Ausstiegszeitpunkte zu finden."
-      },
-      "concierge": {
-        "title": "VIP-Concierge und Umzug",
-        "description": "Dedizierte Unterstützung für internationale Käufer einschließlich Flughafentransfers, Besichtigungen und Einrichtung der Nebenkosten."
-      }
-    },
-    "process": {
-      "eyebrow": "STRUKTURIERTER PROZESS",
-      "heading": "Ihre Immobilienreise beginnt bei uns",
-      "description": "Ein optimierter 4-Schritte-Weg, der Stress eliminiert und Seelenfrieden garantiert.",
-      "step1": {
-        "title": "Entdecken und Beraten",
-        "description": "Wir analysieren Ihre Lebensstilpräferenzen und finanziellen Ziele, um eine gezielte Auswahlliste von Erst- und Küstenimmobilien zu erstellen."
-      },
-      "step2": {
-        "title": "Private und virtuelle Touren",
-        "description": "Erleben Sie betreute Vor-Ort-Besichtigungen oder immersive HD-3D-Virtualtouren mit unseren Gebietsexperten."
-      },
-      "step3": {
-        "title": "Rechtsschutz und Konditionen",
-        "description": "Unsere Rechtsberater prüfen Verträge, Treuhandklauseln und Zahlungspläne für vollständige finanzielle Sicherheit."
-      },
-      "step4": {
-        "title": "Übergabe und Renditemanagement",
-        "description": "Von der Schlüsselübergabe bis zur langfristigen Mieterplatzierung und Immobilienverwaltung stehen wir nach der Übergabe an Ihrer Seite."
-      }
-    },
-    "cta": {
-      "pill": "HEUTE KONTAKT AUFNEHMEN",
-      "heading": "Bereit, Ihr nächstes Luxusheim oder eine renditestarke Investition zu finden?",
-      "description": "Sprechen Sie noch heute mit unseren Immobilienspezialisten für eine private Beratung, virtuelle Besichtigung oder maßgeschneiderte Investitionsportfoliopräsentation.",
-      "scheduleCall": "Anruf vereinbaren",
-      "exploreProjects": "Projekte entdecken"
-    }
-  },
-  "contact": {
-    "title": "Kontaktieren Sie uns",
-    "subtitle": "Unsere Immobilienberater unterstützen Sie bei jedem Schritt.",
-    "hero": {
-      "pill": "WIR SIND FÜR SIE DA",
-      "heading": "Nehmen Sie Kontakt auf",
-      "description": "Wir helfen Ihnen, Ihre Traumluxusimmobilie in erstklassigen Küstenzielen und Städten zu finden. Kontaktieren Sie uns für Beratungen, Besichtigungen oder Investitionsberatung.",
-      "breadcrumbHome": "Startseite",
-      "breadcrumbContact": "Kontakt"
-    },
-    "channels": {
-      "eyebrow": "DIREKTKONTAKT",
-      "heading": "Unsere Kontaktinformationen",
-      "description": "Haben Sie eine Frage zu einer Anlage, Wiederverkaufseinheit oder Mietinvestition? Wenden Sie sich über einen der folgenden Kanäle an unsere Immobilienberater.",
-      "phoneLabel": "TELEFONNUMMERN",
-      "emailLabel": "E-MAIL-ADRESSEN",
-      "officeLabel": "UNSER BÜRO",
-      "hoursLabel": "GESCHÄFTSZEITEN",
-      "followChannels": "Folgen Sie uns:"
-    },
-    "form": {
-      "eyebrow": "ANFRAGE SENDEN",
-      "heading": "Wie können wir Ihnen helfen?",
-      "description": "Füllen Sie Ihre Daten aus und unser leitender Immobilienberater wird sich innerhalb von 2 Stunden bei Ihnen melden.",
-      "firstName": "Vorname *",
-      "lastName": "Nachname *",
-      "phone": "Telefonnummer *",
-      "email": "E-Mail-Adresse *",
-      "message": "Nachricht oder bevorzugte Einheitendetails *",
-      "firstNamePlaceholder": "z.B. Thomas",
-      "lastNamePlaceholder": "z.B. Müller",
-      "phonePlaceholder": "+49 100 000 0000",
-      "emailPlaceholder": "name@example.com",
-      "messagePlaceholder": "Teilen Sie uns den Bereich, Immobilientyp oder Zahlungsplan mit, nach dem Sie suchen...",
-      "sendInquiry": "Anfrage senden",
-      "sending": "Wird gesendet...",
-      "privacyNote": "Ihre Informationen werden streng vertraulich behandelt und gemäß unseren Datenschutzbestimmungen geschützt."
-    },
-    "office": {
-      "eyebrow": "BESUCHEN SIE UNSER BÜRO",
-      "heading": "Unser Bürostandort",
-      "badge": "Hauptbüro Hurghada"
-    },
-    "cta": {
-      "pill": "SOFORTIGE ANTWORTEN GESUCHT?",
-      "heading": "Sprechen Sie jetzt mit einem leitenden Spezialisten",
-      "description": "Unsere Hotline ist 6 Tage die Woche für dringende Immobilienanfragen und Tourenbuchungen verfügbar.",
-      "whatsapp": "WhatsApp-Chat",
-      "call": "Anrufen"
-    }
-  },
-  "blogs": {
-    "title": "Artikel & Markteinblicke",
-    "subtitle": "Bleiben Sie auf dem Laufenden mit aktuellen Marktanalysen und Fachartikeln."
-  },
-  "locations": {
-    "title": "Erstklassige Standorte",
-    "subtitle": "Entdecken Sie erstklassige Immobilieninvestitionsziele in ganz Agypten."
-  },
-  "standaloneDetail": {
-    "breadcrumb": {
-      "home": "Startseite",
-      "standalone": "Freistehende Einheiten"
-    },
-    "header": {
-      "askingResalePrice": "Geforderter Wiederverkaufspreis",
-      "priceOnRequest": "Preis auf Anfrage",
-      "country": "Land",
-      "city": "Stadt",
-      "street": "Strasse"
-    },
-    "specs": {
-      "totalPrice": "GESAMTPREIS",
-      "totalArea": "GESAMTFLACHE",
-      "unitType": "EINHEITENTYP",
-      "primaryView": "HAUPTAUSSICHT",
-      "bedrooms": "SCHLAFZIMMER",
-      "bathrooms": "BADEZIMMER",
-      "kitchens": "KUCHEN",
-      "floor": "STOCKWERK",
-      "room": "Zimmer",
-      "rooms": "Zimmer",
-      "bath": "Bad",
-      "baths": "Bader",
-      "kitchen": "Kuche",
-      "ground": "Erdgeschoss"
-    },
-    "about": {
-      "title": "Uber diese freistehende Immobilie",
-      "orientationView": "Ausrichtung & Aussicht",
-      "locationTitle": "Geografischer Standort & Rechtsregisterdetails",
-      "country": "LAND",
-      "cityGov": "STADT / GOVERNORAT",
-      "streetDistrict": "STRASSE / BEZIRK"
-    },
-    "facilities": {
-      "title": "Einrichtungen & Ausstattung",
-      "subtitle": "Ausstattung der privaten Einheit und Lifestyle-Vorteile der Anlage",
-      "included": "Inklusive"
-    },
-    "inquiry": {
-      "askingPrice": "Angeforderter Preis",
-      "priceOnRequest": "Preis auf Anfrage",
-      "thankYouTitle": "Danke fur Ihre Anfrage!",
-      "thankYouBody": "Wir haben Ihre Daten erhalten und unser Team wird sich bald bei Ihnen melden.",
-      "sendAnother": "Weitere Anfrage senden",
-      "firstName": "Vorname",
-      "firstNameRequired": "Vorname *",
-      "lastName": "Nachname",
-      "emailAddress": "E-Mail-Adresse",
-      "emailAddressRequired": "E-Mail-Adresse *",
-      "phoneNumber": "Telefonnummer",
-      "phoneNumberRequired": "Telefonnummer *",
-      "message": "Nachricht",
-      "messagePlaceholder": "Schreiben Sie Ihre Anfrage oder Fragen...",
-      "submit": "Anfrage senden",
-      "submitting": "Anfrage wird gesendet...",
-      "errorRequired": "Bitte fullen Sie alle Pflichtfelder aus.",
-      "errorFailed": "Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es spater erneut.",
-      "defaultMessage": "Hallo, ich interessiere mich fur {name} und mochte weitere Details erhalten.",
-      "toastSuccess": "Vielen Dank! Ihre Anfrage wurde erfolgreich ubermittelt."
-    },
-    "similar": {
-      "title": "Ahnliche empfohlene Einheiten",
-      "subtitleCity": "Entdecken Sie ahnliche Luxusresidenzen in {city}",
-      "subtitleDefault": "Entdecken Sie ahnliche Luxusresidenzen, die zur Eigentumsbildung bereitstehen"
-    },
-    "gallery": {
-      "morePhotos": "+{count} weitere Fotos",
-      "prevImage": "Vorheriges Bild",
-      "nextImage": "Nächstes Bild",
-      "closeGallery": "Fotogalerie schließen"
-    },
-    "reviews": {
-      "title": "Kunden- & Besucherbewertungen",
-      "subtitle": "Verifiziertes Feedback aus Besichtigungen und Objektinspektionen",
-      "writeReview": "Bewertung schreiben",
-      "review": "Bewertung",
-      "reviews": "Bewertungen",
-      "inspectedOn": "Besichtigt am",
-      "verifiedVisitor": "Verifizierter Besucher"
-    },
-    "notFound": {
-      "title": "Freistehende Einheit nicht gefunden",
-      "body": "Die freistehende Wohneinheit, die Sie suchen, existiert nicht oder ist derzeit nicht verfugbar.",
-      "back": "Zuruck zu den freistehenden Einheiten"
-    }
-  }
+    "common":  {
+                   "nav":  {
+                               "home":  "Startseite",
+                               "projects":  "Projekte",
+                               "standalone":  "Freistehend",
+                               "rent":  "Mieten",
+                               "blogs":  "Blog",
+                               "aboutUs":  "أœber uns",
+                               "contactUs":  "Kontakt"
+                           },
+                   "search":  {
+                                  "categories":  "Kategorien",
+                                  "propertyType":  "Immobilientyp",
+                                  "priceRange":  "Preisspanne",
+                                  "area":  "Standort",
+                                  "searchProperties":  "Immobilien suchen",
+                                  "anyCategory":  "Alle Kategorien",
+                                  "allTypes":  "Alle Typen",
+                                  "anyArea":  "Alle Standorte",
+                                  "buy":  "Kaufen",
+                                  "rent":  "Mieten",
+                                  "standalone":  "Freistehend"
+                              },
+                   "footer":  {
+                                  "tagline":  "Entdecken Sie erstklassige Immobilien und Premium-Projekte fur Ihren Lebensstil.",
+                                  "description":  "Blue Horizon ist Ihr erstklassiger Immobilienpartner in Hurghada und an der Roten-Meer-Kuste. Ob Kustenvilla, Off-Plan-Anlage oder moderne Wohnung in El Kawthar und den umliegenden Toplagen.",
+                                  "properties":  "Immobilien",
+                                  "standaloneUnits":  "Freistehende Einheiten",
+                                  "unitsForRent":  "Mieteinheiten",
+                                  "compoundsProjects":  "Wohnanlagen \u0026 Projekte",
+                                  "exploreAreas":  "Gebiete entdecken",
+                                  "rentalLocations":  "Mietstandorte",
+                                  "quickLinks":  "Schnelllinks",
+                                  "home":  "Startseite",
+                                  "aboutUs":  "Uber uns",
+                                  "blogsGuides":  "Blog \u0026 Ratgeber",
+                                  "contactUs":  "Kontakt",
+                                  "getInTouch":  "Kontakt aufnehmen",
+                                  "allRightsReserved":  "Alle Rechte vorbehalten.",
+                                  "poweredBy":  "Betrieben von"
+                              }
+               },
+    "home":  {
+                 "hero":  {
+                              "eyebrow":  "FINDEN SIE IHR ZUHAUSE",
+                              "headingLine1":  "Finden Sie Ihr Zuhause.",
+                              "headingLine2":  "Investieren Sie in Ihre Zukunft.",
+                              "subtitle":  "Entdecken Sie auأںergewأ¶hnliche Immobilien, Premium-Projekte und Chancen fأ¼r Ihren Lebensstil.",
+                              "exploreProperties":  "Immobilien entdecken",
+                              "discoverProjects":  "Projekte entdecken"
+                          },
+                 "popularAreas":  {
+                                      "eyebrow":  "FINDEN SIE IHRE UMGEBUNG",
+                                      "heading":  "Beliebte Regionen entdecken",
+                                      "subtitle":  "Entdecken Sie Top-Lagen und finden Sie Ihr ideales Gebiet.",
+                                      "discoverAll":  "Alle Gebiete entdecken",
+                                      "propertiesCount":  "Immobilien"
+                                  },
+                 "featuredProjects":  {
+                                          "eyebrow":  "TOP-ANGEBOTE",
+                                          "heading":  "Ausgewأ¤hlte Projekte entdecken",
+                                          "subtitle":  "Entdecken Sie erstklassige Entwicklungen und renditestarke Anlageobjekte.",
+                                          "viewAll":  "Alle Projekte anzeigen"
+                                      }
+             },
+    "about":  {
+                  "title":  "أœber Blue Horizon",
+                  "subtitle":  "Luxus- und Kأ¼stenwohnen am Roten Meer neu definiert.",
+                  "hero":  {
+                               "pill":  "ERSTKLASSIGE IMMOBILIENBERATUNG",
+                               "heading":  "Immobilienexzellenz am Roten Meer neu definiert",
+                               "description":  "Stأ¤rken Sie Ihre Immobilieninvestitionen mit vertrauensvoller Beratung, nahtloser digitaler Suche und tiefem lokalen Fachwissen in den begehrtesten Kأ¼sten- und Stadtzielen أ„gyptens.",
+                               "exploreProjects":  "Projekte entdecken",
+                               "talkAdvisor":  "Mit einem Berater sprechen",
+                               "breadcrumbHome":  "Startseite",
+                               "breadcrumbAbout":  "أœber uns"
+                           },
+                  "metrics":  {
+                                  "yearsExperience":  "JAHRE ERFAHRUNG",
+                                  "propertyVolume":  "IMMOBILIENVOLUMEN",
+                                  "happyHomeowners":  "ZUFRIEDENE EIGENTأœMER",
+                                  "clientSatisfaction":  "KUNDENZUFRIEDENHEIT"
+                              },
+                  "visionMission":  {
+                                        "eyebrow":  "KERNZWECK",
+                                        "heading":  "Geleitet von Integritأ¤t und Innovation",
+                                        "description":  "Langfristiges Kundenvertrauen durch vollstأ¤ndige Transparenz und datengestأ¼tzte Immobilienberatung aufbauen.",
+                                        "vision":  {
+                                                       "title":  "Unsere Vision",
+                                                       "description":  "Das fأ¼hrende und vertrauenswأ¼rdigste digitale Immobilien-أ–kosystem am Roten Meer und in أ„gypten zu sein, das Kأ¤ufer, internationale Investoren und Entwickler mit unأ¼bertroffener Marktintelligenz verbindet.",
+                                                       "point1":  "Wegweisende digitale Immobilien-Entdeckungstools",
+                                                       "point2":  "أ„gyptische Kأ¼stenimmobilien auf globalen Bأ¼hnen positionieren"
+                                                   },
+                                        "mission":  {
+                                                        "title":  "Unsere Mission",
+                                                        "description":  "Kunden mit transparenter Beratung, personalisiertem Portfolio-Matching und reibungslosem rechtlichen Schutz in jeder Phase des Immobilienerwerbs, der Verwaltung und des Wiederverkaufs zu stأ¤rken.",
+                                                        "point1":  "Vollstأ¤ndige Kأ¤ufersicherheit und rechtliche Verifizierung",
+                                                        "point2":  "Kapitalwertsteigerung und Mietrenditen maximieren"
+                                                    }
+                                    },
+                  "offer":  {
+                                "eyebrow":  "MASSGESCHNEIDERTE Lأ–SUNGEN",
+                                "heading":  "Was wir anbieten?",
+                                "description":  "Umfassende End-to-End-Dienstleistungen fأ¼r Kأ¤ufer, Privateigentأ¼mer und institutionelle Immobilieninvestoren.",
+                                "offPlan":  {
+                                                "title":  "Exklusive Off-Plan-Projekte",
+                                                "description":  "Direkter Launch-Zugang zu Top-Kأ¼stenresorts und Gated Communities ohne Kأ¤uferprovision."
+                                            },
+                                "resaleVillas":  {
+                                                     "title":  "Freistehende Wiederverkaufsvillen",
+                                                     "description":  "Geprأ¼fte Luxushأ¤user, freistehende Strandvillen und bezugsfertige Doppelhأ¤user in Toplagen."
+                                                 },
+                                "rentalMgmt":  {
+                                                   "title":  "Mietverwaltung mit hoher Rendite",
+                                                   "description":  "Vollstأ¤ndige Mietdienstleistungen inklusive Gastmanagement, Kurzzeitvermietung und regelmأ¤أںiger Auszahlungen."
+                                               },
+                                "legalAdvisory":  {
+                                                      "title":  "Rechts- und Investitionsberatung",
+                                                      "description":  "Hauseigene Rechtsexperten prأ¼fen Eigentumsurkunden und Entwicklervertrأ¤ge und beraten bei Steuerfragen fأ¼r auslأ¤ndische Investoren."
+                                                  },
+                                "valuation":  {
+                                                  "title":  "Bewertung und Markteinblicke",
+                                                  "description":  "Datengestأ¼tzte Bewertungsmodelle und vierteljأ¤hrliche Marktberichte helfen Kأ¤ufern, optimale Ein- und Ausstiegszeitpunkte zu finden."
+                                              },
+                                "concierge":  {
+                                                  "title":  "VIP-Concierge und Umzug",
+                                                  "description":  "Dedizierte Unterstأ¼tzung fأ¼r internationale Kأ¤ufer einschlieأںlich Flughafentransfers, Besichtigungen und Einrichtung der Nebenkosten."
+                                              }
+                            },
+                  "process":  {
+                                  "eyebrow":  "STRUKTURIERTER PROZESS",
+                                  "heading":  "Ihre Immobilienreise beginnt bei uns",
+                                  "description":  "Ein optimierter 4-Schritte-Weg, der Stress eliminiert und Seelenfrieden garantiert.",
+                                  "step1":  {
+                                                "title":  "Entdecken und Beraten",
+                                                "description":  "Wir analysieren Ihre Lebensstilprأ¤ferenzen und finanziellen Ziele, um eine gezielte Auswahlliste von Erst- und Kأ¼stenimmobilien zu erstellen."
+                                            },
+                                  "step2":  {
+                                                "title":  "Private und virtuelle Touren",
+                                                "description":  "Erleben Sie betreute Vor-Ort-Besichtigungen oder immersive HD-3D-Virtualtouren mit unseren Gebietsexperten."
+                                            },
+                                  "step3":  {
+                                                "title":  "Rechtsschutz und Konditionen",
+                                                "description":  "Unsere Rechtsberater prأ¼fen Vertrأ¤ge, Treuhandklauseln und Zahlungsplأ¤ne fأ¼r vollstأ¤ndige finanzielle Sicherheit."
+                                            },
+                                  "step4":  {
+                                                "title":  "أœbergabe und Renditemanagement",
+                                                "description":  "Von der Schlأ¼sselأ¼bergabe bis zur langfristigen Mieterplatzierung und Immobilienverwaltung stehen wir nach der أœbergabe an Ihrer Seite."
+                                            }
+                              },
+                  "cta":  {
+                              "pill":  "HEUTE KONTAKT AUFNEHMEN",
+                              "heading":  "Bereit, Ihr nأ¤chstes Luxusheim oder eine renditestarke Investition zu finden?",
+                              "description":  "Sprechen Sie noch heute mit unseren Immobilienspezialisten fأ¼r eine private Beratung, virtuelle Besichtigung oder maأںgeschneiderte Investitionsportfolioprأ¤sentation.",
+                              "scheduleCall":  "Anruf vereinbaren",
+                              "exploreProjects":  "Projekte entdecken"
+                          }
+              },
+    "contact":  {
+                    "title":  "Kontaktieren Sie uns",
+                    "subtitle":  "Unsere Immobilienberater unterstأ¼tzen Sie bei jedem Schritt.",
+                    "hero":  {
+                                 "pill":  "WIR SIND FأœR SIE DA",
+                                 "heading":  "Nehmen Sie Kontakt auf",
+                                 "description":  "Wir helfen Ihnen, Ihre Traumluxusimmobilie in erstklassigen Kأ¼stenzielen und Stأ¤dten zu finden. Kontaktieren Sie uns fأ¼r Beratungen, Besichtigungen oder Investitionsberatung.",
+                                 "breadcrumbHome":  "Startseite",
+                                 "breadcrumbContact":  "Kontakt"
+                             },
+                    "channels":  {
+                                     "eyebrow":  "DIREKTKONTAKT",
+                                     "heading":  "Unsere Kontaktinformationen",
+                                     "description":  "Haben Sie eine Frage zu einer Anlage, Wiederverkaufseinheit oder Mietinvestition? Wenden Sie sich أ¼ber einen der folgenden Kanأ¤le an unsere Immobilienberater.",
+                                     "phoneLabel":  "TELEFONNUMMERN",
+                                     "emailLabel":  "E-MAIL-ADRESSEN",
+                                     "officeLabel":  "UNSER BأœRO",
+                                     "hoursLabel":  "GESCHأ„FTSZEITEN",
+                                     "followChannels":  "Folgen Sie uns:"
+                                 },
+                    "form":  {
+                                 "eyebrow":  "ANFRAGE SENDEN",
+                                 "heading":  "Wie kأ¶nnen wir Ihnen helfen?",
+                                 "description":  "Fأ¼llen Sie Ihre Daten aus und unser leitender Immobilienberater wird sich innerhalb von 2 Stunden bei Ihnen melden.",
+                                 "firstName":  "Vorname *",
+                                 "lastName":  "Nachname *",
+                                 "phone":  "Telefonnummer *",
+                                 "email":  "E-Mail-Adresse *",
+                                 "message":  "Nachricht oder bevorzugte Einheitendetails *",
+                                 "firstNamePlaceholder":  "z.B. Thomas",
+                                 "lastNamePlaceholder":  "z.B. Mأ¼ller",
+                                 "phonePlaceholder":  "+49 100 000 0000",
+                                 "emailPlaceholder":  "name@example.com",
+                                 "messagePlaceholder":  "Teilen Sie uns den Bereich, Immobilientyp oder Zahlungsplan mit, nach dem Sie suchen...",
+                                 "sendInquiry":  "Anfrage senden",
+                                 "sending":  "Wird gesendet...",
+                                 "privacyNote":  "Ihre Informationen werden streng vertraulich behandelt und gemأ¤أں unseren Datenschutzbestimmungen geschأ¼tzt."
+                             },
+                    "office":  {
+                                   "eyebrow":  "BESUCHEN SIE UNSER BأœRO",
+                                   "heading":  "Unser Bأ¼rostandort",
+                                   "badge":  "Hauptbأ¼ro Hurghada"
+                               },
+                    "cta":  {
+                                "pill":  "SOFORTIGE ANTWORTEN GESUCHT?",
+                                "heading":  "Sprechen Sie jetzt mit einem leitenden Spezialisten",
+                                "description":  "Unsere Hotline ist 6 Tage die Woche fأ¼r dringende Immobilienanfragen und Tourenbuchungen verfأ¼gbar.",
+                                "whatsapp":  "WhatsApp-Chat",
+                                "call":  "Anrufen"
+                            }
+                },
+    "blogs":  {
+                  "title":  "Artikel \u0026 Markteinblicke",
+                  "subtitle":  "Bleiben Sie auf dem Laufenden mit aktuellen Marktanalysen und Fachartikeln.",
+                  "hero":  {
+                               "badge":  "WISSENSZENTRUM",
+                               "heading":  "Artikel, Leitfأ¤den \u0026 Markteinblicke",
+                               "subtitle":  "Entdecken Sie Expertenanalysen, Immobilientipps und Kأ¼stenlebenstrends am Roten Meer und in أ„gypten.",
+                               "searchPlaceholder":  "Artikel nach Titel oder Stichwort durchsuchen...",
+                               "searchButton":  "Suchen",
+                               "articlesCount":  "{count} Artikel",
+                               "articleCountSingle":  "1 Artikel"
+                           },
+                  "filter":  {
+                                 "label":  "Artikel filtern:",
+                                 "all":  "Alle",
+                                 "marketInsights":  "Markteinblicke",
+                                 "buyingGuide":  "Kaufratgeber",
+                                 "investment":  "Investition",
+                                 "lifestyle":  "Lebensstil",
+                                 "redSeaNews":  "Rotes-Meer-Nachrichten"
+                             },
+                  "grid":  {
+                               "readArticle":  "Artikel lesen",
+                               "noArticlesTitle":  "Keine Artikel gefunden",
+                               "noArticlesSubtitle":  "Keine Artikel entsprechen Ihrer Suche oder Kategorie. Versuchen Sie es mit anderen Begriffen.",
+                               "resetFilters":  "Filter zurأ¼cksetzen",
+                               "showing":  "Seite {page} von {total}",
+                               "page":  "Seite",
+                               "prevPage":  "Vorherige Seite",
+                               "nextPage":  "Nأ¤chste Seite"
+                           },
+                  "details":  {
+                                  "breadcrumbHome":  "Startseite",
+                                  "breadcrumbBlogs":  "Blog",
+                                  "breadcrumbDetails":  "Artikeldetails",
+                                  "tableOfContents":  "Inhaltsverzeichnis",
+                                  "shareArticle":  "Diesen Artikel teilen:",
+                                  "copyLink":  "Link kopieren",
+                                  "linkCopied":  "Artikellink in die Zwischenablage kopiert",
+                                  "copyFailed":  "Fehler beim Kopieren des Links",
+                                  "shareViaEmail":  "E-Mail",
+                                  "shareViaWhatsApp":  "WhatsApp",
+                                  "recentArticlesTitle":  "Neueste Artikel",
+                                  "recentArticlesSubtitle":  "Entdecken Sie weitere Marktanalysen und Ratgeber",
+                                  "viewAllArticles":  "Alle Artikel anzeigen",
+                                  "backToBlogs":  "Zurأ¼ck zum Blog",
+                                  "notFoundTitle":  "Artikel nicht gefunden",
+                                  "notFoundSubtitle":  "Der gesuchte Artikel existiert nicht oder wurde entfernt."
+                              }
+              },
+    "locations":  {
+                      "title":  "Erstklassige Kأ¼sten- und Stadtlagen",
+                      "subtitle":  "Entdecken Sie fأ¼hrende Immobilieninvestitionsziele in ganz أ„gypten mit geprأ¼ften Wohnanlagen, freistehenden Villen und Luxus-Mietobjekten.",
+                      "hero":  {
+                                   "breadcrumbHome":  "Startseite",
+                                   "breadcrumbLocations":  "Standorte",
+                                   "badge":  "ERSTKLASSIGE REISEZIELE",
+                                   "heading":  "Erstklassige Kأ¼sten- und Stadtlagen",
+                                   "subtitle":  "Entdecken Sie fأ¼hrende Immobilieninvestitionsziele in ganz أ„gypten mit geprأ¼ften Wohnanlagen, freistehenden Villen und Luxus-Mietobjekten."
+                               },
+                      "filters":  {
+                                      "searchPlaceholder":  "Standorte suchen (z. B. Sahl Hasheesh, New Cairo...)",
+                                      "clear":  "Lأ¶schen",
+                                      "allRegions":  "Alle Regionen",
+                                      "redSea":  "Rotes Meer",
+                                      "greaterCairo":  "Groأںraum Kairo",
+                                      "northCoast":  "Nordkأ¼ste"
+                                  },
+                      "grid":  {
+                                   "featuredLocations":  "Ausgewأ¤hlte Standorte",
+                                   "featuredSubtitle":  "Sorgfأ¤ltig ausgewأ¤hlte Reiseziele mit stأ¤rkstem Wachstum und hأ¶chster Lebensqualitأ¤t.",
+                                   "showingDestinations":  "{count} Reiseziel wird angezeigt",
+                                   "showingDestinationsPlural":  "{count} Reiseziele werden angezeigt",
+                                   "noLocationsTitle":  "Keine Standorte gefunden",
+                                   "noLocationsSubtitle":  "Keine Reiseziele entsprechen Ihrer Suche oder dem ausgewأ¤hlten Regionsfilter.",
+                                   "clearAllFilters":  "Alle Filter lأ¶schen"
+                               },
+                      "cta":  {
+                                  "badge":  "EXKLUSIVE BERATUNG",
+                                  "button":  "Mit Berater sprechen",
+                                  "eyebrow":  "BENOTIGEN SIE STANDORTBERATUNG?",
+                                  "heading":  "Sprechen Sie mit unseren Standortspezialisten",
+                                  "description":  "Erhalten Sie unvoreingenommene Beratung zu Markttrends, Verbundpreisen und privaten Standortbesichtigungen.",
+                                  "whatsappChat":  "WhatsApp-Chat",
+                                  "callUs":  "Anrufen"
+                              },
+                      "details":  {
+                                      "breadcrumbHome":  "Startseite",
+                                      "breadcrumbLocations":  "Standorte",
+                                      "defaultTitle":  "Standortdetails",
+                                      "discoverLocation":  "STANDORT ENTDECKEN",
+                                      "overviewTitle":  "Mietأ¼bersicht {name}",
+                                      "defaultOverviewTitle":  "Mietstandort-أœbersicht",
+                                      "defaultDescription":  "Erleben Sie den ultimativen Rأ¼ckzugsort an der Kأ¼ste in {name}. Mit kristallklarem Wasser, privatem Strandzugang und lebendigen Promenaden ist dieses erstklassige Urlaubsziel fأ¼r exzellente Kurz- und Langzeitvermietungen bekannt.",
+                                      "verifiedBadge":  "Verifiziert",
+                                      "availableRentals":  "Verfأ¼gbare Mietobjekte",
+                                      "shortAndLongTerm":  "Kurz- \u0026 Langzeit",
+                                      "availableRentalsTitle":  "Verfأ¼gbare Mietobjekte in {name}",
+                                      "defaultAvailableRentalsTitle":  "Verfأ¼gbare Mietobjekte",
+                                      "availableRentalsSubtitle":  "Durchsuchen Sie verifizierte Luxusapartments, Chalets und Privatvillen zur Miete.",
+                                      "noRentalsTitle":  "Keine Mietobjekte gefunden",
+                                      "noRentalsSubtitle":  "Derzeit entsprechen keine Mietobjekte Ihren ausgewأ¤hlten Filtern an diesem Standort.",
+                                      "highlights":  {
+                                                         "tag1":  "Strand- und Marina-Nأ¤he",
+                                                         "tag2":  "Geprأ¼fte Ferienunterkأ¼nfte",
+                                                         "tag3":  "Familienfreundliche Unterkأ¼nfte",
+                                                         "tag4":  "24/7 Concierge-Service"
+                                                     },
+                                      "filters":  {
+                                                      "title":  "Mietobjekte filtern",
+                                                      "reset":  "Alle zurأ¼cksetzen",
+                                                      "showFilters":  "Filter anzeigen",
+                                                      "hideFilters":  "Filter ausblenden",
+                                                      "activeCount":  "{count} aktiv",
+                                                      "searchLabel":  "SUCHE NACH STICHWORT",
+                                                      "searchPlaceholder":  "Nach Titel oder Beschreibung suchen...",
+                                                      "bedroomsLabel":  "Schlafzimmer",
+                                                      "bedroomsAny":  "Beliebige Zimmer",
+                                                      "bedroomSingle":  "1 Schlafzimmer",
+                                                      "bedroomsCount":  "{count} Schlafzimmer",
+                                                      "bedrooms5Plus":  "4+ Schlafzimmer",
+                                                      "viewLabel":  "Aussicht",
+                                                      "allViews":  "Alle Aussichten",
+                                                      "seaView":  "Meerblick",
+                                                      "poolView":  "Poolblick",
+                                                      "gardenView":  "Gartenblick",
+                                                      "capacityLabel":  "Gأ¤stekapazitأ¤t",
+                                                      "anyCapacity":  "Beliebige Gأ¤ste",
+                                                      "guestsCount":  "{count}+ Gأ¤ste",
+                                                      "minPrice":  "Mindestpreis",
+                                                      "minPricePlaceholder":  "Min Preis",
+                                                      "maxPrice":  "Hأ¶chstpreis",
+                                                      "maxPricePlaceholder":  "Max Preis",
+                                                      "apply":  "Filter anwenden",
+                                                      "resetButton":  "Filter zurأ¼cksetzen"
+                                                  },
+                                      "rentalDestination":  "MIETDESTINATION",
+                                      "watchAreaTour":  "Gebietsrundgang ansehen",
+                                      "servicedAndPrivate":  "Serviciert \u0026 Privat"
+                                  }
+                  },
+    "areas":  {
+                  "hero":  {
+                               "breadcrumbHome":  "Startseite",
+                               "breadcrumbAreas":  "Regionen",
+                               "heading":  "Regionen",
+                               "subtitle":  "Entdecken Sie die begehrtesten Gemeinden am Roten Meer und finden Sie die Region, die zu Ihrem Lebensstil passt."
+                           },
+                  "list":  {
+                               "loading":  "Regionen werden geladen...",
+                               "noAreas":  "Derzeit sind keine Regionen verfأ¼gbar.",
+                               "viewArea":  "Region ansehen"
+                           },
+                  "cta":  {
+                              "eyebrow":  "BENأ–TIGEN SIE HILFE?",
+                              "heading":  "Nicht sicher, welche Region die richtige fأ¼r Sie ist?",
+                              "description":  "Unser Team hilft Ihnen gerne beim Vergleich von Regionen und der Suche nach der passenden Immobilie.",
+                              "contactUs":  "Kontaktieren Sie uns"
+                          },
+                  "details":  {
+                                  "breadcrumbHome":  "Startseite",
+                                  "breadcrumbAreas":  "Regionen",
+                                  "defaultTitle":  "Regionsdetails",
+                                  "discoverNeighborhood":  "NACHBARSCHAFT ENTDECKEN",
+                                  "overviewTitle":  "Regionsأ¼bersicht {name}",
+                                  "defaultOverviewTitle":  "Regionsأ¼bersicht",
+                                  "defaultDescription":  "Willkommen in {name}, einem der prestigetrأ¤chtigsten und gefragtesten Reiseziele am Roten Meer. Bekannt fأ¼r malerische Kأ¼stenpanoramen, ruhige Strأ¤nde und lebendige Wohnanlagen.",
+                                  "verifiedBadge":  "Verifiziert",
+                                  "availableUnits":  "Verfأ¼gbare Einheiten",
+                                  "availableProjects":  "Verfأ¼gbare Projekte",
+                                  "primaryAndResale":  "Erstbezug \u0026 Wiederverkauf",
+                                  "availableUnitsTitle":  "Verfأ¼gbare Einheiten in {name}",
+                                  "defaultAvailableUnitsTitle":  "Verfأ¼gbare Einheiten",
+                                  "availableUnitsSubtitle":  "Entdecken Sie erstklassige Wohnanlagen, passend zu Ihrem Lebensstil.",
+                                  "availableProjectsTitle":  "Verfأ¼gbare Projekte in {name}",
+                                  "defaultAvailableProjectsTitle":  "Verfأ¼gbare Projekte",
+                                  "noUnitsTitle":  "Keine verfأ¼gbaren Einheiten gefunden",
+                                  "noUnitsSubtitle":  "Derzeit entsprechen keine Einheiten Ihren ausgewأ¤hlten Kriterien in dieser Region.",
+                                  "noProjectsTitle":  "Keine verfأ¼gbaren Projekte gefunden",
+                                  "noProjectsSubtitle":  "Derzeit entsprechen keine Projekte Ihren ausgewأ¤hlten Kriterien in dieser Region.",
+                                  "filters":  {
+                                                  "title":  "Einheiten filtern",
+                                                  "reset":  "Alle zurأ¼cksetzen",
+                                                  "showFilters":  "Filter anzeigen",
+                                                  "hideFilters":  "Filter ausblenden",
+                                                  "activeCount":  "{count} aktiv",
+                                                  "searchLabel":  "SUCHE NACH STICHWORT",
+                                                  "searchPlaceholder":  "Nach Titel oder Beschreibung suchen...",
+                                                  "unitTypeLabel":  "Einheitentyp",
+                                                  "typeAll":  "Alle",
+                                                  "typePrimary":  "Erstbezug",
+                                                  "typeResale":  "Wiederverkauf",
+                                                  "propertyTypeLabel":  "Immobilientyp",
+                                                  "anyPropertyType":  "Alle Typen",
+                                                  "bedroomsLabel":  "Schlafzimmer",
+                                                  "bedroomsAny":  "Beliebige Zimmer",
+                                                  "bedroomsStudio":  "Studio (0 Schlafzimmer)",
+                                                  "bedroomSingle":  "1 Schlafzimmer",
+                                                  "bedroomsCount":  "{count} Schlafzimmer",
+                                                  "bedrooms5Plus":  "4+ Schlafzimmer",
+                                                  "minPrice":  "Mindestpreis",
+                                                  "minPricePlaceholder":  "Min Preis",
+                                                  "maxPrice":  "Hأ¶chstpreis",
+                                                  "maxPricePlaceholder":  "Max Preis",
+                                                  "apply":  "Filter anwenden",
+                                                  "resetButton":  "Filter zurأ¼cksetzen"
+                                              }
+                              }
+              },
+    "standaloneDetail":  {
+                             "breadcrumb":  {
+                                                "home":  "Startseite",
+                                                "standalone":  "Freistehende Einheiten"
+                                            },
+                             "header":  {
+                                            "askingResalePrice":  "Geforderter Wiederverkaufspreis",
+                                            "priceOnRequest":  "Preis auf Anfrage",
+                                            "country":  "Land",
+                                            "city":  "Stadt",
+                                            "street":  "Strasse"
+                                        },
+                             "specs":  {
+                                           "totalPrice":  "GESAMTPREIS",
+                                           "totalArea":  "GESAMTFLACHE",
+                                           "unitType":  "EINHEITENTYP",
+                                           "primaryView":  "HAUPTAUSSICHT",
+                                           "bedrooms":  "SCHLAFZIMMER",
+                                           "bathrooms":  "BADEZIMMER",
+                                           "kitchens":  "KUCHEN",
+                                           "floor":  "STOCKWERK",
+                                           "room":  "Zimmer",
+                                           "rooms":  "Zimmer",
+                                           "bath":  "Bad",
+                                           "baths":  "Bader",
+                                           "kitchen":  "Kuche",
+                                           "ground":  "Erdgeschoss"
+                                       },
+                             "about":  {
+                                           "title":  "Uber diese freistehende Immobilie",
+                                           "orientationView":  "Ausrichtung \u0026 Aussicht",
+                                           "locationTitle":  "Geografischer Standort \u0026 Rechtsregisterdetails",
+                                           "country":  "LAND",
+                                           "cityGov":  "STADT / GOVERNORAT",
+                                           "streetDistrict":  "STRASSE / BEZIRK"
+                                       },
+                             "facilities":  {
+                                                "title":  "Einrichtungen \u0026 Ausstattung",
+                                                "subtitle":  "Ausstattung der privaten Einheit und Lifestyle-Vorteile der Anlage",
+                                                "included":  "Inklusive"
+                                            },
+                             "inquiry":  {
+                                             "askingPrice":  "Angeforderter Preis",
+                                             "priceOnRequest":  "Preis auf Anfrage",
+                                             "thankYouTitle":  "Danke fur Ihre Anfrage!",
+                                             "thankYouBody":  "Wir haben Ihre Daten erhalten und unser Team wird sich bald bei Ihnen melden.",
+                                             "sendAnother":  "Weitere Anfrage senden",
+                                             "firstName":  "Vorname",
+                                             "firstNameRequired":  "Vorname *",
+                                             "lastName":  "Nachname",
+                                             "emailAddress":  "E-Mail-Adresse",
+                                             "emailAddressRequired":  "E-Mail-Adresse *",
+                                             "phoneNumber":  "Telefonnummer",
+                                             "phoneNumberRequired":  "Telefonnummer *",
+                                             "message":  "Nachricht",
+                                             "messagePlaceholder":  "Schreiben Sie Ihre Anfrage oder Fragen...",
+                                             "submit":  "Anfrage senden",
+                                             "submitting":  "Anfrage wird gesendet...",
+                                             "errorRequired":  "Bitte fullen Sie alle Pflichtfelder aus.",
+                                             "errorFailed":  "Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es spater erneut.",
+                                             "defaultMessage":  "Hallo, ich interessiere mich fur {name} und mochte weitere Details erhalten.",
+                                             "toastSuccess":  "Vielen Dank! Ihre Anfrage wurde erfolgreich ubermittelt."
+                                         },
+                             "similar":  {
+                                             "title":  "Ahnliche empfohlene Einheiten",
+                                             "subtitleCity":  "Entdecken Sie ahnliche Luxusresidenzen in {city}",
+                                             "subtitleDefault":  "Entdecken Sie ahnliche Luxusresidenzen, die zur Eigentumsbildung bereitstehen"
+                                         },
+                             "gallery":  {
+                                             "morePhotos":  "+{count} weitere Fotos",
+                                             "prevImage":  "Vorheriges Bild",
+                                             "nextImage":  "Nأ¤chstes Bild",
+                                             "closeGallery":  "Fotogalerie schlieأںen"
+                                         },
+                             "reviews":  {
+                                             "title":  "Kunden- \u0026 Besucherbewertungen",
+                                             "subtitle":  "Verifiziertes Feedback aus Besichtigungen und Objektinspektionen",
+                                             "writeReview":  "Bewertung schreiben",
+                                             "review":  "Bewertung",
+                                             "reviews":  "Bewertungen",
+                                             "inspectedOn":  "Besichtigt am",
+                                             "verifiedVisitor":  "Verifizierter Besucher"
+                                         },
+                             "notFound":  {
+                                              "title":  "Freistehende Einheit nicht gefunden",
+                                              "body":  "Die freistehende Wohneinheit, die Sie suchen, existiert nicht oder ist derzeit nicht verfugbar.",
+                                              "back":  "Zuruck zu den freistehenden Einheiten"
+                                          }
+                         },
+    "rent":  {
+                 "hero":  {
+                              "badge":  "VERIFIZIERTE PREMIUM-EINHEITEN",
+                              "heading":  "Mietimmobilien \u0026 Kurz-/Langzeitaufenthalte",
+                              "subtitle":  "Entdecken Sie voll mأ¶blierte Luxusapartments, Chalets und Villen fأ¼r Langzeitmiete oder Saisonaufenthalte in أ„gyptens begehrtesten Top-Lagen."
+                          },
+                 "breadcrumb":  {
+                                    "home":  "Startseite",
+                                    "unitsForRent":  "Mieteinheiten"
+                                },
+                 "filters":  {
+                                 "title":  "Einheiten filtern",
+                                 "reset":  "Zurأ¼cksetzen",
+                                 "searchLabel":  "NACH STICHWORT SUCHEN",
+                                 "searchPlaceholder":  "Nach Titel oder Beschreibung suchen...",
+                                 "locationLabel":  "STANDORT / BEREICH",
+                                 "allLocations":  "Alle Standorte",
+                                 "typeLabel":  "IMMOBILIENTYP",
+                                 "anyType":  "Alle Typen",
+                                 "bedroomsLabel":  "SCHLAFZIMMER",
+                                 "bedroomsAny":  "Alle",
+                                 "bedroomCount":  "{count} Zimmer",
+                                 "bedroomsCount":  "{count} Zimmer",
+                                 "bedrooms5Plus":  "5+ Zimmer",
+                                 "priceRangeLabel":  "PREISSPANNE (PRO MONAT)",
+                                 "minPrice":  "Min. Preis",
+                                 "maxPrice":  "Max. Preis",
+                                 "apply":  "Filter anwenden"
+                             },
+                 "grid":  {
+                              "title":  "Verfأ¼gbare Einheiten",
+                              "subtitle":  "Entdecken Sie erstklassige Wohneinheiten zur sofortigen Miete.",
+                              "noUnitsTitle":  "Keine Mieteinheiten gefunden",
+                              "noUnitsSubtitle":  "Passen Sie Ihre Filter an oder setzen Sie sie zurأ¼ck, um mehr Immobilien zu entdecken.",
+                              "resetFilters":  "Alle Filter zurأ¼cksetzen",
+                              "showing":  "Seite {page} von {total}",
+                              "page":  "Seite",
+                              "prevPage":  "Vorherige Seite",
+                              "nextPage":  "Nأ¤chste Seite"
+                          },
+                 "card":  {
+                              "bedrooms":  "{count} Zimmer",
+                              "bedroomSingle":  "1 Zimmer",
+                              "bathrooms":  "{count} Bأ¤der",
+                              "bathroomSingle":  "1 Bad",
+                              "area":  "{size} mآ²",
+                              "perMonth":  "/ Monat",
+                              "viewDetails":  "Details anzeigen",
+                              "studio":  "Studio",
+                              "villa":  "Villa"
+                          },
+                 "cta":  {
+                             "eyebrow":  "BRAUCHEN SIE SOFORTIGE HILFE?",
+                             "heading":  "Sprechen Sie mit unserem Vertriebsteam",
+                             "description":  "Unsere Berater stehen Ihnen 6 Tage die Woche zur Verfأ¼gung, um Besichtigungen zu vereinbaren oder den Einzug zu planen.",
+                             "callUs":  "Anrufen: {phone}",
+                             "whatsapp":  "WhatsApp-Chat"
+                         },
+                 "details":  {
+                                 "breadcrumbHome":  "Startseite",
+                                 "breadcrumbRent":  "Mieteinheiten",
+                                 "aboutTitle":  "أœber diese Mietimmobilie",
+                                 "facilitiesTitle":  "Ausstattung \u0026 Merkmale",
+                                 "viewsTitle":  "Ausblick \u0026 Umgebung",
+                                 "rulesTitle":  "Mietrichtlinien \u0026 Gأ¤stehinweise",
+                                 "inquiryTitle":  "Anfrage zu dieser Immobilie",
+                                 "relatedTitle":  "أ„hnliche Mietimmobilien",
+                                 "relatedSubtitle":  "Entdecken Sie verifizierte Luxusapartments, Penthouses und Villen in Top-Lagen",
+                                 "viewAll":  "Alle Mietobjekte anzeigen",
+                                 "status":  "Status",
+                                 "available":  "Zur Miete verfأ¼gbar",
+                                 "unavailable":  "Derzeit nicht verfأ¼gbar",
+                                 "code":  "Einheitencode",
+                                 "location":  "Standortbereich",
+                                 "floor":  "Etage",
+                                 "address":  "Adresse",
+                                 "maxCapacity":  "Maximale Kapazitأ¤t",
+                                 "guestsCount":  "Bis zu {count} Gأ¤ste",
+                                 "checkInPolicy":  "Check-In-Richtlinie",
+                                 "extraGuests":  "Zusأ¤tzliche Gأ¤ste",
+                                 "cancellation":  "Stornierungsbedingungen",
+                                 "flexibleCancellation":  "Flexible Stornierung",
+                                 "verifiedRental":  "Verifizierte Mieteinheit",
+                                 "priceUponInquiry":  "Preis auf Anfrage",
+                                 "sendInquiry":  "Anfrage senden",
+                                 "sending":  "Wird gesendet...",
+                                 "firstName":  "Vorname *",
+                                 "lastName":  "Nachname",
+                                 "email":  "E-Mail-Adresse *",
+                                 "phone":  "Telefonnummer *",
+                                 "message":  "Nachricht oder gewأ¼nschte Daten",
+                                 "firstNamePlaceholder":  "z.B. Thomas",
+                                 "lastNamePlaceholder":  "z.B. Mأ¼ller",
+                                 "emailPlaceholder":  "name@example.com",
+                                 "phonePlaceholder":  "+49 100 000 0000",
+                                 "messagePlaceholder":  "Teilen Sie uns Ihre Reisedaten oder Sonderwأ¼nsche mit...",
+                                 "privacyNote":  "Ihre Kontaktdaten werden streng vertraulich behandelt.",
+                                 "notFoundTitle":  "Mietimmobilie nicht gefunden",
+                                 "notFoundSubtitle":  "Die gesuchte Immobilie existiert nicht oder ist nicht mehr gelistet.",
+                                 "backToRentals":  "Zurأ¼ck zu den Mieteinheiten",
+                                 "views":  {
+                                               "seaView":  "Meerblick",
+                                               "poolView":  "Poolblick",
+                                               "gardenView":  "Gartenblick",
+                                               "mountainView":  "Bergblick",
+                                               "cityView":  "Stadtblick"
+                                           },
+                                 "specs":  {
+                                               "price":  "PREIS",
+                                               "area":  "GESAMTFLأ„CHE",
+                                               "unitType":  "EINHEITENTYP",
+                                               "bedrooms":  "SCHLAFZIMMER",
+                                               "bathrooms":  "Bأ„DER"
+                                           },
+                                 "morePhotos":  "+{count} weitere Fotos",
+                                 "closeGallery":  "Fotogalerie schlieأںen",
+                                 "prevPhoto":  "Vorheriges Foto",
+                                 "nextPhoto":  "Nأ¤chstes Foto",
+                                 "inquiryValidation":  "Bitte fأ¼llen Sie Vorname, E-Mail und Telefonnummer aus.",
+                                 "inquirySuccess":  "Vielen Dank {name}! Ihre Anfrage fأ¼r {unit} ist eingegangen.",
+                                 "inquiryError":  "Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+                             }
+             },
+    "projects":  {
+                     "hero":  {
+                                  "breadcrumbHome":  "Startseite",
+                                  "breadcrumbProjects":  "Projekte",
+                                  "heading":  "Unsere Projekte",
+                                  "subtitle":  "Entdecken Sie erstklassige Wohnanlagen in den begehrtesten Lagen."
+                              },
+                     "filters":  {
+                                     "title":  "Filter",
+                                     "reset":  "Alle zurأ¼cksetzen",
+                                     "showFilters":  "Filter anzeigen",
+                                     "hideFilters":  "Filter ausblenden",
+                                     "activeCount":  "{count} aktiv",
+                                     "searchLabel":  "SUCHE NACH STICHWORT",
+                                     "searchPlaceholder":  "Nach Titel oder Beschreibung suchen...",
+                                     "areaLabel":  "Lage / Region",
+                                     "anyArea":  "Alle Regionen",
+                                     "typeLabel":  "Projekttyp",
+                                     "anyType":  "Alle Typen",
+                                     "paymentLabel":  "Zahlungsart",
+                                     "paymentCash":  "Barzahlung",
+                                     "paymentInstallments":  "Ratenzahlung",
+                                     "paymentBoth":  "Bar- \u0026 Ratenzahlung",
+                                     "deliveryFrom":  "Fertigstellung ab",
+                                     "deliveryTo":  "Fertigstellung bis",
+                                     "minPrice":  "Mindestpreis",
+                                     "minPricePlaceholder":  "Min Preis",
+                                     "maxPrice":  "Hأ¶chstpreis",
+                                     "maxPricePlaceholder":  "Max Preis",
+                                     "apply":  "Filter anwenden",
+                                     "resetButton":  "Filter zurأ¼cksetzen"
+                                 },
+                     "grid":  {
+                                  "loading":  "Projekte werden geladen...",
+                                  "noProjectsTitle":  "Keine Projekte gefunden",
+                                  "noProjectsSubtitle":  "Versuchen Sie, Ihre Suchkriterien anzupassen oder Filter zurأ¼ckzusetzen.",
+                                  "resetFilters":  "Filter zurأ¼cksetzen",
+                                  "startingFrom":  "AB",
+                                  "priceOnRequest":  "Preis auf Anfrage",
+                                  "prevPage":  "Vorherige Seite",
+                                  "nextPage":  "Nأ¤chste Seite"
+                              },
+                     "details":  {
+                                     "breadcrumbHome":  "Startseite",
+                                     "breadcrumbAreas":  "Regionen",
+                                     "breadcrumbProjects":  "Projekte",
+                                     "defaultTitle":  "Projektdetails",
+                                     "overviewTitle":  "Projektأ¼bersicht {name}",
+                                     "overviewHeadingDefault":  "Projektأ¼bersicht",
+                                     "availableUnitsCount":  "{count} verfأ¼gbare Einheiten",
+                                     "availableUnitsCountSingle":  "1 verfأ¼gbare Einheit",
+                                     "galleryTitle":  "Projektgalerie",
+                                     "gallerySubtitle":  "Erleben Sie Ihre Aussicht und wohnen Sie nach Ihren Wأ¼nschen",
+                                     "facilitiesTitle":  "Ausstattung \u0026 Services",
+                                     "facilitiesSubtitle":  "Erstklassige Annehmlichkeiten fأ¼r luxuriأ¶ses Wohnen und hأ¶chsten Komfort.",
+                                     "facilitiesCount":  "{count} Ausstattungsmerkmale",
+                                     "facilitiesCountSingle":  "1 Ausstattungsmerkmal",
+                                     "noFacilities":  "Fأ¼r dieses Projekt sind noch keine Ausstattungsmerkmale gelistet.",
+                                     "paymentOptionsEyebrow":  "KAUFOPTIONEN",
+                                     "paymentPlansTitle":  "Zahlungsplأ¤ne",
+                                     "paymentPlansSubtitle":  "Vergleichen Sie Anzahlungen und flexible Ratenzahlungsangebote.",
+                                     "noPaymentPlansTitle":  "Derzeit keine Zahlungsplأ¤ne fأ¼r dieses Projekt verأ¶ffentlicht.",
+                                     "noPaymentPlansSubtitle":  "Kontaktieren Sie unser Vertriebsteam fأ¼r maأںgeschneiderte Finanzierungsoptionen.",
+                                     "cashPlan":  "Barzahlungsplan",
+                                     "planName":  "Zahlungsplan {number}",
+                                     "downPayment":  "Anzahlung",
+                                     "installments":  "Ratenzahlung",
+                                     "maintenance":  "Instandhaltung",
+                                     "cashDiscount":  "Barzahlungsrabatt",
+                                     "available":  "Verfأ¼gbar",
+                                     "flexible":  "Flexibel",
+                                     "yearsCount":  "{count} Jahre",
+                                     "yearSingle":  "1 Jahr",
+                                     "monthsCount":  "{count} Monate",
+                                     "monthSingle":  "1 Monat",
+                                     "availableUnitsTitle":  "Verfأ¼gbare Einheiten in {name}",
+                                     "availableUnitsDefaultTitle":  "Verfأ¼gbare Einheiten",
+                                     "availableUnitsSubtitle":  "Entdecken Sie erstklassige Wohneinheiten, passend zu Ihrem Lebensstil.",
+                                     "noUnitsTitle":  "Keine verfأ¼gbaren Einheiten gefunden",
+                                     "noUnitsSubtitle":  "Derzeit entsprechen keine Einheiten Ihren ausgewأ¤hlten Kriterien.",
+                                     "unitsFilters":  {
+                                                          "title":  "Filter",
+                                                          "reset":  "Alle zurأ¼cksetzen",
+                                                          "showFilters":  "Filter anzeigen",
+                                                          "hideFilters":  "Filter ausblenden",
+                                                          "activeCount":  "{count} aktiv",
+                                                          "searchLabel":  "SUCHE NACH STICHWORT",
+                                                          "searchPlaceholder":  "Nach Titel oder Beschreibung suchen...",
+                                                          "categoryLabel":  "Immobilientyp",
+                                                          "anyCategory":  "Alle Typen",
+                                                          "unitTypeLabel":  "Einheitentyp",
+                                                          "typeAll":  "Alle",
+                                                          "typePrimary":  "Erstbezug",
+                                                          "typeResale":  "Wiederverkauf",
+                                                          "bedroomsLabel":  "Schlafzimmer",
+                                                          "bedroomsAny":  "Beliebige Zimmer",
+                                                          "bedroomsStudio":  "Studio",
+                                                          "bedroomSingle":  "1 Schlafzimmer",
+                                                          "bedroomsCount":  "{count} Schlafzimmer",
+                                                          "bedrooms5Plus":  "5+ Schlafzimmer",
+                                                          "minPrice":  "Mindestpreis",
+                                                          "minPricePlaceholder":  "Min Preis",
+                                                          "maxPrice":  "Hأ¶chstpreis",
+                                                          "maxPricePlaceholder":  "Max Preis",
+                                                          "apply":  "Filter anwenden",
+                                                          "resetButton":  "Filter zurأ¼cksetzen"
+                                                      },
+                                     "unitCard":  {
+                                                      "viewDetails":  "Details ansehen",
+                                                      "roomsCount":  "{count} Zimmer",
+                                                      "roomSingle":  "1 Zimmer",
+                                                      "bathsCount":  "{count} Bأ¤der",
+                                                      "bathSingle":  "1 Bad",
+                                                      "areaM2":  "{area} mآ²",
+                                                      "primaryBadge":  "Erstbezug",
+                                                      "resaleBadge":  "Wiederverkauf"
+                                                  }
+                                 }
+                 }
 }

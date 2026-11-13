@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { usePublicRentalsQuery } from "@/features/rentals/useRentalsQueries";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
+import { useTranslation } from "@/features/i18n/useTranslation";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
 import RentalBreadcrumb from "./RentalBreadcrumb";
@@ -13,6 +14,7 @@ import RentalUnitsGrid from "./RentalUnitsGrid";
 import RentalCtaSection from "./RentalCtaSection";
 
 export default function RentalsPage() {
+  const { locale } = useTranslation();
   const searchParams = useSearchParams();
   const urlLocationId = searchParams.get("locationId") || "";
   const urlPropertyType = searchParams.get("propertyType") || "";
@@ -29,7 +31,7 @@ export default function RentalsPage() {
   });
 
   const { data: rentalsData, isLoading } = usePublicRentalsQuery({
-    Language: "en",
+    Language: locale,
     Currency: currentCurrency || "EGP",
     PageNumber: pageNumber,
     PageSize: 9,
@@ -151,4 +153,3 @@ export default function RentalsPage() {
     </div>
   );
 }
-

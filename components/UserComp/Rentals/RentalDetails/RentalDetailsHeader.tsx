@@ -1,20 +1,33 @@
-﻿import { RentalItem } from "@/models/rental";
+"use client";
+
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { RentalItem } from "@/models/rental";
 
 interface RentalDetailsHeaderProps {
   unit: RentalItem;
 }
 
 export default function RentalDetailsHeader({ unit }: RentalDetailsHeaderProps) {
+  const { t } = useTranslation();
   const metadataItems: { label: string; value: string }[] = [];
 
   if (unit.rentalLocation?.name) {
-    metadataItems.push({ label: "Location", value: unit.rentalLocation.name });
+    metadataItems.push({
+      label: t("rent.details.location"),
+      value: unit.rentalLocation.name,
+    });
   }
   if (unit.code) {
-    metadataItems.push({ label: "Code", value: unit.code });
+    metadataItems.push({
+      label: t("rent.details.code"),
+      value: unit.code,
+    });
   }
   if (unit.notes && unit.notes.trim().length > 0) {
-    metadataItems.push({ label: "Address", value: unit.notes });
+    metadataItems.push({
+      label: t("rent.details.address"),
+      value: unit.notes,
+    });
   }
 
   return (

@@ -1,5 +1,7 @@
 ﻿"use client";
 
+import { useTranslation } from "@/features/i18n/useTranslation";
+
 export const LOCATION_REGIONS = [
   "All Regions",
   "Red Sea",
@@ -22,6 +24,15 @@ export default function LocationsFilterBar({
   selectedRegion,
   onSelectRegion,
 }: LocationsFilterBarProps) {
+  const { t } = useTranslation();
+
+  const regionLabels: Record<LocationRegion, string> = {
+    "All Regions": t("locations.filters.allRegions"),
+    "Red Sea": t("locations.filters.redSea"),
+    "Greater Cairo": t("locations.filters.greaterCairo"),
+    "North Coast": t("locations.filters.northCoast"),
+  };
+
   return (
     <section className="mx-auto w-full max-w-[1536px] px-4 sm:px-6 lg:px-8 mt-8 sm:mt-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -46,7 +57,7 @@ export default function LocationsFilterBar({
               type="text"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              placeholder="Search locations (e.g. Sahl Hasheesh, New Cairo...)"
+              placeholder={t("locations.filters.searchPlaceholder")}
               className="w-full bg-transparent border-none outline-none text-xs sm:text-sm text-[#202326] placeholder-[#6B7570] font-normal"
               style={{ fontFamily: "var(--font-inter)" }}
             />
@@ -56,7 +67,7 @@ export default function LocationsFilterBar({
                 onClick={() => onSearchChange("")}
                 className="text-xs text-[#6B7570] hover:text-[#202326]"
               >
-                Clear
+                {t("locations.filters.clear")}
               </button>
             )}
           </div>
@@ -78,7 +89,7 @@ export default function LocationsFilterBar({
                 }`}
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                {region}
+                {regionLabels[region]}
               </button>
             );
           })}
@@ -87,4 +98,3 @@ export default function LocationsFilterBar({
     </section>
   );
 }
-

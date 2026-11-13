@@ -1,5 +1,8 @@
-﻿import Image from "next/image";
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 export interface ProjectDisplayItem {
   id: string | number;
@@ -15,10 +18,13 @@ interface ProjectGridCardProps {
 }
 
 export default function ProjectGridCard({ project }: ProjectGridCardProps) {
+  const { t, locale, direction } = useTranslation();
+  const isRtl = direction === "rtl";
+
   return (
     <Link
-      href={`/projects/${project.id}`}
-      className="group flex flex-col justify-between overflow-hidden rounded-[20px] border border-[#D9E2EE] bg-white transition-all duration-200 hover:-translate-y-1 hover:border-[#2B5FA6]/40 hover:shadow-md"
+      href={`/${locale}/projects/${project.id}`}
+      className="group flex flex-col justify-between overflow-hidden rounded-[20px] border border-[#D9E2EE] bg-white transition-all duration-200 hover:-translate-y-1 hover:border-[#2B5FA6]/40 hover:shadow-md cursor-pointer"
     >
       <div>
         {/* Project Card Image */}
@@ -70,7 +76,7 @@ export default function ProjectGridCard({ project }: ProjectGridCardProps) {
             className="block text-[10px] font-semibold uppercase tracking-[0.08em] text-[#6B7570]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            STARTING FROM
+            {t("projects.grid.startingFrom")}
           </span>
           <span
             className="mt-0.5 block text-[16px] sm:text-[17px] font-bold text-[#202326]"
@@ -80,13 +86,18 @@ export default function ProjectGridCard({ project }: ProjectGridCardProps) {
           </span>
         </div>
 
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E5ECF6] text-[#2B5FA6] transition-transform duration-200 group-hover:translate-x-1">
+        <div
+          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E5ECF6] text-[#2B5FA6] transition-transform duration-200 ${
+            isRtl ? "group-hover:-translate-x-1" : "group-hover:translate-x-1"
+          }`}
+        >
           <svg
             width="14"
             height="14"
             viewBox="0 0 14 14"
             fill="none"
             aria-hidden="true"
+            className={isRtl ? "rotate-180" : ""}
           >
             <path
               d="M2.91669 7H11.0834M11.0834 7L7.00002 2.91667M11.0834 7L7.00002 11.0833"
@@ -101,4 +112,3 @@ export default function ProjectGridCard({ project }: ProjectGridCardProps) {
     </Link>
   );
 }
-
