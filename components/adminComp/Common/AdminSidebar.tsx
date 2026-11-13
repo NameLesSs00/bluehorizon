@@ -65,7 +65,7 @@ export default function AdminSidebar({
           <Link
             href="/admin/dashboard"
             onClick={() => onNavigate?.()}
-            className="inline-block"
+            className="flex items-center justify-center"
           >
             <div className="relative h-14 w-44">
               <Image
@@ -73,7 +73,7 @@ export default function AdminSidebar({
                 alt="Blue Horizon"
                 fill
                 priority
-                className="object-contain object-left"
+                className="object-contain object-center"
               />
             </div>
           </Link>
