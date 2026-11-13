@@ -137,11 +137,6 @@ export default function ProjectAvailableUnitsSection({
   const availableUnits = propUnits || [...primaryUnits, ...resaleUnits];
   const isLoading = isPrimaryLoading || isResaleLoading;
 
-  // If no units exist after loading, hide the section entirely
-  if (!isLoading && availableUnits.length === 0) {
-    return null;
-  }
-
   const headingText = locationOrProjectName
     ? `Available Units in ${locationOrProjectName}`
     : "Available Units";

@@ -4,7 +4,6 @@ import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
 import { usePublicRentalByIdQuery } from "@/features/rentals/useRentalsQueries";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
-import { getFallbackRentalById } from "../rentalFallbacks";
 import RentalBreadcrumb from "./RentalBreadcrumb";
 import RentalDetailsHeader from "./RentalDetailsHeader";
 import RentalImageGallery from "./RentalImageGallery";
@@ -22,16 +21,13 @@ interface RentalDetailsPageProps {
 
 export default function RentalDetailsPage({ id }: RentalDetailsPageProps) {
   const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
-  const { data: apiUnit, isLoading } = usePublicRentalByIdQuery(
+  const { data: unit, isLoading } = usePublicRentalByIdQuery(
     id,
     "en",
     currentCurrency || "EGP"
   );
 
-  // If loading or if API returned data, use it; otherwise fallback to rich mock data
-  const unit = apiUnit || getFallbackRentalById(id);
-
-  if (isLoading && !unit) {
+  if (isLoading) {
     return (
       <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
         <Navbar />
@@ -40,6 +36,31 @@ export default function RentalDetailsPage({ id }: RentalDetailsPageProps) {
           <div className="mt-4 h-10 w-96 animate-pulse rounded-[12px] bg-[#E1E7E3]" />
           <div className="mt-6 h-[480px] animate-pulse rounded-[24px] bg-[#E8F1EC]" />
           <div className="mt-8 h-24 animate-pulse rounded-[20px] bg-[#E8F1EC]" />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (!unit) {
+    return (
+      <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
+        <Navbar />
+        <main className="mx-auto flex w-full max-w-[1536px] flex-1 items-center justify-center px-4 py-24 text-center">
+          <div>
+            <h2
+              className="text-2xl font-bold text-[#202326]"
+              style={{ fontFamily: "var(--font-manrope)" }}
+            >
+              Rental Unit Not Found
+            </h2>
+            <p
+              className="mt-2 text-sm text-[#65706B]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              The requested rental unit could not be located or is no longer available.
+            </p>
+          </div>
         </main>
         <Footer />
       </div>

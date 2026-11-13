@@ -3,7 +3,6 @@
 import { FiChevronRight, FiInbox } from "react-icons/fi";
 import { RentalItem } from "@/models/rental";
 import RentalUnitCard from "./RentalUnitCard";
-import { FALLBACK_RENTAL_UNITS } from "./rentalFallbacks";
 
 interface RentalUnitsGridProps {
   units: RentalItem[];
@@ -22,7 +21,7 @@ export default function RentalUnitsGrid({
   onPageChange,
   onResetFilters,
 }: RentalUnitsGridProps) {
-  const displayUnits = units.length > 0 ? units : FALLBACK_RENTAL_UNITS;
+  const displayUnits = units;
 
   return (
     <div className="flex-1">

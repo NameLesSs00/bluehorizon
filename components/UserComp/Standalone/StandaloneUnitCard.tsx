@@ -35,9 +35,20 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
   const propertyTag = resolveBadgeTag();
 
   // Formatted price
+  const currencySymbol =
+    unit.currencyCode === "USD"
+      ? "$ "
+      : unit.currencyCode === "EUR"
+      ? "€ "
+      : unit.currencyCode === "GBP"
+      ? "£ "
+      : unit.currencyCode
+      ? `${unit.currencyCode} `
+      : "EGP ";
+
   const formattedPrice =
     typeof unit.price === "number" && unit.price > 0
-      ? `EGP ${unit.price.toLocaleString()}`
+      ? `${currencySymbol}${unit.price.toLocaleString()}`
       : "Price on request";
 
   const descriptionText =

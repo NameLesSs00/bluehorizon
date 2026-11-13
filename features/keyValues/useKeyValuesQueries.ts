@@ -16,6 +16,7 @@ import { showApiErrorToast } from "@/shared/utils/errorHandler";
 import { useAdminAuthStore } from "@/features/admin/useAdminAuthStore";
 
 export const KEY_VALUES_QUERY_KEY = ["keyValues"] as const;
+export const PUBLIC_SITE_SETTINGS_QUERY_KEY = ["publicSiteSettings"] as const;
 
 export function useKeyValuesQuery() {
   const accessToken = useAdminAuthStore((state) => state.accessToken);
@@ -26,6 +27,30 @@ export function useKeyValuesQuery() {
     enabled: Boolean(accessToken),
     staleTime: 0,
   });
+}
+
+export function usePublicSiteSettingsQuery() {
+  return useQuery({
+    queryKey: PUBLIC_SITE_SETTINGS_QUERY_KEY,
+    queryFn: async () => {
+      const items = await getKeyValues();
+      const map: Record<string, string> = {};
+      items.forEach((item) => {
+        if (item.key) {
+          map[item.key.toLowerCase().trim()] = item.value;
+          map[item.key.trim()] = item.value;
+        }
+      });
+      return { items, map };
+    },
+    staleTime: 1000 * 60 * 5,
+  });
+}
+
+export function useSiteSetting(key: string, fallback: string = ""): string {
+  const { data } = usePublicSiteSettingsQuery();
+  const normalizedKey = key.toLowerCase().trim();
+  return data?.map[normalizedKey] ?? fallback;
 }
 
 export function useCreateKeyValueMutation(onSuccessCallback?: () => void) {
@@ -45,14 +70,16 @@ export function useCreateKeyValueMutation(onSuccessCallback?: () => void) {
     },
     onSuccess: async (res) => {
       toast.success(res.message || "Site link created successfully");
-      await queryClient.invalidateQueries({
-        queryKey: KEY_VALUES_QUERY_KEY,
-        refetchType: "all",
-      });
-      queryClient.refetchQueries({
-        queryKey: KEY_VALUES_QUERY_KEY,
-        type: "active",
-      });
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: KEY_VALUES_QUERY_KEY,
+          refetchType: "all",
+        }),
+        queryClient.invalidateQueries({
+          queryKey: PUBLIC_SITE_SETTINGS_QUERY_KEY,
+          refetchType: "all",
+        }),
+      ]);
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -78,14 +105,16 @@ export function useUpdateKeyValueMutation(onSuccessCallback?: () => void) {
     },
     onSuccess: async (res) => {
       toast.success(res.message || "Site link updated successfully");
-      await queryClient.invalidateQueries({
-        queryKey: KEY_VALUES_QUERY_KEY,
-        refetchType: "all",
-      });
-      queryClient.refetchQueries({
-        queryKey: KEY_VALUES_QUERY_KEY,
-        type: "active",
-      });
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: KEY_VALUES_QUERY_KEY,
+          refetchType: "all",
+        }),
+        queryClient.invalidateQueries({
+          queryKey: PUBLIC_SITE_SETTINGS_QUERY_KEY,
+          refetchType: "all",
+        }),
+      ]);
       onSuccessCallback?.();
     },
     onError: (error) => {
@@ -111,14 +140,16 @@ export function useDeleteKeyValueMutation() {
     },
     onSuccess: async (res) => {
       toast.success(res.message || "Site link deleted successfully");
-      await queryClient.invalidateQueries({
-        queryKey: KEY_VALUES_QUERY_KEY,
-        refetchType: "all",
-      });
-      queryClient.refetchQueries({
-        queryKey: KEY_VALUES_QUERY_KEY,
-        type: "active",
-      });
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: KEY_VALUES_QUERY_KEY,
+          refetchType: "all",
+        }),
+        queryClient.invalidateQueries({
+          queryKey: PUBLIC_SITE_SETTINGS_QUERY_KEY,
+          refetchType: "all",
+        }),
+      ]);
     },
     onError: (error) => {
       showApiErrorToast(error);

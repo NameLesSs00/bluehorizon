@@ -1,8 +1,16 @@
 "use client";
 
 import Image from "next/image";
+import { usePublicSiteSettingsQuery } from "@/features/keyValues/useKeyValuesQueries";
 
 export default function RentalCtaSection() {
+  const { data: settingsData } = usePublicSiteSettingsQuery();
+  const settings = settingsData?.map || {};
+
+  const phone = settings["phone"] || "";
+  const whatsappUrl = settings["whatsapp"] || "";
+  const cleanPhone = phone.replace(/\s+/g, "");
+
   return (
     <section className="mx-auto mt-16 sm:mt-20 w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mb-16 sm:mb-24">
       <div className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] bg-[#0F473A] shadow-xl">
@@ -44,27 +52,30 @@ export default function RentalCtaSection() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 shrink-0">
-            <a
-              href="https://wa.me/201000004570"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-xs sm:text-sm font-semibold text-[#202326] shadow-sm transition-colors hover:bg-[#F3F5F3]"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              WhatsApp Chat
-            </a>
+            {whatsappUrl && (
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-xs sm:text-sm font-semibold text-[#202326] shadow-sm transition-colors hover:bg-[#F3F5F3]"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                WhatsApp Chat
+              </a>
+            )}
 
-            <a
-              href="tel:+201234567890"
-              className="inline-flex items-center justify-center rounded-full border border-white px-7 py-3 text-xs sm:text-sm font-semibold text-white transition-colors hover:bg-white/10"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              Call +20 123 456 7890
-            </a>
+            {cleanPhone && (
+              <a
+                href={`tel:${cleanPhone}`}
+                className="inline-flex items-center justify-center rounded-full border border-white px-7 py-3 text-xs sm:text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                Call {phone}
+              </a>
+            )}
           </div>
         </div>
       </div>
     </section>
   );
 }
-

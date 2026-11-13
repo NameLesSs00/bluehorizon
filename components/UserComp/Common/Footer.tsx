@@ -1,8 +1,26 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePublicSiteSettingsQuery } from "@/features/keyValues/useKeyValuesQueries";
+import FooterSocialLinks from "./FooterSocialLinks";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { data: settingsData, isLoading } = usePublicSiteSettingsQuery();
+  const settings = settingsData?.map || {};
+
+  const phone = settings["phone"] || "";
+  const email = settings["email"] || "";
+  const address = settings["address"] || "";
+  const workingHours = settings["working_hours"] || "";
+
+  const instagramUrl = settings["instagram"] || "";
+  const facebookUrl = settings["facebook"] || "";
+  const linkedinUrl = settings["linkedin"] || "";
+  const whatsappUrl = settings["whatsapp"] || "";
+
+  const cleanPhone = phone.replace(/\s+/g, "");
 
   return (
     <footer className="bg-[#0F473A] pt-8 pb-8 sm:pt-12 sm:pb-10">
@@ -141,7 +159,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Get in touch Info */}
+            {/* Get in touch Info (Dynamic from backend) */}
             <div className="lg:col-span-3 lg:pt-3">
               <h3
                 className="text-[17px] font-bold leading-none tracking-normal text-[#000000]"
@@ -149,29 +167,44 @@ export default function Footer() {
               >
                 Get in touch
               </h3>
-              <div
-                className="mt-6 space-y-3.5 text-[13px] font-normal leading-[1.6] text-[#000000]"
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
-                <p>
-                  <a
-                    href="tel:+201000004570"
-                    className="transition-colors hover:text-[#145C4B]"
-                  >
-                    +20 100 000 4570
-                  </a>
-                </p>
-                <p>
-                  <a
-                    href="mailto:info@bluehorizon.com"
-                    className="transition-colors hover:text-[#145C4B]"
-                  >
-                    info@bluehorizon.com
-                  </a>
-                </p>
-                <p>El Kawthar, Hurghada, Red Sea, Egypt</p>
-                <p className="text-[#65706B]">Sun–Thu &middot; 9:00 AM–6:00 PM</p>
-              </div>
+              {isLoading ? (
+                <div className="mt-6 space-y-3">
+                  <div className="h-4 w-32 animate-pulse rounded bg-[#E6EAE7]" />
+                  <div className="h-4 w-44 animate-pulse rounded bg-[#E6EAE7]" />
+                  <div className="h-4 w-52 animate-pulse rounded bg-[#E6EAE7]" />
+                  <div className="h-4 w-36 animate-pulse rounded bg-[#E6EAE7]" />
+                </div>
+              ) : (
+                <div
+                  className="mt-6 space-y-3.5 text-[13px] font-normal leading-[1.6] text-[#000000]"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  {phone && (
+                    <p>
+                      <a
+                        href={`tel:${cleanPhone}`}
+                        className="transition-colors hover:text-[#145C4B]"
+                      >
+                        {phone}
+                      </a>
+                    </p>
+                  )}
+                  {email && (
+                    <p>
+                      <a
+                        href={`mailto:${email}`}
+                        className="transition-colors hover:text-[#145C4B]"
+                      >
+                        {email}
+                      </a>
+                    </p>
+                  )}
+                  {address && <p>{address}</p>}
+                  {workingHours && (
+                    <p className="text-[#65706B]">{workingHours}</p>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -180,7 +213,7 @@ export default function Footer() {
         <div className="mt-8 border-t border-white/15 pt-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             {/* Desktop Left Spacer to keep center text strictly centered */}
-            <div className="hidden sm:block sm:w-36" aria-hidden="true" />
+            <div className="hidden sm:block sm:w-44" aria-hidden="true" />
 
             {/* Centered Copyright & Made by */}
             <p
@@ -198,54 +231,14 @@ export default function Footer() {
               </a>
             </p>
 
-            {/* Right: Social Media Icons */}
-            <div className="flex items-center justify-center sm:justify-end gap-5 sm:w-36">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="transition-transform hover:scale-110 hover:opacity-90"
-              >
-                <Image
-                  src="/HomePage/footer/instagram.svg"
-                  alt="Instagram"
-                  width={18}
-                  height={18}
-                  className="h-[18px] w-[18px]"
-                />
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="transition-transform hover:scale-110 hover:opacity-90"
-              >
-                <Image
-                  src="/HomePage/footer/facebook.svg"
-                  alt="Facebook"
-                  width={18}
-                  height={18}
-                  className="h-[18px] w-[18px]"
-                />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="transition-transform hover:scale-110 hover:opacity-90"
-              >
-                <Image
-                  src="/HomePage/footer/linkedin.svg"
-                  alt="LinkedIn"
-                  width={18}
-                  height={18}
-                  className="h-[18px] w-[18px]"
-                />
-              </a>
-            </div>
+            {/* Right: Dynamic Social Media Icons */}
+            <FooterSocialLinks
+              isLoading={isLoading}
+              whatsappUrl={whatsappUrl}
+              instagramUrl={instagramUrl}
+              facebookUrl={facebookUrl}
+              linkedinUrl={linkedinUrl}
+            />
           </div>
         </div>
       </div>

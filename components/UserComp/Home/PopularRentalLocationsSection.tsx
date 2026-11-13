@@ -3,71 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePublicRentalLocationsQuery } from "@/features/rentalLocations/useRentalLocationsQueries";
-import { RentalLocationItem } from "@/models/rentalLocation";
 import RentalLocationCard from "./RentalLocationCard";
-
-const FALLBACK_RENTAL_LOCATIONS: RentalLocationItem[] = [
-  {
-    id: 1,
-    name: "New Cairo",
-    description: "Premier modern residential and business hub.",
-    videoUrl: null,
-    propertiesCount: 245,
-    images: [
-      {
-        id: 101,
-        imageUrl: "/Locations/hero.png",
-        isPrimary: true,
-        sortOrder: 1,
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "6th of October",
-    description: "Vibrant suburban community with top amenities.",
-    videoUrl: null,
-    propertiesCount: 186,
-    images: [
-      {
-        id: 102,
-        imageUrl: "/HomePage/hero/homeImage.jpg",
-        isPrimary: true,
-        sortOrder: 1,
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "North Coast",
-    description: "Crystal blue Mediterranean coastal paradise.",
-    videoUrl: null,
-    propertiesCount: 128,
-    images: [
-      {
-        id: 103,
-        imageUrl: "/Locations/ctaBackGound.png",
-        isPrimary: true,
-        sortOrder: 1,
-      },
-    ],
-  },
-  {
-    id: 4,
-    name: "Sheikh Zayed",
-    description: "Upscale modern living and green communities.",
-    videoUrl: null,
-    propertiesCount: 164,
-    images: [
-      {
-        id: 104,
-        imageUrl: "/Blogs/hero.png",
-        isPrimary: true,
-        sortOrder: 1,
-      },
-    ],
-  },
-];
 
 export default function PopularRentalLocationsSection() {
   const { data: locationsData, isLoading } = usePublicRentalLocationsQuery({
@@ -77,8 +13,7 @@ export default function PopularRentalLocationsSection() {
   });
 
   const rawLocations = locationsData?.items || [];
-  const displayLocations =
-    rawLocations.length > 0 ? rawLocations.slice(0, 4) : FALLBACK_RENTAL_LOCATIONS;
+  const displayLocations = rawLocations.slice(0, 4);
 
   return (
     <section className="bg-white py-8 sm:py-10 lg:py-12">
@@ -122,15 +57,30 @@ export default function PopularRentalLocationsSection() {
           </Link>
         </header>
 
-        {/* 4-Column Grid */}
+        {/* 4-Column Grid or Empty State */}
         {isLoading ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[1, 2, 3, 4].map((n) => (
               <div
                 key={n}
-                className="aspect-[300/380] w-full animate-pulse rounded-[20px] bg-[#E8F1EC]"
+                className="h-[380px] w-full animate-pulse rounded-[24px] bg-[#E8F1EC]"
               />
             ))}
+          </div>
+        ) : displayLocations.length === 0 ? (
+          <div className="flex h-44 w-full flex-col items-center justify-center rounded-2xl border border-[#E6EAE7] bg-[#FAF8F5] p-8 text-center">
+            <p
+              className="text-[15px] font-semibold text-[#202326]"
+              style={{ fontFamily: "var(--font-manrope)" }}
+            >
+              No rental locations available at the moment.
+            </p>
+            <p
+              className="mt-1 text-[13px] text-[#65706B]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              Please check back soon as vacation rental destinations are updated.
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -143,4 +93,3 @@ export default function PopularRentalLocationsSection() {
     </section>
   );
 }
-

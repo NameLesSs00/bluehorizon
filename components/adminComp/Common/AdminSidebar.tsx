@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,9 +13,12 @@ import { getAdminNavLinks } from "./adminNavLinks";
 
 interface AdminSidebarProps {
   onProfileModalStateChange?: (isOpen: boolean) => void;
+  onNavigate?: () => void;
 }
 
-export default function AdminSidebar({}: AdminSidebarProps) {
+export default function AdminSidebar({
+  onNavigate,
+}: AdminSidebarProps) {
   const pathname = usePathname();
   const currentUser = useAdminAuthStore((state) => state.user);
   const accessToken = useAdminAuthStore((state) => state.accessToken);
@@ -25,18 +28,45 @@ export default function AdminSidebar({}: AdminSidebarProps) {
 
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
+  const navRef = useRef<HTMLElement | null>(null);
 
   const allNavLinks = getAdminNavLinks(pathname);
   const visibleNavLinks = allNavLinks.filter(
     (item) => !item.superAdminOnly || isSuperAdmin
   );
 
+  // Restore scroll position on route changes and ensure active element is in view
+  useEffect(() => {
+    if (!navRef.current) return;
+    const savedScroll = sessionStorage.getItem("admin_sidebar_scroll");
+    if (savedScroll) {
+      navRef.current.scrollTop = Number(savedScroll);
+    }
+    const activeEl = navRef.current.querySelector<HTMLElement>(
+      "[data-active='true']"
+    );
+    if (activeEl) {
+      activeEl.scrollIntoView({ block: "nearest", inline: "nearest" });
+    }
+  }, [pathname]);
+
+  const handleScroll = (e: React.UIEvent<HTMLElement>) => {
+    sessionStorage.setItem(
+      "admin_sidebar_scroll",
+      String(e.currentTarget.scrollTop)
+    );
+  };
+
   return (
     <>
-      <aside className="flex w-full flex-col justify-between border-r border-[#E6EAE7] bg-[#0F473A] text-white lg:sticky lg:top-0 lg:h-screen lg:w-72 shrink-0 overflow-hidden">
+      <aside className="flex h-full w-full flex-col justify-between border-r border-[#0B382E] bg-[#0F473A] text-white shrink-0 overflow-hidden">
         {/* Top Header: Logo & Portal Identity */}
         <div className="shrink-0 p-6 pb-2">
-          <Link href="/" className="inline-block">
+          <Link
+            href="/admin/dashboard"
+            onClick={() => onNavigate?.()}
+            className="inline-block"
+          >
             <div className="relative h-14 w-44">
               <Image
                 src="/logo-white.png"
@@ -64,14 +94,28 @@ export default function AdminSidebar({}: AdminSidebarProps) {
           </div>
         </div>
 
-        {/* Scrollable Navigation Links */}
-        <nav className="custom-admin-scrollbar flex-1 overflow-y-auto px-6 py-3 space-y-1.5">
+        {/* Scrollable Navigation Links with Scroll Persistence */}
+        <nav
+          ref={navRef}
+          onScroll={handleScroll}
+          className="custom-admin-scrollbar flex-1 overflow-y-auto px-6 py-3 space-y-1.5"
+        >
           {visibleNavLinks.map((item) => {
             const Icon = item.icon;
             return (
               <Link
                 key={item.href}
                 href={item.href}
+                data-active={item.active ? "true" : undefined}
+                onClick={() => {
+                  if (navRef.current) {
+                    sessionStorage.setItem(
+                      "admin_sidebar_scroll",
+                      String(navRef.current.scrollTop)
+                    );
+                  }
+                  onNavigate?.();
+                }}
                 className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-[13px] font-medium transition-all ${
                   item.active
                     ? "bg-[#145C4B] font-semibold text-white shadow-xs"

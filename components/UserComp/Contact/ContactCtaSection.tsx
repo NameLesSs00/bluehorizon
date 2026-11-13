@@ -1,4 +1,15 @@
+"use client";
+
+import { usePublicSiteSettingsQuery } from "@/features/keyValues/useKeyValuesQueries";
+
 export default function ContactCtaSection() {
+  const { data: settingsData, isLoading } = usePublicSiteSettingsQuery();
+  const settings = settingsData?.map || {};
+
+  const phone = settings["phone"] || "";
+  const whatsappUrl = settings["whatsapp"] || "";
+  const cleanPhone = phone.replace(/\s+/g, "");
+
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       <div className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] bg-[#0F473A] px-8 py-10 sm:px-12 sm:py-14 lg:px-14 lg:py-16 text-white">
@@ -30,27 +41,39 @@ export default function ContactCtaSection() {
 
           {/* Right Column Action Buttons */}
           <div className="flex shrink-0 flex-col gap-3.5 sm:flex-row w-full sm:w-auto">
-            <a
-              href="https://wa.me/201234567890"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-[12px] bg-white px-8 py-3.5 text-[14px] font-semibold text-[#145C4B] transition-all hover:bg-[#F3F5F3] text-center"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              WhatsApp Chat
-            </a>
+            {isLoading ? (
+              <div className="flex gap-3">
+                <div className="h-12 w-36 animate-pulse rounded-[12px] bg-white/20" />
+                <div className="h-12 w-44 animate-pulse rounded-[12px] bg-white/20" />
+              </div>
+            ) : (
+              <>
+                {whatsappUrl && (
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-[12px] bg-white px-8 py-3.5 text-[14px] font-semibold text-[#145C4B] transition-all hover:bg-[#F3F5F3] text-center"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    WhatsApp Chat
+                  </a>
+                )}
 
-            <a
-              href="tel:+201234567890"
-              className="inline-flex items-center justify-center rounded-[12px]  bg-[#145C4B] border border-white/25 px-8 py-3.5 text-[14px] font-medium text-white transition-all hover:bg-[#0B3B30] text-center"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              Call +20 123 456 7890
-            </a>
+                {cleanPhone && (
+                  <a
+                    href={`tel:${cleanPhone}`}
+                    className="inline-flex items-center justify-center rounded-[12px] bg-[#145C4B] border border-white/25 px-8 py-3.5 text-[14px] font-medium text-white transition-all hover:bg-[#0B3B30] text-center"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    Call {phone}
+                  </a>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>
     </section>
   );
 }
-

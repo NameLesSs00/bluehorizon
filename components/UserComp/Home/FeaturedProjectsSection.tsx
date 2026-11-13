@@ -64,7 +64,7 @@ function formatProjectCard(item: ProjectItem): ProjectCardData {
     id: String(item.id),
     badge,
     title: item.name,
-    location: item.locationName || "",
+    location: item.locationName || "Hurghada, Red Sea",
     price: priceText,
     propertyTypes,
     specsSummary,

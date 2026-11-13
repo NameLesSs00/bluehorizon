@@ -60,7 +60,7 @@ export default function FaqsSection() {
                 className="mt-6 text-[15px] font-normal leading-[1.7] tracking-normal text-[#65706B]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                Have questions? We have answers. Find out how Dream Life makes
+                Have questions? We have answers. Find out how Blue Horizon makes
                 buying, selling and renting feel simple.
               </p>
             </div>

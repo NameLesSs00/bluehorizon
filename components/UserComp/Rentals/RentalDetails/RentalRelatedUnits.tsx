@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { FiChevronRight } from "react-icons/fi";
 import { usePublicRentalsQuery } from "@/features/rentals/useRentalsQueries";
-import { FALLBACK_RENTAL_UNITS } from "../rentalFallbacks";
 import RentalUnitCard from "../RentalUnitCard";
 
 interface RentalRelatedUnitsProps {
@@ -20,20 +19,9 @@ export default function RentalRelatedUnits({
   });
 
   const rawItems = data?.items || [];
-  const filteredFromApi = rawItems.filter((u) => u.id !== currentUnitId);
-
-  // If API has enough items, take up to 5; otherwise supplement from fallback units
-  const relatedUnits =
-    filteredFromApi.length >= 3
-      ? filteredFromApi.slice(0, 5)
-      : [
-          ...filteredFromApi,
-          ...FALLBACK_RENTAL_UNITS.filter(
-            (u) =>
-              u.id !== currentUnitId &&
-              !filteredFromApi.some((apiU) => apiU.id === u.id)
-          ),
-        ].slice(0, 5);
+  const relatedUnits = rawItems
+    .filter((u) => u.id !== currentUnitId)
+    .slice(0, 5);
 
   if (!isLoading && relatedUnits.length === 0) {
     return null;

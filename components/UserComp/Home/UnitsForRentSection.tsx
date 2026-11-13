@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePublicRentalsQuery } from "@/features/rentals/useRentalsQueries";
-import { FALLBACK_RENTAL_UNITS } from "@/components/UserComp/Rentals/rentalFallbacks";
 import RentalUnitCard from "@/components/UserComp/Rentals/RentalUnitCard";
 
 export default function UnitsForRentSection() {
@@ -14,8 +13,7 @@ export default function UnitsForRentSection() {
   });
 
   const rawUnits = data?.items || [];
-  const displayUnits =
-    rawUnits.length > 0 ? rawUnits.slice(0, 4) : FALLBACK_RENTAL_UNITS.slice(0, 4);
+  const displayUnits = rawUnits.slice(0, 4);
 
   return (
     <section className="bg-[#F3F5F3] py-8 sm:py-10 lg:py-12">
@@ -59,7 +57,7 @@ export default function UnitsForRentSection() {
           </Link>
         </header>
 
-        {/* 4-Column Card Grid */}
+        {/* 4-Column Card Grid or Empty State */}
         {isLoading ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[1, 2, 3, 4].map((n) => (
@@ -68,6 +66,21 @@ export default function UnitsForRentSection() {
                 className="h-[420px] w-full animate-pulse rounded-[20px] bg-[#E8F1EC]"
               />
             ))}
+          </div>
+        ) : displayUnits.length === 0 ? (
+          <div className="flex h-44 w-full flex-col items-center justify-center rounded-2xl border border-[#E6EAE7] bg-white p-8 text-center">
+            <p
+              className="text-[15px] font-semibold text-[#202326]"
+              style={{ fontFamily: "var(--font-manrope)" }}
+            >
+              No rental units available at the moment.
+            </p>
+            <p
+              className="mt-1 text-[13px] text-[#65706B]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              Please check back soon as vacation and long-term units are added.
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -80,4 +93,3 @@ export default function UnitsForRentSection() {
     </section>
   );
 }
-

@@ -14,11 +14,6 @@ export default function PopularAreasSection() {
 
   const areas = locationsData?.items?.slice(0, 4) || [];
 
-  // If no real areas are available from the backend, hide the section entirely
-  if (!isLoading && areas.length === 0) {
-    return null;
-  }
-
   return (
     <section className="bg-white pt-8 sm:pt-10 lg:pt-28 pb-8 sm:pb-10 lg:pb-12">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
@@ -61,18 +56,28 @@ export default function PopularAreasSection() {
         </header>
 
         {isLoading ? (
-          <div className="flex h-72 w-full flex-col items-center justify-center rounded-2xl border border-[#E6EAE7] bg-[#FAF8F5]">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#145C4B] border-t-transparent" />
-            <p
-              className="mt-3 text-[13px] text-[#65706B]"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              Loading popular areas...
-            </p>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[1, 2, 3, 4].map((n) => (
+              <div
+                key={n}
+                className="h-[280px] w-full animate-pulse rounded-[24px] bg-[#E8F1EC]"
+              />
+            ))}
           </div>
         ) : areas.length === 0 ? (
-          <div className="flex h-48 w-full items-center justify-center rounded-2xl border border-[#E6EAE7] bg-[#FAF8F5] text-[14px] text-[#65706B]">
-            No areas available at the moment.
+          <div className="flex h-44 w-full flex-col items-center justify-center rounded-2xl border border-[#E6EAE7] bg-[#FAF8F5] p-8 text-center">
+            <p
+              className="text-[15px] font-semibold text-[#202326]"
+              style={{ fontFamily: "var(--font-manrope)" }}
+            >
+              No areas available at the moment.
+            </p>
+            <p
+              className="mt-1 text-[13px] text-[#65706B]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              Please check back soon as new destination areas are added.
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -85,4 +90,3 @@ export default function PopularAreasSection() {
     </section>
   );
 }
-

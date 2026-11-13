@@ -6,36 +6,6 @@ import { usePublicBlogsQuery } from "@/features/blogs/useBlogsQueries";
 import { getFullImageUrl } from "@/clientApi/blogsApi";
 import BlogCard, { BlogCardData } from "@/components/UserComp/Blogs/BlogCard";
 
-const FALLBACK_BLOGS: BlogCardData[] = [
-  {
-    id: 1,
-    title: "10 Tips for Choosing the Perfect Home",
-    category: "Buying Guide",
-    date: "Nov 6, 2026",
-    description:
-      "Discover essential tips to find a home that fits your lifestyle and future needs.",
-    imageUrl: "/HomePage/hero/homeImage.jpg",
-  },
-  {
-    id: 2,
-    title: "Why the Red Sea Coast is Egypt's Top Destination",
-    category: "Investment",
-    date: "Oct 28, 2026",
-    description:
-      "Explore the rising value and unique lifestyle of Hurghada and its surroundings.",
-    imageUrl: "/Locations/hero.png",
-  },
-  {
-    id: 3,
-    title: "Modern Living: How Real Estate Enhances Your Life",
-    category: "Lifestyle",
-    date: "Oct 20, 2026",
-    description:
-      "Discover how the right property can improve your everyday life.",
-    imageUrl: "/Blogs/hero.png",
-  },
-];
-
 export default function HomeBlogsSection() {
   const { data: blogsData, isLoading } = usePublicBlogsQuery({
     Language: "en",
@@ -69,7 +39,7 @@ export default function HomeBlogsSection() {
     };
   });
 
-  const displayBlogs = apiBlogs.length > 0 ? apiBlogs.slice(0, 3) : FALLBACK_BLOGS;
+  const displayBlogs = apiBlogs.slice(0, 3);
 
   return (
     <section className="bg-white py-8 sm:py-10 lg:py-12">
@@ -113,7 +83,7 @@ export default function HomeBlogsSection() {
           </Link>
         </header>
 
-        {/* 3-Column Blogs Grid */}
+        {/* 3-Column Blogs Grid or Empty State */}
         {isLoading ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[1, 2, 3].map((n) => (
@@ -128,6 +98,21 @@ export default function HomeBlogsSection() {
               </div>
             ))}
           </div>
+        ) : displayBlogs.length === 0 ? (
+          <div className="flex h-44 w-full flex-col items-center justify-center rounded-2xl border border-[#E6EAE7] bg-[#FAF8F5] p-8 text-center">
+            <p
+              className="text-[15px] font-semibold text-[#202326]"
+              style={{ fontFamily: "var(--font-manrope)" }}
+            >
+              No blog articles available at the moment.
+            </p>
+            <p
+              className="mt-1 text-[13px] text-[#65706B]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              Our editorial guides and market reports will be published soon.
+            </p>
+          </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {displayBlogs.map((blog) => (
@@ -139,4 +124,3 @@ export default function HomeBlogsSection() {
     </section>
   );
 }
-

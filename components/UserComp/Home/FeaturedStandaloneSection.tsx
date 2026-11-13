@@ -3,123 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePublicStandaloneUnitsQuery } from "@/features/standaloneUnits/useStandaloneUnitsQueries";
-import { StandaloneUnitItem } from "@/models/standaloneUnit";
 import StandaloneUnitCard from "@/components/UserComp/Standalone/StandaloneUnitCard";
-
-const FALLBACK_STANDALONE_UNITS: StandaloneUnitItem[] = [
-  {
-    id: 1,
-    name: "Luxury Sea-View Apartment",
-    description: "Panoramic sea view with spacious balcony and premium finishes.",
-    price: 4500000,
-    currencyCode: "EGP",
-    area: 125,
-    noBedRoom: 2,
-    noBathRoom: 2,
-    noKitchen: 1,
-    propertyType: "Home",
-    country: "Egypt",
-    city: "Hurghada",
-    district: "El Kawthar",
-    street: "Airport Road",
-    isFeatured: true,
-    isActive: true,
-    prices: [{ id: 1, currency: "EGP", price: 4500000 }],
-    services: [],
-    images: [
-      {
-        id: 201,
-        imageUrl: "/HomePage/hero/homeImage.jpg",
-        isPrimary: true,
-        sortOrder: 1,
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "Luxury Sea-View Apartment",
-    description: "Panoramic sea view with spacious balcony and premium finishes.",
-    price: 4500000,
-    currencyCode: "EGP",
-    area: 125,
-    noBedRoom: 2,
-    noBathRoom: 2,
-    noKitchen: 1,
-    propertyType: "Villa",
-    country: "Egypt",
-    city: "Hurghada",
-    district: "El Kawthar",
-    street: "Airport Road",
-    isFeatured: true,
-    isActive: true,
-    prices: [{ id: 2, currency: "EGP", price: 4500000 }],
-    services: [],
-    images: [
-      {
-        id: 202,
-        imageUrl: "/rental/heroRental.jpg",
-        isPrimary: true,
-        sortOrder: 1,
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "Luxury Sea-View Apartment",
-    description: "Panoramic sea view with spacious balcony and premium finishes.",
-    price: 4500000,
-    currencyCode: "EGP",
-    area: 125,
-    noBedRoom: 2,
-    noBathRoom: 2,
-    noKitchen: 1,
-    propertyType: "Apartment",
-    country: "Egypt",
-    city: "Hurghada",
-    district: "El Kawthar",
-    street: "Airport Road",
-    isFeatured: true,
-    isActive: true,
-    prices: [{ id: 3, currency: "EGP", price: 4500000 }],
-    services: [],
-    images: [
-      {
-        id: 203,
-        imageUrl: "/Locations/hero.png",
-        isPrimary: true,
-        sortOrder: 1,
-      },
-    ],
-  },
-  {
-    id: 4,
-    name: "Luxury Sea-View Apartment",
-    description: "Panoramic sea view with spacious balcony and premium finishes.",
-    price: 4500000,
-    currencyCode: "EGP",
-    area: 125,
-    noBedRoom: 2,
-    noBathRoom: 2,
-    noKitchen: 1,
-    propertyType: "Studio",
-    country: "Egypt",
-    city: "Hurghada",
-    district: "El Kawthar",
-    street: "Airport Road",
-    isFeatured: true,
-    isActive: true,
-    prices: [{ id: 4, currency: "EGP", price: 4500000 }],
-    services: [],
-    images: [
-      {
-        id: 204,
-        imageUrl: "/Blogs/hero.png",
-        isPrimary: true,
-        sortOrder: 1,
-      },
-    ],
-  },
-];
 
 export default function FeaturedStandaloneSection() {
   const { data, isLoading } = usePublicStandaloneUnitsQuery({
@@ -129,8 +13,7 @@ export default function FeaturedStandaloneSection() {
   });
 
   const rawUnits = data?.items || [];
-  const displayUnits =
-    rawUnits.length > 0 ? rawUnits.slice(0, 4) : FALLBACK_STANDALONE_UNITS;
+  const displayUnits = rawUnits.slice(0, 4);
 
   return (
     <section className="bg-white py-8 sm:py-10 lg:py-12">
@@ -164,7 +47,7 @@ export default function FeaturedStandaloneSection() {
             className="inline-flex items-center gap-2 self-start text-[14px] font-semibold text-[#145C4B] transition-opacity hover:opacity-80 md:self-end"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            <span>View all resale units</span>
+            <span>View all standalone units</span>
             <Image
               src="/HomePage/FeaturedProjects/link.svg"
               alt=""
@@ -175,7 +58,7 @@ export default function FeaturedStandaloneSection() {
           </Link>
         </header>
 
-        {/* 4-Column Card Grid */}
+        {/* 4-Column Card Grid or Empty State */}
         {isLoading ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[1, 2, 3, 4].map((n) => (
@@ -184,6 +67,21 @@ export default function FeaturedStandaloneSection() {
                 className="h-[420px] w-full animate-pulse rounded-[20px] bg-[#E8F1EC]"
               />
             ))}
+          </div>
+        ) : displayUnits.length === 0 ? (
+          <div className="flex h-44 w-full flex-col items-center justify-center rounded-2xl border border-[#E6EAE7] bg-[#FAF8F5] p-8 text-center">
+            <p
+              className="text-[15px] font-semibold text-[#202326]"
+              style={{ fontFamily: "var(--font-manrope)" }}
+            >
+              No standalone units available at the moment.
+            </p>
+            <p
+              className="mt-1 text-[13px] text-[#65706B]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              Please check back soon or browse our compound projects.
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

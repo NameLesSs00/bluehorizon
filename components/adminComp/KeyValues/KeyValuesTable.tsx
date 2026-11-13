@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { FiEdit2, FiExternalLink, FiTrash2 } from "react-icons/fi";
+import { FiEdit2, FiExternalLink } from "react-icons/fi";
 import { KeyValueItem } from "@/models/keyValue";
-import { useDeleteKeyValueMutation } from "@/features/keyValues/useKeyValuesQueries";
 
 interface KeyValuesTableProps {
   items: KeyValueItem[];
@@ -16,15 +14,6 @@ export default function KeyValuesTable({
   isLoading,
   onEdit,
 }: KeyValuesTableProps) {
-  const deleteMutation = useDeleteKeyValueMutation();
-  const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null);
-
-  function handleConfirmDelete(id: number) {
-    deleteMutation.mutate(id, {
-      onSettled: () => setConfirmDeleteId(null),
-    });
-  }
-
   if (isLoading) {
     return (
       <div className="flex h-64 items-center justify-center rounded-2xl border border-[#E6EAE7] bg-white">
@@ -60,7 +49,7 @@ export default function KeyValuesTable({
                 Value / URL
               </th>
               <th
-                className="w-40 px-6 py-4 text-right text-[11px] font-bold uppercase tracking-[0.08em] text-[#65706B]"
+                className="w-28 px-6 py-4 text-right text-[11px] font-bold uppercase tracking-[0.08em] text-[#65706B]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Actions
@@ -123,48 +112,15 @@ export default function KeyValuesTable({
                     </td>
 
                     <td className="px-6 py-4 text-right">
-                      {confirmDeleteId === item.id ? (
-                        <div className="inline-flex items-center gap-2">
-                          <button
-                            type="button"
-                            disabled={deleteMutation.isPending}
-                            onClick={() => handleConfirmDelete(item.id)}
-                            className="rounded-lg bg-red-600 px-2.5 py-1 text-[11px] font-semibold text-white hover:bg-red-700 disabled:opacity-50"
-                            style={{ fontFamily: "var(--font-inter)" }}
-                          >
-                            Confirm
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setConfirmDeleteId(null)}
-                            className="rounded-lg border border-[#DCE2DE] px-2 py-1 text-[11px] font-medium text-[#65706B] hover:bg-[#F3F5F3]"
-                            style={{ fontFamily: "var(--font-inter)" }}
-                          >
-                            Cancel
-                          </button>
-                        </div>
-                      ) : (
-                        <div className="inline-flex items-center gap-2">
-                          <button
-                            type="button"
-                            onClick={() => onEdit(item)}
-                            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE2DE] px-2.5 py-1.5 text-[12px] font-medium text-[#202326] transition-colors hover:bg-[#FAF8F5]"
-                            style={{ fontFamily: "var(--font-inter)" }}
-                          >
-                            <FiEdit2 className="h-3.5 w-3.5 text-[#145C4B]" />
-                            <span>Edit</span>
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setConfirmDeleteId(item.id)}
-                            className="inline-flex items-center gap-1 rounded-lg border border-red-200 px-2.5 py-1.5 text-[12px] font-medium text-red-600 transition-colors hover:bg-red-50"
-                            style={{ fontFamily: "var(--font-inter)" }}
-                          >
-                            <FiTrash2 className="h-3.5 w-3.5" />
-                            <span>Delete</span>
-                          </button>
-                        </div>
-                      )}
+                      <button
+                        type="button"
+                        onClick={() => onEdit(item)}
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-[#DCE2DE] px-3 py-1.5 text-[12px] font-semibold text-[#145C4B] transition-colors hover:bg-[#145C4B] hover:text-white"
+                        style={{ fontFamily: "var(--font-inter)" }}
+                      >
+                        <FiEdit2 className="h-3.5 w-3.5" />
+                        <span>Edit</span>
+                      </button>
                     </td>
                   </tr>
                 );
