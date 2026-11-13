@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { FiRotateCcw, FiSearch } from "react-icons/fi";
 
 export interface FilterState {
   searchTerm: string;
@@ -27,6 +28,37 @@ export default function StandaloneFilterSidebar({
   const [minPrice, setMinPrice] = useState(initialFilters.minPrice);
   const [maxPrice, setMaxPrice] = useState(initialFilters.maxPrice);
 
+  const isInitialMount = useRef(true);
+
+  // Sync internal state when external initialFilters change (e.g. on reset)
+  useEffect(() => {
+    setSearchTerm(initialFilters.searchTerm);
+    setPropertyType(initialFilters.propertyType);
+    setBedrooms(initialFilters.bedrooms);
+    setMinPrice(initialFilters.minPrice);
+    setMaxPrice(initialFilters.maxPrice);
+  }, [initialFilters]);
+
+  // Auto-apply filters after 1 second of inactivity (typing debounce)
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      onApplyFilters({
+        searchTerm,
+        propertyType,
+        bedrooms,
+        minPrice,
+        maxPrice,
+      });
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [searchTerm, propertyType, bedrooms, minPrice, maxPrice, onApplyFilters]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onApplyFilters({
@@ -47,25 +79,25 @@ export default function StandaloneFilterSidebar({
     onResetFilters();
   };
 
+  const hasActiveFilters = Boolean(
+    searchTerm.trim() ||
+      propertyType ||
+      bedrooms ||
+      minPrice ||
+      maxPrice
+  );
+
   return (
     <aside className="w-full lg:w-[280px] xl:w-[320px] shrink-0">
       <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-5 sm:p-6 shadow-sm">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-[#D9E2EE] pb-4">
+        <div className="border-b border-[#D9E2EE] pb-4">
           <h2
             className="text-lg font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
             Filters
           </h2>
-          <button
-            type="button"
-            onClick={handleReset}
-            className="text-xs font-semibold text-[#2B5FA6] transition-colors hover:text-[#1B3A6B] hover:underline"
-            style={{ fontFamily: "var(--font-inter)" }}
-          >
-            Reset All
-          </button>
         </div>
 
         {/* Filter Form */}
@@ -79,15 +111,18 @@ export default function StandaloneFilterSidebar({
             >
               Search
             </label>
-            <input
-              id="filter-search"
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search by name..."
-              className="mt-1.5 w-full rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] px-3.5 py-2.5 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#2B5FA6] focus:bg-white"
-              style={{ fontFamily: "var(--font-inter)" }}
-            />
+            <div className="relative mt-1.5">
+              <input
+                id="filter-search"
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search by name..."
+                className="w-full rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] py-2.5 pr-3.5 pl-9 text-xs sm:text-sm text-[#202326] outline-none transition-colors placeholder:text-[#6B7570] focus:border-[#2B5FA6] focus:bg-white"
+                style={{ fontFamily: "var(--font-inter)" }}
+              />
+              <FiSearch className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-[#6B7570]" />
+            </div>
           </div>
 
           {/* Unit Type */}
@@ -220,8 +255,8 @@ export default function StandaloneFilterSidebar({
             />
           </div>
 
-          {/* Submit Button */}
-          <div className="pt-2">
+          {/* Submit & Reset Buttons */}
+          <div className="space-y-2.5 pt-2">
             <button
               type="submit"
               className="w-full rounded-[12px] bg-[#2B5FA6] py-3 text-center text-xs sm:text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#1B3A6B]"
@@ -229,6 +264,18 @@ export default function StandaloneFilterSidebar({
             >
               Apply Filters
             </button>
+
+            {hasActiveFilters && (
+              <button
+                type="button"
+                onClick={handleReset}
+                className="flex w-full items-center justify-center gap-2 rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] py-2.5 text-center text-xs sm:text-sm font-semibold text-[#1B3A6B] transition-colors hover:border-[#1B3A6B] hover:bg-white"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                <FiRotateCcw className="h-3.5 w-3.5" />
+                <span>Reset All Filters</span>
+              </button>
+            )}
           </div>
         </form>
       </div>

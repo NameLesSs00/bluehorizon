@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getStandaloneUnits } from "@/clientApi/standaloneUnitsApi";
 import StandaloneHeroSection from "./StandaloneHeroSection";
@@ -58,12 +58,12 @@ export default function StandaloneListPage() {
     });
   }, [data?.items, filters.bedrooms]);
 
-  const handleApplyFilters = (newFilters: FilterState) => {
+  const handleApplyFilters = useCallback((newFilters: FilterState) => {
     setFilters(newFilters);
     setPageNumber(1);
-  };
+  }, []);
 
-  const handleResetFilters = () => {
+  const handleResetFilters = useCallback(() => {
     setFilters({
       searchTerm: "",
       propertyType: "",
@@ -72,7 +72,7 @@ export default function StandaloneListPage() {
       maxPrice: "",
     });
     setPageNumber(1);
-  };
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col bg-[#FCFCFC]">

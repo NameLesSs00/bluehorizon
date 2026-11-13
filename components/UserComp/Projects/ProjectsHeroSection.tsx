@@ -1,9 +1,9 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function ProjectsHeroSection() {
   return (
-    <section className="relative overflow-hidden bg-[#2B5FA6]">
+    <section className="relative overflow-hidden bg-[#1B3A6B]">
       {/* Background City Image Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -21,7 +21,7 @@ export default function ProjectsHeroSection() {
         className="absolute inset-0 z-10"
         style={{
           background:
-            "linear-gradient(90deg, #2B5FA6 31.77%, rgba(43, 95, 166, 0.8) 46.15%, rgba(43, 95, 166, 0) 80.77%)",
+            "linear-gradient(90deg, #1B3A6B 31.77%, rgba(27, 58, 107, 0.85) 46.15%, rgba(27, 58, 107, 0.2) 80.77%)",
         }}
       />
 

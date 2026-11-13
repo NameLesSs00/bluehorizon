@@ -1,4 +1,4 @@
-﻿import { StandaloneUnitItem } from "@/models/standaloneUnit";
+import { StandaloneUnitItem } from "@/models/standaloneUnit";
 
 interface StandaloneSpecsBarProps {
   unit: StandaloneUnitItem;
@@ -7,10 +7,21 @@ interface StandaloneSpecsBarProps {
 export default function StandaloneSpecsBar({ unit }: StandaloneSpecsBarProps) {
   const specs: { label: string; value: string }[] = [];
 
+  const currencySymbol =
+    unit.currencyCode === "USD"
+      ? "$ "
+      : unit.currencyCode === "EUR"
+      ? "€ "
+      : unit.currencyCode === "GBP"
+      ? "£ "
+      : unit.currencyCode
+      ? `${unit.currencyCode} `
+      : "EGP ";
+
   if (typeof unit.price === "number" && unit.price > 0) {
     specs.push({
       label: "TOTAL PRICE",
-      value: `EGP ${unit.price.toLocaleString()}`,
+      value: `${currencySymbol}${unit.price.toLocaleString()}`,
     });
   }
 
@@ -28,40 +39,46 @@ export default function StandaloneSpecsBar({ unit }: StandaloneSpecsBarProps) {
     });
   }
 
+  if (unit.view) {
+    specs.push({
+      label: "PRIMARY VIEW",
+      value: unit.view,
+    });
+  }
+
   if (typeof unit.noBedRoom === "number" && unit.noBedRoom > 0) {
     specs.push({
       label: "BEDROOMS",
-      value: `${unit.noBedRoom} Rooms`,
+      value: `${unit.noBedRoom} ${unit.noBedRoom === 1 ? "Room" : "Rooms"}`,
     });
   }
 
   if (typeof unit.noBathRoom === "number" && unit.noBathRoom > 0) {
     specs.push({
       label: "BATHROOMS",
-      value: `${unit.noBathRoom} Baths`,
+      value: `${unit.noBathRoom} ${unit.noBathRoom === 1 ? "Bath" : "Baths"}`,
     });
   }
 
   if (typeof unit.noKitchen === "number" && unit.noKitchen > 0) {
     specs.push({
       label: "KITCHENS",
-      value: `${unit.noKitchen} Kitchens`,
+      value: `${unit.noKitchen} Kitchen`,
     });
   }
 
   if (unit.floorName) {
     specs.push({
-      label: "FLOOR NUMBER",
+      label: "FLOOR",
       value: unit.floorName,
     });
   } else if (typeof unit.floorNumber === "number") {
     specs.push({
-      label: "FLOOR NUMBER",
+      label: "FLOOR",
       value: unit.floorNumber === 0 ? "Ground" : `${unit.floorNumber}th`,
     });
   }
 
-  // If no specs exist, hide the specs bar entirely
   if (specs.length === 0) {
     return null;
   }
@@ -69,7 +86,7 @@ export default function StandaloneSpecsBar({ unit }: StandaloneSpecsBarProps) {
   return (
     <div className="mt-6 overflow-x-auto rounded-[20px] border border-[#D9E2EE] bg-white p-5 sm:p-6 shadow-sm">
       <div
-        className="grid min-w-[500px] divide-x divide-[#D9E2EE] text-center"
+        className="grid min-w-[560px] divide-x divide-[#D9E2EE] text-center"
         style={{
           gridTemplateColumns: `repeat(${specs.length}, minmax(0, 1fr))`,
         }}
@@ -84,6 +101,7 @@ export default function StandaloneSpecsBar({ unit }: StandaloneSpecsBarProps) {
             </span>
             <span
               className="mt-1 block text-sm sm:text-base font-bold text-[#202326] truncate"
+              title={item.value}
               style={{ fontFamily: "var(--font-manrope)" }}
             >
               {item.value}

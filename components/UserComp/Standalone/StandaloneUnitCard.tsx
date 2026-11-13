@@ -1,8 +1,10 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { FiChevronRight, FiMapPin } from "react-icons/fi";
+import { TbBath, TbBed, TbRulerMeasure } from "react-icons/tb";
 import { StandaloneUnitItem } from "@/models/standaloneUnit";
 import { getFullStandaloneUnitMediaUrl } from "@/clientApi/standaloneUnitsApi";
 
@@ -101,88 +103,62 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
           </p>
         )}
 
-        {/* Specs Row */}
+        {/* Specs Row - Centered with modern clean icons */}
         {(hasArea || hasRooms || hasBaths) && (
           <div
-            className="mt-3 flex items-center gap-2 text-xs text-[#6B7570]"
+            className="my-3 flex items-center justify-center gap-3 rounded-xl border border-[#D9E2EE]/60 bg-[#F0F3FA]/60 py-2.5 px-3 text-xs text-[#202326]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {hasArea && (
-              <div className="flex items-center gap-1">
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M3 3h18v18H3z" />
-                  <path d="M3 9h18" />
-                  <path d="M9 3v18" />
-                </svg>
+              <div className="flex items-center gap-1.5 font-medium">
+                <TbRulerMeasure className="h-4 w-4 text-[#1B3A6B]" />
                 <span>{unit.area} m²</span>
               </div>
             )}
 
             {hasArea && (hasRooms || hasBaths) && (
-              <span className="text-[#D9E2EE]">&bull;</span>
+              <span className="text-[#D9E2EE] font-bold">&bull;</span>
             )}
 
             {hasRooms && (
-              <div className="flex items-center gap-1">
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M3 7v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7" />
-                  <path d="M21 11H3" />
-                  <path d="M7 7V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3" />
-                </svg>
-                <span>{unit.noBedRoom} Rooms</span>
+              <div className="flex items-center gap-1.5 font-medium">
+                <TbBed className="h-4 w-4 text-[#1B3A6B]" />
+                <span>{unit.noBedRoom} {unit.noBedRoom === 1 ? "Bed" : "Beds"}</span>
               </div>
             )}
 
             {hasRooms && hasBaths && (
-              <span className="text-[#D9E2EE]">&bull;</span>
+              <span className="text-[#D9E2EE] font-bold">&bull;</span>
             )}
 
             {hasBaths && (
-              <div className="flex items-center gap-1">
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7" />
-                  <path d="M6 12V6a3 3 0 0 1 6 0v6" />
-                </svg>
-                <span>{unit.noBathRoom} Baths</span>
+              <div className="flex items-center gap-1.5 font-medium">
+                <TbBath className="h-4 w-4 text-[#1B3A6B]" />
+                <span>{unit.noBathRoom} {unit.noBathRoom === 1 ? "Bath" : "Baths"}</span>
               </div>
             )}
           </div>
         )}
 
         {/* Price & Action */}
-        <div className="mt-4 pt-3 border-t border-[#D9E2EE]/60 flex flex-col gap-3">
-          <div
-            className="text-base sm:text-lg font-bold text-[#202326]"
-            style={{ fontFamily: "var(--font-manrope)" }}
-          >
-            {formattedPrice}
+        <div className="mt-auto pt-3 border-t border-[#D9E2EE]/60 flex flex-col gap-3">
+          <div className="flex items-center justify-between">
+            <div
+              className="text-base sm:text-lg font-bold text-[#202326]"
+              style={{ fontFamily: "var(--font-manrope)" }}
+            >
+              {formattedPrice}
+            </div>
+
+            {unit.city && (
+              <div
+                className="flex items-center gap-1 text-[11px] text-[#65706B]"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                <FiMapPin className="h-3.5 w-3.5 text-[#1B3A6B]" />
+                <span className="line-clamp-1 max-w-[120px]">{unit.city}</span>
+              </div>
+            )}
           </div>
 
           <Link
@@ -191,19 +167,7 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <span>View Details</span>
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
+            <FiChevronRight className="h-4 w-4" />
           </Link>
         </div>
       </div>
