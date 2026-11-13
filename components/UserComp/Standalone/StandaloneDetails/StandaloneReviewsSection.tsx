@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { StandaloneUnitItem } from "@/models/standaloneUnit";
 import { useTranslation } from "@/features/i18n/useTranslation";
