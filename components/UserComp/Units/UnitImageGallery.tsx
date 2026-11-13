@@ -58,7 +58,7 @@ export default function UnitImageGallery({
               fill
               priority
               sizes="100vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-102"
+              className="object-cover object-center transition-transform duration-500 group-hover:scale-102"
             />
           </div>
         ) : (
@@ -75,7 +75,7 @@ export default function UnitImageGallery({
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 60vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-102"
+                className="object-cover object-center transition-transform duration-500 group-hover:scale-102"
               />
             </div>
 
@@ -97,7 +97,7 @@ export default function UnitImageGallery({
                       alt={`${title} - Photo ${imgIndex + 1}`}
                       fill
                       sizes="(max-width: 768px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
                     />
 
                     {isOverlayVisible && (
