@@ -1,4 +1,10 @@
-﻿interface ProjectOverviewSectionProps {
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { fadeInUpVariants } from "@/shared/utils/animations";
+
+interface ProjectOverviewSectionProps {
   title?: string;
   locationName?: string | null;
   description?: string | null;
@@ -11,19 +17,36 @@ export default function ProjectOverviewSection({
   description,
   availableUnitsCount,
 }: ProjectOverviewSectionProps) {
-  const displayHeading = locationName
-    ? `${locationName} Project Overview`
-    : title
-    ? `${title} Project Overview`
-    : "Project Overview";
+  const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
+
+  const name = locationName || title;
+  const displayHeading = name
+    ? t("projects.details.overviewTitle").replace("{name}", name)
+    : t("projects.details.overviewHeadingDefault");
 
   const hasDescription = Boolean(description && description.trim().length > 0);
   const hasCount =
     typeof availableUnitsCount === "number" && availableUnitsCount > 0;
 
+  const unitsCountLabel = hasCount
+    ? availableUnitsCount === 1
+      ? t("projects.details.availableUnitsCountSingle")
+      : t("projects.details.availableUnitsCount").replace(
+          "{count}",
+          String(availableUnitsCount)
+        )
+    : null;
+
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12">
-      <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+      <motion.div
+        initial={shouldReduceMotion ? false : "hidden"}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInUpVariants}
+        className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between"
+      >
         <div className="max-w-3xl">
           <h1
             className="text-2xl sm:text-3xl lg:text-[34px] font-bold tracking-tight text-[#202326]"
@@ -55,12 +78,12 @@ export default function ProjectOverviewSection({
                 className="mt-1.5 text-xs sm:text-[13px] font-medium text-[#6B7570]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                available units
+                {unitsCountLabel}
               </span>
             </div>
           </div>
         )}
-      </div>
+      </motion.div>
     </section>
   );
 }

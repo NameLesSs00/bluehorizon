@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useQuery } from "@tanstack/react-query";
 import ProjectBreadcrumb from "./ProjectBreadcrumb";
@@ -11,17 +11,22 @@ import ProjectAvailableUnitsSection from "./ProjectAvailableUnitsSection";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
 import { getProjectById } from "@/clientApi/projectsApi";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 
 interface ProjectDetailsPageProps {
   id: number;
 }
 
 export default function ProjectDetailsPage({ id }: ProjectDetailsPageProps) {
+  const { locale } = useTranslation();
+  const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
+
   const { data: projectRes, isLoading } = useQuery({
-    queryKey: ["publicProject", id],
+    queryKey: ["publicProject", id, locale, currentCurrency],
     queryFn: async () => {
       if (!id || id <= 0) return null;
-      const res = await getProjectById(id, "en", "EGP");
+      const res = await getProjectById(id, locale, currentCurrency || "EGP");
       return res.data;
     },
     enabled: typeof id === "number" && id > 0,

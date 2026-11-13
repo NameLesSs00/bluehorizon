@@ -1,16 +1,20 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi";
 import { getFullLocationMediaUrl } from "@/clientApi/projectLocationsApi";
 import { ProjectLocationItem } from "@/models/projectLocation";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface AreaListCardProps {
   area: ProjectLocationItem;
 }
 
 export default function AreaListCard({ area }: AreaListCardProps) {
+  const { t, locale, direction } = useTranslation();
+  const isRtl = direction === "rtl";
+
   const primaryImage =
     area.images?.find((img) => img.isPrimary) || area.images?.[0];
 
@@ -21,12 +25,12 @@ export default function AreaListCard({ area }: AreaListCardProps) {
 
   return (
     <Link
-      href={`/areas/${area.id}`}
+      href={`/${locale}/areas/${area.id}`}
       className="group block overflow-hidden rounded-[22px] border border-[#DCE4DF] bg-white transition-all duration-300 hover:bg-[#E5ECF6] hover:shadow-md cursor-pointer"
     >
       <div className="grid grid-cols-1 md:grid-cols-12 md:items-stretch">
         {/* Left Column: Image with 22px outer curvature */}
-        <div className="relative min-h-[240px] sm:min-h-[280px] md:col-span-5 md:min-h-[320px] overflow-hidden rounded-[22px] md:rounded-r-none">
+        <div className="relative min-h-[240px] sm:min-h-[280px] md:col-span-5 md:min-h-[320px] overflow-hidden rounded-[22px] md:rounded-r-none rtl:md:rounded-r-[22px] rtl:md:rounded-l-none">
           {isFallback ? (
             <div className="absolute inset-0 flex items-center justify-center p-8 bg-[#F9F7F4]">
               <div className="relative h-28 w-44 transition-transform duration-500 group-hover:scale-105">
@@ -69,13 +73,17 @@ export default function AreaListCard({ area }: AreaListCardProps) {
             )}
           </div>
 
-          <div className="mt-8 flex justify-end">
+          <div className="mt-8 flex justify-end rtl:justify-start">
             <span
               className="inline-flex items-center gap-2 rounded-full bg-[#2B5FA6] px-6 py-2.5 text-[13px] font-medium text-white transition-all duration-200 group-hover:bg-[#1B3A6B] group-hover:gap-3"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              <span>View Area</span>
-              <FiArrowRight className="h-4 w-4" />
+              <span>{t("areas.list.viewArea")}</span>
+              <FiArrowRight
+                className={`h-4 w-4 transition-transform ${
+                  isRtl ? "rotate-180" : ""
+                }`}
+              />
             </span>
           </div>
         </div>

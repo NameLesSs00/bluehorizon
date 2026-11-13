@@ -2,6 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { useTranslation } from "@/features/i18n/useTranslation";
 import LocationBreadcrumb from "./LocationBreadcrumb";
 import LocationDetailsHeroBanner from "./LocationDetailsHeroBanner";
 import LocationOverviewSection from "./LocationOverviewSection";
@@ -19,12 +20,13 @@ interface LocationDetailsPageProps {
 
 export default function LocationDetailsPage({ id }: LocationDetailsPageProps) {
   const [activeRentalsCount, setActiveRentalsCount] = useState<number>(0);
+  const { locale } = useTranslation();
 
   const { data: locationRes, isLoading } = useQuery({
-    queryKey: ["publicRentalLocation", id],
+    queryKey: ["publicRentalLocation", id, locale],
     queryFn: async () => {
       if (!id || id <= 0) return null;
-      const res = await getRentalLocationById(id, "en");
+      const res = await getRentalLocationById(id, locale);
       return res.data;
     },
     enabled: typeof id === "number" && id > 0,
@@ -81,4 +83,3 @@ export default function LocationDetailsPage({ id }: LocationDetailsPageProps) {
     </div>
   );
 }
-

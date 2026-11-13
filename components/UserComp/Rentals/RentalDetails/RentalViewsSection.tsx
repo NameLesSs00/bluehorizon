@@ -1,4 +1,7 @@
-﻿import Image from "next/image";
+"use client";
+
+import Image from "next/image";
+import { useTranslation } from "@/features/i18n/useTranslation";
 import { RentalItem } from "@/models/rental";
 
 interface RentalViewsSectionProps {
@@ -14,39 +17,41 @@ interface ViewItemConfig {
     | "hasMountainView"
     | "hasCityView"
   >;
-  title: string;
+  translationKey: string;
   iconSrc: string;
 }
 
 const VIEW_CONFIGS: ViewItemConfig[] = [
   {
     key: "hasSeaView",
-    title: "Sea View",
+    translationKey: "rent.details.views.seaView",
     iconSrc: "/rental/single/sea.svg",
   },
   {
     key: "hasPoolView",
-    title: "Pool View",
+    translationKey: "rent.details.views.poolView",
     iconSrc: "/rental/single/poll.svg",
   },
   {
     key: "hasGardenView",
-    title: "Garden View",
+    translationKey: "rent.details.views.gardenView",
     iconSrc: "/rental/single/mount.svg",
   },
   {
     key: "hasMountainView",
-    title: "Mountain View",
+    translationKey: "rent.details.views.mountainView",
     iconSrc: "/rental/single/mount.svg",
   },
   {
     key: "hasCityView",
-    title: "City View",
+    translationKey: "rent.details.views.cityView",
     iconSrc: "/rental/single/city.svg",
   },
 ];
 
 export default function RentalViewsSection({ unit }: RentalViewsSectionProps) {
+  const { t } = useTranslation();
+
   // Only show views where backend boolean is true
   const activeViews = VIEW_CONFIGS.filter((cfg) => Boolean(unit[cfg.key]));
 
@@ -55,50 +60,36 @@ export default function RentalViewsSection({ unit }: RentalViewsSectionProps) {
   }
 
   return (
-    <div className="mt-6 rounded-[16px] border border-[#D9E2EE] bg-white p-4 sm:p-5 shadow-xs">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-3.5">
-        <h2
-          className="text-base sm:text-lg font-bold text-[#2B5FA6]"
-          style={{ fontFamily: "var(--font-manrope)" }}
-        >
-          Scenic Views &amp; Orientation
-        </h2>
-        <span
-          className="text-xs text-[#65706B]"
-          style={{ fontFamily: "var(--font-inter)" }}
-        >
-          {activeViews.length} verified view{activeViews.length === 1 ? "" : "s"}
-        </span>
-      </div>
+    <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-6 sm:p-7 shadow-xs">
+      <h2
+        className="text-xl sm:text-2xl font-bold text-[#2B5FA6]"
+        style={{ fontFamily: "var(--font-manrope)" }}
+      >
+        {t("rent.details.viewsTitle")}
+      </h2>
 
-      {/* Compact active views grid */}
-      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
-        {activeViews.map((v) => (
-          <div
-            key={v.key}
-            className="flex items-center gap-2.5 rounded-[12px] border border-[#2B5FA6]/15 bg-[#F4F8F6] px-3 py-2 text-left transition-colors hover:border-[#2B5FA6]/35"
-          >
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white shadow-2xs">
-              <Image
-                src={v.iconSrc}
-                alt={v.title}
-                width={16}
-                height={16}
-                className="h-4 w-4 object-contain"
-              />
+      {activeViews.length > 0 && (
+        <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          {activeViews.map((cfg) => (
+            <div
+              key={cfg.key}
+              className="flex items-center gap-3 rounded-[12px] border border-[#D9E2EE] bg-[#F0F3FA] p-3 text-xs sm:text-sm font-semibold text-[#202326] transition-colors hover:border-[#2B5FA6]/50 hover:bg-white"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              <div className="relative h-7 w-7 shrink-0">
+                <Image
+                  src={cfg.iconSrc}
+                  alt={t(cfg.translationKey)}
+                  width={28}
+                  height={28}
+                  className="h-7 w-7 object-contain"
+                />
+              </div>
+              <span className="truncate">{t(cfg.translationKey)}</span>
             </div>
-
-            <div className="min-w-0 flex-1">
-              <span
-                className="block text-xs font-bold text-[#202326] truncate"
-                style={{ fontFamily: "var(--font-manrope)" }}
-              >
-                {v.title}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

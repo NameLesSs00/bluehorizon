@@ -1,9 +1,13 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
-import { FiChevronRight } from "react-icons/fi";
+import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 export default function RentalBreadcrumb() {
+  const { t, locale, direction } = useTranslation();
+  const isRtl = direction === "rtl";
+
   return (
     <nav
       aria-label="Breadcrumb"
@@ -13,18 +17,23 @@ export default function RentalBreadcrumb() {
       <ol className="flex items-center gap-2 text-xs font-medium text-[#65706B]">
         <li>
           <Link
-            href="/"
+            href={`/${locale}`}
             className="transition-colors hover:text-[#1B3A6B]"
           >
-            Home
+            {t("rent.breadcrumb.home")}
           </Link>
         </li>
         <li>
-          <FiChevronRight className="h-3.5 w-3.5 text-[#9CA3AF]" />
+          {isRtl ? (
+            <FiChevronLeft className="h-3.5 w-3.5 text-[#9CA3AF]" />
+          ) : (
+            <FiChevronRight className="h-3.5 w-3.5 text-[#9CA3AF]" />
+          )}
         </li>
-        <li className="font-semibold text-[#1B3A6B]">Units for Rent</li>
+        <li className="font-semibold text-[#1B3A6B]">
+          {t("rent.breadcrumb.unitsForRent")}
+        </li>
       </ol>
     </nav>
   );
 }
-

@@ -1,11 +1,17 @@
-﻿import Link from "next/link";
+﻿"use client";
+
+import Link from "next/link";
+import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface AreaBreadcrumbProps {
   areaName?: string;
 }
 
 export default function AreaBreadcrumb({ areaName }: AreaBreadcrumbProps) {
-  const displayName = areaName || "Area Details";
+  const { t, locale, direction } = useTranslation();
+  const displayName = areaName || t("areas.details.defaultTitle");
+  const ChevronIcon = direction === "rtl" ? FiChevronLeft : FiChevronRight;
 
   return (
     <nav
@@ -18,25 +24,25 @@ export default function AreaBreadcrumb({ areaName }: AreaBreadcrumbProps) {
       >
         <li>
           <Link
-            href="/"
+            href={`/${locale}`}
             className="transition-colors hover:text-[#2B5FA6]"
           >
-            Home
+            {t("areas.details.breadcrumbHome")}
           </Link>
         </li>
         <li aria-hidden="true" className="select-none text-[#A1AAA5]">
-          /
+          <ChevronIcon className="h-3.5 w-3.5" />
         </li>
         <li>
           <Link
-            href="/areas"
+            href={`/${locale}/areas`}
             className="transition-colors hover:text-[#2B5FA6]"
           >
-            Areas
+            {t("areas.details.breadcrumbAreas")}
           </Link>
         </li>
         <li aria-hidden="true" className="select-none text-[#A1AAA5]">
-          /
+          <ChevronIcon className="h-3.5 w-3.5" />
         </li>
         <li
           aria-current="page"
@@ -48,4 +54,3 @@ export default function AreaBreadcrumb({ areaName }: AreaBreadcrumbProps) {
     </nav>
   );
 }
-

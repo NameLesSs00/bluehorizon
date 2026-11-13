@@ -1,6 +1,13 @@
 ﻿"use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import { RentalLocationItem } from "@/models/rentalLocation";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import {
+  fadeInUpVariants,
+  containerStaggerVariants,
+  cardItemVariants,
+} from "@/shared/utils/animations";
 import LocationCard from "./LocationCard";
 
 interface LocationsGridSectionProps {
@@ -14,26 +21,38 @@ export default function LocationsGridSection({
   isLoading,
   onClearFilters,
 }: LocationsGridSectionProps) {
-  const countText = `Showing ${locations.length} destination${
-    locations.length === 1 ? "" : "s"
-  }`;
+  const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
+
+  const countText =
+    locations.length === 1
+      ? t("locations.grid.showingDestinations").replace("{count}", "1")
+      : t("locations.grid.showingDestinationsPlural").replace(
+          "{count}",
+          String(locations.length)
+        );
 
   return (
     <section className="mx-auto w-full max-w-[1536px] px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12 mb-16 sm:mb-20">
       {/* Section Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <motion.div
+        className="flex flex-col sm:flex-row sm:items-end justify-between gap-4"
+        variants={shouldReduceMotion ? undefined : fadeInUpVariants}
+        initial="hidden"
+        animate="visible"
+      >
         <div>
           <h2
             className="text-2xl sm:text-3xl font-bold text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            Featured Locations
+            {t("locations.grid.featuredLocations")}
           </h2>
           <p
             className="mt-1 text-xs sm:text-sm text-[#6B7570]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Handpicked destinations with the strongest growth and lifestyle value.
+            {t("locations.grid.featuredSubtitle")}
           </p>
         </div>
 
@@ -45,7 +64,7 @@ export default function LocationsGridSection({
             {countText}
           </div>
         )}
-      </div>
+      </motion.div>
 
       {/* Grid or Skeleton or Empty State */}
       {isLoading ? (
@@ -78,13 +97,13 @@ export default function LocationsGridSection({
             className="text-xl font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            No Locations Found
+            {t("locations.grid.noLocationsTitle")}
           </h3>
           <p
             className="mt-2 text-sm text-[#6B7570] max-w-md"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            No destinations match your search or selected region filter.
+            {t("locations.grid.noLocationsSubtitle")}
           </p>
           {onClearFilters && (
             <button
@@ -93,18 +112,27 @@ export default function LocationsGridSection({
               className="mt-6 rounded-full bg-[#2B5FA6] px-6 py-2.5 text-xs sm:text-sm font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              Clear Filters
+              {t("locations.grid.clearAllFilters")}
             </button>
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 mt-8">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 mt-8"
+          variants={shouldReduceMotion ? undefined : containerStaggerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {locations.map((loc) => (
-            <LocationCard key={loc.id} location={loc} />
+            <motion.div
+              key={loc.id}
+              variants={shouldReduceMotion ? undefined : cardItemVariants}
+            >
+              <LocationCard location={loc} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
     </section>
   );
 }
-

@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
-import { FiChevronRight } from "react-icons/fi";
+import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { usePublicRentalsQuery } from "@/features/rentals/useRentalsQueries";
+import { useTranslation } from "@/features/i18n/useTranslation";
 import RentalUnitCard from "../RentalUnitCard";
 
 interface RentalRelatedUnitsProps {
@@ -12,8 +13,11 @@ interface RentalRelatedUnitsProps {
 export default function RentalRelatedUnits({
   currentUnitId,
 }: RentalRelatedUnitsProps) {
+  const { t, locale, direction } = useTranslation();
+  const isRtl = direction === "rtl";
+
   const { data, isLoading } = usePublicRentalsQuery({
-    Language: "en",
+    Language: locale,
     PageNumber: 1,
     PageSize: 8,
   });
@@ -35,43 +39,35 @@ export default function RentalRelatedUnits({
             className="text-2xl sm:text-3xl font-bold text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            Related Rental Properties
+            {t("rent.details.relatedTitle")}
           </h2>
           <p
             className="mt-1 text-sm text-[#65706B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Explore verified luxury apartments, penthouses, and villas in prime locations
+            {t("rent.details.relatedSubtitle")}
           </p>
         </div>
 
         <Link
-          href="/rent"
+          href={`/${locale}/rent`}
           className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#2B5FA6] transition-colors hover:text-[#1B3A6B]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          <span>View all rentals</span>
-          <FiChevronRight className="h-4 w-4" />
+          <span>{t("rent.details.viewAll")}</span>
+          {isRtl ? (
+            <FiChevronLeft className="h-4 w-4" />
+          ) : (
+            <FiChevronRight className="h-4 w-4" />
+          )}
         </Link>
       </div>
 
-      {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[1, 2, 3].map((n) => (
-            <div
-              key={n}
-              className="h-80 animate-pulse rounded-[20px] bg-[#E5ECF6]"
-            />
-          ))}
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
-          {relatedUnits.map((u) => (
-            <RentalUnitCard key={u.id} unit={u} />
-          ))}
-        </div>
-      )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {relatedUnits.map((u) => (
+          <RentalUnitCard key={u.id} unit={u} />
+        ))}
+      </div>
     </section>
   );
 }
-

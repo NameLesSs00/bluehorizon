@@ -6,25 +6,28 @@ import AreaBreadcrumb from "./AreaBreadcrumb";
 import AreaDetailsHeroBanner from "./AreaDetailsHeroBanner";
 import AreaOverviewSection from "./AreaOverviewSection";
 import AreaAvailableUnitsSection from "./AreaAvailableUnitsSection";
+import AreaAvailableProjectsSection from "./AreaAvailableProjectsSection";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
 import {
   getProjectLocationById,
   getFullLocationMediaUrl,
 } from "@/clientApi/projectLocationsApi";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface AreaDetailsPageProps {
   id: number;
 }
 
 export default function AreaDetailsPage({ id }: AreaDetailsPageProps) {
+  const { locale } = useTranslation();
   const [activeUnitsCount, setActiveUnitsCount] = useState<number>(0);
 
   const { data: areaRes, isLoading } = useQuery({
-    queryKey: ["publicAreaLocation", id],
+    queryKey: ["publicAreaLocation", id, locale],
     queryFn: async () => {
       if (!id || id <= 0) return null;
-      const res = await getProjectLocationById(id, "en");
+      const res = await getProjectLocationById(id, locale);
       return res.data;
     },
     enabled: typeof id === "number" && id > 0,
@@ -75,9 +78,12 @@ export default function AreaDetailsPage({ id }: AreaDetailsPageProps) {
           areaName={area?.name}
           onCountLoaded={setActiveUnitsCount}
         />
+        <AreaAvailableProjectsSection
+          areaId={id}
+          areaName={area?.name}
+        />
       </main>
       <Footer />
     </div>
   );
 }
-

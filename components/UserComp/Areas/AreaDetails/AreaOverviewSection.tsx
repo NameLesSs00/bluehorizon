@@ -1,11 +1,15 @@
-﻿interface AreaOverviewSectionProps {
+﻿"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { fadeInUpVariants } from "@/shared/utils/animations";
+
+interface AreaOverviewSectionProps {
   areaName?: string;
   description?: string | null;
   activeUnitsCount?: number;
   activeProjectsCount?: number;
 }
-
-
 
 export default function AreaOverviewSection({
   areaName,
@@ -13,9 +17,18 @@ export default function AreaOverviewSection({
   activeUnitsCount,
   activeProjectsCount,
 }: AreaOverviewSectionProps) {
+  const { t, direction } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
+
   const name = areaName || "this area";
-  const displayHeading = areaName ? `${areaName} Area Overview` : "Area Overview";
-  const defaultDescription = `Welcome to ${name}, one of the Red Sea's most prestigious and sought-after destinations. Known for its picturesque coastal panoramas, serene beaches, and vibrant master-planned communities, it offers an idyllic fusion of modern luxury and relaxed resort living. Whether you are looking for high-yielding buy-to-let investments or a serene waterfront home, discover our curated collection of verified developer primary suites and secondary market resale opportunities.`;
+  const displayHeading = areaName
+    ? t("areas.details.overviewTitle").replace("{name}", areaName)
+    : t("areas.details.defaultOverviewTitle");
+
+  const defaultDescription = t("areas.details.defaultDescription").replace(
+    "{name}",
+    name
+  );
   const textToShow =
     description && description.trim().length > 0
       ? description
@@ -30,14 +43,22 @@ export default function AreaOverviewSection({
 
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12">
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-        {/* Left Column: Title, Narrative Text & Highlight Chips */}
+      <motion.div
+        className={`flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between ${
+          direction === "rtl" ? "rtl:lg:flex-row-reverse" : ""
+        }`}
+        variants={shouldReduceMotion ? undefined : fadeInUpVariants}
+        initial={shouldReduceMotion ? undefined : "hidden"}
+        whileInView={shouldReduceMotion ? undefined : "visible"}
+        viewport={{ once: true, margin: "-80px" }}
+      >
+        {/* Left Column: Title, Narrative Text and Highlight Chips */}
         <div className="max-w-3xl">
           <p
             className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            DISCOVER THE NEIGHBORHOOD
+            {t("areas.details.discoverNeighborhood")}
           </p>
 
           <h1
@@ -53,8 +74,6 @@ export default function AreaOverviewSection({
           >
             {textToShow}
           </p>
-
-          
         </div>
 
         {/* Right Column: Key Stats Card */}
@@ -65,13 +84,13 @@ export default function AreaOverviewSection({
                 className="text-3xl sm:text-[40px] font-bold leading-none text-[#2B5FA6]"
                 style={{ fontFamily: "var(--font-manrope)" }}
               >
-                {totalCount > 0 ? `${totalCount}+` : "Verified"}
+                {totalCount > 0 ? `${totalCount}+` : t("areas.details.verifiedBadge")}
               </span>
               <span
                 className="block mt-2 text-xs sm:text-[13px] font-semibold text-[#202326]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                Available units
+                {t("areas.details.availableUnits")}
               </span>
             </div>
             <div className="sm:mt-4 sm:pt-4 sm:border-t sm:border-[#D9E2EE]/80">
@@ -79,12 +98,12 @@ export default function AreaOverviewSection({
                 className="text-xs text-[#8A9590]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                Primary & Resale
+                {t("areas.details.primaryAndResale")}
               </span>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

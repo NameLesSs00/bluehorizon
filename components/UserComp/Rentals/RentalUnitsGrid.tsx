@@ -1,8 +1,14 @@
-﻿"use client";
+"use client";
 
-import { FiChevronRight, FiInbox } from "react-icons/fi";
+import { FiChevronRight, FiChevronLeft, FiInbox } from "react-icons/fi";
+import { motion, useReducedMotion } from "framer-motion";
 import { RentalItem } from "@/models/rental";
 import RentalUnitCard from "./RentalUnitCard";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import {
+  containerStaggerVariants,
+  cardItemVariants,
+} from "@/shared/utils/animations";
 
 interface RentalUnitsGridProps {
   units: RentalItem[];
@@ -21,6 +27,9 @@ export default function RentalUnitsGrid({
   onPageChange,
   onResetFilters,
 }: RentalUnitsGridProps) {
+  const { t, direction } = useTranslation();
+  const isRtl = direction === "rtl";
+  const shouldReduceMotion = useReducedMotion();
   const displayUnits = units;
 
   return (
@@ -31,13 +40,13 @@ export default function RentalUnitsGrid({
           className="text-2xl sm:text-3xl font-bold text-[#202326]"
           style={{ fontFamily: "var(--font-manrope)" }}
         >
-          Available Units
+          {t("rent.grid.title")}
         </h2>
         <p
           className="mt-1.5 text-xs sm:text-sm text-[#65706B]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          Explore top-tier residential units ready for immediate rent.
+          {t("rent.grid.subtitle")}
         </p>
       </div>
 
@@ -49,77 +58,117 @@ export default function RentalUnitsGrid({
               key={n}
               className="overflow-hidden rounded-[20px] border border-[#D9E2EE] bg-white p-4"
             >
-              <div className="h-48 w-full animate-pulse rounded-[16px] bg-[#E5ECF6]" />
-              <div className="mt-4 h-5 w-3/4 animate-pulse rounded bg-[#D9E2EE]" />
-              <div className="mt-2 h-4 w-1/2 animate-pulse rounded bg-[#F0F3FA]" />
-              <div className="mt-4 h-9 w-full animate-pulse rounded-[10px] bg-[#F0F3FA]" />
+              <div className="h-44 w-full animate-pulse rounded-[14px] bg-[#E5ECF6]" />
+              <div className="mt-4 space-y-2">
+                <div className="h-4 w-24 animate-pulse rounded bg-[#D9E2EE]" />
+                <div className="h-5 w-3/4 animate-pulse rounded bg-[#E5ECF6]" />
+                <div className="h-4 w-1/2 animate-pulse rounded bg-[#F0F3FA]" />
+              </div>
             </div>
           ))}
         </div>
       ) : displayUnits.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-[24px] border border-[#D9E2EE] bg-white px-6 py-16 text-center">
-          <FiInbox className="h-10 w-10 text-[#9CA3AF]" />
+        /* Empty State */
+        <div className="flex flex-col items-center justify-center rounded-[24px] border border-[#D9E2EE] bg-white p-12 text-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E5ECF6] text-[#2B5FA6]">
+            <FiInbox className="h-7 w-7" />
+          </div>
           <h3
-            className="mt-3 text-lg font-bold text-[#202326]"
+            className="mt-4 text-lg font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            No Rental Units Match Your Criteria
+            {t("rent.grid.noUnitsTitle")}
           </h3>
           <p
-            className="mt-1 text-xs text-[#65706B]"
+            className="mt-1.5 max-w-md text-xs sm:text-sm text-[#65706B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Try adjusting your search filters to find available properties.
+            {t("rent.grid.noUnitsSubtitle")}
           </p>
           <button
             type="button"
             onClick={onResetFilters}
-            className="mt-5 rounded-full bg-[#1B3A6B] px-6 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#2B5FA6]"
+            className="mt-6 rounded-[12px] bg-[#2B5FA6] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-xs transition-colors hover:bg-[#1B3A6B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Reset Filters
+            {t("rent.grid.resetFilters")}
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        /* Units Grid with Staggered Fade-In */
+        <motion.div
+          initial={shouldReduceMotion ? false : "hidden"}
+          animate="visible"
+          variants={containerStaggerVariants}
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {displayUnits.map((unit) => (
-            <RentalUnitCard key={unit.id} unit={unit} />
+            <motion.div key={unit.id} variants={cardItemVariants}>
+              <RentalUnitCard unit={unit} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
 
-      {/* Pagination Controls */}
-      {totalPages > 1 && (
-        <div className="mt-12 flex items-center justify-center gap-2">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-            <button
-              key={p}
-              type="button"
-              onClick={() => onPageChange(p)}
-              className={`flex h-9 w-9 items-center justify-center rounded-[10px] text-xs font-semibold transition-all ${
-                currentPage === p
-                  ? "bg-[#1B3A6B] text-white shadow-xs"
-                  : "border border-[#D9E2EE] bg-white text-[#202326] hover:bg-[#F9F7F4]"
-              }`}
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              {p}
-            </button>
-          ))}
+      {/* Pagination */}
+      {!isLoading && totalPages > 1 && (
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#D9E2EE] pt-6">
+          <span className="text-xs sm:text-sm text-[#65706B]">
+            {t("rent.grid.showing")
+              .replace("{page}", String(currentPage))
+              .replace("{total}", String(totalPages))}
+          </span>
 
-          {currentPage < totalPages && (
+          <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={() => onPageChange(currentPage + 1)}
-              className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-[#D9E2EE] bg-white text-[#202326] transition-all hover:bg-[#F9F7F4]"
-              aria-label="Next page"
+              disabled={currentPage <= 1}
+              onClick={() => onPageChange(currentPage - 1)}
+              className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-[#D9E2EE] bg-white text-[#202326] transition-colors hover:bg-[#F0F3FA] disabled:opacity-40 disabled:pointer-events-none"
+              aria-label={t("rent.grid.prevPage")}
             >
-              <FiChevronRight className="h-4 w-4" />
+              {isRtl ? (
+                <FiChevronRight className="h-4 w-4" />
+              ) : (
+                <FiChevronLeft className="h-4 w-4" />
+              )}
             </button>
-          )}
+
+            {Array.from({ length: totalPages }).map((_, idx) => {
+              const page = idx + 1;
+              const isActive = page === currentPage;
+              return (
+                <button
+                  key={page}
+                  type="button"
+                  onClick={() => onPageChange(page)}
+                  className={`flex h-9 w-9 items-center justify-center rounded-[10px] text-xs font-semibold transition-colors ${
+                    isActive
+                      ? "bg-[#2B5FA6] text-white"
+                      : "border border-[#D9E2EE] bg-white text-[#202326] hover:bg-[#F0F3FA]"
+                  }`}
+                >
+                  {page}
+                </button>
+              );
+            })}
+
+            <button
+              type="button"
+              disabled={currentPage >= totalPages}
+              onClick={() => onPageChange(currentPage + 1)}
+              className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-[#D9E2EE] bg-white text-[#202326] transition-colors hover:bg-[#F0F3FA] disabled:opacity-40 disabled:pointer-events-none"
+              aria-label={t("rent.grid.nextPage")}
+            >
+              {isRtl ? (
+                <FiChevronLeft className="h-4 w-4" />
+              ) : (
+                <FiChevronRight className="h-4 w-4" />
+              )}
+            </button>
+          </div>
         </div>
       )}
     </div>
   );
 }
-

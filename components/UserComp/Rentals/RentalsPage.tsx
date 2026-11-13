@@ -14,8 +14,8 @@ import RentalUnitsGrid from "./RentalUnitsGrid";
 import RentalCtaSection from "./RentalCtaSection";
 
 export default function RentalsPage() {
-  const searchParams = useSearchParams();
   const { locale } = useTranslation();
+  const searchParams = useSearchParams();
   const urlLocationId = searchParams.get("locationId") || "";
   const urlPropertyType = searchParams.get("propertyType") || "";
   const urlBedrooms = searchParams.get("bedrooms") || "";
@@ -157,4 +157,3 @@ export default function RentalsPage() {
     </div>
   );
 }
-

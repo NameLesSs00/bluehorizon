@@ -1,11 +1,15 @@
-﻿import Link from "next/link";
+"use client";
+
+import Link from "next/link";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface ProjectBreadcrumbProps {
   projectName?: string;
 }
 
 export default function ProjectBreadcrumb({ projectName }: ProjectBreadcrumbProps) {
-  const displayName = projectName || "Project Details";
+  const { t, locale } = useTranslation();
+  const displayName = projectName || t("projects.details.defaultTitle");
 
   return (
     <nav
@@ -18,10 +22,10 @@ export default function ProjectBreadcrumb({ projectName }: ProjectBreadcrumbProp
       >
         <li>
           <Link
-            href="/"
+            href={`/${locale}`}
             className="transition-colors hover:text-[#2B5FA6]"
           >
-            Home
+            {t("projects.details.breadcrumbHome")}
           </Link>
         </li>
         <li aria-hidden="true" className="select-none text-[#A1AAA5]">
@@ -29,10 +33,10 @@ export default function ProjectBreadcrumb({ projectName }: ProjectBreadcrumbProp
         </li>
         <li>
           <Link
-            href="/areas"
+            href={`/${locale}/areas`}
             className="transition-colors hover:text-[#2B5FA6]"
           >
-            Areas
+            {t("projects.details.breadcrumbAreas")}
           </Link>
         </li>
         <li aria-hidden="true" className="select-none text-[#A1AAA5]">
@@ -40,10 +44,10 @@ export default function ProjectBreadcrumb({ projectName }: ProjectBreadcrumbProp
         </li>
         <li>
           <Link
-            href="/projects"
+            href={`/${locale}/projects`}
             className="transition-colors hover:text-[#2B5FA6]"
           >
-            Projects
+            {t("projects.details.breadcrumbProjects")}
           </Link>
         </li>
         <li aria-hidden="true" className="select-none text-[#A1AAA5]">
@@ -59,4 +63,3 @@ export default function ProjectBreadcrumb({ projectName }: ProjectBreadcrumbProp
     </nav>
   );
 }
-

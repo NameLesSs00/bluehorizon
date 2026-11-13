@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { RentalLocationItem } from "@/models/rentalLocation";
 import { getFullRentalLocationMediaUrl } from "@/clientApi/rentalLocationsApi";
+import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface LocationCardProps {
   location: RentalLocationItem;
@@ -13,6 +14,7 @@ interface LocationCardProps {
 
 export default function LocationCard({ location, region }: LocationCardProps) {
   const [imageError, setImageError] = useState(false);
+  const { locale } = useTranslation();
 
   const primaryImage =
     location.images?.find((img) => img.isPrimary) || location.images?.[0];
@@ -27,7 +29,7 @@ export default function LocationCard({ location, region }: LocationCardProps) {
 
   return (
     <Link
-      href={`/locations/${location.id}`}
+      href={`/${locale}/locations/${location.id}`}
       className="group relative block h-[360px] sm:h-[400px] w-full overflow-hidden rounded-[24px] sm:rounded-[28px] border border-[#D9E2EE] shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#2B5FA6]/40"
     >
       {/* Background Image */}
@@ -49,7 +51,7 @@ export default function LocationCard({ location, region }: LocationCardProps) {
         }}
       />
 
-      {/* Top Left Region Badge - only render if real region is provided */}
+      {/* Top Left Region Badge */}
       {region && (
         <div className="absolute top-5 left-5 z-20 rounded-full bg-white/95 px-3.5 py-1 text-xs font-semibold text-[#2B5FA6] shadow-sm backdrop-blur-sm">
           <span style={{ fontFamily: "var(--font-inter)" }}>{region}</span>
@@ -67,7 +69,7 @@ export default function LocationCard({ location, region }: LocationCardProps) {
           </h2>
         </div>
 
-        {/* Action Button: White Circle with Arrow Up-Right */}
+        {/* Action Button */}
         <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-full bg-white text-[#2B5FA6] shadow-md transition-transform duration-300 group-hover:scale-110">
           <svg
             width="18"
