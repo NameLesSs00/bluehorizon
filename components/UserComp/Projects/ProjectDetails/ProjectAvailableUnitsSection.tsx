@@ -3,9 +3,11 @@
 import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion, useReducedMotion } from "framer-motion";
+import { FiSliders } from "react-icons/fi";
 import ProjectUnitsFilterSidebar, {
   UnitsFilterState,
 } from "./ProjectUnitsFilterSidebar";
+import ProjectUnitsFilterDrawer from "./ProjectUnitsFilterDrawer";
 import ProjectUnitCard, { UnitItem } from "./ProjectUnitCard";
 import { usePublicPrimaryUnitsQuery } from "@/features/primaryUnits/usePrimaryUnitsQueries";
 import { getResales } from "@/clientApi/resalesApi";
@@ -16,7 +18,7 @@ import {
   containerStaggerVariants,
   cardItemVariants,
 } from "@/shared/utils/animations";
-import { mapPrimaryUnits, mapResaleUnits } from "./projectUnitsMapper";
+import { mapPrimaryUnits, mapResaleUnits, filterProjectUnits } from "./projectUnitsMapper";
 
 interface ProjectAvailableUnitsSectionProps {
   projectId?: number;
@@ -43,6 +45,7 @@ export default function ProjectAvailableUnitsSection({
   const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
   const [filterState, setFilterState] =
     useState<UnitsFilterState>(INITIAL_FILTERS);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const { data: primaryData } = usePublicPrimaryUnitsQuery(
     projectId && projectId > 0
@@ -120,66 +123,19 @@ export default function ProjectAvailableUnitsSection({
     setFilterState(INITIAL_FILTERS);
   };
 
-  const filteredUnits = useMemo(() => {
-    return availableUnits.filter((unit) => {
-      // Unit Type filter
-      if (
-        filterState.unitType !== "All" &&
-        unit.badge.toLowerCase() !== filterState.unitType.toLowerCase()
-      ) {
-        return false;
-      }
+  const filteredUnits = useMemo(
+    () => filterProjectUnits(availableUnits, filterState),
+    [availableUnits, filterState]
+  );
 
-      // Search matching Rent filter
-      if (filterState.searchTerm.trim()) {
-        const term = filterState.searchTerm.trim().toLowerCase();
-        const matchesTitle = unit.title.toLowerCase().includes(term);
-        const matchesDesc = Boolean(
-          unit.description && unit.description.toLowerCase().includes(term)
-        );
-        const matchesCategory = Boolean(
-          unit.category && unit.category.toLowerCase().includes(term)
-        );
-        const matchesBadge = unit.badge.toLowerCase().includes(term);
-
-        if (!matchesTitle && !matchesDesc && !matchesCategory && !matchesBadge) {
-          return false;
-        }
-      }
-
-      // Category / Property Type
-      if (filterState.category && filterState.category !== "Any Type") {
-        const catFilter = filterState.category.toLowerCase();
-        const unitCat = (unit.category || "").toLowerCase();
-        if (!unitCat.includes(catFilter)) return false;
-      }
-
-      // Bedrooms
-      if (filterState.bedrooms && filterState.bedrooms !== "Any") {
-        const b = filterState.bedrooms;
-        const count = unit.rawBedrooms ?? 0;
-        if (b === "0" && count !== 0) return false;
-        if (b === "1" && count !== 1) return false;
-        if (b === "2" && count !== 2) return false;
-        if (b === "3" && count !== 3) return false;
-        if (b === "4+" && count < 4) return false;
-      }
-
-      // Minimum Price
-      if (filterState.minPrice && unit.rawPrice !== undefined) {
-        const min = parseFloat(filterState.minPrice);
-        if (!isNaN(min) && unit.rawPrice < min) return false;
-      }
-
-      // Maximum Price
-      if (filterState.maxPrice && unit.rawPrice !== undefined) {
-        const max = parseFloat(filterState.maxPrice);
-        if (!isNaN(max) && unit.rawPrice > max) return false;
-      }
-
-      return true;
-    });
-  }, [availableUnits, filterState]);
+  const hasActiveFilters = Boolean(
+    filterState.searchTerm.trim() ||
+      (filterState.category && filterState.category !== "Any Type") ||
+      filterState.unitType !== "All" ||
+      (filterState.bedrooms && filterState.bedrooms !== "Any") ||
+      filterState.minPrice ||
+      filterState.maxPrice
+  );
 
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-14 sm:mt-16 mb-20">
@@ -204,14 +160,34 @@ export default function ProjectAvailableUnitsSection({
           </p>
         </div>
 
+        {/* Mobile: Filter toggle button (hidden on lg+) */}
+        <div className="mb-5 flex items-center justify-end lg:hidden">
+          <button
+            type="button"
+            onClick={() => setDrawerOpen(true)}
+            className="flex items-center gap-2 rounded-[12px] border border-[#D9E2EE] bg-white px-4 py-2.5 text-xs font-semibold text-[#1B3A6B] shadow-sm transition-colors hover:border-[#2B5FA6] hover:text-[#2B5FA6]"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            <FiSliders className="h-4 w-4" />
+            <span>{t("projects.details.unitsFilters.title", "Filters")}</span>
+            {hasActiveFilters && (
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#2B5FA6] text-[10px] font-bold text-white">
+                !
+              </span>
+            )}
+          </button>
+        </div>
+
         <div className="flex flex-col lg:flex-row items-start gap-8">
-          <ProjectUnitsFilterSidebar
-            initialFilters={filterState}
-            onApplyFilters={handleApplyFilters}
-            onResetFilters={handleResetFilters}
-            primaryCount={primaryUnits.length}
-            resaleCount={resaleUnits.length}
-          />
+          <div className="hidden lg:block shrink-0">
+            <ProjectUnitsFilterSidebar
+              initialFilters={filterState}
+              onApplyFilters={handleApplyFilters}
+              onResetFilters={handleResetFilters}
+              primaryCount={primaryUnits.length}
+              resaleCount={resaleUnits.length}
+            />
+          </div>
 
           <div className="w-full flex-1">
             {filteredUnits.length === 0 ? (
@@ -256,6 +232,18 @@ export default function ProjectAvailableUnitsSection({
           </div>
         </div>
       </motion.div>
+
+      {/* Mobile Filter Drawer */}
+      <ProjectUnitsFilterDrawer
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        initialFilters={filterState}
+        onApplyFilters={handleApplyFilters}
+        onResetFilters={handleResetFilters}
+        hasActiveFilters={hasActiveFilters}
+        primaryCount={primaryUnits.length}
+        resaleCount={resaleUnits.length}
+      />
     </section>
   );
 }

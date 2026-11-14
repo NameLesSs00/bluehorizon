@@ -1,111 +1,288 @@
 "use client";
 
+import { useState, useCallback } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
+import { FiVideo } from "react-icons/fi";
 import { getFullProjectImageUrl } from "@/clientApi/projectsApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { fadeInUpVariants } from "@/shared/utils/animations";
+import ProjectGalleryLightbox from "./ProjectGalleryLightbox";
 
 interface ProjectGallerySectionProps {
+  images?: string[];
   imageUrls?: string[];
+  videoUrl?: string | null;
   title?: string;
 }
 
+function toEmbedUrl(url: string): string | null {
+  try {
+    const u = new URL(url.trim());
+    if (u.hostname.includes("youtube.com")) {
+      const id = u.searchParams.get("v");
+      return id ? `https://www.youtube.com/embed/${id}` : null;
+    }
+    if (u.hostname === "youtu.be") {
+      const id = u.pathname.slice(1);
+      return id ? `https://www.youtube.com/embed/${id}` : null;
+    }
+    if (u.hostname.includes("vimeo.com")) {
+      const id = u.pathname.split("/").filter(Boolean).pop();
+      return id ? `https://player.vimeo.com/video/${id}` : null;
+    }
+  } catch {
+    return null;
+  }
+  return null;
+}
+
 export default function ProjectGallerySection({
-  imageUrls = [],
+  images: propImages,
+  imageUrls: propImageUrls,
+  videoUrl,
   title,
 }: ProjectGallerySectionProps) {
   const { t } = useTranslation();
   const shouldReduceMotion = useReducedMotion();
-  const images = (imageUrls || []).map((url) => getFullProjectImageUrl(url));
 
-  // If no real images exist, hide the gallery entirely
-  if (images.length === 0) {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIdx, setLightboxIdx] = useState(0);
+
+  const rawImages = propImages ?? propImageUrls ?? [];
+  const validImages = rawImages
+    .map((img) => getFullProjectImageUrl(img))
+    .filter((img) => Boolean(img && img.trim().length > 0));
+
+  const hasImages = validImages.length > 0;
+  const hasVideo = Boolean(videoUrl && videoUrl.trim().length > 0);
+
+  const openLightbox = (index: number) => {
+    if (!validImages.length) return;
+    setLightboxIdx(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = useCallback(() => setLightboxOpen(false), []);
+  const nextLightboxImage = useCallback(() => {
+    if (validImages.length) setLightboxIdx((p) => (p + 1) % validImages.length);
+  }, [validImages.length]);
+  const prevLightboxImage = useCallback(() => {
+    if (validImages.length) {
+      setLightboxIdx((p) => (p - 1 + validImages.length) % validImages.length);
+    }
+  }, [validImages.length]);
+
+  if (!hasImages && !hasVideo) {
     return null;
   }
 
-  const fallbackImg = "/default-fallback.png";
-
-  const img1 = images[0] || fallbackImg;
-  const img2 = images[1] || images[0] || fallbackImg;
-  const img3 = images[2] || images[0] || fallbackImg;
-  const img4 = images[3] || images[1] || images[0] || fallbackImg;
-
-  const projectTitle = title || t("projects.details.defaultTitle");
+  const projectTitle = title || t("projects.details.defaultTitle", "Project Details");
+  const embedUrl = videoUrl ? toEmbedUrl(videoUrl) : null;
 
   return (
-    <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-14 sm:mt-16">
-      <motion.div
-        initial={shouldReduceMotion ? false : "hidden"}
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={fadeInUpVariants}
-      >
-        <div className="mb-6">
-          <h2
-            className="text-2xl sm:text-[28px] font-bold text-[#202326]"
-            style={{ fontFamily: "var(--font-manrope)" }}
-          >
-            {t("projects.details.galleryTitle")}
-          </h2>
-          <p
-            className="mt-1 text-sm text-[#6B7570]"
-            style={{ fontFamily: "var(--font-inter)" }}
-          >
-            {t("projects.details.gallerySubtitle")}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
-          {/* Left Column: Large Showcase Image */}
-          <div className="relative h-[320px] sm:h-[420px] lg:h-[520px] w-full overflow-hidden rounded-[20px] bg-[#F9F7F4]">
-            <Image
-              src={img1}
-              alt={`${projectTitle} Gallery 1`}
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover transition-transform duration-500 hover:scale-[1.03]"
-            />
+    <>
+      <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-14 sm:mt-16">
+        <motion.div
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeInUpVariants}
+        >
+          {/* Header */}
+          <div className="mb-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+            <div>
+              <h2
+                className="text-2xl sm:text-[28px] font-bold text-[#202326]"
+                style={{ fontFamily: "var(--font-manrope)" }}
+              >
+                {t("projects.details.galleryTitle", "Project Gallery")}
+              </h2>
+              <p
+                className="mt-1 text-sm text-[#6B7570]"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                {t("projects.details.gallerySubtitle", "Explore your Home view and live as you love")}
+              </p>
+            </div>
+            {hasImages && (
+              <button
+                type="button"
+                onClick={() => openLightbox(0)}
+                className="self-start sm:self-auto text-xs sm:text-sm font-semibold text-[#2B5FA6] hover:text-[#1B3A6B] transition-colors"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                {t("projects.details.viewAllImages", "View all {count} photos").replace(
+                  "{count}",
+                  String(validImages.length)
+                )}
+              </button>
+            )}
           </div>
 
-          {/* Right Column: 1 Top Wide + 2 Bottom Side-by-Side */}
-          <div className="flex flex-col gap-4 sm:gap-5">
-            {/* Top Wide Image */}
-            <div className="relative h-[200px] sm:h-[248px] w-full overflow-hidden rounded-[20px] bg-[#F9F7F4]">
-              <Image
-                src={img2}
-                alt={`${projectTitle} Gallery 2`}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover transition-transform duration-500 hover:scale-[1.03]"
-              />
-            </div>
+          {/* Photos Grid */}
+          {hasImages && (
+            <div className="mb-8">
+              {validImages.length === 1 && (
+                <div
+                  onClick={() => openLightbox(0)}
+                  className="group relative h-[320px] sm:h-[420px] lg:h-[480px] w-full cursor-pointer overflow-hidden rounded-[20px] bg-[#E5ECF6] border border-[#D9E2EE]"
+                >
+                  <Image
+                    src={validImages[0]}
+                    alt={`${projectTitle} 1`}
+                    fill
+                    sizes="(max-width: 1360px) 100vw, 1360px"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </div>
+              )}
 
-            {/* Bottom Row: 2 Split Images */}
-            <div className="grid grid-cols-2 gap-4 sm:gap-5">
-              <div className="relative h-[180px] sm:h-[256px] w-full overflow-hidden rounded-[20px] bg-[#F9F7F4]">
-                <Image
-                  src={img3}
-                  alt={`${projectTitle} Gallery 3`}
-                  fill
-                  sizes="(max-width: 1024px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-500 hover:scale-[1.03]"
-                />
+              {validImages.length === 2 && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                  {validImages.map((img, idx) => (
+                    <div
+                      key={idx}
+                      onClick={() => openLightbox(idx)}
+                      className="group relative h-[280px] sm:h-[380px] w-full cursor-pointer overflow-hidden rounded-[20px] bg-[#E5ECF6] border border-[#D9E2EE]"
+                    >
+                      <Image
+                        src={img}
+                        alt={`${projectTitle} ${idx + 1}`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {validImages.length >= 3 && (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
+                  {/* Left Column: Large Showcase Image */}
+                  <div
+                    onClick={() => openLightbox(0)}
+                    className="group relative h-[320px] sm:h-[420px] lg:h-[520px] w-full cursor-pointer overflow-hidden rounded-[20px] bg-[#E5ECF6] border border-[#D9E2EE]"
+                  >
+                    <Image
+                      src={validImages[0]}
+                      alt={`${projectTitle} 1`}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  </div>
+
+                  {/* Right Column: 1 Top Wide + 2 Bottom Split */}
+                  <div className="flex flex-col gap-4 sm:gap-5">
+                    <div
+                      onClick={() => openLightbox(1)}
+                      className="group relative h-[200px] sm:h-[248px] w-full cursor-pointer overflow-hidden rounded-[20px] bg-[#E5ECF6] border border-[#D9E2EE]"
+                    >
+                      <Image
+                        src={validImages[1]}
+                        alt={`${projectTitle} 2`}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4 sm:gap-5">
+                      <div
+                        onClick={() => openLightbox(2)}
+                        className="group relative h-[180px] sm:h-[256px] w-full cursor-pointer overflow-hidden rounded-[20px] bg-[#E5ECF6] border border-[#D9E2EE]"
+                      >
+                        <Image
+                          src={validImages[2]}
+                          alt={`${projectTitle} 3`}
+                          fill
+                          sizes="(max-width: 1024px) 50vw, 25vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                      </div>
+
+                      <div
+                        onClick={() => openLightbox(3 < validImages.length ? 3 : 0)}
+                        className="group relative h-[180px] sm:h-[256px] w-full cursor-pointer overflow-hidden rounded-[20px] bg-[#E5ECF6] border border-[#D9E2EE]"
+                      >
+                        <Image
+                          src={validImages[3] || validImages[0]}
+                          alt={`${projectTitle} 4`}
+                          fill
+                          sizes="(max-width: 1024px) 50vw, 25vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                        {validImages.length > 4 && (
+                          <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/60 backdrop-blur-[2px] transition-colors group-hover:bg-black/70">
+                            <span
+                              className="text-base sm:text-lg font-bold text-white tracking-wide"
+                              style={{ fontFamily: "var(--font-manrope)" }}
+                            >
+                              +{validImages.length - 4}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Video Section */}
+          {hasVideo && videoUrl && (
+            <div className="mt-8">
+              <div className="mb-3 flex items-center gap-2">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#E5ECF6] text-[#2B5FA6]">
+                  <FiVideo className="h-3.5 w-3.5" />
+                </span>
+                <h3
+                  className="text-base sm:text-lg font-bold text-[#202326]"
+                  style={{ fontFamily: "var(--font-manrope)" }}
+                >
+                  {t("projects.details.videoTourLabel", "Video Tour")}
+                </h3>
               </div>
 
-              <div className="relative h-[180px] sm:h-[256px] w-full overflow-hidden rounded-[20px] bg-[#F9F7F4]">
-                <Image
-                  src={img4}
-                  alt={`${projectTitle} Gallery 4`}
-                  fill
-                  sizes="(max-width: 1024px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-500 hover:scale-[1.03]"
-                />
+              <div className="relative aspect-video w-full overflow-hidden rounded-[20px] bg-black shadow-md border border-[#D9E2EE]">
+                {embedUrl ? (
+                  <iframe
+                    src={embedUrl}
+                    title={`${projectTitle} Video Tour`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="h-full w-full border-0"
+                  />
+                ) : (
+                  <video
+                    src={videoUrl}
+                    controls
+                    playsInline
+                    preload="metadata"
+                    className="h-full w-full object-contain"
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                )}
               </div>
             </div>
-          </div>
-        </div>
-      </motion.div>
-    </section>
+          )}
+        </motion.div>
+      </section>
+
+      {/* Lightbox Modal */}
+      <ProjectGalleryLightbox
+        isOpen={lightboxOpen}
+        images={validImages}
+        currentIndex={lightboxIdx}
+        projectTitle={projectTitle}
+        onClose={closeLightbox}
+        onNext={nextLightboxImage}
+        onPrev={prevLightboxImage}
+      />
+    </>
   );
 }

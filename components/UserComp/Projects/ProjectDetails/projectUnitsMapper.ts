@@ -4,6 +4,7 @@ import { PROPERTY_TYPE_LABELS } from "@/models/resale";
 import { PrimaryUnitItem } from "@/models/primaryUnit";
 import { ResaleItem } from "@/models/resale";
 import { UnitItem } from "./ProjectUnitCard";
+import { UnitsFilterState } from "./ProjectUnitsFilterSidebar";
 
 interface MapperTranslations {
   roomSingle: string;
@@ -146,6 +147,72 @@ export function mapResaleUnits(
       imageSrc,
       location: locationOrProjectName,
     };
+  });
+}
+
+export function filterProjectUnits(
+  units: UnitItem[],
+  filterState: UnitsFilterState
+): UnitItem[] {
+  return units.filter((unit) => {
+    // Unit Type Tab
+    if (filterState.unitType !== "All") {
+      if (filterState.unitType === "Primary" && unit.type !== "primary") {
+        return false;
+      }
+      if (filterState.unitType === "Resale" && unit.type !== "resale") {
+        return false;
+      }
+    }
+
+    // Search matching
+    if (filterState.searchTerm.trim()) {
+      const term = filterState.searchTerm.trim().toLowerCase();
+      const matchesTitle = unit.title.toLowerCase().includes(term);
+      const matchesDesc = Boolean(
+        unit.description && unit.description.toLowerCase().includes(term)
+      );
+      const matchesCategory = Boolean(
+        unit.category && unit.category.toLowerCase().includes(term)
+      );
+      const matchesBadge = unit.badge.toLowerCase().includes(term);
+
+      if (!matchesTitle && !matchesDesc && !matchesCategory && !matchesBadge) {
+        return false;
+      }
+    }
+
+    // Category / Property Type
+    if (filterState.category && filterState.category !== "Any Type") {
+      const catFilter = filterState.category.toLowerCase();
+      const unitCat = (unit.category || "").toLowerCase();
+      if (!unitCat.includes(catFilter)) return false;
+    }
+
+    // Bedrooms
+    if (filterState.bedrooms && filterState.bedrooms !== "Any") {
+      const b = filterState.bedrooms;
+      const count = unit.rawBedrooms ?? 0;
+      if (b === "0" && count !== 0) return false;
+      if (b === "1" && count !== 1) return false;
+      if (b === "2" && count !== 2) return false;
+      if (b === "3" && count !== 3) return false;
+      if (b === "4+" && count < 4) return false;
+    }
+
+    // Minimum Price
+    if (filterState.minPrice && unit.rawPrice !== undefined) {
+      const min = parseFloat(filterState.minPrice);
+      if (!isNaN(min) && unit.rawPrice < min) return false;
+    }
+
+    // Maximum Price
+    if (filterState.maxPrice && unit.rawPrice !== undefined) {
+      const max = parseFloat(filterState.maxPrice);
+      if (!isNaN(max) && unit.rawPrice > max) return false;
+    }
+
+    return true;
   });
 }
 

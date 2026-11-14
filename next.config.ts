@@ -7,7 +7,12 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "realestate44.runasp.net",
         pathname: "/**",
-      }
+      },
+      {
+        protocol: "http",
+        hostname: "realestate44.runasp.net",
+        pathname: "/**",
+      },
     ],
   },
 };

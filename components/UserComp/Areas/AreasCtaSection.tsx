@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -22,9 +22,9 @@ export default function AreasCtaSection() {
           viewport={{ once: true, margin: "-80px" }}
         >
           {/* Background Topographic Image */}
-          <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 z-0 opacity-40">
             <Image
-              src="/Areas/ctaBackGound.jpg"
+              src="/Locations/ctaBackGound.png"
               alt="Assistance banner background"
               fill
               sizes="(max-width: 1320px) 100vw, 1320px"

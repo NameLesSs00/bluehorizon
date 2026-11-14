@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { FiSliders } from "react-icons/fi";
 import AreaProjectsFilterSidebar, {
   AreaProjectsFilterState,
 } from "./AreaProjectsFilterSidebar";
+import AreaProjectsFilterDrawer from "./AreaProjectsFilterDrawer";
 import AreaUnitsPagination from "./AreaUnitsPagination";
 import ProjectGridCard, {
   ProjectDisplayItem,
@@ -46,6 +48,7 @@ export default function AreaAvailableProjectsSection({
   const [filterState, setFilterState] =
     useState<AreaProjectsFilterState>(INITIAL_FILTERS);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const headingText = areaName
     ? t("areas.details.availableProjectsTitle", "Available Projects in {name}").replace(
@@ -123,6 +126,16 @@ export default function AreaAvailableProjectsSection({
     setCurrentPage(1);
   };
 
+  const hasActiveFilters = Boolean(
+    filterState.searchTerm.trim() !== "" ||
+      filterState.projectType !== "Any Type" ||
+      filterState.paymentType !== "Any Type" ||
+      filterState.deliveryDateFrom !== "" ||
+      filterState.deliveryDateTo !== "" ||
+      filterState.minPrice !== "" ||
+      filterState.maxPrice !== ""
+  );
+
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-14 sm:mt-16 mb-20">
       {/* Header */}
@@ -141,19 +154,39 @@ export default function AreaAvailableProjectsSection({
         </p>
       </div>
 
+      {/* Mobile: Filter toggle button (hidden on lg+) */}
+      <div className="mb-5 flex items-center justify-end lg:hidden">
+        <button
+          type="button"
+          onClick={() => setDrawerOpen(true)}
+          className="flex items-center gap-2 rounded-[12px] border border-[#D9E2EE] bg-white px-4 py-2.5 text-xs font-semibold text-[#1B3A6B] shadow-sm transition-colors hover:border-[#2B5FA6] hover:text-[#2B5FA6]"
+          style={{ fontFamily: "var(--font-inter)" }}
+        >
+          <FiSliders className="h-4 w-4" />
+          <span>{t("projects.filters.title", "Filters")}</span>
+          {hasActiveFilters && (
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#2B5FA6] text-[10px] font-bold text-white">
+              !
+            </span>
+          )}
+        </button>
+      </div>
+
       {/* Main Two-Column Content */}
       <div
         className={`flex flex-col lg:flex-row items-start gap-8 ${
           direction === "rtl" ? "rtl:lg:flex-row-reverse" : ""
         }`}
       >
-        {/* Left: Filter Sidebar */}
-        <AreaProjectsFilterSidebar
-          filterState={filterState}
-          onFilterChange={handleFilterChange}
-          onApplyFilters={handleApplyFilters}
-          onResetFilters={handleResetFilters}
-        />
+        {/* Left: Filter Sidebar (desktop only) */}
+        <div className="hidden lg:block shrink-0">
+          <AreaProjectsFilterSidebar
+            filterState={filterState}
+            onFilterChange={handleFilterChange}
+            onApplyFilters={handleApplyFilters}
+            onResetFilters={handleResetFilters}
+          />
+        </div>
 
         {/* Right: Projects Grid + Pagination */}
         <div className="w-full flex-1">
@@ -201,6 +234,17 @@ export default function AreaAvailableProjectsSection({
           />
         </div>
       </div>
+
+      {/* Mobile Filter Drawer */}
+      <AreaProjectsFilterDrawer
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        filterState={filterState}
+        onFilterChange={handleFilterChange}
+        onApplyFilters={handleApplyFilters}
+        onResetFilters={handleResetFilters}
+        hasActiveFilters={hasActiveFilters}
+      />
     </section>
   );
 }

@@ -3,6 +3,7 @@ import { PrimaryUnitItem } from "@/models/primaryUnit";
 import { ResaleItem } from "@/models/resale";
 import { getFullPrimaryUnitMediaUrl } from "@/clientApi/primaryUnitsApi";
 import { getFullResaleMediaUrl } from "@/clientApi/resalesApi";
+import { AreaUnitsFilterState } from "./AreaUnitsFilterSidebar";
 
 export function formatPrimaryUnit(
   u: PrimaryUnitItem,
@@ -55,4 +56,54 @@ export function formatResaleUnit(
     location: u.projectName || u.project?.name || fallbackLocation || "Hurghada",
   };
 }
+
+export function filterAreaUnits(
+  primaryUnits: UnitItem[],
+  resaleUnits: UnitItem[],
+  filterState: AreaUnitsFilterState
+): UnitItem[] {
+  let pool: UnitItem[] = [];
+  if (filterState.tab === "all") pool = [...primaryUnits, ...resaleUnits];
+  else if (filterState.tab === "primary") pool = primaryUnits;
+  else pool = resaleUnits;
+
+  return pool.filter((unit) => {
+    if (filterState.searchTerm.trim()) {
+      const query = filterState.searchTerm.toLowerCase();
+      const matches =
+        unit.title.toLowerCase().includes(query) ||
+        unit.description?.toLowerCase().includes(query) ||
+        unit.location?.toLowerCase().includes(query);
+      if (!matches) return false;
+    }
+
+    if (filterState.bedrooms !== "Any") {
+      if (filterState.bedrooms === "4+") {
+        const count = parseInt(unit.rooms, 10) || 0;
+        if (count < 4) return false;
+      } else {
+        const targetBeds = filterState.bedrooms;
+        if (!unit.rooms.startsWith(`${targetBeds} `)) {
+          return false;
+        }
+      }
+    }
+
+    const rawNumericPrice =
+      parseInt(unit.price.replace(/[^0-9]/g, ""), 10) || 0;
+    if (filterState.minPrice) {
+      const min = parseInt(filterState.minPrice, 10);
+      if (!isNaN(min) && rawNumericPrice > 0 && rawNumericPrice < min)
+        return false;
+    }
+    if (filterState.maxPrice) {
+      const max = parseInt(filterState.maxPrice, 10);
+      if (!isNaN(max) && rawNumericPrice > 0 && rawNumericPrice > max)
+        return false;
+    }
+
+    return true;
+  });
+}
+
 

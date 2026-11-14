@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ProjectBreadcrumb from "./ProjectBreadcrumb";
 import ProjectDetailsHeroBanner from "./ProjectDetailsHeroBanner";
@@ -10,7 +11,7 @@ import ProjectPaymentPlansSection from "./ProjectPaymentPlansSection";
 import ProjectAvailableUnitsSection from "./ProjectAvailableUnitsSection";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
-import { getProjectById } from "@/clientApi/projectsApi";
+import { getFullProjectImageUrl, getProjectById } from "@/clientApi/projectsApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 
@@ -34,6 +35,22 @@ export default function ProjectDetailsPage({ id }: ProjectDetailsPageProps) {
   });
 
   const project = projectRes;
+
+  // Sort images: primary first
+  const galleryImageUrls = useMemo(() => {
+    if (project?.images && project.images.length > 0) {
+      const sorted = [...project.images].sort((a, b) => {
+        if (a.isPrimary && !b.isPrimary) return -1;
+        if (!a.isPrimary && b.isPrimary) return 1;
+        return 0;
+      });
+      return sorted.map((img) => getFullProjectImageUrl(img.imageUrl));
+    }
+    if (project?.imageUrls && project.imageUrls.length > 0) {
+      return project.imageUrls.map((url) => getFullProjectImageUrl(url));
+    }
+    return [];
+  }, [project?.images, project?.imageUrls]);
 
   if (isLoading) {
     return (
@@ -59,7 +76,7 @@ export default function ProjectDetailsPage({ id }: ProjectDetailsPageProps) {
         <ProjectBreadcrumb projectName={project?.name} />
         <ProjectDetailsHeroBanner
           title={project?.name}
-          imageUrl={project?.imageUrls?.[0]}
+          imageUrl={galleryImageUrls[0] || project?.imageUrls?.[0]}
         />
         <ProjectOverviewSection
           title={project?.name}
@@ -67,7 +84,7 @@ export default function ProjectDetailsPage({ id }: ProjectDetailsPageProps) {
           description={project?.description}
         />
         <ProjectGallerySection
-          imageUrls={project?.imageUrls}
+          images={galleryImageUrls}
           title={project?.name}
         />
         <ProjectFacilitiesSection facilities={project?.facilities} />

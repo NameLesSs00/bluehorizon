@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
@@ -6,6 +6,7 @@ import { useTranslation } from "@/features/i18n/useTranslation";
 import LocationBreadcrumb from "./LocationBreadcrumb";
 import LocationDetailsHeroBanner from "./LocationDetailsHeroBanner";
 import LocationOverviewSection from "./LocationOverviewSection";
+import LocationGallerySection from "./LocationGallerySection";
 import LocationAvailableRentalsSection from "./LocationAvailableRentalsSection";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
@@ -52,10 +53,24 @@ export default function LocationDetailsPage({ id }: LocationDetailsPageProps) {
     );
   }
 
+  const sortedImages = [...(location?.images || [])].sort((a, b) => {
+    if (a.isPrimary && !b.isPrimary) return -1;
+    if (!a.isPrimary && b.isPrimary) return 1;
+    return a.sortOrder - b.sortOrder;
+  });
+
   const primaryImage =
-    location?.images?.find((img) => img.isPrimary) || location?.images?.[0];
+    sortedImages.find((img) => img.isPrimary) || sortedImages[0];
   const primaryImageUrl = primaryImage?.imageUrl
     ? getFullRentalLocationMediaUrl(primaryImage.imageUrl)
+    : null;
+
+  const galleryImageUrls = sortedImages
+    .map((img) => getFullRentalLocationMediaUrl(img.imageUrl))
+    .filter(Boolean);
+
+  const resolvedVideoUrl = location?.videoUrl
+    ? getFullRentalLocationMediaUrl(location.videoUrl)
     : null;
 
   return (
@@ -66,12 +81,16 @@ export default function LocationDetailsPage({ id }: LocationDetailsPageProps) {
         <LocationDetailsHeroBanner
           title={location?.name}
           imageUrl={primaryImageUrl}
-          videoUrl={location?.videoUrl}
         />
         <LocationOverviewSection
           locationName={location?.name}
           description={location?.description}
           activeRentalsCount={activeRentalsCount}
+        />
+        <LocationGallerySection
+          images={galleryImageUrls}
+          videoUrl={resolvedVideoUrl}
+          title={location?.name}
         />
         <LocationAvailableRentalsSection
           locationId={id}

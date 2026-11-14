@@ -416,6 +416,7 @@
       "filters": {
         "title": "تصفية الإيجارات",
         "reset": "إعادة ضبط",
+        "done": "تم",
         "showFilters": "عرض الفلاتر",
         "hideFilters": "إخفاء الفلاتر",
         "activeCount": "{count} مفعل",
@@ -443,7 +444,14 @@
       },
       "rentalDestination": "وجهة الإيجار",
       "watchAreaTour": "مشاهدة جولة المنطقة",
-      "servicedAndPrivate": "مفروشة وخاصة"
+      "servicedAndPrivate": "مفروشة وخاصة",
+      "galleryTitle": "معرض الصور",
+      "gallerySubtitle": "صور وجولة مصورة لهذه الوجهة السياحية.",
+      "videoTourLabel": "جولة بالفيديو",
+      "viewAllImages": "عرض جميع {count} صور",
+      "closeGallery": "إغلاق المعرض",
+      "prevPhoto": "الصورة السابقة",
+      "nextPhoto": "الصورة التالية"
     }
   },
   "areas": {
@@ -485,9 +493,17 @@
       "noUnitsSubtitle": "لا توجد وحدات مطابقة لمعايير البحث في هذه المنطقة حالياً.",
       "noProjectsTitle": "لا توجد مشاريع متاحة حالياً",
       "noProjectsSubtitle": "لا توجد مشاريع مطابقة لمعايير البحث في هذه المنطقة حالياً.",
+      "galleryTitle": "معرض صور المنطقة",
+      "gallerySubtitle": "صور وجولة مصورة لهذا الحي والمنطقة.",
+      "videoTourLabel": "جولة بالفيديو",
+      "viewAllImages": "عرض جميع {count} صور",
+      "closeGallery": "إغلاق المعرض",
+      "prevPhoto": "الصورة السابقة",
+      "nextPhoto": "الصورة التالية",
       "filters": {
         "title": "تصفية الوحدات",
         "reset": "إعادة ضبط",
+        "done": "تم",
         "showFilters": "عرض الفلاتر",
         "hideFilters": "إخفاء الفلاتر",
         "activeCount": "{count} مفعل",
@@ -616,6 +632,10 @@
     "filters": {
       "title": "تصفية خيارات البحث",
       "reset": "إعادة ضبط",
+      "done": "تم",
+      "showFilters": "عرض الفلاتر",
+      "hideFilters": "إخفاء الفلاتر",
+      "activeCount": "{count} نشط",
       "searchLabel": "البحث بالاسم أو الموقع",
       "searchPlaceholder": "ابحث باسم الوحدة أو الوصف...",
       "locationLabel": "الموقع / المنطقة",
@@ -736,6 +756,7 @@
     "filters": {
       "title": "تصفية المشاريع",
       "reset": "إعادة ضبط",
+      "done": "تم",
       "searchLabel": "البحث بكلمة مفتاحية",
       "searchPlaceholder": "ابحث باسم المشروع...",
       "areaLabel": "المنطقة / الموقع",
@@ -779,6 +800,11 @@
       "availableUnitsCountSingle": "وحدة واحدة متاحة",
       "galleryTitle": "معرض صور المشروع",
       "gallerySubtitle": "استكشف إطلالات وتصاميم بيتك القادم في قلب البحر الأحمر",
+      "videoTourLabel": "جولة بالفيديو",
+      "viewAllImages": "عرض جميع {count} صور",
+      "closeGallery": "إغلاق المعرض",
+      "prevPhoto": "الصورة السابقة",
+      "nextPhoto": "الصورة التالية",
       "facilitiesTitle": "المرافق والخدمات المتكاملة",
       "facilitiesSubtitle": "مرافق عالمية المستوى مصممة لضمان أسلوب حياة فاخر وأقصى درجات الراحة.",
       "facilitiesCount": "{count} مرافق متوفرة",
@@ -809,6 +835,7 @@
       "unitsFilters": {
         "title": "تصفية الوحدات",
         "reset": "إعادة ضبط",
+        "done": "تم",
         "searchLabel": "البحث بكلمة مفتاحية",
         "searchPlaceholder": "ابحث باسم الوحدة...",
         "categoryLabel": "نوع العقار",

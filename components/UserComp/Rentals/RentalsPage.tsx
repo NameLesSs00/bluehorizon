@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { FiSliders } from "react-icons/fi";
 import { usePublicRentalsQuery } from "@/features/rentals/useRentalsQueries";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import { useTranslation } from "@/features/i18n/useTranslation";
@@ -10,11 +11,12 @@ import Footer from "@/components/UserComp/Common/Footer";
 import RentalBreadcrumb from "./RentalBreadcrumb";
 import RentalHeroSection from "./RentalHeroSection";
 import RentalFilterSidebar, { RentalFilterState } from "./RentalFilterSidebar";
+import RentalFilterDrawer from "./RentalFilterDrawer";
 import RentalUnitsGrid from "./RentalUnitsGrid";
 import RentalCtaSection from "./RentalCtaSection";
 
 export default function RentalsPage() {
-  const { locale } = useTranslation();
+  const { t, locale } = useTranslation();
   const searchParams = useSearchParams();
   const urlLocationId = searchParams.get("locationId") || "";
   const urlPropertyType = searchParams.get("propertyType") || "";
@@ -24,6 +26,7 @@ export default function RentalsPage() {
   const urlSearchTerm = searchParams.get("searchTerm") || "";
 
   const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
   const [filters, setFilters] = useState<RentalFilterState>({
     searchTerm: urlSearchTerm,
@@ -122,6 +125,15 @@ export default function RentalsPage() {
     setPageNumber(1);
   };
 
+  const hasActiveFilters = Boolean(
+    filters.searchTerm.trim() ||
+      filters.locationId ||
+      filters.propertyType ||
+      filters.bedrooms ||
+      filters.minPrice ||
+      filters.maxPrice
+  );
+
   return (
     <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
       <Navbar />
@@ -132,12 +144,32 @@ export default function RentalsPage() {
 
         {/* Main Content Area: Sidebar + Grid */}
         <div className="mx-auto mt-12 w-full max-w-[1536px] px-4 sm:px-6 lg:px-8">
+          {/* Mobile: Filter toggle button (hidden on lg+) */}
+          <div className="mb-5 flex items-center justify-end lg:hidden">
+            <button
+              type="button"
+              onClick={() => setDrawerOpen(true)}
+              className="flex items-center gap-2 rounded-[12px] border border-[#D9E2EE] bg-white px-4 py-2.5 text-xs font-semibold text-[#1B3A6B] shadow-sm transition-colors hover:border-[#2B5FA6] hover:text-[#2B5FA6]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              <FiSliders className="h-4 w-4" />
+              <span>{t("rent.filters.title", "Filters")}</span>
+              {hasActiveFilters && (
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#2B5FA6] text-[10px] font-bold text-white">
+                  !
+                </span>
+              )}
+            </button>
+          </div>
+
           <div className="flex flex-col lg:flex-row items-start gap-8">
-            <RentalFilterSidebar
-              initialFilters={filters}
-              onApplyFilters={handleApplyFilters}
-              onResetFilters={handleResetFilters}
-            />
+            <div className="hidden lg:block shrink-0">
+              <RentalFilterSidebar
+                initialFilters={filters}
+                onApplyFilters={handleApplyFilters}
+                onResetFilters={handleResetFilters}
+              />
+            </div>
 
             <RentalUnitsGrid
               units={filteredUnits}
@@ -152,6 +184,16 @@ export default function RentalsPage() {
 
         <RentalCtaSection />
       </main>
+
+      {/* Mobile Filter Drawer */}
+      <RentalFilterDrawer
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        initialFilters={filters}
+        onApplyFilters={handleApplyFilters}
+        onResetFilters={handleResetFilters}
+        hasActiveFilters={hasActiveFilters}
+      />
 
       <Footer />
     </div>

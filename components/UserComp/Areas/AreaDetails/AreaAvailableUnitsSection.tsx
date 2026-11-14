@@ -2,18 +2,23 @@
 
 import { useMemo, useState, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { FiRotateCcw } from "react-icons/fi";
+import { FiRotateCcw, FiSliders } from "react-icons/fi";
 import ProjectUnitCard, {
   UnitItem,
 } from "@/components/UserComp/Projects/ProjectDetails/ProjectUnitCard";
 import AreaUnitsFilterSidebar, {
   AreaUnitsFilterState,
 } from "./AreaUnitsFilterSidebar";
+import AreaUnitsFilterDrawer from "./AreaUnitsFilterDrawer";
 import AreaUnitsPagination from "./AreaUnitsPagination";
 import { usePublicProjectsQuery } from "@/features/projects/useProjectsQueries";
 import { usePublicPrimaryUnitsQuery } from "@/features/primaryUnits/usePrimaryUnitsQueries";
 import { usePublicResalesQuery } from "@/features/resales/useResalesQueries";
-import { formatPrimaryUnit, formatResaleUnit } from "./areaUnitsFormatters";
+import {
+  formatPrimaryUnit,
+  formatResaleUnit,
+  filterAreaUnits,
+} from "./areaUnitsFormatters";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import {
   containerStaggerVariants,
@@ -48,6 +53,7 @@ export default function AreaAvailableUnitsSection({
   const [filterState, setFilterState] =
     useState<AreaUnitsFilterState>(INITIAL_FILTERS);
   const [currentPage, setCurrentPage] = useState(1);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   // 1. Fetch projects in this area
   const { data: projectsData, isLoading: isLoadingProjects } =
@@ -100,50 +106,10 @@ export default function AreaAvailableUnitsSection({
   }, [resalesData, areaProjectIds, areaName]);
 
   // 5. Filter units
-  const allFilteredUnits = useMemo(() => {
-    let pool: UnitItem[] = [];
-    if (filterState.tab === "all") pool = [...primaryUnits, ...resaleUnits];
-    else if (filterState.tab === "primary") pool = primaryUnits;
-    else pool = resaleUnits;
-
-    return pool.filter((unit) => {
-      if (filterState.searchTerm.trim()) {
-        const query = filterState.searchTerm.toLowerCase();
-        const matches =
-          unit.title.toLowerCase().includes(query) ||
-          unit.description?.toLowerCase().includes(query) ||
-          unit.location?.toLowerCase().includes(query);
-        if (!matches) return false;
-      }
-
-      if (filterState.bedrooms !== "Any") {
-        if (filterState.bedrooms === "4+") {
-          const count = parseInt(unit.rooms, 10) || 0;
-          if (count < 4) return false;
-        } else {
-          const targetBeds = filterState.bedrooms;
-          if (!unit.rooms.startsWith(`${targetBeds} `)) {
-            return false;
-          }
-        }
-      }
-
-      const rawNumericPrice =
-        parseInt(unit.price.replace(/[^0-9]/g, ""), 10) || 0;
-      if (filterState.minPrice) {
-        const min = parseInt(filterState.minPrice, 10);
-        if (!isNaN(min) && rawNumericPrice > 0 && rawNumericPrice < min)
-          return false;
-      }
-      if (filterState.maxPrice) {
-        const max = parseInt(filterState.maxPrice, 10);
-        if (!isNaN(max) && rawNumericPrice > 0 && rawNumericPrice > max)
-          return false;
-      }
-
-      return true;
-    });
-  }, [primaryUnits, resaleUnits, filterState]);
+  const allFilteredUnits = useMemo(
+    () => filterAreaUnits(primaryUnits, resaleUnits, filterState),
+    [primaryUnits, resaleUnits, filterState]
+  );
 
   // Report count to parent
   useEffect(() => {
@@ -176,6 +142,15 @@ export default function AreaAvailableUnitsSection({
     ? t("areas.details.availableUnitsTitle").replace("{name}", areaName)
     : t("areas.details.defaultAvailableUnitsTitle");
 
+  const hasActiveFilters = Boolean(
+    filterState.tab !== "all" ||
+      filterState.searchTerm.trim() !== "" ||
+      filterState.propertyType !== "All Types" ||
+      filterState.bedrooms !== "Any" ||
+      filterState.minPrice !== "" ||
+      filterState.maxPrice !== ""
+  );
+
   return (
     <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16 mb-20">
       {/* Header */}
@@ -194,20 +169,40 @@ export default function AreaAvailableUnitsSection({
         </p>
       </div>
 
+      {/* Mobile: Filter toggle button (hidden on lg+) */}
+      <div className="mb-5 flex items-center justify-end lg:hidden">
+        <button
+          type="button"
+          onClick={() => setDrawerOpen(true)}
+          className="flex items-center gap-2 rounded-[12px] border border-[#D9E2EE] bg-white px-4 py-2.5 text-xs font-semibold text-[#1B3A6B] shadow-sm transition-colors hover:border-[#2B5FA6] hover:text-[#2B5FA6]"
+          style={{ fontFamily: "var(--font-inter)" }}
+        >
+          <FiSliders className="h-4 w-4" />
+          <span>{t("areas.details.filters.title", "Filters")}</span>
+          {hasActiveFilters && (
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#2B5FA6] text-[10px] font-bold text-white">
+              !
+            </span>
+          )}
+        </button>
+      </div>
+
       {/* Two-Column Layout: Sidebar on Left, Grid on Right */}
       <div
         className={`flex flex-col lg:flex-row items-start gap-8 ${
           direction === "rtl" ? "rtl:lg:flex-row-reverse" : ""
         }`}
       >
-        {/* Filter Sidebar */}
-        <AreaUnitsFilterSidebar
-          filterState={filterState}
-          onFilterChange={handleFilterChange}
-          onResetFilters={handleResetFilters}
-          primaryCount={primaryUnits.length}
-          resaleCount={resaleUnits.length}
-        />
+        {/* Filter Sidebar (desktop only) */}
+        <div className="hidden lg:block shrink-0">
+          <AreaUnitsFilterSidebar
+            filterState={filterState}
+            onFilterChange={handleFilterChange}
+            onResetFilters={handleResetFilters}
+            primaryCount={primaryUnits.length}
+            resaleCount={resaleUnits.length}
+          />
+        </div>
 
         {/* Units Grid */}
         <div className="w-full flex-1">
@@ -274,6 +269,18 @@ export default function AreaAvailableUnitsSection({
           )}
         </div>
       </div>
+
+      {/* Mobile Filter Drawer */}
+      <AreaUnitsFilterDrawer
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        filterState={filterState}
+        onFilterChange={handleFilterChange}
+        onResetFilters={handleResetFilters}
+        primaryCount={primaryUnits.length}
+        resaleCount={resaleUnits.length}
+        hasActiveFilters={hasActiveFilters}
+      />
     </section>
   );
 }

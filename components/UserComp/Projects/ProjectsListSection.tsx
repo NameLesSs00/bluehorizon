@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
+import { FiSliders } from "react-icons/fi";
 import { usePublicProjectsQuery } from "@/features/projects/useProjectsQueries";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import { useTranslation } from "@/features/i18n/useTranslation";
@@ -15,7 +16,9 @@ import {
 import ProjectsFilterSidebar, {
   ProjectFilterValues,
 } from "./ProjectsFilterSidebar";
-import ProjectGridCard, { ProjectDisplayItem } from "./ProjectGridCard";
+import ProjectsFilterDrawer from "./ProjectsFilterDrawer";
+import ProjectGridCard from "./ProjectGridCard";
+import { formatApiProject } from "./projectFormatters";
 
 const INITIAL_FILTERS: ProjectFilterValues = {
   searchTerm: "",
@@ -28,60 +31,13 @@ const INITIAL_FILTERS: ProjectFilterValues = {
   maxPrice: "",
 };
 
-function formatApiProject(
-  item: ProjectItem,
-  currentCurrency: string,
-  priceOnRequestLabel: string
-): ProjectDisplayItem {
-  const hasImage = Boolean(item.imageUrls && item.imageUrls.length > 0);
-  const coverImage = hasImage
-    ? getFullProjectImageUrl(item.imageUrls[0])
-    : "/default-fallback.png";
-
-  const targetPrice = item.prices?.find(
-    (p) => p.currency.toUpperCase() === currentCurrency.toUpperCase()
-  );
-  const egpPrice = item.prices?.find(
-    (p) => p.currency.toUpperCase() === "EGP"
-  );
-  const fallbackPrice = item.prices?.[0];
-  const activePrice = targetPrice || egpPrice || fallbackPrice;
-
-  let priceFormatted = priceOnRequestLabel;
-  if (activePrice?.minimumPrice) {
-    const symbol =
-      activePrice.currency.toUpperCase() === "EGP"
-        ? "EGP "
-        : activePrice.currency.toUpperCase() === "USD"
-          ? "$ "
-          : `${activePrice.currency} `;
-    priceFormatted = `${symbol}${Number(activePrice.minimumPrice).toLocaleString()}`;
-  } else if (activePrice?.maximumPrice) {
-    const symbol =
-      activePrice.currency.toUpperCase() === "EGP"
-        ? "EGP "
-        : activePrice.currency.toUpperCase() === "USD"
-          ? "$ "
-          : `${activePrice.currency} `;
-    priceFormatted = `${symbol}${Number(activePrice.maximumPrice).toLocaleString()}`;
-  }
-
-  return {
-    id: item.id,
-    title: item.name,
-    description: item.description || "",
-    priceFormatted,
-    imageSrc: coverImage,
-    isFallback: !hasImage,
-  };
-}
-
 export default function ProjectsListSection() {
   const searchParams = useSearchParams();
   const { t, locale, direction } = useTranslation();
   const isRtl = direction === "rtl";
   const shouldReduceMotion = useReducedMotion();
   const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const urlLocationId = searchParams.get("locationId") || "";
   const urlProjectTypeId =
@@ -153,16 +109,47 @@ export default function ProjectsListSection() {
     setPage(1);
   }
 
+  const hasActiveFilters = Boolean(
+    filters.searchTerm.trim() ||
+      filters.locationId ||
+      filters.projectTypeId ||
+      filters.paymentType ||
+      filters.deliveryFrom ||
+      filters.deliveryTo ||
+      filters.minPrice ||
+      filters.maxPrice
+  );
+
   return (
     <section className="bg-[#F0F3FA] py-10 sm:py-14">
       <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8">
+        {/* Mobile: Filter toggle button (hidden on lg+) */}
+        <div className="mb-5 flex items-center justify-end lg:hidden">
+          <button
+            type="button"
+            onClick={() => setDrawerOpen(true)}
+            className="flex items-center gap-2 rounded-[12px] border border-[#D9E2EE] bg-white px-4 py-2.5 text-xs font-semibold text-[#1B3A6B] shadow-sm transition-colors hover:border-[#2B5FA6] hover:text-[#2B5FA6]"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            <FiSliders className="h-4 w-4" />
+            <span>{t("projects.filters.title", "Filters")}</span>
+            {hasActiveFilters && (
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#2B5FA6] text-[10px] font-bold text-white">
+                !
+              </span>
+            )}
+          </button>
+        </div>
+
         <div className="flex flex-col lg:flex-row items-start gap-8">
-          {/* Left Column: Filter Sidebar */}
-          <ProjectsFilterSidebar
-            initialFilters={filters}
-            onApplyFilters={handleApplyFilters}
-            onResetFilters={handleResetFilters}
-          />
+          {/* Left Column: Filter Sidebar (desktop only) */}
+          <div className="hidden lg:block shrink-0">
+            <ProjectsFilterSidebar
+              initialFilters={filters}
+              onApplyFilters={handleApplyFilters}
+              onResetFilters={handleResetFilters}
+            />
+          </div>
 
           {/* Right Column: Projects Cards Grid & Pagination */}
           <div className="flex-1 w-full">
@@ -264,6 +251,16 @@ export default function ProjectsListSection() {
           </div>
         </div>
       </div>
+
+      {/* Mobile Filter Drawer */}
+      <ProjectsFilterDrawer
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        initialFilters={filters}
+        onApplyFilters={handleApplyFilters}
+        onResetFilters={handleResetFilters}
+        hasActiveFilters={hasActiveFilters}
+      />
     </section>
   );
 }

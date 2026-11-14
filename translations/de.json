@@ -416,6 +416,7 @@
       "filters": {
         "title": "Mietobjekte filtern",
         "reset": "Alle zurأ¼cksetzen",
+        "done": "Fertig",
         "showFilters": "Filter anzeigen",
         "hideFilters": "Filter ausblenden",
         "activeCount": "{count} aktiv",
@@ -443,7 +444,14 @@
       },
       "rentalDestination": "MIETDESTINATION",
       "watchAreaTour": "Gebietsrundgang ansehen",
-      "servicedAndPrivate": "Serviciert & Privat"
+      "servicedAndPrivate": "Serviciert & Privat",
+      "galleryTitle": "Standort-Galerie",
+      "gallerySubtitle": "Fotos und Videorundgang dieser Mietdestination.",
+      "videoTourLabel": "Videorundgang",
+      "viewAllImages": "Alle {count} Fotos anzeigen",
+      "closeGallery": "Fotogalerie schließen",
+      "prevPhoto": "Vorheriges Foto",
+      "nextPhoto": "Nächstes Foto"
     }
   },
   "areas": {
@@ -485,9 +493,17 @@
       "noUnitsSubtitle": "Derzeit entsprechen keine Einheiten Ihren ausgewأ¤hlten Kriterien in dieser Region.",
       "noProjectsTitle": "Keine verfأ¼gbaren Projekte gefunden",
       "noProjectsSubtitle": "Derzeit entsprechen keine Projekte Ihren ausgewأ¤hlten Kriterien in dieser Region.",
+      "galleryTitle": "Gebiets-Galerie",
+      "gallerySubtitle": "Fotos und Videorundgang dieser Gegend.",
+      "videoTourLabel": "Videorundgang",
+      "viewAllImages": "Alle {count} Fotos anzeigen",
+      "closeGallery": "Fotogalerie schließen",
+      "prevPhoto": "Vorheriges Foto",
+      "nextPhoto": "Nächstes Foto",
       "filters": {
         "title": "Einheiten filtern",
         "reset": "Alle zurأ¼cksetzen",
+        "done": "Fertig",
         "showFilters": "Filter anzeigen",
         "hideFilters": "Filter ausblenden",
         "activeCount": "{count} aktiv",
@@ -616,6 +632,10 @@
     "filters": {
       "title": "Einheiten filtern",
       "reset": "Zurأ¼cksetzen",
+      "done": "Fertig",
+      "showFilters": "Filter anzeigen",
+      "hideFilters": "Filter ausblenden",
+      "activeCount": "{count} aktiv",
       "searchLabel": "NACH STICHWORT SUCHEN",
       "searchPlaceholder": "Nach Titel oder Beschreibung suchen...",
       "locationLabel": "STANDORT / BEREICH",
@@ -736,6 +756,7 @@
     "filters": {
       "title": "Filter",
       "reset": "Alle zurأ¼cksetzen",
+      "done": "Fertig",
       "showFilters": "Filter anzeigen",
       "hideFilters": "Filter ausblenden",
       "activeCount": "{count} aktiv",
@@ -779,6 +800,11 @@
       "availableUnitsCountSingle": "1 verfأ¼gbare Einheit",
       "galleryTitle": "Projektgalerie",
       "gallerySubtitle": "Erleben Sie Ihre Aussicht und wohnen Sie nach Ihren Wأ¼nschen",
+      "videoTourLabel": "Videorundgang",
+      "viewAllImages": "Alle {count} Fotos anzeigen",
+      "closeGallery": "Fotogalerie schließen",
+      "prevPhoto": "Vorheriges Foto",
+      "nextPhoto": "Nächstes Foto",
       "facilitiesTitle": "Ausstattung & Services",
       "facilitiesSubtitle": "Erstklassige Annehmlichkeiten fأ¼r luxuriأ¶ses Wohnen und hأ¶chsten Komfort.",
       "facilitiesCount": "{count} Ausstattungsmerkmale",
@@ -809,6 +835,7 @@
       "unitsFilters": {
         "title": "Filter",
         "reset": "Alle zurأ¼cksetzen",
+        "done": "Fertig",
         "showFilters": "Filter anzeigen",
         "hideFilters": "Filter ausblenden",
         "activeCount": "{count} aktiv",

@@ -1,21 +1,18 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { FiPlay } from "react-icons/fi";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { fadeInUpVariants } from "@/shared/utils/animations";
 
 interface LocationDetailsHeroBannerProps {
   title?: string;
   imageUrl?: string | null;
-  videoUrl?: string | null;
 }
 
 export default function LocationDetailsHeroBanner({
   title,
   imageUrl,
-  videoUrl,
 }: LocationDetailsHeroBannerProps) {
   const { t } = useTranslation();
   const shouldReduceMotion = useReducedMotion();
@@ -67,19 +64,6 @@ export default function LocationDetailsHeroBanner({
                 {displayTitle}
               </h1>
             </div>
-
-            {videoUrl && (
-              <a
-                href={videoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 self-start rounded-full bg-white/90 px-5 py-2.5 text-xs font-semibold text-[#2B5FA6] shadow-sm backdrop-blur-sm transition-all hover:bg-white hover:shadow-md sm:self-auto"
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
-                <FiPlay className="h-3.5 w-3.5 fill-[#2B5FA6]" />
-                <span>{t("locations.details.watchAreaTour")}</span>
-              </a>
-            )}
           </motion.div>
         </div>
       </div>

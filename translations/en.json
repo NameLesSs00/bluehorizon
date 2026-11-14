@@ -416,6 +416,7 @@
       "filters": {
         "title": "Filter Rentals",
         "reset": "Reset All",
+        "done": "Done",
         "showFilters": "Show Filters",
         "hideFilters": "Hide Filters",
         "activeCount": "{count} active",
@@ -443,7 +444,14 @@
       },
       "rentalDestination": "RENTAL DESTINATION",
       "watchAreaTour": "Watch Area Tour",
-      "servicedAndPrivate": "Serviced & Private"
+      "servicedAndPrivate": "Serviced & Private",
+      "galleryTitle": "Location Gallery",
+      "gallerySubtitle": "Photos and video tour of this rental destination.",
+      "videoTourLabel": "Video Tour",
+      "viewAllImages": "View all {count} photos",
+      "closeGallery": "Close photo gallery",
+      "prevPhoto": "Previous photo",
+      "nextPhoto": "Next photo"
     }
   },
   "areas": {
@@ -485,9 +493,17 @@
       "noUnitsSubtitle": "There are currently no units matching your selected criteria in this area.",
       "noProjectsTitle": "No available projects found",
       "noProjectsSubtitle": "There are currently no projects matching your selected criteria in this area.",
+      "galleryTitle": "Area Gallery",
+      "gallerySubtitle": "Photos and video tour of this neighborhood.",
+      "videoTourLabel": "Video Tour",
+      "viewAllImages": "View all {count} photos",
+      "closeGallery": "Close photo gallery",
+      "prevPhoto": "Previous photo",
+      "nextPhoto": "Next photo",
       "filters": {
         "title": "Filters",
         "reset": "Reset All",
+        "done": "Done",
         "showFilters": "Show Filters",
         "hideFilters": "Hide Filters",
         "activeCount": "{count} active",
@@ -616,6 +632,10 @@
     "filters": {
       "title": "Filter Units",
       "reset": "Reset",
+      "done": "Done",
+      "showFilters": "Show Filters",
+      "hideFilters": "Hide Filters",
+      "activeCount": "{count} active",
       "searchLabel": "SEARCH BY KEYWORD",
       "searchPlaceholder": "Search by title or description...",
       "locationLabel": "LOCATION / AREA",
@@ -736,6 +756,7 @@
     "filters": {
       "title": "Filters",
       "reset": "Reset All",
+      "done": "Done",
       "showFilters": "Show Filters",
       "hideFilters": "Hide Filters",
       "activeCount": "{count} active",
@@ -779,6 +800,11 @@
       "availableUnitsCountSingle": "1 available unit",
       "galleryTitle": "Project Gallery",
       "gallerySubtitle": "Explore your Home view and live as you love",
+      "videoTourLabel": "Video Tour",
+      "viewAllImages": "View all {count} photos",
+      "closeGallery": "Close photo gallery",
+      "prevPhoto": "Previous photo",
+      "nextPhoto": "Next photo",
       "facilitiesTitle": "Facilities & Services",
       "facilitiesSubtitle": "World-class amenities designed for luxury living and maximum convenience.",
       "facilitiesCount": "{count} Amenities Available",
@@ -809,6 +835,7 @@
       "unitsFilters": {
         "title": "Filters",
         "reset": "Reset All",
+        "done": "Done",
         "showFilters": "Show Filters",
         "hideFilters": "Hide Filters",
         "activeCount": "{count} active",

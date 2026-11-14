@@ -5,6 +5,7 @@ import { useState } from "react";
 import AreaBreadcrumb from "./AreaBreadcrumb";
 import AreaDetailsHeroBanner from "./AreaDetailsHeroBanner";
 import AreaOverviewSection from "./AreaOverviewSection";
+import AreaGallerySection from "./AreaGallerySection";
 import AreaAvailableProjectsSection from "./AreaAvailableProjectsSection";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
@@ -52,10 +53,24 @@ export default function AreaDetailsPage({ id }: AreaDetailsPageProps) {
     );
   }
 
+  const sortedImages = [...(area?.images || [])].sort((a, b) => {
+    if (a.isPrimary && !b.isPrimary) return -1;
+    if (!a.isPrimary && b.isPrimary) return 1;
+    return a.sortOrder - b.sortOrder;
+  });
+
   const primaryImage =
-    area?.images?.find((img) => img.isPrimary) || area?.images?.[0];
+    sortedImages.find((img) => img.isPrimary) || sortedImages[0];
   const primaryImageUrl = primaryImage?.imageUrl
     ? getFullLocationMediaUrl(primaryImage.imageUrl)
+    : null;
+
+  const galleryImageUrls = sortedImages
+    .map((img) => getFullLocationMediaUrl(img.imageUrl))
+    .filter(Boolean);
+
+  const resolvedVideoUrl = area?.videoUrl
+    ? getFullLocationMediaUrl(area.videoUrl)
     : null;
 
   return (
@@ -71,6 +86,11 @@ export default function AreaDetailsPage({ id }: AreaDetailsPageProps) {
           areaName={area?.name}
           description={area?.description}
           activeProjectsCount={activeProjectsCount}
+        />
+        <AreaGallerySection
+          images={galleryImageUrls}
+          videoUrl={resolvedVideoUrl}
+          title={area?.name}
         />
         <AreaAvailableProjectsSection
           areaId={id}
