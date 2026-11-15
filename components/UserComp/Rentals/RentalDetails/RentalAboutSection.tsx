@@ -92,6 +92,36 @@ export default function RentalAboutSection({ unit }: RentalAboutSectionProps) {
           <p>{unit.description || ""}</p>
         )}
       </div>
+
+      {/* Nearby Places & Landmarks */}
+      {unit.infoAreaPlaces && unit.infoAreaPlaces.length > 0 && (
+        <div className="mt-6 border-t border-[#D9E2EE] pt-5">
+          <h3
+            className="text-sm sm:text-base font-bold text-[#202326]"
+            style={{ fontFamily: "var(--font-manrope)" }}
+          >
+            {t(
+              "rent.details.nearbyPlacesTitle",
+              "Nearby Landmarks & Destinations"
+            )}
+          </h3>
+          <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+            {unit.infoAreaPlaces.map((place) => (
+              <div
+                key={place.id}
+                className="flex items-center justify-between rounded-[12px] bg-[#F0F3FA] px-3.5 py-2.5 text-xs"
+              >
+                <span className="font-medium text-[#202326] truncate">
+                  {place.name}
+                </span>
+                <span className="font-bold text-[#2B5FA6] shrink-0 ml-2">
+                  {place.distance}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

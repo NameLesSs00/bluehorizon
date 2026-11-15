@@ -5,10 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiMapPin, FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { TbBed, TbBath, TbRulerMeasure } from "react-icons/tb";
-import { RentalItem, PROPERTY_TYPE_LABELS } from "@/models/rental";
+import {
+  RentalItem,
+  PROPERTY_TYPE_LABELS,
+  normalizePropertyType,
+} from "@/models/rental";
 import { getFullRentalMediaUrl } from "@/clientApi/rentalsApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
+import { toUrlSlug } from "@/shared/utils/slug";
 
 interface RentalUnitCardProps {
   unit: RentalItem;
@@ -32,12 +37,15 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
       : "/default-fallback.png";
 
   const resolveBadgeText = () => {
-    if (
-      unit.propertyType !== undefined &&
-      unit.propertyType !== null &&
-      PROPERTY_TYPE_LABELS[unit.propertyType]
-    ) {
-      return PROPERTY_TYPE_LABELS[unit.propertyType];
+    if (unit.propertyType !== undefined && unit.propertyType !== null) {
+      const normalized = normalizePropertyType(unit.propertyType);
+      const translated = t(`rent.details.propertyTypes.${normalized}`);
+      if (translated && !translated.startsWith("rent.")) {
+        return translated;
+      }
+      if (PROPERTY_TYPE_LABELS[normalized]) {
+        return PROPERTY_TYPE_LABELS[normalized];
+      }
     }
     const catName = unit.categoryItems?.[0]?.name;
     if (
@@ -84,7 +92,7 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
       ? t("rent.card.area", "{size} m²").replace("{size}", String(unit.size))
       : null;
 
-  const unitHref = `/${locale}/rent/${unit.id}`;
+  const unitHref = `/${locale}/rent/${toUrlSlug(unit.name, unit.id)}`;
 
   return (
     <Link

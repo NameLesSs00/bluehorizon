@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { usePublicRentalsQuery } from "@/features/rentals/useRentalsQueries";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import RentalUnitCard from "../RentalUnitCard";
 
 interface RentalRelatedUnitsProps {
@@ -15,9 +16,11 @@ export default function RentalRelatedUnits({
 }: RentalRelatedUnitsProps) {
   const { t, locale, direction } = useTranslation();
   const isRtl = direction === "rtl";
+  const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
 
   const { data, isLoading } = usePublicRentalsQuery({
     Language: locale,
+    Currency: currentCurrency || "EGP",
     PageNumber: 1,
     PageSize: 8,
   });

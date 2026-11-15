@@ -36,11 +36,41 @@ export default function RentalRulesSection({ unit }: RentalRulesSectionProps) {
   if (listing?.extraPeople && listing.extraPeople.trim().length > 0) {
     const feeText =
       typeof listing.extraPeopleFee === "number" && listing.extraPeopleFee > 0
-        ? ` (${listing.extraPeopleFee.toLocaleString()} EGP fee)`
+        ? ` ${t("rent.details.extraGuestFee", "(${fee} USD fee)").replace("{fee}", String(listing.extraPeopleFee))}`
         : "";
     occupancyRules.push({
       label: t("rent.details.extraGuests"),
       value: `${listing.extraPeople}${feeText}`,
+    });
+  }
+
+  // Family Friendly
+  if (listing?.familyFriendly) {
+    occupancyRules.push({
+      label: t("rent.details.familyFriendly", "Family Friendly"),
+      value: t(
+        "rent.details.familyFriendlyDesc",
+        "Suitable for families with children"
+      ),
+    });
+  }
+
+  // Private Entrance
+  if (listing?.privateEntrance) {
+    occupancyRules.push({
+      label: t("rent.details.privateEntrance", "Private Entrance"),
+      value: t(
+        "rent.details.privateEntranceDesc",
+        "Independent private access to the unit"
+      ),
+    });
+  }
+
+  // Host & Arrival Notes
+  if (unit.notes && unit.notes.trim().length > 0) {
+    occupancyRules.push({
+      label: t("rent.details.hostNotes", "Arrival & Host Notes"),
+      value: unit.notes.trim(),
     });
   }
 

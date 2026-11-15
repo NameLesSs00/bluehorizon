@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
@@ -9,16 +9,13 @@ import RentalsTable from "./RentalsTable";
 import RentalFormDrawer from "./RentalFormDrawer";
 import RentalImagesDrawer from "./RentalImagesDrawer";
 
-const CURRENCIES = ["USD", "EUR", "GBP", "EGP"] as const;
-
 export default function AdminRentalsPage() {
-  const [activeCurrency, setActiveCurrency] = useState<string>("USD");
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 10;
 
   const { data: rentalsData, isLoading } = useRentalsQuery({
     Language: "en",
-    Currency: activeCurrency,
+    Currency: "USD",
     PageNumber: pageNumber,
     PageSize: pageSize,
   });
@@ -68,27 +65,6 @@ export default function AdminRentalsPage() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
-            {/* Currency Switcher Filter */}
-            <div className="inline-flex rounded-xl border border-[#D0D9EA] bg-white p-1">
-              {CURRENCIES.map((cur) => (
-                <button
-                  key={cur}
-                  type="button"
-                  onClick={() => {
-                    setActiveCurrency(cur);
-                    setPageNumber(1);
-                  }}
-                  className={`rounded-lg px-2.5 py-1 text-[11px] font-bold uppercase transition-all ${
-                    activeCurrency === cur
-                      ? "bg-[#2B5FA6] text-white shadow-sm"
-                      : "text-[#65706B] hover:text-[#202326]"
-                  }`}
-                >
-                  {cur}
-                </button>
-              ))}
-            </div>
-
             {rentalsData?.totalCount !== undefined && (
               <span className="inline-flex items-center rounded-full bg-[#F9F7F4] border border-[#E2E8F3] px-3 py-1.5 text-[12px] font-medium text-[#202326]">
                 {rentalsData.totalCount} Rental
@@ -111,7 +87,7 @@ export default function AdminRentalsPage() {
         <RentalsTable
           rentals={rentals}
           isLoading={isLoading}
-          activeCurrency={activeCurrency}
+          activeCurrency="USD"
           pageNumber={pageNumber}
           totalPages={totalPages}
           hasPreviousPage={hasPreviousPage}

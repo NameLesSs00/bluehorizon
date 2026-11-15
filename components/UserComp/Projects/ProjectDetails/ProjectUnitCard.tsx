@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { toUrlSlug } from "@/shared/utils/slug";
 
 export interface UnitItem {
   id: string | number;
@@ -31,9 +32,10 @@ export default function ProjectUnitCard({ unit }: ProjectUnitCardProps) {
   const isRtl = direction === "rtl";
   const isResale = unit.badge === "Resale";
 
+  const unitSlug = toUrlSlug(unit.title, unit.id);
   const rawHref =
     unit.href ||
-    `/units/${unit.id}?type=${unit.type || (isResale ? "resale" : "primary")}`;
+    `/units/${unitSlug}?type=${unit.type || (isResale ? "resale" : "primary")}`;
 
   const linkHref = rawHref.startsWith(`/${locale}`)
     ? rawHref

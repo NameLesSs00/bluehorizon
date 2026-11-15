@@ -23,10 +23,10 @@ export default function RentalDetailsHeader({ unit }: RentalDetailsHeaderProps) 
       value: unit.code,
     });
   }
-  if (unit.notes && unit.notes.trim().length > 0) {
+  if (unit.floor && unit.floor.trim().length > 0) {
     metadataItems.push({
-      label: t("rent.details.address"),
-      value: unit.notes,
+      label: t("rent.details.floor"),
+      value: unit.floor,
     });
   }
 

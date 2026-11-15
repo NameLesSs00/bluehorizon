@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
-import { usePublicRentalByIdQuery } from "@/features/rentals/useRentalsQueries";
+import { useQuery } from "@tanstack/react-query";
+import { resolveRentalByNameOrId } from "@/clientApi/resolversApi";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import RentalBreadcrumb from "./RentalBreadcrumb";
@@ -18,17 +19,25 @@ import RentalInquiryCard from "./RentalInquiryCard";
 import RentalRelatedUnits from "./RentalRelatedUnits";
 
 interface RentalDetailsPageProps {
-  id: number;
+  id?: number;
+  nameOrSlug?: string;
 }
 
-export default function RentalDetailsPage({ id }: RentalDetailsPageProps) {
+export default function RentalDetailsPage({ id, nameOrSlug }: RentalDetailsPageProps) {
   const { t, locale } = useTranslation();
   const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
-  const { data: unit, isLoading } = usePublicRentalByIdQuery(
-    id,
-    locale,
-    currentCurrency || "EGP"
-  );
+  const targetKey = nameOrSlug || id || 0;
+
+  const { data: unit, isLoading } = useQuery({
+    queryKey: ["publicRentalUnit", targetKey, locale, currentCurrency],
+    queryFn: async () => {
+      const target = nameOrSlug || id;
+      if (!target) return null;
+      return await resolveRentalByNameOrId(target, locale, currentCurrency || "EGP");
+    },
+    enabled: Boolean(nameOrSlug || (typeof id === "number" && id > 0)),
+    staleTime: 1000 * 60 * 5,
+  });
 
   if (isLoading) {
     return (

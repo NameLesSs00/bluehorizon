@@ -7,6 +7,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { RentalLocationItem } from "@/models/rentalLocation";
 import { getFullRentalLocationMediaUrl } from "@/clientApi/rentalLocationsApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { toUrlSlug } from "@/shared/utils/slug";
 
 interface RentalLocationCardProps {
   location: RentalLocationItem;
@@ -31,7 +32,7 @@ export default function RentalLocationCard({
 
   return (
     <Link
-      href={`/${locale}/locations/${location.id}`}
+      href={`/${locale}/locations/${toUrlSlug(location.name, location.id)}`}
       className="group relative flex aspect-[300/380] w-full flex-col justify-end overflow-hidden rounded-[20px] bg-[#F9F7F4] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
     >
       {/* Background Image */}

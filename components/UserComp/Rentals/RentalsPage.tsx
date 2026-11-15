@@ -139,7 +139,6 @@ export default function RentalsPage() {
       <Navbar />
 
       <main className="flex-1 pb-8">
-        <RentalBreadcrumb />
         <RentalHeroSection />
 
         {/* Main Content Area: Sidebar + Grid */}

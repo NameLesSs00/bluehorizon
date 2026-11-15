@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { getStandaloneUnitById } from "@/clientApi/standaloneUnitsApi";
+import { resolveStandaloneUnitByNameOrId } from "@/clientApi/resolversApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import StandaloneBreadcrumb from "./StandaloneBreadcrumb";
@@ -19,17 +20,24 @@ import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
 
 interface StandaloneDetailsPageProps {
-  id: number;
+  id?: number;
+  nameOrSlug?: string;
 }
 
-export default function StandaloneDetailsPage({ id }: StandaloneDetailsPageProps) {
+export default function StandaloneDetailsPage({ id, nameOrSlug }: StandaloneDetailsPageProps) {
   const { t, locale } = useTranslation();
   const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
+  const targetKey = nameOrSlug || id || 0;
 
   const { data: res, isLoading, isError } = useQuery({
-    queryKey: ["standalone-units", "detail", id, locale, currentCurrency],
-    queryFn: () => getStandaloneUnitById(id, locale, currentCurrency),
-    enabled: id > 0,
+    queryKey: ["standalone-units", "detail", targetKey, locale, currentCurrency],
+    queryFn: async () => {
+      const target = nameOrSlug || id;
+      if (!target) return null;
+      const unitData = await resolveStandaloneUnitByNameOrId(target, locale, currentCurrency || "EGP");
+      return { data: unitData };
+    },
+    enabled: Boolean(nameOrSlug || (typeof id === "number" && id > 0)),
     staleTime: 1000 * 60 * 5,
   });
 

@@ -6,6 +6,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { getFullLocationMediaUrl } from "@/clientApi/projectLocationsApi";
 import { ProjectLocationItem } from "@/models/projectLocation";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { toUrlSlug } from "@/shared/utils/slug";
 
 interface PopularAreaCardProps {
   area: ProjectLocationItem;
@@ -24,7 +25,7 @@ export default function PopularAreaCard({ area }: PopularAreaCardProps) {
 
   return (
     <Link
-      href={`/${locale}/areas/${area.id}`}
+      href={`/${locale}/areas/${toUrlSlug(area.name, area.id)}`}
       className="group relative flex aspect-[300/380] w-full flex-col justify-end overflow-hidden rounded-[16px] bg-[#F9F7F4] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
     >
       {/* Background Image / Fallback Emblem */}

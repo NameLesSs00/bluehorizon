@@ -1,13 +1,9 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import AdminSlideDrawer from "@/components/adminComp/Common/AdminSlideDrawer";
-import {
-  PropertyType,
-  RentalFormPayload,
-  RentalItem,
-} from "@/models/rental";
+import { RentalFormPayload, RentalItem } from "@/models/rental";
 import {
   useCreateRentalMutation,
   useLocalizedRentalQuery,
@@ -18,45 +14,17 @@ import RentalLanguageFields from "./RentalLanguageFields";
 import RentalPricingViews from "./RentalPricingViews";
 import RentalListingDetailsFields from "./RentalListingDetailsFields";
 import RentalRelationsFields from "./RentalRelationsFields";
+import {
+  DEFAULT_RENTAL_FORM,
+  buildInitialRentalForm,
+  prepareRentalPayload,
+} from "./rentalFormHelpers";
 
 interface RentalFormDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   rentalToEdit: RentalItem | null;
 }
-
-const defaultForm: RentalFormPayload = {
-  code: "",
-  name: { en: "", ar: "", de: "" },
-  description: { en: "", ar: "", de: "" },
-  rentalLocationId: 0,
-  floor: "",
-  bedroomNo: 1,
-  bathroomNo: 1,
-  capacity: 2,
-  size: 80,
-  priceUSD: 100,
-  propertyType: PropertyType.Apartment,
-  isAvailable: true,
-  isFeatured: false,
-  hasSeaView: false,
-  hasPoolView: false,
-  hasGardenView: false,
-  hasMountainView: false,
-  hasCityView: false,
-  rulesCancellation: { en: "", ar: "", de: "" },
-  notes: "",
-  listingDetails: {
-    lateCheckIn: "",
-    services: [],
-    extraPeopleFee: 0,
-    familyFriendly: true,
-    privateEntrance: true,
-    extraPeople: "",
-  },
-  propertyCategoryItemIds: [],
-  infoAreaPlaces: [],
-};
 
 export default function RentalFormDrawer({
   isOpen,
@@ -69,87 +37,17 @@ export default function RentalFormDrawer({
   const { data: detailsData, isLoading: isLoadingDetails } =
     useLocalizedRentalQuery(editId, isOpen);
 
-  const [formData, setFormData] = useState<RentalFormPayload>(defaultForm);
+  const [formData, setFormData] = useState<RentalFormPayload>(DEFAULT_RENTAL_FORM);
   const [initialImages, setInitialImages] = useState<File[]>([]);
 
   useEffect(() => {
     if (!isOpen) {
-      setFormData(defaultForm);
+      setFormData(DEFAULT_RENTAL_FORM);
       setInitialImages([]);
       return;
     }
 
-    if (rentalToEdit) {
-      if (detailsData) {
-        setFormData({
-          id: detailsData.id,
-          code: detailsData.code,
-          name: detailsData.name,
-          description: detailsData.description,
-          rentalLocationId: detailsData.rentalLocationId,
-          floor: detailsData.floor,
-          bedroomNo: detailsData.bedroomNo,
-          bathroomNo: detailsData.bathroomNo,
-          capacity: detailsData.capacity,
-          size: detailsData.size,
-          priceUSD: detailsData.priceUSD,
-          propertyType: detailsData.propertyType,
-          isAvailable: detailsData.isAvailable,
-          isFeatured: detailsData.isFeatured,
-          hasSeaView: detailsData.hasSeaView,
-          hasPoolView: detailsData.hasPoolView,
-          hasGardenView: detailsData.hasGardenView,
-          hasMountainView: detailsData.hasMountainView,
-          hasCityView: detailsData.hasCityView,
-          rulesCancellation: detailsData.rulesCancellation,
-          notes: detailsData.notes,
-          listingDetails: detailsData.listingDetails,
-          propertyCategoryItemIds: detailsData.propertyCategoryItemIds,
-          infoAreaPlaces: detailsData.infoAreaPlaces,
-        });
-      } else {
-        const usdPrice =
-          rentalToEdit.prices.find((p) => p.currency === "USD")?.price || 100;
-
-        setFormData({
-          id: rentalToEdit.id,
-          code: rentalToEdit.code,
-          name: { en: rentalToEdit.name, ar: "", de: "" },
-          description: { en: rentalToEdit.description, ar: "", de: "" },
-          rentalLocationId: rentalToEdit.rentalLocation?.id || 0,
-          floor: rentalToEdit.floor,
-          bedroomNo: rentalToEdit.bedroomNo,
-          bathroomNo: rentalToEdit.bathroomNo,
-          capacity: rentalToEdit.capacity,
-          size: rentalToEdit.size,
-          priceUSD: usdPrice,
-          propertyType: rentalToEdit.propertyType,
-          isAvailable: rentalToEdit.isAvailable,
-          isFeatured: rentalToEdit.isFeatured,
-          hasSeaView: rentalToEdit.hasSeaView,
-          hasPoolView: rentalToEdit.hasPoolView,
-          hasGardenView: rentalToEdit.hasGardenView,
-          hasMountainView: rentalToEdit.hasMountainView,
-          hasCityView: rentalToEdit.hasCityView,
-          rulesCancellation: {
-            en: rentalToEdit.rulesCancellation,
-            ar: "",
-            de: "",
-          },
-          notes: rentalToEdit.notes,
-          listingDetails: rentalToEdit.listingDetails,
-          propertyCategoryItemIds:
-            rentalToEdit.categoryItems?.map((c) => c.id) || [],
-          infoAreaPlaces:
-            rentalToEdit.infoAreaPlaces?.map((iap) => ({
-              infoAreaPlaceId: iap.id,
-              distance: iap.distance,
-            })) || [],
-        });
-      }
-    } else {
-      setFormData(defaultForm);
-    }
+    setFormData(buildInitialRentalForm(rentalToEdit, detailsData));
   }, [isOpen, rentalToEdit, detailsData]);
 
   const createMutation = useCreateRentalMutation(onClose);
@@ -173,29 +71,7 @@ export default function RentalFormDrawer({
       return;
     }
 
-    const payload: RentalFormPayload = {
-      ...formData,
-      code: formData.code.trim(),
-      name: {
-        en: formData.name.en.trim(),
-        ar: formData.name.ar.trim() || formData.name.en.trim(),
-        de: formData.name.de.trim() || formData.name.en.trim(),
-      },
-      description: {
-        en: formData.description.en.trim(),
-        ar: formData.description.ar.trim() || formData.description.en.trim(),
-        de: formData.description.de.trim() || formData.description.en.trim(),
-      },
-      rulesCancellation: {
-        en: formData.rulesCancellation.en.trim(),
-        ar:
-          formData.rulesCancellation.ar.trim() ||
-          formData.rulesCancellation.en.trim(),
-        de:
-          formData.rulesCancellation.de.trim() ||
-          formData.rulesCancellation.en.trim(),
-      },
-    };
+    const payload = prepareRentalPayload(formData);
 
     if (isEditMode && editId) {
       updateMutation.mutate({ id: editId, payload });
@@ -229,7 +105,7 @@ export default function RentalFormDrawer({
         {/* 1. Basic Specifications */}
         <RentalBasicFields formData={formData} onChange={setFormData} />
 
-        {/* 2. Multilingual Names, Descriptions, and Policies */}
+        {/* 2. Multilingual Names, Descriptions, Floor, and Policies */}
         <RentalLanguageFields formData={formData} onChange={setFormData} />
 
         {/* 3. Pricing & Views */}
@@ -295,4 +171,3 @@ export default function RentalFormDrawer({
     </AdminSlideDrawer>
   );
 }
-

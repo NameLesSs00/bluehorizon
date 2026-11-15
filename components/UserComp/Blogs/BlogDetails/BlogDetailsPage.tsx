@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { getBlogById, getBlogs, getFullImageUrl } from "@/clientApi/blogsApi";
+import { resolveBlogByNameOrId } from "@/clientApi/resolversApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import BlogBreadcrumb from "./BlogBreadcrumb";
@@ -31,42 +32,7 @@ export default function BlogDetailsPage({ name }: BlogDetailsPageProps) {
     queryKey: ["publicBlog", decodedName, locale],
     queryFn: async () => {
       if (!decodedName) return null;
-
-      // Check if numeric ID was passed
-      const numericId = parseInt(decodedName, 10);
-      if (!isNaN(numericId) && numericId > 0 && String(numericId) === decodedName) {
-        const res = await getBlogById(numericId);
-        return res.data;
-      }
-
-      // Query blogs list and find by title
-      const listRes = await getBlogs({
-        Language: locale,
-        PageNumber: 1,
-        PageSize: 100,
-      });
-
-      const normalize = (str: string) =>
-        str.toLowerCase().replace(/[^a-z0-9]/g, "");
-      const normalizedTarget = normalize(decodedName);
-
-      const matched = listRes.items.find(
-        (b) =>
-          normalize(b.title) === normalizedTarget ||
-          b.title.toLowerCase().trim() === decodedName.toLowerCase()
-      );
-
-      if (matched) {
-        const singleRes = await getBlogById(matched.id);
-        return singleRes.data;
-      }
-
-      if (listRes.items.length > 0) {
-        const first = await getBlogById(listRes.items[0].id);
-        return first.data;
-      }
-
-      return null;
+      return await resolveBlogByNameOrId(decodedName, locale);
     },
     staleTime: 1000 * 60 * 5,
   });

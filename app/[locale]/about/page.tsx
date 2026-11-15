@@ -1,13 +1,36 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import AboutPage from "@/components/UserComp/About/AboutPage";
+import { buildPageMetadata } from "@/shared/utils/seoMetadata";
 
-export const metadata: Metadata = {
-  title: "About Us | Blue Horizon Real Estate",
-  description:
-    "Redefining real estate excellence in the Red Sea. Empower your property investments with trusted guidance, seamless digital search and deep local expertise.",
-};
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const isArabic = locale === "ar";
+  const isGerman = locale === "de";
+
+  const title = isArabic
+    ? "عن بلو هورايزون | ريادة الاستثمار العقاري في البحر الأحمر"
+    : isGerman
+    ? "Über uns | Blue Horizon Real Estate Ägypten"
+    : "About Us | Premier Real Estate Agency in Hurghada | Blue Horizon";
+
+  const description = isArabic
+    ? "تعرف على بلو هورايزون، شريكك الموثوق في شراء وتأجير واستثمار العقارات الفاخرة في الغردقة ومصر."
+    : isGerman
+    ? "Erfahren Sie mehr über Blue Horizon, Ihren verlässlichen Partner für Immobilien am Roten Meer."
+    : "Redefining real estate excellence in the Red Sea. Empower your property investments with trusted guidance and deep local expertise.";
+
+  return buildPageMetadata({
+    title,
+    description,
+    locale,
+    path: "/about",
+  });
+}
 
 export default function Page() {
   return <AboutPage />;
 }
-

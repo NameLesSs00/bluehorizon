@@ -1,11 +1,23 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
-import { useAdminAuthStore } from "@/features/admin/useAdminAuthStore";
 import { ApiResponse, AuthTokenData } from "@/models/admin";
 
 export type { ApiResponse };
 
 export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL || "https://realestate44.runasp.net";
+
+export interface AuthCallbacks {
+  getAccessToken: () => string | null;
+  getRefreshToken: () => string | null;
+  onAuthSuccess: (data: AuthTokenData) => void;
+  onAuthClear: () => void;
+}
+
+let authCallbacks: AuthCallbacks | null = null;
+
+export function registerAuthCallbacks(callbacks: AuthCallbacks) {
+  authCallbacks = callbacks;
+}
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -16,7 +28,7 @@ export const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const token = useAdminAuthStore.getState().accessToken;
+    const token = authCallbacks ? authCallbacks.getAccessToken() : null;
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -63,11 +75,13 @@ apiClient.interceptors.response.use(
       error.response?.status === 401 &&
       originalRequest &&
       !originalRequest._retry &&
-      !isAuthEndpoint
+      !isAuthEndpoint &&
+      typeof window !== "undefined" &&
+      authCallbacks
     ) {
-      const refreshToken = useAdminAuthStore.getState().refreshToken;
+      const refreshToken = authCallbacks.getRefreshToken();
       if (!refreshToken) {
-        useAdminAuthStore.getState().clearAuth();
+        authCallbacks.onAuthClear();
         return Promise.reject(error);
       }
 
@@ -97,7 +111,7 @@ apiClient.interceptors.response.use(
         );
 
         if (res.data?.success && res.data.data?.accessToken) {
-          useAdminAuthStore.getState().setAuth(res.data.data);
+          authCallbacks.onAuthSuccess(res.data.data);
           const newAccessToken = res.data.data.accessToken;
           processQueue(null, newAccessToken);
           if (originalRequest.headers) {
@@ -105,12 +119,12 @@ apiClient.interceptors.response.use(
           }
           return apiClient(originalRequest);
         } else {
-          useAdminAuthStore.getState().clearAuth();
+          authCallbacks.onAuthClear();
           processQueue(error, null);
           return Promise.reject(error);
         }
       } catch (refreshError) {
-        useAdminAuthStore.getState().clearAuth();
+        authCallbacks.onAuthClear();
         processQueue(refreshError, null);
         return Promise.reject(refreshError);
       } finally {

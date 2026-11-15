@@ -6,31 +6,32 @@ import { useTranslation } from "@/features/i18n/useTranslation";
 import LocationBreadcrumb from "./LocationBreadcrumb";
 import LocationDetailsHeroBanner from "./LocationDetailsHeroBanner";
 import LocationOverviewSection from "./LocationOverviewSection";
-import LocationGallerySection from "./LocationGallerySection";
 import LocationAvailableRentalsSection from "./LocationAvailableRentalsSection";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
 import {
-  getRentalLocationById,
   getFullRentalLocationMediaUrl,
 } from "@/clientApi/rentalLocationsApi";
+import { resolveRentalLocationByNameOrId } from "@/clientApi/resolversApi";
 
 interface LocationDetailsPageProps {
-  id: number;
+  id?: number;
+  nameOrSlug?: string;
 }
 
-export default function LocationDetailsPage({ id }: LocationDetailsPageProps) {
+export default function LocationDetailsPage({ id, nameOrSlug }: LocationDetailsPageProps) {
   const [activeRentalsCount, setActiveRentalsCount] = useState<number>(0);
   const { locale } = useTranslation();
+  const targetKey = nameOrSlug || id || 0;
 
   const { data: locationRes, isLoading } = useQuery({
-    queryKey: ["publicRentalLocation", id, locale],
+    queryKey: ["publicRentalLocation", targetKey, locale],
     queryFn: async () => {
-      if (!id || id <= 0) return null;
-      const res = await getRentalLocationById(id, locale);
-      return res.data;
+      const target = nameOrSlug || id;
+      if (!target) return null;
+      return await resolveRentalLocationByNameOrId(target, locale);
     },
-    enabled: typeof id === "number" && id > 0,
+    enabled: Boolean(nameOrSlug || (typeof id === "number" && id > 0)),
     staleTime: 1000 * 60 * 5,
   });
 
@@ -65,10 +66,6 @@ export default function LocationDetailsPage({ id }: LocationDetailsPageProps) {
     ? getFullRentalLocationMediaUrl(primaryImage.imageUrl)
     : null;
 
-  const galleryImageUrls = sortedImages
-    .map((img) => getFullRentalLocationMediaUrl(img.imageUrl))
-    .filter(Boolean);
-
   const resolvedVideoUrl = location?.videoUrl
     ? getFullRentalLocationMediaUrl(location.videoUrl)
     : null;
@@ -81,19 +78,15 @@ export default function LocationDetailsPage({ id }: LocationDetailsPageProps) {
         <LocationDetailsHeroBanner
           title={location?.name}
           imageUrl={primaryImageUrl}
+          videoUrl={resolvedVideoUrl}
         />
         <LocationOverviewSection
           locationName={location?.name}
           description={location?.description}
           activeRentalsCount={activeRentalsCount}
         />
-        <LocationGallerySection
-          images={galleryImageUrls}
-          videoUrl={resolvedVideoUrl}
-          title={location?.name}
-        />
         <LocationAvailableRentalsSection
-          locationId={id}
+          locationId={location?.id || id || 0}
           locationName={location?.name}
           onCountLoaded={setActiveRentalsCount}
         />

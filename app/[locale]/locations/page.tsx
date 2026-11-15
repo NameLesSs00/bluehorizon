@@ -1,13 +1,36 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import LocationsPage from "@/components/UserComp/Locations/LocationsPage";
+import { buildPageMetadata } from "@/shared/utils/seoMetadata";
 
-export const metadata: Metadata = {
-  title: "Prime Coastal & Urban Locations | Blue Horizon Real Estate",
-  description:
-    "Explore premier real estate investment destinations across Egypt with verified compounds, standalone villas, and luxury rentals.",
-};
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const isArabic = locale === "ar";
+  const isGerman = locale === "de";
+
+  const title = isArabic
+    ? "وجهات ومواقع الإيجار السياحي | بلو هورايزون"
+    : isGerman
+    ? "Top-Lagen für Ferienunterkünfte | Blue Horizon"
+    : "Top Vacation Rental Locations & Coastal Hotspots | Blue Horizon";
+
+  const description = isArabic
+    ? "استكشف أفضل الوجهات الساحلية للإيجار اليومي والشهري في الغردقة، سهل حشيش، والجونة."
+    : isGerman
+    ? "Buchen Sie erstklassige Ferienapartments und Villen in den schönsten Destinationen Ägyptens."
+    : "Explore premier vacation rental destinations across Egypt with verified chalets, villas, and luxury beachfront stays.";
+
+  return buildPageMetadata({
+    title,
+    description,
+    locale,
+    path: "/locations",
+  });
+}
 
 export default function Page() {
   return <LocationsPage />;
 }
-

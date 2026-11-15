@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useRentalLocationsQuery } from "@/features/rentalLocations/useRentalLocationsQueries";
 import {
@@ -78,47 +78,30 @@ export default function RentalBasicFields({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div>
-          <label className="block text-[12px] font-medium text-[#202326]">
-            Rental Location *
-          </label>
-          <select
-            required
-            value={formData.rentalLocationId || ""}
-            onChange={(e) =>
-              onChange((prev) => ({
-                ...prev,
-                rentalLocationId: Number(e.target.value),
-              }))
-            }
-            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
-          >
-            <option value="" disabled>
-              Select Destination Area
+      <div>
+        <label className="block text-[12px] font-medium text-[#202326]">
+          Rental Location *
+        </label>
+        <select
+          required
+          value={formData.rentalLocationId || ""}
+          onChange={(e) =>
+            onChange((prev) => ({
+              ...prev,
+              rentalLocationId: Number(e.target.value),
+            }))
+          }
+          className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
+        >
+          <option value="" disabled>
+            Select Destination Area
+          </option>
+          {locations.map((loc) => (
+            <option key={loc.id} value={loc.id}>
+              {loc.name}
             </option>
-            {locations.map((loc) => (
-              <option key={loc.id} value={loc.id}>
-                {loc.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-[12px] font-medium text-[#202326]">
-            Floor / Level
-          </label>
-          <input
-            type="text"
-            value={formData.floor}
-            onChange={(e) =>
-              onChange((prev) => ({ ...prev, floor: e.target.value }))
-            }
-            placeholder="e.g. Ground Floor, 2nd Floor, Penthouse"
-            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-          />
-        </div>
+          ))}
+        </select>
       </div>
 
       {/* Numerical Specs Grid */}

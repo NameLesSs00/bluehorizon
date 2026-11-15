@@ -668,7 +668,7 @@
       "bedroomSingle": "1 Zimmer",
       "bathrooms": "{count} Bأ¤der",
       "bathroomSingle": "1 Bad",
-      "area": "{size} mآ²",
+      "area": "{size} m²",
       "perMonth": "/ Monat",
       "viewDetails": "Details anzeigen",
       "studio": "Studio",
@@ -743,7 +743,27 @@
       "nextPhoto": "Nأ¤chstes Foto",
       "inquiryValidation": "Bitte fأ¼llen Sie Vorname, E-Mail und Telefonnummer aus.",
       "inquirySuccess": "Vielen Dank {name}! Ihre Anfrage fأ¼r {unit} ist eingegangen.",
-      "inquiryError": "Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+      "inquiryError": "Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+      "propertyTypes": {
+        "0": "Apartment",
+        "1": "Villa",
+        "2": "Reihenhaus",
+        "3": "Studio",
+        "4": "Penthouse",
+        "5": "1 Schlafzimmer",
+        "6": "2 Schlafzimmer",
+        "7": "3 Schlafzimmer",
+        "8": "Chalet",
+        "9": "4 Schlafzimmer",
+        "10": "Kompaktes Studio"
+      },
+      "familyFriendly": "Familienfreundlich",
+      "familyFriendlyDesc": "Geeignet für Familien mit Kindern",
+      "privateEntrance": "Eigener Eingang",
+      "privateEntranceDesc": "Unabhängiger privater Zugang zur Unterkunft",
+      "hostNotes": "Hinweise zur Anreise & vom Gastgeber",
+      "nearbyPlacesTitle": "Sehenswürdigkeiten & Orte in der Nähe",
+      "extraGuestFee": "({fee} USD Gebühr)"
     }
   },
   "projects": {
@@ -866,7 +886,7 @@
         "roomSingle": "1 Zimmer",
         "bathsCount": "{count} Bأ¤der",
         "bathSingle": "1 Bad",
-        "areaM2": "{area} mآ²",
+        "areaM2": "{area} m²",
         "primaryBadge": "Erstbezug",
         "resaleBadge": "Wiederverkauf"
       }

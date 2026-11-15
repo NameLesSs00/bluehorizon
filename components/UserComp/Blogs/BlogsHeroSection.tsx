@@ -32,41 +32,41 @@ export default function BlogsHeroSection({
     : null;
 
   return (
-    <section className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8">
-      <motion.div
-        initial={shouldReduceMotion ? false : "hidden"}
-        animate="visible"
-        variants={fadeInUpVariants}
-        className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] bg-[#1B3A6B] shadow-xl"
+    <section className="relative w-full overflow-hidden bg-[#1B3A6B]">
+      {/* Background Image */}
+      <div
+        className={`absolute inset-0 z-0 ${
+          isRtl ? "scale-x-[-1]" : ""
+        }`}
       >
-        {/* Background Image */}
-        <div
-          className={`absolute inset-0 z-0 ${
-            isRtl ? "scale-x-[-1]" : ""
-          }`}
-        >
-          <Image
-            src="/Blogs/hero.png"
-            alt={t("blogs.hero.heading")}
-            fill
-            priority
-            sizes="(max-width: 1360px) 100vw, 1360px"
-            className="object-cover object-center"
-          />
-        </div>
-
-        {/* Linear Gradient Overlay */}
-        <div
-          className="absolute inset-0 z-10"
-          style={{
-            background: isRtl
-              ? "linear-gradient(270deg, #2B5FA6 44.23%, rgba(43, 95, 166, 0.85) 67.31%)"
-              : "linear-gradient(90deg, #2B5FA6 44.23%, rgba(43, 95, 166, 0.85) 67.31%)",
-          }}
+        <Image
+          src="/Blogs/hero.png"
+          alt={t("blogs.hero.heading")}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
         />
+      </div>
 
-        {/* Hero Content Grid */}
-        <div className="relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center p-6 sm:p-10 lg:p-14">
+      {/* Linear Gradient Overlay */}
+      <div
+        className="absolute inset-0 z-10"
+        style={{
+          background: isRtl
+            ? "linear-gradient(270deg, #2B5FA6 44.23%, rgba(43, 95, 166, 0.85) 67.31%)"
+            : "linear-gradient(90deg, #2B5FA6 44.23%, rgba(43, 95, 166, 0.85) 67.31%)",
+        }}
+      />
+
+      {/* Hero Content Grid */}
+      <div className="relative z-20 mx-auto max-w-[1360px] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+        <motion.div
+          initial={shouldReduceMotion ? false : "hidden"}
+          animate="visible"
+          variants={fadeInUpVariants}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
+        >
           {/* Left Text Column */}
           <div className="lg:col-span-7">
             {/* Tag Badge */}
@@ -153,8 +153,8 @@ export default function BlogsHeroSection({
               </div>
             </div>
           )}
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

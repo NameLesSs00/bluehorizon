@@ -6,6 +6,7 @@ import { FiArrowRight } from "react-icons/fi";
 import { getFullLocationMediaUrl } from "@/clientApi/projectLocationsApi";
 import { ProjectLocationItem } from "@/models/projectLocation";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { toUrlSlug } from "@/shared/utils/slug";
 
 interface AreaListCardProps {
   area: ProjectLocationItem;
@@ -25,7 +26,7 @@ export default function AreaListCard({ area }: AreaListCardProps) {
 
   return (
     <Link
-      href={`/${locale}/areas/${area.id}`}
+      href={`/${locale}/areas/${toUrlSlug(area.name, area.id)}`}
       className="group block overflow-hidden rounded-[22px] border border-[#DCE4DF] bg-white transition-all duration-300 hover:bg-[#E5ECF6] hover:shadow-md cursor-pointer"
     >
       <div className="grid grid-cols-1 md:grid-cols-12 md:items-stretch">

@@ -1,4 +1,8 @@
-﻿import Link from "next/link";
+"use client";
+
+import Link from "next/link";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { toUrlSlug } from "@/shared/utils/slug";
 
 interface UnitBreadcrumbProps {
   unitName?: string;
@@ -11,7 +15,8 @@ export default function UnitBreadcrumb({
   projectName,
   projectId,
 }: UnitBreadcrumbProps) {
-  const displayUnitName = unitName || "Unit Details";
+  const { t, locale } = useTranslation();
+  const displayUnitName = unitName || t("unitDetails.defaultTitle", "Unit Details");
 
   return (
     <nav
@@ -23,8 +28,8 @@ export default function UnitBreadcrumb({
         style={{ fontFamily: "var(--font-inter)" }}
       >
         <li>
-          <Link href="/" className="transition-colors hover:text-[#2B5FA6]">
-            Home
+          <Link href={`/${locale}`} className="transition-colors hover:text-[#2B5FA6]">
+            {t("projects.details.breadcrumbHome", "Home")}
           </Link>
         </li>
 
@@ -34,10 +39,10 @@ export default function UnitBreadcrumb({
 
         <li>
           <Link
-            href="/projects"
+            href={`/${locale}/projects`}
             className="transition-colors hover:text-[#2B5FA6]"
           >
-            Projects
+            {t("projects.details.breadcrumbProjects", "Projects")}
           </Link>
         </li>
 
@@ -48,7 +53,7 @@ export default function UnitBreadcrumb({
             </li>
             <li>
               <Link
-                href={`/projects/${projectId}`}
+                href={`/${locale}/projects/${toUrlSlug(projectName, projectId)}`}
                 className="transition-colors hover:text-[#2B5FA6]"
               >
                 {projectName}
@@ -71,4 +76,3 @@ export default function UnitBreadcrumb({
     </nav>
   );
 }
-

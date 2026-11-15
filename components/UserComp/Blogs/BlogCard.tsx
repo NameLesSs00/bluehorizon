@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { toUrlSlug } from "@/shared/utils/slug";
 
 export interface BlogCardData {
   id: number;
@@ -27,7 +28,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
       ? blog.imageUrl
       : "/default-fallback.png";
 
-  const blogHref = `/${locale}/blogs/${encodeURIComponent(blog.title || String(blog.id))}`;
+  const blogHref = `/${locale}/blogs/${toUrlSlug(blog.title, blog.id)}`;
 
   return (
     <Link

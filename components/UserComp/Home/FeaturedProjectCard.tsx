@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { toUrlSlug } from "@/shared/utils/slug";
 
 export interface ProjectCardData {
   id: string;
@@ -28,7 +29,7 @@ export default function FeaturedProjectCard({
 
   return (
     <Link
-      href={`/${locale}/projects/${project.id}`}
+      href={`/${locale}/projects/${toUrlSlug(project.title, project.id)}`}
       className="group flex flex-col overflow-hidden rounded-[16px] border border-[#E2E8F3] bg-white transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
     >
       <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#F9F7F4]">

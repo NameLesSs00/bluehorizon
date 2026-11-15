@@ -50,6 +50,15 @@ export interface RentalListingDetails {
   extraPeople: string;
 }
 
+export interface LocalizedRentalListingDetails {
+  lateCheckIn: LocalizedText;
+  services: LocalizedText[];
+  extraPeopleFee: number;
+  familyFriendly: boolean;
+  privateEntrance: boolean;
+  extraPeople: LocalizedText;
+}
+
 export interface RentalCategoryItem {
   id: number;
   name: string;
@@ -129,7 +138,7 @@ export interface RentalFormPayload {
   name: LocalizedText;
   description: LocalizedText;
   rentalLocationId: number;
-  floor: string;
+  floor: LocalizedText;
   bedroomNo: number;
   bathroomNo: number;
   capacity: number;
@@ -144,8 +153,8 @@ export interface RentalFormPayload {
   hasMountainView: boolean;
   hasCityView: boolean;
   rulesCancellation: LocalizedText;
-  notes: string;
-  listingDetails: RentalListingDetails;
+  notes: LocalizedText;
+  listingDetails: LocalizedRentalListingDetails;
   propertyCategoryItemIds: number[];
   infoAreaPlaces: RentalRelationAreaPlacePayload[];
 }
@@ -157,7 +166,7 @@ export interface LocalizedRentalDetails {
   description: LocalizedText;
   rulesCancellation: LocalizedText;
   rentalLocationId: number;
-  floor: string;
+  floor: LocalizedText;
   bedroomNo: number;
   bathroomNo: number;
   capacity: number;
@@ -171,10 +180,50 @@ export interface LocalizedRentalDetails {
   hasGardenView: boolean;
   hasMountainView: boolean;
   hasCityView: boolean;
-  notes: string;
-  listingDetails: RentalListingDetails;
+  notes: LocalizedText;
+  listingDetails: LocalizedRentalListingDetails;
   propertyCategoryItemIds: number[];
   infoAreaPlaces: RentalRelationAreaPlacePayload[];
   images: RentalImageItem[];
+}
+
+export function normalizePropertyType(
+  type: PropertyType | string | number | undefined | null
+): PropertyType {
+  if (type === undefined || type === null) return PropertyType.Apartment;
+  if (typeof type === "number") {
+    return type in PropertyType ? (type as PropertyType) : PropertyType.Apartment;
+  }
+  const lower = String(type).toLowerCase().replace(/\s+/g, "");
+  switch (lower) {
+    case "apartment":
+      return PropertyType.Apartment;
+    case "villa":
+      return PropertyType.Villa;
+    case "townhouse":
+      return PropertyType.Townhouse;
+    case "studio":
+      return PropertyType.Studio;
+    case "penthouse":
+      return PropertyType.Penthouse;
+    case "onebedroom":
+      return PropertyType.OneBedroom;
+    case "twobedroom":
+      return PropertyType.TwoBedroom;
+    case "threebedroom":
+      return PropertyType.ThreeBedroom;
+    case "chalet":
+      return PropertyType.Chalet;
+    case "fourbedroom":
+      return PropertyType.FourBedroom;
+    case "studiocompact":
+      return PropertyType.StudioCompact;
+    default: {
+      const parsed = parseInt(String(type), 10);
+      return !isNaN(parsed) && parsed in PropertyType
+        ? (parsed as PropertyType)
+        : PropertyType.Apartment;
+    }
+  }
 }
 

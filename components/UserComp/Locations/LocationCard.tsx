@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -6,6 +6,7 @@ import Link from "next/link";
 import { RentalLocationItem } from "@/models/rentalLocation";
 import { getFullRentalLocationMediaUrl } from "@/clientApi/rentalLocationsApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { toUrlSlug } from "@/shared/utils/slug";
 
 interface LocationCardProps {
   location: RentalLocationItem;
@@ -29,7 +30,7 @@ export default function LocationCard({ location, region }: LocationCardProps) {
 
   return (
     <Link
-      href={`/${locale}/locations/${location.id}`}
+      href={`/${locale}/locations/${toUrlSlug(location.name, location.id)}`}
       className="group relative block h-[360px] sm:h-[400px] w-full overflow-hidden rounded-[24px] sm:rounded-[28px] border border-[#D9E2EE] shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#2B5FA6]/40"
     >
       {/* Background Image */}

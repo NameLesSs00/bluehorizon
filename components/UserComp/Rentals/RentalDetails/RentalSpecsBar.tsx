@@ -1,7 +1,12 @@
 "use client";
 
 import { useTranslation } from "@/features/i18n/useTranslation";
-import { RentalItem, PROPERTY_TYPE_LABELS } from "@/models/rental";
+import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
+import {
+  RentalItem,
+  PROPERTY_TYPE_LABELS,
+  normalizePropertyType,
+} from "@/models/rental";
 
 interface RentalSpecsBarProps {
   unit: RentalItem;
@@ -9,8 +14,12 @@ interface RentalSpecsBarProps {
 
 export default function RentalSpecsBar({ unit }: RentalSpecsBarProps) {
   const { t } = useTranslation();
+  const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
 
   const primaryPrice =
+    unit.prices?.find(
+      (p) => p.currency.toUpperCase() === currentCurrency.toUpperCase()
+    ) ||
     unit.prices?.find((p) => p.currency.toUpperCase() === "EGP") ||
     unit.prices?.[0];
 
@@ -30,14 +39,17 @@ export default function RentalSpecsBar({ unit }: RentalSpecsBarProps) {
     });
   }
 
-  if (
-    unit.propertyType !== undefined &&
-    unit.propertyType !== null &&
-    PROPERTY_TYPE_LABELS[unit.propertyType]
-  ) {
+  if (unit.propertyType !== undefined && unit.propertyType !== null) {
+    const normalized = normalizePropertyType(unit.propertyType);
+    const translated = t(`rent.details.propertyTypes.${normalized}`);
+    const typeLabel =
+      translated && !translated.startsWith("rent.")
+        ? translated
+        : PROPERTY_TYPE_LABELS[normalized] || String(unit.propertyType);
+
     specs.push({
       label: t("rent.details.specs.unitType"),
-      value: PROPERTY_TYPE_LABELS[unit.propertyType],
+      value: typeLabel,
     });
   }
 

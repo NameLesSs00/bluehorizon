@@ -11,6 +11,7 @@ import RentalLocationFilterDrawer from "./RentalLocationFilterDrawer";
 import AreaUnitsPagination from "@/components/UserComp/Areas/AreaDetails/AreaUnitsPagination";
 import { usePublicRentalsQuery } from "@/features/rentals/useRentalsQueries";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import {
   containerStaggerVariants,
   cardItemVariants,
@@ -39,6 +40,7 @@ export default function LocationAvailableRentalsSection({
   onCountLoaded,
 }: LocationAvailableRentalsSectionProps) {
   const { t, locale, direction } = useTranslation();
+  const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
   const shouldReduceMotion = useReducedMotion();
 
   const [filterState, setFilterState] =
@@ -49,6 +51,7 @@ export default function LocationAvailableRentalsSection({
   // Fetch all rentals from public query hook with active locale
   const { data: rentalsData, isLoading } = usePublicRentalsQuery({
     Language: locale,
+    Currency: currentCurrency || "EGP",
     PageSize: 100,
   });
 

@@ -668,7 +668,7 @@
       "bedroomSingle": "1 Bed",
       "bathrooms": "{count} Baths",
       "bathroomSingle": "1 Bath",
-      "area": "{size} mآ²",
+      "area": "{size} m²",
       "perMonth": "/ month",
       "viewDetails": "View Details",
       "studio": "Studio",
@@ -743,7 +743,27 @@
       "nextPhoto": "Next photo",
       "inquiryValidation": "Please fill in First Name, Email, and Phone Number.",
       "inquirySuccess": "Thank you {name}! Your inquiry for {unit} has been received.",
-      "inquiryError": "Failed to submit inquiry. Please try again."
+      "inquiryError": "Failed to submit inquiry. Please try again.",
+      "propertyTypes": {
+        "0": "Apartment",
+        "1": "Villa",
+        "2": "Townhouse",
+        "3": "Studio",
+        "4": "Penthouse",
+        "5": "1 Bedroom",
+        "6": "2 Bedrooms",
+        "7": "3 Bedrooms",
+        "8": "Chalet",
+        "9": "4 Bedrooms",
+        "10": "Studio (Compact)"
+      },
+      "familyFriendly": "Family Friendly",
+      "familyFriendlyDesc": "Suitable for families with children",
+      "privateEntrance": "Private Entrance",
+      "privateEntranceDesc": "Independent private access to the unit",
+      "hostNotes": "Arrival & Host Notes",
+      "nearbyPlacesTitle": "Nearby Landmarks & Destinations",
+      "extraGuestFee": "({fee} USD fee)"
     }
   },
   "projects": {
@@ -866,7 +886,7 @@
         "roomSingle": "1 Room",
         "bathsCount": "{count} Baths",
         "bathSingle": "1 Bath",
-        "areaM2": "{area} mآ²",
+        "areaM2": "{area} m²",
         "primaryBadge": "Primary",
         "resaleBadge": "Resale"
       }

@@ -6,6 +6,7 @@ import {
   RentalFormPayload,
   RentalItem,
   RentalsQueryParams,
+  normalizePropertyType,
 } from "@/models/rental";
 
 export function getFullRentalMediaUrl(
@@ -92,6 +93,23 @@ export async function getFullLocalizedRental(
   const priceUSD =
     baseItem?.prices?.find((p) => p.currency === "USD")?.price || 0;
 
+  const enServices = enItem?.listingDetails?.services || [];
+  const arServices = arItem?.listingDetails?.services || [];
+  const deServices = deItem?.listingDetails?.services || [];
+  const maxServicesCount = Math.max(
+    enServices.length,
+    arServices.length,
+    deServices.length
+  );
+
+  const localizedServices = Array.from({ length: maxServicesCount }).map(
+    (_, index) => ({
+      en: enServices[index] || "",
+      ar: arServices[index] || "",
+      de: deServices[index] || "",
+    })
+  );
+
   return {
     id,
     code: baseItem?.code || "",
@@ -111,13 +129,17 @@ export async function getFullLocalizedRental(
       de: deItem?.rulesCancellation || "",
     },
     rentalLocationId: baseItem?.rentalLocation?.id || 0,
-    floor: baseItem?.floor || "",
+    floor: {
+      en: enItem?.floor || "",
+      ar: arItem?.floor || "",
+      de: deItem?.floor || "",
+    },
     bedroomNo: baseItem?.bedroomNo || 0,
     bathroomNo: baseItem?.bathroomNo || 0,
     capacity: baseItem?.capacity || 0,
     size: baseItem?.size || 0,
     priceUSD,
-    propertyType: baseItem?.propertyType ?? 0,
+    propertyType: normalizePropertyType(baseItem?.propertyType),
     isAvailable: baseItem?.isAvailable ?? true,
     isFeatured: baseItem?.isFeatured ?? false,
     hasSeaView: baseItem?.hasSeaView ?? false,
@@ -125,14 +147,26 @@ export async function getFullLocalizedRental(
     hasGardenView: baseItem?.hasGardenView ?? false,
     hasMountainView: baseItem?.hasMountainView ?? false,
     hasCityView: baseItem?.hasCityView ?? false,
-    notes: baseItem?.notes || "",
-    listingDetails: baseItem?.listingDetails || {
-      lateCheckIn: "",
-      services: [],
-      extraPeopleFee: 0,
-      familyFriendly: false,
-      privateEntrance: false,
-      extraPeople: "",
+    notes: {
+      en: enItem?.notes || "",
+      ar: arItem?.notes || "",
+      de: deItem?.notes || "",
+    },
+    listingDetails: {
+      lateCheckIn: {
+        en: enItem?.listingDetails?.lateCheckIn || "",
+        ar: arItem?.listingDetails?.lateCheckIn || "",
+        de: deItem?.listingDetails?.lateCheckIn || "",
+      },
+      services: localizedServices,
+      extraPeopleFee: baseItem?.listingDetails?.extraPeopleFee || 0,
+      familyFriendly: baseItem?.listingDetails?.familyFriendly ?? true,
+      privateEntrance: baseItem?.listingDetails?.privateEntrance ?? true,
+      extraPeople: {
+        en: enItem?.listingDetails?.extraPeople || "",
+        ar: arItem?.listingDetails?.extraPeople || "",
+        de: deItem?.listingDetails?.extraPeople || "",
+      },
     },
     propertyCategoryItemIds:
       baseItem?.categoryItems?.map((c) => c.id) || [],

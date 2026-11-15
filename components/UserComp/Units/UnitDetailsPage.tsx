@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/UserComp/Common/Navbar";
@@ -14,36 +14,51 @@ import UnitInquiryCard from "./UnitInquiryCard";
 import UnitSimilarUnits from "./UnitSimilarUnits";
 import { getPrimaryUnitById, getFullPrimaryUnitMediaUrl } from "@/clientApi/primaryUnitsApi";
 import { getResaleById, getFullResaleMediaUrl } from "@/clientApi/resalesApi";
-import { PROPERTY_TYPE_LABELS } from "@/models/resale";
+import { resolveUnitByNameOrId } from "@/clientApi/resolversApi";
+import { useTranslation } from "@/features/i18n/useTranslation";
+import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
+import { PROPERTY_TYPE_LABELS, ResaleItem } from "@/models/resale";
+import { PrimaryUnitItem } from "@/models/primaryUnit";
 import { NormalizedUnitDetails } from "./unitTypes";
 
 interface UnitDetailsPageProps {
-  id: number;
+  id?: number;
+  nameOrSlug?: string;
   type?: "primary" | "resale";
 }
 
-export default function UnitDetailsPage({ id, type = "primary" }: UnitDetailsPageProps) {
+export default function UnitDetailsPage({
+  id,
+  nameOrSlug,
+  type = "primary",
+}: UnitDetailsPageProps) {
+  const { locale } = useTranslation();
+  const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
+  const targetKey = nameOrSlug || id || 0;
+
   // Query primary unit if type === "primary"
   const { data: primaryRes, isLoading: isPrimaryLoading } = useQuery({
-    queryKey: ["publicPrimaryUnit", id],
+    queryKey: ["publicPrimaryUnit", targetKey, locale, currentCurrency],
     queryFn: async () => {
-      if (!id || id <= 0) return null;
-      const res = await getPrimaryUnitById(id, "en", "USD");
-      return res.data;
+      const target = nameOrSlug || id;
+      if (!target) return null;
+      const res = await resolveUnitByNameOrId(target, "primary", locale, currentCurrency || "USD");
+      return res;
     },
-    enabled: type === "primary" && typeof id === "number" && id > 0,
+    enabled: type === "primary" && Boolean(nameOrSlug || (typeof id === "number" && id > 0)),
     staleTime: 1000 * 60 * 5,
   });
 
   // Query resale unit if type === "resale"
   const { data: resaleRes, isLoading: isResaleLoading } = useQuery({
-    queryKey: ["publicResaleUnit", id],
+    queryKey: ["publicResaleUnit", targetKey, locale, currentCurrency],
     queryFn: async () => {
-      if (!id || id <= 0) return null;
-      const res = await getResaleById(id, "en", "USD");
-      return res.data;
+      const target = nameOrSlug || id;
+      if (!target) return null;
+      const res = await resolveUnitByNameOrId(target, "resale", locale, currentCurrency || "USD");
+      return res;
     },
-    enabled: type === "resale" && typeof id === "number" && id > 0,
+    enabled: type === "resale" && Boolean(nameOrSlug || (typeof id === "number" && id > 0)),
     staleTime: 1000 * 60 * 5,
   });
 
@@ -70,7 +85,7 @@ export default function UnitDetailsPage({ id, type = "primary" }: UnitDetailsPag
   let unit: NormalizedUnitDetails | null = null;
 
   if (type === "primary" && primaryRes) {
-    const p = primaryRes;
+    const p = primaryRes as PrimaryUnitItem;
     const priceUSD =
       p.prices?.find((pr) => pr.currency === "USD")?.price || p.prices?.[0]?.price;
     const priceFormatted =
@@ -113,7 +128,7 @@ export default function UnitDetailsPage({ id, type = "primary" }: UnitDetailsPag
       reviews: p.reviews || [],
     };
   } else if (type === "resale" && resaleRes) {
-    const r = resaleRes;
+    const r = resaleRes as ResaleItem;
     const priceUSD =
       r.prices?.find((pr) => pr.currency === "USD")?.price || r.prices?.[0]?.price;
     const priceFormatted =

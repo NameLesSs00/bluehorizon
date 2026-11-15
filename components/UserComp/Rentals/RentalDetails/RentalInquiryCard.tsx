@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { FiSend } from "react-icons/fi";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import { RentalItem } from "@/models/rental";
 
 interface RentalInquiryCardProps {
@@ -12,6 +13,7 @@ interface RentalInquiryCardProps {
 
 export default function RentalInquiryCard({ unit }: RentalInquiryCardProps) {
   const { t } = useTranslation();
+  const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,6 +22,9 @@ export default function RentalInquiryCard({ unit }: RentalInquiryCardProps) {
   const [submitting, setSubmitting] = useState(false);
 
   const primaryPrice =
+    unit.prices?.find(
+      (p) => p.currency.toUpperCase() === currentCurrency.toUpperCase()
+    ) ||
     unit.prices?.find((p) => p.currency.toUpperCase() === "EGP") ||
     unit.prices?.[0];
 

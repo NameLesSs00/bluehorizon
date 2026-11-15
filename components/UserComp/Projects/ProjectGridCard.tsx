@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { toUrlSlug } from "@/shared/utils/slug";
 
 export interface ProjectDisplayItem {
   id: string | number;
@@ -23,7 +24,7 @@ export default function ProjectGridCard({ project }: ProjectGridCardProps) {
 
   return (
     <Link
-      href={`/${locale}/projects/${project.id}`}
+      href={`/${locale}/projects/${toUrlSlug(project.title, project.id)}`}
       className="group flex flex-col justify-between overflow-hidden rounded-[20px] border border-[#D9E2EE] bg-white transition-all duration-200 hover:-translate-y-1 hover:border-[#2B5FA6]/40 hover:shadow-md cursor-pointer"
     >
       <div>

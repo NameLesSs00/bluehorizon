@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useQuery } from "@tanstack/react-query";
 import ProjectUnitCard, {
@@ -7,6 +7,7 @@ import ProjectUnitCard, {
 import { getPrimaryUnits, getFullPrimaryUnitMediaUrl } from "@/clientApi/primaryUnitsApi";
 import { getResales, getFullResaleMediaUrl } from "@/clientApi/resalesApi";
 import { PROPERTY_TYPE_LABELS } from "@/models/resale";
+import { toUrlSlug } from "@/shared/utils/slug";
 
 interface UnitSimilarUnitsProps {
   currentUnitId: number;
@@ -77,7 +78,7 @@ export default function UnitSimilarUnits({
           description: u.description || "",
           badge: "Primary" as const,
           type: "primary" as const,
-          href: `/units/${u.id}?type=primary`,
+          href: `/units/${toUrlSlug(u.name, u.id)}?type=primary`,
           area: u.area ? `${u.area} m²` : "",
           rooms: u.noBedRoom ? `${u.noBedRoom} Rooms` : "",
           baths: u.noBathRoom ? `${u.noBathRoom} Baths` : "",
@@ -115,7 +116,7 @@ export default function UnitSimilarUnits({
           description: r.description || "",
           badge: "Resale" as const,
           type: "resale" as const,
-          href: `/units/${r.id}?type=resale`,
+          href: `/units/${toUrlSlug(r.name, r.id)}?type=resale`,
           area: r.area ? `${r.area} m²` : "",
           rooms: r.noBedRoom ? `${r.noBedRoom} Rooms` : "",
           baths: r.noBathRoom ? `${r.noBathRoom} Baths` : "",

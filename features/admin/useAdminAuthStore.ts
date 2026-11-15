@@ -3,6 +3,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { AdminRole, AuthTokenData, CurrentAdminSession } from "@/models/admin";
+import { registerAuthCallbacks } from "@/clientApi/apiConfig";
 
 interface JwtPayload {
   nameid?: string;
@@ -135,4 +136,14 @@ export const useAdminAuthStore = create<AdminAuthState>()(
     }
   )
 );
+
+if (typeof window !== "undefined") {
+  registerAuthCallbacks({
+    getAccessToken: () => useAdminAuthStore.getState().accessToken,
+    getRefreshToken: () => useAdminAuthStore.getState().refreshToken,
+    onAuthSuccess: (data) => useAdminAuthStore.getState().setAuth(data),
+    onAuthClear: () => useAdminAuthStore.getState().clearAuth(),
+  });
+}
+
 

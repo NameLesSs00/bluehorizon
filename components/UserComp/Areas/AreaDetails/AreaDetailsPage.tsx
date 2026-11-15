@@ -5,32 +5,33 @@ import { useState } from "react";
 import AreaBreadcrumb from "./AreaBreadcrumb";
 import AreaDetailsHeroBanner from "./AreaDetailsHeroBanner";
 import AreaOverviewSection from "./AreaOverviewSection";
-import AreaGallerySection from "./AreaGallerySection";
 import AreaAvailableProjectsSection from "./AreaAvailableProjectsSection";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
 import {
-  getProjectLocationById,
   getFullLocationMediaUrl,
 } from "@/clientApi/projectLocationsApi";
+import { resolveProjectLocationByNameOrId } from "@/clientApi/resolversApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface AreaDetailsPageProps {
-  id: number;
+  id?: number;
+  nameOrSlug?: string;
 }
 
-export default function AreaDetailsPage({ id }: AreaDetailsPageProps) {
+export default function AreaDetailsPage({ id, nameOrSlug }: AreaDetailsPageProps) {
   const { locale } = useTranslation();
   const [activeProjectsCount, setActiveProjectsCount] = useState<number>(0);
+  const targetKey = nameOrSlug || id || 0;
 
   const { data: areaRes, isLoading } = useQuery({
-    queryKey: ["publicAreaLocation", id, locale],
+    queryKey: ["publicAreaLocation", targetKey, locale],
     queryFn: async () => {
-      if (!id || id <= 0) return null;
-      const res = await getProjectLocationById(id, locale);
-      return res.data;
+      const target = nameOrSlug || id;
+      if (!target) return null;
+      return await resolveProjectLocationByNameOrId(target, locale);
     },
-    enabled: typeof id === "number" && id > 0,
+    enabled: Boolean(nameOrSlug || (typeof id === "number" && id > 0)),
     staleTime: 1000 * 60 * 5,
   });
 
@@ -65,10 +66,6 @@ export default function AreaDetailsPage({ id }: AreaDetailsPageProps) {
     ? getFullLocationMediaUrl(primaryImage.imageUrl)
     : null;
 
-  const galleryImageUrls = sortedImages
-    .map((img) => getFullLocationMediaUrl(img.imageUrl))
-    .filter(Boolean);
-
   const resolvedVideoUrl = area?.videoUrl
     ? getFullLocationMediaUrl(area.videoUrl)
     : null;
@@ -81,19 +78,15 @@ export default function AreaDetailsPage({ id }: AreaDetailsPageProps) {
         <AreaDetailsHeroBanner
           title={area?.name}
           imageUrl={primaryImageUrl}
+          videoUrl={resolvedVideoUrl}
         />
         <AreaOverviewSection
           areaName={area?.name}
           description={area?.description}
           activeProjectsCount={activeProjectsCount}
         />
-        <AreaGallerySection
-          images={galleryImageUrls}
-          videoUrl={resolvedVideoUrl}
-          title={area?.name}
-        />
         <AreaAvailableProjectsSection
-          areaId={id}
+          areaId={area?.id || id || 0}
           areaName={area?.name}
           onCountLoaded={setActiveProjectsCount}
         />

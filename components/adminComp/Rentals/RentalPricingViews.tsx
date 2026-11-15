@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { RentalFormPayload } from "@/models/rental";
 
@@ -141,22 +141,6 @@ export default function RentalPricingViews({
             </label>
           ))}
         </div>
-      </div>
-
-      {/* Host / Arrival Notes */}
-      <div>
-        <label className="block text-[12px] font-medium text-[#202326]">
-          Arrival &amp; Host Notes
-        </label>
-        <textarea
-          rows={2}
-          value={formData.notes}
-          onChange={(e) =>
-            onChange((prev) => ({ ...prev, notes: e.target.value }))
-          }
-          placeholder="e.g. Check-in after 2:00 PM, quiet hours after 10:00 PM..."
-          className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-        />
       </div>
     </div>
   );

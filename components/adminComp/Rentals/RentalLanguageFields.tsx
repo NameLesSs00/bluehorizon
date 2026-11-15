@@ -1,11 +1,7 @@
-﻿"use client";
+"use client";
 
-import {
-  FlagEgypt,
-  FlagGermany,
-  FlagUK,
-} from "@/components/adminComp/Common/LanguageFlags";
 import { RentalFormPayload } from "@/models/rental";
+import MultilingualInputGroup from "./MultilingualInputGroup";
 
 interface RentalLanguageFieldsProps {
   formData: RentalFormPayload;
@@ -19,218 +15,98 @@ export default function RentalLanguageFields({
   onChange,
 }: RentalLanguageFieldsProps) {
   return (
-    <div className="space-y-6">
-      {/* Property Names (EN, DE, AR) */}
-      <div className="space-y-3">
-        <label className="block text-[13px] font-bold text-[#202326]">
-          Rental Title (Multilingual)
-        </label>
+    <div className="space-y-6 rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-4">
+      <p className="text-[12px] font-bold uppercase tracking-wider text-[#2B5FA6]">
+        Multilingual Content (All Languages)
+      </p>
 
-        <div className="grid grid-cols-1 gap-3">
-          <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
-              <FlagUK className="h-3.5 w-3.5" />
-              <span>English Title *</span>
-            </div>
-            <input
-              type="text"
-              required
-              value={formData.name.en}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  name: { ...prev.name, en: e.target.value },
-                }))
-              }
-              placeholder="e.g. Seaside Luxury Pool Villa"
-              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
+      {/* 1. Property Title */}
+      <MultilingualInputGroup
+        label="Rental Title (Multilingual) *"
+        required
+        value={formData.name}
+        onChange={(val) =>
+          onChange((prev) => ({
+            ...prev,
+            name: val,
+          }))
+        }
+        placeholders={{
+          en: "e.g. Seaside Luxury Pool Villa",
+          de: "z.B. Luxus-Pool-Villa am Meer",
+          ar: "مثال: فيلا فاخرة على شاطئ البحر",
+        }}
+      />
 
-          <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
-              <FlagGermany className="h-3.5 w-3.5" />
-              <span>German Title (Deutsch)</span>
-            </div>
-            <input
-              type="text"
-              value={formData.name.de}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  name: { ...prev.name, de: e.target.value },
-                }))
-              }
-              placeholder="e.g. Luxus-Pool-Villa am Meer"
-              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
+      {/* 2. Floor / Level */}
+      <MultilingualInputGroup
+        label="Floor / Level (Multilingual)"
+        value={formData.floor}
+        onChange={(val) =>
+          onChange((prev) => ({
+            ...prev,
+            floor: val,
+          }))
+        }
+        placeholders={{
+          en: "e.g. Ground Floor, 2nd Floor, Penthouse",
+          de: "z.B. Erdgeschoss, 1. Stock",
+          ar: "مثال: الطابق الأرضي، الطابق الأول",
+        }}
+      />
 
-          <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
-              <FlagEgypt className="h-3.5 w-3.5" />
-              <span>Arabic Title (العربية)</span>
-            </div>
-            <input
-              type="text"
-              dir="rtl"
-              value={formData.name.ar}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  name: { ...prev.name, ar: e.target.value },
-                }))
-              }
-              placeholder="مثال: فيلا فاخرة على شاطئ البحر مع مسبح"
-              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
-        </div>
-      </div>
+      {/* 3. Cancellation Policy */}
+      <MultilingualInputGroup
+        label="Cancellation Policy (Multilingual)"
+        value={formData.rulesCancellation}
+        onChange={(val) =>
+          onChange((prev) => ({
+            ...prev,
+            rulesCancellation: val,
+          }))
+        }
+        placeholders={{
+          en: "e.g. Free cancellation up to 7 days before check-in",
+          de: "z.B. Kostenlose Stornierung bis 7 Tage vor Anreise",
+          ar: "مثال: إلغاء مجاني حتى 7 أيام قبل تسجيل الوصول",
+        }}
+      />
 
-      {/* Descriptions (EN, DE, AR) */}
-      <div className="space-y-3">
-        <label className="block text-[13px] font-bold text-[#202326]">
-          Description (Multilingual)
-        </label>
+      {/* 4. Arrival & Host Notes */}
+      <MultilingualInputGroup
+        label="Arrival & Host Notes (Multilingual)"
+        value={formData.notes}
+        onChange={(val) =>
+          onChange((prev) => ({
+            ...prev,
+            notes: val,
+          }))
+        }
+        placeholders={{
+          en: "e.g. Quiet hours from 11:00 PM to 08:00 AM",
+          de: "z.B. Ruhezeiten von 23:00 bis 08:00 Uhr",
+          ar: "مثال: ساعات الهدوء من 11:00 مساءً حتى 08:00 صباحاً",
+        }}
+      />
 
-        <div className="space-y-3">
-          <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
-              <FlagUK className="h-3.5 w-3.5" />
-              <span>English Description</span>
-            </div>
-            <textarea
-              rows={3}
-              value={formData.description.en}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  description: { ...prev.description, en: e.target.value },
-                }))
-              }
-              placeholder="Detail the vacation unit layout, comfort, and interior appeal..."
-              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
-              <FlagGermany className="h-3.5 w-3.5" />
-              <span>German Description</span>
-            </div>
-            <textarea
-              rows={3}
-              value={formData.description.de}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  description: { ...prev.description, de: e.target.value },
-                }))
-              }
-              placeholder="Deutsche Beschreibung der Unterkunft..."
-              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
-              <FlagEgypt className="h-3.5 w-3.5" />
-              <span>Arabic Description</span>
-            </div>
-            <textarea
-              rows={3}
-              dir="rtl"
-              value={formData.description.ar}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  description: { ...prev.description, ar: e.target.value },
-                }))
-              }
-              placeholder="وصف تفصيلي للشقة أو الفيلا ومميزات الإقامة..."
-              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Cancellation Rules (EN, DE, AR) */}
-      <div className="space-y-3">
-        <label className="block text-[13px] font-bold text-[#202326]">
-          Cancellation Policy (Multilingual)
-        </label>
-
-        <div className="space-y-3">
-          <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
-              <FlagUK className="h-3.5 w-3.5" />
-              <span>English Policy</span>
-            </div>
-            <input
-              type="text"
-              value={formData.rulesCancellation.en}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  rulesCancellation: {
-                    ...prev.rulesCancellation,
-                    en: e.target.value,
-                  },
-                }))
-              }
-              placeholder="e.g. Free cancellation up to 7 days before check-in."
-              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
-              <FlagGermany className="h-3.5 w-3.5" />
-              <span>German Policy</span>
-            </div>
-            <input
-              type="text"
-              value={formData.rulesCancellation.de}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  rulesCancellation: {
-                    ...prev.rulesCancellation,
-                    de: e.target.value,
-                  },
-                }))
-              }
-              placeholder="e.g. Kostenlose Stornierung bis zu 7 Tage vor Anreise."
-              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
-              <FlagEgypt className="h-3.5 w-3.5" />
-              <span>Arabic Policy</span>
-            </div>
-            <input
-              type="text"
-              dir="rtl"
-              value={formData.rulesCancellation.ar}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  rulesCancellation: {
-                    ...prev.rulesCancellation,
-                    ar: e.target.value,
-                  },
-                }))
-              }
-              placeholder="مثال: إلغاء مجاني حتى 7 أيام قبل تسجيل الوصول."
-              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
-        </div>
-      </div>
+      {/* 5. Detailed Description */}
+      <MultilingualInputGroup
+        label="Description (Multilingual)"
+        isTextarea
+        rows={3}
+        value={formData.description}
+        onChange={(val) =>
+          onChange((prev) => ({
+            ...prev,
+            description: val,
+          }))
+        }
+        placeholders={{
+          en: "Detail the vacation unit layout, comfort, and appeal...",
+          de: "Deutsche Beschreibung der Unterkunft...",
+          ar: "وصف تفصيلي للشقة أو الفيلا ومميزات الإقامة...",
+        }}
+      />
     </div>
   );
 }
-

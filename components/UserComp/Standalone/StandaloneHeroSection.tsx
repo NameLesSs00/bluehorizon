@@ -12,56 +12,49 @@ export default function StandaloneHeroSection() {
   const inView = useInView(ref, { once: true, margin: "-40px" });
 
   return (
-    <section className="mx-auto w-full max-w-[1536px] px-4 pt-6 sm:px-6 lg:px-8">
-      {/* Breadcrumb */}
-      <motion.nav
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-        aria-label="Breadcrumb"
-        className="mb-4 flex items-center gap-2 text-xs sm:text-sm font-medium text-[#6B7570]"
-        style={{ fontFamily: "var(--font-inter)" }}
-      >
-        <Link href={`/${locale}`} className="transition-colors hover:text-[#2B5FA6]">
-          {t("standaloneList.breadcrumb.home", "Home")}
-        </Link>
-        <span className="text-[#6B7570]/60">/</span>
-        <span className="font-semibold text-[#2B5FA6]">
-          {t("standaloneList.breadcrumb.standalone", "Standalone units")}
-        </span>
-      </motion.nav>
-
-      {/* Hero Banner Card */}
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, scale: 0.98, y: 16 }}
-        animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] min-h-[420px] sm:min-h-[480px] lg:min-h-[520px] flex items-center shadow-lg"
-      >
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/Standalone.png"
-            alt="Standalone properties background"
-            fill
-            priority
-            sizes="(max-width: 1536px) 100vw, 1536px"
-            className="object-cover object-center"
-          />
-        </div>
-
-        {/* Gradient Overlay */}
-        <div
-          className="absolute inset-0 z-10"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(27, 58, 107, 0) 21.63%, #1B3A6B 94.71%)",
-          }}
+    <section className="relative w-full overflow-hidden bg-[#1B3A6B]">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/Standalone.png"
+          alt="Standalone properties background"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
         />
+      </div>
 
-        {/* Banner Content */}
-        <div className="relative z-20 max-w-3xl p-6 sm:p-12 lg:p-16">
+      {/* Gradient Overlay */}
+      <div
+        className="absolute inset-0 z-10"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(27, 58, 107, 0) 21.63%, #1B3A6B 94.71%)",
+        }}
+      />
+
+      {/* Banner Content */}
+      <div className="relative z-20 mx-auto max-w-[1536px] px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
+        <div ref={ref} className="max-w-3xl">
+          {/* Breadcrumb Navigation */}
+          <motion.nav
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            aria-label="Breadcrumb"
+            className="mb-6 flex items-center gap-2 text-xs sm:text-sm font-medium text-white/80"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            <Link href={`/${locale}`} className="transition-colors hover:text-white">
+              {t("standaloneList.breadcrumb.home", "Home")}
+            </Link>
+            <span className="text-white/50">/</span>
+            <span className="font-semibold text-white">
+              {t("standaloneList.breadcrumb.standalone", "Standalone units")}
+            </span>
+          </motion.nav>
+
           {/* Badge */}
           <motion.span
             initial={{ opacity: 0, y: 12 }}
@@ -96,7 +89,7 @@ export default function StandaloneHeroSection() {
             )}
           </motion.p>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

@@ -12,25 +12,28 @@ import ProjectAvailableUnitsSection from "./ProjectAvailableUnitsSection";
 import Navbar from "@/components/UserComp/Common/Navbar";
 import Footer from "@/components/UserComp/Common/Footer";
 import { getFullProjectImageUrl, getProjectById } from "@/clientApi/projectsApi";
+import { resolveProjectByNameOrId } from "@/clientApi/resolversApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 
 interface ProjectDetailsPageProps {
-  id: number;
+  id?: number;
+  nameOrSlug?: string;
 }
 
-export default function ProjectDetailsPage({ id }: ProjectDetailsPageProps) {
+export default function ProjectDetailsPage({ id, nameOrSlug }: ProjectDetailsPageProps) {
   const { locale } = useTranslation();
   const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
+  const targetKey = nameOrSlug || id || 0;
 
   const { data: projectRes, isLoading } = useQuery({
-    queryKey: ["publicProject", id, locale, currentCurrency],
+    queryKey: ["publicProject", targetKey, locale, currentCurrency],
     queryFn: async () => {
-      if (!id || id <= 0) return null;
-      const res = await getProjectById(id, locale, currentCurrency || "EGP");
-      return res.data;
+      const target = nameOrSlug || id;
+      if (!target) return null;
+      return await resolveProjectByNameOrId(target, locale, currentCurrency || "EGP");
     },
-    enabled: typeof id === "number" && id > 0,
+    enabled: Boolean(nameOrSlug || (typeof id === "number" && id > 0)),
     staleTime: 1000 * 60 * 5,
   });
 

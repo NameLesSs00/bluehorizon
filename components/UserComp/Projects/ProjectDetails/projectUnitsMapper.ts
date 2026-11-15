@@ -3,6 +3,7 @@ import { getFullResaleMediaUrl } from "@/clientApi/resalesApi";
 import { PROPERTY_TYPE_LABELS } from "@/models/resale";
 import { PrimaryUnitItem } from "@/models/primaryUnit";
 import { ResaleItem } from "@/models/resale";
+import { toUrlSlug } from "@/shared/utils/slug";
 import { UnitItem } from "./ProjectUnitCard";
 import { UnitsFilterState } from "./ProjectUnitsFilterSidebar";
 
@@ -68,7 +69,7 @@ export function mapPrimaryUnits(
       description: u.description || "",
       badge: "Primary" as const,
       type: "primary" as const,
-      href: `/units/${u.id}?type=primary`,
+      href: `/units/${toUrlSlug(u.name, u.id)}?type=primary`,
       area: u.area ? `${u.area} m²` : "",
       rooms: roomsFormatted,
       baths: bathsFormatted,
@@ -136,7 +137,7 @@ export function mapResaleUnits(
       description: r.description || "",
       badge: "Resale" as const,
       type: "resale" as const,
-      href: `/units/${r.id}?type=resale`,
+      href: `/units/${toUrlSlug(r.name, r.id)}?type=resale`,
       area: r.area ? `${r.area} m²` : "",
       rooms: roomsFormatted,
       baths: bathsFormatted,

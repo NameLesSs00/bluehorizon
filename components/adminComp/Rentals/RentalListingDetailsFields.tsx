@@ -1,8 +1,12 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
-import { FiPlus, FiX } from "react-icons/fi";
+import {
+  FlagEgypt,
+  FlagGermany,
+  FlagUK,
+} from "@/components/adminComp/Common/LanguageFlags";
 import { RentalFormPayload } from "@/models/rental";
+import RentalServicesField from "./RentalServicesField";
 
 interface RentalListingDetailsFieldsProps {
   formData: RentalFormPayload;
@@ -15,162 +19,213 @@ export default function RentalListingDetailsFields({
   formData,
   onChange,
 }: RentalListingDetailsFieldsProps) {
-  const [newService, setNewService] = useState("");
-
   const details = formData.listingDetails;
 
-  function handleAddService() {
-    const trimmed = newService.trim();
-    if (!trimmed) return;
-    if (details.services.includes(trimmed)) {
-      setNewService("");
-      return;
-    }
-    onChange((prev) => ({
-      ...prev,
-      listingDetails: {
-        ...prev.listingDetails,
-        services: [...prev.listingDetails.services, trimmed],
-      },
-    }));
-    setNewService("");
-  }
-
-  function handleRemoveService(serviceToRemove: string) {
-    onChange((prev) => ({
-      ...prev,
-      listingDetails: {
-        ...prev.listingDetails,
-        services: prev.listingDetails.services.filter(
-          (s) => s !== serviceToRemove
-        ),
-      },
-    }));
-  }
-
   return (
-    <div className="space-y-4 rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-4">
+    <div className="space-y-5 rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-4">
       <p className="text-[12px] font-bold uppercase tracking-wider text-[#2B5FA6]">
         Stay Amenities &amp; Guest Rules
       </p>
 
-      {/* Services Tag Input */}
-      <div>
+      {/* 1. Multilingual Services Component */}
+      <RentalServicesField
+        services={details.services}
+        onChange={(services) =>
+          onChange((prev) => ({
+            ...prev,
+            listingDetails: {
+              ...prev.listingDetails,
+              services,
+            },
+          }))
+        }
+      />
+
+      {/* 2. Check-In Policy (Multilingual) */}
+      <div className="space-y-1.5">
         <label className="block text-[12px] font-medium text-[#202326]">
-          Included Hospitality Services
+          Late Check-In Notes (Multilingual)
         </label>
-        <div className="mt-1 flex gap-2">
-          <input
-            type="text"
-            value={newService}
-            onChange={(e) => setNewService(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                handleAddService();
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+          <div className="relative">
+            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
+              <FlagUK className="h-3.5 w-3.5" />
+            </span>
+            <input
+              type="text"
+              value={details.lateCheckIn.en || ""}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  listingDetails: {
+                    ...prev.listingDetails,
+                    lateCheckIn: {
+                      ...prev.listingDetails.lateCheckIn,
+                      en: e.target.value,
+                    },
+                  },
+                }))
               }
-            }}
-            placeholder="e.g. Daily Housekeeping, High-Speed Wi-Fi, Airport Shuttle"
-            className="flex-1 rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-          />
-          <button
-            type="button"
-            onClick={handleAddService}
-            className="inline-flex items-center gap-1 rounded-xl bg-[#2B5FA6] px-3.5 py-2 text-[12px] font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
-          >
-            <FiPlus className="h-3.5 w-3.5" />
-            <span>Add</span>
-          </button>
-        </div>
-
-        {details.services.length > 0 && (
-          <div className="mt-2.5 flex flex-wrap gap-1.5">
-            {details.services.map((service) => (
-              <span
-                key={service}
-                className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#E2E8F3] px-3 py-1 text-[11px] font-medium text-[#202326]"
-              >
-                <span>{service}</span>
-                <button
-                  type="button"
-                  onClick={() => handleRemoveService(service)}
-                  className="text-[#9BA5A0] hover:text-red-500"
-                >
-                  <FiX className="h-3 w-3" />
-                </button>
-              </span>
-            ))}
+              placeholder="e.g. Smart lock after 3 PM"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+            />
           </div>
-        )}
+
+          <div className="relative">
+            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
+              <FlagGermany className="h-3.5 w-3.5" />
+            </span>
+            <input
+              type="text"
+              value={details.lateCheckIn.de || ""}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  listingDetails: {
+                    ...prev.listingDetails,
+                    lateCheckIn: {
+                      ...prev.listingDetails.lateCheckIn,
+                      de: e.target.value,
+                    },
+                  },
+                }))
+              }
+              placeholder="z.B. Smart Lock ab 15 Uhr"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+            />
+          </div>
+
+          <div className="relative">
+            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
+              <FlagEgypt className="h-3.5 w-3.5" />
+            </span>
+            <input
+              type="text"
+              dir="rtl"
+              value={details.lateCheckIn.ar || ""}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  listingDetails: {
+                    ...prev.listingDetails,
+                    lateCheckIn: {
+                      ...prev.listingDetails.lateCheckIn,
+                      ar: e.target.value,
+                    },
+                  },
+                }))
+              }
+              placeholder="مثال: دخول ذاتي بعد 3 مساءً"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+            />
+          </div>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div>
-          <label className="block text-[12px] font-medium text-[#202326]">
-            Late Check-In Notes
-          </label>
-          <input
-            type="text"
-            value={details.lateCheckIn}
-            onChange={(e) =>
-              onChange((prev) => ({
-                ...prev,
-                listingDetails: {
-                  ...prev.listingDetails,
-                  lateCheckIn: e.target.value,
-                },
-              }))
-            }
-            placeholder="e.g. Available upon prior request"
-            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-          />
-        </div>
-
-        <div>
-          <label className="block text-[12px] font-medium text-[#202326]">
-            Extra Guest Fee ($)
-          </label>
-          <input
-            type="number"
-            min={0}
-            value={details.extraPeopleFee}
-            onChange={(e) =>
-              onChange((prev) => ({
-                ...prev,
-                listingDetails: {
-                  ...prev.listingDetails,
-                  extraPeopleFee: Number(e.target.value),
-                },
-              }))
-            }
-            placeholder="e.g. 25"
-            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
-          />
-        </div>
-      </div>
-
-      <div>
+      {/* 3. Extra Guest Guidelines (Multilingual) & Fee */}
+      <div className="space-y-1.5">
         <label className="block text-[12px] font-medium text-[#202326]">
-          Extra Guest Rules
+          Extra Guest Rules &amp; Fee
         </label>
-        <input
-          type="text"
-          value={details.extraPeople}
-          onChange={(e) =>
-            onChange((prev) => ({
-              ...prev,
-              listingDetails: {
-                ...prev.listingDetails,
-                extraPeople: e.target.value,
-              },
-            }))
-          }
-          placeholder="e.g. Up to 2 additional guests allowed upon prior request"
-          className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-        />
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-4">
+          <div className="relative sm:col-span-1">
+            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
+              <FlagUK className="h-3.5 w-3.5" />
+            </span>
+            <input
+              type="text"
+              value={details.extraPeople.en || ""}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  listingDetails: {
+                    ...prev.listingDetails,
+                    extraPeople: {
+                      ...prev.listingDetails.extraPeople,
+                      en: e.target.value,
+                    },
+                  },
+                }))
+              }
+              placeholder="English rule (e.g. 1 child free)"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+            />
+          </div>
+
+          <div className="relative sm:col-span-1">
+            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
+              <FlagGermany className="h-3.5 w-3.5" />
+            </span>
+            <input
+              type="text"
+              value={details.extraPeople.de || ""}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  listingDetails: {
+                    ...prev.listingDetails,
+                    extraPeople: {
+                      ...prev.listingDetails.extraPeople,
+                      de: e.target.value,
+                    },
+                  },
+                }))
+              }
+              placeholder="Deutsch (z.B. 1 Kind frei)"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+            />
+          </div>
+
+          <div className="relative sm:col-span-1">
+            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
+              <FlagEgypt className="h-3.5 w-3.5" />
+            </span>
+            <input
+              type="text"
+              dir="rtl"
+              value={details.extraPeople.ar || ""}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  listingDetails: {
+                    ...prev.listingDetails,
+                    extraPeople: {
+                      ...prev.listingDetails.extraPeople,
+                      ar: e.target.value,
+                    },
+                  },
+                }))
+              }
+              placeholder="العربية (مثال: طفل واحد مجاناً)"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+            />
+          </div>
+
+          <div className="relative sm:col-span-1">
+            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5 text-[12px] text-[#65706B]">
+              $
+            </span>
+            <input
+              type="number"
+              min={0}
+              value={details.extraPeopleFee}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  listingDetails: {
+                    ...prev.listingDetails,
+                    extraPeopleFee: Number(e.target.value),
+                  },
+                }))
+              }
+              placeholder="Fee ($)"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-6 pr-3 py-1.5 text-[12px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
+            />
+          </div>
+        </div>
       </div>
 
-      {/* Guest Perks / Checkboxes */}
+      {/* 4. Guest Perks Checkboxes */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 pt-1">
         <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-[#D0D9EA] bg-white p-2.5">
           <input
@@ -215,4 +270,3 @@ export default function RentalListingDetailsFields({
     </div>
   );
 }
-

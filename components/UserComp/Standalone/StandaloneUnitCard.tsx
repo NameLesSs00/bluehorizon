@@ -8,6 +8,7 @@ import { TbBath, TbBed, TbRulerMeasure } from "react-icons/tb";
 import { StandaloneUnitItem } from "@/models/standaloneUnit";
 import { getFullStandaloneUnitMediaUrl } from "@/clientApi/standaloneUnitsApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { toUrlSlug } from "@/shared/utils/slug";
 
 interface StandaloneUnitCardProps {
   unit: StandaloneUnitItem;
@@ -68,8 +69,13 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
   const hasRooms = typeof unit.noBedRoom === "number" && unit.noBedRoom > 0;
   const hasBaths = typeof unit.noBathRoom === "number" && unit.noBathRoom > 0;
 
+  const unitHref = `/${locale}/standalone/${toUrlSlug(unit.name, unit.id)}`;
+
   return (
-    <div className="group flex flex-col overflow-hidden rounded-[20px] border border-[#D9E2EE] bg-white shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#2B5FA6]/40">
+    <Link
+      href={unitHref}
+      className="group flex flex-col justify-between overflow-hidden rounded-[20px] border border-[#D9E2EE] bg-white shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#2B5FA6]/40 hover:-translate-y-1 cursor-pointer"
+    >
       {/* Image Container */}
       <div className="relative h-[220px] w-full overflow-hidden bg-[#F0F3FA]">
         <Image
@@ -177,16 +183,15 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
             )}
           </div>
 
-          <Link
-            href={`/${locale}/standalone/${unit.id}`}
-            className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#2B5FA6] py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#1B3A6B]"
+          <span
+            className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#2B5FA6] py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm transition-colors group-hover:bg-[#1B3A6B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <span>{t("standaloneList.card.viewDetails", "View Details")}</span>
             <FiChevronRight className="h-4 w-4" />
-          </Link>
+          </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
