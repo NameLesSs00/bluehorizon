@@ -7,9 +7,15 @@ import { useTranslation } from "@/features/i18n/useTranslation";
 
 export default function HeroBannerContent() {
   const { t, locale, direction } = useTranslation();
+  const isRtl = direction === "rtl";
 
   return (
-    <div className="max-w-2xl text-white">
+    <div
+      dir={direction}
+      className={`max-w-2xl text-white ${
+        isRtl ? "text-right mr-0 ml-auto" : "text-left ml-0 mr-auto"
+      }`}
+    >
       {/* Eyebrow Tag */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
@@ -31,7 +37,9 @@ export default function HeroBannerContent() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-        className="mt-3 sm:mt-4 text-[28px] sm:text-5xl lg:text-[54px] font-bold leading-[1.1] sm:leading-[1.05] tracking-[-0.02em] text-white"
+        className={`mt-3 sm:mt-4 text-[28px] sm:text-5xl lg:text-[54px] font-bold leading-[1.1] sm:leading-[1.05] tracking-[-0.02em] text-white ${
+          isRtl ? "text-right" : "text-left"
+        }`}
         style={{ fontFamily: "var(--font-manrope)" }}
       >
         {t("home.hero.headingLine1", "Find Your Place.")}
@@ -44,7 +52,9 @@ export default function HeroBannerContent() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-        className="mt-3.5 sm:mt-5 max-w-xl text-[14px] sm:text-[16px] font-normal leading-[22px] sm:leading-[25px] text-white/90"
+        className={`mt-3.5 sm:mt-5 max-w-xl text-[14px] sm:text-[16px] font-normal leading-[22px] sm:leading-[25px] text-white/90 ${
+          isRtl ? "text-right mr-0 ml-auto" : "text-left ml-0 mr-auto"
+        }`}
         style={{ fontFamily: "var(--font-inter)" }}
       >
         {t(

@@ -24,7 +24,7 @@ const TABS: HeroSearchTab[] = ["Buy", "Rent", "Standalone"];
 
 export default function HeroSearchFilterCard() {
   const router = useRouter();
-  const { t, locale } = useTranslation();
+  const { t, locale, direction } = useTranslation();
   const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
 
   const [activeTab, setActiveTab] = useState<HeroSearchTab>("Buy");
@@ -192,7 +192,13 @@ export default function HeroSearchFilterCard() {
       />
 
       {/* Main Filter Body Card */}
-      <div className="rounded-[24px] lg:rounded-b-[32px] lg:rounded-tr-[32px] lg:rounded-tl-none bg-white p-3.5 sm:p-5 lg:p-6 border border-[#E2E8F3]/80 lg:border-none shadow-lg lg:shadow-none">
+      <div
+        className={`rounded-[24px] lg:rounded-b-[32px] bg-white p-3.5 sm:p-5 lg:p-6 border border-[#E2E8F3]/80 lg:border-none shadow-lg lg:shadow-none ${
+          direction === "rtl"
+            ? "lg:rounded-tl-[32px] lg:rounded-tr-none"
+            : "lg:rounded-tr-[32px] lg:rounded-tl-none"
+        }`}
+      >
         <div className="flex flex-col gap-3 sm:gap-4 lg:flex-row lg:items-center">
           <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:flex lg:flex-1 lg:flex-row lg:items-center lg:gap-0">
             {/* Slot 1: Location for Buy & Rent; Search for Standalone (no location entity) */}

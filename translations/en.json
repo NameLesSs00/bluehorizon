@@ -2,6 +2,7 @@
   "common": {
     "nav": {
       "home": "Home",
+      "areas": "Areas",
       "projects": "Projects",
       "standalone": "Standalone",
       "rent": "Rent",

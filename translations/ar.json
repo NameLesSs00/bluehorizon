@@ -2,6 +2,7 @@
   "common": {
     "nav": {
       "home": "الرئيسية",
+      "areas": "المناطق",
       "projects": "المشاريع",
       "standalone": "وحدات مستقلة",
       "rent": "إيجار",

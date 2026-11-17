@@ -2,6 +2,7 @@
   "common": {
     "nav": {
       "home": "Startseite",
+      "areas": "Regionen",
       "projects": "Projekte",
       "standalone": "Freistehend",
       "rent": "Mieten",

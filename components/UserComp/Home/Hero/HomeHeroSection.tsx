@@ -2,10 +2,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslation } from "@/features/i18n/useTranslation";
 import HeroBannerContent from "./HeroBannerContent";
 import HeroSearchFilterCard from "./HeroSearchFilterCard";
 
 export default function HomeHeroSection() {
+  const { direction } = useTranslation();
+  const isRtl = direction === "rtl";
+
   return (
     <div className="relative w-full">
       {/* Hero Banner Section */}
@@ -17,14 +21,24 @@ export default function HomeHeroSection() {
             alt="Luxury Red Sea Architecture"
             fill
             priority
-            className="object-cover object-center"
+            className={`object-cover object-center ${
+              isRtl ? "scale-x-[-1]" : ""
+            }`}
           />
           {/* Soft deep navy gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1B3A6B] via-[#1B3A6B]/85 sm:via-[#1B3A6B]/80 via-75% sm:via-35% to-transparent" />
+          <div
+            className={`absolute inset-0 ${
+              isRtl ? "bg-gradient-to-l" : "bg-gradient-to-r"
+            } from-[#1B3A6B] via-[#1B3A6B]/85 sm:via-[#1B3A6B]/80 via-75% sm:via-35% to-transparent`}
+          />
         </div>
 
         {/* Main Content Area */}
-        <div className="relative z-10 mx-auto w-full max-w-[1360px] px-4 pt-8 pb-14 sm:px-6 sm:pt-16 sm:pb-24 lg:px-8 lg:pt-32 lg:pb-44">
+        <div
+          className={`relative z-10 mx-auto w-full max-w-[1360px] px-4 pt-8 pb-14 sm:px-6 sm:pt-16 sm:pb-24 lg:px-8 lg:pt-32 lg:pb-44 flex flex-col ${
+            isRtl ? "items-end text-right" : "items-start text-left"
+          }`}
+        >
           <HeroBannerContent />
         </div>
 

@@ -14,6 +14,7 @@ import { useTranslation } from "@/features/i18n/useTranslation";
 
 const NAV_ITEM_KEYS: { key: string; href: string; translationKey: string }[] = [
   { key: "home", href: "/", translationKey: "common.nav.home" },
+  { key: "areas", href: "/areas", translationKey: "common.nav.areas" },
   { key: "projects", href: "/projects", translationKey: "common.nav.projects" },
   { key: "standalone", href: "/standalone", translationKey: "common.nav.standalone" },
   { key: "rent", href: "/rent", translationKey: "common.nav.rent" },
