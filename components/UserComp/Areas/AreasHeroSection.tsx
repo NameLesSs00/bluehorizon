@@ -10,17 +10,16 @@ export default function AreasHeroSection() {
   const { t, locale, direction } = useTranslation();
   const isRtl = direction === "rtl";
   const shouldReduceMotion = useReducedMotion();
-
-  const overlayGradient = isRtl
-    ? "linear-gradient(270deg, #1B3A6B 31.77%, rgba(27, 58, 107, 0.85) 46.15%, rgba(27, 58, 107, 0.2) 80.77%)"
-    : "linear-gradient(90deg, #1B3A6B 31.77%, rgba(27, 58, 107, 0.85) 46.15%, rgba(27, 58, 107, 0.2) 80.77%)";
+const overlayGradient = isRtl
+  ? "linear-gradient(270deg, #1B3A6B 0%, rgba(27, 58, 107, 0.85) 35%, rgba(27, 58, 107, 0.2) 70%)"
+  : "linear-gradient(90deg, #1B3A6B 0%, rgba(27, 58, 107, 0.85) 35%, rgba(27, 58, 107, 0.2) 70%)";
 
   return (
     <section className="relative overflow-hidden">
       {/* Background Hero Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/Areas/heroAreaImage.jpg"
+          src="/Areas/AreasSection.jpg"
           alt={t("areas.hero.heading")}
           fill
           priority

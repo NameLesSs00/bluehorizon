@@ -76,9 +76,35 @@ export default function HomeBlogsSection() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="bg-white py-8 sm:py-10 lg:py-12"
     >
-      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div className="relative mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+        {/* Decorative doodle: Sales Contract in open header space */}
+        <div className="pointer-events-none select-none absolute top-1 end-4 sm:end-14 z-0 opacity-70 sm:opacity-80 rotate-6">
+          <Image
+            src="/doodles/sales-contract.svg"
+            alt=""
+            width={72}
+            height={72}
+            className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* Decorative doodle: Market ROI Growth in lower open margin */}
+        <div className="pointer-events-none select-none absolute -bottom-5 end-8 sm:end-28 z-0 opacity-70 sm:opacity-80 -rotate-6">
+          <Image
+            src="/doodles/roi-growth.svg"
+            alt=""
+            width={72}
+            height={72}
+            className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* Section Content: Headings, Cards & Interactive Elements at z-10 */}
+        <div className="relative z-10">
+          {/* Section Header */}
+          <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p
               className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
@@ -160,6 +186,7 @@ export default function HomeBlogsSection() {
             ))}
           </div>
         )}
+        </div>
       </div>
     </motion.section>
   );

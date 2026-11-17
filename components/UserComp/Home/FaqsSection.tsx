@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { AnimatePresence, motion, useInView } from "framer-motion";
@@ -39,14 +40,38 @@ export default function FaqsSection() {
       transition={{ duration: 0.55, ease: "easeOut" }}
       className="bg-[#E5ECF6] py-10 sm:py-14 lg:py-16"
     >
-      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-start">
+      <div className="relative mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+        {/* Decorative doodle: Customer Support / Help in open header space */}
+        <div className="pointer-events-none select-none absolute top-1 end-4 sm:end-14 z-0 opacity-70 sm:opacity-80 rotate-6">
+          <Image
+            src="/doodles/customer-support.svg"
+            alt=""
+            width={76}
+            height={76}
+            className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* Decorative doodle: Q&A Chat Bubble in lower open margin */}
+        <div className="pointer-events-none select-none absolute -bottom-5 start-4 sm:start-16 z-0 opacity-70 sm:opacity-80 -rotate-6">
+          <Image
+            src="/doodles/chat.svg"
+            alt=""
+            width={72}
+            height={72}
+            className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
+            aria-hidden="true"
+          />
+        </div>
+
+        <div className="relative z-10 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-start">
           {/* Left Column: Heading, Subtitles & CTA */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            className="lg:col-span-5 flex flex-col justify-between"
+            className="relative lg:col-span-5 flex flex-col justify-between"
           >
             <div>
               <h3

@@ -48,7 +48,7 @@ export default function WhyBlueHorizonSection() {
           style={{ borderRadius: "17.07px" }}
         >
           {/* Left Column: Heading, Subtitle & Button */}
-          <div className="flex flex-col justify-between p-6 sm:p-7 lg:w-[442px] lg:shrink-0 lg:py-[29px] lg:ps-[65px] lg:pe-6">
+          <div className="relative z-10 flex flex-col justify-between p-6 sm:p-7 lg:w-[442px] lg:shrink-0 lg:py-[29px] lg:ps-[65px] lg:pe-6">
             <div>
               <p
                 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80"
@@ -104,7 +104,7 @@ export default function WhyBlueHorizonSection() {
           />
 
           {/* Middle Column: 4 Features */}
-          <div className="flex items-center justify-around px-6 py-8 sm:px-8 lg:flex-1 lg:px-4 lg:py-0">
+          <div className="relative z-10 flex items-center justify-around px-6 py-8 sm:px-8 lg:flex-1 lg:px-4 lg:py-0">
             <div className="grid w-full grid-cols-2 gap-5 sm:grid-cols-4 sm:gap-4 lg:grid-cols-4 lg:gap-2">
               {features.map((item, idx) => (
                 <motion.div

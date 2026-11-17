@@ -42,9 +42,35 @@ export default function UnitsForRentSection() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="bg-[#F0F3FA] py-8 sm:py-10 lg:py-12"
     >
-      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div className="relative mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+        {/* Decorative doodle: Furnished Living Sofa in upper middle empty space */}
+        <div className="pointer-events-none select-none absolute top-2 start-1/2 -translate-x-1/2 z-0 opacity-70 sm:opacity-80 -rotate-6">
+          <Image
+            src="/doodles/sofa.svg"
+            alt=""
+            width={76}
+            height={76}
+            className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* Decorative doodle: Rental Keys in lower open margin */}
+        <div className="pointer-events-none select-none absolute -bottom-5 start-6 sm:start-16 z-0 opacity-70 sm:opacity-80 rotate-6">
+          <Image
+            src="/doodles/keys.svg"
+            alt=""
+            width={72}
+            height={72}
+            className="h-16 w-16 sm:h-22 sm:w-22 object-contain"
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* Section Content: Headings, Cards & Interactive Elements at z-10 */}
+        <div className="relative z-10">
+          {/* Section Header */}
+          <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p
               className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
@@ -124,6 +150,7 @@ export default function UnitsForRentSection() {
             ))}
           </div>
         )}
+        </div>
       </div>
     </motion.section>
   );
