@@ -10,6 +10,8 @@ import { ProjectItem } from "@/models/project";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import FeaturedProjectCard, { ProjectCardData } from "./FeaturedProjectCard";
+import HomeEmptyState from "./HomeEmptyState";
+import HomeHeaderIllustrations from "./HomeHeaderIllustrations";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -124,63 +126,42 @@ export default function FeaturedProjectsSection() {
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="bg-white py-8 sm:py-10 lg:py-12"
+      className="border-y border-[#E5ECF6]/70 bg-[#F8FAFD] py-8 sm:py-10 lg:py-12"
     >
-      <div className="relative mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        {/* Decorative doodle: Compound Development in open header space */}
-        <div className="pointer-events-none select-none absolute top-1 end-6 sm:end-14 z-0 opacity-70 sm:opacity-80 rotate-3">
-          <Image
-            src="/doodles/compound.svg"
-            alt=""
-            width={76}
-            height={76}
-            className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
-            aria-hidden="true"
-          />
-        </div>
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+        <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p
+              className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              {t("home.featuredProjects.eyebrow", "FEATURED OPPORTUNITIES")}
+            </p>
+            <h2
+              className="mt-2 text-[24px] sm:text-[30px] lg:text-[38px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#202326]"
+              style={{ fontFamily: "var(--font-manrope)" }}
+            >
+              {t("home.featuredProjects.heading", "Explore Featured Projects")}
+            </h2>
+            <p
+              className="mt-3 text-[15px] font-normal leading-[1.6] tracking-normal text-[#65706B]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              {t(
+                "home.featuredProjects.subtitle",
+                "Discover premier developments and high-yield investment properties."
+              )}
+            </p>
+          </div>
 
-        {/* Decorative doodle: Architectural Tower in lower open margin */}
-        <div className="pointer-events-none select-none absolute -bottom-5 end-8 sm:end-24 z-0 opacity-70 sm:opacity-80 -rotate-6">
-          <Image
-            src="/doodles/tower.svg"
-            alt=""
-            width={76}
-            height={76}
-            className="h-16 w-16 sm:h-22 sm:w-22 object-contain"
-            aria-hidden="true"
-          />
-        </div>
-
-        {/* Section Content: Headings, Cards & Interactive Elements at z-10 */}
-        <div className="relative z-10">
-          <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p
-                className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
-                {t("home.featuredProjects.eyebrow", "FEATURED OPPORTUNITIES")}
-              </p>
-              <h2
-                className="mt-2 text-[24px] sm:text-[30px] lg:text-[38px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#202326]"
-                style={{ fontFamily: "var(--font-manrope)" }}
-              >
-                {t("home.featuredProjects.heading", "Explore Featured Projects")}
-              </h2>
-              <p
-                className="mt-3 text-[15px] font-normal leading-[1.6] tracking-normal text-[#65706B]"
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
-                {t(
-                  "home.featuredProjects.subtitle",
-                  "Discover premier developments and high-yield investment properties."
-                )}
-              </p>
-            </div>
-
+          <div className="flex items-end justify-between gap-4 sm:gap-6 md:justify-end">
+            <HomeHeaderIllustrations
+              primarySrc="/HomePage/retail-shop.svg"
+              secondarySrc="/HomePage/roi-growth.svg"
+            />
             <Link
               href={`/${locale}/projects`}
-              className="inline-flex items-center gap-2 self-start text-[14px] font-semibold leading-none text-[#2B5FA6] transition-opacity hover:opacity-80 md:self-end"
+              className="inline-flex items-center gap-2 text-[14px] font-semibold leading-none text-[#2B5FA6] transition-opacity hover:opacity-80 shrink-0 pb-1"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span>{t("home.featuredProjects.viewAll", "View all projects")}</span>
@@ -194,40 +175,42 @@ export default function FeaturedProjectsSection() {
                 }`}
               />
             </Link>
-          </header>
+          </div>
+        </header>
 
-          {isLoading ? (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {[1, 2, 3, 4].map((n) => (
-                <div
-                  key={n}
-                  className="h-[360px] w-full animate-pulse rounded-[16px] bg-[#E5ECF6]"
-                />
-              ))}
-            </div>
-          ) : displayProjects.length === 0 ? (
-            <div className="flex h-48 w-full items-center justify-center rounded-2xl border border-[#E2E8F3] bg-white text-[14px] text-[#65706B]">
-              {t(
-                "home.featuredProjects.noProjectsFound",
-                "No featured projects currently available."
-              )}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {displayProjects.map((project, idx) => (
-                <motion.div
-                  key={project.id}
-                  custom={idx}
-                  variants={cardVariants}
-                  initial="hidden"
-                  animate={inView ? "visible" : "hidden"}
-                >
-                  <FeaturedProjectCard project={project} />
-                </motion.div>
-              ))}
-            </div>
-          )}
-        </div>
+        {isLoading ? (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[1, 2, 3, 4].map((n) => (
+              <div
+                key={n}
+                className="h-[360px] w-full animate-pulse rounded-[16px] bg-[#E5ECF6]"
+              />
+            ))}
+          </div>
+        ) : displayProjects.length === 0 ? (
+          <HomeEmptyState
+            illustrationSrc="/HomePage/retail-shop.svg"
+            message={t(
+              "home.featuredProjects.noProjectsFound",
+              "No featured projects currently available."
+            )}
+            surfaceClassName="bg-white"
+          />
+        ) : (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {displayProjects.map((project, idx) => (
+              <motion.div
+                key={project.id}
+                custom={idx}
+                variants={cardVariants}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+              >
+                <FeaturedProjectCard project={project} />
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
     </motion.section>
   );

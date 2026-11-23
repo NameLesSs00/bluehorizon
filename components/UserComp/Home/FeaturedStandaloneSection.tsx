@@ -8,6 +8,8 @@ import { usePublicStandaloneUnitsQuery } from "@/features/standaloneUnits/useSta
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import StandaloneUnitCard from "@/components/UserComp/Standalone/StandaloneUnitCard";
+import HomeEmptyState from "./HomeEmptyState";
+import HomeHeaderIllustrations from "./HomeHeaderIllustrations";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -42,62 +44,41 @@ export default function FeaturedStandaloneSection() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="bg-white py-8 sm:py-10 lg:py-12"
     >
-      <div className="relative mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        {/* Decorative doodle: Standalone Villa in upper middle empty space */}
-        <div className="pointer-events-none select-none absolute top-2 start-1/2 -translate-x-1/2 z-0 opacity-70 sm:opacity-80 -rotate-3">
-          <Image
-            src="/doodles/villa.svg"
-            alt=""
-            width={76}
-            height={76}
-            className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
-            aria-hidden="true"
-          />
-        </div>
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p
+              className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              {t("home.featuredStandalone.eyebrow", "A PLACE OF YOUR OWN")}
+            </p>
+            <h2
+              className="mt-2 text-[24px] sm:text-[30px] lg:text-[38px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#202326]"
+              style={{ fontFamily: "var(--font-manrope)" }}
+            >
+              {t("home.featuredStandalone.heading", "Featured Standalone Units")}
+            </h2>
+            <p
+              className="mt-3 text-[15px] font-normal leading-[1.6] text-[#65706B]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              {t(
+                "home.featuredStandalone.subtitle",
+                "Independent homes outside gated communities, in established neighborhoods you will love."
+              )}
+            </p>
+          </div>
 
-        {/* Decorative doodle: Property Keys in lower open margin */}
-        <div className="pointer-events-none select-none absolute -bottom-5 start-6 sm:start-16 z-0 opacity-70 sm:opacity-80 rotate-12">
-          <Image
-            src="/doodles/keys.svg"
-            alt=""
-            width={72}
-            height={72}
-            className="h-16 w-16 sm:h-22 sm:w-22 object-contain"
-            aria-hidden="true"
-          />
-        </div>
-
-        {/* Section Content: Headings, Cards & Interactive Elements at z-10 */}
-        <div className="relative z-10">
-          {/* Section Header */}
-          <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p
-                className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
-                {t("home.featuredStandalone.eyebrow", "A PLACE OF YOUR OWN")}
-              </p>
-              <h2
-                className="mt-2 text-[24px] sm:text-[30px] lg:text-[38px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#202326]"
-                style={{ fontFamily: "var(--font-manrope)" }}
-              >
-                {t("home.featuredStandalone.heading", "Featured Standalone Units")}
-              </h2>
-              <p
-                className="mt-3 text-[15px] font-normal leading-[1.6] text-[#65706B]"
-                style={{ fontFamily: "var(--font-inter)" }}
-              >
-                {t(
-                  "home.featuredStandalone.subtitle",
-                  "Independent homes outside gated communities, in established neighborhoods you will love."
-                )}
-              </p>
-            </div>
-
+          <div className="flex items-end justify-between gap-4 sm:gap-6 md:justify-end">
+            <HomeHeaderIllustrations
+              primarySrc="/HomePage/chalet.svg"
+              secondarySrc="/HomePage/certificate.svg"
+            />
             <Link
               href={`/${locale}/standalone`}
-              className="inline-flex items-center gap-2 self-start text-[14px] font-semibold text-[#2B5FA6] transition-opacity hover:opacity-80 md:self-end"
+              className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#2B5FA6] transition-opacity hover:opacity-80 shrink-0 pb-1"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span>
@@ -116,46 +97,42 @@ export default function FeaturedStandaloneSection() {
                 }`}
               />
             </Link>
-          </header>
+          </div>
+        </header>
 
-          {/* 4-Column Card Grid or Empty State */}
-          {isLoading ? (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {[1, 2, 3, 4].map((n) => (
-                <div
-                  key={n}
-                  className="h-[420px] w-full animate-pulse rounded-[20px] bg-[#E5ECF6]"
-                />
-              ))}
-            </div>
-          ) : displayUnits.length === 0 ? (
-            <div className="flex h-44 w-full flex-col items-center justify-center rounded-2xl border border-[#E2E8F3] bg-[#F9F7F4] p-8 text-center">
-              <p
-                className="text-[15px] font-semibold text-[#202326]"
-                style={{ fontFamily: "var(--font-manrope)" }}
+        {/* 4-Column Card Grid or Empty State */}
+        {isLoading ? (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[1, 2, 3, 4].map((n) => (
+              <div
+                key={n}
+                className="h-[420px] w-full animate-pulse rounded-[20px] bg-[#E5ECF6]"
+              />
+            ))}
+          </div>
+        ) : displayUnits.length === 0 ? (
+          <HomeEmptyState
+            illustrationSrc="/HomePage/chalet.svg"
+            message={t(
+              "home.featuredStandalone.noUnitsFound",
+              "No standalone units available at this time."
+            )}
+          />
+        ) : (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {displayUnits.map((unit, idx) => (
+              <motion.div
+                key={unit.id}
+                custom={idx}
+                variants={cardVariants}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
               >
-                {t(
-                  "home.featuredStandalone.noUnitsFound",
-                  "No standalone units available at this time."
-                )}
-              </p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {displayUnits.map((unit, idx) => (
-                <motion.div
-                  key={unit.id}
-                  custom={idx}
-                  variants={cardVariants}
-                  initial="hidden"
-                  animate={inView ? "visible" : "hidden"}
-                >
-                  <StandaloneUnitCard unit={unit} />
-                </motion.div>
-              ))}
-            </div>
-          )}
-        </div>
+                <StandaloneUnitCard unit={unit} />
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
     </motion.section>
   );

@@ -33,7 +33,7 @@ export default function DreamHomeSection({
               initial={{ opacity: 0, x: -20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-              className="relative flex flex-col justify-center px-6 py-10 sm:px-12 sm:py-14 lg:col-span-7 lg:px-16 lg:py-16"
+              className="flex flex-col justify-center px-6 py-10 sm:px-12 sm:py-14 lg:col-span-7 lg:px-16 lg:py-16"
             >
               <p
                 className="text-[11px] font-normal uppercase leading-none tracking-[0.12em] text-[#C5D3E8]"

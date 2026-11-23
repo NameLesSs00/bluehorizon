@@ -8,6 +8,8 @@ import { usePublicRentalsQuery } from "@/features/rentals/useRentalsQueries";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import RentalUnitCard from "@/components/UserComp/Rentals/RentalUnitCard";
+import HomeEmptyState from "./HomeEmptyState";
+import HomeHeaderIllustrations from "./HomeHeaderIllustrations";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -40,37 +42,11 @@ export default function UnitsForRentSection() {
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="bg-[#F0F3FA] py-8 sm:py-10 lg:py-12"
+      className="bg-[#F0F3FA] py-10 sm:py-12 lg:py-14"
     >
-      <div className="relative mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        {/* Decorative doodle: Furnished Living Sofa in upper middle empty space */}
-        <div className="pointer-events-none select-none absolute top-2 start-1/2 -translate-x-1/2 z-0 opacity-70 sm:opacity-80 -rotate-6">
-          <Image
-            src="/doodles/sofa.svg"
-            alt=""
-            width={76}
-            height={76}
-            className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
-            aria-hidden="true"
-          />
-        </div>
-
-        {/* Decorative doodle: Rental Keys in lower open margin */}
-        <div className="pointer-events-none select-none absolute -bottom-5 start-6 sm:start-16 z-0 opacity-70 sm:opacity-80 rotate-6">
-          <Image
-            src="/doodles/keys.svg"
-            alt=""
-            width={72}
-            height={72}
-            className="h-16 w-16 sm:h-22 sm:w-22 object-contain"
-            aria-hidden="true"
-          />
-        </div>
-
-        {/* Section Content: Headings, Cards & Interactive Elements at z-10 */}
-        <div className="relative z-10">
-          {/* Section Header */}
-          <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p
               className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
@@ -95,22 +71,28 @@ export default function UnitsForRentSection() {
             </p>
           </div>
 
-          <Link
-            href={`/${locale}/rent`}
-            className="inline-flex items-center gap-2 self-start text-[14px] font-semibold text-[#2B5FA6] transition-opacity hover:opacity-80 md:self-end"
-            style={{ fontFamily: "var(--font-inter)" }}
-          >
-            <span>{t("home.unitsForRent.browseAll", "Browse all rentals")}</span>
-            <Image
-              src="/HomePage/FeaturedProjects/link.svg"
-              alt=""
-              width={9}
-              height={9}
-              className={`h-[9px] w-[9px] shrink-0 ${
-                direction === "rtl" ? "scale-x-[-1]" : ""
-              }`}
+          <div className="flex items-end justify-between gap-4 sm:gap-6 md:justify-end">
+            <HomeHeaderIllustrations
+              primarySrc="/HomePage/chalet.svg"
+              secondarySrc="/HomePage/certificate.svg"
             />
-          </Link>
+            <Link
+              href={`/${locale}/rent`}
+              className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#2B5FA6] transition-opacity hover:opacity-80 shrink-0 pb-1"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              <span>{t("home.unitsForRent.browseAll", "Browse all rentals")}</span>
+              <Image
+                src="/HomePage/FeaturedProjects/link.svg"
+                alt=""
+                width={9}
+                height={9}
+                className={`h-[9px] w-[9px] shrink-0 ${
+                  direction === "rtl" ? "scale-x-[-1]" : ""
+                }`}
+              />
+            </Link>
+          </div>
         </header>
 
         {/* 4-Column Card Grid or Empty State */}
@@ -124,17 +106,14 @@ export default function UnitsForRentSection() {
             ))}
           </div>
         ) : displayUnits.length === 0 ? (
-          <div className="flex h-44 w-full flex-col items-center justify-center rounded-2xl border border-[#E2E8F3] bg-white p-8 text-center">
-            <p
-              className="text-[15px] font-semibold text-[#202326]"
-              style={{ fontFamily: "var(--font-manrope)" }}
-            >
-              {t(
-                "home.unitsForRent.noUnitsFound",
-                "No rental units available at this time."
-              )}
-            </p>
-          </div>
+          <HomeEmptyState
+            illustrationSrc="/HomePage/chalet.svg"
+            message={t(
+              "home.unitsForRent.noUnitsFound",
+              "No rental units available at this time."
+            )}
+            surfaceClassName="bg-white"
+          />
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {displayUnits.map((unit, idx) => (
@@ -150,7 +129,6 @@ export default function UnitsForRentSection() {
             ))}
           </div>
         )}
-        </div>
       </div>
     </motion.section>
   );

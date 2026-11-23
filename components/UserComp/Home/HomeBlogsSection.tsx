@@ -8,6 +8,8 @@ import { usePublicBlogsQuery } from "@/features/blogs/useBlogsQueries";
 import { getFullImageUrl } from "@/clientApi/blogsApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import BlogCard, { BlogCardData } from "@/components/UserComp/Blogs/BlogCard";
+import HomeEmptyState from "./HomeEmptyState";
+import HomeHeaderIllustrations from "./HomeHeaderIllustrations";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -76,35 +78,9 @@ export default function HomeBlogsSection() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="bg-white py-8 sm:py-10 lg:py-12"
     >
-      <div className="relative mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        {/* Decorative doodle: Sales Contract in open header space */}
-        <div className="pointer-events-none select-none absolute top-1 end-4 sm:end-14 z-0 opacity-70 sm:opacity-80 rotate-6">
-          <Image
-            src="/doodles/sales-contract.svg"
-            alt=""
-            width={72}
-            height={72}
-            className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
-            aria-hidden="true"
-          />
-        </div>
-
-        {/* Decorative doodle: Market ROI Growth in lower open margin */}
-        <div className="pointer-events-none select-none absolute -bottom-5 end-8 sm:end-28 z-0 opacity-70 sm:opacity-80 -rotate-6">
-          <Image
-            src="/doodles/roi-growth.svg"
-            alt=""
-            width={72}
-            height={72}
-            className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
-            aria-hidden="true"
-          />
-        </div>
-
-        {/* Section Content: Headings, Cards & Interactive Elements at z-10 */}
-        <div className="relative z-10">
-          {/* Section Header */}
-          <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p
               className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
@@ -129,22 +105,28 @@ export default function HomeBlogsSection() {
             </p>
           </div>
 
-          <Link
-            href={`/${locale}/blogs`}
-            className="inline-flex items-center gap-2 self-start text-[14px] font-semibold text-[#2B5FA6] transition-opacity hover:opacity-80 md:self-end"
-            style={{ fontFamily: "var(--font-inter)" }}
-          >
-            <span>{t("home.blogs.exploreAll", "Explore all articles")}</span>
-            <Image
-              src="/HomePage/FeaturedProjects/link.svg"
-              alt=""
-              width={9}
-              height={9}
-              className={`h-[9px] w-[9px] shrink-0 ${
-                direction === "rtl" ? "scale-x-[-1]" : ""
-              }`}
+          <div className="flex items-end justify-between gap-4 sm:gap-6 md:justify-end">
+            <HomeHeaderIllustrations
+              primarySrc="/HomePage/roi-growth.svg"
+              secondarySrc="/HomePage/certificate.svg"
             />
-          </Link>
+            <Link
+              href={`/${locale}/blogs`}
+              className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#2B5FA6] transition-opacity hover:opacity-80 shrink-0 pb-1"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              <span>{t("home.blogs.exploreAll", "Explore all articles")}</span>
+              <Image
+                src="/HomePage/FeaturedProjects/link.svg"
+                alt=""
+                width={9}
+                height={9}
+                className={`h-[9px] w-[9px] shrink-0 ${
+                  direction === "rtl" ? "scale-x-[-1]" : ""
+                }`}
+              />
+            </Link>
+          </div>
         </header>
 
         {/* 3-Column Blogs Grid or Empty State */}
@@ -163,14 +145,10 @@ export default function HomeBlogsSection() {
             ))}
           </div>
         ) : displayBlogs.length === 0 ? (
-          <div className="flex h-44 w-full flex-col items-center justify-center rounded-2xl border border-[#E2E8F3] bg-[#F9F7F4] p-8 text-center">
-            <p
-              className="text-[15px] font-semibold text-[#202326]"
-              style={{ fontFamily: "var(--font-manrope)" }}
-            >
-              {t("home.blogs.noBlogsFound", "No articles published yet.")}
-            </p>
-          </div>
+          <HomeEmptyState
+            illustrationSrc="/HomePage/roi-growth.svg"
+            message={t("home.blogs.noBlogsFound", "No articles published yet.")}
+          />
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {displayBlogs.map((blog, idx) => (
@@ -186,7 +164,6 @@ export default function HomeBlogsSection() {
             ))}
           </div>
         )}
-        </div>
       </div>
     </motion.section>
   );

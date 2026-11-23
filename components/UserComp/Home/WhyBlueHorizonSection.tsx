@@ -44,11 +44,11 @@ export default function WhyBlueHorizonSection() {
     >
       <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <div
-          className="relative flex flex-col overflow-hidden bg-[#2B5FA6] shadow-xs lg:h-[255px] lg:flex-row lg:items-stretch"
+          className="flex flex-col overflow-hidden bg-[#2B5FA6] shadow-xs lg:h-[255px] lg:flex-row lg:items-stretch"
           style={{ borderRadius: "17.07px" }}
         >
           {/* Left Column: Heading, Subtitle & Button */}
-          <div className="relative z-10 flex flex-col justify-between p-6 sm:p-7 lg:w-[442px] lg:shrink-0 lg:py-[29px] lg:ps-[65px] lg:pe-6">
+          <div className="flex flex-col justify-between p-6 sm:p-7 lg:w-[442px] lg:shrink-0 lg:py-[29px] lg:ps-[65px] lg:pe-6">
             <div>
               <p
                 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80"

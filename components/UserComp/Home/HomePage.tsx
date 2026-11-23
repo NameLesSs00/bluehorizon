@@ -10,6 +10,7 @@ import HomeBlogsSection from "./HomeBlogsSection";
 import FaqsSection from "./FaqsSection";
 import DreamHomeSection from "./DreamHomeSection";
 import Footer from "@/components/UserComp/Common/Footer";
+import HomeChapterDivider from "./HomeChapterDivider";
 
 export default function HomePage() {
   return (
@@ -21,11 +22,13 @@ export default function HomePage() {
       <main className="flex-1 w-full overflow-x-clip">
         <HomeHeroSection />
         <PopularAreasSection />
+        <HomeChapterDivider bgClassName="bg-white" />
         <FeaturedProjectsSection />
         <WhyBlueHorizonSection />
         <FeaturedStandaloneSection />
         <PopularRentalLocationsSection />
         <UnitsForRentSection />
+        <HomeChapterDivider bgClassName="bg-white" />
         <HomeBlogsSection />
         <FaqsSection />
         <DreamHomeSection />
