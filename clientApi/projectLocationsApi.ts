@@ -72,15 +72,17 @@ export async function getProjectLocationById(
 export async function getFullLocalizedProjectLocation(
   id: number
 ): Promise<LocalizedProjectLocationDetails> {
-  const [enRes, arRes, deRes] = await Promise.allSettled([
+  const [enRes, arRes, deRes, ruRes] = await Promise.allSettled([
     getProjectLocationById(id, "en"),
     getProjectLocationById(id, "ar"),
     getProjectLocationById(id, "de"),
+    getProjectLocationById(id, "ru"),
   ]);
 
   const enItem = enRes.status === "fulfilled" ? enRes.value.data : null;
   const arItem = arRes.status === "fulfilled" ? arRes.value.data : null;
   const deItem = deRes.status === "fulfilled" ? deRes.value.data : null;
+  const ruItem = ruRes.status === "fulfilled" ? ruRes.value.data : null;
 
   return {
     id,
@@ -88,11 +90,13 @@ export async function getFullLocalizedProjectLocation(
       en: enItem?.name || "",
       ar: arItem?.name || "",
       de: deItem?.name || "",
+      ru: ruItem?.name || "",
     },
     description: {
       en: enItem?.description || "",
       ar: arItem?.description || "",
       de: deItem?.description || "",
+      ru: ruItem?.description || "",
     },
     videoUrl: enItem?.videoUrl || arItem?.videoUrl || deItem?.videoUrl || null,
     images: enItem?.images || arItem?.images || deItem?.images || [],
@@ -133,11 +137,13 @@ export async function updateProjectLocation(
         en: payload.name.en,
         ar: payload.name.ar,
         de: payload.name.de,
+        ru: payload.name.ru,
       },
       description: {
         en: payload.description.en,
         ar: payload.description.ar,
         de: payload.description.de,
+        ru: payload.description.ru,
       },
     }
   );

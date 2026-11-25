@@ -4,6 +4,7 @@ import {
   EgyptFlag,
   GermanyFlag,
   UkFlag,
+  RussiaFlag,
 } from "@/components/adminComp/Common/LanguageFlags";
 
 interface PropertyCategoryItemLanguageFieldsProps {
@@ -13,6 +14,8 @@ interface PropertyCategoryItemLanguageFieldsProps {
   setNameDe: (val: string) => void;
   nameAr: string;
   setNameAr: (val: string) => void;
+  nameRu: string;
+  setNameRu: (val: string) => void;
 }
 
 export default function PropertyCategoryItemLanguageFields({
@@ -22,6 +25,8 @@ export default function PropertyCategoryItemLanguageFields({
   setNameDe,
   nameAr,
   setNameAr,
+  nameRu,
+  setNameRu,
 }: PropertyCategoryItemLanguageFieldsProps) {
   return (
     <div className="rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-5 space-y-4">
@@ -66,6 +71,20 @@ export default function PropertyCategoryItemLanguageFields({
           onChange={(e) => setNameAr(e.target.value)}
           placeholder="مثال: آلة تحضير القهوة، حوض استحمام، خزنة"
           className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[14px] text-[#202326] outline-none transition-all placeholder:text-[#65706B] focus:border-[#2B5FA6] focus:ring-2 focus:ring-[#2B5FA6]/15 text-right"
+        />
+      </div>
+
+      <div>
+        <label className="flex items-center gap-2 text-[12px] font-semibold text-[#202326]">
+          <RussiaFlag />
+          <span>Russian Item Name</span>
+        </label>
+        <input
+          type="text"
+          value={nameRu}
+          onChange={(e) => setNameRu(e.target.value)}
+          placeholder="например: Кофемашина, Ванна, Сейф"
+          className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[14px] text-[#202326] outline-none transition-all placeholder:text-[#65706B] focus:border-[#2B5FA6] focus:ring-2 focus:ring-[#2B5FA6]/15"
         />
       </div>
     </div>

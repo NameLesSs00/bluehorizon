@@ -33,7 +33,7 @@ export default function RentalLocationCard({
   return (
     <Link
       href={`/${locale}/locations/${toUrlSlug(location.name, location.id)}`}
-      className="group relative flex aspect-[300/380] w-full flex-col justify-end overflow-hidden rounded-[20px] bg-[#F9F7F4] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
+      className="group relative flex aspect-[300/380] w-full flex-col justify-end overflow-hidden rounded-[20px] bg-[#F9F7F4] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer"
     >
       {/* Background Image */}
       <Image
@@ -42,7 +42,7 @@ export default function RentalLocationCard({
         fill
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         onError={() => setImageError(true)}
-        className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+        className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
       />
 
       {/* Dark Navy Bottom Gradient */}

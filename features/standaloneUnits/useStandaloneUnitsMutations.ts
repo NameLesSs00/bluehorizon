@@ -31,7 +31,7 @@ export function useCreateStandaloneUnitMutation(
     }) => {
       const res = await createStandaloneUnit(payload);
       if (!res.success) {
-        throw new Error(res.message || "Failed to create standalone property");
+        throw new Error(res.message || "Failed to create second hand property");
       }
       const rawData = res.data as unknown;
       const newId =
@@ -45,7 +45,7 @@ export function useCreateStandaloneUnitMutation(
       return res;
     },
     onSuccess: async (res) => {
-      toast.success(res.message || "Standalone property created successfully");
+      toast.success(res.message || "Second hand property created successfully");
       await queryClient.invalidateQueries({
         queryKey: STANDALONE_UNITS_QUERY_KEY,
         refetchType: "all",
@@ -77,12 +77,12 @@ export function useUpdateStandaloneUnitMutation(
     }) => {
       const res = await updateStandaloneUnit(id, payload);
       if (!res.success) {
-        throw new Error(res.message || "Failed to update standalone property");
+        throw new Error(res.message || "Failed to update second hand property");
       }
       return res;
     },
     onSuccess: async (res) => {
-      toast.success(res.message || "Standalone property updated successfully");
+      toast.success(res.message || "Second hand property updated successfully");
       await queryClient.invalidateQueries({
         queryKey: STANDALONE_UNITS_QUERY_KEY,
         refetchType: "all",
@@ -106,12 +106,12 @@ export function useDeleteStandaloneUnitMutation() {
     mutationFn: async (id: number) => {
       const res = await deleteStandaloneUnit(id);
       if (!res.success) {
-        throw new Error(res.message || "Failed to delete standalone property");
+        throw new Error(res.message || "Failed to delete second hand property");
       }
       return res;
     },
     onSuccess: async (res) => {
-      toast.success(res.message || "Standalone property deleted successfully");
+      toast.success(res.message || "Second hand property deleted successfully");
       await queryClient.invalidateQueries({
         queryKey: STANDALONE_UNITS_QUERY_KEY,
         refetchType: "all",

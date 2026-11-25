@@ -77,11 +77,18 @@ export async function getProjects(
         PageNumber: params?.PageNumber || 1,
         PageSize: params?.PageSize || 10,
         ...(params?.ProjectTypeId && { ProjectTypeId: params.ProjectTypeId }),
+        ...(params?.ProjectType && { ProjectType: params.ProjectType }),
         ...(params?.MinimumPrice !== undefined && { MinimumPrice: params.MinimumPrice }),
         ...(params?.MaximumPrice !== undefined && { MaximumPrice: params.MaximumPrice }),
         ...(params?.IsFurniture !== undefined && { IsFurniture: params.IsFurniture }),
         ...(params?.FurnitureType !== undefined && { FurnitureType: params.FurnitureType }),
+        ...(params?.DeliveryDateFrom && { DeliveryDateFrom: params.DeliveryDateFrom }),
+        ...(params?.DeliveryDateTo && { DeliveryDateTo: params.DeliveryDateTo }),
         ...(params?.IsFeature !== undefined && { IsFeature: params.IsFeature }),
+        ...(params?.IsHotOffer !== undefined && { IsHotOffer: params.IsHotOffer }),
+        ...(params?.StartDateHotOffer && { StartDateHotOffer: params.StartDateHotOffer }),
+        ...(params?.EndDateHotOffer && { EndDateHotOffer: params.EndDateHotOffer }),
+        ...(params?.FeatureId && { FeatureId: params.FeatureId }),
         ...(params?.FacilityId && { FacilityId: params.FacilityId }),
         ...(params?.LocationId && { LocationId: params.LocationId }),
         ...(params?.SearchTerm && { SearchTerm: params.SearchTerm }),
@@ -89,18 +96,13 @@ export async function getProjects(
         ...(params?.SortBy && { SortBy: params.SortBy }),
         ...(params?.SortDirection && { SortDirection: params.SortDirection }),
       },
-      headers: {
-        "Accept-Language": lang,
-      },
+      headers: { "Accept-Language": lang },
     }
   );
 
-  if (response.data && response.data.data) {
+  if (response.data?.data) {
     const data = response.data.data;
-    return {
-      ...data,
-      items: (data.items || []).map(normalizeProjectItem),
-    };
+    return { ...data, items: (data.items || []).map(normalizeProjectItem) };
   }
 
   return {
@@ -134,10 +136,11 @@ export async function getProjectById(
 export async function getFullLocalizedProject(
   id: number
 ): Promise<LocalizedProjectDetails> {
-  const [enRes, arRes, deRes, eurRes, gbpRes, egpRes] = await Promise.allSettled([
+  const [enRes, arRes, deRes, ruRes, eurRes, gbpRes, egpRes] = await Promise.allSettled([
     getProjectById(id, "en", "USD"),
     getProjectById(id, "ar", "USD"),
     getProjectById(id, "de", "USD"),
+    getProjectById(id, "ru", "USD"),
     getProjectById(id, "en", "EUR"),
     getProjectById(id, "en", "GBP"),
     getProjectById(id, "en", "EGP"),
@@ -146,8 +149,9 @@ export async function getFullLocalizedProject(
   const enItem = enRes.status === "fulfilled" ? enRes.value.data : null;
   const arItem = arRes.status === "fulfilled" ? arRes.value.data : null;
   const deItem = deRes.status === "fulfilled" ? deRes.value.data : null;
+  const ruItem = ruRes.status === "fulfilled" ? ruRes.value.data : null;
 
-  const baseItem = enItem || arItem || deItem;
+  const baseItem = enItem || arItem || deItem || ruItem;
 
   const priceMap: Record<string, ProjectPriceDto> = {
     USD: { currency: "USD", minimumPrice: 0, maximumPrice: 0 },
@@ -188,17 +192,28 @@ export async function getFullLocalizedProject(
       en: enItem?.name || "",
       ar: arItem?.name || "",
       de: deItem?.name || "",
+      ru: ruItem?.name || "",
     },
     description: {
       en: enItem?.description || "",
       ar: arItem?.description || "",
       de: deItem?.description || "",
+      ru: ruItem?.description || "",
     },
     locationId: baseItem?.locationId ?? null,
     deliveryDate: baseItem?.deliveryDate ?? null,
     isFurniture: Boolean(baseItem?.isFurniture),
     furnitureType: parseFurnitureTypeToEnum(baseItem?.furnitureType),
     isFeature: Boolean(baseItem?.isFeature),
+    projectType:
+      baseItem?.projectType === "TopSeller" ||
+      baseItem?.projectType === "Luxury" ||
+      baseItem?.projectType === "BigHit"
+        ? baseItem.projectType
+        : null,
+    isHotOffer: Boolean(baseItem?.isHotOffer),
+    startDateHotOffer: baseItem?.startDateHotOffer ?? null,
+    endDateHotOffer: baseItem?.endDateHotOffer ?? null,
     projectTypeIds: typeIds,
     facilityIds,
     prices: finalPrices,
@@ -207,80 +222,41 @@ export async function getFullLocalizedProject(
   };
 }
 
-export async function createProject(
-  payload: CreateProjectRequestDto
-): Promise<ApiResponse<number>> {
-  const response = await apiClient.post<ApiResponse<number>>(
-    "/api/Projects",
-    payload
-  );
+export async function createProject(payload: CreateProjectRequestDto): Promise<ApiResponse<number>> {
+  const response = await apiClient.post<ApiResponse<number>>("/api/Projects", payload);
   return response.data;
 }
 
-export async function updateProject(
-  payload: UpdateProjectRequestDto
-): Promise<ApiResponse<unknown>> {
-  const response = await apiClient.put<ApiResponse<unknown>>(
-    "/api/Projects",
-    payload
-  );
+export async function updateProject(payload: UpdateProjectRequestDto): Promise<ApiResponse<unknown>> {
+  const response = await apiClient.put<ApiResponse<unknown>>("/api/Projects", payload);
   return response.data;
 }
 
 export async function deleteProject(id: number): Promise<ApiResponse<boolean>> {
-  const response = await apiClient.delete<ApiResponse<boolean>>(
-    `/api/Projects/${id}`
-  );
+  const response = await apiClient.delete<ApiResponse<boolean>>(`/api/Projects/${id}`);
   return response.data;
 }
 
-export async function uploadProjectImages(
-  id: number,
-  files: File[]
-): Promise<ApiResponse<string[]>> {
+export async function uploadProjectImages(id: number, files: File[]): Promise<ApiResponse<string[]>> {
   const formData = new FormData();
-  files.forEach((file) => {
-    formData.append("files", file);
+  files.forEach((file) => formData.append("files", file));
+  const response = await apiClient.post<ApiResponse<string[]>>(`/api/Projects/${id}/images`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
   });
-
-  const response = await apiClient.post<ApiResponse<string[]>>(
-    `/api/Projects/${id}/images`,
-    formData,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  );
   return response.data;
 }
 
-export async function deleteProjectImage(
-  id: number,
-  url: string
-): Promise<ApiResponse<boolean>> {
-  const response = await apiClient.delete<ApiResponse<boolean>>(
-    `/api/Projects/${id}/deleteproject/images`,
-    {
-      params: { url },
-    }
-  );
+export async function deleteProjectImage(id: number, url: string): Promise<ApiResponse<boolean>> {
+  const response = await apiClient.delete<ApiResponse<boolean>>(`/api/Projects/${id}/deleteproject/images`, {
+    params: { url },
+  });
   return response.data;
 }
 
-export async function deleteProjectFacility(
-  projectId: number,
-  faciltyId: number
-): Promise<ApiResponse<boolean>> {
-  const response = await apiClient.delete<ApiResponse<boolean>>(
-    "/api/Projects/delete-project-facility",
-    {
-      data: {
-        projectId,
-        faciltyId,
-      },
-    }
-  );
+export async function deleteProjectFacility(projectId: number, faciltyId: number): Promise<ApiResponse<boolean>> {
+  const response = await apiClient.delete<ApiResponse<boolean>>("/api/Projects/delete-project-facility", {
+    data: { projectId, faciltyId },
+  });
   return response.data;
 }
 

@@ -88,7 +88,7 @@ export default function StandaloneDetailsPage({ id, nameOrSlug }: StandaloneDeta
             className="mt-4 text-2xl font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            {t("standaloneDetail.notFound.title", "Standalone Unit Not Found")}
+            {t("standaloneDetail.notFound.title", "Second Hand Unit Not Found")}
           </h2>
           <p
             className="mt-2 text-sm text-[#6B7570] max-w-md"
@@ -100,11 +100,11 @@ export default function StandaloneDetailsPage({ id, nameOrSlug }: StandaloneDeta
             )}
           </p>
           <Link
-            href={`/${locale}/standalone`}
+            href={`/${locale}/second-hand`}
             className="mt-6 rounded-[12px] bg-[#2B5FA6] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1B3A6B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            {t("standaloneDetail.notFound.back", "Back to Standalone Units")}
+            {t("standaloneDetail.notFound.back", "Back to Second Hand Units")}
           </Link>
         </motion.main>
         <Footer />

@@ -92,15 +92,17 @@ export async function getPrimaryUnitById(
 export async function getFullLocalizedPrimaryUnit(
   id: number
 ): Promise<LocalizedPrimaryUnitDetails> {
-  const [enRes, arRes, deRes] = await Promise.allSettled([
+  const [enRes, arRes, deRes, ruRes] = await Promise.allSettled([
     getPrimaryUnitById(id, "en", "USD"),
     getPrimaryUnitById(id, "ar", "USD"),
     getPrimaryUnitById(id, "de", "USD"),
+    getPrimaryUnitById(id, "ru", "USD"),
   ]);
 
   const enItem = enRes.status === "fulfilled" ? enRes.value.data : null;
   const arItem = arRes.status === "fulfilled" ? arRes.value.data : null;
   const deItem = deRes.status === "fulfilled" ? deRes.value.data : null;
+  const ruItem = ruRes.status === "fulfilled" ? ruRes.value.data : null;
 
   const baseItem = enItem || arItem || deItem;
 
@@ -115,21 +117,25 @@ export async function getFullLocalizedPrimaryUnit(
       en: enItem?.name || "",
       ar: arItem?.name || "",
       de: deItem?.name || "",
+      ru: ruItem?.name || "",
     },
     description: {
       en: enItem?.description || "",
       ar: arItem?.description || "",
       de: deItem?.description || "",
+      ru: ruItem?.description || "",
     },
     view: {
       en: enItem?.view || "",
       ar: arItem?.view || "",
       de: deItem?.view || "",
+      ru: ruItem?.view || "",
     },
     floorName: {
       en: enItem?.floorName || "",
       ar: arItem?.floorName || "",
       de: deItem?.floorName || "",
+      ru: ruItem?.floorName || "",
     },
     area: baseItem?.area || 0,
     noBathRoom: baseItem?.noBathRoom || 0,

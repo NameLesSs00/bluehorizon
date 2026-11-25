@@ -39,10 +39,11 @@ export async function getFullLocalizedQuestion(id: number): Promise<{
   title: LocalizedText;
   description: LocalizedText;
 }> {
-  const [enRes, arRes, deRes] = await Promise.allSettled([
+  const [enRes, arRes, deRes, ruRes] = await Promise.allSettled([
     getQuestions("en"),
     getQuestions("ar"),
     getQuestions("de"),
+    getQuestions("ru"),
   ]);
 
   const enItem =
@@ -57,6 +58,10 @@ export async function getFullLocalizedQuestion(id: number): Promise<{
     deRes.status === "fulfilled"
       ? deRes.value.find((item) => item.id === id)
       : undefined;
+  const ruItem =
+    ruRes.status === "fulfilled"
+      ? ruRes.value.find((item) => item.id === id)
+      : undefined;
 
   return {
     id,
@@ -64,11 +69,13 @@ export async function getFullLocalizedQuestion(id: number): Promise<{
       en: enItem?.title || "",
       ar: arItem?.title || "",
       de: deItem?.title || "",
+      ru: ruItem?.title || "",
     },
     description: {
       en: enItem?.description || "",
       ar: arItem?.description || "",
       de: deItem?.description || "",
+      ru: ruItem?.description || "",
     },
   };
 }

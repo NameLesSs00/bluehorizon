@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { FiMapPin } from "react-icons/fi";
 import { LocalizedText } from "@/models/faq";
@@ -43,8 +43,8 @@ export default function StandaloneUnitLocationFields({
         <button
           type="button"
           onClick={() => {
-            setCountry({ en: "Egypt", de: "Ägypten", ar: "مصر" });
-            setCity({ en: "Hurghada", de: "Hurghada", ar: "الغردقة" });
+            setCountry({ en: "Egypt", de: "Ägypten", ar: "مصر", ru: "Египет" });
+            setCity({ en: "Hurghada", de: "Hurghada", ar: "الغردقة", ru: "Хургада" });
           }}
           className="rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1 text-[11px] font-medium text-[#2B5FA6] hover:bg-[#F0F3FA]"
         >
@@ -56,7 +56,7 @@ export default function StandaloneUnitLocationFields({
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <label className="block text-[12px] font-medium text-[#202326]">
-            Country (EN / DE / AR) *
+            Country (EN / DE / AR / RU) *
           </label>
           <div className="space-y-1.5">
             <input
@@ -82,12 +82,19 @@ export default function StandaloneUnitLocationFields({
               placeholder="الدولة (عربي) مثال: مصر"
               className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
+            <input
+              type="text"
+              value={country.ru}
+              onChange={(e) => setCountry({ ...country, ru: e.target.value })}
+              placeholder="Страна (RU) напр. Египет"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
+            />
           </div>
         </div>
 
         <div className="space-y-2">
           <label className="block text-[12px] font-medium text-[#202326]">
-            City (EN / DE / AR) *
+            City (EN / DE / AR / RU) *
           </label>
           <div className="space-y-1.5">
             <input
@@ -113,6 +120,13 @@ export default function StandaloneUnitLocationFields({
               placeholder="المدينة (عربي) مثال: الغردقة"
               className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
+            <input
+              type="text"
+              value={city.ru}
+              onChange={(e) => setCity({ ...city, ru: e.target.value })}
+              placeholder="Город (RU) напр. Хургада"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
+            />
           </div>
         </div>
       </div>
@@ -121,7 +135,7 @@ export default function StandaloneUnitLocationFields({
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <label className="block text-[12px] font-medium text-[#202326]">
-            District / Neighborhood (EN / AR)
+            District / Neighborhood (EN / AR / RU)
           </label>
           <div className="space-y-1.5">
             <input
@@ -139,12 +153,19 @@ export default function StandaloneUnitLocationFields({
               placeholder="الحي / المنطقة (عربي) مثال: الممشى السياحي"
               className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
+            <input
+              type="text"
+              value={district.ru}
+              onChange={(e) => setDistrict({ ...district, ru: e.target.value })}
+              placeholder="Район (RU) напр. Эль-Мамша"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
+            />
           </div>
         </div>
 
         <div className="space-y-2">
           <label className="block text-[12px] font-medium text-[#202326]">
-            Street Name (EN / AR)
+            Street Name (EN / AR / RU)
           </label>
           <div className="space-y-1.5">
             <input
@@ -162,6 +183,13 @@ export default function StandaloneUnitLocationFields({
               placeholder="اسم الشارع (عربي) مثال: طريق شيراتون"
               className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
+            <input
+              type="text"
+              value={street.ru}
+              onChange={(e) => setStreet({ ...street, ru: e.target.value })}
+              placeholder="Улица (RU) напр. Шератон Роуд"
+              className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
+            />
           </div>
         </div>
       </div>
@@ -169,9 +197,9 @@ export default function StandaloneUnitLocationFields({
       {/* Full Address */}
       <div className="space-y-2 pt-1">
         <label className="block text-[12px] font-medium text-[#202326]">
-          Full Address Line (EN &amp; AR)
+          Full Address Line (EN / AR / RU)
         </label>
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
           <input
             type="text"
             value={address.en}
@@ -185,6 +213,13 @@ export default function StandaloneUnitLocationFields({
             value={address.ar}
             onChange={(e) => setAddress({ ...address, ar: e.target.value })}
             placeholder="العنوان بالكامل (عربي)"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
+          />
+          <input
+            type="text"
+            value={address.ru}
+            onChange={(e) => setAddress({ ...address, ru: e.target.value })}
+            placeholder="Полный адрес (RU)"
             className="w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>

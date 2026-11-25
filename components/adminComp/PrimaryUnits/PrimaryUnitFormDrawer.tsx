@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { FiUpload, FiX } from "react-icons/fi";
@@ -26,10 +26,10 @@ interface PrimaryUnitFormDrawerProps {
 
 const defaultForm: PrimaryUnitFormPayload = {
   projectId: undefined,
-  name: { en: "", ar: "", de: "" },
-  description: { en: "", ar: "", de: "" },
-  view: { en: "", ar: "", de: "" },
-  floorName: { en: "", ar: "", de: "" },
+  name: { en: "", ar: "", de: "", ru: "" },
+  description: { en: "", ar: "", de: "", ru: "" },
+  view: { en: "", ar: "", de: "", ru: "" },
+  floorName: { en: "", ar: "", de: "", ru: "" },
   area: 120,
   noBathRoom: 2,
   noBedRoom: 2,
@@ -86,10 +86,10 @@ export default function PrimaryUnitFormDrawer({
 
         setFormData({
           projectId: unitToEdit.projectId,
-          name: { en: unitToEdit.name, ar: "", de: "" },
-          description: { en: unitToEdit.description, ar: "", de: "" },
-          view: { en: unitToEdit.view || "", ar: "", de: "" },
-          floorName: { en: unitToEdit.floorName || "", ar: "", de: "" },
+          name: { en: unitToEdit.name, ar: "", de: "", ru: "" },
+          description: { en: unitToEdit.description, ar: "", de: "", ru: "" },
+          view: { en: unitToEdit.view || "", ar: "", de: "", ru: "" },
+          floorName: { en: unitToEdit.floorName || "", ar: "", de: "", ru: "" },
           area: unitToEdit.area || 120,
           noBathRoom: unitToEdit.noBathRoom || 2,
           noBedRoom: unitToEdit.noBedRoom || 2,

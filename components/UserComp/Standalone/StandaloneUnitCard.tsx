@@ -69,7 +69,7 @@ export default function StandaloneUnitCard({ unit }: StandaloneUnitCardProps) {
   const hasRooms = typeof unit.noBedRoom === "number" && unit.noBedRoom > 0;
   const hasBaths = typeof unit.noBathRoom === "number" && unit.noBathRoom > 0;
 
-  const unitHref = `/${locale}/standalone/${toUrlSlug(unit.name, unit.id)}`;
+  const unitHref = `/${locale}/second-hand/${toUrlSlug(unit.name, unit.id)}`;
 
   return (
     <Link

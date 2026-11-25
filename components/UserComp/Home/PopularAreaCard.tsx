@@ -26,7 +26,7 @@ export default function PopularAreaCard({ area }: PopularAreaCardProps) {
   return (
     <Link
       href={`/${locale}/areas/${toUrlSlug(area.name, area.id)}`}
-      className="group relative flex aspect-[300/380] w-full flex-col justify-end overflow-hidden rounded-[16px] bg-[#F9F7F4] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
+      className="group relative flex aspect-[300/380] w-full flex-col justify-end overflow-hidden rounded-[16px] bg-[#F9F7F4] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer"
     >
       {/* Background Image / Fallback Emblem */}
       {isFallback ? (
@@ -46,7 +46,7 @@ export default function PopularAreaCard({ area }: PopularAreaCardProps) {
           alt={area.name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
         />
       )}
 

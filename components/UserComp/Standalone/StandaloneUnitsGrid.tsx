@@ -167,7 +167,7 @@ export default function StandaloneUnitsGrid({
             className="text-lg sm:text-xl font-bold text-[#202326]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            {t("standaloneList.grid.emptyTitle", "No Standalone Units Found")}
+            {t("standaloneList.grid.emptyTitle", "No Second Hand Units Found")}
           </h3>
           <p
             className="mt-2 text-xs sm:text-sm text-[#6B7570] max-w-md"

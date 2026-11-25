@@ -5,6 +5,7 @@ import { FiPlus, FiX } from "react-icons/fi";
 import {
   FlagEgypt,
   FlagGermany,
+  FlagRussia,
   FlagUK,
 } from "@/components/adminComp/Common/LanguageFlags";
 import { LocalizedText } from "@/models/faq";
@@ -14,7 +15,7 @@ interface RentalServicesFieldProps {
   onChange: (services: LocalizedText[]) => void;
 }
 
-const EMPTY_SERVICE: LocalizedText = { en: "", ar: "", de: "" };
+const EMPTY_SERVICE: LocalizedText = { en: "", ar: "", de: "", ru: "" };
 
 export default function RentalServicesField({
   services,
@@ -32,6 +33,7 @@ export default function RentalServicesField({
         en: trimmedEn,
         ar: newService.ar.trim() || trimmedEn,
         de: newService.de.trim() || trimmedEn,
+        ru: newService.ru.trim() || trimmedEn,
       },
     ]);
     setNewService(EMPTY_SERVICE);
@@ -46,7 +48,7 @@ export default function RentalServicesField({
       <label className="block text-[12px] font-medium text-[#202326]">
         Included Hospitality Services (Multilingual)
       </label>
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
         <div className="relative">
           <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
             <FlagUK className="h-3.5 w-3.5" />
@@ -89,6 +91,21 @@ export default function RentalServicesField({
               setNewService((prev) => ({ ...prev, ar: e.target.value }))
             }
             placeholder="العربية (مثال: واي فاي مجاني)"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+          />
+        </div>
+
+        <div className="relative">
+          <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
+            <FlagRussia className="h-3.5 w-3.5" />
+          </span>
+          <input
+            type="text"
+            value={newService.ru}
+            onChange={(e) =>
+              setNewService((prev) => ({ ...prev, ru: e.target.value }))
+            }
+            placeholder="Русский (напр. Бесплатный Wi-Fi)"
             className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
           />
         </div>

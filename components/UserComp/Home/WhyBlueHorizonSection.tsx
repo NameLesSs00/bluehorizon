@@ -5,11 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import {
+  imageSettleVariants,
+  LUXURY_EASE,
+} from "@/shared/utils/motionPresets";
 
 export default function WhyBlueHorizonSection() {
   const { t, locale, direction } = useTranslation();
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, amount: 0.16 });
 
   const features = [
     {
@@ -35,15 +39,15 @@ export default function WhyBlueHorizonSection() {
   ];
 
   return (
-    <motion.section
+    <section
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, ease: "easeOut" }}
       className="bg-white py-6 sm:py-8 lg:py-10 transition-colors duration-500 ease-in-out"
     >
       <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-8">
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 22, scale: 0.99 }}
+          animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+          transition={{ duration: 0.68, ease: LUXURY_EASE }}
           className="flex flex-col overflow-hidden bg-[#2B5FA6] shadow-xs lg:h-[255px] lg:flex-row lg:items-stretch"
           style={{ borderRadius: "17.07px" }}
         >
@@ -51,7 +55,7 @@ export default function WhyBlueHorizonSection() {
           <div className="flex flex-col justify-between p-6 sm:p-7 lg:w-[442px] lg:shrink-0 lg:py-[29px] lg:ps-[65px] lg:pe-6">
             <div>
               <p
-                className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80"
+                className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#E2C275]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {t("home.whyUs.eyebrow", "WHY BLUE HORIZON? —")}
@@ -80,7 +84,7 @@ export default function WhyBlueHorizonSection() {
             <div className="mt-5 lg:mt-0">
               <Link
                 href={`/${locale}/about`}
-                className="group inline-flex h-[37px] items-center gap-2 rounded-full bg-white px-5 text-[13px] font-semibold text-[#2B5FA6] transition-all duration-200 hover:bg-[#F0F3FA]"
+                className="group inline-flex h-[37px] items-center gap-2 rounded-full bg-[#B8963E] px-5 text-[13px] font-semibold text-white transition-all duration-200 hover:bg-[#D4A843]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <span>{t("home.whyUs.learnMore", "Learn More")}</span>
@@ -89,7 +93,7 @@ export default function WhyBlueHorizonSection() {
                   alt=""
                   width={14}
                   height={14}
-                  className={`h-3.5 w-3.5 object-contain transition-transform duration-200 group-hover:translate-x-1 ${
+                  className={`h-3.5 w-3.5 object-contain brightness-0 invert transition-transform duration-200 group-hover:translate-x-1 ${
                     direction === "rtl" ? "scale-x-[-1]" : ""
                   }`}
                 />
@@ -109,12 +113,16 @@ export default function WhyBlueHorizonSection() {
               {features.map((item, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={inView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.4, delay: 0.1 + idx * 0.08, ease: "easeOut" }}
-                  className="flex flex-col items-center justify-center text-center"
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{
+                    duration: 0.52,
+                    delay: 0.14 + idx * 0.08,
+                    ease: LUXURY_EASE,
+                  }}
+                  className="group flex flex-col items-center justify-center text-center"
                 >
-                  <div className="relative flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center">
+                  <div className="relative flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
                     <Image
                       src={item.icon}
                       alt={`${item.titleLine1} ${item.titleLine2}`}
@@ -139,14 +147,21 @@ export default function WhyBlueHorizonSection() {
 
           {/* Right Column: Building Image with ONLY Gradient Overlay */}
           <div className="relative h-44 sm:h-52 w-full shrink-0 overflow-hidden lg:h-full lg:w-[354px] xl:w-[374px]">
-            <Image
-              src="/HomePage/WhyBlueHorizon/Architecture — reference crop.png"
-              alt="Why Blue Horizon Architecture"
-              fill
-              sizes="(max-width: 1024px) 100vw, 374px"
-              priority
-              className="object-cover object-right lg:object-left"
-            />
+            <motion.div
+              variants={imageSettleVariants}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              className="absolute inset-0"
+            >
+              <Image
+                src="/HomePage/WhyBlueHorizon/Architecture — reference crop.png"
+                alt="Why Blue Horizon Architecture"
+                fill
+                sizes="(max-width: 1024px) 100vw, 374px"
+                priority
+                className="object-cover object-right lg:object-left"
+              />
+            </motion.div>
 
             {/* Gradient Overlay applied ONLY over the building image */}
             <div
@@ -159,8 +174,8 @@ export default function WhyBlueHorizonSection() {
               }}
             />
           </div>
-        </div>
+        </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 }

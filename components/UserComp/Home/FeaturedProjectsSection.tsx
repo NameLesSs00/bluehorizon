@@ -4,23 +4,22 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
+import { PiBuildingsLight, PiBuildingApartmentLight } from "react-icons/pi";
 import { usePublicProjectsQuery } from "@/features/projects/useProjectsQueries";
 import { getFullProjectImageUrl } from "@/clientApi/projectsApi";
 import { ProjectItem } from "@/models/project";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
+import { isActiveHotOfferToday } from "@/shared/utils/hotOffer";
+import {
+  cardGridItemVariants,
+  headerContainerVariants,
+  headerItemVariants,
+} from "@/shared/utils/motionPresets";
 import FeaturedProjectCard, { ProjectCardData } from "./FeaturedProjectCard";
 import HomeEmptyState from "./HomeEmptyState";
-import HomeHeaderIllustrations from "./HomeHeaderIllustrations";
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.45, delay: i * 0.08, ease: "easeOut" as const },
-  }),
-};
+import HomeChapterDivider from "./HomeChapterDivider";
+import HomeSectionBgIcon from "./HomeSectionBgIcon";
 
 export default function FeaturedProjectsSection() {
   const { t, locale, direction } = useTranslation();
@@ -104,6 +103,7 @@ export default function FeaturedProjectsSection() {
     return {
       id: String(item.id),
       badge,
+      isHotOffer: isActiveHotOfferToday(item),
       title: item.name,
       location: item.locationName || "Hurghada, Red Sea",
       price: priceText,
@@ -121,29 +121,41 @@ export default function FeaturedProjectsSection() {
     .map(formatProjectCard);
 
   return (
-    <motion.section
+    <section
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="border-y border-[#E5ECF6]/70 bg-[#F8FAFD] py-8 sm:py-10 lg:py-12"
+      className="relative overflow-hidden border-y border-[#E5ECF6]/70 bg-[#F8FAFD] pt-8 sm:pt-10 lg:pt-12 pb-16 sm:pb-20 lg:pb-24"
     >
-      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <HomeSectionBgIcon
+        leftIcon={PiBuildingsLight}
+        rightIcon={PiBuildingApartmentLight}
+        hasBottomDivider
+      />
+      <HomeChapterDivider src="/HomePage/dividers/coastal-layers.svg" />
+
+      <div className="relative z-10 mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+        <motion.header
+          variants={headerContainerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
+        >
           <div>
-            <p
-              className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
+            <motion.p
+              variants={headerItemVariants}
+              className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#B8963E]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {t("home.featuredProjects.eyebrow", "FEATURED OPPORTUNITIES")}
-            </p>
-            <h2
+            </motion.p>
+            <motion.h2
+              variants={headerItemVariants}
               className="mt-2 text-[24px] sm:text-[30px] lg:text-[38px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#202326]"
               style={{ fontFamily: "var(--font-manrope)" }}
             >
               {t("home.featuredProjects.heading", "Explore Featured Projects")}
-            </h2>
-            <p
+            </motion.h2>
+            <motion.p
+              variants={headerItemVariants}
               className="mt-3 text-[15px] font-normal leading-[1.6] tracking-normal text-[#65706B]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
@@ -151,17 +163,13 @@ export default function FeaturedProjectsSection() {
                 "home.featuredProjects.subtitle",
                 "Discover premier developments and high-yield investment properties."
               )}
-            </p>
+            </motion.p>
           </div>
 
-          <div className="flex items-end justify-between gap-4 sm:gap-6 md:justify-end">
-            <HomeHeaderIllustrations
-              primarySrc="/HomePage/retail-shop.svg"
-              secondarySrc="/HomePage/roi-growth.svg"
-            />
+          <motion.div variants={headerItemVariants} className="self-start md:self-end shrink-0">
             <Link
               href={`/${locale}/projects`}
-              className="inline-flex items-center gap-2 text-[14px] font-semibold leading-none text-[#2B5FA6] transition-opacity hover:opacity-80 shrink-0 pb-1"
+              className="group inline-flex items-center gap-2 text-[14px] font-semibold leading-none text-[#2B5FA6] transition-opacity hover:opacity-80"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span>{t("home.featuredProjects.viewAll", "View all projects")}</span>
@@ -170,13 +178,15 @@ export default function FeaturedProjectsSection() {
                 alt=""
                 width={9}
                 height={9}
-                className={`h-[9px] w-[9px] shrink-0 ${
-                  direction === "rtl" ? "scale-x-[-1]" : ""
+                className={`h-[9px] w-[9px] shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  direction === "rtl"
+                    ? "scale-x-[-1] group-hover:-translate-x-0.5"
+                    : "group-hover:translate-x-0.5"
                 }`}
               />
             </Link>
-          </div>
-        </header>
+          </motion.div>
+        </motion.header>
 
         {isLoading ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -202,9 +212,10 @@ export default function FeaturedProjectsSection() {
               <motion.div
                 key={project.id}
                 custom={idx}
-                variants={cardVariants}
+                variants={cardGridItemVariants}
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
+                className="h-full"
               >
                 <FeaturedProjectCard project={project} />
               </motion.div>
@@ -212,6 +223,6 @@ export default function FeaturedProjectsSection() {
           </div>
         )}
       </div>
-    </motion.section>
+    </section>
   );
 }

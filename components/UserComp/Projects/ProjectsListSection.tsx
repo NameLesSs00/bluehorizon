@@ -1,14 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { FiSliders } from "react-icons/fi";
 import { usePublicProjectsQuery } from "@/features/projects/useProjectsQueries";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import { useTranslation } from "@/features/i18n/useTranslation";
-import { getFullProjectImageUrl } from "@/clientApi/projectsApi";
-import { ProjectItem } from "@/models/project";
+import { isActiveHotOfferToday } from "@/shared/utils/hotOffer";
 import {
   containerStaggerVariants,
   cardItemVariants,
@@ -21,14 +20,9 @@ import ProjectGridCard from "./ProjectGridCard";
 import { formatApiProject } from "./projectFormatters";
 
 const INITIAL_FILTERS: ProjectFilterValues = {
-  searchTerm: "",
-  locationId: "",
-  projectTypeId: "",
-  paymentType: "",
-  deliveryFrom: "",
-  deliveryTo: "",
-  minPrice: "",
-  maxPrice: "",
+  searchTerm: "", locationId: "", projectTypeId: "", projectTier: "",
+  facilityIds: [], isHotOffer: false, paymentType: "",
+  deliveryFrom: "", deliveryTo: "", minPrice: "", maxPrice: "",
 };
 
 export default function ProjectsListSection() {
@@ -42,6 +36,8 @@ export default function ProjectsListSection() {
   const urlLocationId = searchParams.get("locationId") || "";
   const urlProjectTypeId =
     searchParams.get("projectTypeId") || searchParams.get("typeId") || "";
+  const urlProjectTier = searchParams.get("projectType") || "";
+  const urlHotOffer = searchParams.get("hotOffer") === "true";
   const urlMinPrice = searchParams.get("minPrice") || "";
   const urlMaxPrice = searchParams.get("maxPrice") || "";
   const urlSearchTerm = searchParams.get("searchTerm") || "";
@@ -51,13 +47,16 @@ export default function ProjectsListSection() {
       searchTerm: urlSearchTerm,
       locationId: urlLocationId,
       projectTypeId: urlProjectTypeId,
+      projectTier: urlProjectTier,
+      facilityIds: [],
+      isHotOffer: urlHotOffer,
       paymentType: "",
       deliveryFrom: "",
       deliveryTo: "",
       minPrice: urlMinPrice,
       maxPrice: urlMaxPrice,
     }),
-    [urlLocationId, urlProjectTypeId, urlMinPrice, urlMaxPrice, urlSearchTerm]
+    [urlLocationId, urlProjectTypeId, urlProjectTier, urlHotOffer, urlMinPrice, urlMaxPrice, urlSearchTerm]
   );
 
   const [filters, setFilters] = useState<ProjectFilterValues>(initialValues);
@@ -72,6 +71,9 @@ export default function ProjectsListSection() {
     Search: filters.searchTerm.trim() || undefined,
     LocationId: filters.locationId ? Number(filters.locationId) : undefined,
     ProjectTypeId: filters.projectTypeId ? Number(filters.projectTypeId) : undefined,
+    ProjectType: filters.projectTier || undefined,
+    FacilityId: filters.facilityIds[0],
+    IsHotOffer: filters.isHotOffer ? true : undefined,
     DeliveryDateFrom: filters.deliveryFrom || undefined,
     DeliveryDateTo: filters.deliveryTo || undefined,
     MinimumPrice: filters.minPrice ? Number(filters.minPrice) : undefined,
@@ -79,11 +81,24 @@ export default function ProjectsListSection() {
   });
 
   const apiProjects = projectsData?.items || [];
-  const displayProjects = apiProjects.map((item) =>
+  const matchedApiProjects = apiProjects.filter((item) => {
+    if (filters.isHotOffer && !isActiveHotOfferToday(item)) return false;
+    if (filters.facilityIds.length > 1) {
+      const hasAll = filters.facilityIds.every((id) =>
+        item.facilities?.some((f) => f.id === id)
+      );
+      if (!hasAll) return false;
+    }
+    return true;
+  });
+
+  const displayProjects = matchedApiProjects.map((item) =>
     formatApiProject(
       item,
       currentCurrency || "EGP",
-      t("projects.grid.priceOnRequest", "Price on request")
+      t("projects.grid.priceOnRequest", "Price on request"),
+      locale,
+      t("home.hotOffers.validUntil", "Valid until {date}")
     )
   );
 
@@ -99,20 +114,23 @@ export default function ProjectsListSection() {
 
   const totalPages = projectsData?.totalPages || 1;
 
-  function handleApplyFilters(newFilters: ProjectFilterValues) {
+  const handleApplyFilters = useCallback((newFilters: ProjectFilterValues) => {
     setFilters(newFilters);
     setPage(1);
-  }
+  }, []);
 
-  function handleResetFilters() {
+  const handleResetFilters = useCallback(() => {
     setFilters(INITIAL_FILTERS);
     setPage(1);
-  }
+  }, []);
 
   const hasActiveFilters = Boolean(
     filters.searchTerm.trim() ||
       filters.locationId ||
       filters.projectTypeId ||
+      filters.projectTier ||
+      filters.facilityIds.length > 0 ||
+      filters.isHotOffer ||
       filters.paymentType ||
       filters.deliveryFrom ||
       filters.deliveryTo ||
@@ -196,9 +214,14 @@ export default function ProjectsListSection() {
                 variants={containerStaggerVariants}
                 className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
               >
-                {filteredProjects.map((project) => (
-                  <motion.div key={project.id} variants={cardItemVariants}>
-                    <ProjectGridCard project={project} />
+                {filteredProjects.map((project, idx) => (
+                  <motion.div key={project.id} variants={cardItemVariants} className="h-full">
+                    <div
+                      className={project.isHotOffer ? "h-full hot-offer-float" : "h-full"}
+                      style={project.isHotOffer ? { animationDelay: `${(idx % 6) * 0.35}s` } : undefined}
+                    >
+                      <ProjectGridCard project={project} />
+                    </div>
                   </motion.div>
                 ))}
               </motion.div>

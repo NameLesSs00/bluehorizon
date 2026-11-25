@@ -86,15 +86,17 @@ export async function getStandaloneUnitById(
 export async function getFullLocalizedStandaloneUnit(
   id: number
 ): Promise<LocalizedStandaloneUnitDetails> {
-  const [enRes, arRes, deRes] = await Promise.allSettled([
+  const [enRes, arRes, deRes, ruRes] = await Promise.allSettled([
     getStandaloneUnitById(id, "en", "USD"),
     getStandaloneUnitById(id, "ar", "USD"),
     getStandaloneUnitById(id, "de", "USD"),
+    getStandaloneUnitById(id, "ru", "USD"),
   ]);
 
   const enUnit = enRes.status === "fulfilled" ? enRes.value.data : null;
   const arUnit = arRes.status === "fulfilled" ? arRes.value.data : null;
   const deUnit = deRes.status === "fulfilled" ? deRes.value.data : null;
+  const ruUnit = ruRes.status === "fulfilled" ? ruRes.value.data : null;
 
   const base = enUnit || arUnit || deUnit;
   if (!base) {
@@ -112,46 +114,55 @@ export async function getFullLocalizedStandaloneUnit(
       en: enUnit?.name || "",
       ar: arUnit?.name || "",
       de: deUnit?.name || "",
+      ru: ruUnit?.name || "",
     },
     description: {
       en: enUnit?.description || "",
       ar: arUnit?.description || "",
       de: deUnit?.description || "",
+      ru: ruUnit?.description || "",
     },
     view: {
       en: enUnit?.view || "",
       ar: arUnit?.view || "",
       de: deUnit?.view || "",
+      ru: ruUnit?.view || "",
     },
     floorName: {
       en: enUnit?.floorName || "",
       ar: arUnit?.floorName || "",
       de: deUnit?.floorName || "",
+      ru: ruUnit?.floorName || "",
     },
     country: {
       en: enUnit?.country || "",
       ar: arUnit?.country || "",
       de: deUnit?.country || "",
+      ru: ruUnit?.country || "",
     },
     city: {
       en: enUnit?.city || "",
       ar: arUnit?.city || "",
       de: deUnit?.city || "",
+      ru: ruUnit?.city || "",
     },
     district: {
       en: enUnit?.district || "",
       ar: arUnit?.district || "",
       de: deUnit?.district || "",
+      ru: ruUnit?.district || "",
     },
     street: {
       en: enUnit?.street || "",
       ar: arUnit?.street || "",
       de: deUnit?.street || "",
+      ru: ruUnit?.street || "",
     },
     address: {
       en: enUnit?.address || "",
       ar: arUnit?.address || "",
       de: deUnit?.address || "",
+      ru: ruUnit?.address || "",
     },
     buildingNumber: base.buildingNumber || "",
     apartmentNumber: base.apartmentNumber || "",

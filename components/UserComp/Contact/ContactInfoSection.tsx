@@ -218,7 +218,7 @@ export default function ContactInfoSection() {
             <button
               type="submit"
               disabled={createMutation.isPending}
-              className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#2B5FA6] py-3.5 text-[14px] font-semibold text-white transition-all duration-200 hover:bg-[#1B3A6B] hover:shadow-xs active:scale-[0.99] disabled:opacity-70"
+              className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#B8963E] py-3.5 text-[14px] font-semibold text-white transition-all duration-200 hover:bg-[#D4A843] hover:shadow-xs active:scale-[0.99] disabled:opacity-70"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span>

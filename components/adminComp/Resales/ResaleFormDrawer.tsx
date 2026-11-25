@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { FiUpload, FiX } from "react-icons/fi";
@@ -22,10 +22,10 @@ interface ResaleFormDrawerProps {
 
 const defaultForm: ResaleFormPayload = {
   projectId: undefined,
-  name: { en: "", ar: "", de: "" },
-  description: { en: "", ar: "", de: "" },
-  view: { en: "", ar: "", de: "" },
-  floorName: { en: "", ar: "", de: "" },
+  name: { en: "", ar: "", de: "", ru: "" },
+  description: { en: "", ar: "", de: "", ru: "" },
+  view: { en: "", ar: "", de: "", ru: "" },
+  floorName: { en: "", ar: "", de: "", ru: "" },
   propertyType: PropertyType.Apartment,
   noBathRoom: 1,
   noBedRoom: 1,
@@ -82,10 +82,10 @@ export default function ResaleFormDrawer({
 
         setFormData({
           projectId: resaleToEdit.project?.id,
-          name: { en: resaleToEdit.name, ar: "", de: "" },
-          description: { en: resaleToEdit.description, ar: "", de: "" },
-          view: { en: resaleToEdit.view || "", ar: "", de: "" },
-          floorName: { en: resaleToEdit.floorName || "", ar: "", de: "" },
+          name: { en: resaleToEdit.name, ar: "", de: "", ru: "" },
+          description: { en: resaleToEdit.description, ar: "", de: "", ru: "" },
+          view: { en: resaleToEdit.view || "", ar: "", de: "", ru: "" },
+          floorName: { en: resaleToEdit.floorName || "", ar: "", de: "", ru: "" },
           propertyType: (typeof resaleToEdit.propertyType === "number"
             ? resaleToEdit.propertyType
             : 0) as PropertyType,

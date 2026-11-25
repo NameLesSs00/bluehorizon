@@ -10,6 +10,7 @@ export interface InfoAreaPlaceDetailItem {
     en: string;
     ar: string;
     de: string;
+    ru: string;
   };
 }
 
@@ -33,6 +34,7 @@ export interface CreateInfoAreaPlaceRequestDto {
     en: string;
     ar: string;
     de: string;
+    ru: string;
   };
 }
 
@@ -42,6 +44,7 @@ export interface UpdateInfoAreaPlaceRequestDto {
     en: string;
     ar: string;
     de: string;
+    ru: string;
   };
 }
 
@@ -51,6 +54,7 @@ export interface LocalizedInfoAreaPlaceData {
     en: string;
     ar: string;
     de: string;
+    ru: string;
   };
 }
 

@@ -55,7 +55,14 @@ export default function BlogDetailsPage({ name }: BlogDetailsPageProps) {
     .filter((item) => item.id !== blogRes?.id)
     .slice(0, 3)
     .map((item) => {
-      const localeFormat = locale === "ar" ? "ar-EG" : locale === "de" ? "de-DE" : "en-US";
+      const localeFormat =
+        locale === "ar"
+          ? "ar-EG"
+          : locale === "de"
+          ? "de-DE"
+          : locale === "ru"
+          ? "ru-RU"
+          : "en-US";
       const formattedDate = item.publishDate
         ? new Date(item.publishDate).toLocaleDateString(localeFormat, {
             year: "numeric",
@@ -125,7 +132,14 @@ export default function BlogDetailsPage({ name }: BlogDetailsPageProps) {
     );
   }
 
-  const localeFormat = locale === "ar" ? "ar-EG" : locale === "de" ? "de-DE" : "en-US";
+  const localeFormat =
+    locale === "ar"
+      ? "ar-EG"
+      : locale === "de"
+      ? "de-DE"
+      : locale === "ru"
+      ? "ru-RU"
+      : "en-US";
   const formattedDate = blogRes.publishDate
     ? new Date(blogRes.publishDate).toLocaleDateString(localeFormat, {
         year: "numeric",

@@ -4,10 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { toUrlSlug } from "@/shared/utils/slug";
+import HotOfferRibbon from "@/components/UserComp/Common/HotOfferRibbon";
 
 export interface ProjectCardData {
   id: string;
   badge?: string | null;
+  isHotOffer?: boolean;
+  hotOfferEndLabel?: string | null;
   title: string;
   location: string;
   price: string;
@@ -30,7 +33,11 @@ export default function FeaturedProjectCard({
   return (
     <Link
       href={`/${locale}/projects/${toUrlSlug(project.title, project.id)}`}
-      className="group flex flex-col overflow-hidden rounded-[16px] border border-[#E2E8F3] bg-white transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+      className={`group flex h-full w-full flex-col overflow-hidden rounded-[16px] border bg-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-xl ${
+        project.isHotOffer
+          ? "border-[#D4A843]/50 shadow-[0_6px_24px_rgba(184,150,62,0.08)]"
+          : "border-[#E2E8F3]"
+      }`}
     >
       <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#F9F7F4]">
         {project.isFallback ? (
@@ -50,17 +57,30 @@ export default function FeaturedProjectCard({
             alt={project.title}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
           />
         )}
 
         {project.badge && (
-          <div className="absolute top-[14px] start-[14px] rounded-full bg-white px-3 py-1.5 shadow-sm">
+          <div className="absolute top-[14px] start-[14px] z-10 rounded-full border border-[#B8963E]/35 bg-white/95 px-3 py-1.5 shadow-sm backdrop-blur-xs">
             <span
-              className="block text-[10px] font-medium uppercase leading-none tracking-normal text-[#2B5FA6]"
+              className="block text-[10px] font-semibold uppercase leading-none tracking-wider text-[#9A7A2C]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {project.badge}
+            </span>
+          </div>
+        )}
+
+        {project.isHotOffer && <HotOfferRibbon size="card" />}
+
+        {project.hotOfferEndLabel && (
+          <div className="absolute bottom-2.5 start-2.5 z-10 rounded-full border border-[#D4A843]/50 bg-[#1B3A6B]/85 px-2.5 py-1 backdrop-blur-xs">
+            <span
+              className="block text-[10px] font-medium leading-none text-[#F5E1A4]"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              {project.hotOfferEndLabel}
             </span>
           </div>
         )}
@@ -92,7 +112,7 @@ export default function FeaturedProjectCard({
           </div>
         </div>
 
-        <div className="mt-4 space-y-1">
+        <div className="mt-4 space-y-1.5 pb-4">
           <p
             className="text-[18px] font-bold leading-none tracking-normal text-[#2B5FA6]"
             style={{ fontFamily: "var(--font-inter)" }}
@@ -100,7 +120,7 @@ export default function FeaturedProjectCard({
             {project.price}
           </p>
           <p
-            className="text-[11px] font-normal leading-none tracking-normal text-[#65706B]"
+            className="line-clamp-2 min-h-[30px] text-[11px] font-normal leading-[1.35] tracking-normal text-[#65706B]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {project.propertyTypes}
@@ -108,7 +128,7 @@ export default function FeaturedProjectCard({
           </p>
         </div>
 
-        <div className="mt-4 border-t border-[#E8ECE9] pt-3.5">
+        <div className="mt-auto border-t border-[#E8ECE9] pt-3.5">
           <div className="flex items-center justify-between">
             <span
               className="text-[12px] font-semibold leading-none tracking-normal text-[#202326]"

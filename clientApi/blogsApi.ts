@@ -66,10 +66,11 @@ export async function getFullLocalizedBlog(id: number): Promise<{
   blogType: LocalizedText;
   sections: LocalizedBlogSectionInput[];
 }> {
-  const [enRes, arRes, deRes] = await Promise.allSettled([
+  const [enRes, arRes, deRes, ruRes] = await Promise.allSettled([
     getBlogs({ Language: "en", PageNumber: 1, PageSize: 50 }),
     getBlogs({ Language: "ar", PageNumber: 1, PageSize: 50 }),
     getBlogs({ Language: "de", PageNumber: 1, PageSize: 50 }),
+    getBlogs({ Language: "ru", PageNumber: 1, PageSize: 50 }),
   ]);
 
   const enBlog =
@@ -84,11 +85,16 @@ export async function getFullLocalizedBlog(id: number): Promise<{
     deRes.status === "fulfilled"
       ? deRes.value.items.find((b) => b.id === id)
       : undefined;
+  const ruBlog =
+    ruRes.status === "fulfilled"
+      ? ruRes.value.items.find((b) => b.id === id)
+      : undefined;
 
   const maxSections = Math.max(
     enBlog?.sections.length || 0,
     arBlog?.sections.length || 0,
     deBlog?.sections.length || 0,
+    ruBlog?.sections.length || 0,
     1
   );
 
@@ -98,6 +104,7 @@ export async function getFullLocalizedBlog(id: number): Promise<{
     const sEn = enBlog?.sections[i];
     const sAr = arBlog?.sections[i];
     const sDe = deBlog?.sections[i];
+    const sRu = ruBlog?.sections[i];
 
     sections.push({
       sectionNumber: i + 1,
@@ -105,11 +112,13 @@ export async function getFullLocalizedBlog(id: number): Promise<{
         en: sEn?.tittle || "",
         ar: sAr?.tittle || "",
         de: sDe?.tittle || "",
+        ru: sRu?.tittle || "",
       },
       content: {
         en: sEn?.content || "",
         ar: sAr?.content || "",
         de: sDe?.content || "",
+        ru: sRu?.content || "",
       },
     });
   }
@@ -126,12 +135,14 @@ export async function getFullLocalizedBlog(id: number): Promise<{
       en: enBlog?.title || "",
       ar: arBlog?.title || "",
       de: deBlog?.title || "",
+      ru: ruBlog?.title || "",
     },
     publishDate,
     blogType: {
       en: enBlog?.blogType || "",
       ar: arBlog?.blogType || "",
       de: deBlog?.blogType || "",
+      ru: ruBlog?.blogType || "",
     },
     sections,
   };

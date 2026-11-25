@@ -6,6 +6,7 @@ import {
   FlagEgypt,
   FlagGermany,
   FlagUK,
+  FlagRussia,
 } from "@/components/adminComp/Common/LanguageFlags";
 
 interface BlogSectionFormCardProps {
@@ -16,7 +17,7 @@ interface BlogSectionFormCardProps {
   onChange: (
     index: number,
     field: "tittle" | "content",
-    lang: "en" | "ar" | "de",
+    lang: "en" | "ar" | "de" | "ru",
     value: string
   ) => void;
 }
@@ -94,6 +95,20 @@ export default function BlogSectionFormCard({
             className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
+
+        <div>
+          <label className="flex items-center gap-2 text-[12px] font-medium text-[#202326]">
+            <FlagRussia className="h-3.5 w-5 rounded-2xs shadow-xs" />
+            <span>Russian Subheading</span>
+          </label>
+          <input
+            type="text"
+            value={section.tittle.ru}
+            onChange={(e) => onChange(index, "tittle", "ru", e.target.value)}
+            placeholder="например: 1. Определите бюджет"
+            className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
+          />
+        </div>
       </div>
 
       {/* Paragraph Contents */}
@@ -141,6 +156,20 @@ export default function BlogSectionFormCard({
             value={section.content.ar}
             onChange={(e) => onChange(index, "content", "ar", e.target.value)}
             placeholder="اكتب تفاصيل هذا القسم باللغة العربية..."
+            className="mt-1.5 w-full resize-none rounded-xl border border-[#D0D9EA] bg-white p-3 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="flex items-center gap-2 text-[12px] font-medium text-[#202326]">
+            <FlagRussia className="h-3.5 w-5 rounded-2xs shadow-xs" />
+            <span>Russian Content</span>
+          </label>
+          <textarea
+            rows={3}
+            value={section.content.ru}
+            onChange={(e) => onChange(index, "content", "ru", e.target.value)}
+            placeholder="Напишите содержание раздела на русском..."
             className="mt-1.5 w-full resize-none rounded-xl border border-[#D0D9EA] bg-white p-3 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>

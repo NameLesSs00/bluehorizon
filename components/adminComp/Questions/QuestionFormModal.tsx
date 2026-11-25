@@ -17,6 +17,7 @@ import {
   FlagEgypt,
   FlagGermany,
   FlagUK,
+  FlagRussia,
 } from "@/components/adminComp/Common/LanguageFlags";
 import AdminSlideDrawer from "@/components/adminComp/Common/AdminSlideDrawer";
 
@@ -33,11 +34,12 @@ export default function QuestionFormModal({
 }: QuestionFormModalProps) {
   const isEditing = Boolean(questionToEdit);
 
-  const [title, setTitle] = useState<LocalizedText>({ en: "", ar: "", de: "" });
+  const [title, setTitle] = useState<LocalizedText>({ en: "", ar: "", de: "", ru: "" });
   const [description, setDescription] = useState<LocalizedText>({
     en: "",
     ar: "",
     de: "",
+    ru: "",
   });
   const [isPreloading, setIsPreloading] = useState(false);
 
@@ -52,23 +54,25 @@ export default function QuestionFormModal({
             en: fullData.title.en || questionToEdit.title || "",
             ar: fullData.title.ar || "",
             de: fullData.title.de || "",
+            ru: fullData.title.ru || "",
           });
           setDescription({
             en: fullData.description.en || questionToEdit.description || "",
             ar: fullData.description.ar || "",
             de: fullData.description.de || "",
+            ru: fullData.description.ru || "",
           });
         })
         .catch(() => {
-          setTitle({ en: questionToEdit.title, ar: "", de: "" });
-          setDescription({ en: questionToEdit.description, ar: "", de: "" });
+          setTitle({ en: questionToEdit.title, ar: "", de: "", ru: "" });
+          setDescription({ en: questionToEdit.description, ar: "", de: "", ru: "" });
         })
         .finally(() => {
           setIsPreloading(false);
         });
     } else {
-      setTitle({ en: "", ar: "", de: "" });
-      setDescription({ en: "", ar: "", de: "" });
+      setTitle({ en: "", ar: "", de: "", ru: "" });
+      setDescription({ en: "", ar: "", de: "", ru: "" });
     }
   }, [isOpen, questionToEdit]);
 
@@ -78,13 +82,13 @@ export default function QuestionFormModal({
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!title.en.trim() || !title.ar.trim() || !title.de.trim()) {
-      toast.error("Please provide FAQ title in English, Arabic, and German.");
+    if (!title.en.trim() || !title.ar.trim() || !title.de.trim() || !title.ru.trim()) {
+      toast.error("Please provide FAQ title in English, Arabic, German, and Russian.");
       return;
     }
 
-    if (!description.en.trim() || !description.ar.trim() || !description.de.trim()) {
-      toast.error("Please provide FAQ description in English, Arabic, and German.");
+    if (!description.en.trim() || !description.ar.trim() || !description.de.trim() || !description.ru.trim()) {
+      toast.error("Please provide FAQ description in English, Arabic, German, and Russian.");
       return;
     }
 
@@ -181,6 +185,23 @@ export default function QuestionFormModal({
                   style={{ fontFamily: "var(--font-inter)" }}
                 />
               </div>
+
+              {/* Russian (Russia Flag) */}
+              <div>
+                <label className="flex items-center gap-2 text-[12px] font-medium text-[#202326]">
+                  <FlagRussia className="h-3.5 w-5 rounded-2xs" />
+                  <span>Russian (Русский)</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={title.ru}
+                  onChange={(e) => setTitle({ ...title, ru: e.target.value })}
+                  placeholder="Как я могу купить виллу в Хургаде?"
+                  className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2.5 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                />
+              </div>
             </div>
 
             {/* Descriptions Section */}
@@ -245,6 +266,25 @@ export default function QuestionFormModal({
                     setDescription({ ...description, ar: e.target.value })
                   }
                   placeholder="الإجابة بالتفصيل باللغة العربية..."
+                  className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                />
+              </div>
+
+              {/* Russian (Russia Flag) */}
+              <div>
+                <label className="flex items-center gap-2 text-[12px] font-medium text-[#202326]">
+                  <FlagRussia className="h-3.5 w-5 rounded-2xs" />
+                  <span>Russian Description</span>
+                </label>
+                <textarea
+                  rows={2}
+                  required
+                  value={description.ru}
+                  onChange={(e) =>
+                    setDescription({ ...description, ru: e.target.value })
+                  }
+                  placeholder="Подробный ответ на русском языке..."
                   className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
                   style={{ fontFamily: "var(--font-inter)" }}
                 />

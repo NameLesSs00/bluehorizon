@@ -88,15 +88,17 @@ export async function getResaleById(
 export async function getFullLocalizedResale(
   id: number
 ): Promise<LocalizedResaleDetails> {
-  const [enRes, arRes, deRes] = await Promise.allSettled([
+  const [enRes, arRes, deRes, ruRes] = await Promise.allSettled([
     getResaleById(id, "en", "USD"),
     getResaleById(id, "ar", "USD"),
     getResaleById(id, "de", "USD"),
+    getResaleById(id, "ru", "USD"),
   ]);
 
   const enItem = enRes.status === "fulfilled" ? enRes.value.data : null;
   const arItem = arRes.status === "fulfilled" ? arRes.value.data : null;
   const deItem = deRes.status === "fulfilled" ? deRes.value.data : null;
+  const ruItem = ruRes.status === "fulfilled" ? ruRes.value.data : null;
 
   const baseItem = enItem || arItem || deItem;
 
@@ -111,21 +113,25 @@ export async function getFullLocalizedResale(
       en: enItem?.name || "",
       ar: arItem?.name || "",
       de: deItem?.name || "",
+      ru: ruItem?.name || "",
     },
     description: {
       en: enItem?.description || "",
       ar: arItem?.description || "",
       de: deItem?.description || "",
+      ru: ruItem?.description || "",
     },
     view: {
       en: enItem?.view || "",
       ar: arItem?.view || "",
       de: deItem?.view || "",
+      ru: ruItem?.view || "",
     },
     floorName: {
       en: enItem?.floorName || "",
       ar: arItem?.floorName || "",
       de: deItem?.floorName || "",
+      ru: ruItem?.floorName || "",
     },
     propertyType: (typeof baseItem?.propertyType === "number"
       ? baseItem.propertyType

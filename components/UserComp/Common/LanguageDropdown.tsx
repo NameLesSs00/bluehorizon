@@ -1,9 +1,14 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { FiChevronDown } from "react-icons/fi";
-import { FlagEgypt, FlagGermany, FlagUK } from "@/components/adminComp/Common/LanguageFlags";
+import {
+  FlagEgypt,
+  FlagGermany,
+  FlagRussia,
+  FlagUK,
+} from "@/components/adminComp/Common/LanguageFlags";
 import { SupportedLocale, SUPPORTED_LOCALES } from "@/features/i18n/i18nConfig";
 
 export type SupportedLanguage = SupportedLocale;
@@ -29,6 +34,11 @@ const LANGUAGES: LanguageOption[] = [
     code: "ar",
     label: "العربية",
     FlagComponent: FlagEgypt,
+  },
+  {
+    code: "ru",
+    label: "Русский",
+    FlagComponent: FlagRussia,
   },
 ];
 

@@ -97,18 +97,18 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
   return (
     <Link
       href={unitHref}
-      className="group flex flex-col justify-between overflow-hidden rounded-[20px] border border-[#D9E2EE] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#2B5FA6]/50 hover:shadow-lg cursor-pointer"
+      className="group flex h-full flex-col justify-between overflow-hidden rounded-[20px] border border-[#D9E2EE] bg-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-[#B8963E]/50 hover:shadow-xl cursor-pointer"
     >
       <div>
         {/* Card Image */}
-        <div className="relative h-[220px] sm:h-[240px] w-full overflow-hidden bg-[#F0F3FA]">
+        <div className="relative h-[195px] sm:h-[210px] w-full overflow-hidden bg-[#F0F3FA]">
           <Image
             src={displayImage}
             alt={unit.name}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             onError={() => setImageError(true)}
-            className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+            className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
           />
 
           {/* Badge */}
@@ -118,25 +118,25 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
         </div>
 
         {/* Content */}
-        <div className="p-5">
+        <div className="p-5 sm:p-5.5">
           {/* Location */}
           {unit.rentalLocation?.name && (
             <div className="flex items-center gap-1.5 text-xs font-medium text-[#65706B]">
-              <FiMapPin className="h-3.5 w-3.5 text-[#2B5FA6] shrink-0" />
+              <FiMapPin className="h-3.5 w-3.5 text-[#B8963E] shrink-0" />
               <span className="truncate">{unit.rentalLocation.name}</span>
             </div>
           )}
 
-          {/* Title */}
+          {/* Title (2 lines) */}
           <h3
-            className="mt-2 text-base sm:text-lg font-bold text-[#202326] line-clamp-1 group-hover:text-[#2B5FA6] transition-colors"
+            className="mt-2 min-h-[2.8rem] text-base sm:text-[17px] font-bold leading-snug text-[#202326] line-clamp-2 group-hover:text-[#2B5FA6] transition-colors"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
             {unit.name}
           </h3>
 
           {/* Specs */}
-          <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-[#D9E2EE] pt-3 text-xs text-[#65706B]">
+          <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-[#D9E2EE] pt-3.5 text-xs text-[#65706B]">
             {bedroomsLabel && (
               <div className="flex items-center gap-1">
                 <TbBed className="h-4 w-4 text-[#2B5FA6]" />
@@ -160,23 +160,25 @@ export default function RentalUnitCard({ unit }: RentalUnitCardProps) {
       </div>
 
       {/* Footer Price & CTA */}
-      <div className="flex items-center justify-between border-t border-[#D9E2EE] bg-[#F0F3FA]/50 p-4 sm:px-5">
-        <div>
+      <div className="flex flex-col gap-2.5 border-t border-[#D9E2EE] bg-[#F0F3FA]/50 p-4 sm:px-5">
+        <div className="flex items-baseline gap-1 whitespace-nowrap">
           <span
-            className="text-base sm:text-lg font-bold text-[#2B5FA6]"
+            className="text-base sm:text-lg font-bold text-[#1B3A6B]"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
             {priceText}
           </span>
-          <span className="text-xs text-[#65706B]"> {t("rent.card.perMonth", "/ month")}</span>
+          <span className="text-xs text-[#65706B]">
+            {t("rent.card.perMonth", "/ month")}
+          </span>
         </div>
 
-        <span className="inline-flex items-center gap-1 rounded-[10px] bg-white border border-[#D9E2EE] px-3 py-1.5 text-xs font-semibold text-[#2B5FA6] transition-colors group-hover:border-[#2B5FA6] group-hover:bg-[#2B5FA6] group-hover:text-white">
+        <span className="inline-flex w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-[10px] bg-[#B8963E] px-4 py-2.5 text-xs font-semibold text-white transition-colors duration-300 group-hover:bg-[#D4A843]">
           <span>{t("rent.card.viewDetails", "View Details")}</span>
           {isRtl ? (
-            <FiChevronLeft className="h-3 w-3" />
+            <FiChevronLeft className="h-3.5 w-3.5 shrink-0" />
           ) : (
-            <FiChevronRight className="h-3 w-3" />
+            <FiChevronRight className="h-3.5 w-3.5 shrink-0" />
           )}
         </span>
       </div>

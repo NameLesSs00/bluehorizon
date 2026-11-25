@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { isValidLocale } from "@/features/i18n/i18nConfig";
 import { useTranslation } from "@/features/i18n/useTranslation";
 
 interface StandaloneBreadcrumbProps {
@@ -14,7 +15,7 @@ export default function StandaloneBreadcrumb({ unitName }: StandaloneBreadcrumbP
   const pathname = usePathname();
   const segments = pathname ? pathname.split("/").filter(Boolean) : [];
   const locale =
-    segments.length > 0 && ["en", "de", "ar"].includes(segments[0]) ? segments[0] : "en";
+    segments.length > 0 && isValidLocale(segments[0]) ? segments[0] : "en";
 
   return (
     <motion.nav
@@ -29,8 +30,8 @@ export default function StandaloneBreadcrumb({ unitName }: StandaloneBreadcrumbP
         {t("standaloneDetail.breadcrumb.home", "Home")}
       </Link>
       <span className="text-[#6B7570]/60">/</span>
-      <Link href={`/${locale}/standalone`} className="transition-colors hover:text-[#2B5FA6]">
-        {t("standaloneDetail.breadcrumb.standalone", "Standalone")}
+      <Link href={`/${locale}/second-hand`} className="transition-colors hover:text-[#2B5FA6]">
+        {t("standaloneDetail.breadcrumb.standalone", "Second Hand")}
       </Link>
       <span className="text-[#6B7570]/60">/</span>
       <span className="font-semibold text-[#2B5FA6] line-clamp-1 max-w-xs sm:max-w-md">

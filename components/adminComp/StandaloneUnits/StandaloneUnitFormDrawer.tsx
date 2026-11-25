@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -24,7 +24,7 @@ interface StandaloneUnitFormDrawerProps {
   unitToEdit?: StandaloneUnitItem | null;
 }
 
-const emptyLocalizedText: LocalizedText = { en: "", ar: "", de: "" };
+const emptyLocalizedText: LocalizedText = { en: "", ar: "", de: "", ru: "" };
 
 export default function StandaloneUnitFormDrawer({
   isOpen,
@@ -44,11 +44,13 @@ export default function StandaloneUnitFormDrawer({
     en: "Egypt",
     de: "Ägypten",
     ar: "مصر",
+    ru: "Египет",
   });
   const [city, setCity] = useState<LocalizedText>({
     en: "Hurghada",
     de: "Hurghada",
     ar: "الغردقة",
+    ru: "Хургада",
   });
   const [district, setDistrict] = useState<LocalizedText>(emptyLocalizedText);
   const [street, setStreet] = useState<LocalizedText>(emptyLocalizedText);
@@ -108,7 +110,7 @@ export default function StandaloneUnitFormDrawer({
           setSelectedServiceIds(fullData.serviceIds || []);
         })
         .catch(() => {
-          setName({ en: unitToEdit.name, ar: "", de: "" });
+          setName({ en: unitToEdit.name, ar: "", de: "", ru: "" });
         })
         .finally(() => setIsPreloading(false));
     } else {
@@ -186,8 +188,8 @@ export default function StandaloneUnitFormDrawer({
     <AdminSlideDrawer
       isOpen={isOpen}
       onClose={onClose}
-      title={isEditing ? "Edit Standalone Property" : "Add Standalone Property"}
-      subtitle="Standalone villa, townhouse, or private residential unit outside compounds"
+      title={isEditing ? "Edit Second Hand Property" : "Add Second Hand Property"}
+      subtitle="Second hand villa, townhouse, or private residential unit outside compounds"
       maxWidthClass="max-w-2xl"
     >
       {isPreloading ? (

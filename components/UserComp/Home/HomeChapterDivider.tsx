@@ -2,30 +2,34 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { LUXURY_EASE } from "@/shared/utils/motionPresets";
 
 interface HomeChapterDividerProps {
-  bgClassName?: string;
+  src: string;
+  opacityClassName?: string;
 }
 
 export default function HomeChapterDivider({
-  bgClassName = "bg-white",
+  src,
+  opacityClassName = "opacity-[0.32]",
 }: HomeChapterDividerProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`${bgClassName} py-5 sm:py-8`}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.85, ease: LUXURY_EASE }}
+      className="pointer-events-none select-none absolute inset-x-0 bottom-0 z-0 w-full overflow-hidden"
       aria-hidden="true"
     >
-      <div className="mx-auto flex w-full max-w-[1320px] flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className={opacityClassName}>
         <Image
-          src="/HomePage/roofline-divider.svg"
+          src={src}
           alt=""
-          width={1200}
-          height={160}
-          className="h-16 w-full max-w-[780px] select-none pointer-events-none object-contain opacity-90 sm:h-24 sm:max-w-[1020px] lg:h-28 lg:max-w-[1200px]"
+          width={1440}
+          height={150}
+          sizes="100vw"
+          className="block h-auto w-full object-cover"
         />
       </div>
     </motion.div>

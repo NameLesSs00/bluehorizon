@@ -15,6 +15,7 @@ import { getFullProjectImageUrl, getProjectById } from "@/clientApi/projectsApi"
 import { resolveProjectByNameOrId } from "@/clientApi/resolversApi";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
+import { isActiveHotOfferToday } from "@/shared/utils/hotOffer";
 
 interface ProjectDetailsPageProps {
   id?: number;
@@ -80,6 +81,8 @@ export default function ProjectDetailsPage({ id, nameOrSlug }: ProjectDetailsPag
         <ProjectDetailsHeroBanner
           title={project?.name}
           imageUrl={galleryImageUrls[0] || project?.imageUrls?.[0]}
+          isHotOffer={isActiveHotOfferToday(project)}
+          endDateHotOffer={project?.endDateHotOffer}
         />
         <ProjectOverviewSection
           title={project?.name}

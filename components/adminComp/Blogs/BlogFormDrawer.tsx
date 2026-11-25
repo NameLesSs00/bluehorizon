@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { FormEvent, useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
@@ -26,7 +26,7 @@ interface BlogFormDrawerProps {
   blogToEdit?: BlogItem | null;
 }
 
-const emptyLocalizedText: LocalizedText = { en: "", ar: "", de: "" };
+const emptyLocalizedText: LocalizedText = { en: "", ar: "", de: "", ru: "" };
 
 export default function BlogFormDrawer({
   isOpen,
@@ -75,8 +75,8 @@ export default function BlogFormDrawer({
           );
         })
         .catch(() => {
-          setTitle({ en: blogToEdit.title, ar: "", de: "" });
-          setBlogType({ en: blogToEdit.blogType || "", ar: "", de: "" });
+          setTitle({ en: blogToEdit.title, ar: "", de: "", ru: "" });
+          setBlogType({ en: blogToEdit.blogType || "", ar: "", de: "", ru: "" });
         })
         .finally(() => {
           setIsPreloading(false);
@@ -138,7 +138,7 @@ export default function BlogFormDrawer({
   function handleSectionChange(
     index: number,
     field: "tittle" | "content",
-    lang: "en" | "ar" | "de",
+    lang: "en" | "ar" | "de" | "ru",
     value: string
   ) {
     setSections((prev) => {
@@ -157,8 +157,8 @@ export default function BlogFormDrawer({
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!title.en.trim() || !title.ar.trim() || !title.de.trim()) {
-      toast.error("Please enter blog titles for English, German, and Arabic.");
+    if (!title.en.trim() || !title.ar.trim() || !title.de.trim() || !title.ru.trim()) {
+      toast.error("Please enter blog titles for English, German, Arabic, and Russian.");
       return;
     }
 
@@ -175,6 +175,7 @@ export default function BlogFormDrawer({
       en: blogType.en.trim(),
       de: blogType.de.trim() || blogType.en.trim(),
       ar: blogType.ar.trim() || blogType.en.trim(),
+      ru: blogType.ru.trim() || blogType.en.trim(),
     };
 
     if (isEditing && blogToEdit) {

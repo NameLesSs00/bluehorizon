@@ -34,7 +34,18 @@ export function FlagEgypt({ className = "w-5 h-3.5" }: { className?: string }) {
   );
 }
 
+export function FlagRussia({ className = "w-5 h-3.5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 9 6" xmlns="http://www.w3.org/2000/svg">
+      <rect width="9" height="2" y="0" fill="#FFF" />
+      <rect width="9" height="2" y="2" fill="#0039A6" />
+      <rect width="9" height="2" y="4" fill="#D52B1E" />
+    </svg>
+  );
+}
+
 export const UkFlag = FlagUK;
 export const GermanyFlag = FlagGermany;
 export const EgyptFlag = FlagEgypt;
+export const RussiaFlag = FlagRussia;
 

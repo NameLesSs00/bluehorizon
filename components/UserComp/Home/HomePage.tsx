@@ -1,16 +1,16 @@
 import Navbar from "@/components/UserComp/Common/Navbar";
 import HomeHeroSection from "./Hero/HomeHeroSection";
 import FeaturedProjectsSection from "./FeaturedProjectsSection";
-import FeaturedStandaloneSection from "./FeaturedStandaloneSection";
 import PopularAreasSection from "./PopularAreasSection";
 import WhyBlueHorizonSection from "./WhyBlueHorizonSection";
+import HotOffersSection from "./HotOffersSection";
+import FeaturedStandaloneSection from "./FeaturedStandaloneSection";
 import PopularRentalLocationsSection from "./PopularRentalLocationsSection";
 import UnitsForRentSection from "./UnitsForRentSection";
 import HomeBlogsSection from "./HomeBlogsSection";
 import FaqsSection from "./FaqsSection";
 import DreamHomeSection from "./DreamHomeSection";
 import Footer from "@/components/UserComp/Common/Footer";
-import HomeChapterDivider from "./HomeChapterDivider";
 
 export default function HomePage() {
   return (
@@ -22,13 +22,12 @@ export default function HomePage() {
       <main className="flex-1 w-full overflow-x-clip">
         <HomeHeroSection />
         <PopularAreasSection />
-        <HomeChapterDivider bgClassName="bg-white" />
         <FeaturedProjectsSection />
         <WhyBlueHorizonSection />
+        <HotOffersSection />
         <FeaturedStandaloneSection />
         <PopularRentalLocationsSection />
         <UnitsForRentSection />
-        <HomeChapterDivider bgClassName="bg-white" />
         <HomeBlogsSection />
         <FaqsSection />
         <DreamHomeSection />

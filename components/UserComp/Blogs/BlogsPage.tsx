@@ -36,7 +36,14 @@ export default function BlogsPage() {
     const items = blogsData?.items || [];
     return items.map((item) => {
       const assignedCategory = item.blogType?.trim() || "";
-      const localeFormat = locale === "ar" ? "ar-EG" : locale === "de" ? "de-DE" : "en-US";
+      const localeFormat =
+        locale === "ar"
+          ? "ar-EG"
+          : locale === "de"
+          ? "de-DE"
+          : locale === "ru"
+          ? "ru-RU"
+          : "en-US";
       const formattedDate = item.publishDate
         ? new Date(item.publishDate).toLocaleDateString(localeFormat, {
             year: "numeric",

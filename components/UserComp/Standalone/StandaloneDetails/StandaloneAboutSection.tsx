@@ -43,7 +43,7 @@ export default function StandaloneAboutSection({
         className="text-xl sm:text-2xl font-bold text-[#202326]"
         style={{ fontFamily: "var(--font-manrope)" }}
       >
-        {t("standaloneDetail.about.title", "About This Standalone Property")}
+        {t("standaloneDetail.about.title", "About This Second Hand Property")}
       </h2>
 
       {/* Primary View Callout Badge / Card */}

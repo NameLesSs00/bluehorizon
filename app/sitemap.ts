@@ -8,7 +8,7 @@ import { getRentals } from "@/clientApi/rentalsApi";
 import { getStandaloneUnits } from "@/clientApi/standaloneUnitsApi";
 import { getBlogs } from "@/clientApi/blogsApi";
 
-const LOCALES = ["en", "de", "ar"] as const;
+const LOCALES = ["en", "de", "ar", "ru"] as const;
 
 const STATIC_PATHS = [
   "",
@@ -16,9 +16,10 @@ const STATIC_PATHS = [
   "/areas",
   "/locations",
   "/rent",
-  "/standalone",
+  "/second-hand",
   "/blogs",
   "/about",
+  "/faq",
   "/contact",
 ];
 
@@ -111,7 +112,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const slug = toUrlSlug(s.name, s.id);
         for (const loc of LOCALES) {
           entries.push({
-            url: `${SITE_URL}/${loc}/standalone/${slug}`,
+            url: `${SITE_URL}/${loc}/second-hand/${slug}`,
             lastModified: now,
             changeFrequency: "weekly",
             priority: 0.8,

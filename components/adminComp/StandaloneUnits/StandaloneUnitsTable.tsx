@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { StandaloneUnitItem } from "@/models/standaloneUnit";
@@ -34,7 +34,7 @@ export default function StandaloneUnitsTable({
       <div className="flex h-72 w-full items-center justify-center rounded-2xl border border-[#E2E8F3] bg-white">
         <div className="flex flex-col items-center gap-3">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#1B3A6B] border-t-transparent" />
-          <p className="text-[13px] text-[#65706B]">Loading standalone properties...</p>
+          <p className="text-[13px] text-[#65706B]">Loading second hand properties...</p>
         </div>
       </div>
     );
@@ -70,7 +70,7 @@ export default function StandaloneUnitsTable({
                   colSpan={5}
                   className="px-6 py-16 text-center text-[14px] text-[#65706B]"
                 >
-                  No standalone properties found. Click &quot;Add Standalone Property&quot; to list one.
+                  No second hand properties found. Click &quot;Add Second Hand Property&quot; to list one.
                 </td>
               </tr>
             ) : (

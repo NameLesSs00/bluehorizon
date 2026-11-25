@@ -3,8 +3,10 @@
 import {
   FlagEgypt,
   FlagGermany,
+  FlagRussia,
   FlagUK,
 } from "@/components/adminComp/Common/LanguageFlags";
+import { LocalizedText } from "@/models/faq";
 import { RentalFormPayload } from "@/models/rental";
 import RentalServicesField from "./RentalServicesField";
 
@@ -15,11 +17,52 @@ interface RentalListingDetailsFieldsProps {
   ) => void;
 }
 
+const LATE_CHECKIN_LANGS: Array<{
+  key: keyof LocalizedText;
+  Flag: typeof FlagUK;
+  placeholder: string;
+  dir?: "rtl";
+}> = [
+  { key: "en", Flag: FlagUK, placeholder: "e.g. Smart lock after 3 PM" },
+  { key: "de", Flag: FlagGermany, placeholder: "z.B. Smart Lock ab 15 Uhr" },
+  { key: "ar", Flag: FlagEgypt, placeholder: "مثال: دخول ذاتي بعد 3 مساءً", dir: "rtl" },
+  { key: "ru", Flag: FlagRussia, placeholder: "напр. Умный замок после 15:00" },
+];
+
+const EXTRA_PEOPLE_LANGS: Array<{
+  key: keyof LocalizedText;
+  Flag: typeof FlagUK;
+  placeholder: string;
+  dir?: "rtl";
+}> = [
+  { key: "en", Flag: FlagUK, placeholder: "English rule (e.g. 1 child free)" },
+  { key: "de", Flag: FlagGermany, placeholder: "Deutsch (z.B. 1 Kind frei)" },
+  { key: "ar", Flag: FlagEgypt, placeholder: "العربية (مثال: طفل واحد مجاناً)", dir: "rtl" },
+  { key: "ru", Flag: FlagRussia, placeholder: "Русский (напр. 1 ребенок бесплатно)" },
+];
+
 export default function RentalListingDetailsFields({
   formData,
   onChange,
 }: RentalListingDetailsFieldsProps) {
   const details = formData.listingDetails;
+
+  function updateLocalizedDetail(
+    field: "lateCheckIn" | "extraPeople",
+    lang: keyof LocalizedText,
+    value: string
+  ) {
+    onChange((prev) => ({
+      ...prev,
+      listingDetails: {
+        ...prev.listingDetails,
+        [field]: {
+          ...prev.listingDetails[field],
+          [lang]: value,
+        },
+      },
+    }));
+  }
 
   return (
     <div className="space-y-5 rounded-xl border border-[#E2E8F3] bg-[#F9F7F4] p-4">
@@ -46,79 +89,24 @@ export default function RentalListingDetailsFields({
         <label className="block text-[12px] font-medium text-[#202326]">
           Late Check-In Notes (Multilingual)
         </label>
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
-          <div className="relative">
-            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
-              <FlagUK className="h-3.5 w-3.5" />
-            </span>
-            <input
-              type="text"
-              value={details.lateCheckIn.en || ""}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  listingDetails: {
-                    ...prev.listingDetails,
-                    lateCheckIn: {
-                      ...prev.listingDetails.lateCheckIn,
-                      en: e.target.value,
-                    },
-                  },
-                }))
-              }
-              placeholder="e.g. Smart lock after 3 PM"
-              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
-
-          <div className="relative">
-            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
-              <FlagGermany className="h-3.5 w-3.5" />
-            </span>
-            <input
-              type="text"
-              value={details.lateCheckIn.de || ""}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  listingDetails: {
-                    ...prev.listingDetails,
-                    lateCheckIn: {
-                      ...prev.listingDetails.lateCheckIn,
-                      de: e.target.value,
-                    },
-                  },
-                }))
-              }
-              placeholder="z.B. Smart Lock ab 15 Uhr"
-              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
-
-          <div className="relative">
-            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
-              <FlagEgypt className="h-3.5 w-3.5" />
-            </span>
-            <input
-              type="text"
-              dir="rtl"
-              value={details.lateCheckIn.ar || ""}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  listingDetails: {
-                    ...prev.listingDetails,
-                    lateCheckIn: {
-                      ...prev.listingDetails.lateCheckIn,
-                      ar: e.target.value,
-                    },
-                  },
-                }))
-              }
-              placeholder="مثال: دخول ذاتي بعد 3 مساءً"
-              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+          {LATE_CHECKIN_LANGS.map(({ key, Flag, placeholder, dir }) => (
+            <div key={key} className="relative">
+              <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
+                <Flag className="h-3.5 w-3.5" />
+              </span>
+              <input
+                type="text"
+                dir={dir}
+                value={details.lateCheckIn[key] || ""}
+                onChange={(e) =>
+                  updateLocalizedDetail("lateCheckIn", key, e.target.value)
+                }
+                placeholder={placeholder}
+                className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+              />
+            </div>
+          ))}
         </div>
       </div>
 
@@ -127,101 +115,46 @@ export default function RentalListingDetailsFields({
         <label className="block text-[12px] font-medium text-[#202326]">
           Extra Guest Rules &amp; Fee
         </label>
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-4">
-          <div className="relative sm:col-span-1">
-            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
-              <FlagUK className="h-3.5 w-3.5" />
-            </span>
-            <input
-              type="text"
-              value={details.extraPeople.en || ""}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  listingDetails: {
-                    ...prev.listingDetails,
-                    extraPeople: {
-                      ...prev.listingDetails.extraPeople,
-                      en: e.target.value,
-                    },
-                  },
-                }))
-              }
-              placeholder="English rule (e.g. 1 child free)"
-              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+          {EXTRA_PEOPLE_LANGS.map(({ key, Flag, placeholder, dir }) => (
+            <div key={key} className="relative">
+              <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
+                <Flag className="h-3.5 w-3.5" />
+              </span>
+              <input
+                type="text"
+                dir={dir}
+                value={details.extraPeople[key] || ""}
+                onChange={(e) =>
+                  updateLocalizedDetail("extraPeople", key, e.target.value)
+                }
+                placeholder={placeholder}
+                className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+              />
+            </div>
+          ))}
+        </div>
 
-          <div className="relative sm:col-span-1">
-            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
-              <FlagGermany className="h-3.5 w-3.5" />
-            </span>
-            <input
-              type="text"
-              value={details.extraPeople.de || ""}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  listingDetails: {
-                    ...prev.listingDetails,
-                    extraPeople: {
-                      ...prev.listingDetails.extraPeople,
-                      de: e.target.value,
-                    },
-                  },
-                }))
-              }
-              placeholder="Deutsch (z.B. 1 Kind frei)"
-              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
-
-          <div className="relative sm:col-span-1">
-            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
-              <FlagEgypt className="h-3.5 w-3.5" />
-            </span>
-            <input
-              type="text"
-              dir="rtl"
-              value={details.extraPeople.ar || ""}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  listingDetails: {
-                    ...prev.listingDetails,
-                    extraPeople: {
-                      ...prev.listingDetails.extraPeople,
-                      ar: e.target.value,
-                    },
-                  },
-                }))
-              }
-              placeholder="العربية (مثال: طفل واحد مجاناً)"
-              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-8 pr-3 py-1.5 text-[12px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
-
-          <div className="relative sm:col-span-1">
-            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5 text-[12px] text-[#65706B]">
-              $
-            </span>
-            <input
-              type="number"
-              min={0}
-              value={details.extraPeopleFee}
-              onChange={(e) =>
-                onChange((prev) => ({
-                  ...prev,
-                  listingDetails: {
-                    ...prev.listingDetails,
-                    extraPeopleFee: Number(e.target.value),
-                  },
-                }))
-              }
-              placeholder="Fee ($)"
-              className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-6 pr-3 py-1.5 text-[12px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
-            />
-          </div>
+        <div className="relative sm:max-w-[200px] pt-1">
+          <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5 pt-1 text-[12px] text-[#65706B]">
+            $
+          </span>
+          <input
+            type="number"
+            min={0}
+            value={details.extraPeopleFee}
+            onChange={(e) =>
+              onChange((prev) => ({
+                ...prev,
+                listingDetails: {
+                  ...prev.listingDetails,
+                  extraPeopleFee: Number(e.target.value),
+                },
+              }))
+            }
+            placeholder="Extra Guest Fee ($)"
+            className="w-full rounded-xl border border-[#D0D9EA] bg-white pl-6 pr-3 py-1.5 text-[12px] text-[#202326] focus:border-[#2B5FA6] focus:outline-none"
+          />
         </div>
       </div>
 

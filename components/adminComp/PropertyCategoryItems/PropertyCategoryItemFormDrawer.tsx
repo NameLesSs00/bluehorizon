@@ -41,6 +41,7 @@ export default function PropertyCategoryItemFormDrawer({
   const [nameEn, setNameEn] = useState("");
   const [nameDe, setNameDe] = useState("");
   const [nameAr, setNameAr] = useState("");
+  const [nameRu, setNameRu] = useState("");
   const [icon, setIcon] = useState("");
   const [displayOrder, setDisplayOrder] = useState<number>(1);
   const [isLoadingDetails, setIsLoadingDetails] = useState(false);
@@ -59,6 +60,7 @@ export default function PropertyCategoryItemFormDrawer({
           setNameEn(data.name.en || itemToEdit.name || "");
           setNameDe(data.name.de || "");
           setNameAr(data.name.ar || "");
+          setNameRu(data.name.ru || "");
           if (data.icon) setIcon(data.icon);
           if (data.displayOrder) setDisplayOrder(data.displayOrder);
         })
@@ -75,6 +77,7 @@ export default function PropertyCategoryItemFormDrawer({
       setNameEn("");
       setNameDe("");
       setNameAr("");
+      setNameRu("");
       setIcon("TbCoffee");
       setDisplayOrder(1);
     }
@@ -109,6 +112,10 @@ export default function PropertyCategoryItemFormDrawer({
       toast.error("Please enter the item name in Arabic.");
       return;
     }
+    if (!nameRu.trim()) {
+      toast.error("Please enter the item name in Russian.");
+      return;
+    }
 
     if (isEditing && itemToEdit) {
       updateMutation.mutate({
@@ -120,6 +127,7 @@ export default function PropertyCategoryItemFormDrawer({
             en: nameEn.trim(),
             de: nameDe.trim(),
             ar: nameAr.trim(),
+            ru: nameRu.trim(),
           },
           icon: icon.trim() || undefined,
           displayOrder: Number(displayOrder) || 1,
@@ -132,6 +140,7 @@ export default function PropertyCategoryItemFormDrawer({
           en: nameEn.trim(),
           de: nameDe.trim(),
           ar: nameAr.trim(),
+          ru: nameRu.trim(),
         },
         icon: icon.trim() || undefined,
         displayOrder: Number(displayOrder) || 1,
@@ -192,6 +201,8 @@ export default function PropertyCategoryItemFormDrawer({
               setNameDe={setNameDe}
               nameAr={nameAr}
               setNameAr={setNameAr}
+              nameRu={nameRu}
+              setNameRu={setNameRu}
             />
 
             {/* Display Order & Icon Picker */}

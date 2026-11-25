@@ -11,7 +11,7 @@ interface HomeEmptyStateProps {
 export default function HomeEmptyState({
   illustrationSrc,
   message,
-  surfaceClassName = "bg-[#F9F7F4]",
+  surfaceClassName = "bg-transparent",
 }: HomeEmptyStateProps) {
   return (
     <div

@@ -92,7 +92,7 @@ export default function AboutHeroSection() {
           <div className="mt-8 flex flex-wrap items-center gap-3.5">
             <Link
               href={`/${locale}/projects`}
-              className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-[14px] font-semibold text-[#2B5FA6] transition-all duration-200 hover:bg-[#F0F3FA] hover:shadow-xs active:scale-[0.98]"
+              className="inline-flex items-center justify-center rounded-full bg-[#B8963E] px-7 py-3 text-[14px] font-semibold text-white transition-all duration-200 hover:bg-[#D4A843] hover:shadow-xs active:scale-[0.98]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {t("about.hero.exploreProjects")}

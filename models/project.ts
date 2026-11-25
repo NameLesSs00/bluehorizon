@@ -6,6 +6,14 @@ export enum FurnitureTypeEnum {
   Fully = 2,
 }
 
+export type ProjectTierType = "TopSeller" | "Luxury" | "BigHit";
+
+export const PROJECT_TIER_OPTIONS: { value: ProjectTierType; label: string }[] = [
+  { value: "TopSeller", label: "Top Seller" },
+  { value: "Luxury", label: "Luxury" },
+  { value: "BigHit", label: "Big Hit" },
+];
+
 export type ProjectCurrency = "USD" | "EUR" | "GBP" | "EGP";
 
 export const SUPPORTED_PROJECT_CURRENCIES: ProjectCurrency[] = [
@@ -50,6 +58,10 @@ export interface ProjectItem {
   isFurniture: boolean;
   furnitureType: string | number;
   isFeature: boolean;
+  projectType?: ProjectTierType | string | null;
+  isHotOffer?: boolean;
+  startDateHotOffer?: string | null;
+  endDateHotOffer?: string | null;
   prices: ProjectPriceDto[];
   projectTypes: ProjectTypeRef[];
   projectTypeIds: number[];
@@ -75,6 +87,7 @@ export interface ProjectsQueryParams {
   Language?: string;
   Currency?: string;
   ProjectTypeId?: number;
+  ProjectType?: ProjectTierType | string;
   MinimumPrice?: number;
   MaximumPrice?: number;
   IsFurniture?: boolean;
@@ -82,6 +95,9 @@ export interface ProjectsQueryParams {
   DeliveryDateFrom?: string;
   DeliveryDateTo?: string;
   IsFeature?: boolean;
+  IsHotOffer?: boolean;
+  StartDateHotOffer?: string;
+  EndDateHotOffer?: string;
   FeatureId?: number;
   FacilityId?: number;
   LocationId?: number;
@@ -101,9 +117,15 @@ export interface CreateProjectRequestDto {
   isFurniture: boolean;
   furnitureType: number;
   isFeature: boolean;
+  projectType: ProjectTierType;
+  isHotOffer?: boolean;
+  startDateHotOffer?: string | null;
+  endDateHotOffer?: string | null;
   projectTypeIds: number[];
   facilityIds: number[];
-  prices: ProjectPriceDto[];
+  minimumPriceUSD?: number;
+  maximumPriceUSD?: number;
+  prices?: ProjectPriceDto[];
 }
 
 export interface UpdateProjectRequestDto extends CreateProjectRequestDto {
@@ -119,10 +141,13 @@ export interface LocalizedProjectDetails {
   isFurniture: boolean;
   furnitureType: number;
   isFeature: boolean;
+  projectType: ProjectTierType | null;
+  isHotOffer: boolean;
+  startDateHotOffer: string | null;
+  endDateHotOffer: string | null;
   projectTypeIds: number[];
   facilityIds: number[];
   prices: ProjectPriceDto[];
   imageUrls: string[];
   images?: ProjectImageItem[];
 }
-

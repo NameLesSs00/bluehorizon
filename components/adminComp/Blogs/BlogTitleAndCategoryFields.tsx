@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { FiCalendar, FiTag } from "react-icons/fi";
 import { LocalizedText } from "@/models/faq";
@@ -6,14 +6,15 @@ import {
   FlagEgypt,
   FlagGermany,
   FlagUK,
+  FlagRussia,
 } from "@/components/adminComp/Common/LanguageFlags";
 
-const CATEGORY_PRESETS: Array<{ en: string; de: string; ar: string }> = [
-  { en: "Buying Guide", de: "Kaufberater", ar: "دليل الشراء" },
-  { en: "Investment", de: "Investition", ar: "استثمار" },
-  { en: "Lifestyle", de: "Lebensstil", ar: "نمط الحياة" },
-  { en: "Market Insights", de: "Markteinblicke", ar: "رؤى السوق" },
-  { en: "Red Sea News", de: "Rote Meer Nachrichten", ar: "أخبار البحر الأحمر" },
+const CATEGORY_PRESETS: Array<{ en: string; de: string; ar: string; ru: string }> = [
+  { en: "Buying Guide", de: "Kaufberater", ar: "دليل الشراء", ru: "Руководство по покупке" },
+  { en: "Investment", de: "Investition", ar: "استثمار", ru: "Инвестиции" },
+  { en: "Lifestyle", de: "Lebensstil", ar: "نمط الحياة", ru: "Образ жизни" },
+  { en: "Market Insights", de: "Markteinblicke", ar: "رؤى السوق", ru: "Аналитика рынка" },
+  { en: "Red Sea News", de: "Rote Meer Nachrichten", ar: "أخبار البحر الأحمر", ru: "Новости Красного моря" },
 ];
 
 interface BlogTitleAndCategoryFieldsProps {
@@ -57,7 +58,7 @@ export default function BlogTitleAndCategoryFields({
               <button
                 key={cat.en}
                 type="button"
-                onClick={() => setBlogType({ en: cat.en, de: cat.de, ar: cat.ar })}
+                onClick={() => setBlogType({ en: cat.en, de: cat.de, ar: cat.ar, ru: cat.ru })}
                 className={`rounded-lg border px-2.5 py-1 text-[11px] font-semibold transition-all ${
                   blogType.en === cat.en
                     ? "border-[#2B5FA6] bg-[#2B5FA6] text-white"
@@ -71,7 +72,7 @@ export default function BlogTitleAndCategoryFields({
         </div>
 
         {/* Multilingual Blog Type */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label className="flex items-center gap-1.5 text-[11px] font-medium text-[#202326]">
               <FlagUK className="h-3 w-4 rounded-2xs" />
@@ -112,6 +113,20 @@ export default function BlogTitleAndCategoryFields({
               value={blogType.ar}
               onChange={(e) => setBlogType({ ...blogType, ar: e.target.value })}
               placeholder="مثال: دليل الشراء"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="flex items-center gap-1.5 text-[11px] font-medium text-[#202326]">
+              <FlagRussia className="h-3 w-4 rounded-2xs" />
+              <span>Type (RU)</span>
+            </label>
+            <input
+              type="text"
+              value={blogType.ru}
+              onChange={(e) => setBlogType({ ...blogType, ru: e.target.value })}
+              placeholder="например: Руководство"
               className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[12px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
@@ -186,6 +201,21 @@ export default function BlogTitleAndCategoryFields({
         </div>
 
         <div>
+          <label className="flex items-center gap-2 text-[12px] font-medium text-[#202326]">
+            <FlagRussia className="h-3.5 w-5 rounded-2xs shadow-xs" />
+            <span>Russian Title *</span>
+          </label>
+          <input
+            type="text"
+            required
+            value={title.ru}
+            onChange={(e) => setTitle({ ...title, ru: e.target.value })}
+            placeholder="например: 5 советов по покупке недвижимости"
+            className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
+          />
+        </div>
+
+        <div>
           <label className="block text-[12px] font-medium text-[#202326]">
             {isEditing ? "Replace Cover Image (Optional)" : "Cover Image (Optional)"}
           </label>
@@ -200,7 +230,7 @@ export default function BlogTitleAndCategoryFields({
     </div>
   );
 
-  function setTitleCategory(val: string, lang: "en" | "de" | "ar") {
+  function setTitleCategory(val: string, lang: "en" | "de" | "ar" | "ru") {
     setBlogType({ ...blogType, [lang]: val });
   }
 }

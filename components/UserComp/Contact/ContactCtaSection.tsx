@@ -63,7 +63,7 @@ export default function ContactCtaSection() {
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-[12px] bg-white px-8 py-3.5 text-[14px] font-semibold text-[#2B5FA6] transition-all duration-200 hover:bg-[#F0F3FA] hover:shadow-xs active:scale-[0.98] text-center"
+                    className="inline-flex items-center justify-center rounded-[12px] bg-[#B8963E] px-8 py-3.5 text-[14px] font-semibold text-white transition-all duration-200 hover:bg-[#D4A843] hover:shadow-xs active:scale-[0.98] text-center"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     {t("contact.cta.whatsapp")}

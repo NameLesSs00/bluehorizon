@@ -4,11 +4,12 @@
       "home": "Home",
       "areas": "Areas",
       "projects": "Projects",
-      "standalone": "Standalone",
+      "standalone": "Second Hand",
       "rent": "Rent",
       "blogs": "Blogs",
       "aboutUs": "About Us",
-      "contactUs": "Contact Us"
+      "contactUs": "Contact Us",
+      "faq": "FAQ"
     },
     "search": {
       "categories": "Categories",
@@ -21,13 +22,13 @@
       "anyArea": "Any Area",
       "buy": "Buy",
       "rent": "Rent",
-      "standalone": "Standalone"
+      "standalone": "Second Hand"
     },
     "footer": {
       "tagline": "Discover exceptional properties and premium developments designed around your lifestyle.",
       "description": "Blue Horizon is your premier real estate partner across Hurghada and the Red Sea coast. Whether you are looking to purchase a coastal villa, invest in off-plan compounds, or lease a modern apartment in El Kawthar and surrounding prime destinations.",
       "properties": "Properties",
-      "standaloneUnits": "Standalone units",
+      "standaloneUnits": "Second Hand units",
       "unitsForRent": "Units for rent",
       "compoundsProjects": "Compounds & projects",
       "exploreAreas": "Explore areas",
@@ -39,7 +40,8 @@
       "contactUs": "Contact us",
       "getInTouch": "Get in touch",
       "allRightsReserved": "All rights reserved.",
-      "poweredBy": "Powered by"
+      "poweredBy": "Powered by",
+      "faq": "FAQ"
     }
   },
   "home": {
@@ -53,7 +55,7 @@
       "search": {
         "tabBuy": "Buy",
         "tabRent": "Rent",
-        "tabStandalone": "Standalone",
+        "tabStandalone": "Second Hand",
         "categories": "Categories",
         "propertyType": "Property Type",
         "priceRange": "Price Range",
@@ -91,6 +93,14 @@
       "delivery": "Delivery {year}",
       "noProjectsFound": "No featured projects currently available."
     },
+    "hotOffers": {
+      "eyebrow": "LIMITED TIME DEALS",
+      "heading": "Hot Offers",
+      "subtitle": "Exclusive today-only and limited-time offers on premier Red Sea developments.",
+      "viewAll": "View all projects",
+      "ribbonLabel": "HOT OFFER",
+      "validUntil": "Valid until {date}"
+    },
     "whyUs": {
       "eyebrow": "WHY BLUE HORIZON?",
       "headingLine1": "More Than a Home,",
@@ -118,10 +128,10 @@
     },
     "featuredStandalone": {
       "eyebrow": "A PLACE OF YOUR OWN",
-      "heading": "Featured Standalone Units",
-      "subtitle": "Independent homes outside gated communities, in established neighborhoods you will love.",
-      "viewAll": "View all standalone units",
-      "noUnitsFound": "No standalone units available at this time."
+      "heading": "Featured Second Hand Units",
+      "subtitle": "Second hand homes outside gated communities, in established neighborhoods you will love.",
+      "viewAll": "View all second hand units",
+      "noUnitsFound": "No second hand units available at this time."
     },
     "popularRentalLocations": {
       "eyebrow": "FIND YOUR COMFORTABLE ZONE",
@@ -206,8 +216,8 @@
         "description": "Direct launch access to top master-planned coastal resorts and gated communities with zero buyer commission."
       },
       "resaleVillas": {
-        "title": "Standalone Resale Villas",
-        "description": "Vetted luxury homes, standalone beachfront villas and ready-to-move twin houses across prime destinations."
+        "title": "Second Hand Villas",
+        "description": "Vetted luxury homes, second hand beachfront villas and ready-to-move twin houses across prime destinations."
       },
       "rentalMgmt": {
         "title": "High-Yield Rental Management",
@@ -364,7 +374,7 @@
       "breadcrumbLocations": "Locations",
       "badge": "PREMIER DESTINATIONS",
       "heading": "Prime Coastal & Urban Locations",
-      "subtitle": "Explore premier real estate investment destinations across Egypt with verified compounds, standalone villas, and luxury rentals."
+      "subtitle": "Explore premier real estate investment destinations across Egypt with verified compounds, second hand villas, and luxury rentals."
     },
     "filters": {
       "searchPlaceholder": "Search locations (e.g. Sahl Hasheesh, New Cairo...)",
@@ -534,10 +544,10 @@
   "standaloneDetail": {
     "breadcrumb": {
       "home": "Home",
-      "standalone": "Standalone"
+      "standalone": "Second Hand"
     },
     "header": {
-      "askingResalePrice": "Asking Resale Price",
+      "askingResalePrice": "Asking Price",
       "priceOnRequest": "Price on request",
       "country": "Country",
       "city": "City",
@@ -560,7 +570,7 @@
       "ground": "Ground"
     },
     "about": {
-      "title": "About This Standalone Property",
+      "title": "About This Second Hand Property",
       "orientationView": "Orientation & Outlook View",
       "locationTitle": "Geographic Location & Legal Registry Details",
       "country": "COUNTRY",
@@ -615,9 +625,9 @@
       "verifiedVisitor": "Verified Visitor"
     },
     "notFound": {
-      "title": "Standalone Unit Not Found",
-      "body": "The standalone residential unit you are looking for does not exist or is currently unavailable.",
-      "back": "Back to Standalone Units"
+      "title": "Second Hand Unit Not Found",
+      "body": "The second hand residential unit you are looking for does not exist or is currently unavailable.",
+      "back": "Back to Second Hand Units"
     }
   },
   "rent": {
@@ -798,7 +808,15 @@
       "maxPrice": "Maximum Price",
       "maxPricePlaceholder": "Max Price",
       "apply": "Apply Filters",
-      "resetButton": "Reset Filters"
+      "resetButton": "Reset Filters",
+      "tierLabel": "Project Category",
+      "anyTier": "All Categories",
+      "tierTopSeller": "Top Seller",
+      "tierLuxury": "Luxury",
+      "tierBigHit": "Big Hit",
+      "hotOffersOnly": "Hot Offers Only",
+      "facilitiesLabel": "Facilities",
+      "clearFacilities": "Clear"
     },
     "grid": {
       "loading": "Loading projects...",
@@ -896,12 +914,12 @@
   "standaloneList": {
     "breadcrumb": {
       "home": "Home",
-      "standalone": "Standalone units"
+      "standalone": "Second Hand units"
     },
     "hero": {
       "badge": "Verified Premium Units",
-      "title": "Standalone Properties for Sale",
-      "description": "Discover a diverse selection of independent apartments, villas, and residential units outside gated communities, offering flexibility, privacy, and prime locations across Egypt's most sought-after neighborhoods."
+      "title": "Second Hand Properties for Sale",
+      "description": "Discover a diverse selection of second hand apartments, villas, and residential units outside gated communities, offering flexibility, privacy, and prime locations across Egypt's most sought-after neighborhoods."
     },
     "filters": {
       "title": "Filters",
@@ -940,7 +958,7 @@
     "grid": {
       "title": "Available Units",
       "subtitle": "Explore top-tier residential units ready for immediate sale.",
-      "emptyTitle": "No Standalone Units Found",
+      "emptyTitle": "No Second Hand Units Found",
       "emptyDescription": "We could not find any units matching your filter criteria. Try adjusting your search or resetting the filters.",
       "resetFilters": "Reset Filters",
       "nextPage": "Next page"
@@ -956,7 +974,31 @@
     "cta": {
       "eyebrow": "Need Immediate Assistance?",
       "heading": "Talk to Our Sales Team",
-      "description": "Our property advisors are ready to help you explore available standalone units, provide detailed information, and arrange private viewings to find the right property for you.",
+      "description": "Our property advisors are ready to help you explore available second hand units, provide detailed information, and arrange private viewings to find the right property for you.",
+      "whatsapp": "WhatsApp Chat",
+      "call": "Call"
+    }
+  },
+  "faqPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbFaq": "FAQ",
+    "badge": "HELP CENTER",
+    "heading": "Frequently Asked Questions",
+    "subtitle": "Find clear answers to the most common questions about buying, renting, legal verification, and investing in Hurghada and the Red Sea.",
+    "searchPlaceholder": "Search questions or keywords...",
+    "clearSearch": "Clear",
+    "showingCount": "Showing {count} questions",
+    "showingSingle": "Showing 1 question",
+    "noResultsTitle": "No matching questions found",
+    "noResultsSubtitle": "We could not find any FAQ matching your search. Try a different keyword or reach out to our team directly.",
+    "resetSearch": "Reset Search",
+    "emptyTitle": "No FAQs published yet",
+    "emptySubtitle": "Still have questions? Our property advisors are always here to help.",
+    "cta": {
+      "eyebrow": "STILL HAVE QUESTIONS?",
+      "heading": "Speak Directly with Our Advisors",
+      "description": "Need personalized guidance on payment plans, legal deeds, or property management? Our team is available 6 days a week.",
+      "contactButton": "Contact Support",
       "whatsapp": "WhatsApp Chat",
       "call": "Call"
     }

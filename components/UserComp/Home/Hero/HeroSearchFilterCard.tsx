@@ -146,7 +146,7 @@ export default function HeroSearchFilterCard() {
   const getTabLabel = (tab: HeroSearchTab) => {
     if (tab === "Buy") return t("home.hero.search.tabBuy", "Buy");
     if (tab === "Rent") return t("home.hero.search.tabRent", "Rent");
-    if (tab === "Standalone") return t("home.hero.search.tabStandalone", "Standalone");
+    if (tab === "Standalone") return t("home.hero.search.tabStandalone", "Second Hand");
     return tab;
   };
 
@@ -178,7 +178,7 @@ export default function HeroSearchFilterCard() {
       if (standaloneSearch.trim()) params.set("searchTerm", standaloneSearch.trim());
       if (selectedType?.value) params.set("propertyType", String(selectedType.value));
       if (selectedSecondary?.id) params.set("bedrooms", String(selectedSecondary.id));
-      router.push(`/${locale}/standalone?${params.toString()}`);
+      router.push(`/${locale}/second-hand?${params.toString()}`);
     }
   }
 
@@ -276,7 +276,7 @@ export default function HeroSearchFilterCard() {
           <button
             type="button"
             onClick={handleSearch}
-            className="inline-flex w-full lg:w-auto shrink-0 items-center justify-center gap-2.5 rounded-full bg-[#1B3A6B] px-6 py-3 sm:py-3.5 lg:px-9 lg:py-4.5 text-[14px] sm:text-[15px] lg:text-[16px] font-semibold text-white shadow-md transition-all hover:bg-[#2B5FA6] hover:shadow-xl"
+            className="inline-flex w-full lg:w-auto shrink-0 items-center justify-center gap-2.5 rounded-full bg-[#B8963E] px-6 py-3 sm:py-3.5 lg:px-9 lg:py-4.5 text-[14px] sm:text-[15px] lg:text-[16px] font-semibold text-white shadow-md transition-all hover:bg-[#D4A843] hover:shadow-xl"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             <FiSearch className="h-4 w-4 sm:h-5 sm:w-5" />

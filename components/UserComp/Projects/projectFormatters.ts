@@ -1,11 +1,14 @@
 import { ProjectItem } from "@/models/project";
 import { getFullProjectImageUrl } from "@/clientApi/projectsApi";
+import { formatHotOfferEndDate, isActiveHotOfferToday } from "@/shared/utils/hotOffer";
 import { ProjectDisplayItem } from "./ProjectGridCard";
 
 export function formatApiProject(
   item: ProjectItem,
   currentCurrency: string,
-  priceOnRequestLabel: string
+  priceOnRequestLabel: string,
+  locale: string = "en",
+  validUntilTemplate: string = "Valid until {date}"
 ): ProjectDisplayItem {
   const hasImage = Boolean(item.imageUrls && item.imageUrls.length > 0);
   const coverImage = hasImage
@@ -40,6 +43,14 @@ export function formatApiProject(
     priceFormatted = `${symbol}${Number(activePrice.maximumPrice).toLocaleString()}`;
   }
 
+  const isHotOffer = isActiveHotOfferToday(item);
+  const formattedEnd = isHotOffer
+    ? formatHotOfferEndDate(item.endDateHotOffer, locale)
+    : null;
+  const hotOfferEndLabel = formattedEnd
+    ? validUntilTemplate.replace("{date}", formattedEnd)
+    : null;
+
   return {
     id: item.id,
     title: item.name,
@@ -47,5 +58,7 @@ export function formatApiProject(
     priceFormatted,
     imageSrc: coverImage,
     isFallback: !hasImage,
+    isHotOffer,
+    hotOfferEndLabel,
   };
 }

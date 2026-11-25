@@ -66,7 +66,7 @@ export default function StandaloneCtaSection() {
             >
               {t(
                 "standaloneList.cta.description",
-                "Our property advisors are ready to help you explore available standalone units, provide detailed information, and arrange private viewings to find the right property for you."
+                "Our property advisors are ready to help you explore available second hand units, provide detailed information, and arrange private viewings to find the right property for you."
               )}
             </p>
           </motion.div>
@@ -83,7 +83,7 @@ export default function StandaloneCtaSection() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center rounded-[12px] bg-white px-6 py-3.5 text-center text-xs sm:text-sm font-semibold text-[#2B5FA6] shadow-sm transition-colors hover:bg-white/90"
+                className="flex items-center justify-center rounded-[12px] bg-[#B8963E] px-6 py-3.5 text-center text-xs sm:text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#D4A843]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {t("standaloneList.cta.whatsapp", "WhatsApp Chat")}

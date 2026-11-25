@@ -27,6 +27,7 @@ export interface CreateProjectTypeRequestDto {
     en: string;
     ar: string;
     de: string;
+    ru: string;
   };
   icon: string;
 }
@@ -37,6 +38,7 @@ export interface UpdateProjectTypeRequestDto {
     en: string;
     ar: string;
     de: string;
+    ru: string;
   };
   icon: string;
 }
@@ -48,6 +50,7 @@ export interface LocalizedProjectTypeData {
     en: string;
     ar: string;
     de: string;
+    ru: string;
   };
 }
 

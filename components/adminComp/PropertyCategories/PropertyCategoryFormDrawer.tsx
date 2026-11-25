@@ -15,6 +15,7 @@ import {
   EgyptFlag,
   GermanyFlag,
   UkFlag,
+  RussiaFlag,
 } from "@/components/adminComp/Common/LanguageFlags";
 
 interface PropertyCategoryFormDrawerProps {
@@ -33,6 +34,7 @@ export default function PropertyCategoryFormDrawer({
   const [nameEn, setNameEn] = useState("");
   const [nameDe, setNameDe] = useState("");
   const [nameAr, setNameAr] = useState("");
+  const [nameRu, setNameRu] = useState("");
   const [icon, setIcon] = useState("");
   const [displayOrder, setDisplayOrder] = useState<number>(1);
   const [isLoadingDetails, setIsLoadingDetails] = useState(false);
@@ -49,6 +51,7 @@ export default function PropertyCategoryFormDrawer({
           setNameEn(data.name.en || categoryToEdit.name || "");
           setNameDe(data.name.de || "");
           setNameAr(data.name.ar || "");
+          setNameRu(data.name.ru || "");
           if (data.icon) setIcon(data.icon);
           if (data.displayOrder) setDisplayOrder(data.displayOrder);
         })
@@ -62,6 +65,7 @@ export default function PropertyCategoryFormDrawer({
       setNameEn("");
       setNameDe("");
       setNameAr("");
+      setNameRu("");
       setIcon("TbToolsKitchen2");
       setDisplayOrder(1);
     }
@@ -92,6 +96,10 @@ export default function PropertyCategoryFormDrawer({
       toast.error("Please enter the category name in Arabic.");
       return;
     }
+    if (!nameRu.trim()) {
+      toast.error("Please enter the category name in Russian.");
+      return;
+    }
 
     if (isEditing && categoryToEdit) {
       updateMutation.mutate({
@@ -102,6 +110,7 @@ export default function PropertyCategoryFormDrawer({
             en: nameEn.trim(),
             de: nameDe.trim(),
             ar: nameAr.trim(),
+            ru: nameRu.trim(),
           },
           icon: icon.trim() || undefined,
           displayOrder: Number(displayOrder) || 1,
@@ -113,6 +122,7 @@ export default function PropertyCategoryFormDrawer({
           en: nameEn.trim(),
           de: nameDe.trim(),
           ar: nameAr.trim(),
+          ru: nameRu.trim(),
         },
         icon: icon.trim() || undefined,
         displayOrder: Number(displayOrder) || 1,
@@ -196,6 +206,22 @@ export default function PropertyCategoryFormDrawer({
                   onChange={(e) => setNameAr(e.target.value)}
                   placeholder="مثال: المطبخ وتناول الطعام، الحمام، الترفيه"
                   className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[14px] text-[#202326] outline-none transition-all placeholder:text-[#65706B] focus:border-[#2B5FA6] focus:ring-2 focus:ring-[#2B5FA6]/15 text-right"
+                />
+              </div>
+
+              {/* Russian */}
+              <div>
+                <label className="flex items-center gap-2 text-[12px] font-semibold text-[#202326]">
+                  <RussiaFlag className="h-3.5 w-5 rounded-xs shadow-xs" />
+                  <span>Russian Name (RU)</span>
+                  <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={nameRu}
+                  onChange={(e) => setNameRu(e.target.value)}
+                  placeholder="например: Кухня и столовая, Ванная комната"
+                  className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[14px] text-[#202326] outline-none transition-all placeholder:text-[#65706B] focus:border-[#2B5FA6] focus:ring-2 focus:ring-[#2B5FA6]/15"
                 />
               </div>
             </div>

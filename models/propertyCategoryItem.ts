@@ -29,6 +29,7 @@ export interface CreatePropertyCategoryItemRequestDto {
     en: string;
     ar: string;
     de: string;
+    ru: string;
   };
   icon?: string;
   displayOrder: number;
@@ -41,6 +42,7 @@ export interface UpdatePropertyCategoryItemRequestDto {
     en: string;
     ar: string;
     de: string;
+    ru: string;
   };
   icon?: string;
   displayOrder: number;
@@ -55,6 +57,7 @@ export interface LocalizedPropertyCategoryItemData {
     en: string;
     ar: string;
     de: string;
+    ru: string;
   };
 }
 

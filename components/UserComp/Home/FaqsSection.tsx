@@ -3,9 +3,15 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { FiMinus, FiPlus } from "react-icons/fi";
+import { PiQuestionLight, PiChatsCircleLight } from "react-icons/pi";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { usePublicQuestionsQuery } from "@/features/questions/useQuestionsQueries";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import {
+  createSlideInVariants,
+  LUXURY_EASE,
+} from "@/shared/utils/motionPresets";
+import HomeSectionBgIcon from "./HomeSectionBgIcon";
 
 interface FaqItem {
   id: number;
@@ -14,12 +20,16 @@ interface FaqItem {
 }
 
 export default function FaqsSection() {
-  const { t, locale } = useTranslation();
+  const { t, locale, direction } = useTranslation();
+  const isRtl = direction === "rtl";
   const { data: apiQuestions, isLoading } = usePublicQuestionsQuery(locale);
   const [openId, setOpenId] = useState<number | null>(null);
 
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, amount: 0.16 });
+
+  const leftVariants = createSlideInVariants("start", isRtl, 0.08);
+  const rightVariants = createSlideInVariants("end", isRtl, 0.16);
 
   const faqs: FaqItem[] = (apiQuestions || []).slice(0, 5).map((q) => ({
     id: q.id,
@@ -32,20 +42,23 @@ export default function FaqsSection() {
   }
 
   return (
-    <motion.section
+    <section
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, ease: "easeOut" }}
-      className="bg-[#E5ECF6] py-10 sm:py-14 lg:py-16"
+      className="relative overflow-hidden bg-[#E5ECF6] py-10 sm:py-14 lg:py-16"
     >
-      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+      <HomeSectionBgIcon
+        leftIcon={PiQuestionLight}
+        rightIcon={PiChatsCircleLight}
+        colorClassName="text-[#1B3A6B]/[0.075]"
+      />
+
+      <div className="relative z-10 mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-start">
           {/* Left Column: Heading, Subtitles & CTA */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+            variants={leftVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
             className="lg:col-span-5 flex flex-col justify-between"
           >
             <div>
@@ -57,7 +70,7 @@ export default function FaqsSection() {
               </h3>
 
               <p
-                className="mt-4 text-[11px] font-normal uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
+                className="mt-4 text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#B8963E]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {t("home.faqs.eyebrow", "WE ARE HERE TO HELP")}
@@ -86,7 +99,7 @@ export default function FaqsSection() {
             <div className="mt-8 sm:mt-10">
               <Link
                 href={`/${locale}/contact`}
-                className="inline-flex items-center justify-center rounded-full bg-[#2B5FA6] px-8 py-3.5 text-[14px] font-medium text-white transition-colors hover:bg-[#1B3A6B]"
+                className="inline-flex items-center justify-center rounded-full bg-[#B8963E] px-8 py-3.5 text-[14px] font-semibold text-white transition-colors hover:bg-[#D4A843] shadow-xs"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {t("home.faqs.contactSupport", "Contact Support")}
@@ -96,9 +109,9 @@ export default function FaqsSection() {
 
           {/* Right Column: FAQ Accordion Card */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+            variants={rightVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
             className="lg:col-span-7"
           >
             <div className="overflow-hidden rounded-[24px] bg-white shadow-sm divide-y divide-[#E2E8F3]">
@@ -137,13 +150,17 @@ export default function FaqsSection() {
                           {faq.question}
                         </span>
 
-                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#202326]/70 text-[#202326] transition-transform">
+                        <motion.span
+                          animate={{ rotate: isOpen ? 180 : 0 }}
+                          transition={{ duration: 0.3, ease: LUXURY_EASE }}
+                          className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#202326]/70 text-[#202326]"
+                        >
                           {isOpen ? (
                             <FiMinus className="h-3.5 w-3.5" />
                           ) : (
                             <FiPlus className="h-3.5 w-3.5" />
                           )}
-                        </span>
+                        </motion.span>
                       </button>
 
                       <AnimatePresence initial={false}>
@@ -152,7 +169,7 @@ export default function FaqsSection() {
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            transition={{ duration: 0.32, ease: LUXURY_EASE }}
                             className="overflow-hidden"
                           >
                             <div
@@ -172,6 +189,6 @@ export default function FaqsSection() {
           </motion.div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

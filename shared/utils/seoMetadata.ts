@@ -17,7 +17,7 @@ export interface BuildMetadataOptions {
   noIndex?: boolean;
 }
 
-const SUPPORTED_LOCALES = ["en", "de", "ar"] as const;
+const SUPPORTED_LOCALES = ["en", "de", "ar", "ru"] as const;
 
 /**
  * Builds standard, SEO-compliant Next.js Metadata with OpenGraph, Twitter, canonical, and hreflang tags.
@@ -78,7 +78,14 @@ export function buildPageMetadata(options: BuildMetadataOptions): Metadata {
       description: cleanDescription,
       url: canonicalUrl,
       siteName: DEFAULT_SITE_TITLE,
-      locale: locale === "ar" ? "ar_EG" : locale === "de" ? "de_DE" : "en_US",
+      locale:
+        locale === "ar"
+          ? "ar_EG"
+          : locale === "de"
+          ? "de_DE"
+          : locale === "ru"
+          ? "ru_RU"
+          : "en_US",
       type,
       images: ogImages,
     },

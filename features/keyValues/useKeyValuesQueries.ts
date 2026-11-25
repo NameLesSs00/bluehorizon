@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import {
@@ -30,7 +31,13 @@ export function useKeyValuesQuery() {
 }
 
 export function usePublicSiteSettingsQuery() {
-  return useQuery({
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const query = useQuery({
     queryKey: PUBLIC_SITE_SETTINGS_QUERY_KEY,
     queryFn: async () => {
       const items = await getKeyValues();
@@ -45,6 +52,13 @@ export function usePublicSiteSettingsQuery() {
     },
     staleTime: 1000 * 60 * 5,
   });
+
+  return {
+    ...query,
+    data: mounted ? query.data : undefined,
+    isLoading: !mounted || query.isLoading,
+    isPending: !mounted || query.isPending,
+  };
 }
 
 export function useSiteSetting(key: string, fallback: string = ""): string {

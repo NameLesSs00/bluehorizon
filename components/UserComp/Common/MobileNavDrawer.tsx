@@ -119,12 +119,15 @@ export default function MobileNavDrawer({
               <Link
                 href={localizedHref("/")}
                 onClick={onClose}
-                className="relative block h-10 w-36 sm:h-12 sm:w-44 shrink-0"
+                className="relative block h-12 w-44 sm:h-14 sm:w-52 shrink-0"
               >
                 <Image
                   src="/logo.svg"
                   alt="Blue Horizon"
                   fill
+                  style={{
+                    filter: "drop-shadow(0 3px 6px rgba(27, 58, 107, 0.24))",
+                  }}
                   className="object-contain object-left"
                 />
               </Link>
@@ -185,7 +188,7 @@ export default function MobileNavDrawer({
               <Link
                 href={localizedHref("/contact")}
                 onClick={onClose}
-                className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#1B3A6B] text-[15px] font-semibold text-white shadow-md transition-colors hover:bg-[#2B5FA6]"
+                className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#B8963E] text-[15px] font-semibold text-white shadow-md transition-colors hover:bg-[#D4A843]"
               >
                 <span>{t("common.nav.contactUs", "Contact Us")}</span>
                 <FiArrowRight className="h-4 w-4" />

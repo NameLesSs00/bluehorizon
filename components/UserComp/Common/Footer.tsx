@@ -8,6 +8,7 @@ import { useRef } from "react";
 import { useInView } from "framer-motion";
 import { usePublicSiteSettingsQuery } from "@/features/keyValues/useKeyValuesQueries";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { isValidLocale } from "@/features/i18n/i18nConfig";
 import FooterSocialLinks from "./FooterSocialLinks";
 
 // Fade-up animation triggered when element enters the viewport
@@ -58,7 +59,7 @@ export default function Footer() {
   // Derive locale from path for localized hrefs
   const segments = pathname ? pathname.split("/").filter(Boolean) : [];
   const currentLocale =
-    segments.length > 0 && ["en", "de", "ar"].includes(segments[0])
+    segments.length > 0 && isValidLocale(segments[0])
       ? segments[0]
       : "en";
 
@@ -80,12 +81,15 @@ export default function Footer() {
 
             {/* Brand & Description */}
             <FadeUp delay={0} className="lg:col-span-5 flex flex-col justify-start">
-              <div className="relative h-20 w-64 sm:h-24 sm:w-80">
+              <div className="relative h-24 w-72 sm:h-28 sm:w-[340px]">
                 <Image
                   src="/logo.svg"
                   alt="Blue Horizon"
                   fill
                   priority
+                  style={{
+                    filter: "drop-shadow(0 4px 8px rgba(27, 58, 107, 0.24))",
+                  }}
                   className="object-contain object-left"
                 />
               </div>
@@ -108,10 +112,11 @@ export default function Footer() {
               >
                 {t("common.footer.properties", "Properties")}
               </h3>
+              <div className="mt-2.5 h-[2px] w-7 rounded-full bg-[#B8963E]" aria-hidden="true" />
               <ul className="mt-6 space-y-3.5" style={{ fontFamily: "var(--font-inter)" }}>
                 <li>
-                  <Link href={localizedHref("/standalone")} className={linkClass}>
-                    {t("common.footer.standaloneUnits", "Standalone units")}
+                  <Link href={localizedHref("/second-hand")} className={linkClass}>
+                    {t("common.footer.standaloneUnits", "Second Hand units")}
                   </Link>
                 </li>
                 <li>
@@ -145,6 +150,7 @@ export default function Footer() {
               >
                 {t("common.footer.quickLinks", "Quick Links")}
               </h3>
+              <div className="mt-2.5 h-[2px] w-7 rounded-full bg-[#B8963E]" aria-hidden="true" />
               <ul className="mt-6 space-y-3.5" style={{ fontFamily: "var(--font-inter)" }}>
                 <li>
                   <Link href={localizedHref("/")} className={linkClass}>
@@ -159,6 +165,11 @@ export default function Footer() {
                 <li>
                   <Link href={localizedHref("/blogs")} className={linkClass}>
                     {t("common.footer.blogsGuides", "Blogs & guides")}
+                  </Link>
+                </li>
+                <li>
+                  <Link href={localizedHref("/faq")} className={linkClass}>
+                    {t("common.footer.faq", "FAQ")}
                   </Link>
                 </li>
                 <li>
@@ -177,6 +188,7 @@ export default function Footer() {
               >
                 {t("common.footer.getInTouch", "Get in touch")}
               </h3>
+              <div className="mt-2.5 h-[2px] w-7 rounded-full bg-[#B8963E]" aria-hidden="true" />
               {isLoading ? (
                 <div className="mt-6 space-y-3">
                   <div className="h-4 w-32 animate-pulse rounded bg-[#E2E8F3]" />

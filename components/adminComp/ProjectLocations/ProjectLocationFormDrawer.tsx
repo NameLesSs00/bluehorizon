@@ -22,8 +22,8 @@ interface ProjectLocationFormDrawerProps {
 }
 
 const emptyForm: ProjectLocationFormPayload = {
-  name: { en: "", ar: "", de: "" },
-  description: { en: "", ar: "", de: "" },
+  name: { en: "", ar: "", de: "", ru: "" },
+  description: { en: "", ar: "", de: "", ru: "" },
 };
 
 export default function ProjectLocationFormDrawer({
@@ -56,17 +56,19 @@ export default function ProjectLocationFormDrawer({
             en: detailsData.name.en || "",
             ar: detailsData.name.ar || "",
             de: detailsData.name.de || "",
+            ru: detailsData.name.ru || "",
           },
           description: {
             en: detailsData.description.en || "",
             ar: detailsData.description.ar || "",
             de: detailsData.description.de || "",
+            ru: detailsData.description.ru || "",
           },
         });
       } else {
         setFormData({
-          name: { en: locationToEdit.name, ar: "", de: "" },
-          description: { en: locationToEdit.description, ar: "", de: "" },
+          name: { en: locationToEdit.name, ar: "", de: "", ru: "" },
+          description: { en: locationToEdit.description, ar: "", de: "", ru: "" },
         });
       }
     } else {
@@ -95,11 +97,13 @@ export default function ProjectLocationFormDrawer({
             en: formData.name.en.trim(),
             ar: formData.name.ar.trim() || formData.name.en.trim(),
             de: formData.name.de.trim() || formData.name.en.trim(),
+            ru: formData.name.ru.trim() || formData.name.en.trim(),
           },
           description: {
             en: formData.description.en.trim(),
             ar: formData.description.ar.trim() || formData.description.en.trim(),
             de: formData.description.de.trim() || formData.description.en.trim(),
+            ru: formData.description.ru.trim() || formData.description.en.trim(),
           },
         },
       });
@@ -110,11 +114,13 @@ export default function ProjectLocationFormDrawer({
             en: formData.name.en.trim(),
             ar: formData.name.ar.trim() || formData.name.en.trim(),
             de: formData.name.de.trim() || formData.name.en.trim(),
+            ru: formData.name.ru.trim() || formData.name.en.trim(),
           },
           description: {
             en: formData.description.en.trim(),
             ar: formData.description.ar.trim() || formData.description.en.trim(),
             de: formData.description.de.trim() || formData.description.en.trim(),
+            ru: formData.description.ru.trim() || formData.description.en.trim(),
           },
         },
         initialImages: initialImages.length > 0 ? initialImages : undefined,

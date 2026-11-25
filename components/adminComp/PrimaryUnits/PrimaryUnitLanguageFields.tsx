@@ -3,6 +3,7 @@
 import {
   FlagEgypt,
   FlagGermany,
+  FlagRussia,
   FlagUK,
 } from "@/components/adminComp/Common/LanguageFlags";
 import { PrimaryUnitFormPayload } from "@/models/primaryUnit";
@@ -88,6 +89,25 @@ export default function PrimaryUnitLanguageFields({
               className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
+
+          <div>
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
+              <FlagRussia className="h-3.5 w-3.5" />
+              <span>Russian Title (Русский)</span>
+            </div>
+            <input
+              type="text"
+              value={formData.name.ru}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  name: { ...prev.name, ru: e.target.value },
+                }))
+              }
+              placeholder="например: Двухуровневые апартаменты с видом на сад"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+            />
+          </div>
         </div>
       </div>
 
@@ -152,6 +172,25 @@ export default function PrimaryUnitLanguageFields({
                 }))
               }
               placeholder="أدخل وصف الوحدة باللغة العربية..."
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
+              <FlagRussia className="h-3.5 w-3.5" />
+              <span>Russian Description (Русский)</span>
+            </div>
+            <textarea
+              rows={3}
+              value={formData.description.ru}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  description: { ...prev.description, ru: e.target.value },
+                }))
+              }
+              placeholder="Введите подробное описание квартиры на русском..."
               className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
@@ -221,6 +260,25 @@ export default function PrimaryUnitLanguageFields({
               className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
+
+          <div>
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
+              <FlagRussia className="h-3.5 w-3.5" />
+              <span>Russian View (Русский)</span>
+            </div>
+            <input
+              type="text"
+              value={formData.view.ru}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  view: { ...prev.view, ru: e.target.value },
+                }))
+              }
+              placeholder="например: Вид на ландшафтный сад и бассейн"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+            />
+          </div>
         </div>
       </div>
 
@@ -284,6 +342,25 @@ export default function PrimaryUnitLanguageFields({
                 }))
               }
               placeholder="مثال: الطابق الأرضي"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
+              <FlagRussia className="h-3.5 w-3.5" />
+              <span>Russian Floor Name (Русский)</span>
+            </div>
+            <input
+              type="text"
+              value={formData.floorName.ru}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  floorName: { ...prev.floorName, ru: e.target.value },
+                }))
+              }
+              placeholder="например: Первый этаж"
               className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>

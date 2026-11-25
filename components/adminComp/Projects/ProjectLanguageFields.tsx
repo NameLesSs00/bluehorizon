@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { FlagEgypt, FlagGermany, FlagUK } from "@/components/adminComp/Common/LanguageFlags";
+import { FlagEgypt, FlagGermany, FlagUK, FlagRussia } from "@/components/adminComp/Common/LanguageFlags";
 
 interface ProjectLanguageFieldsProps {
   nameEn: string;
@@ -9,12 +9,16 @@ interface ProjectLanguageFieldsProps {
   setNameDe: (val: string) => void;
   nameAr: string;
   setNameAr: (val: string) => void;
+  nameRu: string;
+  setNameRu: (val: string) => void;
   descEn: string;
   setDescEn: (val: string) => void;
   descDe: string;
   setDescDe: (val: string) => void;
   descAr: string;
   setDescAr: (val: string) => void;
+  descRu: string;
+  setDescRu: (val: string) => void;
 }
 
 export default function ProjectLanguageFields({
@@ -24,12 +28,16 @@ export default function ProjectLanguageFields({
   setNameDe,
   nameAr,
   setNameAr,
+  nameRu,
+  setNameRu,
   descEn,
   setDescEn,
   descDe,
   setDescDe,
   descAr,
   setDescAr,
+  descRu,
+  setDescRu,
 }: ProjectLanguageFieldsProps) {
   return (
     <>
@@ -80,6 +88,19 @@ export default function ProjectLanguageFields({
               className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
+          <div>
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
+              <FlagRussia />
+              <span>Russian (Русский)</span>
+            </div>
+            <input
+              type="text"
+              value={nameRu}
+              onChange={(e) => setNameRu(e.target.value)}
+              placeholder="Название проекта на русском..."
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
+            />
+          </div>
         </div>
       </div>
 
@@ -126,6 +147,19 @@ export default function ProjectLanguageFields({
               value={descAr}
               onChange={(e) => setDescAr(e.target.value)}
               placeholder="وصف المشروع المعماري والموقع والإطلالة..."
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
+            />
+          </div>
+          <div>
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
+              <FlagRussia />
+              <span>Russian Description</span>
+            </div>
+            <textarea
+              rows={3}
+              value={descRu}
+              onChange={(e) => setDescRu(e.target.value)}
+              placeholder="Описание проекта на русском языке..."
               className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>

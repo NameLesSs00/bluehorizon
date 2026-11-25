@@ -47,7 +47,7 @@ export default function AboutCtaSection() {
           <div className="flex shrink-0 flex-col gap-3.5 sm:flex-row lg:flex-col w-full sm:w-auto">
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-[14px] font-semibold text-[#2B5FA6] transition-all duration-200 hover:bg-[#F0F3FA] hover:shadow-xs active:scale-[0.98] text-center w-full sm:w-60"
+              className="inline-flex items-center justify-center rounded-full bg-[#B8963E] px-8 py-3.5 text-[14px] font-semibold text-white transition-all duration-200 hover:bg-[#D4A843] hover:shadow-xs active:scale-[0.98] text-center w-full sm:w-60"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {t("about.cta.scheduleCall")}

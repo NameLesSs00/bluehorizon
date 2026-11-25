@@ -51,7 +51,7 @@ export default function StandaloneHeroSection() {
             </Link>
             <span className="text-white/50">/</span>
             <span className="font-semibold text-white">
-              {t("standaloneList.breadcrumb.standalone", "Standalone units")}
+              {t("standaloneList.breadcrumb.standalone", "Second Hand units")}
             </span>
           </motion.nav>
 
@@ -73,7 +73,7 @@ export default function StandaloneHeroSection() {
             className="mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl"
             style={{ fontFamily: "var(--font-manrope)" }}
           >
-            {t("standaloneList.hero.title", "Standalone Properties for Sale")}
+            {t("standaloneList.hero.title", "Second Hand Properties for Sale")}
           </motion.h1>
 
           <motion.p

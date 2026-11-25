@@ -8,10 +8,10 @@ import {
 
 export const DEFAULT_RENTAL_FORM: RentalFormPayload = {
   code: "",
-  name: { en: "", ar: "", de: "" },
-  description: { en: "", ar: "", de: "" },
+  name: { en: "", ar: "", de: "", ru: "" },
+  description: { en: "", ar: "", de: "", ru: "" },
   rentalLocationId: 0,
-  floor: { en: "", ar: "", de: "" },
+  floor: { en: "", ar: "", de: "", ru: "" },
   bedroomNo: 1,
   bathroomNo: 1,
   capacity: 2,
@@ -25,15 +25,15 @@ export const DEFAULT_RENTAL_FORM: RentalFormPayload = {
   hasGardenView: false,
   hasMountainView: false,
   hasCityView: false,
-  rulesCancellation: { en: "", ar: "", de: "" },
-  notes: { en: "", ar: "", de: "" },
+  rulesCancellation: { en: "", ar: "", de: "", ru: "" },
+  notes: { en: "", ar: "", de: "", ru: "" },
   listingDetails: {
-    lateCheckIn: { en: "", ar: "", de: "" },
+    lateCheckIn: { en: "", ar: "", de: "", ru: "" },
     services: [],
     extraPeopleFee: 0,
     familyFriendly: true,
     privateEntrance: true,
-    extraPeople: { en: "", ar: "", de: "" },
+    extraPeople: { en: "", ar: "", de: "", ru: "" },
   },
   propertyCategoryItemIds: [],
   infoAreaPlaces: [],
@@ -46,7 +46,8 @@ export function sanitizeLocalized(
   const en = (val?.en || fallback).trim();
   const ar = (val?.ar || "").trim() || en;
   const de = (val?.de || "").trim() || en;
-  return { en, ar, de };
+  const ru = (val?.ru || "").trim() || en;
+  return { en, ar, de, ru };
 }
 
 export function buildInitialRentalForm(
@@ -90,14 +91,15 @@ export function buildInitialRentalForm(
   return {
     id: rentalToEdit.id,
     code: rentalToEdit.code,
-    name: sanitizeLocalized({ en: rentalToEdit.name, ar: "", de: "" }),
+    name: sanitizeLocalized({ en: rentalToEdit.name, ar: "", de: "", ru: "" }),
     description: sanitizeLocalized({
       en: rentalToEdit.description,
       ar: "",
       de: "",
+      ru: "",
     }),
     rentalLocationId: rentalToEdit.rentalLocation?.id || 0,
-    floor: sanitizeLocalized({ en: rentalToEdit.floor, ar: "", de: "" }),
+    floor: sanitizeLocalized({ en: rentalToEdit.floor, ar: "", de: "", ru: "" }),
     bedroomNo: rentalToEdit.bedroomNo,
     bathroomNo: rentalToEdit.bathroomNo,
     capacity: rentalToEdit.capacity,
@@ -115,16 +117,18 @@ export function buildInitialRentalForm(
       en: rentalToEdit.rulesCancellation,
       ar: "",
       de: "",
+      ru: "",
     }),
-    notes: sanitizeLocalized({ en: rentalToEdit.notes, ar: "", de: "" }),
+    notes: sanitizeLocalized({ en: rentalToEdit.notes, ar: "", de: "", ru: "" }),
     listingDetails: {
       lateCheckIn: sanitizeLocalized({
         en: rentalToEdit.listingDetails?.lateCheckIn,
         ar: "",
         de: "",
+        ru: "",
       }),
       services: (rentalToEdit.listingDetails?.services || []).map((s) =>
-        sanitizeLocalized({ en: s, ar: s, de: s })
+        sanitizeLocalized({ en: s, ar: s, de: s, ru: s })
       ),
       extraPeopleFee: rentalToEdit.listingDetails?.extraPeopleFee || 0,
       familyFriendly: rentalToEdit.listingDetails?.familyFriendly ?? true,
@@ -133,6 +137,7 @@ export function buildInitialRentalForm(
         en: rentalToEdit.listingDetails?.extraPeople,
         ar: "",
         de: "",
+        ru: "",
       }),
     },
     propertyCategoryItemIds:

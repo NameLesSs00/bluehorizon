@@ -1,9 +1,10 @@
-export type QuestionLanguage = "en" | "ar" | "de";
+export type QuestionLanguage = "en" | "ar" | "de" | "ru";
 
 export interface LocalizedText {
   en: string;
   ar: string;
   de: string;
+  ru: string;
 }
 
 export interface QuestionItem {

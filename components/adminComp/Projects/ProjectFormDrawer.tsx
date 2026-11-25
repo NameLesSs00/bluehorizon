@@ -1,14 +1,18 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import AdminSlideDrawer from "@/components/adminComp/Common/AdminSlideDrawer";
 import ProjectLanguageFields from "./ProjectLanguageFields";
+import ProjectPricesFields from "./ProjectPricesFields";
+import ProjectOfferAndTierFields from "./ProjectOfferAndTierFields";
+import ProjectRelationsFields from "./ProjectRelationsFields";
+import ProjectInitialPhotosField from "./ProjectInitialPhotosField";
 import {
   FurnitureTypeEnum,
-  LocalizedProjectDetails,
   ProjectItem,
   ProjectPriceDto,
+  ProjectTierType,
   SUPPORTED_PROJECT_CURRENCIES,
 } from "@/models/project";
 import {
@@ -16,9 +20,6 @@ import {
   useLocalizedProjectQuery,
   useUpdateProjectMutation,
 } from "@/features/projects/useProjectsQueries";
-import ProjectPricesFields from "./ProjectPricesFields";
-import ProjectRelationsFields from "./ProjectRelationsFields";
-import ProjectInitialPhotosField from "./ProjectInitialPhotosField";
 
 interface ProjectFormDrawerProps {
   isOpen: boolean;
@@ -29,6 +30,20 @@ interface ProjectFormDrawerProps {
 const defaultPrices: ProjectPriceDto[] = SUPPORTED_PROJECT_CURRENCIES.map(
   (curr) => ({ currency: curr, minimumPrice: 0, maximumPrice: 0 })
 );
+
+function toDateTimeLocal(iso?: string | null): string {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(
+    d.getHours()
+  )}:${pad(d.getMinutes())}`;
+}
+
+function parseTier(val?: string | null): ProjectTierType {
+  return val === "TopSeller" || val === "Luxury" || val === "BigHit" ? val : "TopSeller";
+}
 
 export default function ProjectFormDrawer({
   isOpen,
@@ -44,10 +59,11 @@ export default function ProjectFormDrawer({
   const [nameEn, setNameEn] = useState("");
   const [nameDe, setNameDe] = useState("");
   const [nameAr, setNameAr] = useState("");
-
+  const [nameRu, setNameRu] = useState("");
   const [descEn, setDescEn] = useState("");
   const [descDe, setDescDe] = useState("");
   const [descAr, setDescAr] = useState("");
+  const [descRu, setDescRu] = useState("");
 
   const [locationId, setLocationId] = useState<number | null>(null);
   const [deliveryDate, setDeliveryDate] = useState("");
@@ -55,146 +71,144 @@ export default function ProjectFormDrawer({
   const [furnitureType, setFurnitureType] = useState<FurnitureTypeEnum>(FurnitureTypeEnum.None);
   const [isFeature, setIsFeature] = useState(false);
 
+  const [projectType, setProjectType] = useState<ProjectTierType>("TopSeller");
+  const [isHotOffer, setIsHotOffer] = useState(false);
+  const [startDateHotOffer, setStartDateHotOffer] = useState("");
+  const [endDateHotOffer, setEndDateHotOffer] = useState("");
+
   const [projectTypeIds, setProjectTypeIds] = useState<number[]>([]);
   const [facilityIds, setFacilityIds] = useState<number[]>([]);
   const [initialFacilityIds, setInitialFacilityIds] = useState<number[]>([]);
-
   const [prices, setPrices] = useState<ProjectPriceDto[]>(defaultPrices);
   const [initialImages, setInitialImages] = useState<File[]>([]);
 
   useEffect(() => {
     if (!isOpen) {
-      setNameEn("");
-      setNameDe("");
-      setNameAr("");
-      setDescEn("");
-      setDescDe("");
-      setDescAr("");
-      setLocationId(null);
-      setDeliveryDate("");
-      setIsFurniture(false);
-      setFurnitureType(FurnitureTypeEnum.None);
-      setIsFeature(false);
-      setProjectTypeIds([]);
-      setFacilityIds([]);
-      setInitialFacilityIds([]);
-      setPrices(defaultPrices);
-      setInitialImages([]);
+      setNameEn(""); setNameDe(""); setNameAr(""); setNameRu("");
+      setDescEn(""); setDescDe(""); setDescAr(""); setDescRu("");
+      setLocationId(null); setDeliveryDate("");
+      setIsFurniture(false); setFurnitureType(FurnitureTypeEnum.None);
+      setIsFeature(false); setProjectType("TopSeller");
+      setIsHotOffer(false); setStartDateHotOffer(""); setEndDateHotOffer("");
+      setProjectTypeIds([]); setFacilityIds([]); setInitialFacilityIds([]);
+      setPrices(defaultPrices); setInitialImages([]);
       return;
     }
 
-    if (projectToEdit) {
-      if (detailsData) {
-        setNameEn(detailsData.name.en || "");
-        setNameDe(detailsData.name.de || "");
-        setNameAr(detailsData.name.ar || "");
-        setDescEn(detailsData.description.en || "");
-        setDescDe(detailsData.description.de || "");
-        setDescAr(detailsData.description.ar || "");
-        setLocationId(detailsData.locationId);
-        setDeliveryDate(
-          detailsData.deliveryDate ? detailsData.deliveryDate.substring(0, 10) : ""
-        );
-        setIsFurniture(detailsData.isFurniture);
-        setFurnitureType(detailsData.furnitureType);
-        setIsFeature(detailsData.isFeature);
-        setProjectTypeIds(detailsData.projectTypeIds || []);
-        setFacilityIds(detailsData.facilityIds || []);
-        setInitialFacilityIds(detailsData.facilityIds || []);
-        setPrices(detailsData.prices?.length ? detailsData.prices : defaultPrices);
-      } else {
-        setNameEn(projectToEdit.name || "");
-        setDescEn(projectToEdit.description || "");
-        setLocationId(projectToEdit.locationId);
-        setDeliveryDate(
-          projectToEdit.deliveryDate ? projectToEdit.deliveryDate.substring(0, 10) : ""
-        );
-        setIsFurniture(Boolean(projectToEdit.isFurniture));
-        setIsFeature(Boolean(projectToEdit.isFeature));
-        setProjectTypeIds(projectToEdit.projectTypes?.map((t) => t.id) || []);
-        const facIds = projectToEdit.facilities?.map((f) => f.id) || [];
-        setFacilityIds(facIds);
-        setInitialFacilityIds(facIds);
-      }
+    if (projectToEdit && detailsData) {
+      setNameEn(detailsData.name.en || "");
+      setNameDe(detailsData.name.de || "");
+      setNameAr(detailsData.name.ar || "");
+      setNameRu(detailsData.name.ru || "");
+      setDescEn(detailsData.description.en || "");
+      setDescDe(detailsData.description.de || "");
+      setDescAr(detailsData.description.ar || "");
+      setDescRu(detailsData.description.ru || "");
+      setLocationId(detailsData.locationId);
+      setDeliveryDate(detailsData.deliveryDate ? detailsData.deliveryDate.substring(0, 10) : "");
+      setIsFurniture(detailsData.isFurniture);
+      setFurnitureType(detailsData.furnitureType);
+      setIsFeature(detailsData.isFeature);
+      setProjectType(parseTier(detailsData.projectType));
+      setIsHotOffer(detailsData.isHotOffer);
+      setStartDateHotOffer(toDateTimeLocal(detailsData.startDateHotOffer));
+      setEndDateHotOffer(toDateTimeLocal(detailsData.endDateHotOffer));
+      setProjectTypeIds(detailsData.projectTypeIds || []);
+      setFacilityIds(detailsData.facilityIds || []);
+      setInitialFacilityIds(detailsData.facilityIds || []);
+      setPrices(detailsData.prices?.length ? detailsData.prices : defaultPrices);
+    } else if (projectToEdit) {
+      setNameEn(projectToEdit.name || "");
+      setDescEn(projectToEdit.description || "");
+      setLocationId(projectToEdit.locationId);
+      setDeliveryDate(projectToEdit.deliveryDate ? projectToEdit.deliveryDate.substring(0, 10) : "");
+      setIsFurniture(Boolean(projectToEdit.isFurniture));
+      setIsFeature(Boolean(projectToEdit.isFeature));
+      setProjectType(parseTier(projectToEdit.projectType));
+      setIsHotOffer(Boolean(projectToEdit.isHotOffer));
+      setStartDateHotOffer(toDateTimeLocal(projectToEdit.startDateHotOffer));
+      setEndDateHotOffer(toDateTimeLocal(projectToEdit.endDateHotOffer));
+      setProjectTypeIds(projectToEdit.projectTypes?.map((t) => t.id) || []);
+      const facIds = projectToEdit.facilities?.map((f) => f.id) || [];
+      setFacilityIds(facIds);
+      setInitialFacilityIds(facIds);
     }
   }, [isOpen, projectToEdit, detailsData]);
 
   const createMutation = useCreateProjectMutation(onClose);
   const updateMutation = useUpdateProjectMutation(onClose);
-
   const isSaving = createMutation.isPending || updateMutation.isPending;
 
   function handleToggleProjectType(id: number) {
-    setProjectTypeIds((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    );
+    setProjectTypeIds((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
   }
 
   function handleToggleFacility(id: number) {
-    setFacilityIds((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    );
+    setFacilityIds((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
   }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-
     if (!nameEn.trim()) {
       toast.error("English project name is required.");
       return;
     }
 
-    const payloadName = {
-      en: nameEn.trim(),
-      ar: nameAr.trim() || nameEn.trim(),
-      de: nameDe.trim() || nameEn.trim(),
-    };
+    if (!projectType) {
+      toast.error("Please select a project type.");
+      return;
+    }
 
-    const payloadDesc = {
-      en: descEn.trim(),
-      ar: descAr.trim() || descEn.trim(),
-      de: descDe.trim() || descEn.trim(),
-    };
+    if (isHotOffer) {
+      if (!startDateHotOffer || !endDateHotOffer) {
+        toast.error("Please set both start and end dates for the hot offer.");
+        return;
+      }
+      if (new Date(endDateHotOffer) < new Date(startDateHotOffer)) {
+        toast.error("Hot offer end date must be after the start date.");
+        return;
+      }
+    }
 
-    const formattedDeliveryDate = deliveryDate
-      ? new Date(deliveryDate).toISOString()
-      : null;
+    const usdPrice = prices.find((p) => p.currency.toUpperCase() === "USD");
+    const basePayload = {
+      name: {
+        en: nameEn.trim(),
+        ar: nameAr.trim() || nameEn.trim(),
+        de: nameDe.trim() || nameEn.trim(),
+        ru: nameRu.trim() || nameEn.trim(),
+      },
+      description: {
+        en: descEn.trim(),
+        ar: descAr.trim() || descEn.trim(),
+        de: descDe.trim() || descEn.trim(),
+        ru: descRu.trim() || descEn.trim(),
+      },
+      locationId,
+      deliveryDate: deliveryDate ? new Date(deliveryDate).toISOString() : null,
+      isFurniture,
+      furnitureType,
+      isFeature,
+      projectType,
+      isHotOffer,
+      startDateHotOffer: isHotOffer && startDateHotOffer ? new Date(startDateHotOffer).toISOString() : null,
+      endDateHotOffer: isHotOffer && endDateHotOffer ? new Date(endDateHotOffer).toISOString() : null,
+      projectTypeIds,
+      facilityIds,
+      minimumPriceUSD: usdPrice?.minimumPrice ?? 0,
+      maximumPriceUSD: usdPrice?.maximumPrice ?? 0,
+      prices,
+    };
 
     if (isEditMode && editId) {
-      const removedFacilityIds = initialFacilityIds.filter(
-        (id) => !facilityIds.includes(id)
-      );
-
+      const removedFacilityIds = initialFacilityIds.filter((id) => !facilityIds.includes(id));
       updateMutation.mutate({
-        payload: {
-          id: editId,
-          name: payloadName,
-          description: payloadDesc,
-          locationId,
-          deliveryDate: formattedDeliveryDate,
-          isFurniture,
-          furnitureType,
-          isFeature,
-          projectTypeIds,
-          facilityIds,
-          prices,
-        },
+        payload: { id: editId, ...basePayload },
         removedFacilityIds,
       });
     } else {
       createMutation.mutate({
-        payload: {
-          name: payloadName,
-          description: payloadDesc,
-          locationId,
-          deliveryDate: formattedDeliveryDate,
-          isFurniture,
-          furnitureType,
-          isFeature,
-          projectTypeIds,
-          facilityIds,
-          prices,
-        },
+        payload: basePayload,
         initialImages: initialImages.length > 0 ? initialImages : undefined,
       });
     }
@@ -207,7 +221,7 @@ export default function ProjectFormDrawer({
       title={isEditMode ? "Edit Project" : "Add New Project"}
       subtitle={
         isEditMode
-          ? "Update details, pricing, types, and amenities"
+          ? "Update details, pricing, tier, hot offer, and amenities"
           : "Create a premier residential development or compound"
       }
       maxWidthClass="max-w-3xl"
@@ -219,52 +233,45 @@ export default function ProjectFormDrawer({
           </div>
         )}
 
-        {/* Multilingual Names & Descriptions */}
         <ProjectLanguageFields
-          nameEn={nameEn}
-          setNameEn={setNameEn}
-          nameDe={nameDe}
-          setNameDe={setNameDe}
-          nameAr={nameAr}
-          setNameAr={setNameAr}
-          descEn={descEn}
-          setDescEn={setDescEn}
-          descDe={descDe}
-          setDescDe={setDescDe}
-          descAr={descAr}
-          setDescAr={setDescAr}
+          nameEn={nameEn} setNameEn={setNameEn}
+          nameDe={nameDe} setNameDe={setNameDe}
+          nameAr={nameAr} setNameAr={setNameAr}
+          nameRu={nameRu} setNameRu={setNameRu}
+          descEn={descEn} setDescEn={setDescEn}
+          descDe={descDe} setDescDe={setDescDe}
+          descAr={descAr} setDescAr={setDescAr}
+          descRu={descRu} setDescRu={setDescRu}
         />
 
-        {/* Multi-Currency Prices */}
         <ProjectPricesFields prices={prices} onChange={setPrices} />
 
-        {/* Relations & Specifications */}
-        <ProjectRelationsFields
-          locationId={locationId}
-          onLocationChange={setLocationId}
-          deliveryDate={deliveryDate}
-          onDeliveryDateChange={setDeliveryDate}
-          isFurniture={isFurniture}
-          onIsFurnitureChange={setIsFurniture}
-          furnitureType={furnitureType}
-          onFurnitureTypeChange={setFurnitureType}
-          isFeature={isFeature}
-          onIsFeatureChange={setIsFeature}
-          selectedProjectTypeIds={projectTypeIds}
-          onToggleProjectType={handleToggleProjectType}
-          selectedFacilityIds={facilityIds}
-          onToggleFacility={handleToggleFacility}
+        <ProjectOfferAndTierFields
+          projectType={projectType}
+          onProjectTypeChange={setProjectType}
+          isHotOffer={isHotOffer}
+          onIsHotOfferChange={setIsHotOffer}
+          startDateHotOffer={startDateHotOffer}
+          onStartDateHotOfferChange={setStartDateHotOffer}
+          endDateHotOffer={endDateHotOffer}
+          onEndDateHotOfferChange={setEndDateHotOffer}
         />
 
-        {/* Initial Photos during Creation */}
+        <ProjectRelationsFields
+          locationId={locationId} onLocationChange={setLocationId}
+          deliveryDate={deliveryDate} onDeliveryDateChange={setDeliveryDate}
+          isFurniture={isFurniture} onIsFurnitureChange={setIsFurniture}
+          furnitureType={furnitureType} onFurnitureTypeChange={setFurnitureType}
+          isFeature={isFeature} onIsFeatureChange={setIsFeature}
+          selectedProjectTypeIds={projectTypeIds} onToggleProjectType={handleToggleProjectType}
+          selectedFacilityIds={facilityIds} onToggleFacility={handleToggleFacility}
+        />
+
         {!isEditMode && (
-          <ProjectInitialPhotosField
-            initialImages={initialImages}
-            setInitialImages={setInitialImages}
-          />
+          <ProjectInitialPhotosField initialImages={initialImages} setInitialImages={setInitialImages} />
         )}
 
-        <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#E2E8F3]">
+        <div className="flex items-center justify-end gap-3 border-t border-[#E2E8F3] pt-4">
           <button
             type="button"
             onClick={onClose}
@@ -277,15 +284,10 @@ export default function ProjectFormDrawer({
             disabled={isSaving}
             className="rounded-xl bg-[#1B3A6B] px-6 py-2.5 text-[13px] font-semibold text-white hover:bg-[#2B5FA6] disabled:opacity-50"
           >
-            {isSaving
-              ? "Saving..."
-              : isEditMode
-              ? "Update Project"
-              : "Create Project"}
+            {isSaving ? "Saving..." : isEditMode ? "Update Project" : "Create Project"}
           </button>
         </div>
       </form>
     </AdminSlideDrawer>
   );
 }
-

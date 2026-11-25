@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useQuery } from "@tanstack/react-query";
 import { FiCheckSquare, FiSquare, FiStar, FiImage } from "react-icons/fi";
@@ -45,7 +45,7 @@ export default function StandaloneUnitServicesFields({
             <span>Feature on Homepage &amp; Highlights</span>
           </span>
           <p className="mt-0.5 text-[12px] text-[#65706B]">
-            Promote this standalone unit on hero showcases and featured property ribbons.
+            Promote this second hand unit on hero showcases and featured property ribbons.
           </p>
         </div>
 

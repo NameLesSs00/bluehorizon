@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { FlagEgypt, FlagGermany, FlagUK } from "@/components/adminComp/Common/LanguageFlags";
+import { FlagEgypt, FlagGermany, FlagUK, FlagRussia } from "@/components/adminComp/Common/LanguageFlags";
 import { ProjectLocationFormPayload } from "@/models/projectLocation";
 
 interface ProjectLocationLanguageFieldsProps {
@@ -79,6 +79,25 @@ export default function ProjectLocationLanguageFields({
               className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>
+
+          <div>
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
+              <FlagRussia />
+              <span>Russian Name (Русский)</span>
+            </div>
+            <input
+              type="text"
+              value={formData.name.ru}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  name: { ...prev.name, ru: e.target.value },
+                }))
+              }
+              placeholder="например: Хургада, Эль Гуна"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
+            />
+          </div>
         </div>
       </div>
 
@@ -143,6 +162,25 @@ export default function ProjectLocationLanguageFields({
                 }))
               }
               placeholder="وصف الوجهة الساحلية وأهم مميزاتها الاستثمارية..."
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
+              <FlagRussia />
+              <span>Russian Description</span>
+            </div>
+            <textarea
+              rows={3}
+              value={formData.description.ru}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  description: { ...prev.description, ru: e.target.value },
+                }))
+              }
+              placeholder="Описание прибрежного района..."
               className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>

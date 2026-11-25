@@ -54,6 +54,7 @@ export async function getFullLocalizedInfoAreaPlace(
           en: detail.names.en || detail.name || "",
           ar: detail.names.ar || "",
           de: detail.names.de || "",
+          ru: detail.names.ru || "",
         },
       };
     }
@@ -61,15 +62,17 @@ export async function getFullLocalizedInfoAreaPlace(
     // Fallback to parallel requests
   }
 
-  const [enRes, arRes, deRes] = await Promise.allSettled([
+  const [enRes, arRes, deRes, ruRes] = await Promise.allSettled([
     getInfoAreaPlaceById(id, "en"),
     getInfoAreaPlaceById(id, "ar"),
     getInfoAreaPlaceById(id, "de"),
+    getInfoAreaPlaceById(id, "ru"),
   ]);
 
   const enItem = enRes.status === "fulfilled" ? enRes.value : null;
   const arItem = arRes.status === "fulfilled" ? arRes.value : null;
   const deItem = deRes.status === "fulfilled" ? deRes.value : null;
+  const ruItem = ruRes.status === "fulfilled" ? ruRes.value : null;
 
   return {
     id,
@@ -77,6 +80,7 @@ export async function getFullLocalizedInfoAreaPlace(
       en: enItem?.name ?? "",
       ar: arItem?.name ?? enItem?.name ?? "",
       de: deItem?.name ?? enItem?.name ?? "",
+      ru: ruItem?.name ?? enItem?.name ?? "",
     },
   };
 }

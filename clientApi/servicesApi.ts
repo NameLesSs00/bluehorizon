@@ -42,15 +42,17 @@ export async function getServiceById(
 export async function getFullLocalizedService(
   id: number
 ): Promise<LocalizedServiceData> {
-  const [enRes, arRes, deRes] = await Promise.allSettled([
+  const [enRes, arRes, deRes, ruRes] = await Promise.allSettled([
     getServiceById(id, "en"),
     getServiceById(id, "ar"),
     getServiceById(id, "de"),
+    getServiceById(id, "ru"),
   ]);
 
   const enItem = enRes.status === "fulfilled" ? enRes.value : null;
   const arItem = arRes.status === "fulfilled" ? arRes.value : null;
   const deItem = deRes.status === "fulfilled" ? deRes.value : null;
+  const ruItem = ruRes.status === "fulfilled" ? ruRes.value : null;
 
   const resolvedIcon =
     enItem?.icon || arItem?.icon || deItem?.icon || "";
@@ -62,6 +64,7 @@ export async function getFullLocalizedService(
       en: enItem?.name ?? "",
       ar: arItem?.name ?? enItem?.name ?? "",
       de: deItem?.name ?? enItem?.name ?? "",
+      ru: ruItem?.name ?? enItem?.name ?? "",
     },
   };
 }

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { toUrlSlug } from "@/shared/utils/slug";
+import HotOfferRibbon from "@/components/UserComp/Common/HotOfferRibbon";
 
 export interface ProjectDisplayItem {
   id: string | number;
@@ -12,6 +13,8 @@ export interface ProjectDisplayItem {
   priceFormatted: string;
   imageSrc: string;
   isFallback?: boolean;
+  isHotOffer?: boolean;
+  hotOfferEndLabel?: string | null;
 }
 
 interface ProjectGridCardProps {
@@ -25,7 +28,11 @@ export default function ProjectGridCard({ project }: ProjectGridCardProps) {
   return (
     <Link
       href={`/${locale}/projects/${toUrlSlug(project.title, project.id)}`}
-      className="group flex flex-col justify-between overflow-hidden rounded-[20px] border border-[#D9E2EE] bg-white transition-all duration-200 hover:-translate-y-1 hover:border-[#2B5FA6]/40 hover:shadow-md cursor-pointer"
+      className={`group flex h-full w-full flex-col justify-between overflow-hidden rounded-[20px] border bg-white transition-all duration-200 hover:-translate-y-1 hover:shadow-md cursor-pointer ${
+        project.isHotOffer
+          ? "border-[#D4A843]/60 shadow-[0_6px_24px_rgba(184,150,62,0.12)] hover:border-[#B8963E]"
+          : "border-[#D9E2EE] hover:border-[#2B5FA6]/40"
+      }`}
     >
       <div>
         {/* Project Card Image */}
@@ -49,6 +56,18 @@ export default function ProjectGridCard({ project }: ProjectGridCardProps) {
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
+          )}
+          {project.isHotOffer && <HotOfferRibbon size="card" />}
+
+          {project.isHotOffer && project.hotOfferEndLabel && (
+            <div className="absolute bottom-2.5 start-2.5 z-10 rounded-full border border-[#D4A843]/50 bg-[#1B3A6B]/85 px-2.5 py-1 backdrop-blur-xs">
+              <span
+                className="block text-[10px] font-medium leading-none text-[#F5E1A4]"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                {project.hotOfferEndLabel}
+              </span>
+            </div>
           )}
         </div>
 

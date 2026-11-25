@@ -4,13 +4,18 @@ import { useEffect, useRef, useState } from "react";
 import { FiRotateCcw } from "react-icons/fi";
 import { usePublicProjectLocationsQuery } from "@/features/projectLocations/useProjectLocationsQueries";
 import { useProjectTypesQuery } from "@/features/projectTypes/useProjectTypesQueries";
+import { useFacilitiesQuery } from "@/features/facilities/useFacilitiesQueries";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import ProjectsFilterFields from "./ProjectsFilterFields";
+import ProjectsExtraFilterFields from "./ProjectsExtraFilterFields";
 
 export interface ProjectFilterValues {
   searchTerm: string;
   locationId: string;
   projectTypeId: string;
+  projectTier: string;
+  facilityIds: number[];
+  isHotOffer: boolean;
   paymentType: string;
   deliveryFrom: string;
   deliveryTo: string;
@@ -35,6 +40,9 @@ export default function ProjectsFilterSidebar({
   const [searchTerm, setSearchTerm] = useState(initialFilters.searchTerm);
   const [locationId, setLocationId] = useState(initialFilters.locationId);
   const [projectTypeId, setProjectTypeId] = useState(initialFilters.projectTypeId);
+  const [projectTier, setProjectTier] = useState(initialFilters.projectTier);
+  const [facilityIds, setFacilityIds] = useState<number[]>(initialFilters.facilityIds);
+  const [isHotOffer, setIsHotOffer] = useState(initialFilters.isHotOffer);
   const [paymentType, setPaymentType] = useState(initialFilters.paymentType);
   const [deliveryFrom, setDeliveryFrom] = useState(initialFilters.deliveryFrom);
   const [deliveryTo, setDeliveryTo] = useState(initialFilters.deliveryTo);
@@ -55,14 +63,19 @@ export default function ProjectsFilterSidebar({
     PageSize: 50,
   });
 
+  const { data: facilitiesData } = useFacilitiesQuery(locale);
+
   const locations = locationsData?.items || [];
   const projectTypes = typesData?.items || [];
+  const facilities = facilitiesData || [];
 
-  // Sync internal state when external initialFilters change
   useEffect(() => {
     setSearchTerm(initialFilters.searchTerm);
     setLocationId(initialFilters.locationId);
     setProjectTypeId(initialFilters.projectTypeId);
+    setProjectTier(initialFilters.projectTier);
+    setFacilityIds(initialFilters.facilityIds);
+    setIsHotOffer(initialFilters.isHotOffer);
     setPaymentType(initialFilters.paymentType);
     setDeliveryFrom(initialFilters.deliveryFrom);
     setDeliveryTo(initialFilters.deliveryTo);
@@ -70,7 +83,6 @@ export default function ProjectsFilterSidebar({
     setMaxPrice(initialFilters.maxPrice);
   }, [initialFilters]);
 
-  // Auto-apply filters after 1 second of inactivity (typing debounce)
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -82,19 +94,25 @@ export default function ProjectsFilterSidebar({
         searchTerm,
         locationId,
         projectTypeId,
+        projectTier,
+        facilityIds,
+        isHotOffer,
         paymentType,
         deliveryFrom,
         deliveryTo,
         minPrice,
         maxPrice,
       });
-    }, 1000);
+    }, 600);
 
     return () => clearTimeout(timer);
   }, [
     searchTerm,
     locationId,
     projectTypeId,
+    projectTier,
+    facilityIds,
+    isHotOffer,
     paymentType,
     deliveryFrom,
     deliveryTo,
@@ -103,12 +121,21 @@ export default function ProjectsFilterSidebar({
     onApplyFilters,
   ]);
 
+  function handleToggleFacility(id: number) {
+    setFacilityIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onApplyFilters({
       searchTerm,
       locationId,
       projectTypeId,
+      projectTier,
+      facilityIds,
+      isHotOffer,
       paymentType,
       deliveryFrom,
       deliveryTo,
@@ -121,6 +148,9 @@ export default function ProjectsFilterSidebar({
     setSearchTerm("");
     setLocationId("");
     setProjectTypeId("");
+    setProjectTier("");
+    setFacilityIds([]);
+    setIsHotOffer(false);
     setPaymentType("");
     setDeliveryFrom("");
     setDeliveryTo("");
@@ -133,6 +163,9 @@ export default function ProjectsFilterSidebar({
     Boolean(searchTerm.trim()),
     Boolean(locationId),
     Boolean(projectTypeId),
+    Boolean(projectTier),
+    facilityIds.length > 0,
+    isHotOffer,
     Boolean(paymentType),
     Boolean(deliveryFrom),
     Boolean(deliveryTo),
@@ -163,6 +196,17 @@ export default function ProjectsFilterSidebar({
         onMinPriceChange={setMinPrice}
         maxPrice={maxPrice}
         onMaxPriceChange={setMaxPrice}
+      />
+
+      <ProjectsExtraFilterFields
+        projectTier={projectTier}
+        onProjectTierChange={setProjectTier}
+        isHotOffer={isHotOffer}
+        onIsHotOfferChange={setIsHotOffer}
+        facilityIds={facilityIds}
+        onToggleFacility={handleToggleFacility}
+        onClearFacilities={() => setFacilityIds([])}
+        facilities={facilities}
       />
 
       {/* Submit & Reset Buttons */}
@@ -197,7 +241,6 @@ export default function ProjectsFilterSidebar({
   return (
     <aside className="w-full lg:w-[280px] xl:w-[320px] shrink-0">
       <div className="rounded-[20px] border border-[#D9E2EE] bg-white p-5 sm:p-6 shadow-sm">
-        {/* Header */}
         <div className="border-b border-[#D9E2EE] pb-4">
           <h2
             className="text-lg font-bold text-[#202326]"

@@ -78,15 +78,17 @@ export async function getRentalById(
 export async function getFullLocalizedRental(
   id: number
 ): Promise<LocalizedRentalDetails> {
-  const [enRes, arRes, deRes] = await Promise.allSettled([
+  const [enRes, arRes, deRes, ruRes] = await Promise.allSettled([
     getRentalById(id, "en", "USD"),
     getRentalById(id, "ar", "USD"),
     getRentalById(id, "de", "USD"),
+    getRentalById(id, "ru", "USD"),
   ]);
 
   const enItem = enRes.status === "fulfilled" ? enRes.value.data : null;
   const arItem = arRes.status === "fulfilled" ? arRes.value.data : null;
   const deItem = deRes.status === "fulfilled" ? deRes.value.data : null;
+  const ruItem = ruRes.status === "fulfilled" ? ruRes.value.data : null;
 
   const baseItem = enItem || arItem || deItem;
 
@@ -96,6 +98,7 @@ export async function getFullLocalizedRental(
   const enServices = enItem?.listingDetails?.services || [];
   const arServices = arItem?.listingDetails?.services || [];
   const deServices = deItem?.listingDetails?.services || [];
+  const ruServices = ruItem?.listingDetails?.services || [];
   const maxServicesCount = Math.max(
     enServices.length,
     arServices.length,
@@ -107,6 +110,7 @@ export async function getFullLocalizedRental(
       en: enServices[index] || "",
       ar: arServices[index] || "",
       de: deServices[index] || "",
+      ru: ruServices[index] || "",
     })
   );
 
@@ -117,22 +121,26 @@ export async function getFullLocalizedRental(
       en: enItem?.name || "",
       ar: arItem?.name || "",
       de: deItem?.name || "",
+      ru: ruItem?.name || "",
     },
     description: {
       en: enItem?.description || "",
       ar: arItem?.description || "",
       de: deItem?.description || "",
+      ru: ruItem?.description || "",
     },
     rulesCancellation: {
       en: enItem?.rulesCancellation || "",
       ar: arItem?.rulesCancellation || "",
       de: deItem?.rulesCancellation || "",
+      ru: ruItem?.rulesCancellation || "",
     },
     rentalLocationId: baseItem?.rentalLocation?.id || 0,
     floor: {
       en: enItem?.floor || "",
       ar: arItem?.floor || "",
       de: deItem?.floor || "",
+      ru: ruItem?.floor || "",
     },
     bedroomNo: baseItem?.bedroomNo || 0,
     bathroomNo: baseItem?.bathroomNo || 0,
@@ -151,12 +159,14 @@ export async function getFullLocalizedRental(
       en: enItem?.notes || "",
       ar: arItem?.notes || "",
       de: deItem?.notes || "",
+      ru: ruItem?.notes || "",
     },
     listingDetails: {
       lateCheckIn: {
         en: enItem?.listingDetails?.lateCheckIn || "",
         ar: arItem?.listingDetails?.lateCheckIn || "",
         de: deItem?.listingDetails?.lateCheckIn || "",
+        ru: ruItem?.listingDetails?.lateCheckIn || "",
       },
       services: localizedServices,
       extraPeopleFee: baseItem?.listingDetails?.extraPeopleFee || 0,
@@ -166,6 +176,7 @@ export async function getFullLocalizedRental(
         en: enItem?.listingDetails?.extraPeople || "",
         ar: arItem?.listingDetails?.extraPeople || "",
         de: deItem?.listingDetails?.extraPeople || "",
+        ru: ruItem?.listingDetails?.extraPeople || "",
       },
     },
     propertyCategoryItemIds:

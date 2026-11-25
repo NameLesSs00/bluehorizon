@@ -4,27 +4,25 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
+import { PiBedLight, PiWavesLight } from "react-icons/pi";
 import { usePublicRentalsQuery } from "@/features/rentals/useRentalsQueries";
 import { useTranslation } from "@/features/i18n/useTranslation";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
+import {
+  cardGridItemVariants,
+  headerContainerVariants,
+  headerItemVariants,
+} from "@/shared/utils/motionPresets";
 import RentalUnitCard from "@/components/UserComp/Rentals/RentalUnitCard";
 import HomeEmptyState from "./HomeEmptyState";
-import HomeHeaderIllustrations from "./HomeHeaderIllustrations";
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.45, delay: i * 0.08, ease: "easeOut" as const },
-  }),
-};
+import HomeChapterDivider from "./HomeChapterDivider";
+import HomeSectionBgIcon from "./HomeSectionBgIcon";
 
 export default function UnitsForRentSection() {
   const { t, locale, direction } = useTranslation();
   const currentCurrency = useCurrencyStore((state) => state.currentCurrency);
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, amount: 0.14 });
 
   const { data, isLoading } = usePublicRentalsQuery({
     Language: locale,
@@ -37,30 +35,42 @@ export default function UnitsForRentSection() {
   const displayUnits = rawUnits.slice(0, 4);
 
   return (
-    <motion.section
+    <section
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="bg-[#F0F3FA] py-10 sm:py-12 lg:py-14"
+      className="relative overflow-hidden bg-[#F0F3FA] pt-10 sm:pt-12 lg:pt-14 pb-16 sm:pb-20 lg:pb-24"
     >
-      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+      <HomeSectionBgIcon
+        leftIcon={PiBedLight}
+        rightIcon={PiWavesLight}
+        hasBottomDivider
+      />
+      <HomeChapterDivider src="/HomePage/dividers/coastal-layers.svg" />
+
+      <div className="relative z-10 mx-auto max-w-[1480px] px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <motion.header
+          variants={headerContainerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
+        >
           <div>
-            <p
-              className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
+            <motion.p
+              variants={headerItemVariants}
+              className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#B8963E]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {t("home.unitsForRent.eyebrow", "FEEL AT HOME, RIGHT AWAY")}
-            </p>
-            <h2
+            </motion.p>
+            <motion.h2
+              variants={headerItemVariants}
               className="mt-2 text-[24px] sm:text-[30px] lg:text-[38px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#202326]"
               style={{ fontFamily: "var(--font-manrope)" }}
             >
               {t("home.unitsForRent.heading", "Units for Rent")}
-            </h2>
-            <p
+            </motion.h2>
+            <motion.p
+              variants={headerItemVariants}
               className="mt-3 text-[15px] font-normal leading-[1.6] text-[#65706B]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
@@ -68,17 +78,13 @@ export default function UnitsForRentSection() {
                 "home.unitsForRent.subtitle",
                 "Comfortable rentals for every lifestyle. Find the perfect place for your next chapter."
               )}
-            </p>
+            </motion.p>
           </div>
 
-          <div className="flex items-end justify-between gap-4 sm:gap-6 md:justify-end">
-            <HomeHeaderIllustrations
-              primarySrc="/HomePage/chalet.svg"
-              secondarySrc="/HomePage/certificate.svg"
-            />
+          <motion.div variants={headerItemVariants} className="self-start md:self-end shrink-0">
             <Link
               href={`/${locale}/rent`}
-              className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#2B5FA6] transition-opacity hover:opacity-80 shrink-0 pb-1"
+              className="group inline-flex items-center gap-2 text-[14px] font-semibold text-[#2B5FA6] transition-opacity hover:opacity-80"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span>{t("home.unitsForRent.browseAll", "Browse all rentals")}</span>
@@ -87,13 +93,15 @@ export default function UnitsForRentSection() {
                 alt=""
                 width={9}
                 height={9}
-                className={`h-[9px] w-[9px] shrink-0 ${
-                  direction === "rtl" ? "scale-x-[-1]" : ""
+                className={`h-[9px] w-[9px] shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  direction === "rtl"
+                    ? "scale-x-[-1] group-hover:-translate-x-0.5"
+                    : "group-hover:translate-x-0.5"
                 }`}
               />
             </Link>
-          </div>
-        </header>
+          </motion.div>
+        </motion.header>
 
         {/* 4-Column Card Grid or Empty State */}
         {isLoading ? (
@@ -115,12 +123,12 @@ export default function UnitsForRentSection() {
             surfaceClassName="bg-white"
           />
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {displayUnits.map((unit, idx) => (
               <motion.div
                 key={unit.id}
                 custom={idx}
-                variants={cardVariants}
+                variants={cardGridItemVariants}
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
               >
@@ -130,6 +138,6 @@ export default function UnitsForRentSection() {
           </div>
         )}
       </div>
-    </motion.section>
+    </section>
   );
 }

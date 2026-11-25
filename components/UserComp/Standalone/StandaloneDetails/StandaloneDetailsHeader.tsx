@@ -70,7 +70,7 @@ export default function StandaloneDetailsHeader({ unit }: StandaloneDetailsHeade
           className="block text-[11px] font-bold uppercase tracking-wider text-[#6B7570]"
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          {t("standaloneDetail.header.askingResalePrice", "Asking Resale Price")}
+          {t("standaloneDetail.header.askingResalePrice", "Asking Price")}
         </span>
         <div
           className="mt-0.5 text-2xl sm:text-3xl lg:text-4xl font-bold text-[#2B5FA6]"

@@ -16,7 +16,7 @@ import type { PrimaryUnitItem } from "@/models/primaryUnit";
 import type { ResaleItem } from "@/models/resale";
 import type { BlogItem } from "@/models/blog";
 
-const FALLBACK_LANGS = ["en", "de", "ar"] as const;
+const FALLBACK_LANGS = ["en", "de", "ar", "ru"] as const;
 
 export async function resolveProjectByNameOrId(
   nameOrId: string | number,

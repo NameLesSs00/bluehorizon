@@ -11,17 +11,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   const isArabic = locale === "ar";
   const isGerman = locale === "de";
+  const isRussian = locale === "ru";
 
   const title = isArabic
     ? "عقارات للإيجار وشاليهات فندقية | بلو هورايزون"
     : isGerman
     ? "Mietwohnungen & Ferienapartments | Blue Horizon"
+    : isRussian
+    ? "Аренда квартир, шале и вилл в Хургаде | Blue Horizon"
     : "Holiday Rentals & Vacation Homes in Hurghada | Blue Horizon";
 
   const description = isArabic
     ? "شقق وشاليهات مفروشة بالكامل للإيجار اليومي والشهري بإطلالات بحرية مباشرة في الغردقة والجونة."
     : isGerman
     ? "Voll ausgestattete Apartments und Villen für Kurz- und Langzeitmiete am Roten Meer."
+    : isRussian
+    ? "Полностью меблированные элитные апартаменты, пляжные шале и виллы для отпуска или долгосрочной аренды в Египте."
     : "Discover fully furnished luxury apartments, beach chalets, and holiday villas for vacation or long-term lease in Egypt.";
 
   return buildPageMetadata({

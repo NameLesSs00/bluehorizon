@@ -4,11 +4,12 @@
       "home": "Startseite",
       "areas": "Regionen",
       "projects": "Projekte",
-      "standalone": "Freistehend",
+      "standalone": "Bestandsimmobilien",
       "rent": "Mieten",
       "blogs": "Blog",
       "aboutUs": "Über uns",
-      "contactUs": "Kontakt"
+      "contactUs": "Kontakt",
+      "faq": "FAQ"
     },
     "search": {
       "categories": "Kategorien",
@@ -21,13 +22,13 @@
       "anyArea": "Alle Standorte",
       "buy": "Kaufen",
       "rent": "Mieten",
-      "standalone": "Freistehend"
+      "standalone": "Bestandsimmobilien"
     },
     "footer": {
       "tagline": "Entdecken Sie erstklassige Immobilien und Premium-Projekte fur Ihren Lebensstil.",
       "description": "Blue Horizon ist Ihr erstklassiger Immobilienpartner in Hurghada und an der Roten-Meer-Kuste. Ob Kustenvilla, Off-Plan-Anlage oder moderne Wohnung in El Kawthar und den umliegenden Toplagen.",
       "properties": "Immobilien",
-      "standaloneUnits": "Freistehende Einheiten",
+      "standaloneUnits": "Bestandsimmobilien",
       "unitsForRent": "Mieteinheiten",
       "compoundsProjects": "Wohnanlagen & Projekte",
       "exploreAreas": "Gebiete entdecken",
@@ -39,7 +40,8 @@
       "contactUs": "Kontakt",
       "getInTouch": "Kontakt aufnehmen",
       "allRightsReserved": "Alle Rechte vorbehalten.",
-      "poweredBy": "Betrieben von"
+      "poweredBy": "Betrieben von",
+      "faq": "Häufige Fragen"
     }
   },
   "home": {
@@ -53,7 +55,7 @@
       "search": {
         "tabBuy": "Kaufen",
         "tabRent": "Mieten",
-        "tabStandalone": "Freistehende Einheiten",
+        "tabStandalone": "Bestandsimmobilien",
         "categories": "Kategorien",
         "propertyType": "Immobilientyp",
         "priceRange": "Preisspanne",
@@ -91,6 +93,14 @@
       "delivery": "Fertigstellung {year}",
       "noProjectsFound": "Zurzeit sind keine ausgewählten Projekte verfügbar."
     },
+    "hotOffers": {
+      "eyebrow": "BEFRISTETE ANGEBOTE",
+      "heading": "Hot Offers",
+      "subtitle": "Exklusive Tages- und zeitlich begrenzte Angebote für erstklassige Projekte am Roten Meer.",
+      "viewAll": "Alle Projekte ansehen",
+      "ribbonLabel": "HOT OFFER",
+      "validUntil": "Gültig bis {date}"
+    },
     "whyUs": {
       "eyebrow": "WARUM BLUE HORIZON?",
       "headingLine1": "Mehr als ein Zuhause,",
@@ -118,10 +128,10 @@
     },
     "featuredStandalone": {
       "eyebrow": "IHR EIGENES REICH",
-      "heading": "Ausgewählte freistehende Einheiten",
-      "subtitle": "Unabhängige Häuser außerhalb geschlossener Wohnanlagen in etablierten Wohngegenden.",
-      "viewAll": "Alle freistehenden Einheiten anzeigen",
-      "noUnitsFound": "Zurzeit sind keine freistehenden Einheiten verfügbar."
+      "heading": "Ausgewählte Bestandsimmobilien",
+      "subtitle": "Bestandsimmobilien außerhalb geschlossener Wohnanlagen, in etablierten Wohngegenden.",
+      "viewAll": "Alle Bestandsimmobilien ansehen",
+      "noUnitsFound": "Derzeit sind keine Bestandsimmobilien verfügbar."
     },
     "popularRentalLocations": {
       "eyebrow": "IHR WOHLFÜHLORT",
@@ -206,7 +216,7 @@
         "description": "Direkter Launch-Zugang zu Top-Küstenresorts und Gated Communities ohne Käuferprovision."
       },
       "resaleVillas": {
-        "title": "Freistehende Wiederverkaufsvillen",
+        "title": "Bestandsvillen",
         "description": "Geprüfte Luxushäuser, freistehende Strandvillen und bezugsfertige Doppelhäuser in Toplagen."
       },
       "rentalMgmt": {
@@ -534,10 +544,10 @@
   "standaloneDetail": {
     "breadcrumb": {
       "home": "Startseite",
-      "standalone": "Freistehende Einheiten"
+      "standalone": "Bestandsimmobilien"
     },
     "header": {
-      "askingResalePrice": "Geforderter Wiederverkaufspreis",
+      "askingResalePrice": "Kaufpreis",
       "priceOnRequest": "Preis auf Anfrage",
       "country": "Land",
       "city": "Stadt",
@@ -560,7 +570,7 @@
       "ground": "Erdgeschoss"
     },
     "about": {
-      "title": "Uber diese freistehende Immobilie",
+      "title": "Über diese Bestandsimmobilie",
       "orientationView": "Ausrichtung & Aussicht",
       "locationTitle": "Geografischer Standort & Rechtsregisterdetails",
       "country": "LAND",
@@ -615,9 +625,9 @@
       "verifiedVisitor": "Verifizierter Besucher"
     },
     "notFound": {
-      "title": "Freistehende Einheit nicht gefunden",
-      "body": "Die freistehende Wohneinheit, die Sie suchen, existiert nicht oder ist derzeit nicht verfugbar.",
-      "back": "Zuruck zu den freistehenden Einheiten"
+      "title": "Bestandsimmobilie nicht gefunden",
+      "body": "Die gesuchte Bestandsimmobilie existiert nicht oder ist derzeit nicht verfügbar.",
+      "back": "Zurück zu den Bestandsimmobilien"
     }
   },
   "rent": {
@@ -798,7 +808,15 @@
       "maxPrice": "Hأ¶chstpreis",
       "maxPricePlaceholder": "Max Preis",
       "apply": "Filter anwenden",
-      "resetButton": "Filter zurأ¼cksetzen"
+      "resetButton": "Filter zurücksetzen",
+      "tierLabel": "Projektkategorie",
+      "anyTier": "Alle Kategorien",
+      "tierTopSeller": "Top Seller",
+      "tierLuxury": "Luxus",
+      "tierBigHit": "Big Hit",
+      "hotOffersOnly": "Nur Hot Offers",
+      "facilitiesLabel": "Ausstattung & Einrichtungen",
+      "clearFacilities": "Löschen"
     },
     "grid": {
       "loading": "Projekte werden geladen...",
@@ -896,12 +914,12 @@
   "standaloneList": {
     "breadcrumb": {
       "home": "Startseite",
-      "standalone": "Freistehende Einheiten"
+      "standalone": "Bestandsimmobilien"
     },
     "hero": {
       "badge": "Verifizierte Premium-Einheiten",
-      "title": "Freistehende Immobilien zum Verkauf",
-      "description": "Entdecken Sie eine vielfältige Auswahl an unabhängigen Wohnungen, Villen und Wohneinheiten außerhalb geschlossener Wohnanlagen mit maximaler Flexibilität und Privatsphäre in begehrten Lagen Ägyptens."
+      "title": "Bestandsimmobilien zum Verkauf",
+      "description": "Entdecken Sie eine vielfältige Auswahl an Bestandswohnungen, Villen und Wohneinheiten außerhalb geschlossener Anlagen in den gefragtesten Lagen Ägyptens."
     },
     "filters": {
       "title": "Filter",
@@ -940,7 +958,7 @@
     "grid": {
       "title": "Verfügbare Einheiten",
       "subtitle": "Entdecken Sie erstklassige Wohneinheiten, die zum sofortigen Verkauf bereitstehen.",
-      "emptyTitle": "Keine freistehenden Einheiten gefunden",
+      "emptyTitle": "Keine Bestandsimmobilien gefunden",
       "emptyDescription": "Wir konnten keine Einheiten finden, die Ihren Filterkriterien entsprechen. Versuchen Sie, Ihre Suche anzupassen oder die Filter zurückzusetzen.",
       "resetFilters": "Filter zurücksetzen",
       "nextPage": "Nächste Seite"
@@ -956,7 +974,31 @@
     "cta": {
       "eyebrow": "Benötigen Sie sofortige Hilfe?",
       "heading": "Sprechen Sie mit unserem Vertriebsteam",
-      "description": "Unsere Immobilienberater helfen Ihnen gerne bei der Erkundung verfügbarer freistehender Einheiten, bieten detaillierte Informationen und vereinbaren private Besichtigungen.",
+      "description": "Unsere Immobilienberater helfen Ihnen gerne dabei, verfügbare Bestandsimmobilien zu entdecken und private Besichtigungen zu vereinbaren.",
+      "whatsapp": "WhatsApp-Chat",
+      "call": "Anrufen"
+    }
+  },
+  "faqPage": {
+    "breadcrumbHome": "Startseite",
+    "breadcrumbFaq": "FAQ",
+    "badge": "HILFE-CENTER",
+    "heading": "Häufig gestellte Fragen",
+    "subtitle": "Finden Sie klare Antworten auf die häufigsten Fragen rund um Kauf, Miete, rechtliche Prüfung und Immobilieninvestments in Hurghada und am Roten Meer.",
+    "searchPlaceholder": "Fragen oder Stichwörter suchen...",
+    "clearSearch": "Löschen",
+    "showingCount": "{count} Fragen angezeigt",
+    "showingSingle": "1 Frage angezeigt",
+    "noResultsTitle": "Keine passenden Fragen gefunden",
+    "noResultsSubtitle": "Wir konnten keine FAQ zu Ihrer Suche finden. Versuchen Sie ein anderes Stichwort oder kontaktieren Sie unser Team direkt.",
+    "resetSearch": "Suche zurücksetzen",
+    "emptyTitle": "Noch keine FAQs veröffentlicht",
+    "emptySubtitle": "Haben Sie noch Fragen? Unsere Immobilienberater helfen Ihnen jederzeit gerne weiter.",
+    "cta": {
+      "eyebrow": "NOCH FRAGEN OFFEN?",
+      "heading": "Sprechen Sie direkt mit unseren Beratern",
+      "description": "Benötigen Sie persönliche Beratung zu Zahlungsplänen, Eigentumsurkunden oder Immobilienverwaltung? Unser Team ist 6 Tage die Woche erreichbar.",
+      "contactButton": "Support kontaktieren",
       "whatsapp": "WhatsApp-Chat",
       "call": "Anrufen"
     }

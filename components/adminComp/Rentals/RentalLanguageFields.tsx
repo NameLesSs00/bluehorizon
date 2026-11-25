@@ -35,6 +35,7 @@ export default function RentalLanguageFields({
           en: "e.g. Seaside Luxury Pool Villa",
           de: "z.B. Luxus-Pool-Villa am Meer",
           ar: "مثال: فيلا فاخرة على شاطئ البحر",
+          ru: "например: Роскошная вилла с бассейном у моря",
         }}
       />
 
@@ -52,6 +53,7 @@ export default function RentalLanguageFields({
           en: "e.g. Ground Floor, 2nd Floor, Penthouse",
           de: "z.B. Erdgeschoss, 1. Stock",
           ar: "مثال: الطابق الأرضي، الطابق الأول",
+          ru: "например: Первый этаж, Второй этаж, Пентхаус",
         }}
       />
 
@@ -69,6 +71,7 @@ export default function RentalLanguageFields({
           en: "e.g. Free cancellation up to 7 days before check-in",
           de: "z.B. Kostenlose Stornierung bis 7 Tage vor Anreise",
           ar: "مثال: إلغاء مجاني حتى 7 أيام قبل تسجيل الوصول",
+          ru: "например: Бесплатная отмена за 7 дней до заезда",
         }}
       />
 
@@ -86,6 +89,7 @@ export default function RentalLanguageFields({
           en: "e.g. Quiet hours from 11:00 PM to 08:00 AM",
           de: "z.B. Ruhezeiten von 23:00 bis 08:00 Uhr",
           ar: "مثال: ساعات الهدوء من 11:00 مساءً حتى 08:00 صباحاً",
+          ru: "например: Тихие часы с 23:00 до 08:00",
         }}
       />
 
@@ -105,6 +109,7 @@ export default function RentalLanguageFields({
           en: "Detail the vacation unit layout, comfort, and appeal...",
           de: "Deutsche Beschreibung der Unterkunft...",
           ar: "وصف تفصيلي للشقة أو الفيلا ومميزات الإقامة...",
+          ru: "Подробное описание планировки и удобств...",
         }}
       />
     </div>

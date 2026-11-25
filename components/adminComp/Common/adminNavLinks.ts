@@ -91,7 +91,7 @@ export function getAdminNavLinks(pathname: string): AdminNavItem[] {
       superAdminOnly: false,
     },
     {
-      label: "StandAlone Props",
+      label: "Second Hand Units",
       href: "/admin/standalone-units",
       icon: FiHome,
       active: pathname.startsWith("/admin/standalone-units"),

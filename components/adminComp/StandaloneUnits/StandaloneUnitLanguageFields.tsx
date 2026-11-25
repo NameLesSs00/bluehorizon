@@ -1,10 +1,11 @@
-﻿"use client";
+"use client";
 
 import { LocalizedText } from "@/models/faq";
 import {
   FlagEgypt,
   FlagGermany,
   FlagUK,
+  FlagRussia,
 } from "@/components/adminComp/Common/LanguageFlags";
 
 interface StandaloneUnitLanguageFieldsProps {
@@ -50,7 +51,7 @@ export default function StandaloneUnitLanguageFields({
             required
             value={name.en}
             onChange={(e) => setName({ ...name, en: e.target.value })}
-            placeholder="e.g. Luxury Beachfront Standalone Villa"
+            placeholder="e.g. Luxury Beachfront Second Hand Villa"
             className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
@@ -80,6 +81,20 @@ export default function StandaloneUnitLanguageFields({
             value={name.ar}
             onChange={(e) => setName({ ...name, ar: e.target.value })}
             placeholder="مثال: فيلا مستقلة فاخرة على شاطئ البحر"
+            className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="flex items-center gap-2 text-[12px] font-medium text-[#202326]">
+            <FlagRussia className="h-3.5 w-5 rounded-2xs shadow-xs" />
+            <span>Russian Name</span>
+          </label>
+          <input
+            type="text"
+            value={name.ru}
+            onChange={(e) => setName({ ...name, ru: e.target.value })}
+            placeholder="например: Роскошная отдельная вилла на берегу"
             className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>
@@ -130,6 +145,20 @@ export default function StandaloneUnitLanguageFields({
             value={description.ar}
             onChange={(e) => setDescription({ ...description, ar: e.target.value })}
             placeholder="اكتب وصفاً مميزاً للوحدة وتشطيباتها..."
+            className="mt-1 w-full resize-none rounded-xl border border-[#D0D9EA] bg-white p-3 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="flex items-center gap-2 text-[12px] font-medium text-[#202326]">
+            <FlagRussia className="h-3.5 w-5 rounded-2xs shadow-xs" />
+            <span>Russian Description</span>
+          </label>
+          <textarea
+            rows={2}
+            value={description.ru}
+            onChange={(e) => setDescription({ ...description, ru: e.target.value })}
+            placeholder="Опишите особенности квартиры..."
             className="mt-1 w-full resize-none rounded-xl border border-[#D0D9EA] bg-white p-3 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
           />
         </div>

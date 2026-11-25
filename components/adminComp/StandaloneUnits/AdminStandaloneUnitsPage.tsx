@@ -102,10 +102,10 @@ export default function AdminStandaloneUnitsPage() {
               PROPERTY MANAGEMENT
             </p>
             <h1 className="mt-1 text-[28px] font-semibold text-[#202326]">
-              StandAlone Props
+              Second Hand Properties
             </h1>
             <p className="mt-1 text-[13px] text-[#65706B]">
-              Manage standalone villas, townhouses, and properties outside compound projects.
+              Manage second hand villas, townhouses, and properties outside compound projects.
             </p>
           </div>
 
@@ -115,7 +115,7 @@ export default function AdminStandaloneUnitsPage() {
             className="inline-flex items-center gap-2 rounded-xl bg-[#1B3A6B] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#2B5FA6]"
           >
             <FiPlus className="h-4 w-4" />
-            <span>Add Standalone Property</span>
+            <span>Add Second Hand Property</span>
           </button>
         </div>
 
@@ -131,7 +131,7 @@ export default function AdminStandaloneUnitsPage() {
                 setSearchTerm(e.target.value);
                 setPageNumber(1);
               }}
-              placeholder="Search standalone properties..."
+              placeholder="Search second hand properties..."
               className="w-full rounded-xl border border-[#D0D9EA] bg-white py-2 pr-3 pl-9 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
             />
           </div>

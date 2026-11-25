@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -6,7 +6,7 @@ import { FiChevronLeft, FiChevronRight, FiCreditCard, FiEdit2, FiImage, FiMapPin
 import { LuBuilding, LuSparkles } from "react-icons/lu";
 import { getFullProjectImageUrl } from "@/clientApi/projectsApi";
 import { useDeleteProjectMutation } from "@/features/projects/useProjectsQueries";
-import { FurnitureTypeEnum, ProjectItem } from "@/models/project";
+import { PROJECT_TIER_OPTIONS, ProjectItem } from "@/models/project";
 import DynamicIcon from "@/components/adminComp/Common/DynamicIcon";
 
 interface ProjectsTableProps {
@@ -127,7 +127,7 @@ export default function ProjectsTable({
                         </div>
 
                         <div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex flex-wrap items-center gap-1.5">
                             <span className="text-[15px] font-semibold text-[#202326]">
                               {proj.name}
                             </span>
@@ -135,6 +135,23 @@ export default function ProjectsTable({
                               <span className="inline-flex items-center gap-1 rounded-md bg-[#25D366]/15 px-2 py-0.5 text-[10px] font-bold text-[#1B3A6B]">
                                 <LuSparkles className="h-3 w-3" />
                                 <span>Featured</span>
+                              </span>
+                            )}
+                            {proj.projectType && (
+                              <span className="rounded-md bg-[#1B3A6B]/10 px-2 py-0.5 text-[10px] font-bold text-[#1B3A6B]">
+                                {PROJECT_TIER_OPTIONS.find((o) => o.value === proj.projectType)?.label ?? proj.projectType}
+                              </span>
+                            )}
+                            {proj.isHotOffer && (
+                              <span
+                                title={
+                                  proj.startDateHotOffer && proj.endDateHotOffer
+                                    ? `${new Date(proj.startDateHotOffer).toLocaleDateString()} - ${new Date(proj.endDateHotOffer).toLocaleDateString()}`
+                                    : "Hot Offer"
+                                }
+                                className="rounded-md bg-[#B8963E]/15 px-2 py-0.5 text-[10px] font-bold text-[#8E6F24]"
+                              >
+                                Hot Offer
                               </span>
                             )}
                           </div>
@@ -216,35 +233,19 @@ export default function ProjectsTable({
                         </div>
                       ) : (
                         <div className="inline-flex items-center gap-1.5">
-                          <button
-                            type="button"
-                            onClick={() => onManagePaymentPlans(proj)}
-                            className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#2B5FA6] hover:bg-[#F9F7F4]"
-                          >
+                          <button type="button" onClick={() => onManagePaymentPlans(proj)} className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#2B5FA6] hover:bg-[#F9F7F4]">
                             <FiCreditCard className="h-3.5 w-3.5" />
                             <span>Plans</span>
                           </button>
-                          <button
-                            type="button"
-                            onClick={() => onManageImages(proj)}
-                            className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#2B5FA6] hover:bg-[#F9F7F4]"
-                          >
+                          <button type="button" onClick={() => onManageImages(proj)} className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#2B5FA6] hover:bg-[#F9F7F4]">
                             <FiImage className="h-3.5 w-3.5" />
                             <span>Images ({imageCount})</span>
                           </button>
-                          <button
-                            type="button"
-                            onClick={() => onEdit(proj)}
-                            className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#F0F3FA]"
-                          >
+                          <button type="button" onClick={() => onEdit(proj)} className="inline-flex items-center gap-1 rounded-lg border border-[#D0D9EA] bg-white px-2.5 py-1.5 text-[12px] font-medium text-[#202326] hover:bg-[#F0F3FA]">
                             <FiEdit2 className="h-3.5 w-3.5" />
                             <span>Edit</span>
                           </button>
-                          <button
-                            type="button"
-                            onClick={() => setConfirmDeleteId(proj.id)}
-                            className="inline-flex items-center gap-1 rounded-lg border border-red-200 px-2.5 py-1.5 text-[12px] font-medium text-red-600 hover:bg-red-50"
-                          >
+                          <button type="button" onClick={() => setConfirmDeleteId(proj.id)} className="inline-flex items-center gap-1 rounded-lg border border-red-200 px-2.5 py-1.5 text-[12px] font-medium text-red-600 hover:bg-red-50">
                             <FiTrash2 className="h-3.5 w-3.5" />
                             <span>Delete</span>
                           </button>

@@ -9,6 +9,7 @@ export interface CreateFacilityRequestDto {
     en: string;
     ar: string;
     de: string;
+    ru: string;
   };
   icon: string;
 }
@@ -19,6 +20,7 @@ export interface UpdateFacilityRequestDto {
     en: string;
     ar: string;
     de: string;
+    ru: string;
   };
   icon: string;
 }
@@ -30,6 +32,7 @@ export interface LocalizedFacilityData {
     en: string;
     ar: string;
     de: string;
+    ru: string;
   };
 }
 

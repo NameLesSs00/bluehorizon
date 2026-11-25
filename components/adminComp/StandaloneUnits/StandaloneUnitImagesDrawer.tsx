@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useRef } from "react";
 import Image from "next/image";
@@ -59,7 +59,7 @@ export default function StandaloneUnitImagesDrawer({
     <AdminSlideDrawer
       isOpen={isOpen}
       onClose={onClose}
-      title="Standalone Property Gallery"
+      title="Second Hand Property Gallery"
       subtitle={`Photo gallery for ${unit.name}`}
       maxWidthClass="max-w-3xl"
     >

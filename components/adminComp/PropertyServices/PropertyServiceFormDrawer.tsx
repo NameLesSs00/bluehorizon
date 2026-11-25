@@ -15,6 +15,7 @@ import {
   EgyptFlag,
   GermanyFlag,
   UkFlag,
+  RussiaFlag,
 } from "@/components/adminComp/Common/LanguageFlags";
 
 interface PropertyServiceFormDrawerProps {
@@ -33,6 +34,7 @@ export default function PropertyServiceFormDrawer({
   const [nameEn, setNameEn] = useState("");
   const [nameDe, setNameDe] = useState("");
   const [nameAr, setNameAr] = useState("");
+  const [nameRu, setNameRu] = useState("");
   const [icon, setIcon] = useState("");
   const [isLoadingDetails, setIsLoadingDetails] = useState(false);
 
@@ -47,6 +49,7 @@ export default function PropertyServiceFormDrawer({
           setNameEn(data.name.en || serviceToEdit.name || "");
           setNameDe(data.name.de || "");
           setNameAr(data.name.ar || "");
+          setNameRu(data.name.ru || "");
           if (data.icon) setIcon(data.icon);
         })
         .catch(() => {
@@ -59,6 +62,7 @@ export default function PropertyServiceFormDrawer({
       setNameEn("");
       setNameDe("");
       setNameAr("");
+      setNameRu("");
       setIcon("MdPool");
     }
   }, [serviceToEdit, isOpen]);
@@ -88,6 +92,10 @@ export default function PropertyServiceFormDrawer({
       toast.error("Please enter the service name in Arabic.");
       return;
     }
+    if (!nameRu.trim()) {
+      toast.error("Please enter the service name in Russian.");
+      return;
+    }
 
     if (isEditing && serviceToEdit) {
       updateMutation.mutate({
@@ -96,6 +104,7 @@ export default function PropertyServiceFormDrawer({
           en: nameEn.trim(),
           de: nameDe.trim(),
           ar: nameAr.trim(),
+          ru: nameRu.trim(),
         },
         icon: icon.trim() || undefined,
       });
@@ -105,6 +114,7 @@ export default function PropertyServiceFormDrawer({
           en: nameEn.trim(),
           de: nameDe.trim(),
           ar: nameAr.trim(),
+          ru: nameRu.trim(),
         },
         icon: icon.trim() || undefined,
       });
@@ -187,6 +197,22 @@ export default function PropertyServiceFormDrawer({
                   onChange={(e) => setNameAr(e.target.value)}
                   placeholder="مثال: حمام سباحة، مركز لياقة بدنية"
                   className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[14px] text-[#202326] outline-none transition-all placeholder:text-[#65706B] focus:border-[#2B5FA6] focus:ring-2 focus:ring-[#2B5FA6]/15 text-right"
+                />
+              </div>
+
+              {/* Russian */}
+              <div>
+                <label className="flex items-center gap-2 text-[12px] font-semibold text-[#202326]">
+                  <RussiaFlag className="h-3.5 w-5 rounded-xs shadow-xs" />
+                  <span>Russian Name (RU)</span>
+                  <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={nameRu}
+                  onChange={(e) => setNameRu(e.target.value)}
+                  placeholder="например: Бассейн, Фитнес-центр, Джакузи"
+                  className="mt-1.5 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[14px] text-[#202326] outline-none transition-all placeholder:text-[#65706B] focus:border-[#2B5FA6] focus:ring-2 focus:ring-[#2B5FA6]/15"
                 />
               </div>
             </div>

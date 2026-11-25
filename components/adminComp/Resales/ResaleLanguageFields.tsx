@@ -1,9 +1,10 @@
-﻿"use client";
+"use client";
 
 import {
   FlagEgypt,
   FlagGermany,
   FlagUK,
+  FlagRussia,
 } from "@/components/adminComp/Common/LanguageFlags";
 import { ResaleFormPayload } from "@/models/resale";
 
@@ -88,6 +89,25 @@ export default function ResaleLanguageFields({
               className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
+
+          <div>
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
+              <FlagRussia className="h-3.5 w-3.5" />
+              <span>Russian Title (Русский)</span>
+            </div>
+            <input
+              type="text"
+              value={formData.name.ru}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  name: { ...prev.name, ru: e.target.value },
+                }))
+              }
+              placeholder="например: Пентхаус Azure Skyline"
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+            />
+          </div>
         </div>
       </div>
 
@@ -152,6 +172,25 @@ export default function ResaleLanguageFields({
                 }))
               }
               placeholder="أدخل وصف العقار باللغة العربية..."
+              className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#2B5FA6]">
+              <FlagRussia className="h-3.5 w-3.5" />
+              <span>Russian Description (Русский)</span>
+            </div>
+            <textarea
+              rows={3}
+              value={formData.description.ru}
+              onChange={(e) =>
+                onChange((prev) => ({
+                  ...prev,
+                  description: { ...prev.description, ru: e.target.value },
+                }))
+              }
+              placeholder="Введите описание недвижимости на русском..."
               className="mt-1 w-full rounded-xl border border-[#D0D9EA] bg-white px-3.5 py-2.5 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>

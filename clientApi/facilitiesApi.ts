@@ -31,15 +31,17 @@ export async function getFullLocalizedFacility(
   id: number
 ): Promise<LocalizedFacilityData> {
   // Built to query language parameter so it works as soon as backend team activates it
-  const [enRes, arRes, deRes] = await Promise.allSettled([
+  const [enRes, arRes, deRes, ruRes] = await Promise.allSettled([
     getFacilityById(id, "en"),
     getFacilityById(id, "ar"),
     getFacilityById(id, "de"),
+    getFacilityById(id, "ru"),
   ]);
 
   const enItem = enRes.status === "fulfilled" ? enRes.value : null;
   const arItem = arRes.status === "fulfilled" ? arRes.value : null;
   const deItem = deRes.status === "fulfilled" ? deRes.value : null;
+  const ruItem = ruRes.status === "fulfilled" ? ruRes.value : null;
 
   const resolvedIcon =
     enItem?.icon || arItem?.icon || deItem?.icon || "";
@@ -51,6 +53,7 @@ export async function getFullLocalizedFacility(
       en: enItem?.name ?? "",
       ar: arItem?.name ?? enItem?.name ?? "",
       de: deItem?.name ?? enItem?.name ?? "",
+      ru: ruItem?.name ?? enItem?.name ?? "",
     },
   };
 }

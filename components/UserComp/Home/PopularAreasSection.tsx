@@ -4,25 +4,22 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
+import { PiMapPinLineLight, PiMapTrifoldLight } from "react-icons/pi";
 import { usePublicProjectLocationsQuery } from "@/features/projectLocations/useProjectLocationsQueries";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import {
+  cardGridItemVariants,
+  headerContainerVariants,
+  headerItemVariants,
+} from "@/shared/utils/motionPresets";
 import PopularAreaCard from "./PopularAreaCard";
 import HomeEmptyState from "./HomeEmptyState";
-import HomeHeaderIllustrations from "./HomeHeaderIllustrations";
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.45, delay: i * 0.08, ease: "easeOut" as const },
-  }),
-};
+import HomeSectionBgIcon from "./HomeSectionBgIcon";
 
 export default function PopularAreasSection() {
   const { t, locale, direction } = useTranslation();
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, amount: 0.14 });
 
   const { data: locationsData, isLoading } = usePublicProjectLocationsQuery({
     Language: locale,
@@ -33,29 +30,36 @@ export default function PopularAreasSection() {
   const areas = locationsData?.items?.slice(0, 4) || [];
 
   return (
-    <motion.section
+    <section
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="bg-white pt-8 sm:pt-10 lg:pt-28 pb-8 sm:pb-10 lg:pb-12"
+      className="relative overflow-hidden bg-white pt-8 sm:pt-10 lg:pt-28 pb-8 sm:pb-10 lg:pb-12"
     >
-      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        <header className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <HomeSectionBgIcon leftIcon={PiMapPinLineLight} rightIcon={PiMapTrifoldLight} />
+
+      <div className="relative z-10 mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+        <motion.header
+          variants={headerContainerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="mb-8 sm:mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
+        >
           <div>
-            <p
-              className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#2B5FA6]"
+            <motion.p
+              variants={headerItemVariants}
+              className="text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-[#B8963E]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {t("home.popularAreas.eyebrow", "FIND YOUR NEIGHBORHOOD")}
-            </p>
-            <h2
+            </motion.p>
+            <motion.h2
+              variants={headerItemVariants}
               className="mt-2 text-[24px] sm:text-[30px] lg:text-[38px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#202326]"
               style={{ fontFamily: "var(--font-manrope)" }}
             >
               {t("home.popularAreas.heading", "Explore Popular Areas")}
-            </h2>
-            <p
+            </motion.h2>
+            <motion.p
+              variants={headerItemVariants}
               className="mt-3 text-[15px] font-normal leading-[1.6] tracking-normal text-[#65706B]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
@@ -63,17 +67,13 @@ export default function PopularAreasSection() {
                 "home.popularAreas.subtitle",
                 "Discover top Places and find your ideal Area."
               )}
-            </p>
+            </motion.p>
           </div>
 
-          <div className="flex items-end justify-between gap-4 sm:gap-6 md:justify-end">
-            <HomeHeaderIllustrations
-              primarySrc="/HomePage/chalet.svg"
-              secondarySrc="/HomePage/retail-shop.svg"
-            />
+          <motion.div variants={headerItemVariants} className="self-start md:self-end shrink-0">
             <Link
               href={`/${locale}/areas`}
-              className="inline-flex items-center gap-2 text-[14px] font-semibold leading-none text-[#2B5FA6] transition-opacity hover:opacity-80 shrink-0 pb-1"
+              className="group inline-flex items-center gap-2 text-[14px] font-semibold leading-none text-[#2B5FA6] transition-opacity hover:opacity-80"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span>{t("home.popularAreas.discoverAll", "Discover all areas")}</span>
@@ -82,13 +82,15 @@ export default function PopularAreasSection() {
                 alt=""
                 width={9}
                 height={9}
-                className={`h-[9px] w-[9px] shrink-0 ${
-                  direction === "rtl" ? "scale-x-[-1]" : ""
+                className={`h-[9px] w-[9px] shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  direction === "rtl"
+                    ? "scale-x-[-1] group-hover:-translate-x-0.5"
+                    : "group-hover:translate-x-0.5"
                 }`}
               />
             </Link>
-          </div>
-        </header>
+          </motion.div>
+        </motion.header>
 
         {isLoading ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -113,7 +115,7 @@ export default function PopularAreasSection() {
               <motion.div
                 key={area.id}
                 custom={idx}
-                variants={cardVariants}
+                variants={cardGridItemVariants}
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
               >
@@ -123,6 +125,6 @@ export default function PopularAreasSection() {
           </div>
         )}
       </div>
-    </motion.section>
+    </section>
   );
 }

@@ -1,11 +1,13 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
-import { FiPlus, FiSearch } from "react-icons/fi";
+import { useMemo, useState } from "react";
+import { FiPlus } from "react-icons/fi";
 import AdminShell from "@/components/adminComp/Common/AdminShell";
 import { useProjectsQuery } from "@/features/projects/useProjectsQueries";
 import { useProjectLocationsQuery } from "@/features/projectLocations/useProjectLocationsQueries";
-import { ProjectItem } from "@/models/project";
+import { useFacilitiesQuery } from "@/features/facilities/useFacilitiesQueries";
+import { ProjectItem, ProjectTierType } from "@/models/project";
+import AdminProjectsFilters from "./AdminProjectsFilters";
 import ProjectsTable from "./ProjectsTable";
 import ProjectFormDrawer from "./ProjectFormDrawer";
 import ProjectImagesDrawer from "./ProjectImagesDrawer";
@@ -16,13 +18,17 @@ export default function AdminProjectsPage() {
   const pageSize = 10;
 
   const [selectedLocationId, setSelectedLocationId] = useState<number | undefined>(undefined);
+  const [selectedFacilityIds, setSelectedFacilityIds] = useState<number[]>([]);
+  const [selectedProjectType, setSelectedProjectType] = useState<ProjectTierType | undefined>(undefined);
   const [isFeatureFilter, setIsFeatureFilter] = useState<boolean | undefined>(undefined);
+  const [isHotOfferFilter, setIsHotOfferFilter] = useState<boolean | undefined>(undefined);
   const [searchTerm, setSearchTerm] = useState("");
 
   const { data: locationsData } = useProjectLocationsQuery({
     Language: "en",
     PageSize: 100,
   });
+  const { data: facilitiesData } = useFacilitiesQuery("en");
 
   const { data: projectsData, isLoading } = useProjectsQuery({
     Language: "en",
@@ -30,7 +36,10 @@ export default function AdminProjectsPage() {
     PageNumber: pageNumber,
     PageSize: pageSize,
     LocationId: selectedLocationId,
+    FacilityId: selectedFacilityIds[0],
+    ProjectType: selectedProjectType,
     IsFeature: isFeatureFilter,
+    IsHotOffer: isHotOfferFilter,
     Search: searchTerm.trim() || undefined,
   });
 
@@ -43,29 +52,42 @@ export default function AdminProjectsPage() {
   const [isPaymentPlansOpen, setIsPaymentPlansOpen] = useState(false);
   const [projectForPaymentPlans, setProjectForPaymentPlans] = useState<ProjectItem | null>(null);
 
-  const projects = projectsData?.items ?? [];
+  const projects = useMemo(() => {
+    const items = projectsData?.items ?? [];
+    if (selectedFacilityIds.length <= 1) return items;
+    return items.filter((proj) =>
+      selectedFacilityIds.every((id) => proj.facilities?.some((f) => f.id === id))
+    );
+  }, [projectsData?.items, selectedFacilityIds]);
+
   const totalPages = projectsData?.totalPages ?? 1;
   const hasPreviousPage = projectsData?.hasPreviousPage ?? pageNumber > 1;
   const hasNextPage = projectsData?.hasNextPage ?? pageNumber < totalPages;
 
-  function handleOpenCreate() {
-    setProjectToEdit(null);
-    setIsFormOpen(true);
+  const hasActiveFilters = Boolean(
+    selectedLocationId ||
+      selectedFacilityIds.length > 0 ||
+      selectedProjectType ||
+      isFeatureFilter !== undefined ||
+      isHotOfferFilter !== undefined ||
+      searchTerm.trim()
+  );
+
+  function handleToggleFacility(id: number) {
+    setSelectedFacilityIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+    setPageNumber(1);
   }
 
-  function handleOpenEdit(proj: ProjectItem) {
-    setProjectToEdit(proj);
-    setIsFormOpen(true);
-  }
-
-  function handleOpenImages(proj: ProjectItem) {
-    setProjectForImages(proj);
-    setIsImagesOpen(true);
-  }
-
-  function handleOpenPaymentPlans(proj: ProjectItem) {
-    setProjectForPaymentPlans(proj);
-    setIsPaymentPlansOpen(true);
+  function handleClearFilters() {
+    setSelectedLocationId(undefined);
+    setSelectedFacilityIds([]);
+    setSelectedProjectType(undefined);
+    setIsFeatureFilter(undefined);
+    setIsHotOfferFilter(undefined);
+    setSearchTerm("");
+    setPageNumber(1);
   }
 
   return (
@@ -81,13 +103,16 @@ export default function AdminProjectsPage() {
               Projects
             </h1>
             <p className="mt-1 text-[13px] text-[#65706B]">
-              Manage residential complexes, pricing across all currencies, types, and facilities.
+              Manage residential complexes, pricing, project tiers, hot offers, and facilities.
             </p>
           </div>
 
           <button
             type="button"
-            onClick={handleOpenCreate}
+            onClick={() => {
+              setProjectToEdit(null);
+              setIsFormOpen(true);
+            }}
             className="inline-flex items-center gap-2 rounded-xl bg-[#1B3A6B] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#2B5FA6]"
           >
             <FiPlus className="h-4 w-4" />
@@ -96,56 +121,43 @@ export default function AdminProjectsPage() {
         </div>
 
         {/* Filter Controls */}
-        <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-[#E2E8F3] bg-white p-4 shadow-xs">
-          {/* Search */}
-          <div className="relative min-w-[240px] flex-1 sm:flex-initial">
-            <FiSearch className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-[#9BA5A0]" />
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-                setPageNumber(1);
-              }}
-              placeholder="Search projects..."
-              className="w-full rounded-xl border border-[#D0D9EA] bg-white py-2 pr-3 pl-9 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#1B3A6B] focus:outline-none"
-            />
-          </div>
-
-          {/* Location Filter */}
-          <select
-            value={selectedLocationId ?? ""}
-            onChange={(e) => {
-              const val = e.target.value ? parseInt(e.target.value, 10) : undefined;
-              setSelectedLocationId(val);
-              setPageNumber(1);
-            }}
-            className="rounded-xl border border-[#D0D9EA] bg-white px-3 py-2 text-[13px] text-[#202326] focus:border-[#1B3A6B] focus:outline-none"
-          >
-            <option value="">All Locations</option>
-            {locationsData?.items.map((loc) => (
-              <option key={loc.id} value={loc.id}>
-                {loc.name}
-              </option>
-            ))}
-          </select>
-
-          {/* Featured Filter */}
-          <button
-            type="button"
-            onClick={() => {
-              setIsFeatureFilter((prev) => (prev === true ? undefined : true));
-              setPageNumber(1);
-            }}
-            className={`rounded-xl border px-3.5 py-2 text-[12px] font-medium transition-colors ${
-              isFeatureFilter === true
-                ? "border-[#2B5FA6] bg-[#2B5FA6] text-white"
-                : "border-[#D0D9EA] bg-white text-[#202326] hover:bg-[#F0F3FA]"
-            }`}
-          >
-            Featured Only
-          </button>
-        </div>
+        <AdminProjectsFilters
+          searchTerm={searchTerm}
+          onSearchChange={(val) => {
+            setSearchTerm(val);
+            setPageNumber(1);
+          }}
+          selectedLocationId={selectedLocationId}
+          onLocationChange={(val) => {
+            setSelectedLocationId(val);
+            setPageNumber(1);
+          }}
+          selectedFacilityIds={selectedFacilityIds}
+          onToggleFacility={handleToggleFacility}
+          onClearFacilities={() => {
+            setSelectedFacilityIds([]);
+            setPageNumber(1);
+          }}
+          selectedProjectType={selectedProjectType}
+          onProjectTypeChange={(val) => {
+            setSelectedProjectType(val);
+            setPageNumber(1);
+          }}
+          isFeatureFilter={isFeatureFilter}
+          onToggleFeature={() => {
+            setIsFeatureFilter((prev) => (prev === true ? undefined : true));
+            setPageNumber(1);
+          }}
+          isHotOfferFilter={isHotOfferFilter}
+          onToggleHotOffer={() => {
+            setIsHotOfferFilter((prev) => (prev === true ? undefined : true));
+            setPageNumber(1);
+          }}
+          hasActiveFilters={hasActiveFilters}
+          onClearAll={handleClearFilters}
+          locations={locationsData?.items ?? []}
+          facilities={facilitiesData ?? []}
+        />
 
         {/* Projects Table */}
         <ProjectsTable
@@ -157,9 +169,18 @@ export default function AdminProjectsPage() {
           hasPreviousPage={hasPreviousPage}
           hasNextPage={hasNextPage}
           onPageChange={(p) => setPageNumber(p)}
-          onEdit={handleOpenEdit}
-          onManageImages={handleOpenImages}
-          onManagePaymentPlans={handleOpenPaymentPlans}
+          onEdit={(proj) => {
+            setProjectToEdit(proj);
+            setIsFormOpen(true);
+          }}
+          onManageImages={(proj) => {
+            setProjectForImages(proj);
+            setIsImagesOpen(true);
+          }}
+          onManagePaymentPlans={(proj) => {
+            setProjectForPaymentPlans(proj);
+            setIsPaymentPlansOpen(true);
+          }}
         />
 
         {/* Drawers */}
@@ -184,4 +205,3 @@ export default function AdminProjectsPage() {
     </AdminShell>
   );
 }
-
