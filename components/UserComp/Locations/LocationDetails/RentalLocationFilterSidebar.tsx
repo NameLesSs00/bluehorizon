@@ -2,6 +2,8 @@
 
 import { FiRotateCcw } from "react-icons/fi";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { usePropertyCategoryItemsQuery } from "@/features/propertyCategoryItems/usePropertyCategoryItemsQueries";
+import ServicePillsFilter from "@/components/UserComp/Common/ServicePillsFilter";
 import RentalLocationFilterFields from "./RentalLocationFilterFields";
 
 export interface RentalLocationFilterState {
@@ -11,6 +13,7 @@ export interface RentalLocationFilterState {
   capacity: string;
   minPrice: string;
   maxPrice: string;
+  categoryItemIds: number[];
 }
 
 interface RentalLocationFilterSidebarProps {
@@ -30,7 +33,19 @@ export default function RentalLocationFilterSidebar({
   onResetFilters,
   bare = false,
 }: RentalLocationFilterSidebarProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
+  const { data: categoryItemsData } = usePropertyCategoryItemsQuery({
+    Language: locale,
+    PageSize: 100,
+  });
+  const categoryItems = categoryItemsData?.items || [];
+
+  const handleToggleCategoryItem = (id: number) => {
+    const next = filterState.categoryItemIds.includes(id)
+      ? filterState.categoryItemIds.filter((x) => x !== id)
+      : [...filterState.categoryItemIds, id];
+    onFilterChange("categoryItemIds", next);
+  };
 
   const hasActiveFilters =
     filterState.searchTerm.trim() !== "" ||
@@ -38,7 +53,8 @@ export default function RentalLocationFilterSidebar({
     filterState.view !== "all" ||
     filterState.capacity !== "Any" ||
     filterState.minPrice !== "" ||
-    filterState.maxPrice !== "";
+    filterState.maxPrice !== "" ||
+    filterState.categoryItemIds.length > 0;
 
   if (bare) {
     return (
@@ -62,6 +78,15 @@ export default function RentalLocationFilterSidebar({
           onResetFilters={onResetFilters}
           hasActiveFilters={hasActiveFilters}
         />
+        <div className="mt-4">
+          <ServicePillsFilter
+            label={t("common.filters.amenitiesLabel", "Amenities & Services")}
+            options={categoryItems}
+            selectedIds={filterState.categoryItemIds}
+            onToggle={handleToggleCategoryItem}
+            onClear={() => onFilterChange("categoryItemIds", [])}
+          />
+        </div>
       </div>
     );
   }
@@ -96,6 +121,15 @@ export default function RentalLocationFilterSidebar({
           onResetFilters={onResetFilters}
           hasActiveFilters={hasActiveFilters}
         />
+        <div className="mt-4">
+          <ServicePillsFilter
+            label={t("common.filters.amenitiesLabel", "Amenities & Services")}
+            options={categoryItems}
+            selectedIds={filterState.categoryItemIds}
+            onToggle={handleToggleCategoryItem}
+            onClear={() => onFilterChange("categoryItemIds", [])}
+          />
+        </div>
       </div>
     </aside>
   );

@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { FiPlus, FiSearch } from "react-icons/fi";
 import AdminShell from "@/components/adminComp/Common/AdminShell";
+import AdminServiceFilterDropdown from "@/components/adminComp/Common/AdminServiceFilterDropdown";
 import { useStandaloneUnitsQuery } from "@/features/standaloneUnits/useStandaloneUnitsQueries";
+import { useServicesQuery } from "@/features/services/useServicesQueries";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import { useExchangeRatesQuery } from "@/features/currency/useExchangeRatesQueries";
 import { StandaloneUnitItem } from "@/models/standaloneUnit";
@@ -55,15 +57,19 @@ export default function AdminStandaloneUnitsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPropertyType, setSelectedPropertyType] = useState("All Types");
   const [activeFilter, setActiveFilter] = useState<boolean | undefined>(undefined);
+  const [selectedServiceIds, setSelectedServiceIds] = useState<number[]>([]);
+
+  const { data: servicesData } = useServicesQuery("en");
 
   const { data, isLoading } = useStandaloneUnitsQuery({
     Language: "en",
     Currency: currentCurrency,
-    PageNumber: pageNumber,
-    PageSize: pageSize,
+    PageNumber: selectedServiceIds.length > 1 ? 1 : pageNumber,
+    PageSize: selectedServiceIds.length > 1 ? 100 : pageSize,
     SearchTerm: searchTerm.trim() || undefined,
     PropertyType: selectedPropertyType !== "All Types" ? selectedPropertyType : undefined,
     IsActive: activeFilter,
+    OutsideUnitServiceId: selectedServiceIds[0],
   });
 
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -72,7 +78,16 @@ export default function AdminStandaloneUnitsPage() {
   const [isImagesOpen, setIsImagesOpen] = useState(false);
   const [unitForImages, setUnitForImages] = useState<StandaloneUnitItem | null>(null);
 
-  const units = data?.items ?? [];
+  const units = useMemo(() => {
+    const items = data?.items ?? [];
+    if (selectedServiceIds.length <= 1) return items;
+    const filtered = items.filter((u) => {
+      const ids = u.serviceIds || (u.services || []).map((s) => s.id);
+      return selectedServiceIds.every((id) => ids.includes(id));
+    });
+    const start = (pageNumber - 1) * pageSize;
+    return filtered.slice(start, start + pageSize);
+  }, [data?.items, selectedServiceIds, pageNumber]);
   const totalPages = data?.totalPages ?? 1;
   const hasPreviousPage = data?.hasPreviousPage ?? pageNumber > 1;
   const hasNextPage = data?.hasNextPage ?? pageNumber < totalPages;
@@ -137,6 +152,22 @@ export default function AdminStandaloneUnitsPage() {
           </div>
 
           {/* Property Type Filter */}
+          <AdminServiceFilterDropdown
+            label="Services"
+            options={servicesData ?? []}
+            selectedIds={selectedServiceIds}
+            onToggle={(id) => {
+              setSelectedServiceIds((prev) =>
+                prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+              );
+              setPageNumber(1);
+            }}
+            onClear={() => {
+              setSelectedServiceIds([]);
+              setPageNumber(1);
+            }}
+          />
+
           <select
             value={selectedPropertyType}
             onChange={(e) => {

@@ -25,7 +25,7 @@ export default function BlogsPage() {
       return await getBlogs({
         Language: locale,
         PageNumber: currentPage,
-        PageSize: 6,
+        PageSize: 9,
       });
     },
     staleTime: 1000 * 60 * 5,

@@ -29,6 +29,7 @@ export function formatPrimaryUnit(
       ? getFullPrimaryUnitMediaUrl(primaryImg.imageUrl)
       : "/default-fallback.png",
     location: u.projectName || fallbackLocation || "Hurghada",
+    serviceIds: (u.services || []).map((s) => s.id),
   };
 }
 
@@ -54,6 +55,7 @@ export function formatResaleUnit(
     price: priceText,
     imageSrc: rawImg ? getFullResaleMediaUrl(rawImg) : "/default-fallback.png",
     location: u.projectName || u.project?.name || fallbackLocation || "Hurghada",
+    serviceIds: (u.services || []).map((s) => s.id),
   };
 }
 
@@ -100,6 +102,13 @@ export function filterAreaUnits(
       const max = parseInt(filterState.maxPrice, 10);
       if (!isNaN(max) && rawNumericPrice > 0 && rawNumericPrice > max)
         return false;
+    }
+
+    if (filterState.serviceIds && filterState.serviceIds.length > 0) {
+      const unitServiceIds = unit.serviceIds || [];
+      if (!filterState.serviceIds.every((id) => unitServiceIds.includes(id))) {
+        return false;
+      }
     }
 
     return true;

@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { FiRotateCcw } from "react-icons/fi";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { useServicesQuery } from "@/features/services/useServicesQueries";
+import ServicePillsFilter from "@/components/UserComp/Common/ServicePillsFilter";
 import ProjectUnitsFilterFields from "./ProjectUnitsFilterFields";
 
 export interface UnitsFilterState {
@@ -12,6 +14,7 @@ export interface UnitsFilterState {
   bedrooms: string;
   minPrice: string;
   maxPrice: string;
+  serviceIds: number[];
   deliveryDateFrom?: string;
   deliveryDateTo?: string;
 }
@@ -43,7 +46,9 @@ export default function ProjectUnitsFilterSidebar({
   resaleCount = 0,
   bare = false,
 }: ProjectUnitsFilterSidebarProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
+  const { data: servicesData } = useServicesQuery(locale);
+  const services = servicesData || [];
 
   const [searchTerm, setSearchTerm] = useState(initialFilters.searchTerm);
   const [category, setCategory] = useState(initialFilters.category);
@@ -51,6 +56,7 @@ export default function ProjectUnitsFilterSidebar({
   const [bedrooms, setBedrooms] = useState(initialFilters.bedrooms || "");
   const [minPrice, setMinPrice] = useState(initialFilters.minPrice);
   const [maxPrice, setMaxPrice] = useState(initialFilters.maxPrice);
+  const [serviceIds, setServiceIds] = useState<number[]>(initialFilters.serviceIds || []);
 
   const isInitialMount = useRef(true);
 
@@ -62,9 +68,10 @@ export default function ProjectUnitsFilterSidebar({
     setBedrooms(initialFilters.bedrooms || "");
     setMinPrice(initialFilters.minPrice);
     setMaxPrice(initialFilters.maxPrice);
+    setServiceIds(initialFilters.serviceIds || []);
   }, [initialFilters]);
 
-  // Auto-apply filters after 1 second of inactivity (typing debounce)
+  // Auto-apply filters after inactivity
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -79,8 +86,9 @@ export default function ProjectUnitsFilterSidebar({
         bedrooms,
         minPrice,
         maxPrice,
+        serviceIds,
       });
-    }, 1000);
+    }, 600);
 
     return () => clearTimeout(timer);
   }, [
@@ -90,8 +98,15 @@ export default function ProjectUnitsFilterSidebar({
     bedrooms,
     minPrice,
     maxPrice,
+    serviceIds,
     onApplyFilters,
   ]);
+
+  function handleToggleService(id: number) {
+    setServiceIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -102,6 +117,7 @@ export default function ProjectUnitsFilterSidebar({
       bedrooms,
       minPrice,
       maxPrice,
+      serviceIds,
     });
   };
 
@@ -112,12 +128,14 @@ export default function ProjectUnitsFilterSidebar({
     setBedrooms("");
     setMinPrice("");
     setMaxPrice("");
+    setServiceIds([]);
     onResetFilters();
   };
 
   const activeFilterCount = [
     Boolean(searchTerm.trim()),
     Boolean(category && category !== "Any Type"),
+    serviceIds.length > 0,
     Boolean(unitType !== "All"),
     Boolean(bedrooms && bedrooms !== "Any"),
     Boolean(minPrice),
@@ -144,6 +162,14 @@ export default function ProjectUnitsFilterSidebar({
         onMaxPriceChange={setMaxPrice}
         primaryCount={primaryCount}
         resaleCount={resaleCount}
+      />
+
+      <ServicePillsFilter
+        label={t("common.filters.servicesLabel", "Services & Amenities")}
+        options={services}
+        selectedIds={serviceIds}
+        onToggle={handleToggleService}
+        onClear={() => setServiceIds([])}
       />
 
       {/* Action Buttons */}

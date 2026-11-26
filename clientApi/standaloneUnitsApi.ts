@@ -47,6 +47,7 @@ export async function getStandaloneUnits(
         MinFloor: params?.MinFloor,
         MaxFloor: params?.MaxFloor,
         IsActive: params?.IsActive,
+        OutsideUnitServiceId: params?.OutsideUnitServiceId || undefined,
         FeatureId: params?.FeatureId,
         FeatureName: params?.FeatureName,
         SortBy: params?.SortBy,

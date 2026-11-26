@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { FiRotateCcw, FiSearch } from "react-icons/fi";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { useServicesQuery } from "@/features/services/useServicesQueries";
+import ServicePillsFilter from "@/components/UserComp/Common/ServicePillsFilter";
 
 export interface FilterState {
   searchTerm: string;
@@ -10,6 +12,7 @@ export interface FilterState {
   bedrooms: string;
   minPrice: string;
   maxPrice: string;
+  serviceIds: number[];
 }
 
 interface StandaloneFilterSidebarProps {
@@ -26,25 +29,27 @@ export default function StandaloneFilterSidebar({
   onResetFilters,
   bare = false,
 }: StandaloneFilterSidebarProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
+  const { data: servicesData } = useServicesQuery(locale);
+  const services = servicesData || [];
   const [searchTerm, setSearchTerm] = useState(initialFilters.searchTerm);
   const [propertyType, setPropertyType] = useState(initialFilters.propertyType);
   const [bedrooms, setBedrooms] = useState(initialFilters.bedrooms);
   const [minPrice, setMinPrice] = useState(initialFilters.minPrice);
   const [maxPrice, setMaxPrice] = useState(initialFilters.maxPrice);
+  const [serviceIds, setServiceIds] = useState<number[]>(initialFilters.serviceIds || []);
 
   const isInitialMount = useRef(true);
 
-  // Sync internal state when external initialFilters change (e.g. on reset)
   useEffect(() => {
     setSearchTerm(initialFilters.searchTerm);
     setPropertyType(initialFilters.propertyType);
     setBedrooms(initialFilters.bedrooms);
     setMinPrice(initialFilters.minPrice);
     setMaxPrice(initialFilters.maxPrice);
+    setServiceIds(initialFilters.serviceIds || []);
   }, [initialFilters]);
 
-  // Auto-apply filters after 1 second of inactivity (typing debounce)
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -58,11 +63,18 @@ export default function StandaloneFilterSidebar({
         bedrooms,
         minPrice,
         maxPrice,
+        serviceIds,
       });
-    }, 1000);
+    }, 600);
 
     return () => clearTimeout(timer);
-  }, [searchTerm, propertyType, bedrooms, minPrice, maxPrice, onApplyFilters]);
+  }, [searchTerm, propertyType, bedrooms, minPrice, maxPrice, serviceIds, onApplyFilters]);
+
+  const handleToggleService = (id: number) => {
+    setServiceIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,6 +84,7 @@ export default function StandaloneFilterSidebar({
       bedrooms,
       minPrice,
       maxPrice,
+      serviceIds,
     });
   };
 
@@ -81,6 +94,7 @@ export default function StandaloneFilterSidebar({
     setBedrooms("");
     setMinPrice("");
     setMaxPrice("");
+    setServiceIds([]);
     onResetFilters();
   };
 
@@ -89,7 +103,8 @@ export default function StandaloneFilterSidebar({
       propertyType ||
       bedrooms ||
       minPrice ||
-      maxPrice
+      maxPrice ||
+      serviceIds.length > 0
   );
 
   return (
@@ -294,6 +309,14 @@ export default function StandaloneFilterSidebar({
               style={{ fontFamily: "var(--font-inter)" }}
             />
           </div>
+
+          <ServicePillsFilter
+            label={t("common.filters.servicesLabel", "Services & Amenities")}
+            options={services}
+            selectedIds={serviceIds}
+            onToggle={handleToggleService}
+            onClear={() => setServiceIds([])}
+          />
 
           {/* Submit & Reset Buttons */}
           <div className="space-y-2.5 pt-2">

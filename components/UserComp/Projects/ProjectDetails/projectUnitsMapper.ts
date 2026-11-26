@@ -79,6 +79,7 @@ export function mapPrimaryUnits(
       category: catName,
       imageSrc,
       location: locationOrProjectName,
+      serviceIds: (u.services || []).map((s) => s.id),
     };
   });
 }
@@ -147,6 +148,7 @@ export function mapResaleUnits(
       category: catName,
       imageSrc,
       location: locationOrProjectName,
+      serviceIds: (r.services || []).map((s) => s.id),
     };
   });
 }
@@ -211,6 +213,14 @@ export function filterProjectUnits(
     if (filterState.maxPrice && unit.rawPrice !== undefined) {
       const max = parseFloat(filterState.maxPrice);
       if (!isNaN(max) && unit.rawPrice > max) return false;
+    }
+
+    // Services
+    if (filterState.serviceIds && filterState.serviceIds.length > 0) {
+      const unitServiceIds = unit.serviceIds || [];
+      if (!filterState.serviceIds.every((id) => unitServiceIds.includes(id))) {
+        return false;
+      }
     }
 
     return true;

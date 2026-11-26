@@ -66,7 +66,7 @@ export default function ProjectsListSection() {
     Language: locale,
     Currency: currentCurrency || "EGP",
     PageNumber: page,
-    PageSize: 6,
+    PageSize: 9,
     SearchTerm: filters.searchTerm.trim() || undefined,
     Search: filters.searchTerm.trim() || undefined,
     LocationId: filters.locationId ? Number(filters.locationId) : undefined,

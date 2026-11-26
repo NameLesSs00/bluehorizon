@@ -35,13 +35,17 @@ export default function RentalsPage() {
     bedrooms: urlBedrooms,
     minPrice: urlMinPrice,
     maxPrice: urlMaxPrice,
+    categoryItemIds: [],
   });
+
+  const isMultiAmenity = filters.categoryItemIds.length > 1;
 
   const { data: rentalsData, isLoading } = usePublicRentalsQuery({
     Language: locale,
     Currency: currentCurrency || "EGP",
-    PageNumber: pageNumber,
-    PageSize: 9,
+    CategoryItemId: filters.categoryItemIds[0],
+    PageNumber: isMultiAmenity ? 1 : pageNumber,
+    PageSize: isMultiAmenity ? 100 : 9,
   });
 
   const rawUnits = rentalsData?.items || [];
@@ -104,6 +108,14 @@ export default function RentalsPage() {
         if (unitPrice > max) return false;
       }
 
+      // Category items / amenities
+      if (filters.categoryItemIds.length > 1) {
+        const itemIds = (unit.categoryItems || []).map((c) => c.id);
+        if (!filters.categoryItemIds.every((id) => itemIds.includes(id))) {
+          return false;
+        }
+      }
+
       return true;
     });
   }, [rawUnits, filters, currentCurrency]);
@@ -121,6 +133,7 @@ export default function RentalsPage() {
       bedrooms: "",
       minPrice: "",
       maxPrice: "",
+      categoryItemIds: [],
     });
     setPageNumber(1);
   };

@@ -2,6 +2,8 @@
 
 import { FiRotateCcw } from "react-icons/fi";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import { useServicesQuery } from "@/features/services/useServicesQueries";
+import ServicePillsFilter from "@/components/UserComp/Common/ServicePillsFilter";
 import AreaUnitsFilterFields from "./AreaUnitsFilterFields";
 
 export interface AreaUnitsFilterState {
@@ -11,6 +13,7 @@ export interface AreaUnitsFilterState {
   bedrooms: string;
   minPrice: string;
   maxPrice: string;
+  serviceIds: number[];
 }
 
 interface AreaUnitsFilterSidebarProps {
@@ -33,7 +36,16 @@ export default function AreaUnitsFilterSidebar({
   resaleCount,
   bare = false,
 }: AreaUnitsFilterSidebarProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
+  const { data: servicesData } = useServicesQuery(locale);
+  const services = servicesData || [];
+
+  const handleToggleService = (id: number) => {
+    const next = filterState.serviceIds.includes(id)
+      ? filterState.serviceIds.filter((x) => x !== id)
+      : [...filterState.serviceIds, id];
+    onFilterChange("serviceIds", next);
+  };
 
   const hasActiveFilters =
     filterState.tab !== "all" ||
@@ -41,7 +53,8 @@ export default function AreaUnitsFilterSidebar({
     filterState.propertyType !== "All Types" ||
     filterState.bedrooms !== "Any" ||
     filterState.minPrice !== "" ||
-    filterState.maxPrice !== "";
+    filterState.maxPrice !== "" ||
+    filterState.serviceIds.length > 0;
 
   if (bare) {
     return (
@@ -67,6 +80,15 @@ export default function AreaUnitsFilterSidebar({
           resaleCount={resaleCount}
           hasActiveFilters={hasActiveFilters}
         />
+        <div className="mt-4">
+          <ServicePillsFilter
+            label={t("common.filters.servicesLabel", "Services & Amenities")}
+            options={services}
+            selectedIds={filterState.serviceIds}
+            onToggle={handleToggleService}
+            onClear={() => onFilterChange("serviceIds", [])}
+          />
+        </div>
       </div>
     );
   }
@@ -103,6 +125,15 @@ export default function AreaUnitsFilterSidebar({
           resaleCount={resaleCount}
           hasActiveFilters={hasActiveFilters}
         />
+        <div className="mt-4">
+          <ServicePillsFilter
+            label={t("common.filters.servicesLabel", "Services & Amenities")}
+            options={services}
+            selectedIds={filterState.serviceIds}
+            onToggle={handleToggleService}
+            onClear={() => onFilterChange("serviceIds", [])}
+          />
+        </div>
       </div>
     </aside>
   );

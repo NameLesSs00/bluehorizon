@@ -11,6 +11,12 @@
       "contactUs": "تواصل معنا",
       "faq": "الأسئلة الشائعة"
     },
+    "filters": {
+      "servicesLabel": "الخدمات والمميزات",
+      "amenitiesLabel": "المميزات والخدمات",
+      "clear": "مسح",
+      "showLess": "عرض أقل"
+    },
     "search": {
       "categories": "التصنيفات",
       "propertyType": "نوع العقار",
@@ -52,7 +58,13 @@
       "subtitle": "اكتشف عقارات استثنائية وتطويرات مميزة وفرصاً استثمارية مصممة حول أسلوب حياتك.",
       "exploreProperties": "استكشف العقارات",
       "discoverProjects": "استكشف مشاريعنا",
-      "search": {
+      "filters": {
+      "servicesLabel": "الخدمات والمميزات",
+      "amenitiesLabel": "المميزات والخدمات",
+      "clear": "مسح",
+      "showLess": "عرض أقل"
+    },
+    "search": {
         "tabBuy": "شراء",
         "tabRent": "إيجار",
         "tabStandalone": "وحدات مستعملة",

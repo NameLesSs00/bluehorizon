@@ -37,6 +37,7 @@ export async function getRentals(
       params: {
         Language: lang,
         Currency: currency,
+        ...(params?.CategoryItemId && { CategoryItemId: params.CategoryItemId }),
         PageNumber: params?.PageNumber || 1,
         PageSize: params?.PageSize || 10,
       },

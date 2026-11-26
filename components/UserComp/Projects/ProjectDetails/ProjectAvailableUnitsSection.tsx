@@ -33,6 +33,7 @@ const INITIAL_FILTERS: UnitsFilterState = {
   bedrooms: "",
   minPrice: "",
   maxPrice: "",
+  serviceIds: [],
 };
 
 export default function ProjectAvailableUnitsSection({
@@ -47,10 +48,13 @@ export default function ProjectAvailableUnitsSection({
     useState<UnitsFilterState>(INITIAL_FILTERS);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const firstServiceId = filterState.serviceIds[0];
+
   const { data: primaryData } = usePublicPrimaryUnitsQuery(
     projectId && projectId > 0
       ? {
           ProjectId: projectId,
+          PrimaryUnitServiceId: firstServiceId,
           Language: locale,
           Currency: currentCurrency || "USD",
           PageNumber: 1,
@@ -60,10 +64,11 @@ export default function ProjectAvailableUnitsSection({
   );
 
   const { data: resaleData } = useQuery({
-    queryKey: ["resales", "project", projectId, locale, currentCurrency],
+    queryKey: ["resales", "project", projectId, locale, currentCurrency, firstServiceId ?? "all"],
     queryFn: () =>
       getResales({
         ProjectId: projectId,
+        ResaleUnitServiceId: firstServiceId,
         Language: locale,
         Currency: currentCurrency || "USD",
         PageNumber: 1,
@@ -134,7 +139,8 @@ export default function ProjectAvailableUnitsSection({
       filterState.unitType !== "All" ||
       (filterState.bedrooms && filterState.bedrooms !== "Any") ||
       filterState.minPrice ||
-      filterState.maxPrice
+      filterState.maxPrice ||
+      filterState.serviceIds.length > 0
   );
 
   return (

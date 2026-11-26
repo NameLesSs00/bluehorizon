@@ -45,6 +45,7 @@ export async function getResales(
         ProjectId: params?.ProjectId || undefined,
         IsFeatured: params?.IsFeatured !== undefined ? params.IsFeatured : undefined,
         IsActive: params?.IsActive !== undefined ? params.IsActive : undefined,
+        ResaleUnitServiceId: params?.ResaleUnitServiceId || undefined,
         SortBy: params?.SortBy || undefined,
         SortDirection: params?.SortDirection || undefined,
         PageNumber: params?.PageNumber || 1,

@@ -123,6 +123,7 @@ export interface PaginatedRentalsData {
 export interface RentalsQueryParams {
   Language?: string;
   Currency?: string;
+  CategoryItemId?: number;
   PageNumber?: number;
   PageSize?: number;
 }

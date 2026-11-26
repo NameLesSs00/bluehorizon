@@ -1,9 +1,11 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { FiPlus, FiSearch } from "react-icons/fi";
 import AdminShell from "@/components/adminComp/Common/AdminShell";
+import AdminServiceFilterDropdown from "@/components/adminComp/Common/AdminServiceFilterDropdown";
 import { usePrimaryUnitsQuery } from "@/features/primaryUnits/usePrimaryUnitsQueries";
+import { useServicesQuery } from "@/features/services/useServicesQueries";
 import { PrimaryUnitItem } from "@/models/primaryUnit";
 import PrimaryUnitsTable from "./PrimaryUnitsTable";
 import PrimaryUnitFormDrawer from "./PrimaryUnitFormDrawer";
@@ -14,15 +16,19 @@ const CURRENCIES = ["USD", "EUR", "GBP", "EGP"] as const;
 export default function AdminPrimaryUnitsPage() {
   const [activeCurrency, setActiveCurrency] = useState<string>("USD");
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [selectedServiceIds, setSelectedServiceIds] = useState<number[]>([]);
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 10;
+
+  const { data: servicesData } = useServicesQuery("en");
 
   const { data: unitsData, isLoading } = usePrimaryUnitsQuery({
     Language: "en",
     Currency: activeCurrency,
     SearchTerm: searchTerm.trim() || undefined,
-    PageNumber: pageNumber,
-    PageSize: pageSize,
+    PrimaryUnitServiceId: selectedServiceIds[0],
+    PageNumber: selectedServiceIds.length > 1 ? 1 : pageNumber,
+    PageSize: selectedServiceIds.length > 1 ? 100 : pageSize,
   });
 
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -31,7 +37,15 @@ export default function AdminPrimaryUnitsPage() {
   const [isMediaOpen, setIsMediaOpen] = useState(false);
   const [unitForMedia, setUnitForMedia] = useState<PrimaryUnitItem | null>(null);
 
-  const units = unitsData?.items ?? [];
+  const units = useMemo(() => {
+    const items = unitsData?.items ?? [];
+    if (selectedServiceIds.length <= 1) return items;
+    const filtered = items.filter((u) =>
+      selectedServiceIds.every((id) => u.services?.some((s) => s.id === id))
+    );
+    const start = (pageNumber - 1) * pageSize;
+    return filtered.slice(start, start + pageSize);
+  }, [unitsData?.items, selectedServiceIds, pageNumber]);
   const totalPages = unitsData?.totalPages ?? 1;
   const hasPreviousPage = unitsData?.hasPreviousPage ?? pageNumber > 1;
   const hasNextPage = unitsData?.hasNextPage ?? pageNumber < totalPages;
@@ -108,8 +122,8 @@ export default function AdminPrimaryUnitsPage() {
           </div>
         </div>
 
-        {/* Filter bar: Search input */}
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        {/* Filter bar: Search & Services */}
+        <div className="flex flex-wrap items-center gap-3">
           <div className="relative w-full max-w-sm">
             <FiSearch className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-[#9BA5A0]" />
             <input
@@ -123,6 +137,22 @@ export default function AdminPrimaryUnitsPage() {
               className="w-full rounded-xl border border-[#D0D9EA] bg-white py-2.5 pr-4 pl-10 text-[13px] text-[#202326] placeholder-[#9BA5A0] focus:border-[#2B5FA6] focus:outline-none"
             />
           </div>
+
+          <AdminServiceFilterDropdown
+            label="Services"
+            options={servicesData ?? []}
+            selectedIds={selectedServiceIds}
+            onToggle={(id) => {
+              setSelectedServiceIds((prev) =>
+                prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+              );
+              setPageNumber(1);
+            }}
+            onClear={() => {
+              setSelectedServiceIds([]);
+              setPageNumber(1);
+            }}
+          />
         </div>
 
         {/* Table View */}

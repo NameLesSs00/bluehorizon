@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { FiRotateCcw } from "react-icons/fi";
 import { usePublicRentalLocationsQuery } from "@/features/rentalLocations/useRentalLocationsQueries";
+import { usePropertyCategoryItemsQuery } from "@/features/propertyCategoryItems/usePropertyCategoryItemsQueries";
 import { useTranslation } from "@/features/i18n/useTranslation";
+import ServicePillsFilter from "@/components/UserComp/Common/ServicePillsFilter";
 import RentalFilterFields from "./RentalFilterFields";
 
 export interface RentalFilterState {
@@ -13,6 +15,7 @@ export interface RentalFilterState {
   bedrooms: string;
   minPrice: string;
   maxPrice: string;
+  categoryItemIds: number[];
 }
 
 interface RentalFilterSidebarProps {
@@ -35,6 +38,9 @@ export default function RentalFilterSidebar({
   const [bedrooms, setBedrooms] = useState(initialFilters.bedrooms);
   const [minPrice, setMinPrice] = useState(initialFilters.minPrice);
   const [maxPrice, setMaxPrice] = useState(initialFilters.maxPrice);
+  const [categoryItemIds, setCategoryItemIds] = useState<number[]>(
+    initialFilters.categoryItemIds || []
+  );
 
   const isInitialMount = useRef(true);
 
@@ -42,9 +48,13 @@ export default function RentalFilterSidebar({
     Language: locale,
     PageSize: 50,
   });
+  const { data: categoryItemsData } = usePropertyCategoryItemsQuery({
+    Language: locale,
+    PageSize: 100,
+  });
   const locations = locationsData?.items || [];
+  const categoryItems = categoryItemsData?.items || [];
 
-  // Sync internal state when external initialFilters change
   useEffect(() => {
     setSearchTerm(initialFilters.searchTerm);
     setLocationId(initialFilters.locationId);
@@ -52,9 +62,9 @@ export default function RentalFilterSidebar({
     setBedrooms(initialFilters.bedrooms);
     setMinPrice(initialFilters.minPrice);
     setMaxPrice(initialFilters.maxPrice);
+    setCategoryItemIds(initialFilters.categoryItemIds || []);
   }, [initialFilters]);
 
-  // Auto-apply filters after 1 second of inactivity (typing debounce)
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -69,11 +79,27 @@ export default function RentalFilterSidebar({
         bedrooms,
         minPrice,
         maxPrice,
+        categoryItemIds,
       });
-    }, 1000);
+    }, 600);
 
     return () => clearTimeout(timer);
-  }, [searchTerm, locationId, propertyType, bedrooms, minPrice, maxPrice, onApplyFilters]);
+  }, [
+    searchTerm,
+    locationId,
+    propertyType,
+    bedrooms,
+    minPrice,
+    maxPrice,
+    categoryItemIds,
+    onApplyFilters,
+  ]);
+
+  const handleToggleCategoryItem = (id: number) => {
+    setCategoryItemIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -84,6 +110,7 @@ export default function RentalFilterSidebar({
       bedrooms,
       minPrice,
       maxPrice,
+      categoryItemIds,
     });
   };
 
@@ -94,6 +121,7 @@ export default function RentalFilterSidebar({
     setBedrooms("");
     setMinPrice("");
     setMaxPrice("");
+    setCategoryItemIds([]);
     onResetFilters();
   };
 
@@ -103,7 +131,8 @@ export default function RentalFilterSidebar({
       propertyType ||
       bedrooms ||
       minPrice ||
-      maxPrice
+      maxPrice ||
+      categoryItemIds.length > 0
   );
 
   const formContent = (
@@ -123,6 +152,14 @@ export default function RentalFilterSidebar({
         setMaxPrice={setMaxPrice}
         locations={locations}
         t={t}
+      />
+
+      <ServicePillsFilter
+        label={t("common.filters.amenitiesLabel", "Amenities & Services")}
+        options={categoryItems}
+        selectedIds={categoryItemIds}
+        onToggle={handleToggleCategoryItem}
+        onClear={() => setCategoryItemIds([])}
       />
 
       {/* Submit & Reset Buttons */}

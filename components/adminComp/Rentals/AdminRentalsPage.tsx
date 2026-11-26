@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import AdminShell from "@/components/adminComp/Common/AdminShell";
+import AdminServiceFilterDropdown from "@/components/adminComp/Common/AdminServiceFilterDropdown";
 import { useRentalsQuery } from "@/features/rentals/useRentalsQueries";
+import { usePropertyCategoryItemsQuery } from "@/features/propertyCategoryItems/usePropertyCategoryItemsQueries";
 import { RentalItem } from "@/models/rental";
 import RentalsTable from "./RentalsTable";
 import RentalFormDrawer from "./RentalFormDrawer";
@@ -11,13 +13,20 @@ import RentalImagesDrawer from "./RentalImagesDrawer";
 
 export default function AdminRentalsPage() {
   const [pageNumber, setPageNumber] = useState(1);
+  const [selectedCategoryItemIds, setSelectedCategoryItemIds] = useState<number[]>([]);
   const pageSize = 10;
+
+  const { data: categoryItemsData } = usePropertyCategoryItemsQuery({
+    Language: "en",
+    PageSize: 100,
+  });
 
   const { data: rentalsData, isLoading } = useRentalsQuery({
     Language: "en",
     Currency: "USD",
-    PageNumber: pageNumber,
-    PageSize: pageSize,
+    CategoryItemId: selectedCategoryItemIds[0],
+    PageNumber: selectedCategoryItemIds.length > 1 ? 1 : pageNumber,
+    PageSize: selectedCategoryItemIds.length > 1 ? 100 : pageSize,
   });
 
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -26,7 +35,17 @@ export default function AdminRentalsPage() {
   const [isMediaOpen, setIsMediaOpen] = useState(false);
   const [rentalForMedia, setRentalForMedia] = useState<RentalItem | null>(null);
 
-  const rentals = rentalsData?.items ?? [];
+  const rentals = useMemo(() => {
+    const items = rentalsData?.items ?? [];
+    if (selectedCategoryItemIds.length <= 1) return items;
+    const filtered = items.filter((r) =>
+      selectedCategoryItemIds.every((id) =>
+        r.categoryItems?.some((c) => c.id === id)
+      )
+    );
+    const start = (pageNumber - 1) * pageSize;
+    return filtered.slice(start, start + pageSize);
+  }, [rentalsData?.items, selectedCategoryItemIds, pageNumber]);
   const totalPages = rentalsData?.totalPages ?? 1;
   const hasPreviousPage = rentalsData?.hasPreviousPage ?? pageNumber > 1;
   const hasNextPage = rentalsData?.hasNextPage ?? pageNumber < totalPages;
@@ -81,6 +100,25 @@ export default function AdminRentalsPage() {
               <span>New Rental Property</span>
             </button>
           </div>
+        </div>
+
+        {/* Filter Bar */}
+        <div className="flex flex-wrap items-center gap-3">
+          <AdminServiceFilterDropdown
+            label="Amenities"
+            options={categoryItemsData?.items ?? []}
+            selectedIds={selectedCategoryItemIds}
+            onToggle={(id) => {
+              setSelectedCategoryItemIds((prev) =>
+                prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+              );
+              setPageNumber(1);
+            }}
+            onClear={() => {
+              setSelectedCategoryItemIds([]);
+              setPageNumber(1);
+            }}
+          />
         </div>
 
         {/* Table View */}

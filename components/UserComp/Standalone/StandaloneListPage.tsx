@@ -36,7 +36,10 @@ export default function StandaloneListPage() {
     bedrooms: urlBedrooms,
     minPrice: urlMinPrice,
     maxPrice: urlMaxPrice,
+    serviceIds: [],
   });
+
+  const isMultiService = filters.serviceIds.length > 1;
 
   const { data, isLoading } = useQuery({
     queryKey: [
@@ -46,7 +49,8 @@ export default function StandaloneListPage() {
       filters.propertyType,
       filters.minPrice,
       filters.maxPrice,
-      pageNumber,
+      filters.serviceIds.join(","),
+      isMultiService ? 1 : pageNumber,
       locale,
       currentCurrency,
     ],
@@ -58,29 +62,43 @@ export default function StandaloneListPage() {
         PropertyType: filters.propertyType || undefined,
         MinPrice: filters.minPrice ? Number(filters.minPrice) : undefined,
         MaxPrice: filters.maxPrice ? Number(filters.maxPrice) : undefined,
-        PageNumber: pageNumber,
-        PageSize: 9,
+        OutsideUnitServiceId: filters.serviceIds[0],
+        PageNumber: isMultiService ? 1 : pageNumber,
+        PageSize: isMultiService ? 100 : 9,
       }),
     staleTime: 1000 * 60 * 5,
   });
 
-  // Client-side bedroom filter
-  const filteredUnits = useMemo(() => {
-    const rawItems = data?.items || [];
+  // Client-side bedroom & multi-service filter
+  const matchedUnits = useMemo(() => {
+    let rawItems = data?.items || [];
+    if (filters.serviceIds.length > 1) {
+      rawItems = rawItems.filter((u) => {
+        const ids = u.serviceIds || (u.services || []).map((s) => s.id);
+        return filters.serviceIds.every((id) => ids.includes(id));
+      });
+    }
     if (!filters.bedrooms) return rawItems;
     const bedCount = parseInt(filters.bedrooms, 10);
     return rawItems.filter((u) => {
       if (filters.bedrooms === "5") return (u.noBedRoom || 0) >= 5;
       return u.noBedRoom === bedCount;
     });
-  }, [data?.items, filters.bedrooms]);
+  }, [data?.items, filters.bedrooms, filters.serviceIds]);
+
+  const filteredUnits = useMemo(() => {
+    if (!isMultiService) return matchedUnits;
+    const start = (pageNumber - 1) * 9;
+    return matchedUnits.slice(start, start + 9);
+  }, [matchedUnits, isMultiService, pageNumber]);
 
   const hasActiveFilters = Boolean(
     filters.searchTerm.trim() ||
       filters.propertyType ||
       filters.bedrooms ||
       filters.minPrice ||
-      filters.maxPrice
+      filters.maxPrice ||
+      filters.serviceIds.length > 0
   );
 
   const handleApplyFilters = useCallback((newFilters: FilterState) => {
@@ -95,6 +113,7 @@ export default function StandaloneListPage() {
       bedrooms: "",
       minPrice: "",
       maxPrice: "",
+      serviceIds: [],
     });
     setPageNumber(1);
   }, []);

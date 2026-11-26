@@ -30,9 +30,10 @@ const INITIAL_FILTERS: RentalLocationFilterState = {
   capacity: "Any",
   minPrice: "",
   maxPrice: "",
+  categoryItemIds: [],
 };
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 9;
 
 export default function LocationAvailableRentalsSection({
   locationId,
@@ -52,6 +53,7 @@ export default function LocationAvailableRentalsSection({
   const { data: rentalsData, isLoading } = usePublicRentalsQuery({
     Language: locale,
     Currency: currentCurrency || "EGP",
+    CategoryItemId: filterState.categoryItemIds[0],
     PageSize: 100,
   });
 
@@ -105,6 +107,13 @@ export default function LocationAvailableRentalsSection({
         const max = parseInt(filterState.maxPrice, 10);
         if (!isNaN(max) && rawNumericPrice > 0 && rawNumericPrice > max)
           return false;
+      }
+
+      if (filterState.categoryItemIds.length > 0) {
+        const itemIds = (rental.categoryItems || []).map((c) => c.id);
+        if (!filterState.categoryItemIds.every((id) => itemIds.includes(id))) {
+          return false;
+        }
       }
 
       return true;

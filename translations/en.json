@@ -11,6 +11,12 @@
       "contactUs": "Contact Us",
       "faq": "FAQ"
     },
+    "filters": {
+      "servicesLabel": "Services & Amenities",
+      "amenitiesLabel": "Amenities & Services",
+      "clear": "Clear",
+      "showLess": "Show less"
+    },
     "search": {
       "categories": "Categories",
       "propertyType": "Property Type",
@@ -52,7 +58,13 @@
       "subtitle": "Discover exceptional properties, premium developments, and opportunities designed around your lifestyle.",
       "exploreProperties": "Explore Properties",
       "discoverProjects": "Discover Our Projects",
-      "search": {
+      "filters": {
+      "servicesLabel": "Services & Amenities",
+      "amenitiesLabel": "Amenities & Services",
+      "clear": "Clear",
+      "showLess": "Show less"
+    },
+    "search": {
         "tabBuy": "Buy",
         "tabRent": "Rent",
         "tabStandalone": "Second Hand",

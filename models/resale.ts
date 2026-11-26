@@ -99,6 +99,7 @@ export interface ResalesQueryParams {
   ProjectId?: number;
   IsFeatured?: boolean;
   IsActive?: boolean;
+  ResaleUnitServiceId?: number;
   SortBy?: string;
   SortDirection?: string;
   PageNumber?: number;

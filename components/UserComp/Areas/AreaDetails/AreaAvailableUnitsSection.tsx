@@ -38,9 +38,10 @@ const INITIAL_FILTERS: AreaUnitsFilterState = {
   bedrooms: "Any",
   minPrice: "",
   maxPrice: "",
+  serviceIds: [],
 };
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 9;
 
 export default function AreaAvailableUnitsSection({
   areaId,
@@ -68,10 +69,13 @@ export default function AreaAvailableUnitsSection({
   }, [projectsData]);
 
   // 2. Query primary and resale units
+  const firstServiceId = filterState.serviceIds[0];
+
   const { data: primaryData, isLoading: isLoadingPrimary } =
     usePublicPrimaryUnitsQuery({
       Language: locale,
       Currency: "USD",
+      PrimaryUnitServiceId: firstServiceId,
       PageSize: 100,
     });
 
@@ -79,6 +83,7 @@ export default function AreaAvailableUnitsSection({
     usePublicResalesQuery({
       Language: locale,
       Currency: "USD",
+      ResaleUnitServiceId: firstServiceId,
       PageSize: 100,
     });
 

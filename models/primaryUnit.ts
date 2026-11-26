@@ -77,6 +77,7 @@ export interface PrimaryUnitsQueryParams {
   MaxPrice?: number;
   IsFeatured?: boolean;
   IsActive?: boolean;
+  PrimaryUnitServiceId?: number;
   SortBy?: string;
   SortDirection?: string;
   PageNumber?: number;

@@ -49,6 +49,7 @@ export async function getPrimaryUnits(
         MaxPrice: params?.MaxPrice || undefined,
         IsFeatured: params?.IsFeatured !== undefined ? params.IsFeatured : undefined,
         IsActive: params?.IsActive !== undefined ? params.IsActive : undefined,
+        PrimaryUnitServiceId: params?.PrimaryUnitServiceId || undefined,
         SortBy: params?.SortBy || undefined,
         SortDirection: params?.SortDirection || undefined,
         PageNumber: params?.PageNumber || 1,

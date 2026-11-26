@@ -11,6 +11,12 @@
       "contactUs": "Kontakt",
       "faq": "FAQ"
     },
+    "filters": {
+      "servicesLabel": "Services & Ausstattung",
+      "amenitiesLabel": "Ausstattung & Services",
+      "clear": "Löschen",
+      "showLess": "Weniger anzeigen"
+    },
     "search": {
       "categories": "Kategorien",
       "propertyType": "Immobilientyp",
@@ -52,7 +58,13 @@
       "subtitle": "Entdecken Sie außergewöhnliche Immobilien, Premium-Projekte und Chancen für Ihren Lebensstil.",
       "exploreProperties": "Immobilien entdecken",
       "discoverProjects": "Projekte entdecken",
-      "search": {
+      "filters": {
+      "servicesLabel": "Services & Ausstattung",
+      "amenitiesLabel": "Ausstattung & Services",
+      "clear": "Löschen",
+      "showLess": "Weniger anzeigen"
+    },
+    "search": {
         "tabBuy": "Kaufen",
         "tabRent": "Mieten",
         "tabStandalone": "Bestandsimmobilien",

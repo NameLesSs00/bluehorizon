@@ -11,6 +11,12 @@
       "contactUs": "Контакты",
       "faq": "Вопросы и ответы"
     },
+    "filters": {
+      "servicesLabel": "Услуги и удобства",
+      "amenitiesLabel": "Удобства и услуги",
+      "clear": "Очистить",
+      "showLess": "Свернуть"
+    },
     "search": {
       "categories": "Категории",
       "propertyType": "Тип недвижимости",
@@ -52,7 +58,13 @@
       "subtitle": "Откройте для себя эксклюзивную недвижимость, премиальные жилые комплексы и выгодные предложения, созданные для вашего комфорта.",
       "exploreProperties": "Смотреть объекты",
       "discoverProjects": "Наши проекты",
-      "search": {
+      "filters": {
+      "servicesLabel": "Услуги и удобства",
+      "amenitiesLabel": "Удобства и услуги",
+      "clear": "Очистить",
+      "showLess": "Свернуть"
+    },
+    "search": {
         "tabBuy": "Купить",
         "tabRent": "Аренда",
         "tabStandalone": "Вторичное жильё",

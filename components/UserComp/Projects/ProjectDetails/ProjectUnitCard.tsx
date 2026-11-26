@@ -21,6 +21,7 @@ export interface UnitItem {
   rawPrice?: number;
   category?: string;
   rawBedrooms?: number;
+  serviceIds?: number[];
 }
 
 interface ProjectUnitCardProps {

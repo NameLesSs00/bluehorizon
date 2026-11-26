@@ -89,6 +89,7 @@ export interface StandaloneUnitsQueryParams {
   MinFloor?: number;
   MaxFloor?: number;
   IsActive?: boolean;
+  OutsideUnitServiceId?: number;
   FeatureId?: number;
   FeatureName?: string;
   SortBy?: string;

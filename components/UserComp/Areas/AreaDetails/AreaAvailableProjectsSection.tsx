@@ -62,7 +62,7 @@ export default function AreaAvailableProjectsSection({
     Language: locale,
     Currency: currentCurrency || "EGP",
     PageNumber: currentPage,
-    PageSize: 6,
+    PageSize: 9,
     SearchTerm: filterState.searchTerm.trim() || undefined,
     Search: filterState.searchTerm.trim() || undefined,
     MinimumPrice: filterState.minPrice ? Number(filterState.minPrice) : undefined,
