@@ -110,9 +110,11 @@ export async function createProjectLocation(
   formData.append("Name.En", payload.name.en || "");
   formData.append("Name.Ar", payload.name.ar || "");
   formData.append("Name.De", payload.name.de || "");
+  formData.append("Name.Ru", payload.name.ru || "");
   formData.append("Description.En", payload.description.en || "");
   formData.append("Description.Ar", payload.description.ar || "");
   formData.append("Description.De", payload.description.de || "");
+  formData.append("Description.Ru", payload.description.ru || "");
 
   const response = await apiClient.post<ApiResponse<number>>(
     "/api/categories",
