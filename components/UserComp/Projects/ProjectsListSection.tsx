@@ -93,13 +93,7 @@ export default function ProjectsListSection() {
   });
 
   const displayProjects = matchedApiProjects.map((item) =>
-    formatApiProject(
-      item,
-      currentCurrency || "EGP",
-      t("projects.grid.priceOnRequest", "Price on request"),
-      locale,
-      t("home.hotOffers.validUntil", "Valid until {date}")
-    )
+    formatApiProject(item, currentCurrency || "EGP", t, locale)
   );
 
   const filteredProjects = displayProjects.filter((project) => {

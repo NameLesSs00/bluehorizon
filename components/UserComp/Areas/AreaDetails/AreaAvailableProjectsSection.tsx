@@ -11,6 +11,7 @@ import AreaUnitsPagination from "./AreaUnitsPagination";
 import ProjectGridCard, {
   ProjectDisplayItem,
 } from "@/components/UserComp/Projects/ProjectGridCard";
+import { formatApiProject } from "@/components/UserComp/Projects/projectFormatters";
 import { usePublicProjectsQuery } from "@/features/projects/useProjectsQueries";
 import { useCurrencyStore } from "@/features/currency/useCurrencyStore";
 import { getFullProjectImageUrl } from "@/clientApi/projectsApi";
@@ -72,34 +73,7 @@ export default function AreaAvailableProjectsSection({
   });
 
   const apiProjects: ProjectDisplayItem[] = (projectsData?.items || []).map(
-    (item) => {
-      const targetPrice = item.prices?.find(
-        (p) => p.currency.toUpperCase() === (currentCurrency || "EGP").toUpperCase()
-      );
-      const egpPrice = item.prices?.find(
-        (p) => p.currency.toUpperCase() === "EGP"
-      );
-      const activePrice = targetPrice || egpPrice || item.prices?.[0];
-      const minPrice = activePrice?.minimumPrice;
-      const currency = activePrice?.currency || currentCurrency || "EGP";
-
-      const priceText =
-        typeof minPrice === "number" && minPrice > 0
-          ? `${currency} ${minPrice.toLocaleString()}`
-          : t("projects.grid.priceOnRequest", "Price on request");
-
-      const rawImg = item.imageUrls?.[0];
-      const resolvedImg = getFullProjectImageUrl(rawImg);
-
-      return {
-        id: item.id,
-        title: item.name,
-        description: item.description || "",
-        priceFormatted: priceText,
-        imageSrc: resolvedImg || "/default-fallback.png",
-        isFallback: !resolvedImg,
-      };
-    }
+    (item) => formatApiProject(item, currentCurrency || "EGP", t, locale)
   );
 
   const totalPages = projectsData?.totalPages || 1;
